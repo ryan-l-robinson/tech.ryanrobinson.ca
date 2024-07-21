@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>The A11Y Project</title>
+	<subtitle>A community-driven effort to make digital accessibility easier.</subtitle>
+	<link href="https://a11yproject.com/feed/feed.xml" rel="self"/>
+	<link href="https://a11yproject.com"/>
+	<updated>2020-11-23T00:00:00Z</updated>
+	<id>https://a11yproject.com/</id>
+	<author>
+		<name>Dave Rupert</name>
+		<email>hello@a11yproject.com</email>
+	</author>
+	
+	<entry>
+		<title>Getting started with VoiceOver on iOS</title>
+		<link href="https://a11yproject.com/posts/post1/"/>
+		<updated>2020-11-23T00:00:00Z</updated>
+		<id>https://a11yproject.com/posts/post1/</id>
+		<content type="html">&lt;p&gt;VoiceOver is a screen-reading tool built into Apple Inc.&#39;s iOS. It helps people navigate and use their iPhone without needing to see the screen. First introduced in 2009 with the iPod Shuffle and iPhone 3GS, VoiceOver has been in the picture in every Apple&#39;s iOS release ever since.&lt;/p&gt;
+&lt;p&gt;For developers, it is always a good idea to test out VoiceOver with your project on your chosen testing device.&lt;/p&gt;
+&lt;p&gt;There is also VoiceOver for macOS - a separate screen reader from VoiceOver iOS. If interested, you can check out &lt;a href=&quot;https://www.a11yproject.com/posts/getting-started-with-voiceover/&quot;&gt;Mat Marquis&#39;s detailed guide to macOS VoiceOver&lt;/a&gt;!&lt;/p&gt;
+&lt;h2 id=&quot;how-does-voiceover-work%3F&quot; tabindex=&quot;-1&quot;&gt;How does VoiceOver work?&lt;/h2&gt;
+&lt;p&gt;On an iPhone, VoiceOver responds to gestures (single tap, double tap, et cetera) and audibly communicates to us all the information we need to know (for example, what we have selected or done, the hints, values and traits of the items).&lt;/p&gt;
+&lt;h2 id=&quot;how-to-start-using-voiceover-on-ios&quot; tabindex=&quot;-1&quot;&gt;How to start using VoiceOver on iOS&lt;/h2&gt;
+&lt;p&gt;The easiest way to turn on VoiceOver on your iPhone is to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Settings app on your iPhone.&lt;/li&gt;
+&lt;li&gt;Select Accessibility.&lt;/li&gt;
+&lt;li&gt;Under Vision, select VoiceOver.&lt;/li&gt;
+&lt;li&gt;Turn on VoiceOver.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can also make it easier to activate/deactivate VoiceOver and use it frequently, by adding an Accessibility Shortcut:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Settings app on your iPhone.&lt;/li&gt;
+&lt;li&gt;Select Accessibility.&lt;/li&gt;
+&lt;li&gt;Under General, select Accessibility Shortcut.&lt;/li&gt;
+&lt;li&gt;Select VoiceOver.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Then you can toggle VoiceOver feature on or off by triple clicking the side button (on iPhone X or later). If it is an earlier version of iPhone, triple click the Home button.&lt;/p&gt;
+&lt;p&gt;You can also ask Siri to turn on VoiceOver on or off instantly by saying &amp;quot;Hey Siri, turn on VoiceOver!&amp;quot; or &amp;quot;Hey Siri, turn off VoiceOver!&amp;quot;.&lt;/p&gt;
+&lt;h2 id=&quot;basic-voiceover-gestures&quot; tabindex=&quot;-1&quot;&gt;Basic VoiceOver gestures&lt;/h2&gt;
+&lt;p&gt;Here are some common gestures you can use to navigate our iPhone with VoiceOver:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Gesture&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Touch the screen anywhere&lt;/td&gt;
+&lt;td&gt;Hear an item&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Drag finger on screen&lt;/td&gt;
+&lt;td&gt;Explore items&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Quickly flick left or right with one finger&lt;/td&gt;
+&lt;td&gt;Locate items or apps&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Double tap&lt;/td&gt;
+&lt;td&gt;Select and activate app, link or button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Triple tap&lt;/td&gt;
+&lt;td&gt;Double tap items&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tap once with two fingers&lt;/td&gt;
+&lt;td&gt;Pause VoiceOver&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Swipe up from bottom edge (ends with a haptic response and sound)&lt;/td&gt;
+&lt;td&gt;Return to Home&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Swipe up from bottom edge and keep dragging upward (ends with a second haptic response and higher pitched sound)&lt;/td&gt;
+&lt;td&gt;Bring up App Switcher&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Flick left or right with three fingers&lt;/td&gt;
+&lt;td&gt;Move through pages in App Switcher&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Flick up with three fingers&lt;/td&gt;
+&lt;td&gt;Force close an app while in App Switcher&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Swipe down from top edge of screen&lt;/td&gt;
+&lt;td&gt;Open Control Center&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Swipe up from bottom edge of screen&lt;/td&gt;
+&lt;td&gt;Quit Control Center&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For a more comprehensive list of gestures, check out &lt;a href=&quot;https://support.apple.com/en-ca/guide/iphone/iph3e2e2281/ios&quot;&gt;Apple&#39;s official VoiceOver guide&lt;/a&gt;!&lt;/p&gt;
+&lt;h2 id=&quot;voiceover-rotor&quot; tabindex=&quot;-1&quot;&gt;VoiceOver Rotor&lt;/h2&gt;
+&lt;p&gt;VoiceOver Rotor helps us change how VoiceOver works to suit our needs, whether it is adjusting the volume or speaking rate, selecting Braille Screen Input or more.&lt;/p&gt;
+&lt;figure role=&quot;figure&quot; aria-label=&quot;VoiceOver Rotor on iOS&quot;&gt;
+  &lt;img alt=&quot;iOS VoiceOver Rotor showing a list of settings on The A11Y Project&#39;s homepage on mobile.&quot; src=&quot;https://a11yproject.com/img/posts/getting-started-with-voiceover-ios/voiceover-ios-rotor.jpg&quot; /&gt;
+  &lt;figcaption&gt;VoiceOver Rotor on iOS&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;When VoiceOver is on, you can open VoiceOver Rotor by rotating two fingers on the screen as if you are turning a dial. Alternatively, you can drag up one finger from one hand and drag down another finger from the other hand.&lt;/li&gt;
+&lt;li&gt;Keep rotating the Rotor and hear the settings being read aloud until you get the one you want.&lt;/li&gt;
+&lt;li&gt;Finally, swipe one finger up or down to use the setting.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For example, you can read The A11Y Project&#39;s webpage on mobile via headings. First, you rotate the Rotor and stop at Headings setting. Then you swipe one finger up and down to read the webpage headings by headings.&lt;/p&gt;
+&lt;p&gt;Have fun trying out VoiceOver!&lt;/p&gt;
+</content>
+	</entry>
+</feed>
