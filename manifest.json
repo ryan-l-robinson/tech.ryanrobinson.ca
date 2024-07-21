@@ -1,7 +1,7 @@
 {
-  "name": "The A11Y Project",
-	"short_name": "A11Y",
-	"description": "A community-driven effort to make digital accessibility easier.",
+  "name": "Ryan Robinson Technology",
+	"short_name": "RR",
+	"description": "Ryan Robinson's personal tech blog",
 	"start_url": "/",
 	"scope": "/",
   "icons": [
