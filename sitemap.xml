@@ -40,4 +40,9 @@
 		<loc>https://example.com/eleventy-base-blog/tags/security/</loc>
 		<lastmod>2024-08-14</lastmod>
 	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tools/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
 </urlset>
