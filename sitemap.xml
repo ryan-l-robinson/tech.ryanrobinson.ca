@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-02-24-viva-topics-configuration/</loc>
+		<lastmod>2021-02-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/about/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blog/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/feed/feed.xml</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/feed/.htaccess</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/security/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+</urlset>
