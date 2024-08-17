@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 14 }
+.postlist { counter-reset: start-from 18 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -292,7 +292,10 @@ h2 + .header-anchor {
     top: 0;
     left: 0;
     width: 20em;
+    background-color: #1b2c58;
 }
 .main-content {
     display: flex;
+    background-color: #000000;
+    color: #ffffff;
 }
