@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>Eleventy Base Blog v8</title>
+	<title>Ryan Robinson Technology</title>
 	<subtitle></subtitle>
 	<link href="" rel="self"/>
-	<link href="https://example.com/"/>
-	<updated>2024-08-17T18:42:24Z</updated>
+	<link href="https://tech.ryanrobinson.ca/"/>
+	<updated>2024-08-17T18:45:26Z</updated>
 	<id></id>
 	<author>
-		<name>Your Name Here</name>
-		<email>youremailaddress@example.com</email>
+		<name>Ryan Robinson</name>
+		<email></email>
 	</author>
 </feed>
