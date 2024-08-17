@@ -293,3 +293,6 @@ h2 + .header-anchor {
     left: 0;
     width: 20em;
 }
+body {
+    display: flex;
+}
