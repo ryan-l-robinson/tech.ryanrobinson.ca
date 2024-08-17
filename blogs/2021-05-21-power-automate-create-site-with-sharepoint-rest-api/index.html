@@ -1,10 +1,10 @@
-<p>This post continues a series on <a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
 <p>This post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.</p>
 <h2 id="check-if-site-already-exists" tabindex="-1">Check if site already exists <a class="header-anchor" href="#check-if-site-already-exists">#</a></h2>
 <p>This can be done with <a href="https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest">the SharePoint REST API</a> if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.</p>
 <p>You will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.</p>
 <p>I’ll use the Get Site API call to see if the site already exists.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Check-if-site-already-exists.png" alt="">
+<p><img src="/assets/img/2021/05/Check-if-site-already-exists.png" alt="">
 <em>Screenshot of settings for checking if site already exists</em></p>
 <p>Details:</p>
 <ul>
@@ -20,7 +20,7 @@
 <p>Part of what that returns is a SiteStatus value. A value of 0 means that it hasn’t been created yet. A value of 2 means it has. There are also two less common responses: 1 means it is currently being provisioned and 3 means there was an error provisioning the site.</p>
 <p>In a more intensive real situation, I would also want to deal with those less common scenarios. But for this example, I’ll stay simple and just say that if it is 0, go ahead and make the site.</p>
 <p>Here’s the condition statement:</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/If-Site-Exists.png" alt="">
+<p><img src="/assets/img/2021/05/If-Site-Exists.png" alt="">
 <em>Screenshot of condition for if site already exists</em></p>
 <p>Details:</p>
 <ul>
@@ -30,7 +30,7 @@
 </ul>
 <h2 id="create-site" tabindex="-1">Create site <a class="header-anchor" href="#create-site">#</a></h2>
 <p>We’re ready to create the site, which can also be done with REST API calls.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Create-site.png" alt="">
+<p><img src="/assets/img/2021/05/Create-site.png" alt="">
 <em>Screenshot of creating a SharePoint by REST API</em></p>
 <p>Details:</p>
 <ul>

@@ -1,4 +1,4 @@
-<p>This post continues a <a href="/eleventy-base-blog/tags/gitpod-drupal/">mini-series</a> in which I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The code is available in my GitHub</a>.</p>
+<p>This post continues a <a href="/tags/gitpod-drupal/">mini-series</a> in which I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The code is available in my GitHub</a>.</p>
 <p>The first two posts covered the two big files: GitPod.Dockerfile and .gitpod.yml. This final post will cover a few minor changes I had to make to other configuration files.</p>
 <h2 id="apache-conf" tabindex="-1">Apache Conf <a class="header-anchor" href="#apache-conf">#</a></h2>
 <p>Only one thing needs to change from the default Apache configuration file: telling it to look at /web for the actual website content, instead of /var/www/html. That’s because a Drupal project typically has a top level that includes several necessary pieces of the site like the composer.json file, private files, and configuration sync files, outside the folder where the public site’s content is found.</p>
@@ -12,7 +12,7 @@ RewriteCond  %{REQUEST_FILENAME} !^/(files|misc|uploads)(/.*)?
 RewriteCond  %{REQUEST_FILENAME} !\.(php|ico|png|jpg|gif|css|js|html?)(\W.*)?
 RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 
-<Directory "${GITPOD_REPO_ROOT}="" web"="">
+<Directory "${GITPOD_REPO_ROOT}/web">
     AllowOverride all
     Require all granted
 </Directory></code></pre>

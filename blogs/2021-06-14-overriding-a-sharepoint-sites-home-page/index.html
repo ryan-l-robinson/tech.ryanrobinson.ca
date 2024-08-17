@@ -1,4 +1,4 @@
-<p>This post continues a series on <a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
 <p>At this point in the series, we’ve now created new SharePoint sites and applied temporary site scripts and site designs. There is one big feature missing from site scripts and site designs, though: templating the home page. You can’t simply say that a project site design should always contain a home page with these specific web parts. This may not be true forever – Microsoft is steadily improving site templating – but as of working on this project a few months ago, it required a bit of a workaround.</p>
 <h2 id="the-idea" tabindex="-1">The idea <a class="header-anchor" href="#the-idea">#</a></h2>
 <p>Here’s the basic idea that we’ll do to get around this:</p>
@@ -12,7 +12,7 @@
 <h2 id="the-copy-action" tabindex="-1">The copy action <a class="header-anchor" href="#the-copy-action">#</a></h2>
 <p>If you don’t already have a template site with some locked down permissions, create it and then design the homepage. This homepage can use relative web parts, like the documents library of that site.</p>
 <p>When that’s ready, it only takes a “Copy file” SharePoint action in the Flow to handle the copying. This can be a bit smoother than some previous actions which required the HTTP REST API calls. Those needed more flexibility using variables defined in the Flow. This one is copying from the same location every time, so it can stay simpler.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/06/CopyHomepage.png" alt=""></p>
+<p><img src="/assets/img/2021/06/CopyHomepage.png" alt=""></p>
 <p>Details:</p>
 <ul>
 <li>Current site address: select your template site</li>
@@ -21,4 +21,4 @@
 <li>Destination folder: /SitePages</li>
 <li>If another file is already there: Replace</li>
 </ul>
-<p>Note that this action depends on the new site already being fully created. <a href="/eleventy-base-blog/microsoft-365/power-automate/temporary-site-scripts-and-designs/">If you followed my previous post</a>, there was a delay there for the purpose of applying the site design. If you don’t already have a delay between the request to create the site and copying this file, you’ll need to add one.</p>
+<p>Note that this action depends on the new site already being fully created. <a href="/microsoft-365/power-automate/temporary-site-scripts-and-designs/">If you followed my previous post</a>, there was a delay there for the purpose of applying the site design. If you don’t already have a delay between the request to create the site and copying this file, you’ll need to add one.</p>

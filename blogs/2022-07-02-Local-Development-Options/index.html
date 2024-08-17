@@ -1,8 +1,8 @@
 <p>I've now broken down some of what I've learned about different virtualization/containerization options:</p>
 <ul>
-<li><a href="/eleventy-base-blog/tags/vagrant">Vagrant</a></li>
-<li><a href="/eleventy-base-blog/tags/docker/">Docker</a></li>
-<li><a href="/eleventy-base-blog/tags/gitpod/">GitPod</a></li>
+<li><a href="/tags/vagrant">Vagrant</a></li>
+<li><a href="/tags/docker/">Docker</a></li>
+<li><a href="/tags/gitpod/">GitPod</a></li>
 </ul>
 <p>I also learned that each of these options have some pro's and con's attached to consider.</p>
 <h2 id="vagrant-pro-s" tabindex="-1">Vagrant Pro's <a class="header-anchor" href="#vagrant-pro-s">#</a></h2>
@@ -11,10 +11,10 @@
 <p>It is very slow to build the VM, when it works at all. Fully building the VM and starting the Drupal 9 website I was using this for could take 6-8 hours.</p>
 <p>It continues to be very slow in usage afterward: browsing the site, running composer updates from the terminal, etc.</p>
 <p>It can be very buggy, with issues like arbitrarily changing permissions on a file so that you can no longer delete them from your computer even with admin access. I've got files on my computer that as far as I can tell there is no way to delete. Eventually it stopped working for me entirely.</p>
-<p>There are no extra tools for integration with <a href="/eleventy-base-blog/tags/visual-studio-code/">Visual Studio Code</a>, although you can ssh to a vagrant VM the same way you can to any other server.</p>
+<p>There are no extra tools for integration with <a href="/tags/visual-studio-code/">Visual Studio Code</a>, although you can ssh to a vagrant VM the same way you can to any other server.</p>
 <h2 id="docker-desktop-pro-s" tabindex="-1">Docker Desktop Pro's <a class="header-anchor" href="#docker-desktop-pro-s">#</a></h2>
 <p>Compared to Vagrant, Docker is much faster to build the image, at about 1-2 hours for the same Drupal 9 site.</p>
-<p>It has great integration with Visual Studio Code via the .devcontainer functionality, including installation of any extensions and pre-defining settings for all users. I have detailed much of my setup here in <a href="/eleventy-base-blog/tags/drupal-docker/">my Drupal Docker series</a>.</p>
+<p>It has great integration with Visual Studio Code via the .devcontainer functionality, including installation of any extensions and pre-defining settings for all users. I have detailed much of my setup here in <a href="/tags/drupal-docker/">my Drupal Docker series</a>.</p>
 <p>It has a strong community to draw on for support and for images. It's the most popular option now and that means you'll be able to find what you need more easily than for other options.</p>
 <h2 id="docker-desktop-con-s" tabindex="-1">Docker Desktop Con's <a class="header-anchor" href="#docker-desktop-con-s">#</a></h2>
 <p>It is less intuitive to develop the images if you haven't used Docker before. Learning the new syntaxes (Dockerfile, Docker compose) is straightforward, but there is a shift in thinking to containers.</p>
@@ -32,7 +32,7 @@
 <p>Data for their SaaS offering is held in the US and EU. Those are the only data residency options. Canada where I am is not an option. If you're concerned about data staying in your country and you're not in the US or EU, this is a problem. Otherwise, they do offer self-hosting on Azure/AWS/Google Cloud where you can control where it gets stored, but if you're going that far, is it that much better than other options?</p>
 <p>It does not automatically open VS Code Desktop. It will open in the browser that looks exactly like VS Code, then you can prompt it to open VS Code desktop, which will take clearing a couple other permission prompts. This isn't a big deal if you're opening VS Code once per day, but if you're in and out for a lot of quick changes, that does add up.</p>
 <p>In my context, it also cannot open VS Code at all if I was on my work network, leaving me to only edit in the browser. It did work early on, and maybe it will work again. I also have no idea to what degree this is on GitPod's end vs our end, so I don't say this as much to negatively review GitPod as to say it is another factor to consider.</p>
-<p>It does not support all Visual Studio Code extensions - only those which are in the Open VSX directory - which means a few absences like <a href="/eleventy-base-blog/websites/github-copilot/">GitHub Copilot</a>.</p>
+<p>It does not support all Visual Studio Code extensions - only those which are in the Open VSX directory - which means a few absences like <a href="/websites/github-copilot/">GitHub Copilot</a>.</p>
 <h2 id="local-server-pro-s" tabindex="-1">Local Server Pro's <a class="header-anchor" href="#local-server-pro-s">#</a></h2>
 <p>You could sidestep all of these questions about local development options and build your own servers.</p>
 <p>This makes it easiest to guarantee a match with your production servers.</p>

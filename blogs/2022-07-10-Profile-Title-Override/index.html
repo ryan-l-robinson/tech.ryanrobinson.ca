@@ -3,12 +3,12 @@
 <h2 id="the-url-alias" tabindex="-1">The URL Alias <a class="header-anchor" href="#the-url-alias">#</a></h2>
 <p>Like other nodes, the URL can be changed using <a href="https://drupal.org/project/pathauto">the pathauto module</a> to generate based on a pattern. Note that this takes a change in the pathauto configuration, which might not be obvious if like me you did the initial round of pathauto configuration long before adding profiles.</p>
 <p>Here's a screenshot of the settings page, which can be found at /admin/config/search/path/settings:</p>
-<p><img src="/eleventy-base-blog/assets/img/2022/07/Pathauto_entities.png" alt="Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User"></p>
+<p><img src="/assets/img/2022/07/Pathauto_entities.png" alt="Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User"></p>
 <p>Once the ability to set paths for profiles is turned on, you can switch over to the Patterns tab and create the pattern. I made mine <code>/staff/[profile:field_first_name]-[profile:field_last_name]</code>.</p>
 <h2 id="the-page-title" tabindex="-1">The Page Title <a class="header-anchor" href="#the-page-title">#</a></h2>
 <p>I fixed the page title displayed within the body with a view. I also altered the display of a profile to not show the default title and not show the first name and last name otherwise.</p>
 <p>I won't break down every setting, but here's a screenshot of the view configuration:</p>
-<p><img src="/eleventy-base-blog/assets/img/2022/07/Profile_Title_View.PNG" alt="Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them"></p>
+<p><img src="/assets/img/2022/07/Profile_Title_View.PNG" alt="Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them"></p>
 <p>You can also see this in configuration YML form in the GitHub project's /sync/config/views.view.profile.yml file. Once the view is ready, add the block to the correct place in your theme, and turn off the standard Page Title block for those pages (based on the URL).</p>
 <h2 id="the-browser-title" tabindex="-1">The Browser Title <a class="header-anchor" href="#the-browser-title">#</a></h2>
 <p>The second one required a custom module, albeit a relatively simple one. This is the key part:</p>

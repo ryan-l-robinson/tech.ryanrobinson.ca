@@ -1,4 +1,4 @@
-<p>This is the first in <a href="/eleventy-base-blog/tags/gitlab-devops/">a series setting up a basic DevOps pipeline</a> through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.</p>
+<p>This is the first in <a href="/tags/gitlab-devops/">a series setting up a basic DevOps pipeline</a> through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.</p>
 <h2 id="oracle-linux-8-lamp-stack" tabindex="-1">Oracle Linux 8 LAMP stack <a class="header-anchor" href="#oracle-linux-8-lamp-stack">#</a></h2>
 <p>The VM will be using <a href="https://www.vagrantup.com/">Vagrant </a>and <a href="https://www.virtualbox.org/">Oracle VirtualBox</a>. Every user will need to install both, as well as the VirtualBox extensions, for this to work.</p>
 <p>The configuration for the Vagrant box can be found on <a href="https://github.com/ryan-l-robinson">my GitHub</a>. For the sake of this demonstration, it is a fairly simple Oracle Linux 8, using a build in the Vagrant repository.</p>
@@ -14,7 +14,7 @@
 <h2 id="drupal-9-local-dev" tabindex="-1">Drupal 9 local dev <a class="header-anchor" href="#drupal-9-local-dev">#</a></h2>
 <p>In my case, the purpose of this vagrant box is for the first stage of development on a Drupal 9 website. So I’m going to go a few steps further to get it ready for the specific Drupal 9 project. That includes:</p>
 <ul>
-<li>Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that <a href="/eleventy-base-blog/websites/my-web-development-workflow/">it can be used to connect to GitLab</a></li>
+<li>Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that <a href="/websites/my-web-development-workflow/">it can be used to connect to GitLab</a></li>
 <li>Configures git including pulling the latest version of the code from the GitLab</li>
 <li>Imports a MySQL database if one is provided</li>
 <li>Self-signed keys so that https browsing will be possible</li>

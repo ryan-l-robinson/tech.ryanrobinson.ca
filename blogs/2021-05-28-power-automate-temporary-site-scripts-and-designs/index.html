@@ -1,9 +1,9 @@
-<p>This post continues a series on <a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
-<p><a href="/eleventy-base-blog/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
+<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p><a href="/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
 <h2 id="write-the-temporary-script" tabindex="-1">Write the temporary script <a class="header-anchor" href="#write-the-temporary-script">#</a></h2>
 <p>Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.</p>
 <p>Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/SiteScript.png" alt="">
+<p><img src="/assets/img/2021/05/SiteScript.png" alt="">
 <em>Screenshot of setting up the site script variable</em></p>
 <p>Details:</p>
 <ul>
@@ -27,7 +27,7 @@
 </code></pre>
 <h2 id="register-the-temporary-script" tabindex="-1">Register the temporary script <a class="header-anchor" href="#register-the-temporary-script">#</a></h2>
 <p>Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Register-Site-Script.png" alt="">
+<p><img src="/assets/img/2021/05/Register-Site-Script.png" alt="">
 <em>Screenshot of action to register site script</em></p>
 <p>Details:</p>
 <ul>
@@ -43,7 +43,7 @@
 <li>Header 3 value: 4.0</li>
 </ul>
 <p>I also created a variable to capture the ID of the site script that was just created. You could do without this step, instead referencing back to the body of the response every time you need it, but it is easier to keep track of with a variable.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/SiteScript-ID.png" alt="">
+<p><img src="/assets/img/2021/05/SiteScript-ID.png" alt="">
 <em>Screenshot of setting the siteScriptID variable</em></p>
 <p>Details:</p>
 <ul>
@@ -54,7 +54,7 @@
 </ul>
 <h2 id="create-the-temporary-design" tabindex="-1">Create the temporary design <a class="header-anchor" href="#create-the-temporary-design">#</a></h2>
 <p>Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Create-Site-Design.png" alt="">
+<p><img src="/assets/img/2021/05/Create-Site-Design.png" alt="">
 <em>Screenshot of registering the site design</em></p>
 <p>Details:</p>
 <ul>
@@ -75,7 +75,7 @@
 </code></pre>
 <p>Note that WebTemplate 68 is a communication site. 64 would be a team site.</p>
 <p>As with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Site-Design-ID.png" alt="">
+<p><img src="/assets/img/2021/05/Site-Design-ID.png" alt="">
 <em>Screenshot of setting site design ID variable</em></p>
 <p>Details:</p>
 <ul>
@@ -91,11 +91,11 @@
 <li>In loop, delay one minute, then check if site exists yet.</li>
 </ol>
 <p>That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/06/Delay-5-minutes.png" alt=""></p>
-<p>You also may need to delay much longer if your site scripts rely on <a href="/eleventy-base-blog/microsoft-365/sharepoint/content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
+<p><img src="/assets/img/2021/06/Delay-5-minutes.png" alt=""></p>
+<p>You also may need to delay much longer if your site scripts rely on <a href="/microsoft-365/sharepoint/content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
 <h2 id="apply-the-site-design" tabindex="-1">Apply the site design <a class="header-anchor" href="#apply-the-site-design">#</a></h2>
 <p>Yet another REST API call will allow you to apply the site design that is now registered.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Apply-Site-Design.png" alt="">
+<p><img src="/assets/img/2021/05/Apply-Site-Design.png" alt="">
 <em>Screenshot of applying the site design</em></p>
 <p>Details:</p>
 <ul>
@@ -112,7 +112,7 @@
 </code></pre>
 <h2 id="clean-up" tabindex="-1">Clean up <a class="header-anchor" href="#clean-up">#</a></h2>
 <p>You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Delete-Site-Design.png" alt="">
+<p><img src="/assets/img/2021/05/Delete-Site-Design.png" alt="">
 <em>Screenshot of deleting the site design</em></p>
 <p>Details:</p>
 <ul>
@@ -124,7 +124,7 @@
 </ul>
 <pre><code>{&quot;id&quot;:&quot;@{variables('siteDesignID')}&quot;}
 </code></pre>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/Delete-Site-Script.png" alt="">
+<p><img src="/assets/img/2021/05/Delete-Site-Script.png" alt="">
 <em>Screenshot of deleting the site script</em></p>
 <p>Details:</p>
 <ul>

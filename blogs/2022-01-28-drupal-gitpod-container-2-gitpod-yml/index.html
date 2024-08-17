@@ -1,4 +1,4 @@
-<p>This post picks up in a <a href="/eleventy-base-blog/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/eleventy-base-blog/drupal/gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
+<p>This post picks up in a <a href="/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/drupal/gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
 <p><a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The entire project is available in my GitHub</a>.</p>
 <p>More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.</p>
 <pre class="language-gitpod" tabindex="0"><code class="language-gitpod">image:
@@ -67,7 +67,7 @@ apachectl start</code></pre>
     addBadge: true
     addLabel: true</code></pre>
 <h2 id="extensions" tabindex="-1">Extensions <a class="header-anchor" href="#extensions">#</a></h2>
-<p>The final section of this file is to install <a href="/eleventy-base-blog/tags/visual-studio-code/">VS Code</a> extensions. There is one big qualifier here: it can only install extensions that are available in <a href="https://open-vsx.org/">the Open VSX registry</a>. This may not be everything available for VS Code, with the most notable exclusion for me being <a href="/eleventy-base-blog/websites/github-copilot/">GitHub Copilot</a>.</p>
+<p>The final section of this file is to install <a href="/tags/visual-studio-code/">VS Code</a> extensions. There is one big qualifier here: it can only install extensions that are available in <a href="https://open-vsx.org/">the Open VSX registry</a>. This may not be everything available for VS Code, with the most notable exclusion for me being <a href="/websites/github-copilot/">GitHub Copilot</a>.</p>
 <p>Here’s my Drupal 9 friendly set of extensions:</p>
 <pre class="language-gitpod" tabindex="0"><code class="language-gitpod">vscode:
   extensions:

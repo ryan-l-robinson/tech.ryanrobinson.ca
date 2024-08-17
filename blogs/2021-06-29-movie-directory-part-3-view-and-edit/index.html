@@ -1,7 +1,7 @@
-<p>This continues a short series about <a href="/eleventy-base-blog/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
+<p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
 <h2 id="view-screen" tabindex="-1">View screen <a class="header-anchor" href="#view-screen">#</a></h2>
 <p>The view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/06/View-Movie.png" alt="">
+<p><img src="/assets/img/2021/06/View-Movie.png" alt="">
 <em>View movie screen of Alien3, with all the options selected</em></p>
 <p>The text fields are straightforward. The icons are a bit more complicated. There is one data field with choices for all the different platforms that we own a movie, but I wanted to show it differently, with one icon for everywhere we owned it while hiding the icons for platforms we don’t own it.</p>
 <p>There are six icons for ownership plus a JustWatch link. I grouped the six into two rows, putting Blu-ray, DVD, and Movies Anywhere on one line and Google Play, Microsoft, and Vudu on the next. Whether each icon is visible or not is determined by this value in the Visible field:</p>
@@ -23,11 +23,11 @@
 </code></pre>
 <p>and a Transparency of 0.6, to make sure the text above it is still readable.</p>
 <h2 id="edit-screen" tabindex="-1">Edit screen <a class="header-anchor" href="#edit-screen">#</a></h2>
-<p><img src="/eleventy-base-blog/assets/img/2021/06/Edit-screen.png" alt="">
+<p><img src="/assets/img/2021/06/Edit-screen.png" alt="">
 <em>Edit screen for Alien3</em></p>
 <p>The layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.</p>
 <p>I did add one more complicated piece, though. I was worried about having the delete icon so close to the save button, despite that being the default placement within Power Apps. So, I built a confirmation dialogue.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/06/Delete-dialogue.png" alt="">
+<p><img src="/assets/img/2021/06/Delete-dialogue.png" alt="">
 <em>Delete dialogue</em></p>
 <p>The OnSelect value for the delete button is this:</p>
 <pre><code>UpdateContext({showPopup:true})

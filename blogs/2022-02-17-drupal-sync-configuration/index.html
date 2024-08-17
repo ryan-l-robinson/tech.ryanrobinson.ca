@@ -1,4 +1,4 @@
-<p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/eleventy-base-blog/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
+<p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
 <p>Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.</p>
 <h2 id="what-s-included" tabindex="-1">What’s included <a class="header-anchor" href="#what-s-included">#</a></h2>
 <p>It is not a full database backup, but it does include most settings, such as:</p>
@@ -28,6 +28,6 @@ drush config-import</code></pre>
 <p>More on <a href="https://www.drush.org/latest/commands/config_import/">the drush command</a> can be seen here.</p>
 <h2 id="manual" tabindex="-1">Manual <a class="header-anchor" href="#manual">#</a></h2>
 <p>You can also sync config manually one group of settings at a time. This is a slower process, so you wouldn’t take this route in a normal workflow of pushing dev changes out to production.</p>
-<p><img src="/eleventy-base-blog/assets/img/2022/01/Config-sync.png" alt="Configuration sync screen, allowing for import, export, and full archive or single items">
+<p><img src="/assets/img/2022/01/Config-sync.png" alt="Configuration sync screen, allowing for import, export, and full archive or single items">
 <em>Screenshot of importing a single configuration item</em></p>
 <p>I won’t detail that here, since the interface does make it fairly intuitive, but you can approach it halfway – sync the files but then import them one at a time from the synchronize tab – or you can avoid syncing entirely and instead manually copy the configuration file shown on one Drupal site into the other.</p>

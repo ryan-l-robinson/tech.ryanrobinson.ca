@@ -7,7 +7,7 @@
 <li>Create a file named “id_rsa.pub”. Copy the text at the top of the PuTTYgen window and paste it into that file using a code editor and save.</li>
 <li>Use the “Conversions” -&gt; “Export OpenSSH key (force new file format)” option in the menu. Save that file as “id_rsa” (without the .pub extension).</li>
 </ol>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/PuTTYgen.png" alt="">
+<p><img src="/assets/img/2021/05/PuTTYgen.png" alt="">
 <em>PuTTYgen window, before creating/loading a key</em></p>
 <p>The file created by step 2 will be used in PuTTY. The file created in step 3 will be added to each site’s authorized_keys file as well as GitHub. The file created in step 4 will be used by Visual Studio Code.</p>
 <h2 id="putty" tabindex="-1">PuTTY <a class="header-anchor" href="#putty">#</a></h2>
@@ -18,7 +18,7 @@
 <li>Under “Private key file for authentication” click the Browse button and navigate to the private key file.</li>
 </ol>
 <p>Then go back to the top settings option, select “Default Settings” and “Save” to overwrite the defaults.</p>
-<p><img src="/eleventy-base-blog/assets/img/2021/05/PuTTY.png" alt="">
+<p><img src="/assets/img/2021/05/PuTTY.png" alt="">
 <em>PuTTY window, with some of my clients already set up as stored sessions</em></p>
 <p>When it’s time to add a new site, there’s little configuration needed:</p>
 <ol>
@@ -60,8 +60,8 @@ ssh-add ~/.ssh/id_rsa</code></pre>
 <h2 id="visual-studio-code" tabindex="-1">Visual Studio Code <a class="header-anchor" href="#visual-studio-code">#</a></h2>
 <p><a href="https://code.visualstudio.com/">Visual Studio Code</a> is my code editor of choice, so this is an essential piece of the puzzle if I am doing any customizations to the site. I’ve written more about Visual Studio Code in the past:</p>
 <ol>
-<li><a href="/eleventy-base-blog/websites/visual-studio-code-remote-ssh-development/">Remote SSH in Visual Studio Code.</a></li>
-<li><a href="/eleventy-base-blog/websites/using-github-from-visual-studio-code/">GitHub in Visual Studio Code.</a></li>
+<li><a href="/websites/visual-studio-code-remote-ssh-development/">Remote SSH in Visual Studio Code.</a></li>
+<li><a href="/websites/using-github-from-visual-studio-code/">GitHub in Visual Studio Code.</a></li>
 </ol>
 <p>When I have a new site to add, I do this:</p>
 <ol>

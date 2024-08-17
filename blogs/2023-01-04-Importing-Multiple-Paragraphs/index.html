@@ -26,11 +26,11 @@
 <li>Processor: Node</li>
 <li>Content type: [Your content type, in this case it was Resources]</li>
 </ul>
-<p><img src="/eleventy-base-blog/assets/img/2023/01/FeedSettings.png" alt="Screenshot of feeds settings screen, showing options described above"></p>
+<p><img src="/assets/img/2023/01/FeedSettings.png" alt="Screenshot of feeds settings screen, showing options described above"></p>
 <p>On the mapping screen, I added a straightforward mapping between the Field Collection Title in your csv file and a temporary text column (allowing multiple values) created in your content type of the new site.</p>
 <p>After this, the import will be able to bring in data and put it in new nodes of the content type, but the text in the temporary fields are still separated by the :: if there are multiple.</p>
 <p>Now I went over to the Tamper tab and found the field you need to split up and added an &quot;Explode&quot; tamper plugin for that field, specifying the string separator and a label. I repeated this on each these temporary multiple fields.</p>
-<p><img src="/eleventy-base-blog/assets/img/2023/01/FeedsTamper.png" alt="Screenshot of tamper screen, showing options described above"></p>
+<p><img src="/assets/img/2023/01/FeedsTamper.png" alt="Screenshot of tamper screen, showing options described above"></p>
 <p>This will now leave us with multiple entries in the temporary field directly on the node. We still need to turn those into paragraphs and associate those paragraphs with the node, which is where we run out of options within Feeds to handle it on its own.</p>
 <h2 id="custom-module" tabindex="-1">Custom Module <a class="header-anchor" href="#custom-module">#</a></h2>
 <p>The final piece is to convert the temporary text fields into multiple associated paragraphs instead. This will be handled with a custom module. I've created <a href="https://github.com/ryan-l-robinson/Drupal-paragraph-split">a generic demo of this available in my GitHub</a>. This is the main PHP file.</p>
