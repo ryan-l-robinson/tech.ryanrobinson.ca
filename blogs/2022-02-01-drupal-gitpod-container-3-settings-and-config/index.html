@@ -1,0 +1,52 @@
+<p>This post continues a <a href="/eleventy-base-blog/tags/gitpod-drupal/">mini-series</a> in which I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The code is available in my GitHub</a>.</p>
+<p>The first two posts covered the two big files: GitPod.Dockerfile and .gitpod.yml. This final post will cover a few minor changes I had to make to other configuration files.</p>
+<h2 id="apache-conf" tabindex="-1">Apache Conf <a class="header-anchor" href="#apache-conf">#</a></h2>
+<p>Only one thing needs to change from the default Apache configuration file: telling it to look at /web for the actual website content, instead of /var/www/html. That’s because a Drupal project typically has a top level that includes several necessary pieces of the site like the composer.json file, private files, and configuration sync files, outside the folder where the public site’s content is found.</p>
+<p>That’s done by changing the document root from <code>&quot;${GITPOD_REPO_ROOT}&quot;</code> to <code>&quot;${GITPOD_REPO_ROOT}/web&quot;</code>, so the relevant section of the file looks something like this:</p>
+<pre class="language-apache" tabindex="0"><code class="language-apache"># Directory and files to be served
+DirectoryIndex index.html index.htm index.php
+DocumentRoot "${GITPOD_REPO_ROOT}/web"
+
+RewriteCond  %{REQUEST_FILENAME} !^/$
+RewriteCond  %{REQUEST_FILENAME} !^/(files|misc|uploads)(/.*)?
+RewriteCond  %{REQUEST_FILENAME} !\.(php|ico|png|jpg|gif|css|js|html?)(\W.*)?
+RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
+
+<Directory "${GITPOD_REPO_ROOT}="" web"="">
+    AllowOverride all
+    Require all granted
+</Directory></code></pre>
+<p>To use this conf file, I saved my complete file in the .gitpod directory and then had the GitPod.Dockerfile copy that file into place:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">COPY</span> .gitpod/apache2.conf /etc/apache2/apache2.conf</span></code></pre>
+<h2 id="php-ini" tabindex="-1">PHP.ini <a class="header-anchor" href="#php-ini">#</a></h2>
+<p>The PHP.ini is similarly close to the default Ubuntu, but not quite. We’ll have to add support for a few extensions at minimum. There are a couple ways to do this. One approach is to have the script add the lines to enable the extensions, without touching anything else. The advantage of this is keeping everything else to the default, which may matter as the GitPod base image changes over time. That would look like:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"extension=uploadprogress"</span> <span class="token operator">>></span> /etc/php/8.0/apache2/php.ini</code></pre>
+<p>The other alternative as I’ve done here is to completely overwrite the php.ini file with my own. The advantage of that approach is to also control all the other variables like the memory limit. The more you want to change from the default, the more this approach makes better sense than adding individual lines. So in that case, the file is copying using this line in the .gitpod.yml:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.ini</code></pre>
+<p>You could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max_execution_time from 30s to 300s, I might do this:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/max_execution_time = 30/max_execution_time = 300/g"</span> /etc/php/8.0/apache2/php.ini</span></code></pre>
+<h2 id="drupal-settings" tabindex="-1">Drupal settings <a class="header-anchor" href="#drupal-settings">#</a></h2>
+<p>Most of the Drupal settings are similar to the default. The largest change is familiar to any Drupal developer: set the database credentials. Since this is a GitPod container which gets created and destroyed on the fly regularly, I went simple using the root user and no password. A production server would have a different user and a good password.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token variable">$databases</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'default'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'default'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">array</span> <span class="token punctuation">(</span>
+  <span class="token string single-quoted-string">'database'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'drupal'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'username'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'root'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'password'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'prefix'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'host'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'127.0.0.1'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'port'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'3306'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'namespace'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'Drupal\\Core\\Database\\Driver\\mysql'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'driver'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'mysql'</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Beyond that, there are a couple of tweaks both related to the fact that the GitPod domain is going to change.</p>
+<p>First I set the trusted_host_patterns. The valid domains for browsing this site are either as some subdomain of gitpod.io, or as localhost.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token variable">$settings</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'trusted_host_patterns'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string single-quoted-string">'^.+\.gitpod\.io$'</span><span class="token punctuation">,</span>
+  <span class="token string single-quoted-string">'^localhost$'</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>I also opened up the cookie_domain to allow anything. This is so that it doesn’t object to you first logging into the site at one GitPod subdomain, then spinning up a new container and trying to login with that one.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"> <span class="token comment">/**
+  * Used to track what domains you're logged into
+  * Set to * to accept any GitPod domain
+  */</span>
+<span class="token variable">$cookie_domain</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'*'</span><span class="token punctuation">;</span></code></pre>
+<p>That’s it! I’ve now covered having a functional Drupal-friendly GitPod container.</p>

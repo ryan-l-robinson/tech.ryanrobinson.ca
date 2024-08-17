@@ -7,42 +7,822 @@
 	</url>
 	
 	<url>
-		<loc>https://example.com/eleventy-base-blog/about/</loc>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-02-25-ms-101-prep-how-im-studying/</loc>
+		<lastmod>2021-02-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-02-25-viva-topics-experience/</loc>
+		<lastmod>2021-02-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-02-microsoft-ignite-news-day/</loc>
+		<lastmod>2021-03-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-07-security-essentials-password-manager/</loc>
+		<lastmod>2021-03-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-07-security-essentials-multi-factor-authentication/</loc>
+		<lastmod>2021-03-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-16-wordpress-com-vs-org/</loc>
+		<lastmod>2021-03-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-29-it-on-film-flight-attendant-episode-3/</loc>
+		<lastmod>2021-03-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-03-31-civicrm-overview/</loc>
+		<lastmod>2021-03-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/</loc>
+		<lastmod>2021-04-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-05-powershell-updating-site-scripts-and-designs/</loc>
+		<lastmod>2021-04-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-07-microsoft-search-introduction/</loc>
+		<lastmod>2021-04-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-09-using-github-from-visual-studio-code/</loc>
+		<lastmod>2021-04-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-12-visual-studio-code-remote-ssh-development/</loc>
+		<lastmod>2021-04-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-14-the-onedrive-family-plan-loophole/</loc>
+		<lastmod>2021-04-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-16-accessibility-in-wordpress/</loc>
+		<lastmod>2021-04-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-19-web-browser-microsoft-edge-vs-chrome/</loc>
+		<lastmod>2021-04-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-21-onedrive-vs-sharepoint/</loc>
+		<lastmod>2021-04-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-22-accessing-microsoft-365-files/</loc>
+		<lastmod>2021-04-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-28-smtp-through-a-google-account/</loc>
+		<lastmod>2021-04-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-04-30-change-your-profile-picture-as-a-guest-in-microsoft-teams/</loc>
+		<lastmod>2021-04-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-03-data-loss-prevention-dlp-policies/</loc>
+		<lastmod>2021-05-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-04-my-web-development-workflow/</loc>
+		<lastmod>2021-05-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-06-microsoft-365-guest-users-from-google/</loc>
+		<lastmod>2021-05-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-10-microsoft-conditional-access-policies/</loc>
+		<lastmod>2021-05-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-12-enrolling-devices-in-endpoint-manager/</loc>
+		<lastmod>2021-05-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-14-cannot-modify-header-information-headers-already-sent/</loc>
+		<lastmod>2021-05-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-17-google-maps-error/</loc>
+		<lastmod>2021-05-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-19-windows-autopilot/</loc>
+		<lastmod>2021-05-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-21-power-automate-create-site-with-sharepoint-rest-api/</loc>
+		<lastmod>2021-05-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-24-sharepoint-content-types/</loc>
+		<lastmod>2021-05-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-26-device-configuration-policies/</loc>
+		<lastmod>2021-05-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-28-power-automate-temporary-site-scripts-and-designs/</loc>
+		<lastmod>2021-05-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-05-31-device-compliance-policies/</loc>
+		<lastmod>2021-05-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-02-power-automate-the-first-function/</loc>
+		<lastmod>2021-06-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-04-htwoo-in-sharepoint-framework/</loc>
+		<lastmod>2021-06-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-07-the-time-i-recommended-yammer/</loc>
+		<lastmod>2021-06-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-10-microsoft-cloud-app-security/</loc>
+		<lastmod>2021-06-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-14-overriding-a-sharepoint-sites-home-page/</loc>
+		<lastmod>2021-06-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-16-considerations-migrating-imap-to-m365/</loc>
+		<lastmod>2021-06-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-18-movie-directory-part-1-the-data/</loc>
+		<lastmod>2021-06-18</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-21-civicrm-personal-campaign-pages/</loc>
+		<lastmod>2021-06-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-23-microsoft-excel-vs-sharepoint-lists/</loc>
+		<lastmod>2021-06-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-25-movie-directory-part-2-gallery-and-filters/</loc>
+		<lastmod>2021-06-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-06-29-movie-directory-part-3-view-and-edit/</loc>
+		<lastmod>2021-06-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-07-01-movie-directory-part-4-import/</loc>
+		<lastmod>2021-07-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/</loc>
+		<lastmod>2021-07-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-07-08-web-hosting-distinctions/</loc>
+		<lastmod>2021-07-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-07-21-my-favourite-microsoft-teams-hidden-features/</loc>
+		<lastmod>2021-07-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/</loc>
+		<lastmod>2021-08-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-05-microsoft-teams-network-tests/</loc>
+		<lastmod>2021-08-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-10-microsoft-teams-lifecycle/</loc>
+		<lastmod>2021-08-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-13-guest-access-in-teams/</loc>
+		<lastmod>2021-08-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-16-microsoft-teams-information-barriers/</loc>
+		<lastmod>2021-08-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-08-19-microsoft-teams-phone-numbers/</loc>
+		<lastmod>2021-08-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-06-favourite-visual-studio-code-extensions/</loc>
+		<lastmod>2021-09-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-10-simplytest-me-drupal-project-test/</loc>
+		<lastmod>2021-09-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-15-mysql-workbench/</loc>
+		<lastmod>2021-09-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-19-domain-change/</loc>
+		<lastmod>2021-09-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-21-browser-extension-stylus/</loc>
+		<lastmod>2021-09-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/</loc>
+		<lastmod>2021-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-09-29-visual-studio-code-mysql-extension/</loc>
+		<lastmod>2021-09-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-04-visual-studio-code-grep/</loc>
+		<lastmod>2021-10-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-07-dev-to-and-tealfeed/</loc>
+		<lastmod>2021-10-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-12-microsoft-teams-information-session/</loc>
+		<lastmod>2021-10-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-22-github-copilot/</loc>
+		<lastmod>2021-10-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-28-koa11y-accessibility-testing-tool/</loc>
+		<lastmod>2021-10-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-10-31-yubikey-early-impressions/</loc>
+		<lastmod>2021-10-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-11-10-vagrant-oracle-linux-vm/</loc>
+		<lastmod>2021-11-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-11-12-android-email-apps/</loc>
+		<lastmod>2021-11-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-11-21-microsoft-enterprise-administrator-expert/</loc>
+		<lastmod>2021-11-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-11-29-windows-10-hosts-file/</loc>
+		<lastmod>2021-11-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-12-03-mail-tester/</loc>
+		<lastmod>2021-12-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-12-08-microsoft-teams-search-filters/</loc>
+		<lastmod>2021-12-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-12-10-drupal-install-pecl-uploadprogress/</loc>
+		<lastmod>2021-12-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-12-13-pa11y-ci-oracle-linux-8-installation/</loc>
+		<lastmod>2021-12-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2021-12-16-sharepoint-hub-to-hub-association/</loc>
+		<lastmod>2021-12-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-01-04-drupal-7-hide-label-on-node-display/</loc>
+		<lastmod>2022-01-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-01-20-drupal-gitpod-container-1-dockerfile/</loc>
+		<lastmod>2022-01-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-01-24-drupal-assign-permissions-based-on-username-file/</loc>
+		<lastmod>2022-01-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-01-28-drupal-gitpod-container-2-gitpod-yml/</loc>
+		<lastmod>2022-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-02-01-drupal-gitpod-container-3-settings-and-config/</loc>
+		<lastmod>2022-02-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-02-05-gitlab-devops-php-lint/</loc>
+		<lastmod>2022-02-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-02-09-gitlab-devops-gitlab-runner/</loc>
+		<lastmod>2022-02-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-02-13-drupal-fluid-ui/</loc>
+		<lastmod>2022-02-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-02-17-drupal-sync-configuration/</loc>
+		<lastmod>2022-02-18</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-03-microsoft-teams-guest-notifications/</loc>
+		<lastmod>2022-03-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-07-drupal-ckeditor-abbreviation/</loc>
+		<lastmod>2022-03-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-09-github-and-gitlab-diagrams-in-markdown/</loc>
+		<lastmod>2022-03-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-12-free-as-in-cats/</loc>
+		<lastmod>2022-03-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-15-php-xdebug-in-vs-code/</loc>
+		<lastmod>2022-03-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-18-drupal-docker-devcontainer/</loc>
+		<lastmod>2022-03-18</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-02-People-Lookup/</loc>
+		<lastmod>2022-05-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-03-tel-links/</loc>
+		<lastmod>2022-05-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-05-Building-a-Site/</loc>
+		<lastmod>2022-05-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-10-WordPress-vs-Jekyll/</loc>
+		<lastmod>2022-05-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/</loc>
+		<lastmod>2022-05-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-15-Mobile-Authoring/</loc>
+		<lastmod>2022-05-16</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-05-26-Sync-Content/</loc>
+		<lastmod>2022-05-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-06-23-The-Dockerfiles/</loc>
+		<lastmod>2022-06-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-06-26-Local-Workflows/</loc>
+		<lastmod>2022-06-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-06-28-Drupal-Docker-Config-Script/</loc>
+		<lastmod>2022-06-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-07-02-Local-Development-Options/</loc>
+		<lastmod>2022-07-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-07-10-Profile-Title-Override/</loc>
+		<lastmod>2022-07-11</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-03-28-drupal-profile-block-hidden-own/</loc>
+		<lastmod>2022-07-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-09-19-Drupal-CSS-Structures/</loc>
+		<lastmod>2022-09-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-09-19-Word-Inclusive-Writing/</loc>
+		<lastmod>2022-09-19</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-11-21-Twitter-Mastodon-CoSo/</loc>
+		<lastmod>2022-11-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-12-10-power-platform-certificate/</loc>
+		<lastmod>2022-12-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-12-29-active-links-views/</loc>
+		<lastmod>2022-12-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-12-30-GitLab-DevOps-Deploy-to-Server/</loc>
+		<lastmod>2022-12-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-02-Drupal-Deploy/</loc>
+		<lastmod>2023-01-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-03-GitLab-IDE/</loc>
+		<lastmod>2023-01-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-04-Importing-Multiple-Paragraphs/</loc>
+		<lastmod>2023-01-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-08-Drupal-disable-pw-reset/</loc>
+		<lastmod>2023-01-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-09-Brandwood/</loc>
+		<lastmod>2023-01-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-01-14-Cognitive-Ease/</loc>
+		<lastmod>2023-01-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-02-21-Mastodon-Apps-Android/</loc>
+		<lastmod>2023-02-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-02-23-Include-Default-View-Custom-Module/</loc>
+		<lastmod>2023-02-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-02-26-algorithms/</loc>
+		<lastmod>2023-02-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-03-01-Drupal-Recycle-Bin/</loc>
+		<lastmod>2023-03-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-03-29-Paragraphs-sidebar/</loc>
+		<lastmod>2023-03-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-05-03-drupal-openai/</loc>
+		<lastmod>2023-05-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-06-11-Descriptive-ALT/</loc>
+		<lastmod>2023-06-11</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-07-09-drupal-subprojects/</loc>
+		<lastmod>2023-07-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-07-14-Future-Microblogging/</loc>
+		<lastmod>2023-07-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-08-07-Role-File/</loc>
+		<lastmod>2023-08-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2023-08-07-church-site-content/</loc>
+		<lastmod>2023-08-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-02-21-text-position-underline/</loc>
+		<lastmod>2024-02-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-02-21-VS-Code-Extensions/</loc>
+		<lastmod>2024-02-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-02-21-Dark-Content-Mode/</loc>
+		<lastmod>2024-02-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-02-21-Open-Menu/</loc>
+		<lastmod>2024-02-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-03-24-Dev-Env-Updated-Dockerfiles/</loc>
+		<lastmod>2024-03-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-04-08-Dev-Env-Updated/</loc>
+		<lastmod>2024-04-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-04-08-VS-Code-University-Colour-Palettes/</loc>
+		<lastmod>2024-04-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2022-09-19-Security-Audit/</loc>
 		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/blogs/2024-02-21-IDRC-Presentation/</loc>
+		<lastmod>2024-08-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/about/</loc>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/blog/</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/feed/feed.xml</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/feed/.htaccess</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/tags/</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/tags/security/</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/ms-101/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/it-on-film/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/sharepoint-site-provisioning/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/github/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/visual-studio-code/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/accessibility/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/sharepoint-framework/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/movie-directory/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/php/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/ms-700/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/mysql/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/gitlab-devops/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/vagrant/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/gitlab/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/gitpod-drupal/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/gitpod/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/html/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/docker/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/drupal-docker/</loc>
+		<lastmod>2024-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://example.com/eleventy-base-blog/tags/mastodon/</loc>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://example.com/eleventy-base-blog/tools/</loc>
-		<lastmod>2024-08-14</lastmod>
+		<lastmod>2024-08-17</lastmod>
 	</url>
 </urlset>

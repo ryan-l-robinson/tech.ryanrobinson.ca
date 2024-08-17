@@ -1,0 +1,95 @@
+<p>A few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer <a href="https://www.drupal.org/project/paragraphs">paragraphs</a> module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.</p>
+<p>A second complication comes from it being possible to have multiple field collections on the old site and also multiple paragraphs on the new site, so we'll need to navigate collapsing multiple entities with two fields each alongside the related node into one export, then import that to again have multiple paragraphs with two fields each connected to the correct node.</p>
+<p>This post may not be as precise as I'd usually like because it was a while ago and I can't easily recreate all of it, but hopefully it will be close enough that a Drupal admin would be able to fill in the gaps sufficiently.</p>
+<h2 id="drupal-7-export" tabindex="-1">Drupal 7 Export <a class="header-anchor" href="#drupal-7-export">#</a></h2>
+<p>Step one is setting up the export from the old site. This relies on <a href="https://www.drupal.org/project/views_data_export">the views_data_export module</a> to help generate a csv export. The view should be based on the main content type node that you'll be exporting.</p>
+<p>I added a relationship between the node and the field collection.</p>
+<p>I added each of the field collection's fields to the Fields of the view, to be included in the export. There were other fields to also consider in the export, as well as other options around formatting, but those are fairly standard views behaviour and not related to this problem, so I won't detail them.</p>
+<p>The end result should be that you can get multiple rows for each node with field collection combination, e.g.:</p>
+<pre class="language-csv" tabindex="0"><code class="language-csv"><span class="token value">Node Title</span><span class="token punctuation">,</span><span class="token value">Field Collection Title</span><span class="token punctuation">,</span><span class="token value">Field Collection Description</span>
+<span class="token value">Node 1</span><span class="token punctuation">,</span><span class="token value">Field 1</span><span class="token punctuation">,</span><span class="token value">Description 1</span>
+<span class="token value">Node 1</span><span class="token punctuation">,</span><span class="token value">Field 2</span><span class="token punctuation">,</span><span class="token value">Description 2</span>
+<span class="token value">Node 2</span><span class="token punctuation">,</span><span class="token value">Field 3</span><span class="token punctuation">,</span><span class="token value">Description 3</span></code></pre>
+<h2 id="data-cleanup-in-excel" tabindex="-1">Data Cleanup in Excel <a class="header-anchor" href="#data-cleanup-in-excel">#</a></h2>
+<p>I now needed to collapse each node into one line. I did this somewhat manually in Excel, copying field data into each row but separated by double colons (::). You can choose any character separator as long as it won't occur naturally within the field, so you probably don't want as simple as a single : or ;. In my scenario we were dealing with about 1000 nodes, about 100 of which had multiple field collections from this field. If you have much more than that, you probably want to script something to combine the rows for you.</p>
+<pre class="language-csv" tabindex="0"><code class="language-csv"><span class="token value">Node Title</span><span class="token punctuation">,</span><span class="token value">Field Collection Title</span><span class="token punctuation">,</span><span class="token value">Field Collection Description</span>
+<span class="token value">Node 1</span><span class="token punctuation">,</span><span class="token value">Field 1::Field 2</span><span class="token punctuation">,</span><span class="token value">Description 1::Description 2</span>
+<span class="token value">Node 2</span><span class="token punctuation">,</span><span class="token value">Field 3</span><span class="token punctuation">,</span><span class="token value">Description 3</span></code></pre>
+<p>Note: there may be other complications here like what text encoding to use, depending on the characters in your data. Similarly you may have to navigate whether each column should be separated by a comma (,) or something else. I won't get into that here.</p>
+<h2 id="drupal-9-feeds-configuration" tabindex="-1">Drupal 9 Feeds Configuration <a class="header-anchor" href="#drupal-9-feeds-configuration">#</a></h2>
+<p>The data is now ready to get into the new site. This import will be handled by the <a href="https://www.drupal.org/project/feeds">feeds</a> module, with help from <a href="https://www.drupal.org/project/feeds_tamper">feeds_tamper</a>.</p>
+<p>I created a new feeds type from Structure -&gt; Feed types -&gt; Add feed type. Fill in the options.</p>
+<p>The most important is the second group, the basic options of how to grab the data and what to do with it:</p>
+<ul>
+<li>Fetcher: Upload file</li>
+<li>Parser: CSV</li>
+<li>Processor: Node</li>
+<li>Content type: [Your content type, in this case it was Resources]</li>
+</ul>
+<p><img src="/eleventy-base-blog/assets/img/2023/01/FeedSettings.png" alt="Screenshot of feeds settings screen, showing options described above"></p>
+<p>On the mapping screen, I added a straightforward mapping between the Field Collection Title in your csv file and a temporary text column (allowing multiple values) created in your content type of the new site.</p>
+<p>After this, the import will be able to bring in data and put it in new nodes of the content type, but the text in the temporary fields are still separated by the :: if there are multiple.</p>
+<p>Now I went over to the Tamper tab and found the field you need to split up and added an &quot;Explode&quot; tamper plugin for that field, specifying the string separator and a label. I repeated this on each these temporary multiple fields.</p>
+<p><img src="/eleventy-base-blog/assets/img/2023/01/FeedsTamper.png" alt="Screenshot of tamper screen, showing options described above"></p>
+<p>This will now leave us with multiple entries in the temporary field directly on the node. We still need to turn those into paragraphs and associate those paragraphs with the node, which is where we run out of options within Feeds to handle it on its own.</p>
+<h2 id="custom-module" tabindex="-1">Custom Module <a class="header-anchor" href="#custom-module">#</a></h2>
+<p>The final piece is to convert the temporary text fields into multiple associated paragraphs instead. This will be handled with a custom module. I've created <a href="https://github.com/ryan-l-robinson/Drupal-paragraph-split">a generic demo of this available in my GitHub</a>. This is the main PHP file.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">Drupal<span class="token punctuation">\</span>Core<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>EntityInterface</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Drupal<span class="token punctuation">\</span>paragraphs<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Paragraph</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Drupal<span class="token punctuation">\</span>user<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>User</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Drupal<span class="token punctuation">\</span>node<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Node</span><span class="token punctuation">;</span>
+
+<span class="token comment">/** 
+ * Implements hook_ENTITY_TYPE_insert() for 'nodes'
+ * When a node is created, with content in the temporary field, create the associated paragraph instead
+ */</span>
+<span class="token keyword">function</span> <span class="token function-definition function">paragraph_split_node_insert</span><span class="token punctuation">(</span><span class="token class-name type-declaration">EntityInterface</span> <span class="token variable">$node</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//If node content type is node_type</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$node</span><span class="token operator">-></span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string single-quoted-string">'node_type'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$node</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_title'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token property">isEmpty</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$new_paragraphs</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token variable">$count</span> <span class="token operator">=</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$node</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_title'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token variable">$k</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token variable">$k</span> <span class="token operator">&lt;</span> <span class="token variable">$count</span><span class="token punctuation">;</span> <span class="token variable">$k</span><span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                <span class="token comment">//This is needed to handle when there is a title without a matching description</span>
+                <span class="token variable">$desc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token variable">$node</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_description'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string single-quoted-string">''</span> <span class="token punctuation">:</span> <span class="token variable">$node</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_description'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">//Create new paragraph entity</span>
+                <span class="token variable">$paragraph</span> <span class="token operator">=</span> <span class="token class-name static-context">Paragraph</span><span class="token operator">::</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                    <span class="token string single-quoted-string">'type'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'paragraph_type'</span><span class="token punctuation">,</span>
+                    <span class="token string single-quoted-string">'field_title'</span> <span class="token operator">=></span> <span class="token variable">$node</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_title'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string single-quoted-string">'field_description'</span> <span class="token operator">=></span> <span class="token variable">$desc</span><span class="token punctuation">,</span>
+                    <span class="token string single-quoted-string">'uid'</span> <span class="token operator">=></span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$paragraph</span><span class="token operator">-></span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">//Add the new paragraph to the array</span>
+                <span class="token function">array_push</span><span class="token punctuation">(</span><span class="token variable">$new_paragraphs</span><span class="token punctuation">,</span><span class="token keyword">array</span><span class="token punctuation">(</span>
+                    <span class="token string single-quoted-string">'target_id'</span> <span class="token operator">=></span> <span class="token variable">$paragraph</span><span class="token operator">-></span><span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    <span class="token string single-quoted-string">'target_revision_id'</span> <span class="token operator">=></span> <span class="token variable">$paragraph</span><span class="token operator">-></span><span class="token function">getRevisionId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment">//Overrides if there was already one in place, which there shouldn't be in this context of an import</span>
+            <span class="token variable">$node</span><span class="token operator">-></span><span class="token property">field_paragraph_reference</span> <span class="token operator">=</span> <span class="token variable">$new_paragraphs</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token variable">$node</span><span class="token operator">-></span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre>
+<p>The module logic is relatively straightforward:</p>
+<ol>
+<li>Hook is on the node being created but it will only continue on a specific node type. Everything else is irrelevant in this scenario.</li>
+<li>If the temporary title field is provided, continue. Otherwise there's no extra handling needed. In this context there was never a description without a title, so this was safe. You may need more handling for those scenarios.</li>
+<li>Loop on every match found, since there can be multiple in the temporary title field.</li>
+<li>If there was a title but not a description - which did happen in our context, unlike the reverse - then the description, replace with a blank string.</li>
+<li>Create a new paragraph entity and save it.</li>
+<li>Create a new entry in the field of the node that links to the paragraph, with the paragraph's ID and revision ID.</li>
+<li>Save the node when done.</li>
+</ol>
+<p>Note: another approach here that would also involve custom module code would be to build this handling directly into the feeds import instead of hooking on the node being created. That's probably a bit more precise to run only in this one context. This hook on node insert does run more often, which is both less efficient and could be extra safety in case somebody accidentally put data in those temporary fields manually instead of creating the paragraphs. In any case, this was a quicker one for us to prepare, which was the priority with getting a one-time import done.</p>
+<p>When the module is ready (including an info file), enable it and give it a test run.</p>

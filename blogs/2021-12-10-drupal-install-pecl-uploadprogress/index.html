@@ -1,0 +1,22 @@
+<p>Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.</p>
+<h2 id="add-required-packages" tabindex="-1">Add required packages <a class="header-anchor" href="#add-required-packages">#</a></h2>
+<p>There are a few preliminary packages that you’ll need: gcc, make, php-devel, and php-pear. You can install in Oracle Linux 8 using this command:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> yum <span class="token parameter variable">-y</span> <span class="token function">install</span> gcc <span class="token function">make</span> php-devel php-pear</code></pre>
+<p>You don’t have to provide the -y. That will pre-approve any other prompts that come up, including if it requires installing other dependent packages. If you want to be more careful, don’t use that, but it can come in handy in contexts like installing this through a script.</p>
+<h2 id="install-pecl" tabindex="-1">Install PECL <a class="header-anchor" href="#install-pecl">#</a></h2>
+<p>Now that you’ve got the dependencies, you can install uploadprogress:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> pecl <span class="token parameter variable">-y</span> <span class="token function">install</span> uploadprogress</code></pre>
+<h2 id="add-to-php-ini" tabindex="-1">Add to php.ini <a class="header-anchor" href="#add-to-php-ini">#</a></h2>
+<p>The packages are now in place, but your PHP installation will not make use of it unless it is recognized as an extension in your php.ini file. In the default Oracle Linux 8 setup, this file is located at /etc/php.ini. You’ll need to add this line to your file:</p>
+<pre class="language-text" tabindex="0"><code class="language-text">extension=uploadprogress</code></pre>
+<p>You can edit that file directly using your preferred editor to add this line to the file, or if you are using this within a script, you can have the script write it to the end of the file like this:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token builtin class-name">echo</span> <span class="token string">"extension=uploadprogress"</span> <span class="token operator">>></span> /etc/php.ini</code></pre>
+<p>If you first need to check whether that line is already in the file – so that you don’t end up writing it multiple times in a context where a script might add another line every time – you can use this in a bash script:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-z</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token string">"extension=uploadprogress"</span> /etc/php.ini<span class="token variable">)</span></span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">sudo</span> <span class="token builtin class-name">echo</span> <span class="token string">"extension=uploadprogress"</span> <span class="token operator">>></span> /etc/php.ini
+<span class="token keyword">fi</span></code></pre>
+<h2 id="restart" tabindex="-1">Restart <a class="header-anchor" href="#restart">#</a></h2>
+<p>Finally, you’ll need to restart Apache and PHP for this to go into effect:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> systemctl restart php-fpm
+<span class="token function">sudo</span> systemctl restart httpd</code></pre>
+<p><a href="https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/tree/main">This script is available in my GitHub</a>.</p>

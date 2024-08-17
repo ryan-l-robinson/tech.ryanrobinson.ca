@@ -1,0 +1,45 @@
+<p>About a year ago, I (virtually) attended <a href="https://www.drupalgovcon.org/">the DrupalGovCon 2021 conference</a>. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.</p>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><div class="nv-iframe-embed"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="337" loading="lazy" src="https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6" title="Tips for Securing Your Drupal Application" width="600"></iframe></div></div><figcaption>DrupalGovCon video: Tips for Securing Your Drupal Application</figcaption></figure>
+<h2 id="security-modules" tabindex="-1">Security Modules <a class="header-anchor" href="#security-modules">#</a></h2>
+<p>Review settings of security modules including:</p>
+<ul>
+<li>[ ] jsonapi_extras</li>
+<li>[ ] flood_control</li>
+<li>[ ] login_security</li>
+<li>[ ] username_enumeration_prevention</li>
+<li>[ ] honeypot</li>
+<li>[ ] reCAPTCHA</li>
+<li>[ ] seckit</li>
+</ul>
+<h2 id="dev-modules" tabindex="-1">Dev Modules <a class="header-anchor" href="#dev-modules">#</a></h2>
+<p>Ensure none of your development modules are on production:</p>
+<ul>
+<li>field_ui</li>
+<li>views_ui</li>
+<li>devel</li>
+<li>anything migration related</li>
+<li>stage_file_proxy</li>
+</ul>
+<p>I don't have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.</p>
+<h2 id="config-cleanup" tabindex="-1">Config Cleanup <a class="header-anchor" href="#config-cleanup">#</a></h2>
+<ul>
+<li>[ ] Remove unused views</li>
+<li>[ ] Check that there is correct access control on all views</li>
+<li>[ ] Review permission roles, especially anonymous and authenticated</li>
+<li>[ ] Confirm that user registration is limited to admins</li>
+<li>[ ] Confirm that there are no test user accounts in production</li>
+<li>[ ] Confirm that file size upload limits are reasonable</li>
+<li>[ ] Confirm that private and public file directories are used properly</li>
+</ul>
+<h2 id="custom-modules-and-themes" tabindex="-1">Custom Modules and Themes <a class="header-anchor" href="#custom-modules-and-themes">#</a></h2>
+<ul>
+<li>[ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code</li>
+<li>[ ] Check code in an editor like VS Code that warns you of unsanitary code</li>
+<li>[ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it's still good practice.</li>
+<li>[ ] Review any TODO / FIXME etc in the code</li>
+</ul>
+<h2 id="users" tabindex="-1">Users <a class="header-anchor" href="#users">#</a></h2>
+<ul>
+<li>[ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn't? Does anybody have more permissions than they need?</li>
+<li>[ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.</li>
+</ul>

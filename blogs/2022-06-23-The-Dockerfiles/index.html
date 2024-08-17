@@ -1,0 +1,96 @@
+<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/eleventy-base-blog/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
+<p>This post takes a look at the three Dockerfiles required:</p>
+<h2 id="mariadb" tabindex="-1">MariaDB <a class="header-anchor" href="#mariadb">#</a></h2>
+<p>Let’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Use the default MariaDB image, not a specific Oracle Linux one</span>
+<span class="token instruction"><span class="token keyword">FROM</span> mariadb:latest</span>
+
+<span class="token comment"># Expose the MySQL port to be accessible to the web container.</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 3306</span></code></pre>
+<h2 id="php" tabindex="-1">PHP <a class="header-anchor" href="#php">#</a></h2>
+<p>This image starts from Oracle Linux, a requirement of this particular hosting environment:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> oraclelinux:8</span>
+<span class="token instruction"><span class="token keyword">USER</span> root</span>
+<span class="token instruction"><span class="token keyword">SHELL</span> [<span class="token string">"/bin/bash"</span>, <span class="token string">"-c"</span>]</span></code></pre>
+<p>It adds some other useful utilities, although they may not really be needed here since I won’t be accessing this container directly:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install other useful packages</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf install -y curl wget zip</span></code></pre>
+<p>It creates a directory that is necessary for running PHP-FPM:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Create required directory</span>
+<span class="token instruction"><span class="token keyword">RUN</span> mkdir -p /run/php-fpm</span></code></pre>
+<p>It installs PHP 8.0, which requires a different repository (at least so far):</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install PHP 8.0, which needs a different repository</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf -y module reset php</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf -y module enable php:remi-8.0</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf -y install php</span></code></pre>
+<p>It adds several PHP extensions, including a few that are recommended by not required by Drupal (apcu and uploadprogress):</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install PHP extensions, including PECL with APCU and UploadProgress extensions, recommended by Drupal</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf install -y php-gd php-pdo php-zip php-mysqlnd gcc make php-devel php-pear php-pecl-apcu php-pecl-uploadprogress</span></code></pre>
+<p>It installs XDebug, the PHP debugging tool:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install XDebug</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf install -y php-pecl-xdebug</span>
+<span class="token instruction"><span class="token keyword">RUN</span> touch /var/log/xdebug.log</span>
+<span class="token instruction"><span class="token keyword">COPY</span> /conf/xdebug.ini /etc/php.d/xdebug.ini</span></code></pre>
+<p>It makes several changes to php.ini to increase performance:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Increase resources for PHP</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/max_execution_time = 30/max_execution_time = 300/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/max_input_time = 60/max_input_time = 600/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/memory_limit = 128M/memory_limit = 2048M/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/upload_max_filesize = 2M/upload_max_filesize = 128M/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/post_max_size = 8M/post_max_size = 0/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/display_errors = Off/display_errors = On/g"</span> /etc/php.ini</span>
+<span class="token instruction"><span class="token keyword">RUN</span> echo <span class="token string">"# Increase timeout"</span> >> /etc/httpd/conf.d/php.conf</span>
+<span class="token instruction"><span class="token keyword">RUN</span> echo <span class="token string">"Timeout 1200"</span> >> /etc/httpd/conf.d/php.conf</span>
+<span class="token instruction"><span class="token keyword">RUN</span> echo <span class="token string">"ProxyTimeout 1200"</span> >> /etc/httpd/conf.d/php.conf</span></code></pre>
+<p>It updates the php-fpm configuration to allow listeners from other clients (the web container):</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Update PHP-FPM configuration including allowing listeners from other clients, defining the OPCache, and listening on port 9000</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/listen.allowed_clients = 127.0.0.1/;listen.allowed_clients = 127.0.0.1/g"</span> /etc/php-fpm.d/www.conf</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/;php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/g"</span> /etc/php-fpm.d/www.conf</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/listen = \/run\/php-fpm\/www.sock/listen = 9000/g"</span> /etc/php-fpm.d/www.conf</span></code></pre>
+<p>And finally, it starts php-fpm as the service running in the foreground for this container:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Start PHP-FPM</span>
+<span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">"php-fpm"</span>]</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"-F"</span>, <span class="token string">"-R"</span>]</span></code></pre>
+<h2 id="apache" tabindex="-1">Apache <a class="header-anchor" href="#apache">#</a></h2>
+<p>The final container, web, is the main one that the devcontainer will connect to, running Apache as its main service. Much of this repeats the PHP container, so I won’t go through all that again. Here’s what’s different.</p>
+<p>It includes a few more useful packages:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install other needed packages</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf install -y curl wget git zip mod_ssl httpd php-gd openssl which mariadb sudo patch vim</span></code></pre>
+<p>It configures Apache, including creating a self-signed SSL certificate for https browsing:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Apache configuration, including SSL certificates and logs</span>
+<span class="token instruction"><span class="token keyword">RUN</span> mkdir -p /etc/httpd/certs</span>
+<span class="token instruction"><span class="token keyword">COPY</span> /conf/openssl-config.txt /etc/httpd/certs/openssl-config.txt</span>
+<span class="token instruction"><span class="token keyword">RUN</span> openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/httpd/certs/local.drupal.com.key -x509 -days 3650 -out /etc/httpd/certs/local.drupal.com.crt -config /etc/httpd/certs/openssl-config.txt</span>
+<span class="token instruction"><span class="token keyword">RUN</span> openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/pki/tls/private/localhost.key -x509 -days 3650 -out /etc/pki/tls/certs/localhost.crt -config /etc/httpd/certs/openssl-config.txt</span>
+<span class="token instruction"><span class="token keyword">RUN</span> mkdir -p /var/log/local.drupal.com</span>
+<span class="token instruction"><span class="token keyword">COPY</span> /conf/local.drupal.com.conf /etc/httpd/conf.d/local.drupal.com.conf</span></code></pre>
+<p>It adds the drupal user and alters some other permissions so it can edit the web folder directly without sudo, and can sudo when necessary:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Add drupal user within the apache group</span>
+<span class="token instruction"><span class="token keyword">RUN</span> useradd drupal</span>
+<span class="token instruction"><span class="token keyword">RUN</span> usermod -aG apache drupal</span>
+<span class="token comment"># Change default permissions to 775 instead of 755, so that the drupal user can write to the web root</span>
+<span class="token instruction"><span class="token keyword">RUN</span> umask 0002</span>
+<span class="token comment"># Create sudo group, add drupal user to it, and allow those users to sudo without password</span>
+<span class="token instruction"><span class="token keyword">RUN</span> groupadd sudo</span>
+<span class="token instruction"><span class="token keyword">RUN</span> usermod -aG sudo drupal</span>
+<span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/# %wheel	ALL=(ALL)	NOPASSWD: ALL/%sudo	ALL=(ALL)	NOPASSWD: ALL/g"</span> /etc/sudoers</span></code></pre>
+<p>It installs composer, an essential for Drupal management:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install latest composer</span>
+<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"copy('https://getcomposer.org/installer', 'composer-setup.php');"</span></span>
+<span class="token instruction"><span class="token keyword">RUN</span> php composer-setup.php --install-dir /usr/bin --filename composer</span>
+<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"unlink('composer-setup.php');"</span></span>
+<span class="token instruction"><span class="token keyword">ENV</span> COMPOSER_PROCESS_TIMEOUT=9999</span></code></pre>
+<p>It installs pa11y for accessibility testing:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install pa11y accessibility testing tool, including NodeJS</span>
+<span class="token instruction"><span class="token keyword">RUN</span> dnf install -y nodejs pango.x86_64 libXcomposite.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc libxshmfence</span>
+<span class="token instruction"><span class="token keyword">RUN</span> npm install pa11y -g --unsafe-perm=true --allow-root</span></code></pre>
+<p>It adds executable permissions to the postCreateCommand script which I will detail in a later post:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Scripts for further actions to take on creation and attachment</span>
+<span class="token instruction"><span class="token keyword">COPY</span> ./scripts/postCreateCommand.sh /postCreateCommand.sh</span>
+<span class="token instruction"><span class="token keyword">RUN</span> [<span class="token string">"chmod"</span>, <span class="token string">"+x"</span>, <span class="token string">"/postCreateCommand.sh"</span>]</span></code></pre>
+<p>And finally, it runs Apache as its primary foreground process:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Start Apache</span>
+<span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">"/usr/sbin/httpd"</span>]</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"-D"</span>, <span class="token string">"FOREGROUND"</span>]</span></code></pre>

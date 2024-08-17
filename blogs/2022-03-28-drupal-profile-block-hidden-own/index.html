@@ -1,0 +1,20 @@
+<p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
+<p>Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.</p>
+<p><img src="/eleventy-base-blog/assets/img/2022/07/Empty_Email_Sidebar.png" alt="Screenshot of empty box only saying the title &quot;Email&quot;"></p>
+<p>The key to solve this is the &quot;exclude&quot; option on contextual filters. There's one contextual filter for the user ID associated to the profile that you're viewing.</p>
+<p><img src="/eleventy-base-blog/assets/img/2022/07/View_Contextual_Filter_Only_Matching_User.png" alt="Screenshot of the configuration page. Details below"></p>
+<p>To add this:</p>
+<ul>
+<li>Add a contextual filter searching for the User ID</li>
+<li>Set the default value to &quot;User ID from profile route match&quot;</li>
+</ul>
+<p>I needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.</p>
+<p><img src="/eleventy-base-blog/assets/img/2022/07/View_Contextual_Filter_Exclude_Current_User.png" alt="Screenshot of the configuraton page. Details below."></p>
+<p>To add this:</p>
+<ul>
+<li>Add a contextual filter searching for the User ID</li>
+<li>Set the default value to &quot;User ID from logged in user&quot;</li>
+<li>Under the &quot;more&quot; section, check the &quot;exclude&quot; option</li>
+</ul>
+<p>Finally, change the option on the view in the Advanced -&gt; Other section for &quot;Hide block if the view output is empty&quot; to Yes. This will turn off the block entirely when there is no results, such as if you're viewing your own profile when that contextual filter is in place.</p>
+<p>That did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you're viewing your own profile.</p>
