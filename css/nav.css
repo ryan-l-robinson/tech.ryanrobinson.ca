@@ -1,7 +1,18 @@
 .left-nav {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 20em;
     background-color: #1b2c58;
+}
+
+.left-nav ul {
+    list-style-type: none;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
 }
