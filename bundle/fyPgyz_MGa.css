@@ -305,6 +305,10 @@ h2 + .header-anchor {
     display: flex;
     flex-direction: row;
 }
+
+.social-links svg {
+    fill: white;
+}
 .main-content {
     display: flex;
     background-color: #000000;

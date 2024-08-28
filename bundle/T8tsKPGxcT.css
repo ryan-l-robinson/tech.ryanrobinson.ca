@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 16 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -304,6 +304,10 @@ h2 + .header-anchor {
 .social-links {
     display: flex;
     flex-direction: row;
+}
+
+.social-links svg {
+    fill: white;
 }
 .main-content {
     display: flex;

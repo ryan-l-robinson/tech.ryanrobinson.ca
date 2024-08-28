@@ -16,3 +16,7 @@
     display: flex;
     flex-direction: row;
 }
+
+.social-links svg {
+    fill: white;
+}
