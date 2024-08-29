@@ -7,12 +7,102 @@
     --grey: #d1d9e2;
 }
 
+@media (prefers-color-scheme: light) {
+	:root {
+        --background-color: var(--white);
+        --text-color: var(--black);
+		--text-color-link: var(--blue);
+		--text-color-link-active: var(--black);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+        --background-color: var(--black);
+        --text-color: var(--white);
+		--text-color-link: var(--blue);
+		--text-color-link-active: var(--white);
+	}
+}
+
 @font-face {
     font-family: "Atkinson Hyperlegible";
     src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
 }
 
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	overflow-y: scroll;
+}
+
 body {
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: 16pt;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1em;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+p {
+	line-height: 1.5;
+}
+p:last-child {
+	margin-bottom: 0;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a {
+    color: var(--blue);
+}
+
+a:is(:hover,:focus) {
+    background-color: var(--blue);
+    color: var(--white);
+}
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+code {
+	word-break: break-all;
 }

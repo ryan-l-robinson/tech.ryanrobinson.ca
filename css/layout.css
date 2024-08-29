@@ -1,5 +1,16 @@
 body {
     display: flex;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.main-content {
+    height: 100%;
+}
+
+main {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
 }
