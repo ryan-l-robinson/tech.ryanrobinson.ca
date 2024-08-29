@@ -1,3 +1,22 @@
+.postlist { counter-reset: start-from 5 }
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
+}
 .links-nextprev {
 	list-style: none;
 	border-top: 1px dashed var(--color-gray-20);
@@ -79,9 +98,9 @@ h2 + .header-anchor {
 	:root {
         --background-color: var(--black);
         --text-color: var(--white);
-		--text-color-link: var(--red);
-        --text-color-link-hover: var(--white);
-        --text-color-link-hover-background: var(--red);
+		--text-color-link: var(--white);
+        --text-color-link-hover: var(--red);
+        --text-color-link-hover-background: var(--white);
 		--text-color-link-active: var(--white);
 	}
 }
@@ -111,10 +130,7 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
     width: var(--max-width);
     margin: 0 auto;
 }
