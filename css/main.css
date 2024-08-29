@@ -1,10 +1,18 @@
-.main-content {
-    height: 100%;
-}
-
 main {
 	padding: 1rem;
 }
 main :first-child {
 	margin-top: 0;
+}
+
+main a {
+    color: var(--text-color-link);
+}
+
+main a:is(:hover,:focus) {
+    background-color: var(--text-color-link-hover);
+    color: var(--white);
+}
+main a[href]:active {
+	color: var(--text-color-link-active);
 }

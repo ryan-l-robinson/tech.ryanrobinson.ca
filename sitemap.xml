@@ -712,17 +712,22 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
-		<lastmod>2024-08-29</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
 		<lastmod>2024-08-29</lastmod>
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
+		<lastmod>2024-08-29</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
+		<lastmod>2024-08-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
 		<lastmod>2024-08-29</lastmod>
 	</url>
 	
@@ -733,11 +738,6 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
-		<lastmod>2024-08-29</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
 		<lastmod>2024-08-29</lastmod>
 	</url>
 	

@@ -990,6 +990,33 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	</entry>
 	
 	<entry>
+		<title>Microsoft Endpoint Manager: Device Configuration Policies</title>
+		<link href="https://tech.ryanrobinson.ca/posts/2021-05-26-device-configuration-policies/"/>
+		<updated>2021-05-26T07:38:00Z</updated>
+		<id>https://tech.ryanrobinson.ca/posts/2021-05-26-device-configuration-policies/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/enrolling-devices-in-endpoint-manager/&quot;&gt;You’ve got your devices enrolled in Endpoint Manager&lt;/a&gt;. Now what? This opens up lots of tools including configuration policies.&lt;/p&gt;
+&lt;p&gt;Configuration policies allow for quickly rolling out the desired configuration to the device, without the user having to manually set it up. This can include a lot of different settings and vary by the operating system of the device. Some of the more interesting tools for Windows 10 includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Email, contacts, calendar, and tasks (add the account corresponding to the user logged in)&lt;/li&gt;
+&lt;li&gt;Restrict apps to only those from the Store&lt;/li&gt;
+&lt;li&gt;Block access to system settings&lt;/li&gt;
+&lt;li&gt;Password requirements&lt;/li&gt;
+&lt;li&gt;Start menu&lt;/li&gt;
+&lt;li&gt;Battery saver settings&lt;/li&gt;
+&lt;li&gt;Edition upgrade (from Pro to Enterprise)&lt;/li&gt;
+&lt;li&gt;Domain join&lt;/li&gt;
+&lt;li&gt;VPN&lt;/li&gt;
+&lt;li&gt;Wi-Fi&lt;/li&gt;
+&lt;li&gt;Windows Hello for Business&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/VPN-Device-Config.png&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Screenshot of options for configuring a VPN on Windows 10&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;VPN particularly stands out to me in the age of COVID-19 and lots of people working from home. Setting up a VPN is not something that is intuitive to most users. With a device configuration profile, they don’t have to figure that out themselves or lose time letting an IT staff member remote access to set it up.&lt;/p&gt;
+&lt;p&gt;That’s not a comprehensive list. Ultimately, you can do a lot which helps save the user time configuring themselves and/or helps enforce some security blocking them from features they don’t need.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>Power Automate: Temporary Site Scripts and Designs</title>
 		<link href="https://tech.ryanrobinson.ca/posts/2021-05-28-power-automate-temporary-site-scripts-and-designs/"/>
 		<updated>2021-05-28T11:00:00Z</updated>
@@ -1221,6 +1248,31 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;em&gt;Graphic demonstrating how Teams, Yammer, Outlook, and SharePoint fill different roles&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Teams is great for the inner loop: the conversations you have with your core teams regularly. Outlook is the ubiquitous targeted communication tool: everyone has email and it’s a good failsafe especially for communication outside your organization. SharePoint is the file system underneath it all, which you may or may not browse directly. And Yammer is the outer loop, great for all-staff and more casual communication.&lt;/p&gt;
 &lt;p&gt;So, would I still recommend Yammer? In some circumstances, yes. Some things have changed since then, like the introduction and centrality of Teams to take up that “inner loop.” But Yammer, while not the most complete tool in the world, is still good for the same thing I recommended it for all those years ago: the “outer loop” user-friendly open conversations across a wide organization.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Microsoft Cloud App Security</title>
+		<link href="https://tech.ryanrobinson.ca/posts/2021-06-10-microsoft-cloud-app-security/"/>
+		<updated>2021-06-10T11:05:00Z</updated>
+		<id>https://tech.ryanrobinson.ca/posts/2021-06-10-microsoft-cloud-app-security/</id>
+		<content type="html">&lt;p&gt;If you’re an IT admin, do you know what apps users are putting on devices alongside company data? Do you know all the apps that they are directly putting company data into, thinking it helps solve a problem for them? This is the problem of “Shadow IT.” If it’s a personal device, it’s even worse, as they might be installing all kinds of insecure apps without IT approval and it wouldn’t take much to make a mistake like copying and pasting company data or uploading a file into the wrong app.&lt;/p&gt;
+&lt;p&gt;The first lesson of this problem is that it is very important that IT provides the apps that every user needs. Users shouldn’t have to decide for themselves what to use and whether it is secure enough. If they’re forced to make those decisions instead of IT, there’s a good chance they won’t consistently make good ones.&lt;/p&gt;
+&lt;p&gt;The Microsoft Cloud App Security dashboard helps with this problem. It empowers admins to see the apps being installed on corporate devices. It also allows you to set policies around those apps to help contain data.&lt;/p&gt;
+&lt;h2 id=&quot;discover&quot; tabindex=&quot;-1&quot;&gt;Discover &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-06-10-microsoft-cloud-app-security/#discover&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Step one is discovering what apps are on the devices. The Discover -&amp;gt; Create snapshot report will allow you to create a report based on the logs from services like corporate firewalls.&lt;/p&gt;
+&lt;p&gt;The Cloud app catalog will show all of the apps in Microsoft’s directory. There are thousands. They all come with detailed risk scores providing information on the app, including its security, and legal. For example, SugarCRM scores an 8 overall, with a 7 in general, 10 in security, 4 in compliance, and 10 in legal. That’s pretty good, but depending on the needs of your organization (like HIPAA compliance), there might be some issues to look into there. This is helpful information to decide whether to approve or deny an app for your users.&lt;/p&gt;
+&lt;h2 id=&quot;investigate&quot; tabindex=&quot;-1&quot;&gt;Investigate &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-06-10-microsoft-cloud-app-security/#investigate&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Investigate section allows for checking in on reports for users, files, and activity across connected apps. You can set up connected apps in this section as well, so that apps like Office 365 report back to CAS.# PPoliciesThe policies section comes with several great policies by default. Familiarize yourself with these defaults before starting to create a new one, as there might already be something close to what you want that just needs a bit of tweaking. There’s a lot here, so I’ll run down the policy types quickly:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Access:&lt;/em&gt;  these require first having &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-conditional-access-policies/&quot;&gt;conditional access policies&lt;/a&gt; configured. Then you can enforce access requirements logging in to other apps.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Activity:&lt;/em&gt;  these monitor user activity within their apps, like logging in from a risky IP address or mass downloads (which could suggest something like a disgruntled employee grabbing as much as they can on the way out).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;App discovery:&lt;/em&gt;  these policies help you respond when a new app is discovered to be in use in the organization.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cloud discovery anomaly detection:&lt;/em&gt;  these help detect unusual behaviour like suddenly uploading a lot more data than in a normal workday.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;File:&lt;/em&gt;  these help with detecting potential issues at a file level, such as using &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/data-loss-prevention-dlp-policies/&quot;&gt;a DLP engine&lt;/a&gt;  to notice when sensitive data is shared to a different app, or files shared to other domains.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Session:&lt;/em&gt;  these provide real-time monitoring and control over what users are doing in cloud apps, while they’re signed in to that session. They also require conditional access policies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With each policy, you can set the severity level and whether you want to be alerted by email, text message, or start off a Flow in Power Automate to respond in other ways.&lt;/p&gt;
 </content>
 	</entry>
 	
