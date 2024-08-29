@@ -1,3 +1,22 @@
+.postlist { counter-reset: start-from 2 }
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
+}
 .links-nextprev {
 	list-style: none;
 	border-top: 1px dashed var(--color-gray-20);
@@ -112,9 +131,10 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-width);
+    width: var(--max-width);
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -167,17 +187,21 @@ code {
 	word-break: break-all;
 }
 header {
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5em 3em;
     padding: 0 var(--main-gutter-x);
-    background-color: var(--red);
-    color: var(--white);
 }
 
 header .top-nav {
-    width: 100%;
+    width: var(--max-width);
 }
 
 header .top-nav .top-nav-list {

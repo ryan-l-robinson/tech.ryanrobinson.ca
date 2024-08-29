@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 4 }
+.postlist { counter-reset: start-from 138 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -131,9 +131,10 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-width);
+    width: var(--max-width);
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -186,17 +187,21 @@ code {
 	word-break: break-all;
 }
 header {
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5em 3em;
     padding: 0 var(--main-gutter-x);
-    background-color: var(--red);
-    color: var(--white);
 }
 
 header .top-nav {
-    width: 100%;
+    width: var(--max-width);
 }
 
 header .top-nav .top-nav-list {

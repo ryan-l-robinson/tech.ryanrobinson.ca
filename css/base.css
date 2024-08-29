@@ -58,9 +58,10 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-width);
+    width: var(--max-width);
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */

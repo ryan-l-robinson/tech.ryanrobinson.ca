@@ -1,15 +1,19 @@
 header {
+    width: 100%;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5em 3em;
     padding: 0 var(--main-gutter-x);
-    background-color: var(--red);
-    color: var(--white);
 }
 
 header .top-nav {
-    width: 100%;
+    width: var(--max-width);
 }
 
 header .top-nav .top-nav-list {
