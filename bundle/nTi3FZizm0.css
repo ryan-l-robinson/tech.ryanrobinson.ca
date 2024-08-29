@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 13 }
+.postlist { counter-reset: start-from 12 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -189,7 +189,7 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 0.5em 1em;
     padding: 0 var(--main-gutter-x);
     background-color: var(--red);
     color: var(--white);
@@ -203,10 +203,11 @@ header .top-nav .top-nav-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 0;
     list-style-type: none;
 }
 
-header .top-nav .top-nav-list .nav-item {
+header .top-nav .top-nav-list .nav-item a {
     color: var(--white);
 }
 .main-content {
