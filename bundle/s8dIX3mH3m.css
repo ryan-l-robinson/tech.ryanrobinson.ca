@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 11 }
+.postlist { counter-reset: start-from 14 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -135,6 +135,13 @@ body {
     justify-content: space-between;
     align-items: center;
     width: var(--max-width);
+    margin: 0 auto;
+}
+
+@media(max-width: 1280px) {
+    .container {
+        width: 100%;
+    }
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
