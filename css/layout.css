@@ -1,10 +1,15 @@
 body {
     display: flex;
+    flex-wrap: wrap;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
 .main-content {
+    position: absolute;
+    top: 0;
+    left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
     height: 100%;
 }
 
@@ -13,4 +18,8 @@ main {
 }
 main :first-child {
 	margin-top: 0;
+}
+
+.page-content {
+    padding: var(--main-gutter-y) var(--main-gutter-x);
 }
