@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 12 }
+.postlist { counter-reset: start-from 4 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -296,8 +296,14 @@ h2 + .header-anchor {
     --grey: #d1d9e2;
 }
 
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
+}
+
 body {
     font-family: "Atkinson Hyperlegible", sans-serif;
+    font-size: 16pt;
 }
 .left-nav {
     display: flex;
@@ -317,13 +323,13 @@ body {
     list-style-type: none;
 }
 
-.left-nav .nav-links a {
+.left-nav .nav-links li {
     color: var(--white);
     text-decoration: none;
     vertical-align: middle;
 }
 
-.left-nav .nav-links a:is(:hover, :focus) {
+.left-nav .nav-links li:is(:hover, :focus) {
     background-color: var(--white);
     color: var(--blue);
 }

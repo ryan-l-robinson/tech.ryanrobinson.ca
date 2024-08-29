@@ -7,6 +7,12 @@
     --grey: #d1d9e2;
 }
 
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
+}
+
 body {
     font-family: "Atkinson Hyperlegible", sans-serif;
+    font-size: 16pt;
 }

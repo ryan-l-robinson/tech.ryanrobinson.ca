@@ -16,13 +16,13 @@
     list-style-type: none;
 }
 
-.left-nav .nav-links a {
+.left-nav .nav-links li {
     color: var(--white);
     text-decoration: none;
     vertical-align: middle;
 }
 
-.left-nav .nav-links a:is(:hover, :focus) {
+.left-nav .nav-links li:is(:hover, :focus) {
     background-color: var(--white);
     color: var(--blue);
 }
