@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from NaN }
+.postlist { counter-reset: start-from 10 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -313,7 +313,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 20em;
+    width: 12em;
     height: 100%;
     background-color: var(--blue);
 }
@@ -323,17 +323,29 @@ body {
     list-style-type: none;
 }
 
-.left-nav .nav-links li a {
+.left-nav .nav-links {
+    width: 100%;
+}
+
+.left-nav .nav-links li {
     width: 100%;
     vertical-align: middle;
-    color: var(--white);
-    text-decoration: none;
     font-size: 2rem;
+    text-decoration: none;
+}
+
+.left-nav .nav-links li:is(:hover, :focus) {
+    background-color: var(--white);
+    color: var(--red);
+}
+
+.left-nav .nav-links li a {
+    color: var(--white);
 }
 
 .left-nav .nav-links li a:is(:hover, :focus) {
     background-color: var(--white);
-    color: var(--blue);
+    color: var(--red);
 }
 
 .left-nav .social-links {
@@ -353,7 +365,7 @@ body {
     background-color: var(--white);
     color: var(--red);
 }
-.main-content {
+body {
     display: flex;
     background-color: #000000;
     color: #ffffff;
