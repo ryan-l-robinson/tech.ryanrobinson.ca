@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 12 }
+.postlist { counter-reset: start-from 5 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -328,10 +328,12 @@ body {
 }
 
 .left-nav .nav-links li {
+    display: flex;
+    justify-content: center;
     width: 100%;
+    padding-bottom: 0.25em;
     vertical-align: middle;
     font-size: 2rem;
-    text-decoration: none;
 }
 
 .left-nav .nav-links li:is(:hover, :focus) {
@@ -340,7 +342,8 @@ body {
 }
 
 .left-nav .nav-links li a {
-    color: var(--white);
+    color: inherit;
+    text-decoration: none;
 }
 
 .left-nav .nav-links li a:is(:hover, :focus) {
@@ -354,7 +357,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px 0;
+    gap: 5px;
 }
 
 .left-nav .social-links svg {
@@ -363,7 +366,7 @@ body {
 
 .left-nav .social-links svg:is(:hover, :focus) {
     background-color: var(--white);
-    color: var(--red);
+    fill: var(--red);
 }
 body {
     display: flex;
