@@ -1,0 +1,8 @@
+/* Variables and general site-wide styles */
+:root {
+    --white: #ffffff;
+    --blue: #1b2c58;
+    --red: #663333;
+    --black: #000000;
+    --grey: #d1d9e2;
+}

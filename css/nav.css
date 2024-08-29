@@ -1,20 +1,39 @@
 .left-nav {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 20em;
-    background-color: #1b2c58;
+    height: 100%;
+    background-color: var(--blue);
 }
 
 .left-nav ul {
     list-style-type: none;
 }
 
+.left-nav .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.left-nav .nav-links a:is(:hover, :focus) {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
 .social-links {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px 0;
+    padding-left: 0;
 }
 
 .social-links svg {
