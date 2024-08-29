@@ -1,8 +1,4 @@
 .main-content {
-    position: absolute;
-    top: 0;
-    left: var(--nav-width);
-    width: calc(100% - var(--nav-width));
     height: 100%;
 }
 
@@ -11,9 +7,4 @@ main {
 }
 main :first-child {
 	margin-top: 0;
-}
-
-.page-content,
-footer {
-    padding: var(--main-gutter-y) var(--main-gutter-x);
 }

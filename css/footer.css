@@ -1,9 +1,12 @@
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    padding: var(--main-gutter-y) var(--main-gutter-x);
     background-color: var(--red);
     font-size: 0.7em;
+}
+
+footer p {
+    text-align: center;
 }
 
 footer p a {

@@ -5,7 +5,7 @@
     --red: #663333;
     --black: #000000;
     --grey: #d1d9e2;
-    --nav-width: 13em;
+    --max-width: 1280px;
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 }
@@ -64,9 +64,6 @@ body {
 
 p {
 	line-height: 1.5;
-}
-p:last-child {
-	margin-bottom: 0;
 }
 
 li {

@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 6 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -78,7 +78,7 @@ h2 + .header-anchor {
     --red: #663333;
     --black: #000000;
     --grey: #d1d9e2;
-    --nav-width: 13em;
+    --max-width: 1280px;
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 }
@@ -138,9 +138,6 @@ body {
 p {
 	line-height: 1.5;
 }
-p:last-child {
-	margin-bottom: 0;
-}
 
 li {
 	line-height: 1.5;
@@ -197,11 +194,22 @@ header {
     background-color: var(--red);
     color: var(--white);
 }
+
+header .top-nav {
+    width: 100%
+}
+
+header .top-nav .top-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+header .top-nav .top-nav-list .nav-item {
+    color: var(--white);
+}
 .main-content {
-    position: absolute;
-    top: 0;
-    left: var(--nav-width);
-    width: calc(100% - var(--nav-width));
     height: 100%;
 }
 
@@ -211,17 +219,15 @@ main {
 main :first-child {
 	margin-top: 0;
 }
-
-.page-content,
 footer {
-    padding: var(--main-gutter-y) var(--main-gutter-x);
-}
-footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    padding: var(--main-gutter-y) var(--main-gutter-x);
     background-color: var(--red);
     font-size: 0.7em;
+}
+
+footer p {
+    text-align: center;
 }
 
 footer p a {
