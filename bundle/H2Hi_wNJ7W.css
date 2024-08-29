@@ -132,7 +132,7 @@ h2 + .header-anchor {
     --red: #663333;
     --black: #000000;
     --grey: #d1d9e2;
-    --nav-width: 12em;
+    --nav-width: 13em;
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 }
@@ -141,7 +141,7 @@ h2 + .header-anchor {
 	:root {
         --background-color: var(--white);
         --text-color: var(--black);
-		--text-color-link: var(--red);
+		--text-color-link: var(--blue);
 		--text-color-link-active: var(--black);
 	}
 }
@@ -150,7 +150,7 @@ h2 + .header-anchor {
 	:root {
         --background-color: var(--black);
         --text-color: var(--white);
-		--text-color-link: var(--blue);
+		--text-color-link: var(--red);
 		--text-color-link-active: var(--white);
 	}
 }
@@ -245,9 +245,16 @@ code {
     position: fixed;
     top: 0;
     left: 0;
-    width: 12em;
+    width: var(--nav-width);
     height: 100%;
     background-color: var(--blue);
+}
+
+@media(max-width: 600px) {
+    .left-nav {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .left-nav ul {
@@ -322,6 +329,14 @@ main :first-child {
 	margin-top: 0;
 }
 
-.page-content {
+.page-content,
+footer {
     padding: var(--main-gutter-y) var(--main-gutter-x);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--red);
+    font-size: 0.7em;
 }

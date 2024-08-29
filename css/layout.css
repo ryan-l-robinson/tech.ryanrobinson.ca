@@ -20,6 +20,14 @@ main :first-child {
 	margin-top: 0;
 }
 
-.page-content {
+.page-content,
+footer {
     padding: var(--main-gutter-y) var(--main-gutter-x);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--red);
+    font-size: 0.7em;
 }

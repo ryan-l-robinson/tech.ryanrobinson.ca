@@ -5,7 +5,7 @@
     --red: #663333;
     --black: #000000;
     --grey: #d1d9e2;
-    --nav-width: 12em;
+    --nav-width: 13em;
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 }
@@ -14,7 +14,7 @@
 	:root {
         --background-color: var(--white);
         --text-color: var(--black);
-		--text-color-link: var(--red);
+		--text-color-link: var(--blue);
 		--text-color-link-active: var(--black);
 	}
 }
@@ -23,7 +23,7 @@
 	:root {
         --background-color: var(--black);
         --text-color: var(--white);
-		--text-color-link: var(--blue);
+		--text-color-link: var(--red);
 		--text-color-link-active: var(--white);
 	}
 }

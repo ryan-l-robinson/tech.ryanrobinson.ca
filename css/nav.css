@@ -6,9 +6,16 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 12em;
+    width: var(--nav-width);
     height: 100%;
     background-color: var(--blue);
+}
+
+@media(max-width: 600px) {
+    .left-nav {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .left-nav ul {
