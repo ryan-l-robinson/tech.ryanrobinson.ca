@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 5 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -124,6 +124,12 @@ body {
     font-size: 16pt;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
 .visually-hidden {
 	clip: rect(0 0 0 0);
@@ -186,6 +192,9 @@ code {
 	word-break: break-all;
 }
 header {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -204,6 +213,7 @@ header .top-nav .top-nav-list {
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0;
+    padding: 0;
     list-style-type: none;
 }
 
