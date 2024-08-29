@@ -1,0 +1,34 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--red);
+    font-size: 0.7em;
+}
+
+footer p a {
+    color: var(--white);
+}
+
+.social-links {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.social-links svg {
+    fill: white;
+}
+
+.social-links svg:is(:hover, :focus) {
+    background-color: var(--white);
+    fill: var(--red);
+}

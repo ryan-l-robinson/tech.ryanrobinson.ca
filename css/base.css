@@ -43,18 +43,23 @@ html {
 }
 
 body {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: 16pt;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 0 var(--main-gutter-x);
-    background-color: var(--red);
-    color: var(--white);
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }
 
 p {
@@ -110,3 +115,4 @@ pre:not([class*="language-"]) {
 code {
 	word-break: break-all;
 }
+
