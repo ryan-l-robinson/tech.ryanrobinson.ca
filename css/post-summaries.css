@@ -11,6 +11,10 @@
 	align-items: baseline;
 	counter-increment: start-from -1;
 	margin-bottom: 1em;
+	padding: 1em 0;
+}
+.postlist-item:after {
+	border-bottom: 1px solid var(--blue);
 }
 
 .postlist-date,
