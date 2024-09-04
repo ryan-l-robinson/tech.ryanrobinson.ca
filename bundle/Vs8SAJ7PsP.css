@@ -1,34 +1,53 @@
-.links-nextprev {
-	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
-	padding: 1em 0;
-}
+.postlist { counter-reset: start-from 3 }
+/** Styles only needed for the views summarizing multiple posts */
 
-/* Tags */
-.post-tag {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	text-transform: capitalize;
-	font-style: italic;
-}
-.postlist-item > .post-tag {
-	align-self: center;
-}
-
-/* Tags list */
-.post-metadata {
-	display: inline-flex;
-	flex-wrap: wrap;
-	gap: .5em;
+.postlist {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	padding-left: 1.5rem;
 }
-.post-metadata time {
-	margin-right: 1em;
+.postlist-item {
+	display: block;
+	margin: 0 1em;
+	padding: 0 0 1em 0;
+}
+.postlist-item:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
+	border-bottom: 1px solid var(--red);
 }
 
+.postlist-item-title {
+	padding-bottom: 0.7em;
+}
+
+.postlist-item-time-container {
+	line-height: 1em;
+}
+
+.postlist-item-time {
+	font-size: 0.8em;
+}
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
+}
 /* Direct Links / Markdown Headers */
 .header-anchor {
 	text-decoration: none;
