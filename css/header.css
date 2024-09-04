@@ -8,7 +8,7 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.5em 3em;
+    gap: 0 3em;
     padding: 0 var(--main-gutter-x);
 }
 
@@ -20,11 +20,17 @@ header .top-nav .top-nav-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 0.5em 1em;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0.5em 0;
     list-style-type: none;
 }
 
 header .top-nav .top-nav-list .nav-item a {
     color: var(--white);
+}
+
+header .top-nav .top-nav-list .nav-item a:is(:focus,:hover) {
+    background-color: var(--white);
+    color: var(--red);
 }
