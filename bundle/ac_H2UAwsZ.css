@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 4 }
+.postlist { counter-reset: start-from 13 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -16,6 +16,28 @@
 	.message-box {
 		--color-message-box: #082840;
 	}
+}
+/** Styles only needed for the views summarizing multiple posts */
+
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+	padding: 1em 0;
+}
+.postlist-item:after {
+	border-bottom: 1px solid var(--red);
+}
+
+.postlist-date {
+	font-size: 0.8em;
 }
 .links-nextprev {
 	list-style: none;

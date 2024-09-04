@@ -14,7 +14,7 @@
 	padding: 1em 0;
 }
 .postlist-item:after {
-	border-bottom: 1px solid var(--blue);
+	border-bottom: 1px solid var(--red);
 }
 
 .postlist-date {
