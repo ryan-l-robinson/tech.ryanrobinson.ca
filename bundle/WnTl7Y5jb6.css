@@ -2,15 +2,17 @@
 
 /* Post metadata */
 .post-metadata {
-	display: inline-flex;
+	display: flex;
 	flex-wrap: wrap;
-	gap: .5em;
-	list-style: none;
+    justify-content: space-between;
+    align-items: center;
+	gap: .5em 3em;
+    border-bottom: 1px dashed var(--red);
 	padding: 0;
 	margin: 0;
 }
 .post-metadata p {
-    padding: 0;
+    margin: 0;
 }
 .post-metadata time {
 	margin-right: 1em;
