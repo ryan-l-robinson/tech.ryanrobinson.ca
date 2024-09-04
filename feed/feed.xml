@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="" rel="self"/>
 	<link href="https://tech.ryanrobinson.ca/"/>
-	<updated>2024-08-14T23:22:36Z</updated>
+	<updated>2024-04-08T17:10:28Z</updated>
 	<id></id>
 	<author>
 		<name>Ryan Robinson</name>
@@ -3779,6 +3779,59 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	</entry>
 	
 	<entry>
+		<title>Drupal: Security Audit</title>
+		<link href="https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/"/>
+		<updated>2022-09-19T23:19:19Z</updated>
+		<id>https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/</id>
+		<content type="html">&lt;p&gt;About a year ago, I (virtually) attended &lt;a href=&quot;https://www.drupalgovcon.org/&quot;&gt;the DrupalGovCon 2021 conference&lt;/a&gt;. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.&lt;/p&gt;
+&lt;figure class=&quot;wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;&lt;div class=&quot;nv-iframe-embed&quot;&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&quot; title=&quot;Tips for Securing Your Drupal Application&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;&lt;figcaption&gt;DrupalGovCon video: Tips for Securing Your Drupal Application&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;security-modules&quot; tabindex=&quot;-1&quot;&gt;Security Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#security-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Review settings of security modules including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] jsonapi_extras&lt;/li&gt;
+&lt;li&gt;[ ] flood_control&lt;/li&gt;
+&lt;li&gt;[ ] login_security&lt;/li&gt;
+&lt;li&gt;[ ] username_enumeration_prevention&lt;/li&gt;
+&lt;li&gt;[ ] honeypot&lt;/li&gt;
+&lt;li&gt;[ ] reCAPTCHA&lt;/li&gt;
+&lt;li&gt;[ ] seckit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;dev-modules&quot; tabindex=&quot;-1&quot;&gt;Dev Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#dev-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ensure none of your development modules are on production:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;field_ui&lt;/li&gt;
+&lt;li&gt;views_ui&lt;/li&gt;
+&lt;li&gt;devel&lt;/li&gt;
+&lt;li&gt;anything migration related&lt;/li&gt;
+&lt;li&gt;stage_file_proxy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I don&#39;t have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.&lt;/p&gt;
+&lt;h2 id=&quot;config-cleanup&quot; tabindex=&quot;-1&quot;&gt;Config Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#config-cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] Remove unused views&lt;/li&gt;
+&lt;li&gt;[ ] Check that there is correct access control on all views&lt;/li&gt;
+&lt;li&gt;[ ] Review permission roles, especially anonymous and authenticated&lt;/li&gt;
+&lt;li&gt;[ ] Confirm that user registration is limited to admins&lt;/li&gt;
+&lt;li&gt;[ ] Confirm that there are no test user accounts in production&lt;/li&gt;
+&lt;li&gt;[ ] Confirm that file size upload limits are reasonable&lt;/li&gt;
+&lt;li&gt;[ ] Confirm that private and public file directories are used properly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;custom-modules-and-themes&quot; tabindex=&quot;-1&quot;&gt;Custom Modules and Themes &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#custom-modules-and-themes&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code&lt;/li&gt;
+&lt;li&gt;[ ] Check code in an editor like VS Code that warns you of unsanitary code&lt;/li&gt;
+&lt;li&gt;[ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it&#39;s still good practice.&lt;/li&gt;
+&lt;li&gt;[ ] Review any TODO / FIXME etc in the code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn&#39;t? Does anybody have more permissions than they need?&lt;/li&gt;
+&lt;li&gt;[ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>Twitter, Mastodon, and CounterSocial</title>
 		<link href="https://tech.ryanrobinson.ca/posts/2022-11-21-Twitter-Mastodon-CoSo/"/>
 		<updated>2022-11-21T13:18:09Z</updated>
@@ -4866,6 +4919,36 @@ You can write this file from scratch, especially if they&#39;re hidden options. 
 	</entry>
 	
 	<entry>
+		<title>IDRC Presentation on Open Menu</title>
+		<link href="https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/"/>
+		<updated>2024-02-21T23:22:36Z</updated>
+		<id>https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/</id>
+		<content type="html">&lt;p&gt;I recently joined the Inclusive Design Research Centre to present along with a couple of colleagues how we designed an &amp;quot;open menu&amp;quot;, a header-focused main menu navigation that works much better for screen reader users and also provides some other benefits like a Ctrl+F find.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://fluidproject.atlassian.net/wiki/spaces/fluid/pages/11513504/Community+workshops+and+design+crits&quot;&gt;The video is available on the IDRC wiki.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I don&#39;t have a transcription of the entire presentation, but here are some of my key notes from the perspective of the Drupal developer.&lt;/p&gt;
+&lt;h2 id=&quot;the-process&quot; tabindex=&quot;-1&quot;&gt;The Process &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#the-process&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The co-design process loop often went something like: Ashley (accessibility consultant) described what worked and what didn&#39;t about her experience as a screen reader user, Mark (digital experiences librarian) made an HTML mockup of what we should try instead, and I figured out how to make Drupal do that in the best and most sustainable way. Repeat as necessary until we&#39;re all happy with the results.&lt;/p&gt;
+&lt;p&gt;I had to consider several issues, not only accessibility. For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Timeline: One bit of important context was the launch timeline. I had just been hired and I was learning my way around the old site at the same time I was beginning the new site. We had a deadline for the new site to launch, what was at the time expected to be the Drupal 7 end of life (it got extended again after that). These menu considerations came as part of this rebuild process. That meant there was some balancing between what is ideal and what can be done in time.&lt;/li&gt;
+&lt;li&gt;Security: Failure to meet that timeline would have security implications if we didn&#39;t meet it. We could have launched the open menu after launching the new site, in order to hit the end of life deadlines, but it would have been awkward at best and required restructuring the main visual menu at worst.&lt;/li&gt;
+&lt;li&gt;Visuals: While not the main focus of this feature, there is visual design for sighted users to consider. We want it to still be attractive and easy to use for sighted users as long as it doesn&#39;t come at the cost of screen reader users.&lt;/li&gt;
+&lt;li&gt;Maintainability: How do we ensure we keep this working and accurate? A major important point to me was that there needed to be one source of information that fed both the collapsed menu and the open menu. Otherwise, there&#39;s a high likelihood that at some point the two will get out of sync with each other, where somebody adds to or rearranges the collapsible menu without considering the open menu or vice versa. Sometimes an inaccurate accessibility feature is worse than no accessibility feature at all, because people wouldn&#39;t think to go try the less-ideal collapsible menu if they&#39;ve been assured they have all the same content.&lt;/li&gt;
+&lt;li&gt;Open source models: What can be done in Drupal core, what in a contributed theme, what in a contributed module, what in custom code? If a module is close to what we need but not quite there, how do we navigate what we report and try to get the maintainer to change vs what we should rebuild ourselves?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;lessons&quot; tabindex=&quot;-1&quot;&gt;Lessons &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#lessons&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This was a fascinating project for me in ways much deeper than the technical details. So here&#39;s a few things that stood out to me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Empathy vs checklist: The biggest lesson is that personal experiences of disabled people really matter. I&#39;d worked with accessibility before, but mostly at the level of a WCAG (Web Content Accessibility Guidelines) checklist in a contract consultancy context where finishing the job under the budget was the main priority. This whole project was a great example of taking the time to get it truly right to real user experiences. Ashley explained that even though a standard Drupal menu passes the checklist, it can be really time-consuming for her. Hire someone if you can to fill that same role. It opened my eyes to a more emphathetic approach rather than a checklist approach. Maybe you can&#39;t hire somebody - most of us can&#39;t, and even our time with Ashley was limited - but at least take the time to sit and try to imagine what it would feel like to do this without sight, or without hearing, or without a mouse. Don&#39;t just hit the WAVE extension button in your browser and declare it done.&lt;/li&gt;
+&lt;li&gt;Multiple solutions: Sometimes there isn&#39;t one solution that is perfect for everybody. We tried to figure out a way to make a menu that was optimal for all users. But the reality is that the standard collapsed navigation is ideal, tuned over decades of web development, for most sighted users who can skim at a glance without it taking much cognitive load. So we took an additive approach instead, keeping both versions of the menu. In hindsight this isn&#39;t really that shocking - we do the same for things like having a video and a transcript - but I hadn&#39;t really thought about it for something as central as the main navigation.&lt;/li&gt;
+&lt;li&gt;Jargon: Getting the descriptions for each page was more challenging than expected and one of the reasons why were questions about jargon. Often in talking about accessibility, we talk about wanting the most generic phrasing that everybody understands, avoiding jargon. That&#39;s great for new users not familiar with the jargon. But there is a tradeoff for those who are familiar with it: that&#39;s probably what they&#39;re looking for. If they&#39;re looking for the jargon and it isn&#39;t in the description, it doesn&#39;t show up from a site search or in the open menu items page where a Ctrl+F might find it. Some of that could be mitigated by including the jargon and the broader definition, but that has &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/accessibility-descriptive/&quot;&gt;a tradeoff of making the content longer to sift through, which is especially more time consuming on a screen reader&lt;/a&gt;. Making it more accessible to one group can make it less accessible for others.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;coming-soon&quot; tabindex=&quot;-1&quot;&gt;Coming Soon &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#coming-soon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have another post coming about how this was technically achieved, which was relatively straightforward. The bigger lessons were here, in the process, but I do want to share how it was done for those that are interested in replicating it.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>Drupal Dev Environment Updated: The Dockerfiles</title>
 		<link href="https://tech.ryanrobinson.ca/posts/2024-03-24-Dev-Env-Updated-Dockerfiles/"/>
 		<updated>2024-03-25T00:16:00Z</updated>
@@ -5047,89 +5130,6 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;One set of colours are for Wilfrid Laurier University, where I work. I personally use the green one for my primary development container, yellow for dev, purple for staging, and red for production (red because I shouldn’t ever actually be editing directly on production). I also use the pure black one with the brand colours as accents for when I am editing something local to my Windows host machine, not in any docker or remote SSH.&lt;/p&gt;
 &lt;p&gt;And then, just for fun, I decided to do the same with my alma mater university, Queen’s. And then a couple of other nearby universities, Waterloo and Guelph. I haven&#39;t heavily tested those so maybe some of the fringe contrasts aren&#39;t quite right, and some of them (Waterloo) offers less range in colours than others. But they&#39;re at least a starting point.&lt;/p&gt;
 &lt;p&gt;They are available in &lt;a href=&quot;https://github.com/ryan-l-robinson/vscode-university-colour-palettes&quot;&gt;my GitHub&lt;/a&gt;. I&#39;d be happy for anybody who wants to include their own university to submit it as a merge request. I&#39;d also be happy if anybody wants to turn that into a VS Code extension.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Drupal: Security Audit</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/"/>
-		<updated>2024-08-14T23:19:19Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/</id>
-		<content type="html">&lt;p&gt;About a year ago, I (virtually) attended &lt;a href=&quot;https://www.drupalgovcon.org/&quot;&gt;the DrupalGovCon 2021 conference&lt;/a&gt;. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.&lt;/p&gt;
-&lt;figure class=&quot;wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;&lt;div class=&quot;nv-iframe-embed&quot;&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&quot; title=&quot;Tips for Securing Your Drupal Application&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;&lt;figcaption&gt;DrupalGovCon video: Tips for Securing Your Drupal Application&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;security-modules&quot; tabindex=&quot;-1&quot;&gt;Security Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#security-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Review settings of security modules including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] jsonapi_extras&lt;/li&gt;
-&lt;li&gt;[ ] flood_control&lt;/li&gt;
-&lt;li&gt;[ ] login_security&lt;/li&gt;
-&lt;li&gt;[ ] username_enumeration_prevention&lt;/li&gt;
-&lt;li&gt;[ ] honeypot&lt;/li&gt;
-&lt;li&gt;[ ] reCAPTCHA&lt;/li&gt;
-&lt;li&gt;[ ] seckit&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;dev-modules&quot; tabindex=&quot;-1&quot;&gt;Dev Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#dev-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Ensure none of your development modules are on production:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;field_ui&lt;/li&gt;
-&lt;li&gt;views_ui&lt;/li&gt;
-&lt;li&gt;devel&lt;/li&gt;
-&lt;li&gt;anything migration related&lt;/li&gt;
-&lt;li&gt;stage_file_proxy&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I don&#39;t have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.&lt;/p&gt;
-&lt;h2 id=&quot;config-cleanup&quot; tabindex=&quot;-1&quot;&gt;Config Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#config-cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Remove unused views&lt;/li&gt;
-&lt;li&gt;[ ] Check that there is correct access control on all views&lt;/li&gt;
-&lt;li&gt;[ ] Review permission roles, especially anonymous and authenticated&lt;/li&gt;
-&lt;li&gt;[ ] Confirm that user registration is limited to admins&lt;/li&gt;
-&lt;li&gt;[ ] Confirm that there are no test user accounts in production&lt;/li&gt;
-&lt;li&gt;[ ] Confirm that file size upload limits are reasonable&lt;/li&gt;
-&lt;li&gt;[ ] Confirm that private and public file directories are used properly&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;custom-modules-and-themes&quot; tabindex=&quot;-1&quot;&gt;Custom Modules and Themes &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#custom-modules-and-themes&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code&lt;/li&gt;
-&lt;li&gt;[ ] Check code in an editor like VS Code that warns you of unsanitary code&lt;/li&gt;
-&lt;li&gt;[ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it&#39;s still good practice.&lt;/li&gt;
-&lt;li&gt;[ ] Review any TODO / FIXME etc in the code&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn&#39;t? Does anybody have more permissions than they need?&lt;/li&gt;
-&lt;li&gt;[ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>IDRC Presentation on Open Menu</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/"/>
-		<updated>2024-08-14T23:22:36Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/</id>
-		<content type="html">&lt;p&gt;I recently joined the Inclusive Design Research Centre to present along with a couple of colleagues how we designed an &amp;quot;open menu&amp;quot;, a header-focused main menu navigation that works much better for screen reader users and also provides some other benefits like a Ctrl+F find.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://fluidproject.atlassian.net/wiki/spaces/fluid/pages/11513504/Community+workshops+and+design+crits&quot;&gt;The video is available on the IDRC wiki.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I don&#39;t have a transcription of the entire presentation, but here are some of my key notes from the perspective of the Drupal developer.&lt;/p&gt;
-&lt;h2 id=&quot;the-process&quot; tabindex=&quot;-1&quot;&gt;The Process &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#the-process&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The co-design process loop often went something like: Ashley (accessibility consultant) described what worked and what didn&#39;t about her experience as a screen reader user, Mark (digital experiences librarian) made an HTML mockup of what we should try instead, and I figured out how to make Drupal do that in the best and most sustainable way. Repeat as necessary until we&#39;re all happy with the results.&lt;/p&gt;
-&lt;p&gt;I had to consider several issues, not only accessibility. For example:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Timeline: One bit of important context was the launch timeline. I had just been hired and I was learning my way around the old site at the same time I was beginning the new site. We had a deadline for the new site to launch, what was at the time expected to be the Drupal 7 end of life (it got extended again after that). These menu considerations came as part of this rebuild process. That meant there was some balancing between what is ideal and what can be done in time.&lt;/li&gt;
-&lt;li&gt;Security: Failure to meet that timeline would have security implications if we didn&#39;t meet it. We could have launched the open menu after launching the new site, in order to hit the end of life deadlines, but it would have been awkward at best and required restructuring the main visual menu at worst.&lt;/li&gt;
-&lt;li&gt;Visuals: While not the main focus of this feature, there is visual design for sighted users to consider. We want it to still be attractive and easy to use for sighted users as long as it doesn&#39;t come at the cost of screen reader users.&lt;/li&gt;
-&lt;li&gt;Maintainability: How do we ensure we keep this working and accurate? A major important point to me was that there needed to be one source of information that fed both the collapsed menu and the open menu. Otherwise, there&#39;s a high likelihood that at some point the two will get out of sync with each other, where somebody adds to or rearranges the collapsible menu without considering the open menu or vice versa. Sometimes an inaccurate accessibility feature is worse than no accessibility feature at all, because people wouldn&#39;t think to go try the less-ideal collapsible menu if they&#39;ve been assured they have all the same content.&lt;/li&gt;
-&lt;li&gt;Open source models: What can be done in Drupal core, what in a contributed theme, what in a contributed module, what in custom code? If a module is close to what we need but not quite there, how do we navigate what we report and try to get the maintainer to change vs what we should rebuild ourselves?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;lessons&quot; tabindex=&quot;-1&quot;&gt;Lessons &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#lessons&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This was a fascinating project for me in ways much deeper than the technical details. So here&#39;s a few things that stood out to me:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Empathy vs checklist: The biggest lesson is that personal experiences of disabled people really matter. I&#39;d worked with accessibility before, but mostly at the level of a WCAG (Web Content Accessibility Guidelines) checklist in a contract consultancy context where finishing the job under the budget was the main priority. This whole project was a great example of taking the time to get it truly right to real user experiences. Ashley explained that even though a standard Drupal menu passes the checklist, it can be really time-consuming for her. Hire someone if you can to fill that same role. It opened my eyes to a more emphathetic approach rather than a checklist approach. Maybe you can&#39;t hire somebody - most of us can&#39;t, and even our time with Ashley was limited - but at least take the time to sit and try to imagine what it would feel like to do this without sight, or without hearing, or without a mouse. Don&#39;t just hit the WAVE extension button in your browser and declare it done.&lt;/li&gt;
-&lt;li&gt;Multiple solutions: Sometimes there isn&#39;t one solution that is perfect for everybody. We tried to figure out a way to make a menu that was optimal for all users. But the reality is that the standard collapsed navigation is ideal, tuned over decades of web development, for most sighted users who can skim at a glance without it taking much cognitive load. So we took an additive approach instead, keeping both versions of the menu. In hindsight this isn&#39;t really that shocking - we do the same for things like having a video and a transcript - but I hadn&#39;t really thought about it for something as central as the main navigation.&lt;/li&gt;
-&lt;li&gt;Jargon: Getting the descriptions for each page was more challenging than expected and one of the reasons why were questions about jargon. Often in talking about accessibility, we talk about wanting the most generic phrasing that everybody understands, avoiding jargon. That&#39;s great for new users not familiar with the jargon. But there is a tradeoff for those who are familiar with it: that&#39;s probably what they&#39;re looking for. If they&#39;re looking for the jargon and it isn&#39;t in the description, it doesn&#39;t show up from a site search or in the open menu items page where a Ctrl+F might find it. Some of that could be mitigated by including the jargon and the broader definition, but that has &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/accessibility-descriptive/&quot;&gt;a tradeoff of making the content longer to sift through, which is especially more time consuming on a screen reader&lt;/a&gt;. Making it more accessible to one group can make it less accessible for others.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;coming-soon&quot; tabindex=&quot;-1&quot;&gt;Coming Soon &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/#coming-soon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I have another post coming about how this was technically achieved, which was relatively straightforward. The bigger lessons were here, in the process, but I do want to share how it was done for those that are interested in replicating it.&lt;/p&gt;
 </content>
 	</entry>
 </feed>

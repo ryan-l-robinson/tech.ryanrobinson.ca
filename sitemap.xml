@@ -537,6 +537,11 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/</loc>
+		<lastmod>2022-09-19</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/posts/2022-11-21-Twitter-Mastodon-CoSo/</loc>
 		<lastmod>2022-11-21</lastmod>
 	</url>
@@ -662,6 +667,11 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/</loc>
+		<lastmod>2024-02-21</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/posts/2024-03-24-Dev-Env-Updated-Dockerfiles/</loc>
 		<lastmod>2024-03-25</lastmod>
 	</url>
@@ -674,16 +684,6 @@
 	<url>
 		<loc>https://tech.ryanrobinson.ca/posts/2024-04-08-VS-Code-University-Colour-Palettes/</loc>
 		<lastmod>2024-04-08</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2022-09-19-Security-Audit/</loc>
-		<lastmod>2024-08-14</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2024-02-21-IDRC-Presentation/</loc>
-		<lastmod>2024-08-14</lastmod>
 	</url>
 	
 	<url>
@@ -757,12 +757,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
 		<lastmod>2024-09-04</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-04</lastmod>
 	</url>
 	

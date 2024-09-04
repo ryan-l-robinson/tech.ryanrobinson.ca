@@ -1,22 +1,4 @@
-.postlist { counter-reset: start-from 11 }
-/* Message Box */
-.message-box {
-	--color-message-box: #ffc;
-
-	display: block;
-	background-color: var(--color-message-box);
-	color: var(--color-gray-90);
-	padding: 1em 0.625em; /* 16px 10px /16 */
-}
-.message-box ol {
-	margin-top: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	.message-box {
-		--color-message-box: #082840;
-	}
-}
+.postlist { counter-reset: start-from 3 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -39,6 +21,24 @@
 
 .postlist-date {
 	font-size: 0.8em;
+}
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
 }
 .links-nextprev {
 	list-style: none;
