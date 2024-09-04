@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -250,6 +250,7 @@ header .top-nav .top-nav-list {
 }
 
 header .top-nav .top-nav-list .nav-item a {
+    padding: 0.5em;
     color: var(--white);
 }
 

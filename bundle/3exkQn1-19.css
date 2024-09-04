@@ -1,3 +1,27 @@
+.postlist { counter-reset: start-from 4 }
+/** Styles only needed for the views summarizing multiple posts */
+
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: block;
+	margin: 0 1em;
+	padding: 0 0 1em 0;
+}
+.postlist-item:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
+	border-bottom: 1px solid var(--red);
+}
+
+.postlist-date {
+	font-size: 0.8em;
+}
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -226,6 +250,7 @@ header .top-nav .top-nav-list {
 }
 
 header .top-nav .top-nav-list .nav-item a {
+    padding: 0.5em;
     color: var(--white);
 }
 

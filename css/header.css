@@ -28,6 +28,7 @@ header .top-nav .top-nav-list {
 }
 
 header .top-nav .top-nav-list .nav-item a {
+    padding: 0.5em;
     color: var(--white);
 }
 
