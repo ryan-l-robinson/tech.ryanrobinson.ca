@@ -7,9 +7,14 @@
 }
 .postlist-item {
 	display: block;
-	margin-bottom: 1em;
+	margin: 1em;
+	padding: 1em;
 }
 .postlist-item:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
 	border-bottom: 1px solid var(--red);
 }
 

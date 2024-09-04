@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 12 }
+.postlist { counter-reset: start-from 138 }
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
@@ -26,9 +26,14 @@
 }
 .postlist-item {
 	display: block;
-	margin-bottom: 1em;
+	margin: 1em;
+	padding: 1em;
 }
 .postlist-item:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
 	border-bottom: 1px solid var(--red);
 }
 
