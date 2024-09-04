@@ -33,9 +33,9 @@
 				
 <h1>Drupal: Hide Block on Own Profile</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2022-07-12">12 July 2022</time></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2022-07-12">12 July 2022</time></p>
+</div>
 
 <p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
 <p>Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.</p>
@@ -58,8 +58,8 @@
 <p>Finally, change the option on the view in the Advanced -&gt; Other section for &quot;Hide block if the view output is empty&quot; to Yes. This will turn off the block entirely when there is no results, such as if you're viewing your own profile when that contextual filter is in place.</p>
 <p>That did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you're viewing your own profile.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2022-07-10-Profile-Title-Override/">Drupal: Override Title Tag of Profiles</a></li><li>Next: <a href="/posts/2022-09-19-Drupal-CSS-Structures/">Drupal: CSS Structure</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022-07-10-Profile-Title-Override/">Drupal: Override Title Tag of Profiles</a></p><p>Next: <a href="/posts/2022-09-19-Drupal-CSS-Structures/">Drupal: CSS Structure</a></p>
+</div>
 			</div>
 		</main>
 
@@ -107,6 +107,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022-03-28-drupal-profile-block-hidden-own/` was built on 2024-09-04T20:05:36.193Z -->
+		<!-- This page `/posts/2022-03-28-drupal-profile-block-hidden-own/` was built on 2024-09-04T20:22:02.405Z -->
 	</body>
 </html>

@@ -33,9 +33,9 @@
 				
 <h1>Drupal: Override Title Tag of Profiles</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2022-07-11">11 July 2022</time></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2022-07-11">11 July 2022</time></p>
+</div>
 
 <p>The profile module is a nice tool to have on a Drupal site if you're looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page's title which shows up as [Profile Name] #[id], e.g. &quot;Staff Profile #1&quot;. That's not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you'll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.</p>
 <p>With the fields in place, this post, and <a href="https://github.com/ryan-l-robinson/Drupal-profile-title-override">accompanying GitHub code and configuration</a>, is how I worked around those issues.</p>
@@ -95,8 +95,8 @@
   <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">messenger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">addWarning</span><span class="token punctuation">(</span><span class="token variable">$message</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2022-07-02-Local-Development-Options/">Local Development: Vagrant, Docker Desktop, and GitPod</a></li><li>Next: <a href="/posts/2022-03-28-drupal-profile-block-hidden-own/">Drupal: Hide Block on Own Profile</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022-07-02-Local-Development-Options/">Local Development: Vagrant, Docker Desktop, and GitPod</a></p><p>Next: <a href="/posts/2022-03-28-drupal-profile-block-hidden-own/">Drupal: Hide Block on Own Profile</a></p>
+</div>
 			</div>
 		</main>
 
@@ -144,6 +144,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022-07-10-Profile-Title-Override/` was built on 2024-09-04T20:05:36.198Z -->
+		<!-- This page `/posts/2022-07-10-Profile-Title-Override/` was built on 2024-09-04T20:22:02.409Z -->
 	</body>
 </html>

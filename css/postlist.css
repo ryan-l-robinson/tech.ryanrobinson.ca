@@ -18,6 +18,14 @@
 	border-bottom: 1px solid var(--red);
 }
 
-.postlist-date {
+.postlist-item-title {
+	padding-bottom: 0.7em;
+}
+
+.postlist-item-time-container {
+	line-height: 1em;
+}
+
+.postlist-item-time {
 	font-size: 0.8em;
 }

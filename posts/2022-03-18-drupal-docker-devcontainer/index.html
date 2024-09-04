@@ -33,13 +33,13 @@
 				
 <h1>Drupal Docker: devcontainer</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2022-03-18">18 March 2022</time></li>
-	<li><a href="/tags/docker/" class="post-tag">Docker</a>, </li>
-	<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a>, </li>
-	<li><a href="/tags/gitpod/" class="post-tag">GitPod</a>, </li>
-	<li><a href="/tags/php/" class="post-tag">PHP</a></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2022-03-18">18 March 2022</time></p>
+	<p>Tags: <a href="/tags/docker/" class="post-tag">Docker</a>, </p>
+	<p>Tags: <a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a>, </p>
+	<p>Tags: <a href="/tags/gitpod/" class="post-tag">GitPod</a>, </p>
+	<p>Tags: <a href="/tags/php/" class="post-tag">PHP</a></p>
+</div>
 
 <p>I have previously shared <a href="/websites/vagrant-oracle-linux-vm/">setting up local development environments using vagrant</a> and <a href="/tags/gitpod-drupal/">GitPod</a> in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.</p>
 <p>Code for this is found in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
@@ -85,8 +85,8 @@
 <p>I also have a much simpler postAttachCommand. This only sources the ~/.bashrc to ensure the user knows where to find commands like drush and composer, which were set up by the postCreateCommand script.</p>
 <pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">    "postAttachCommand": "/bin/bash -c \"source ~/.bashrc\"",</code></pre>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2022-03-15-php-xdebug-in-vs-code/">PHP: XDebug in VS Code</a></li><li>Next: <a href="/posts/2022-05-02-People-Lookup/">Power Apps: People Lookup</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022-03-15-php-xdebug-in-vs-code/">PHP: XDebug in VS Code</a></p><p>Next: <a href="/posts/2022-05-02-People-Lookup/">Power Apps: People Lookup</a></p>
+</div>
 			</div>
 		</main>
 
@@ -134,6 +134,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022-03-18-drupal-docker-devcontainer/` was built on 2024-09-04T20:05:36.193Z -->
+		<!-- This page `/posts/2022-03-18-drupal-docker-devcontainer/` was built on 2024-09-04T20:22:02.405Z -->
 	</body>
 </html>

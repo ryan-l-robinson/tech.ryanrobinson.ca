@@ -33,10 +33,10 @@
 				
 <h1>Drupal Dev Environment Updated: The DevContainer</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2024-04-08">08 April 2024</time></li>
-	<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2024-04-08">08 April 2024</time></p>
+	<p>Tags: <a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a></p>
+</div>
 
 <p>This continues from <a href="/websites/drupal/dev-env-updated/">a previous post</a> about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on <a href="/tags/drupal-docker/">the Drupal Docker tag</a>. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">The whole project's code can be found on my GitHub</a>.</p>
 <h2 id="devcontainer" tabindex="-1">Devcontainer <a class="header-anchor" href="#devcontainer">#</a></h2>
@@ -61,8 +61,8 @@
 <p>I'm going to continue with this by now improving it a step farther: instead of building the images each time on local, have it build in GitHub or GitLab programmatically, and then saving it alongside the repository in those platforms' respective container registries. Then when it is time to start a new local development environment, it only needs to pull the latest image, not build it again. That saves time, especially if you have to switch between branches and especially if you have multiple team members who would otherwise all be spending time building it individually. This will include moving most of the postCreateCommand functionality into the GitLab CI / GitHub Actions, for both the web and database containers.</p>
 <p>I already have this working in my real context using GitLab. I have less experience with GitHub Actions but am working on doing the same idea there for a more shareable version.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2024-03-24-Dev-Env-Updated-Dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></li><li>Next: <a href="/posts/2024-04-08-VS-Code-University-Colour-Palettes/">VS Code: University Colour Palettes</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2024-03-24-Dev-Env-Updated-Dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></p><p>Next: <a href="/posts/2024-04-08-VS-Code-University-Colour-Palettes/">VS Code: University Colour Palettes</a></p>
+</div>
 			</div>
 		</main>
 
@@ -110,6 +110,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024-04-08-Dev-Env-Updated/` was built on 2024-09-04T20:05:36.203Z -->
+		<!-- This page `/posts/2024-04-08-Dev-Env-Updated/` was built on 2024-09-04T20:22:02.415Z -->
 	</body>
 </html>

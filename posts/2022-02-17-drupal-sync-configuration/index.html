@@ -33,11 +33,11 @@
 				
 <h1>Drupal: Sync Configuration</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2022-02-18">18 February 2022</time></li>
-	<li><a href="/tags/gitlab/" class="post-tag">GitLab</a>, </li>
-	<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2022-02-18">18 February 2022</time></p>
+	<p>Tags: <a href="/tags/gitlab/" class="post-tag">GitLab</a>, </p>
+	<p>Tags: <a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a></p>
+</div>
 
 <p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
 <p>Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.</p>
@@ -73,8 +73,8 @@ drush config-import</code></pre>
 <em>Screenshot of importing a single configuration item</em></p>
 <p>I won’t detail that here, since the interface does make it fairly intuitive, but you can approach it halfway – sync the files but then import them one at a time from the synchronize tab – or you can avoid syncing entirely and instead manually copy the configuration file shown on one Drupal site into the other.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2022-02-13-drupal-fluid-ui/">Drupal: Fluid UI</a></li><li>Next: <a href="/posts/2022-03-03-microsoft-teams-guest-notifications/">Microsoft Teams: Guest Notifications</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022-02-13-drupal-fluid-ui/">Drupal: Fluid UI</a></p><p>Next: <a href="/posts/2022-03-03-microsoft-teams-guest-notifications/">Microsoft Teams: Guest Notifications</a></p>
+</div>
 			</div>
 		</main>
 
@@ -122,6 +122,6 @@ drush config-import</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022-02-17-drupal-sync-configuration/` was built on 2024-09-04T20:05:36.192Z -->
+		<!-- This page `/posts/2022-02-17-drupal-sync-configuration/` was built on 2024-09-04T20:22:02.404Z -->
 	</body>
 </html>

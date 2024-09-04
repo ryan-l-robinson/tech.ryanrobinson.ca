@@ -33,10 +33,10 @@
 				
 <h1>Drupal: Disable Password Reset</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2023-01-08">08 January 2023</time></li>
-	<li><a href="/tags/security/" class="post-tag">Security</a></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2023-01-08">08 January 2023</time></p>
+	<p>Tags: <a href="/tags/security/" class="post-tag">Security</a></p>
+</div>
 
 <p>In one particular site, we chose to block the user registration and user password reset options. The site is using SSO login anyway, so this would really only impact our development team's superuser admin account (user 1) that is typically blocked outside of an emergency, so this seals up a possible attack vector with no user impact.</p>
 <p>User registration can also be blocked with site configuration, so I wouldn't have bothered with custom code for only that part. But since I was doing it for the password reset anyway, I decided to go ahead with the extra layer of protection on the registration route as well.</p>
@@ -54,8 +54,8 @@
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span></code></pre>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2023-01-04-Importing-Multiple-Paragraphs/">Drupal: Importing Multiple Paragraphs</a></li><li>Next: <a href="/posts/2023-01-09-Brandwood/">Brandwood A11y Checker</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023-01-04-Importing-Multiple-Paragraphs/">Drupal: Importing Multiple Paragraphs</a></p><p>Next: <a href="/posts/2023-01-09-Brandwood/">Brandwood A11y Checker</a></p>
+</div>
 			</div>
 		</main>
 
@@ -103,6 +103,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023-01-08-Drupal-disable-pw-reset/` was built on 2024-09-04T20:05:36.200Z -->
+		<!-- This page `/posts/2023-01-08-Drupal-disable-pw-reset/` was built on 2024-09-04T20:22:02.412Z -->
 	</body>
 </html>

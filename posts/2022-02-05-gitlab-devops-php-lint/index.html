@@ -33,13 +33,13 @@
 				
 <h1>GitLab DevOps: PHP Lint</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2022-02-05">05 February 2022</time></li>
-	<li><a href="/tags/github/" class="post-tag">GitHub</a>, </li>
-	<li><a href="/tags/gitlab/" class="post-tag">GitLab</a>, </li>
-	<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a>, </li>
-	<li><a href="/tags/php/" class="post-tag">PHP</a></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2022-02-05">05 February 2022</time></p>
+	<p>Tags: <a href="/tags/github/" class="post-tag">GitHub</a>, </p>
+	<p>Tags: <a href="/tags/gitlab/" class="post-tag">GitLab</a>, </p>
+	<p>Tags: <a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a>, </p>
+	<p>Tags: <a href="/tags/php/" class="post-tag">PHP</a></p>
+</div>
 
 <p>Here’s another piece in a <a href="/tags/gitlab-devops/">GitLab DevOps</a> setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.</p>
 <p>I split this into two pieces, taking advantage of <a href="https://docs.gitlab.com/ee/ci/yaml/index.html#extends">GitLab’s ability to extend other functions, even functions in other projects</a>. My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in <a href="https://github.com/ryan-l-robinson/GitLab-CI-CD">my personal GitHub</a>. I know that’s an unintuitive combination.</p>
@@ -107,8 +107,8 @@ php:
     EXTENSIONS: php module theme inc</code></pre>
 <p>This example will run the PHP syntax test against all .php, .module, .theme, and .inc files located with the Drupal 8+ custom themes and custom modules directories.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2022-02-01-drupal-gitpod-container-3-settings-and-config/">Drupal GitPod Container 3: Settings and Config</a></li><li>Next: <a href="/posts/2022-02-09-gitlab-devops-gitlab-runner/">GitLab DevOps: GitLab Runner</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022-02-01-drupal-gitpod-container-3-settings-and-config/">Drupal GitPod Container 3: Settings and Config</a></p><p>Next: <a href="/posts/2022-02-09-gitlab-devops-gitlab-runner/">GitLab DevOps: GitLab Runner</a></p>
+</div>
 			</div>
 		</main>
 
@@ -156,6 +156,6 @@ php:
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022-02-05-gitlab-devops-php-lint/` was built on 2024-09-04T20:05:36.191Z -->
+		<!-- This page `/posts/2022-02-05-gitlab-devops-php-lint/` was built on 2024-09-04T20:22:02.403Z -->
 	</body>
 </html>

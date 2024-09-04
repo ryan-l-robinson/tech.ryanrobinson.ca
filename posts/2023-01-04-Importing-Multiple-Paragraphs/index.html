@@ -33,9 +33,9 @@
 				
 <h1>Drupal: Importing Multiple Paragraphs</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="2023-01-04">04 January 2023</time></li>
-</ul>
+<div class="post-metadata">
+	<p><time datetime="2023-01-04">04 January 2023</time></p>
+</div>
 
 <p>A few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer <a href="https://www.drupal.org/project/paragraphs">paragraphs</a> module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.</p>
 <p>A second complication comes from it being possible to have multiple field collections on the old site and also multiple paragraphs on the new site, so we'll need to navigate collapsing multiple entities with two fields each alongside the related node into one export, then import that to again have multiple paragraphs with two fields each connected to the correct node.</p>
@@ -133,8 +133,8 @@
 <p>Note: another approach here that would also involve custom module code would be to build this handling directly into the feeds import instead of hooking on the node being created. That's probably a bit more precise to run only in this one context. This hook on node insert does run more often, which is both less efficient and could be extra safety in case somebody accidentally put data in those temporary fields manually instead of creating the paragraphs. In any case, this was a quicker one for us to prepare, which was the priority with getting a one-time import done.</p>
 <p>When the module is ready (including an info file), enable it and give it a test run.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/posts/2023-01-03-GitLab-IDE/">GitLab&#39;s New Web IDE</a></li><li>Next: <a href="/posts/2023-01-08-Drupal-disable-pw-reset/">Drupal: Disable Password Reset</a></li>
-</ul>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023-01-03-GitLab-IDE/">GitLab&#39;s New Web IDE</a></p><p>Next: <a href="/posts/2023-01-08-Drupal-disable-pw-reset/">Drupal: Disable Password Reset</a></p>
+</div>
 			</div>
 		</main>
 
@@ -182,6 +182,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023-01-04-Importing-Multiple-Paragraphs/` was built on 2024-09-04T20:05:36.200Z -->
+		<!-- This page `/posts/2023-01-04-Importing-Multiple-Paragraphs/` was built on 2024-09-04T20:22:02.412Z -->
 	</body>
 </html>
