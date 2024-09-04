@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 12 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -224,6 +224,7 @@ header {
     width: 100%;
     background-color: var(--red);
     color: var(--white);
+    padding: 0 1em;
 }
 
 .header-container {
