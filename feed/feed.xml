@@ -5122,9 +5122,9 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>VS Code: University Colour Palettes</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2024-04-08-VS-Code-University-Colour-Palettes/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/VS-Code-University-Colour-Palettes/"/>
 		<updated>2024-04-08T17:10:28Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2024-04-08-VS-Code-University-Colour-Palettes/</id>
+		<id>https://tech.ryanrobinson.ca/posts/VS-Code-University-Colour-Palettes/</id>
 		<content type="html">&lt;p&gt;I like changing colour palettes on my various workspaces. It’s especially nice when in situations like jumping between personal and work spaces of the same app, or multiple clients, or dev vs staging vs production servers. It&#39;s a great way to quickly adjust what I&#39;m thinking about, e.g. if I&#39;m seeing yellow or purple or red, it immediately slows me down to be a lot more careful about what I&#39;m changing.&lt;/p&gt;
 &lt;p&gt;So, one of the things I’ve done is have different colour palettes in Visual Studio Code for different servers.&lt;/p&gt;
 &lt;p&gt;One set of colours are for Wilfrid Laurier University, where I work. I personally use the green one for my primary development container, yellow for dev, purple for staging, and red for production (red because I shouldn’t ever actually be editing directly on production). I also use the pure black one with the brand colours as accents for when I am editing something local to my Windows host machine, not in any docker or remote SSH.&lt;/p&gt;
