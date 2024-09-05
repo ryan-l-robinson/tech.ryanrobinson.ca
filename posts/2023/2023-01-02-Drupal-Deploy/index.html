@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>GitLab DevOps: Drupal Deployment</title>
+		<meta name="description" content="Technologist writing about web development, Microsoft 365, and more.">
+
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/bundle/tnBw-fT0W5.css">
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+		<header>
+			<div class="container header-container">
+				<p>Ryan Robinson Technology</p>
+				<p>Search box goes here?</p>
+				<nav class="top-nav" aria-describedby="top-nav">
+					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
+					<ul class="top-nav-list">
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main id="skip">
+			<div class="container">
+				
+<h1>GitLab DevOps: Drupal Deployment</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2023-01-02">January 2, 2023</time></p>
+	<p>Tags: <a href="/tags/gitlab/" class="post-tag">GitLab</a>, </p>
+	<p>Tags: <a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a>, </p>
+	<p>Tags: <a href="/tags/php/" class="post-tag">PHP</a></p>
+</div>
+
+<p>This continues where <a href="/websites/gitlab-devops-deploy/">the previous post</a> in <a href="/tags/gitlab-devops/">the GitLab DevOps series</a> left off. We can now deploy code changes to the new server, and that's great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.</p>
+<h2 id="dev-vs-production" tabindex="-1">Dev vs Production <a class="header-anchor" href="#dev-vs-production">#</a></h2>
+<p>The biggest challenge with this topic is navigating that there should be some things different from dev and staging servers compared to production. Some of these are cases where the module or core configuration is on each server, but with different options (e.g. <a href="https://drupal.org/project/environment_indicator">environment indicator</a>) and others are a case of modules that are only needed on dev and staging and therefore shouldn't be on production at all (e.g. <a href="https://www.drupal.org/project/maillog">maillog</a> and <a href="https://www.drupal.org/project/stage_file_proxy">stage_file_proxy</a>).</p>
+<p>Composer offers a good way to handle the code package building distinction. You can require a package, or require-dev a package. Then you can <code>composer install</code> or <code>composer install --no-dev</code> depending on the server. That part is straightforward.</p>
+<p>The hard part is the distinctions in configuration. Much of this can be handled using the <a href="https://www.drupal.org/project/config_ignore">config_ignore</a> module, which tells the configuration imports and exports to not include that configuration file, which means it doesn't get synced across the servers. You have to set those ignored configurations up separately on every server, which means if there's a change, you need to remember to do it on all environments where it would be relevant. But then there's other configurations like modules that shouldn't be active at all on production but is on dev and staging. You can't simply ignore syncing the installed modules configuration, or else you'd have a mess every time you added or removed a module. Sometimes those modules create new configuration schemas, or require you to change another configuration schema to take advantage of it.</p>
+<p>Maillog is the best example of this. Maillog is a module that should install on dev/staging but not production, as it is a debugging tool for logging outgoing mail rather than sending it. It can be separated in composer as a dev module so that the code doesn't install on production. But then it also changes the modules configuration when it is installed, as well as the site's mail settings configuration. Ideally these servers are still managed through the configuration, with differences in dev/staging compared to production. That rules out using config_ignore.</p>
+<p>The other imperfect option is changing those configurations as part of the CI/CD processes. It also has a couple of problems:</p>
+<ol>
+<li>There might be a few seconds where the configuration is wrong, e.g. if you import the synced configuration but then force it back to the desired value with a follow-up command. Often this doesn't matter, like a module being installed and then being promptly uninstalled again, but in other cases like sending email, it might be that the site tries to send an email in those few seconds, fails, and nobody notices that somebody should have gotten an email but didn't. So you'd have to be very careful about this technique in production.</li>
+<li>It relies on keeping the CI/CD up to date. If something changes with the site configuration, you better remember to account for how that configuration will be the same or different on all servers and if the CI/CD needs any changes to prepare for it. This makes it more prone to something breaking when you forget or can't adequately test production behaviour until it's too late, already on production.</li>
+</ol>
+<p>Note: I did try the <a href="https://www.drupal.org/project/config_split">config_split</a> module, which sounds like it should help but did not work reliably. There is an update that came out since my last times, so maybe it will be worth trying it again.</p>
+<p>For the simplicity of the rest of this blog post, I've decided not to include my specific examples here. Hopefully my thoughts on how I've negotiated the options for these kinds of scenarios is more valuable than any specific conclusions that we have in place right now.</p>
+<h2 id="the-jobs" tabindex="-1">The Jobs <a class="header-anchor" href="#the-jobs">#</a></h2>
+<p>These jobs are added to the general function deploy.yml, which in my real-world scenario is in a different project but could be in the same project.</p>
+<p>Here's what the extendable jobs look like:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">### Generic deploy to specified server ###</span>
+<span class="token key atrule">.deploy_template</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> $ENVIRONMENT_NAME
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> $SERVER_URL
+  <span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> echo "Deploying to server at $SERVER_URL"
+    <span class="token punctuation">-</span> cd $WEB_ROOT
+    <span class="token punctuation">-</span> git fetch
+    <span class="token punctuation">-</span> git reset <span class="token punctuation">-</span><span class="token punctuation">-</span>hard
+    <span class="token punctuation">-</span> git stash
+    <span class="token punctuation">-</span> git pull
+
+<span class="token comment">### Drupal install jobs ###</span>
+<span class="token key atrule">.drupal_composer</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> $ENVIRONMENT_NAME
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> $SERVER_URL
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cd $WEB_ROOT
+    <span class="token punctuation">-</span> vendor/drush/drush/drush state<span class="token punctuation">:</span>set system.maintenance_mode 1 <span class="token punctuation">-</span><span class="token punctuation">-</span>input<span class="token punctuation">-</span>format=integer
+    <span class="token punctuation">-</span> composer install
+
+<span class="token key atrule">.drupal_composer_prod</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> $ENVIRONMENT_NAME
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> $SERVER_URL
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cd $WEB_ROOT
+    <span class="token punctuation">-</span> vendor/drush/drush/drush state<span class="token punctuation">:</span>set system.maintenance_mode 1 <span class="token punctuation">-</span><span class="token punctuation">-</span>input<span class="token punctuation">-</span>format=integer
+    <span class="token punctuation">-</span> composer install <span class="token punctuation">-</span><span class="token punctuation">-</span>no<span class="token punctuation">-</span>dev
+
+<span class="token key atrule">.drupal_config</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> $ENVIRONMENT_NAME
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> $SERVER_URL
+  <span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cd $WEB_ROOT
+    <span class="token punctuation">-</span> vendor/drush/drush/drush state<span class="token punctuation">:</span>set system.maintenance_mode 1 <span class="token punctuation">-</span><span class="token punctuation">-</span>input<span class="token punctuation">-</span>format=integer
+    <span class="token punctuation">-</span> vendor/drush/drush/drush cr
+    <span class="token punctuation">-</span> vendor/drush/drush/drush config<span class="token punctuation">-</span>import <span class="token punctuation">-</span>y
+    <span class="token punctuation">-</span> vendor/drush/drush/drush cr
+    <span class="token punctuation">-</span> vendor/drush/drush/drush updb <span class="token punctuation">-</span>y
+    <span class="token punctuation">-</span> vendor/drush/drush/drush state<span class="token punctuation">:</span>set system.maintenance_mode 0 <span class="token punctuation">-</span><span class="token punctuation">-</span>input<span class="token punctuation">-</span>format=integer
+    <span class="token punctuation">-</span> vendor/drush/drush/drush cr
+
+<span class="token key atrule">.drupal_cache</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> $ENVIRONMENT_NAME
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> $SERVER_URL
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod2
+  <span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cd $WEB_ROOT
+    <span class="token punctuation">-</span> vendor/drush/drush/drush cr</code></pre>
+<p>The first job is the one detailed in <a href="/websites/gitlab-devops-deploy/">the previous post</a>, except that it has now been moved from <code>script</code> to <code>before-script</code> to work better with the other pieces.</p>
+<p>The next component is composer. Drupal is built using composer packages. Any action that updates the composer.lock file - adding a new module, deleting a module, updating packages - will require this step. <code>composer install</code> ensures that it installs the exact same versions of the exact same packages as on your other servers. It might be tempting to use <code>composer update</code> instead to get the latest versions, but then you might end up with trying to install something that you haven't tested elsewhere yet. There are two variants of this job, one for dev servers that installs dev packages and one for production that does not.</p>
+<p>Secondly, the configuration and databases need to be updated. <code>drush cr</code> rebuilds your caches. There's one to start this section because it is often necessary for scenarios like a new module. The Drupal cache needs to know when there's a new module with the code in place, before you get to the <code>config-import</code> that will try to install that module. Otherwise you'll get an error. With that settled, you can import all the configuration changes, then clear the caches again to ensure the site is now reflecting those changes. Finally, update the site's database using <code>drush updb</code>. This is sometimes needed with new modules or updated modules that need to change the database schema. If you don't do this, you can end up with errors about missing columns in tables.</p>
+<p>The final job only clears the caches, without any of the other changes. The reason for these separations will become more clear in the site's jobs that extend from these.</p>
+<h2 id="site-jobs" tabindex="-1">Site Jobs <a class="header-anchor" href="#site-jobs">#</a></h2>
+<p>These are the jobs to execute each job on the relevant server, found in the .gitlab-ci.yml file for the project.</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">## Deploy Jobs ##</span>
+
+<span class="token comment">### Deploys to dev server only when changes are made to the dev branch ###</span>
+<span class="token key atrule">deploy_dev</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> .deploy_template
+    <span class="token punctuation">-</span> .drupal_composer
+    <span class="token punctuation">-</span> .drupal_config
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Development
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> dev.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> dev
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> dev
+
+<span class="token comment">### Deploys to staging server only when changes are made to the main branch ###</span>
+<span class="token key atrule">deploy_staging</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> .deploy_template
+    <span class="token punctuation">-</span> .drupal_composer
+    <span class="token punctuation">-</span> .drupal_config
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Staging
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> staging.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> staging
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token comment">### Deploys code to production only when main branch and manually triggered ###</span>
+<span class="token key atrule">deploy_prod_1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> .deploy_template
+    <span class="token punctuation">-</span> .drupal_composer
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Prod 1
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> prod1.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod1
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main  
+  <span class="token key atrule">when</span><span class="token punctuation">:</span> manual
+
+<span class="token key atrule">deploy_prod_2</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> .deploy_template
+    <span class="token punctuation">-</span> .drupal_composer
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Prod 2
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> prod2.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod2
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main  
+  <span class="token key atrule">when</span><span class="token punctuation">:</span> manual
+
+<span class="token comment">#### Deploys config updates to production. These need to wait for both servers to have the composer updated code. ####</span>
+<span class="token key atrule">drupal_install_prod1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .drupal_config
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Production 1
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> prod1.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod1
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">needs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>deploy_prod1<span class="token punctuation">,</span> deploy_prod2<span class="token punctuation">]</span>
+
+<span class="token key atrule">drupal_install_prod2</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .drupal_cache
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ENVIRONMENT_NAME</span><span class="token punctuation">:</span> Production 2
+    <span class="token key atrule">SERVER_URL</span><span class="token punctuation">:</span> prod2.demo.com
+    <span class="token key atrule">WEB_ROOT</span><span class="token punctuation">:</span> /opt/www/html
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod2
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">needs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>deploy_prod1<span class="token punctuation">,</span> deploy_prod2<span class="token punctuation">,</span> drupal_install_prod1<span class="token punctuation">]</span></code></pre>
+<p>Deploying to dev server can be done in a single job. The before_script deploys the code changes, the script installs from composer, and the after_script imports the configuration. It runs on any change to the dev branch. The idea is that we do work on separate issue branches, then when we need to test on dev, we merge it into the dev branch and it will deploy there.</p>
+<p>Deploying to staging server is the same, but with different variables for the server details and activating on merges to main instead of to dev. Merges to main should only happen when its a release candidate ready for final testing before deployment.</p>
+<p>Deploying to production adds a couple more layers to consider. There are two servers load balanced, with one database on a different dedicated server. Composer needs to install the updates on both servers. But the configuration only needs to be imported on one, since it's the same database - it wouldn't break anything to do the config on both, but would be an unnecessary extra few minutes of the site being in maintenance mode to run the same job all over again. The second server does still need caches cleared, though, or it might take some time for the changes to be reflected there, which could mean errors in the meantime.</p>
+<p>The other factor to consider is that the configuration import should not run until the code update has been deployed on both servers. If the order of operations was to install code updates on prod 1, then run config import, it would be trying to make updates on the shared database when only one of the servers has the code ready for the updates. That's why production can't collapse to one job per environment like dev and staging do.</p>
+<p>The resulting order of operation that you need is:</p>
+<ol>
+<li>Deploy code changes, with composer install, to production 1.</li>
+<li>Deploy code changes, with composer install, to production 2.</li>
+<li>Import configuration changes to production 1.</li>
+<li>Clear the caches on production 2.</li>
+</ol>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/">GitLab DevOps: Deploy to Server</a></p><p>Next: <a href="/posts/2023/2023-01-03-GitLab-IDE/">GitLab&#39;s New Web IDE</a></p>
+</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container">
+				<ul class="social-links">
+					<li>
+						<a rel="me" href="https://ryanrobinson.ca">
+							<span class="visually-hidden">Ryan Robinson Homepage</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
+							<span class="visually-hidden">LinkedIn</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://github.com/ryan-l-robinson">
+							<span class="visually-hidden">GitHub</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://dev.to/ryanr">
+							<span class="visually-hidden">Dev.To</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://mstdn.ca/@Ryan">
+							<span class="visually-hidden">Mastodon</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="/feed/feed.xml" aria-label="rss">
+							<span class="visually-hidden">RSS Feed</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+						</a>
+					</li>
+				</ul>
+				<p>&copy; 2024 Ryan Robinson. Powered by <a href="https://www.11ty.dev/">Eleventy</a> on <a href="https://pages.github.com/">GitHub Pages</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
+			</div>
+		</footer>
+
+		<!-- This page `/posts/2023/2023-01-02-Drupal-Deploy/` was built on 2024-09-05T15:36:42.733Z -->
+	</body>
+</html>
