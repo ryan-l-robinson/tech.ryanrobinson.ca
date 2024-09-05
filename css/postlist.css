@@ -16,13 +16,16 @@
 	margin: 0 auto;
 	width: 70%;
 	border-bottom: 1px solid var(--red);
+	padding-bottom: 0.5em;
 }
 
 .postlist-item-title {
-	padding-bottom: 0.7em;
+	margin-bottom: 0;
+	padding-bottom: 0.25em;
 }
 
 .postlist-item-time-container {
+	margin: 0.5em 0;
 	line-height: 1em;
 }
 
