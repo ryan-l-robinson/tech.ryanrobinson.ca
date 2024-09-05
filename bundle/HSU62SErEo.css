@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 11 }
+.postlist { counter-reset: start-from 8 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -32,6 +32,10 @@
 
 .postlist-item-time {
 	font-size: 0.8em;
+}
+
+.postlist-item-description {
+	margin-bottom: 0;
 }
 /* Message Box */
 .message-box {

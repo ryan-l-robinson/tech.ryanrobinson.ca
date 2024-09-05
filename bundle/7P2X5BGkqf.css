@@ -33,6 +33,10 @@
 .postlist-item-time {
 	font-size: 0.8em;
 }
+
+.postlist-item-description {
+	margin-bottom: 0;
+}
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
