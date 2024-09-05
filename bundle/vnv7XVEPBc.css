@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 18 }
+.postlist { counter-reset: start-from 14 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -47,29 +47,6 @@
 	.message-box {
 		--color-message-box: #082840;
 	}
-}
-/* Direct Links / Markdown Headers */
-.header-anchor {
-	text-decoration: none;
-	font-style: normal;
-	font-size: 1em;
-	margin-left: .1em;
-}
-a[href].header-anchor,
-a[href].header-anchor:visited {
-	color: transparent;
-}
-a[href].header-anchor:focus,
-a[href].header-anchor:hover {
-	text-decoration: underline;
-}
-a[href].header-anchor:focus,
-:hover > a[href].header-anchor {
-	color: #aaa;
-}
-
-h2 + .header-anchor {
-	font-size: 1.5em;
 }
 /* Variables and general site-wide styles */
 :root {
@@ -163,6 +140,11 @@ p {
 	line-height: 1.5;
 }
 
+a {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
 li {
 	line-height: 1.5;
 }
@@ -231,7 +213,7 @@ header .top-nav .top-nav-list .nav-item a {
     color: var(--white);
 }
 
-.nav-item a[aria-current="page"] {
+header .top-nav .top-nav-list .nav-item a[aria-current="page"] {
     color: var(--grey);
     text-decoration: none;
 }
@@ -257,6 +239,30 @@ main a:is(:hover,:focus) {
 }
 main a[href]:active {
 	color: var(--text-color-link-active);
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
 }
 footer {
     width: 100%;

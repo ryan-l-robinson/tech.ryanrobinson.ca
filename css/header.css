@@ -32,7 +32,7 @@ header .top-nav .top-nav-list .nav-item a {
     color: var(--white);
 }
 
-.nav-item a[aria-current="page"] {
+header .top-nav .top-nav-list .nav-item a[aria-current="page"] {
     color: var(--grey);
     text-decoration: none;
 }

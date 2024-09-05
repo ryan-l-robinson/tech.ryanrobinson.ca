@@ -90,6 +90,11 @@ p {
 	line-height: 1.5;
 }
 
+a {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
 li {
 	line-height: 1.5;
 }
