@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>VS Code: University Colour Palettes</title>
-		<meta name="description" content="I like using different VS Code colour combinations. I designed a few based on some university colour schemes.">
+		<title>VS Code Extensions: My Workflows</title>
+		<meta name="description" content="Technologist writing about web development, Microsoft 365, and more.">
 
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
@@ -31,20 +31,47 @@
 		<main id="skip">
 			<div class="container">
 				
-<h1>VS Code: University Colour Palettes</h1>
+<h1>VS Code Extensions: My Workflows</h1>
 
 <div class="post-metadata">
-	<p><time datetime="2024-04-08">April 8, 2024</time></p>
-	<p>Tags: <a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a></p>
+	<p><time datetime="2024-02-21">February 21, 2024</time></p>
+	<p>Tags: <a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>, </p>
+	<p>Tags: <a href="/tags/drupal/" class="post-tag">Drupal</a></p>
 </div>
 
-<p>I like changing colour palettes on my various workspaces. It’s especially nice when in situations like jumping between personal and work spaces of the same app, or multiple clients, or dev vs staging vs production servers. It's a great way to quickly adjust what I'm thinking about, e.g. if I'm seeing yellow or purple or red, it immediately slows me down to be a lot more careful about what I'm changing.</p>
-<p>So, one of the things I’ve done is have different colour palettes in Visual Studio Code for different servers.</p>
-<p>One set of colours are for Wilfrid Laurier University, where I work. I personally use the green one for my primary development container, yellow for dev, purple for staging, and red for production (red because I shouldn’t ever actually be editing directly on production). I also use the pure black one with the brand colours as accents for when I am editing something local to my Windows host machine, not in any docker or remote SSH.</p>
-<p>And then, just for fun, I decided to do the same with my alma mater university, Queen’s. And then a couple of other nearby universities, Waterloo and Guelph. I haven't heavily tested those so maybe some of the fringe contrasts aren't quite right, and some of them (Waterloo) offers less range in colours than others. But they're at least a starting point.</p>
-<p>They are available in <a href="https://github.com/ryan-l-robinson/vscode-university-colour-palettes">my GitHub</a>. I'd be happy for anybody who wants to include their own university to submit it as a merge request. I'd also be happy if anybody wants to turn that into a VS Code extension.</p>
+<p>When it comes to my VS Code extensions, I have mine set up a few different ways depending on what kind of project I'm working on:</p>
+<h2 id="default" tabindex="-1">Default <a class="header-anchor" href="#default">#</a></h2>
+<p>These are the default plugins I have locally installed, for every profile and every project container.</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright">Playwright Tests for VS code</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">Todo Tree</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=bmuskalla.vscode-tldr">tl;dr pages</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons">vscode-icons</a></li>
+</ul>
+<h2 id="static-sites" tabindex="-1">Static Sites <a class="header-anchor" href="#static-sites">#</a></h2>
+<p>These are additional plugins which come in handy with building static sites like this one and ryanrobinson.ca:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">Markdown lint</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter">Front Matter CMS</a></li>
+</ul>
+<h2 id="containers-remote-wordpress-drupal" tabindex="-1">Containers/Remote (WordPress/Drupal) <a class="header-anchor" href="#containers-remote-wordpress-drupal">#</a></h2>
+<p>This profile includes the basic requirements to connect to containers and/or remote:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote SSH</a></li>
+</ul>
+<p>Each container, using the devcontainer.json functionality, can also define new extensions for that container. So here's an example of doing that for a Drupal site:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">MySQL</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Stanislav.vscode-drupal">Drupal</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=whatwedo.twig">Twig</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode">PHPTools</a></li>
+</ul>
 
-<div class="links-nextprev"><p>Previous: <a href="/posts/2024/Dev-Env-Updated-Devcontainer/">Drupal Dev Environment Updated: The DevContainer</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2024/2024-02-21-text-position-underline/">Text Underline Position</a></p><p>Next: <a href="/posts/2024/2024-02-21-Dark-Content-Mode/">Dark Content Mode</a></p>
 </div>
 			</div>
 		</main>
@@ -93,6 +120,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/vs-code-university-colour-palettes/` was built on 2024-09-05T15:36:42.717Z -->
+		<!-- This page `/posts/2024/vs-code-extensions-workflows/` was built on 2024-09-05T15:55:57.813Z -->
 	</body>
 </html>
