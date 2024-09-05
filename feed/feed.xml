@@ -13,12 +13,12 @@
 	
 	<entry>
 		<title>Microsoft Viva Topics: Configuration</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/"/>
 		<updated>2021-02-24T00:00:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/</id>
 		<content type="html">&lt;p&gt;Microsoft recently launched &lt;a href=&quot;https://www.microsoft.com/en-us/microsoft-viva&quot;&gt;their new Viva platform&lt;/a&gt;. Nothing about the announcement was radically new – everything had at least been previewed – but the new Viva branding helps tie them together with the shared goal of improving the employee experience.&lt;/p&gt;
 &lt;p&gt;The most interesting component for me is one piece that did launch that day: Topics. In this post and the next I’ll break down my first impressions from some simple tests.&lt;/p&gt;
-&lt;h2 id=&quot;configuring&quot; tabindex=&quot;-1&quot;&gt;Configuring &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/#configuring&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configuring&quot; tabindex=&quot;-1&quot;&gt;Configuring &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/#configuring&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The announcement blogs about Viva Topics did not make it clear how to get started. It also isn’t obvious; unlike some of the larger workloads in Microsoft 365, there is no new Viva Admin Centre. &lt;a href=&quot;https://docs.microsoft.com/en-us/microsoft-365/knowledge/set-up-topic-experiences&quot;&gt;Fortunately it is clear in documentation elsewhere&lt;/a&gt; where to get started in the main Admin Centre.&lt;/p&gt;
 &lt;p&gt;Once you find the process, it’s straightforward with some useful options, such as:&lt;/p&gt;
 &lt;ul&gt;
@@ -31,7 +31,7 @@
 &lt;p&gt;When you’ve picked all the desired settings, confirm that you’re ready and the features will be enabled. Note that it took an hour or two after completing this setup before the topic centre was ready for my use. That makes sense, but it doesn’t warn about that delay; if you are confused why it doesn’t seem to be working right away, you likely just need to wait.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/02/topics-config-screen.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Topics configuration settings, after the initial wizard&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;the-topic-centre&quot; tabindex=&quot;-1&quot;&gt;The Topic Centre &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/#the-topic-centre&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-topic-centre&quot; tabindex=&quot;-1&quot;&gt;The Topic Centre &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/#the-topic-centre&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Topic Centre which is created after the setup process above looks like a typical SharePoint site, but with some specific page types. The homepage shows topics related to you. The Manage Topics page is the core feature for administering topics on an ongoing basis. This page shows all of your organization’s topics, broken down by the stage of approval:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Suggested&lt;/strong&gt;: topics found by the automatic search for you to review. The question to move from this stage is whether you do want that to appear as a topic across your organization. If not, you can remove it. If yes, you can confirm it.&lt;/li&gt;
@@ -47,9 +47,9 @@
 	
 	<entry>
 		<title>MS-101 Prep: How I&amp;#8217;m Studying</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-02-25-ms-101-prep-how-im-studying/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/ms-101-prep-how-im-studying/"/>
 		<updated>2021-02-25T15:30:56Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-02-25-ms-101-prep-how-im-studying/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/ms-101-prep-how-im-studying/</id>
 		<content type="html">&lt;p&gt;Over the last few months, I’ve been working on preparing for &lt;a href=&quot;https://docs.microsoft.com/en-us/learn/certifications/exams/ms-101&quot;&gt;the MS-101 exam&lt;/a&gt;. This exam covers a few topics around enterprise device management and security. I’ve mostly been studying with a few methods:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;a href=&quot;https://www.measureup.com/ms-101-microsoft-365-mobility-and-security.html&quot;&gt;official practice test from MeasureUp&lt;/a&gt;&lt;/li&gt;
@@ -63,11 +63,11 @@
 	
 	<entry>
 		<title>Microsoft Viva Topics: User Experience</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/"/>
 		<updated>2021-02-25T16:12:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/</id>
 		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/viva-topics-configuration/&quot;&gt;my previous post&lt;/a&gt;, I walked through my thoughts on the configuration process for the new Microsoft Viva Topics functionality within Microsoft 365. In this post I’ll dive into what the experience is like for users once it is configured.&lt;/p&gt;
-&lt;h2 id=&quot;creating-editing-a-topic&quot; tabindex=&quot;-1&quot;&gt;Creating / Editing a Topic &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/#creating-editing-a-topic&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;creating-editing-a-topic&quot; tabindex=&quot;-1&quot;&gt;Creating / Editing a Topic &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/#creating-editing-a-topic&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can edit a topic page similar to editing any other SharePoint page, but there is a lot less flexibility. It has a predefined set of features and you cannot add other web parts.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Title&lt;/strong&gt;&lt;/li&gt;
@@ -80,17 +80,17 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/02/topic-page.png&quot; alt=&quot;&amp;quot;Image of the topic page&amp;quot;&quot; /&gt;
 &lt;em&gt;Demo of the top portion of a topic page&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;surfacing-topics&quot; tabindex=&quot;-1&quot;&gt;Surfacing Topics &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/#surfacing-topics&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;surfacing-topics&quot; tabindex=&quot;-1&quot;&gt;Surfacing Topics &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/#surfacing-topics&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Currently the surfacing of topics for users is limited to only SharePoint pages. When you hover over the linked topic title, you see a hover card very similar to what you see when a person is referenced.&lt;/p&gt;
 &lt;p&gt;This should expand over time to also show up in other Microsoft 365 resources, such as in emails and Teams conversations. It’s moderately useful now, but once it also starts showing up in this more organic contexts for conversation, that will be a huge additional value.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/02/topic-card.png&quot; alt=&quot;&amp;quot;Image of a topic card appearing throughout Microsoft 365&amp;quot;&quot; /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;use-cases&quot; tabindex=&quot;-1&quot;&gt;Use Cases &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/#use-cases&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;use-cases&quot; tabindex=&quot;-1&quot;&gt;Use Cases &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/#use-cases&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A few scenarios come to mind where this topic functionality could be great.&lt;/p&gt;
 &lt;p&gt;If you are a client-oriented business, you could use a topic as a landing page for each client. Alternate names could be acronyms or shortened versions of the client’s name. Pinned people could be an account manager or project manager who often works with the client. Related files may be the most important files for the client, such as a contract, and related sites may be other SharePoint sites in your system that contain data like a project’s files.&lt;/p&gt;
 &lt;p&gt;A product or service oriented business could be similar, with a topic card for your major products. Pinned people would be the experts on that product.&lt;/p&gt;
 &lt;p&gt;Internal documentation would also work as topics. The detailed steps would need to be files that are held elsewhere, but they can be linked from the topic card. For example, if you offer Drupal website consulting, you may have detailed documentation on the SharePoint site for the team responsible for Drupal website consulting. Then you create a Drupal topic card, which has links out to the detailed documentation.&lt;/p&gt;
 &lt;p&gt;In all of these scenarios, there is clear value to being in the middle of a SharePoint page (or later, a conversation) where a topic is referenced and you are able to quickly get to more information about that topic through a pop-up card.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Note that my tests are missing one of the most compelling aspects of Viva Topics: the automatic creation and updating of topics pages. My tenant consisting of just me doesn’t have nearly the scale to easily manufacture that test. All of my tests relied on manually creating topic pages.&lt;/p&gt;
 &lt;p&gt;With that gap in testing acknowledged, even if the automatic component isn’t as strong as promised, I really like Viva Topics. The idea of being able to surface important topics in other places through Microsoft 365 promises a pleasant user experience that saves a lot of time in accessing important information.&lt;/p&gt;
 </content>
@@ -98,14 +98,14 @@
 	
 	<entry>
 		<title>Microsoft Ignite News Day</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/"/>
 		<updated>2021-03-02T22:14:47Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/</id>
 		<content type="html">&lt;p&gt;Today was the first day of the spring edition of Microsoft Ignite, the primary conference for Microsoft IT professionals. The first day always includes a lot of news for upcoming features which tend to get dumped all at once the same time as the opening keynote. After reviewing several of these news blogs and watching video sessions most of the day, here are the features which stand out to me. I will not cover nearly everything, but provided some links for more details.&lt;/p&gt;
-&lt;h2 id=&quot;microsoft-mesh&quot; tabindex=&quot;-1&quot;&gt;Microsoft Mesh &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#microsoft-mesh&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;microsoft-mesh&quot; tabindex=&quot;-1&quot;&gt;Microsoft Mesh &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#microsoft-mesh&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This was the key product in the opening keynote. Many of us have now spent most of a year straight only communicating with our coworkers through screens. Together Mode in Teams certainly helped as it showed everybody together – it’s less cognitive load and does make it feel just a little bit like you’re together – but it’s still staring at a flat screen. But what if instead we all entered a shared virtual reality or augmented reality space, where we could still access our shared resources like files from our Microsoft 365? That would be a significant improvement to the meeting from home experience. &lt;a href=&quot;https://www.cnet.com/news/microsoft-mesh-will-teleport-you-in-ar-and-vr-to-play-with-others-across-lots-of-devices/&quot;&gt;Microsoft Mesh promises that kind of future&lt;/a&gt;.&lt;/p&gt;
 &lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/Jd2GK0qDtRg?feature=oembed&quot; title=&quot;Introducing Microsoft Mesh&quot;&gt;&lt;/iframe&gt;Mesh is a platform, not a specific product at this point. It allows developers to create applications where we can share holograms and appear as avatars speaking to each other. They didn’t promise any particular implementation of this technology, but along with the meeting idea they did also have some fun like playing Pokemon Go in the park with your HoloLens headset on.
-&lt;h2 id=&quot;microsoft-teams&quot; tabindex=&quot;-1&quot;&gt;Microsoft Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#microsoft-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;microsoft-teams&quot; tabindex=&quot;-1&quot;&gt;Microsoft Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#microsoft-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://techcommunity.microsoft.com/t5/microsoft-teams-blog/what-s-new-in-microsoft-teams-microsoft-ignite-2021/ba-p/2118226&quot;&gt;Teams had several feature announcements&lt;/a&gt;, as it often does.&lt;/p&gt;
 &lt;p&gt;Within meetings:&lt;/p&gt;
 &lt;ul&gt;
@@ -117,36 +117,36 @@
 &lt;p&gt;Teams Connect allows for sharing Teams channels with other organizations. I’ll need to see exactly how this works, but it was high on the list of improvements many wanted to improve interaction with clients and partner organizations.&lt;/p&gt;
 &lt;p&gt;Multi-geo support will allow for different Teams data to be housed in different regions, helping meet data residency requirements for large organizations with offices in different countries.&lt;/p&gt;
 &lt;p&gt;Endpoint transfer on calls will allow you to transfer a call seamlessly from one device to another. Get a call at your desk but need to finish on your phone as you leave the office? No problem, and the others on the call won’t notice.&lt;/p&gt;
-&lt;h2 id=&quot;planner&quot; tabindex=&quot;-1&quot;&gt;Planner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#planner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;planner&quot; tabindex=&quot;-1&quot;&gt;Planner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#planner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://techcommunity.microsoft.com/t5/planner-blog/add-up-to-25-embedded-editable-labels-to-your-tasks/ba-p/2174399&quot;&gt;Planner now supports up to 25 labels&lt;/a&gt;, a big jump from the previous 5. This is helpful to better organize your tasks.&lt;/p&gt;
-&lt;h2 id=&quot;power-platform&quot; tabindex=&quot;-1&quot;&gt;Power Platform &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#power-platform&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;power-platform&quot; tabindex=&quot;-1&quot;&gt;Power Platform &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#power-platform&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are two big announcements for Power Platform that stood out to me.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://flow.microsoft.com/en-us/blog/automate-tasks-with-power-automate-desktop-for-windows-10-no-additional-cost/&quot;&gt;Power Automate Desktop&lt;/a&gt; is now free to any Windows 10 users. Previously this required a separate license. This allows you to automate all kinds of things you do on your computer, not just cloud services. If you find yourself doing some repetitive tasks, check this out as a possible way to save yourself that time.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://powerapps.microsoft.com/en-us/blog/what-is-microsoft-power-fx/&quot;&gt;Power Fx &lt;/a&gt;was first hinted at a week or two ago, but it is the simple programming language inspired by Excel formulas and now being deployed throughout the Power Platform. That’s going to add a lot of programming potential with syntax that a lot of people are already familiar with from Excel.&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint-syntex&quot; tabindex=&quot;-1&quot;&gt;SharePoint Syntex &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#sharepoint-syntex&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint-syntex&quot; tabindex=&quot;-1&quot;&gt;SharePoint Syntex &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#sharepoint-syntex&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SharePoint Syntex is a relatively new tool for automating classification and data extraction from files. &lt;a href=&quot;https://techcommunity.microsoft.com/t5/sharepoint-syntex/learn-more-about-the-future-of-sharepoint-syntex-at-microsoft/ba-p/2178173&quot;&gt;A few new features include&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;A find function&lt;/strong&gt;: when you’re training your identification model, this will make your life a lot easier to jump to the relevant data you&#39;re trying to tell the model to pay attention to, rather than having to scroll through long documents. It’s a little addition that can add up to a lot of time saved.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Retention labels&lt;/strong&gt;: automatically applied when the content type is identified&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;SharePoint hubs&lt;/strong&gt;: content types can now be assigned to SharePoint hubs. This will allow for changes to content types to roll out much faster to sites within the hub. The delay to roll out was always one of the more annoying factors when using content types, so this should help significantly.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;project-origin&quot; tabindex=&quot;-1&quot;&gt;Project Origin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/#project-origin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;project-origin&quot; tabindex=&quot;-1&quot;&gt;Project Origin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/#project-origin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This one is outside of the Microsoft 365 space but was still a good sign to me. &lt;a href=&quot;https://innovation.microsoft.com/en-us/project-origin&quot;&gt;Microsoft is partnering with some other companies to combat online misinformation through tools like identifying deepfakes&lt;/a&gt;. Misinformation on social media is one of the largest problems facing our world at the moment, so it’s promising to see that Microsoft is trying to help.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Security Essentials: Password Manager</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/"/>
 		<updated>2021-03-07T18:58:14Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/</id>
 		<content type="html">&lt;p&gt;I typically have two main pieces of advice for basic information security that anybody can and should do.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Use multi-factor authentication everywhere it is offered&lt;/li&gt;
 &lt;li&gt;Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://ryanlrobinson.wordpress.com/2021/03/07/security-essentials-multi-factor-authentication/&quot;&gt;My previous post dealt with multi-factor authentication&lt;/a&gt;. This post will look at password managers.&lt;/p&gt;
-&lt;h2 id=&quot;passwords-are-the-worst&quot; tabindex=&quot;-1&quot;&gt;Passwords are the worst &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/#passwords-are-the-worst&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;passwords-are-the-worst&quot; tabindex=&quot;-1&quot;&gt;Passwords are the worst &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/#passwords-are-the-worst&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Why do you need a password manager? The short answer: passwords are the worst, but with a few exceptions, we still need them for everything. There are a few problems with passwords:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;We need too many of them, so most people start reusing the same few passwords across multiple services. This opens a big security vulnerability: if the password for one service gets leaked, attackers will try the same username / password across lots of other services and get in to them all.&lt;/li&gt;
@@ -156,7 +156,7 @@
 &lt;li&gt;They are a thin line of defense if they are the only thing keeping somebody out of your account. Even if the password is great, that’s still only one thing that anybody from anywhere could guess and break in.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The last one is dealt with by multi-factor authentication. Most of the others – other than the typing on TV scenario – are dealt with by a password manager.&lt;/p&gt;
-&lt;h2 id=&quot;the-password-manager-solution&quot; tabindex=&quot;-1&quot;&gt;The password manager solution &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/#the-password-manager-solution&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-password-manager-solution&quot; tabindex=&quot;-1&quot;&gt;The password manager solution &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/#the-password-manager-solution&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The gist of the idea of a password manager is that you only need to remember one password to get into your password manager account, and that account remembers all your other passwords. That solves the memory problem.&lt;/p&gt;
 &lt;p&gt;Most if not all password managers also include a feature that will generate random passwords for you, storing them to the password manager all in one step. That solves the picking unique strong passwords problem.&lt;/p&gt;
 &lt;p&gt;Most if not all password managers have browser extensions and auto-fill in apps on phones. You don’t have to look up the password and copy/paste it over. You just click on the right account from your password manager and it fills it in for you. You never even need to look at the password for the account you’re logging in to, let alone remembering it and typing it out. That solves the annoying to type out problem.&lt;/p&gt;
@@ -168,7 +168,7 @@
 &lt;li&gt;Identifies if any credentials have been leaked, as found on &lt;a href=&quot;https://haveibeenpwned.com/&quot;&gt;haveibeenpwned.com&lt;/a&gt;. If any credentials show up here, you need to change them immediately – on everywhere with that password, not just the one that leaked it.&lt;/li&gt;
 &lt;li&gt;Identifies weak passwords that have low levels of randomness and could be easier for an attacker to guess or brute force.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;getting-started&quot; tabindex=&quot;-1&quot;&gt;Getting started &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/#getting-started&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;getting-started&quot; tabindex=&quot;-1&quot;&gt;Getting started &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/#getting-started&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Most of the password managers have some level of free trial with limited functionality. That’s a great way to get a sense of what it is like to use one before you commit to spending on a particular service.&lt;/p&gt;
 &lt;p&gt;Personally, I am now using &lt;a href=&quot;https://1password.com/&quot;&gt;1Password&lt;/a&gt;. It offers all of the things I have mentioned above, in a friendly user interface and a reasonable monthly price.&lt;/p&gt;
 &lt;p&gt;Before that I used the free version of LastPass. For a long time it had the best free offering by far, but that has been scaled back since.&lt;/p&gt;
@@ -179,23 +179,23 @@
 	
 	<entry>
 		<title>Security Essentials: Multi-factor Authentication</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/"/>
 		<updated>2021-03-07T22:33:08Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/</id>
 		<content type="html">&lt;p&gt;I typically have two main pieces of advice for basic information security that anybody can and should do.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Use multi-factor authentication everywhere it is offered&lt;/li&gt;
 &lt;li&gt;Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I’ll look at the benefits of a password manager in another post soon. But first, let’s look at multi-factor authentication.&lt;/p&gt;
-&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The idea of multi-factor authentication is that you prove you are who you say you are through an extra “factor” beyond just a password. This is because it is relatively easy for a password to be stolen, distributed, and used. If all it takes for somebody to get into your important accounts is a username and password, that’s a low barrier to cause a lot of damage, especially when you add that most people reuse the same passwords on multiple sites (more on that in the password manager post).&lt;/p&gt;
-&lt;h2 id=&quot;verification-options&quot; tabindex=&quot;-1&quot;&gt;Verification options &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/#verification-options&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;verification-options&quot; tabindex=&quot;-1&quot;&gt;Verification options &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/#verification-options&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The extra factor may be something you know like a security question or something you have like a fingerprint. &lt;a href=&quot;https://docs.microsoft.com/en-gb/learn/modules/secure-aad-users-with-mfa/5-configure-authentication-methods&quot;&gt;This Microsoft doc breaks down the options in terms of what is available within Azure AD authentication&lt;/a&gt;, but most services offer some subset of those options.&lt;/p&gt;
 &lt;p&gt;At the lowest end of the security scale are security questions, which are essentially just an extra password except easier to guess. Many places including Microsoft don’t offer a security question option.&lt;/p&gt;
 &lt;p&gt;In the middle and the most common are SMS codes texted to your phone or voice calls made to your phone saying the code. That’s good enough for most people, but determined hackers can carry out &lt;a href=&quot;https://www.vice.com/en/article/3kx4ej/sim-jacking-mobile-phone-fraud&quot;&gt;sim-jacking&lt;/a&gt; to get through.&lt;/p&gt;
 &lt;p&gt;The highest end of the security scale is an authentication app on your phone (Microsoft Authenticator, Google Authenticator) or a dedicated security key device that must be plugged into your computer via USB (&lt;a href=&quot;https://www.yubico.com/products&quot;&gt;YubiKey&lt;/a&gt;). With these protections, a hacker would have to know your username and password AND also have your phone logged in to the authenticator app or the physical security key. That means they would have to physically rob you on top of cracking your password, which significantly cuts down on how many people can realistically pull it off. It also makes it likely you’ll notice before much damage is done.&lt;/p&gt;
-&lt;h2 id=&quot;using-an-authenticator-app&quot; tabindex=&quot;-1&quot;&gt;Using an authenticator app &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/#using-an-authenticator-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;using-an-authenticator-app&quot; tabindex=&quot;-1&quot;&gt;Using an authenticator app &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/#using-an-authenticator-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The authenticator apps may sound like more work than a simple text, but it really is easier on top of being more secure. I use Microsoft Authenticator and that’s what I will be referencing specifically, but Google Authenticator and others have similar if not identical functionality.&lt;/p&gt;
 &lt;p&gt;Adding an account is simple. The hardest part may be finding the setting to enable it on the desired account. Some services make it obvious and strongly encourage you to enable multi-factor authentication. Others offer it but tuck it away in settings that you may not ever notice without looking for it. But once you do, if there’s an option to use an authenticator app, choose that and you’ll get a QR code.&lt;/p&gt;
 &lt;p&gt;In the top right corner of Microsoft Authenticator is a menu option with “Add account.” It then offers you the choice of a Microsoft personal account, a Microsoft work or school account, or other. The Microsoft option will allow you to set it up with a simple login, but all of the options allow you to scan the QR code. A quick point of your phone camera at your screen and you’re good to go.&lt;/p&gt;
@@ -210,19 +210,19 @@
 	
 	<entry>
 		<title>WordPress: .com vs .org</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/"/>
 		<updated>2021-03-16T15:22:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/</id>
 		<content type="html">&lt;p&gt;For years I’ve built most of my sites using the open source WordPress platform, i.e. WordPress.org. I recently decided to try the free offering of WordPress.com instead.&lt;/p&gt;
-&lt;h2 id=&quot;setup&quot; tabindex=&quot;-1&quot;&gt;Setup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/#setup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;setup&quot; tabindex=&quot;-1&quot;&gt;Setup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/#setup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Setup is significantly easier on WordPress.com. If you already have a web host, setting up your own may not be much extra work, but if this first time setting up a website, there is always some degree of hosting configuration to go through before installing WordPress. I won’t detail those steps here and they will vary by the hosting provider, but at minimum you’ll need to pick a hosting provider, set up payment, buy a domain or point an existing domain to it, and install WordPress. It might be much more complicated like setting up databases, uploading the WordPress code yourself, and so on.&lt;/p&gt;
 &lt;p&gt;With the .com, you just say you want a new site, pick a domain, and you’re pretty much done. If you want to get up and going in a hurry, it’s a good way to go.&lt;/p&gt;
 &lt;p&gt;It is somewhat limited. It has WordPress.com ads which you won’t get any money from. You can’t use your own domain. You can’t add your own plugins. You can’t customize your own code. If you want to be able to do those things, you might be cheaper (but more work) looking elsewhere. But if you just want a personal blog like this, it’s enough, easy to use, and free.&#92;Update: soon after writing this, I started adding portfolio content and I don’t like the lack of flexibility in setting up those pages, so I am likely going to move to a self-hosted WordPress soon.&lt;a href=&quot;https://wordpress.com/pricing/&quot;&gt;Check out the WordPress.com pricing page for all the details of pricing.&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;maintenance&quot; tabindex=&quot;-1&quot;&gt;Maintenance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/#maintenance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;maintenance&quot; tabindex=&quot;-1&quot;&gt;Maintenance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/#maintenance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There is zero maintenance needed for a site hosted on WordPress.com, other than paying for your domain and/or paid account here. All of the software updates are handled for you and you don’t control things like the PHP version on the server.&lt;/p&gt;
 &lt;p&gt;If you’re hosting your own site, it is important that you maintain it. That means running the software updates on a semi-regular basis (at least every 3 months), updating the PHP version (about once a year) and testing to make sure it didn’t break anything, perhaps other hosting details like Plesk updates and security settings.&lt;/p&gt;
 &lt;p&gt;If you don’t want to worry about maintaining your site or paying a third-party provider to do it, then WordPress.com is a good easy way out.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Both approaches to WordPress are great. Which one is better for you depends on your needs and goal for the site.&lt;/p&gt;
 &lt;p&gt;Hosting your own WordPress site is great if you:&lt;/p&gt;
 &lt;ul&gt;
@@ -241,19 +241,19 @@
 	
 	<entry>
 		<title>IT on Film: Flight Attendant Episode 3</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-29-it-on-film-flight-attendant-episode-3/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-03-29-it-on-film-flight-attendant-episode-3/"/>
 		<updated>2021-03-29T17:04:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-29-it-on-film-flight-attendant-episode-3/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-03-29-it-on-film-flight-attendant-episode-3/</id>
 		<content type="html">&lt;p&gt;In episode 3 of &lt;a href=&quot;https://www.imdb.com/title/tt7569576/?ref_=fn_al_tt_1&quot;&gt;The Flight Attendant (HBO Max)&lt;/a&gt;, Megan agrees to do some corporate espionage against her husband’s large company. It isn’t clear what the company is – maybe it will explain as the story continues in later episodes – but it is clear that he has access to some significant trade secrets. So Megan encourages her husband to bring his laptop home, then casually finds the file and copies it to a jump drive.&lt;/p&gt;
 &lt;p&gt;Two things immediately stood out to me as problems with this scene from a basic IT security perspective.&lt;/p&gt;
-&lt;h2 id=&quot;the-computer-password&quot; tabindex=&quot;-1&quot;&gt;The Computer Password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-29-it-on-film-flight-attendant-episode-3/#the-computer-password&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-computer-password&quot; tabindex=&quot;-1&quot;&gt;The Computer Password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-29-it-on-film-flight-attendant-episode-3/#the-computer-password&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is one that I catch a lot in movies and TV. Why could she just open her husband’s work laptop and be logged in, no password needed? It’s possible there’s some simple user error here, where her husband was just on the computer and didn’t bother to lock it in his own house when he walked away.&lt;/p&gt;
 &lt;p&gt;That is understandable, but given how important these trade secrets of a large company are, I would have thought there would be some stronger policies enforced on the machine. With Microsoft Endpoint Manager (and probably similar in other device management systems), the IT Administrator for this big company with important secrets could force the device to lock after x minutes of inactivity, as low as 1 minute. It could be paired with Windows Hello for Business – a fingerprint reader or infrared camera – so that he could still get in quickly each time it locked, but nobody else could. If this policy was set, Megan would have had to act fast to get in, even when her husband was careless about locking.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/03/Device-Compliance-10-Minute-Lock.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of the configuration settings for automatic lock after 10 minutes of inactivity.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Windows 10 also has options like Dynamic Lock, which will automatically lock the computer when a paired Bluetooth device (most likely a phone) is out of range. There may not be an option in Microsoft Endpoint Manager to force that, though, and would require the user to do the Bluetooth pairing.&lt;/p&gt;
 &lt;p&gt;Of course none of this matters if Megan’s husband intentionally let her in, but there’s a lot the IT Admins can go to almost eliminate scenarios like her breaking in without his help.&lt;/p&gt;
-&lt;h2 id=&quot;information-protection&quot; tabindex=&quot;-1&quot;&gt;Information Protection &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-29-it-on-film-flight-attendant-episode-3/#information-protection&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;information-protection&quot; tabindex=&quot;-1&quot;&gt;Information Protection &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-29-it-on-film-flight-attendant-episode-3/#information-protection&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ok, so let’s assume that Megan has successfully gotten into the computer and found the file. Maybe her husband intentionally let her in. Maybe he was a little sloppy and either it didn’t have adequate protections or she was fast. That still leaves another problem: she still shouldn’t be able to copy it out to a jump drive.&lt;/p&gt;
 &lt;p&gt;This can be prevented with &lt;a href=&quot;https://azure.microsoft.com/en-ca/services/information-protection/&quot;&gt;Azure Information Protection&lt;/a&gt; (again, it is possible that similar products from other providers offer the same idea). If this file is as sensitive as the context of the show suggests, it should be tagged with an appropriate protection policy, which can define things like not being allowed to copy it. If that was enabled, Megan would not have simply been able to copy sensitive data onto a USB drive.&lt;/p&gt;
 &lt;p&gt;Of course responsible IT policy wouldn’t make very good TV. In this case, this subplot would hit a dead-end quickly if Megan couldn’t steal a file that was properly protected. But in the real world, if you’re dealing with sensitive data, you should be using every tool at your disposal to keep it from being stolen.&lt;/p&gt;
@@ -262,31 +262,31 @@
 	
 	<entry>
 		<title>CiviCRM: Overview</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/"/>
 		<updated>2021-03-31T15:37:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/</id>
 		<content type="html">&lt;p&gt;The platform I worked with more than any other in my previous job was &lt;a href=&quot;https://civicrm.org/&quot;&gt;CiviCRM&lt;/a&gt;. CiviCRM is an open-source CRM system aimed primarily at non-profits that builds on top of an existing WordPress, Joomla, or Drupal website. Drupal is the most powerful because Drupal has great permissions control already and CiviCRM can tie in to those, but the others are fine, too.&lt;/p&gt;
 &lt;p&gt;After a few years, I have a pretty good sense of the strengths and weaknesses that CiviCRM offers and will do a quick breakdown here.&lt;/p&gt;
-&lt;h2 id=&quot;the-good&quot; tabindex=&quot;-1&quot;&gt;The Good &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#the-good&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-good&quot; tabindex=&quot;-1&quot;&gt;The Good &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#the-good&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;CiviCRM does two non-profit functions really well:&lt;/p&gt;
-&lt;h3 id=&quot;contributions&quot; tabindex=&quot;-1&quot;&gt;Contributions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#contributions&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;contributions&quot; tabindex=&quot;-1&quot;&gt;Contributions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#contributions&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;CiviCRM is great with contribution pages. If you want to add a donation page to your website, it will do that and it works well. It ties in with third-party payment processors, the most reliable and cheapest being iATS and Stripe, so they securely handle transferring the money to your account while CiviCRM tracks data about the donor and the donation. It’s smooth enough and works well out of the box, with a good set of configuration options.&lt;/p&gt;
-&lt;h3 id=&quot;events&quot; tabindex=&quot;-1&quot;&gt;Events &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#events&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;events&quot; tabindex=&quot;-1&quot;&gt;Events &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#events&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Similarly, CiviCRM has some good functionality around public event signup forms. People can sign up online, including payment through a payment processor, and all the data about the event and the participants will be saved in CiviCRM. It even includes functions like a limit on attendees, a waitlist for any beyond that limit, the ability to require an approval for the registration, and more. All of that works pretty well out of the box as well.&lt;/p&gt;
-&lt;h2 id=&quot;the-cautions&quot; tabindex=&quot;-1&quot;&gt;The Cautions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#the-cautions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;everything-else&quot; tabindex=&quot;-1&quot;&gt;Everything else &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#everything-else&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;the-cautions&quot; tabindex=&quot;-1&quot;&gt;The Cautions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#the-cautions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;everything-else&quot; tabindex=&quot;-1&quot;&gt;Everything else &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#everything-else&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If you look up CiviCRM you’ll see it offer several components which sound great, like bulk mailing, case management, and volunteer management. They aren’t lying, but they are really at varying degrees of a complete solution. A lot of the components end up a disappointment once you start putting them to heavy use and realize they don’t offer much beyond the minimum. For example, there is a bulk mail tool and some features of it work great, but with some major caveats:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;It’s up to you to configure the server in the best way to avoid being marked as spam, which is hard to do.&lt;/li&gt;
 &lt;li&gt;The mailing designer tool is quite limited.&lt;/li&gt;
 &lt;li&gt;There is some handling for unsubscribing from lists or opting out entirely, but nothing out of the box that handles scenarios like making sure you comply with Canadian Anti-Spam Legislation.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;bugs&quot; tabindex=&quot;-1&quot;&gt;Bugs &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#bugs&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;bugs&quot; tabindex=&quot;-1&quot;&gt;Bugs &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#bugs&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;All software has bugs. The difference between a big corporate cloud service solution and an open-source self-hosted one is that bugs in the big corporate solution will usually be fixed by that big corporation within a day before most people notice.&lt;/p&gt;
 &lt;p&gt;If there’s a bug in CiviCRM, the best case is that the community has already issued a new release with a fix. In that case, you just need to apply the update. How long that takes depends on your experience and the speed of the server, but could be only around 10 minutes.&lt;/p&gt;
 &lt;p&gt;The rest of the time, you have to make a decision to either leave the bug alone and accept the consequences or try to fix the code yourself. The latter requires a completely different expertise and there’s always some risk in messing around with code that handles sensitive data.&lt;/p&gt;
 &lt;p&gt;Most of these bugs are not security risks. Your data is generally safe. The consequences of the bugs are usually more like being unable to edit contributions of time, or issue tax receipts, or view a certain report. They may not be site breaking bugs or security risks, but it’s also hard to fully trust the system housing important data and processes.&lt;/p&gt;
-&lt;h3 id=&quot;it-s-not-really-free&quot; tabindex=&quot;-1&quot;&gt;It’s not really free &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#it-s-not-really-free&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;it-s-not-really-free&quot; tabindex=&quot;-1&quot;&gt;It’s not really free &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#it-s-not-really-free&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;A common misconception is that open-source means that it is free forever. This is especially pointed out in contrast to the monthly costs of systems like Salesforce or Dynamics (both of which do offer charitable discounts).&lt;/p&gt;
 &lt;p&gt;CiviCRM is not really free in practice. The code base is free, but that’s it. You still need to spend on:&lt;/p&gt;
 &lt;ul&gt;
@@ -298,10 +298,10 @@
 &lt;p&gt;The big question is whether it will still be cheaper for your non-profit. The answer is that it depends. There are several factors to consider, particularly how many users you have and whether the solution can meet your needs out of the box or if you need to add more to it.&lt;/p&gt;
 &lt;p&gt;For example, a potential best-case scenario: if you’re a charity (not just a non-profit) with less than 10 users and Salesforce can do everything you need, you can get that completely for free. That’s a better much better deal than CiviCRM.&lt;/p&gt;
 &lt;p&gt;But if you have 50 users, or if Salesforce doesn’t do everything you need and you have to also buy licenses to several add-ons, that’s going to get much more expensive very fast.&lt;/p&gt;
-&lt;h3 id=&quot;no-email-integration&quot; tabindex=&quot;-1&quot;&gt;No email integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#no-email-integration&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;no-email-integration&quot; tabindex=&quot;-1&quot;&gt;No email integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#no-email-integration&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;One of the most central concepts of a CRM system is that it is provides one system of record for everything you need to know about your constituents. Other CRMs like Salesforce and Dynamics provide tools built right into your email to track your email communications into the CRM, so there is no extra work needed to keep those records up to date.&lt;/p&gt;
 &lt;p&gt;CiviCRM does not do that. The closest it offers is a tool that allows you to cc or bcc a separate email address, which CiviCRM then checks on a schedule (not immediately) and tries to match to a contact in the system. If there is no match, it doesn’t work. If there are multiple matches with the same email, it may put attach it to the wrong one. If you forget to bcc the special email – which in my experience everybody does quickly, no matter how much they liked the sound of the feature – then CiviCRM won’t record it. The result is that CiviCRM is missing most of your email communications, which takes away a huge amount of relevant information and leads to scenarios like trying to sell a client on the same thing that your colleague did last week.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;CiviCRM can be the right choice for your non-profit, but you shouldn’t assume that just because it is designed for non-profits it will be better. Some hints where it may be the best option:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;You already have a Drupal, WordPress, or Joomla site that you want to integrate into, or you want to build a new website on one of those platforms anyway.&lt;/li&gt;
@@ -315,22 +315,22 @@
 	
 	<entry>
 		<title>SharePoint: Desktop Sync Files</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/"/>
 		<updated>2021-04-02T11:18:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/</id>
-		<content type="html">&lt;h2 id=&quot;what-goes-where&quot; tabindex=&quot;-1&quot;&gt;What Goes Where? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#what-goes-where&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/</id>
+		<content type="html">&lt;h2 id=&quot;what-goes-where&quot; tabindex=&quot;-1&quot;&gt;What Goes Where? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#what-goes-where&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The first question to consider when planning a file structure in Microsoft 365 is what files go where. That’s more complicated in an online cloud collaboration system than it is for one person on the computer. It needs to make sense for everybody and it needs to be able to easily maintain proper permissions.&lt;/p&gt;
 &lt;p&gt;My typical guidance is this: it comes down to who owns the file. If the file is just for you, go ahead and put it in your OneDrive with whatever folder structure you want. But if the file is for others to also access, it should be in SharePoint with a group owning it.&lt;/p&gt;
 &lt;p&gt;That can make it a bit less intuitive for individual users to still have easy access to everything they need, which might now be scattered across their OneDrive plus a handful of SharePoint libraries.&lt;/p&gt;
 &lt;p&gt;The files can be accessed in multiple ways, like in OneDrive in the browser, in SharePoint in the browser, or in Teams. But this post will compare two different strategies for accessing files on your computer, for those who are most comfortable having content synced to their machine and browsing in Windows Explorer.&lt;/p&gt;
-&lt;h2 id=&quot;sync-sharepoint-libraries&quot; tabindex=&quot;-1&quot;&gt;Sync SharePoint Libraries &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#sync-sharepoint-libraries&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sync-sharepoint-libraries&quot; tabindex=&quot;-1&quot;&gt;Sync SharePoint Libraries &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#sync-sharepoint-libraries&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The older strategy is to sync each SharePoint library separately to the computer. To do this, navigate to each library in your browser, hit the Sync button in the toolbar, and follow the prompts to sync on your computer using the OneDrive client.&lt;/p&gt;
 &lt;p&gt;The end result looks like this:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/03/SharePoint-library-synced-separately.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Communication site – Documents library synced separately&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;It’s a completely different folder on your computer from your OneDrive.&lt;/p&gt;
 &lt;p&gt;The biggest advantage of this over the next option is that there is a clear visual difference. It’s easy to remember which files are just yours in OneDrive and which are shared in SharePoint. That helps avoid scenarios like deleting a folder without realizing that deletes it for everybody, not just you.&lt;/p&gt;
-&lt;h2 id=&quot;add-to-onedrive&quot; tabindex=&quot;-1&quot;&gt;Add To OneDrive &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#add-to-onedrive&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-to-onedrive&quot; tabindex=&quot;-1&quot;&gt;Add To OneDrive &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/#add-to-onedrive&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A newer feature is the “add to OneDrive” option which appears in the toolbar when browsing a SharePoint location. Instead of syncing it separately, it will treat the shared file as if it was part of your OneDrive, while still maintaining all of the group permissions.&lt;/p&gt;
 &lt;p&gt;The end result looks like this:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/03/SharePoint-library-added-to-onedrive.png&quot; alt=&quot;&quot; /&gt;
@@ -342,9 +342,9 @@
 	
 	<entry>
 		<title>PowerShell: Updating Site Scripts and Designs</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-05-powershell-updating-site-scripts-and-designs/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-05-powershell-updating-site-scripts-and-designs/"/>
 		<updated>2021-04-05T15:20:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-05-powershell-updating-site-scripts-and-designs/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-05-powershell-updating-site-scripts-and-designs/</id>
 		<content type="html">&lt;p&gt;This post begins a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/site-design-overview&quot;&gt;Site scripts and site designs&lt;/a&gt; are a great feature of SharePoint. They allow for developing and using templates on SharePoint sites that can do many useful things like:&lt;/p&gt;
 &lt;ul&gt;
@@ -370,41 +370,41 @@
 	
 	<entry>
 		<title>Microsoft Search: Introduction</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/"/>
 		<updated>2021-04-07T14:16:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/</id>
 		<content type="html">&lt;p&gt;Microsoft Search may be the most underrated feature available as part of Microsoft 365. Maybe that’s because Microsoft themselves haven’t been promoting it that heavily, or maybe it’s because it is associated with Bing, the mention of which usually prompts the question “Bing still exists?” But those people are missing out on the potential productivity benefits that comes from having one search tool to find your data across all your Microsoft systems as well as yes, public Bing search.&lt;/p&gt;
 &lt;p&gt;This was a common scenario for me in my previous job: I’m trying to help a client with an error they’re encountering. I have an error code or message to work with. I copy the error text into a new tab in my browser and hit enter to run a search. My results will include any company resources, e.g. if we’ve documented this problem before, or chatted about it in Teams. It will also include public Bing results. This makes it a one-stop shop to check the work resources first and then move on to public results if there isn’t anything.&lt;/p&gt;
 &lt;p&gt;But that’s not all Microsoft Search can do. It starts with bringing together search results from many places into one, but also offers some more precise helpful tools.&lt;/p&gt;
-&lt;h2 id=&quot;q-and-a&quot; tabindex=&quot;-1&quot;&gt;Q&amp;amp;A &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#q-and-a&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;q-and-a&quot; tabindex=&quot;-1&quot;&gt;Q&amp;amp;A &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#q-and-a&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Microsoft Search supports an admin defining common questions and answers for their organization. This can be a great solution if you’re finding that people in your organization are asking the same questions over and over again. These could be common processes within a workday or could be common administrative questions.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/03/MicrosoftSearch-QA.png&quot; alt=&quot;Demo of Microsoft Search with Q&amp;amp;A&quot; /&gt;
 &lt;em&gt;Demo of Microsoft Search answering the question on why Microsoft Search is so great, which was defined by the admin&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;acronyms&quot; tabindex=&quot;-1&quot;&gt;Acronyms &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#acronyms&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;acronyms&quot; tabindex=&quot;-1&quot;&gt;Acronyms &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#acronyms&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Do you use a lot of acronyms within your workplace? Not everybody will always know what the acronym means. Defining those within the search will allow them to quickly see what the acronym stands for, possibly with some other extra context.&lt;/p&gt;
-&lt;h2 id=&quot;bookmarks&quot; tabindex=&quot;-1&quot;&gt;Bookmarks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#bookmarks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;bookmarks&quot; tabindex=&quot;-1&quot;&gt;Bookmarks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#bookmarks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Bookmarks allow you to specify other websites which are important for your users to be able to find. This is particularly helpful if the preferred search result is not at the top of the public rankings, so this way can make sure those answers stay at the top where users see them.&lt;/p&gt;
-&lt;h2 id=&quot;floor-plans&quot; tabindex=&quot;-1&quot;&gt;Floor plans &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#floor-plans&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;floor-plans&quot; tabindex=&quot;-1&quot;&gt;Floor plans &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#floor-plans&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I haven’t done a proper test of floor plans yet, but they allow loading office floor plans. Then users can search for another person in the company and see where in the floor plan their office is located. This can be helpful in larger offices where you may need to visit somebody for the first time.&lt;/p&gt;
-&lt;h2 id=&quot;locations&quot; tabindex=&quot;-1&quot;&gt;Locations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#locations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;locations&quot; tabindex=&quot;-1&quot;&gt;Locations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#locations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you find your users are regularly looking up certain locations, you can define them as a location with different search terms. The result will show with the map from Bing Maps.&lt;/p&gt;
 &lt;p&gt;Suppose you have another office in Vancouver. You could set up a location titled “Vancouver Office” and people would be able to find it quickly without needing to know the address or trusting the public search.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/03/MicrosoftSearch-Location.png&quot; alt=&quot;Microsoft Search demo with a location for Kitchener City Hall, with a map&quot; /&gt;
 &lt;em&gt;Demo of Microsoft Search&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;connectors&quot; tabindex=&quot;-1&quot;&gt;Connectors &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#connectors&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;connectors&quot; tabindex=&quot;-1&quot;&gt;Connectors &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#connectors&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Connectors have the potential to make Microsoft Search far more powerful. This functionality is relatively new but allows for searching across other data systems as well, like a MediaWiki website, Azure DevOps, or a SQL Server. Without connectors, it’s already powerful to search across Bing and your company Microsoft 365 resources. This gets it a step further and lets you search data you control elsewhere, which eases any pain of keeping some data in non-Microsoft systems since you can still search them from Microsoft Search.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Many won’t seriously consider using the Bing component like I do. But even without that, there’s a lot of value in Microsoft Search to bring results across all of Microsoft 365 plus connectors plus custom search terms like acronyms into one place. It’s a great way to save time for your users searching and make sure they get to the right answers.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Visual Studio Code: Using GitHub</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/"/>
 		<updated>2021-04-09T11:39:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/</id>
 		<content type="html">&lt;p&gt;Working in Visual Studio Code but need that connected to your GitHub repository? No problem. Getting connected to GitHub from Visual Studio Code is straightforward. It’s also possible to connect to other Git servers, but the authentication process is a bit more complicated, so I’ll stick to &lt;a href=&quot;https://github.com/ryan-l-robinson&quot;&gt;GitHub which is now my primary code repository&lt;/a&gt;. I’m also sticking with Windows, but the general idea is the same for other platforms with Code.&lt;/p&gt;
-&lt;h2 id=&quot;configuration&quot; tabindex=&quot;-1&quot;&gt;Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/#configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configuration&quot; tabindex=&quot;-1&quot;&gt;Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/#configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To get started:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Install &lt;a href=&quot;https://git-scm.com/download/win&quot;&gt;Git for Windows&lt;/a&gt;.&lt;/li&gt;
@@ -417,16 +417,16 @@
 &lt;/ol&gt;
 &lt;p&gt;That’s it. It’s a pretty intuitive process even if you are brand new to GitHub.&lt;/p&gt;
 &lt;p&gt;Once it’s set up, you get a few useful features:&lt;/p&gt;
-&lt;h2 id=&quot;visual-cues&quot; tabindex=&quot;-1&quot;&gt;Visual cues &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/#visual-cues&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;visual-cues&quot; tabindex=&quot;-1&quot;&gt;Visual cues &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/#visual-cues&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The most valuable component to me is the visual cues of changes. It’s like having a constant diff between your current version and the last commit. If you add a line, that line will be marked green in the sidebar. If you change a line, that line will be marked blue in the sidebar. If you delete a line, there will be a little red arrow where it was.&lt;/p&gt;
 &lt;p&gt;Clicking on the area of those colour indicators will pop up a full diff of the changed section. That will also include quick options like reverting all changes on that section.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-GitDiff.png&quot; alt=&quot;Blue bar on side indicates changed lines, and the diff is shown below&quot; /&gt;
 &lt;em&gt;Demo of an altered line, after clicking on the blue bar to see the diff&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;commit-and-push&quot; tabindex=&quot;-1&quot;&gt;Commit and push &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/#commit-and-push&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;commit-and-push&quot; tabindex=&quot;-1&quot;&gt;Commit and push &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/#commit-and-push&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Your standard git workflow actions can all be done from the Source Control section in the sidebar. It will show you everything that has changed since the last commit, with options to open the file, discard changes, or stage the file for the next commit. Above the file list you can enter your commit message and hit the checkmark to commit. Other actions like pushing and pulling are tucked away in the ellipses overflow menu.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-SourceControl.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;You still have to understand the basics of what is involved in git source control, but you don’t have to memorize the commands for each step. Everything is available visually.&lt;/p&gt;
-&lt;h2 id=&quot;gitlens&quot; tabindex=&quot;-1&quot;&gt;GitLens &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/#gitlens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;gitlens&quot; tabindex=&quot;-1&quot;&gt;GitLens &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/#gitlens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The extension &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens&quot;&gt;GitLens&lt;/a&gt; adds a few more useful features and is worth adding. Among other things, it will give you blame lines that shows who last changed a line, when, and as part of what commit.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/GitLens-BlameLine.png&quot; alt=&quot;Blame line that identifies &amp;quot;You, 4 days ago, added site design update&amp;quot;&quot; /&gt;
 &lt;em&gt;Demo of the blame line with GitLens from my SharePoint site script PowerShell&lt;/em&gt;&lt;/p&gt;
@@ -435,9 +435,9 @@
 	
 	<entry>
 		<title>Visual Studio Code: Remote SSH Development</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/"/>
 		<updated>2021-04-12T14:27:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/</id>
 		<content type="html">&lt;p&gt;One of the greatest improvements to my website development workflow came the day I discovered I could directly code on a web server in Visual Studio Code. Before this realization I was opening files with FileZilla, which worked but took a few clicks for each change:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Browse to file in FileZilla&lt;/li&gt;
@@ -455,25 +455,25 @@
 &lt;li&gt;Repeat 1-2 if necessary for next change&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;If you’re making a lot of changes like testing out new CSS designs which may take several iterations to get just right, all those extra clicks add up to a lot of time. It’s also easier to remember; something that happened for me regularly is I saved the file in Code but forgot to go back to FileZilla to upload the file, then was briefly confused why my changes weren’t showing up yet.&lt;/p&gt;
-&lt;h2 id=&quot;setup&quot; tabindex=&quot;-1&quot;&gt;Setup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/#setup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;setup&quot; tabindex=&quot;-1&quot;&gt;Setup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/#setup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I won’t go step-by-step in getting this setup. There are &lt;a href=&quot;https://towardsdatascience.com/5-steps-setup-vs-code-for-remote-development-via-ssh-from-windows-to-linux-b9bae9e8f904&quot;&gt;lots of great blogs&lt;/a&gt; out there to walk you through it.&lt;/p&gt;
-&lt;h2 id=&quot;peacock-extension&quot; tabindex=&quot;-1&quot;&gt;Peacock extension &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/#peacock-extension&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;peacock-extension&quot; tabindex=&quot;-1&quot;&gt;Peacock extension &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/#peacock-extension&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock&quot;&gt;This extension&lt;/a&gt; applies a different colour theme to my workspace for each website I was connected to. This is really valuable especially if you find yourself working on multiple websites on the same day as the visual cue helps avoid accidentally updating the wrong site.&lt;/p&gt;
 &lt;p&gt;You can manually set these for each site, which could be used for scenarios like setting the code window to match the branding of that site for an even stronger visual cue, or you can check the box to surprise me with a random colour whenever one isn’t already set.&lt;/p&gt;
-&lt;h2 id=&quot;git-integration&quot; tabindex=&quot;-1&quot;&gt;Git integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/#git-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;git-integration&quot; tabindex=&quot;-1&quot;&gt;Git integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/#git-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/using-github-from-visual-studio-code/&quot;&gt;I wrote another recent post that breaks down how Git integration in Code in general&lt;/a&gt;. The main difference here is how it ties into the next point: if you can’t use the integrated shell because of the security on the system, you also won’t be able to push in the version control interface.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-SourceControl.png&quot; alt=&quot;Source control window showing the files staged and not staged yet, with interface options for everything you need.&quot; /&gt;
 &lt;em&gt;Demo of the source control window&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;shell-integration&quot; tabindex=&quot;-1&quot;&gt;Shell integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/#shell-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;shell-integration&quot; tabindex=&quot;-1&quot;&gt;Shell integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/#shell-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is not something I can take advantage of due to security settings of the web server I mostly work on, but it is a great idea if your server allows it. With this feature, you can directly use your shell commands within Code instead of needing a separate window in something like PuTTY or the Windows Subsystem for Linux (WSL).&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>OneDrive: the Family Plan Loophole</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-14-the-onedrive-family-plan-loophole/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-14-the-onedrive-family-plan-loophole/"/>
 		<updated>2021-04-14T11:35:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-14-the-onedrive-family-plan-loophole/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-14-the-onedrive-family-plan-loophole/</id>
 		<content type="html">&lt;p&gt;When you get a Microsoft 365 Home plan, you get 1TB of OneDrive storage per user. That’s a good amount of storage, but you might want more. For example, I have a lot of photos going back almost 20 years. Tens of thousands of photos. A significant subset of those also have copies of the original RAW file taken from the DSLR, which are much larger. 1TB is a lot, but it’s reasonable that even for typical consumer purposes you might hit your limit.&lt;/p&gt;
 &lt;p&gt;Here&#39;s how it works:&lt;/p&gt;
 &lt;ol&gt;
@@ -489,30 +489,30 @@
 	
 	<entry>
 		<title>WordPress: Accessibility Basics</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/"/>
 		<updated>2021-04-16T12:59:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/</id>
 		<content type="html">&lt;p&gt;Accessibility is an important part of designing a website. You want your site to be usable to as many people as possible, right? Here are some things to consider as you develop a WordPress site to make it as accessible as you can.&lt;/p&gt;
-&lt;h2 id=&quot;testing-with-wave&quot; tabindex=&quot;-1&quot;&gt;Testing with WAVE &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#testing-with-wave&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;testing-with-wave&quot; tabindex=&quot;-1&quot;&gt;Testing with WAVE &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#testing-with-wave&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The best tool for testing out a website is the WAVE evaluation tool, which is available as an extension for your browser. It will scan the code of the page and tell you any accessibility problems it finds, flagging them with different levels of seriousness. It also has a section for contrast issues when the foreground colour of text is too close to the background colour.&lt;/p&gt;
 &lt;p&gt;Note that with WordPress WAVE will always pick up a few issues from the admin toolbar if you are logged in when you run it. That’s not great, but it’s out of the control of the site developer and it doesn’t impact regular visitors.&lt;/p&gt;
-&lt;h2 id=&quot;pick-a-theme&quot; tabindex=&quot;-1&quot;&gt;Pick a theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#pick-a-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pick-a-theme&quot; tabindex=&quot;-1&quot;&gt;Pick a theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#pick-a-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The theme decision will determine a lot of your site’s accessibility. Some themes have a lot of accessibility problems built right into them and it will be hard for you to change the code yourself to fix it. Take your time shopping for themes. Activate a theme and use the WAVE accessibility tool to see how well it scores. If there are little things like missing ALT text, you might be able to work around that without changing the theme, but be cautious if it has a lot of issues like inconsistent headers or a search bar without a label.&lt;/p&gt;
 &lt;p&gt;You may not find a theme that’s perfect, but if you put in the time, you’ll at least get pretty close.&lt;/p&gt;
-&lt;h2 id=&quot;contrasting-colours&quot; tabindex=&quot;-1&quot;&gt;Contrasting colours &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#contrasting-colours&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;contrasting-colours&quot; tabindex=&quot;-1&quot;&gt;Contrasting colours &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#contrasting-colours&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Picking a colour scheme of a site goes beyond simply looking good. There needs to be strong enough contrast between the background colour and the foreground text colour to be sure that people with low vision can differentiate.&lt;/p&gt;
 &lt;p&gt;There are levels to this. Hitting the most strict AAA sometimes can be hard to do in light of other factors like brand consistency, but you want to make sure you at least hit the AA standard. The WAVE tool can help measure your contrast and even help you pick colours for stronger contrast.&lt;/p&gt;
-&lt;h2 id=&quot;the-wp-accessibility-plugin&quot; tabindex=&quot;-1&quot;&gt;The WP-Accessibility plugin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#the-wp-accessibility-plugin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-wp-accessibility-plugin&quot; tabindex=&quot;-1&quot;&gt;The WP-Accessibility plugin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#the-wp-accessibility-plugin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Sometimes if your theme doesn’t do a great job hitting all the accessibility requirements, the WP-Accessibility plugin can help. It includes a few helpful tools like:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Adds the title of the blog post to the “read more” text. This helps for people with screenreaders. When all the links say “read more,” a screenreader jumping through links just says “read more” over and over again, which isn’t helpful. It’s a lot more helpful when it says “read more Accessibility in WordPress.”&lt;/li&gt;
 &lt;li&gt;Adds an accessibility toolbar on the side of your site for adjusting font size and contrast.&lt;/li&gt;
 &lt;li&gt;Attempts to add a label to the search bar, although I’ve had mixed success with that option.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;use-the-right-headers&quot; tabindex=&quot;-1&quot;&gt;Use the right headers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#use-the-right-headers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;use-the-right-headers&quot; tabindex=&quot;-1&quot;&gt;Use the right headers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#use-the-right-headers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;That covers the general site setup. Now we’re into features that anybody should consider when writing content like this blog post.&lt;/p&gt;
 &lt;p&gt;Many people misuse header tags. They are not solely for formatting. They also help identify how content is related to each other. Your site should have an h1 tag, either for the site title or page title. Then everything below that should be an h2. Content that is a sub-category of an h2 should be identified with an h3. And so on. You shouldn’t skip tags from an h2 down to an h5, for example, or always use h2 no matter what without considering what should maybe be lower.&lt;/p&gt;
-&lt;h2 id=&quot;always-add-alt-text&quot; tabindex=&quot;-1&quot;&gt;Always add ALT text &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/#always-add-alt-text&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;always-add-alt-text&quot; tabindex=&quot;-1&quot;&gt;Always add ALT text &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/#always-add-alt-text&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is the accessibility issue that most often gets discussed, but it’s still very easy to miss in WordPress. ALT text is a technique to describe what a screenreader says to a user that can’t see the picture. You should always set ALT text unless the photo is purely decorative like an icon.&lt;/p&gt;
 &lt;p&gt;WordPress offers the option to set ALT text, but it doesn’t require it. It’s also not quite as in-your-face in the new Gutenberg block editor as it used to be in the classic WordPress editor, so it’s easy to add an image and forget to dig into the settings for the ALT text option.&lt;/p&gt;
 </content>

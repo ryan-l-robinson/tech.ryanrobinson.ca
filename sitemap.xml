@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/</loc>
 		<lastmod>2021-02-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-02-25-ms-101-prep-how-im-studying/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/ms-101-prep-how-im-studying/</loc>
 		<lastmod>2021-02-25</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-02-25-viva-topics-experience/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/</loc>
 		<lastmod>2021-02-25</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-02-microsoft-ignite-news-day/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/microsoft-ignite-news-day/</loc>
 		<lastmod>2021-03-02</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-password-manager/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-password-manager/</loc>
 		<lastmod>2021-03-07</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-07-security-essentials-multi-factor-authentication/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-03-07-security-essentials-multi-factor-authentication/</loc>
 		<lastmod>2021-03-07</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-16-wordpress-com-vs-org/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-03-16-wordpress-com-vs-org/</loc>
 		<lastmod>2021-03-16</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-29-it-on-film-flight-attendant-episode-3/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-03-29-it-on-film-flight-attendant-episode-3/</loc>
 		<lastmod>2021-03-29</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-03-31-civicrm-overview/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-03-31-civicrm-overview/</loc>
 		<lastmod>2021-03-31</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-02-desktop-sync-files-across-onedrive-and-sharepoint/</loc>
 		<lastmod>2021-04-02</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-05-powershell-updating-site-scripts-and-designs/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-05-powershell-updating-site-scripts-and-designs/</loc>
 		<lastmod>2021-04-05</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-07-microsoft-search-introduction/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-07-microsoft-search-introduction/</loc>
 		<lastmod>2021-04-07</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-09-using-github-from-visual-studio-code/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-09-using-github-from-visual-studio-code/</loc>
 		<lastmod>2021-04-09</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-12-visual-studio-code-remote-ssh-development/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-12-visual-studio-code-remote-ssh-development/</loc>
 		<lastmod>2021-04-12</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-14-the-onedrive-family-plan-loophole/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-14-the-onedrive-family-plan-loophole/</loc>
 		<lastmod>2021-04-14</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-04-16-accessibility-in-wordpress/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-16-accessibility-in-wordpress/</loc>
 		<lastmod>2021-04-16</lastmod>
 	</url>
 	
@@ -712,22 +712,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
-		<lastmod>2024-09-05</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
-		<lastmod>2024-09-05</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
-		<lastmod>2024-09-05</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/github/</loc>
+		<lastmod>2024-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
@@ -737,12 +727,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
@@ -757,12 +747,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
@@ -773,6 +763,11 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/mysql/</loc>
+		<lastmod>2024-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
@@ -823,6 +818,11 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/drupal/</loc>
+		<lastmod>2024-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
