@@ -32,7 +32,12 @@ header .top-nav .top-nav-list .nav-item a {
     color: var(--white);
 }
 
-header .top-nav .top-nav-list .nav-item a:is(:focus,:hover) {
+.nav-item a[aria-current="page"] {
+    color: var(--grey);
+    text-decoration: none;
+}
+
+header .top-nav .top-nav-list .nav-item a:not([aria-current="page"]):is(:focus,:hover) {
     background-color: var(--white);
     color: var(--red);
 }
