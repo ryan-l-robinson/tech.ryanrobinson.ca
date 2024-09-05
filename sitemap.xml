@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-02-24-viva-topics-configuration/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-02-24-viva-topics-configuration/</loc>
 		<lastmod>2021-02-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021-02-25-ms-101-prep-how-im-studying/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-02-25-ms-101-prep-how-im-studying/</loc>
 		<lastmod>2021-02-25</lastmod>
 	</url>
 	
@@ -652,7 +652,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2024-02-21-VS-Code-Extensions/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/vs-code-extensions-workflows/</loc>
 		<lastmod>2024-02-21</lastmod>
 	</url>
 	
@@ -672,17 +672,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2024-03-24-Dev-Env-Updated-Dockerfiles/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/Dev-Env-Updated-Dockerfiles/</loc>
 		<lastmod>2024-03-25</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2024-04-08-Dev-Env-Updated/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/Dev-Env-Updated-Devcontainer/</loc>
 		<lastmod>2024-04-08</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/VS-Code-University-Colour-Palettes/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/vs-code-university-colour-palettes/</loc>
 		<lastmod>2024-04-08</lastmod>
 	</url>
 	
@@ -717,11 +717,6 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
-		<lastmod>2024-09-05</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
@@ -743,6 +738,11 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
+		<lastmod>2024-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	
@@ -818,6 +818,11 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/mastodon/</loc>
+		<lastmod>2024-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/drupal/</loc>
 		<lastmod>2024-09-05</lastmod>
 	</url>
 	

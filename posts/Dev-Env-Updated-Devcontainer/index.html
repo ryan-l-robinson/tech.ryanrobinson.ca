@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Microsoft Viva Topics: Configuration</title>
-		<meta name="description" content="An introduction to Microsoft Viva Topics and how to configure it.">
+		<title>Drupal Dev Environment Updated: The DevContainer</title>
+		<meta name="description" content="An updated version of the devcontainer for a Drupal dev environment.">
 
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
@@ -31,41 +31,37 @@
 		<main id="skip">
 			<div class="container">
 				
-<h1>Microsoft Viva Topics: Configuration</h1>
+<h1>Drupal Dev Environment Updated: The DevContainer</h1>
 
 <div class="post-metadata">
-	<p><time datetime="2021-02-24">February 24, 2021</time></p>
-	<p>Tags: <a href="/tags/security/" class="post-tag">Security</a></p>
+	<p><time datetime="2024-04-08">April 8, 2024</time></p>
+	<p>Tags: <a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a></p>
 </div>
 
-<p>Microsoft recently launched <a href="https://www.microsoft.com/en-us/microsoft-viva">their new Viva platform</a>. Nothing about the announcement was radically new – everything had at least been previewed – but the new Viva branding helps tie them together with the shared goal of improving the employee experience.</p>
-<p>The most interesting component for me is one piece that did launch that day: Topics. In this post and the next I’ll break down my first impressions from some simple tests.</p>
-<h2 id="configuring" tabindex="-1">Configuring <a class="header-anchor" href="#configuring">#</a></h2>
-<p>The announcement blogs about Viva Topics did not make it clear how to get started. It also isn’t obvious; unlike some of the larger workloads in Microsoft 365, there is no new Viva Admin Centre. <a href="https://docs.microsoft.com/en-us/microsoft-365/knowledge/set-up-topic-experiences">Fortunately it is clear in documentation elsewhere</a> where to get started in the main Admin Centre.</p>
-<p>Once you find the process, it’s straightforward with some useful options, such as:</p>
+<p>This continues from <a href="/websites/drupal/dev-env-updated/">a previous post</a> about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on <a href="/tags/drupal-docker/">the Drupal Docker tag</a>. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">The whole project's code can be found on my GitHub</a>.</p>
+<h2 id="devcontainer" tabindex="-1">Devcontainer <a class="header-anchor" href="#devcontainer">#</a></h2>
+<p>What changed in devcontainer from the previous setup? A few things:</p>
 <ul>
-<li><strong>SharePoint sites</strong>: you can specify to look for topics on all sites, all sites except those specified, only those specified, or not at all. In most cases, all sites will make the most sense. Don’t worry about permissions as it already utilizes the Microsoft Graph to make sure that nobody sees content they shouldn’t.</li>
-<li><strong>Exclude topics</strong>: if you know some topics that you don’t want in advance, you can upload a csv file with those. You’ll always have manual control over topics, though, before they get published. If you just let it find everything it can and then remove them from there, that’s also fine.</li>
-<li><strong>Who can see topics:</strong> you can allow the topics functionality for all users, only selected users, or nobody. This feels like a redundant setting to me as there is also an extra license needed to see topics.</li>
-<li><strong>Who can manage topics</strong>: you can allow editing topics as well as adding new topics to different permission groups. You can leave this open for everybody, but in this case most larger organizations will want to restrict it to a handful of dedicated admins determined by a security group.</li>
-<li><strong>Topic centre</strong>: name and pick the URL for your new topic centre, a special SharePoint site. You may want this to be generic like “Topic Centre” or you may want something more specific if you are going to use it for a more precise purpose like a client listing.</li>
+<li>I reviewed several of the extensions and made some changes. The most significant are adding Playwright testing (maybe I'll be able to write more about that later), the PHP tools extension, and the Drupal extension. Between them I now have much stronger error detection, deprecation warnings, testing, and formatting to meet the Drupal standards. Some more notes about useful extensions are in <a href="/websites/vs-code/extensions-2024/">my recent post about what extensions I use</a>.</li>
+<li>The postAttachCommand has to set the permissions again with each new time attaching to it, so the files that are set up as volumes don't revert to root.</li>
 </ul>
-<p>When you’ve picked all the desired settings, confirm that you’re ready and the features will be enabled. Note that it took an hour or two after completing this setup before the topic centre was ready for my use. That makes sense, but it doesn’t warn about that delay; if you are confused why it doesn’t seem to be working right away, you likely just need to wait.</p>
-<p><img src="/assets/img/2021/02/topics-config-screen.png" alt="">
-<em>Topics configuration settings, after the initial wizard</em></p>
-<h2 id="the-topic-centre" tabindex="-1">The Topic Centre <a class="header-anchor" href="#the-topic-centre">#</a></h2>
-<p>The Topic Centre which is created after the setup process above looks like a typical SharePoint site, but with some specific page types. The homepage shows topics related to you. The Manage Topics page is the core feature for administering topics on an ongoing basis. This page shows all of your organization’s topics, broken down by the stage of approval:</p>
+<h2 id="postcreatecommand" tabindex="-1">postCreateCommand <a class="header-anchor" href="#postcreatecommand">#</a></h2>
+<p>This is mostly the same, at least for now: it installs all composer packages and sets up the database on the first time creating these images. A few things were able to be removed to simplify this script, functions like creating the database that are handled more easily in other ways.</p>
+<p>What it still does:</p>
 <ul>
-<li><strong>Suggested</strong>: topics found by the automatic search for you to review. The question to move from this stage is whether you do want that to appear as a topic across your organization. If not, you can remove it. If yes, you can confirm it.</li>
-<li><strong>Confirmed</strong>: topics which have been confirmed as a real topic of interest for your organization. For items here, take the time to view the page and make some manual edits to the topic before publishing.</li>
-<li><strong>Published</strong>: topics that are active within your organization and can be seen by typical users with the appropriate license and settings.</li>
-<li><strong>Removed</strong>: topics that have been removed from your organization.</li>
+<li>Installs composer packages.</li>
+<li>Puts the Drupal settings and local services files in place. This comes after the composer install so that the basic Drupal file structure is there already.</li>
+<li>Import the site's configuration using drush.</li>
+<li>Set the admin password.</li>
+<li>Rebuild the node access cache. There aren't any nodes yet, but there is a warning on the site status for a bit if this function isn't included, so it's one extra command to save some confusion.</li>
+<li>Sets the environment indicator theme.</li>
+<li>Clears the site's caches to reflect all changes.</li>
 </ul>
-<p><img src="/assets/img/2021/02/topic-manager.png" alt="Sample of topic centre"></p>
-<p>This is the hub for your Topics admins to keep things organized. I found it clean and intuitive to use. I imagine in large organizations that there will need to be somebody regularly checking in on the generated topics and keeping things organized, but the tool to do that is straightforward enough that the technology won’t get in the way.</p>
-<p>Overall, it’s off to a great start. In the next post, I’ll talk about what this looks like for typical users seeing the topics within their workflows.</p>
+<h2 id="next-gitlab-github-ci-cd-updates" tabindex="-1">Next: GitLab/GitHub CI/CD Updates <a class="header-anchor" href="#next-gitlab-github-ci-cd-updates">#</a></h2>
+<p>I'm going to continue with this by now improving it a step farther: instead of building the images each time on local, have it build in GitHub or GitLab programmatically, and then saving it alongside the repository in those platforms' respective container registries. Then when it is time to start a new local development environment, it only needs to pull the latest image, not build it again. That saves time, especially if you have to switch between branches and especially if you have multiple team members who would otherwise all be spending time building it individually. This will include moving most of the postCreateCommand functionality into the GitLab CI / GitHub Actions, for both the web and database containers.</p>
+<p>I already have this working in my real context using GitLab. I have less experience with GitHub Actions but am working on doing the same idea there for a more shareable version.</p>
 
-<div class="links-nextprev"><p>Next: <a href="/posts/2021-02-25-ms-101-prep-how-im-studying/">MS-101 Prep: How I&amp;#8217;m Studying</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/Dev-Env-Updated-Dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></p><p>Next: <a href="/posts/vs-code-university-colour-palettes/">VS Code: University Colour Palettes</a></p>
 </div>
 			</div>
 		</main>
@@ -114,6 +110,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021-02-24-viva-topics-configuration/` was built on 2024-09-05T15:09:28.178Z -->
+		<!-- This page `/posts/Dev-Env-Updated-Devcontainer/` was built on 2024-09-05T15:16:50.718Z -->
 	</body>
 </html>
