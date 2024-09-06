@@ -9,6 +9,7 @@
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 	--font-family-monospace: "Roboto Mono", "Courier New", Courier, monospace;
+	--syntax-tab-size: 2;
 }
 
 @media (prefers-color-scheme: light) {

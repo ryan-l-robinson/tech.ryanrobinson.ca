@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 2 }
+.postlist { counter-reset: start-from 3 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -58,6 +58,7 @@
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
 	--font-family-monospace: "Roboto Mono", "Courier New", Courier, monospace;
+	--syntax-tab-size: 2;
 }
 
 @media (prefers-color-scheme: light) {
