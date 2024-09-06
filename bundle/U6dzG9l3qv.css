@@ -1,14 +1,13 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 14 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
 	list-style: none;
 	padding: 0;
-	padding-left: 1.5rem;
 }
 .postlist-item {
 	display: block;
-	margin: 0 1em;
+	margin: 1em 0;
 	border-bottom: 1px dashed var(--red);
 	padding: 0 0 1em 0;
 }
