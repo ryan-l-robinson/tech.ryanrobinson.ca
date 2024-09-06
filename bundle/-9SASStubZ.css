@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 2 }
+.postlist { counter-reset: start-from 4 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -26,7 +26,7 @@
 	font-size: 0.8em;
 }
 
-.postlist-item-description {
+.postlist-item :last-child {
 	margin-bottom: 0;
 }
 /* Message Box */

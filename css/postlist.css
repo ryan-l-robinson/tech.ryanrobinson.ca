@@ -25,6 +25,6 @@
 	font-size: 0.8em;
 }
 
-.postlist-item-description {
+.postlist-item :last-child {
 	margin-bottom: 0;
 }
