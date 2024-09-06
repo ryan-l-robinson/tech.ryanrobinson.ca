@@ -38,6 +38,8 @@
 	<p>Tags: <a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a></p>
 </div>
 
+
+
 <p>A while ago I wrote about building a <a href="/tags/drupal-docker/">Docker Desktop dev environment for Drupal</a>. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">It can be seen on my GitHub</a>.</p>
 <h2 id="the-web-image" tabindex="-1">The Web Image <a class="header-anchor" href="#the-web-image">#</a></h2>
 <p>This new setup has both Apache and PHP in the same container, is about 40% of the total image size compared to the previous one, and runs much faster, probably because Apache and PHP are in the same container instead of having to communicate across the network. Let's start with the basic start to the image and its shell.</p>
@@ -222,6 +224,6 @@ EXPOSE 3306</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/Dev-Env-Updated-Dockerfiles/` was built on 2024-09-06T14:31:04.190Z -->
+		<!-- This page `/posts/2024/Dev-Env-Updated-Dockerfiles/` was built on 2024-09-06T14:39:02.946Z -->
 	</body>
 </html>
