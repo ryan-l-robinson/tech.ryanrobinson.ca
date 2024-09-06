@@ -2006,37 +2006,37 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Browser Extension: Stylus</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-21-browser-extension-stylus/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/browser-extension-stylus/"/>
 		<updated>2021-09-21T15:33:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-21-browser-extension-stylus/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/browser-extension-stylus/</id>
 		<content type="html">&lt;p&gt;The &lt;a href=&quot;https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne&quot;&gt;stylus extension&lt;/a&gt; is a new addition to my browser (&lt;a href=&quot;https://tech.ryanrobinson.ca/web-browser-microsoft-edge-vs-chrome/&quot;&gt;Edge&lt;/a&gt;, available for all Chromium browsers). The core idea: it allows for changing stylesheets on websites while you browse without actually changing the server.&lt;/p&gt;
 &lt;p&gt;This might be because it’s a website you don’t own. Get really annoyed at the new Twitter font (I actually really like it)? Write your own stylesheet so that whenever you’re browsing you see something else.&lt;/p&gt;
 &lt;p&gt;It also can be a good technique for trying out a change over a period of time without actually needing to change the stylesheet on the server. This can simplify potential conflicts like others in your team editing at the same time or being confused by your in-progress changes.&lt;/p&gt;
-&lt;h2 id=&quot;how-it-works&quot; tabindex=&quot;-1&quot;&gt;How it works &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-21-browser-extension-stylus/#how-it-works&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;how-it-works&quot; tabindex=&quot;-1&quot;&gt;How it works &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/browser-extension-stylus/#how-it-works&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can write your stylesheet directly in the Stylus extension, including specifying which domains the change should apply to for you.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/09/Stylus-Editor.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Stylus editor with a single change to font-size&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Turn on the stylesheet in the extension and begin your regular testing. If you’ve worked with CSS on complex sites before (e.g. writing your own stylesheet on top of a WordPress or Drupal theme), you have probably encountered a scenario where the change you made applied it either too narrowly (missing a spot) or too broadly (changed something you didn’t mean to). Where Stylus can really be an advantage is that you can continue to browse the site as normal while working on other things. That gives you more opportunity to identify the problem before you actually save the change to the server. If there’s a problem, simply edit the CSS again and go back to browsing.&lt;/p&gt;
 &lt;p&gt;Once satisfied, you can add the CSS to the site’s server for real.&lt;/p&gt;
-&lt;h2 id=&quot;do-i-need-it&quot; tabindex=&quot;-1&quot;&gt;Do I need it? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-21-browser-extension-stylus/#do-i-need-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;do-i-need-it&quot; tabindex=&quot;-1&quot;&gt;Do I need it? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/browser-extension-stylus/#do-i-need-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Whether you need this extension or not depends on the nature of your workflow and your team. If you are the only person making changes on a development server, you probably may as well edit directly on the server right away instead of using Stylus for an extra test tool. But if others might also need to edit on the server, or if you want an extended period of time where you can test it without others seeing a change, then Stylus is a nice tool for the toolbox.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft 365: Tools for Recognizing Sensitive Data</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/"/>
 		<updated>2021-09-27T11:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/</id>
 		<content type="html">&lt;p&gt;There are a handful of tools in Microsoft 365 to help you with information protection. Which one is the best option will depend on the scenario you will need to use it for. Once you’ve identified sensitive data using one of these tools, you can use it apply compliance rules like blocking sharing outside the organization or retaining for a certain number of years.&lt;/p&gt;
-&lt;h2 id=&quot;sensitive-information-types-dlp&quot; tabindex=&quot;-1&quot;&gt;Sensitive Information Types (DLP) &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/#sensitive-information-types-dlp&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sensitive-information-types-dlp&quot; tabindex=&quot;-1&quot;&gt;Sensitive Information Types (DLP) &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/#sensitive-information-types-dlp&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Sensitive information types, the backbone of data loss protection (DLP), relies on pattern recognition. Many sensitive types of data such as credit cards, passport numbers, and social insurance numbers have strict formatting requirements. These formatting requirements can be used to help identify them when they appear in a document, email, Teams chat, etc.&lt;/p&gt;
 &lt;p&gt;Many common sensitive information types are already defined in Microsoft 365. If there’s something missing, you can add your own custom types.&lt;/p&gt;
-&lt;h2 id=&quot;document-fingerprint&quot; tabindex=&quot;-1&quot;&gt;Document Fingerprint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/#document-fingerprint&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;document-fingerprint&quot; tabindex=&quot;-1&quot;&gt;Document Fingerprint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/#document-fingerprint&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Document fingerprints are valuable for documents that were created from a shared template. If you use a template document as the starting point for all invoices, and you want to implement some compliance policy on all invoices, a document fingerprint is the answer. This tool identifies the sensitivity of the document based on recurring word patterns.&lt;/p&gt;
-&lt;h2 id=&quot;keyword-dictionary&quot; tabindex=&quot;-1&quot;&gt;Keyword Dictionary &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/#keyword-dictionary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;keyword-dictionary&quot; tabindex=&quot;-1&quot;&gt;Keyword Dictionary &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/#keyword-dictionary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A keyword dictionary is useful when you want to enact a policy on any instances of a specific set of data, where that specific set of data may change occasionally. A good example for this is employee IDs. Occasionally you’ll need to add a new employee ID or remove an old employee ID from the dictionary, but you always want to keep anything with those IDs protected.&lt;/p&gt;
-&lt;h2 id=&quot;trainable-classifier&quot; tabindex=&quot;-1&quot;&gt;Trainable Classifier &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-27-microsoft-365-tools-for-recognizing-sensitive-data/#trainable-classifier&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;trainable-classifier&quot; tabindex=&quot;-1&quot;&gt;Trainable Classifier &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-365-tools-recognizing-sensitive-data/#trainable-classifier&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The trainable classifier is a newer tool within Microsoft 365. Unless the other types, the trainable classifier does not depend on you being able to explicitly define what is and is not the definition of the data type. Instead, it relies on machine learning.&lt;/p&gt;
 &lt;p&gt;This makes it a great candidate for scenarios like resumes. Often HR will want to hold resumes of job applicants for a certain period of time but then have them automatically deleted. In the meantime they don’t want those resumes to ever be shared outside the organization. But a resume isn’t clearly defined: there are no guarantees of having the exact same words in a sequence, or templates, or strict numerical formats. Humans just know what a resume looks like because we’ve seen lots of them.&lt;/p&gt;
 &lt;p&gt;Trainable classifiers will apply that same approach but with machine learning. You’ll need to provide many examples of what the data type looks like and occasionally monitor it to see if it missed anything or flagged anything it shouldn’t.&lt;/p&gt;
@@ -2045,9 +2045,9 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Visual Studio Code: MySQL Extension</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-29-visual-studio-code-mysql-extension/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-mysql-extension/"/>
 		<updated>2021-09-29T20:16:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-29-visual-studio-code-mysql-extension/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-mysql-extension/</id>
 		<content type="html">&lt;p&gt;In a recent post I talked about &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/mysql-workbench/&quot;&gt;how great MySQL Workbench is&lt;/a&gt;. A few days later, I discovered a Visual Studio Code extension simply called MySQL. It is not as robust in some ways as Workbench (e.g. bulk importing and exporting).&lt;/p&gt;
 &lt;p&gt;However, it does meet all the same core functionality such as:&lt;/p&gt;
 &lt;ul&gt;
@@ -2067,9 +2067,9 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Visual Studio Code: Grep</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-04-visual-studio-code-grep/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-grep/"/>
 		<updated>2021-10-04T14:14:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-04-visual-studio-code-grep/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-grep/</id>
 		<content type="html">&lt;p&gt;This is a quick post about a feature I discovered by accident in Visual Studio Code that I really like:&lt;/p&gt;
 &lt;p&gt;I was working in &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/visual-studio-code-remote-ssh-development/&quot;&gt;a Linux machine and ran a grep in the integrated terminal&lt;/a&gt; to find a particular piece of code. The terminal gave me the results in the usual way, with the file names highlighted, the line in the code, and a bit of the code around what I searched for. Then I happened to scroll over the file name in the results and it showed me a tooltip offering that I could open the file by holding Ctrl and clicking on the path.&lt;/p&gt;
 &lt;p&gt;So I tried it, and it worked as advertised. This is one of those tiny things that will really add up. I use grep a lot. Most of the time when I do I want to open one or more of the files found. Without this little feature, that means copying the path to the file into a new command. That’s a small amount of time, but it does add up.&lt;/p&gt;
@@ -2078,12 +2078,12 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Dev.to and Tealfeed</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-07-dev-to-and-tealfeed/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/dev-to-and-tealfeed/"/>
 		<updated>2021-10-07T13:14:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-07-dev-to-and-tealfeed/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/dev-to-and-tealfeed/</id>
 		<content type="html">&lt;p&gt;This isn’t the only place I’m posting my writing. I’m also posting to &lt;a href=&quot;https://dev.to/&quot;&gt;dev.to&lt;/a&gt; and &lt;a href=&quot;https://tealfeed.com/&quot;&gt;Tealfeed&lt;/a&gt;. These are other knowledge sharing networks, free to use, and both with options to set your own blog as the canonical URL.&lt;/p&gt;
 &lt;p&gt;Here are the early pro’s and con’s of each:&lt;/p&gt;
-&lt;h2 id=&quot;dev-to&quot; tabindex=&quot;-1&quot;&gt;Dev.to &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-07-dev-to-and-tealfeed/#dev-to&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dev-to&quot; tabindex=&quot;-1&quot;&gt;Dev.to &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/dev-to-and-tealfeed/#dev-to&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dev.to has two major positives:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;It is a big and supportive community&lt;/li&gt;
@@ -2092,12 +2092,12 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;Dev.to is a very well-known community of tech writers. It’s not just a blogging site. Even on my first post, I quickly had a positive comment offering some more helpful information building on top of what I wrote.&lt;/p&gt;
 &lt;p&gt;The editor to write a post is straightforward. It even accepts copying and pasting code from WordPress with no issues, even for images. Each post has a featured image which is not restricted in dimensions, so it’s easy to use the same one used on this site. That makes it very simple to quickly copy over posts I did here to share on dev.to as well.&lt;/p&gt;
 &lt;p&gt;It also has one minor negative: Dev.to is specifically for developers, as the name implies. I am only posting web development related things there, not Microsoft IT things or anything else I feel like sharing. Even on this point, there is some positive trade-off, as it means that the tags will allow you to get much more precise, such as “css” instead of “web development.”&lt;/p&gt;
-&lt;h2 id=&quot;tealfeed&quot; tabindex=&quot;-1&quot;&gt;Tealfeed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-07-dev-to-and-tealfeed/#tealfeed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;tealfeed&quot; tabindex=&quot;-1&quot;&gt;Tealfeed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/dev-to-and-tealfeed/#tealfeed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Tealfeed is a less well-known platform, at least in developer circles. My first impressions were not great. I created an account and logged in for the first time. The page spun for about 15 minutes before I gave up because I had other things to do. I came back a week later. This time it loaded my homepage with no issues. It may have been a one-time fluke, but some unfortunate timing.&lt;/p&gt;
 &lt;p&gt;I then created my first post. I tried to do what I do with dev.to: copy the WordPress page. That did not work at all. It does not interpret HTML tags and does not ignore the WordPress specific tags. It does not support a lot of formatting like headers at all. It does support images and separators, but not as HTML tags. You have to use the editor interface. So even for those features that are supported, you have to do it all over again. It does take a featured image, but it’s restricted to certain dimensions, so if you care about that and don’t already have your image in the right dimensions, you’ll spend more time to create an alternate image copy. All told, while dev.to takes about 2 minutes to copy a post from WordPress, Tealfeed takes more like 15 to reformat everything.&lt;/p&gt;
 &lt;p&gt;It’s got a few other oddities that demonstrate it simply isn’t very far allow in its development. If I use dark mode, which I always prefer, there are a handful of places in the key post creation process where it has black text on a black background. Not helpful.&lt;/p&gt;
 &lt;p&gt;The one thing that does make it more interesting is that it is not limited to developers, or even technology as a whole. You can follow lots of topics like psychology and photography as well.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-07-dev-to-and-tealfeed/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/dev-to-and-tealfeed/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Dev.to is absolutely worth the effort to copy posts from here to there, at least for those that fall broadly within the realm of “developer.” There’s no debate on that one to me.&lt;/p&gt;
 &lt;p&gt;Tealfeed is a bit more complicated. It’s hard to say yet whether it’s worth the effort to copy posts, especially since it takes so much longer to reformat. I’ll continue to give it a shot for at least a month or two before making a final judgement. I can pretty easily talk myself into keeping an account for the sake of following other interesting topics, though. It’s too bad they don’t have a mobile app, because I could definitely see it being an app I scroll for interesting stuff outside of work hours.&lt;/p&gt;
 </content>
@@ -2105,18 +2105,18 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Microsoft Teams: Information Session</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/"/>
 		<updated>2021-10-12T19:42:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/</id>
 		<content type="html">&lt;p&gt;I recently gave a presentation introducing some key concepts and answering questions around Microsoft Teams. The context was for those who already have accounts and have used it throughout Covid-19. They didn’t need the day-to-day basics like how to start a meeting, but they needed a better understanding of how all the pieces fit together and when it is best to use what. It was not a full consultation process, but I did put out a call for questions a couple weeks in advance and received several that I made sure to integrate into the presentation.&lt;/p&gt;
 &lt;p&gt;I’ve edited my notes to be a bit more generic and included those below:&lt;/p&gt;
-&lt;h2 id=&quot;caveats&quot; tabindex=&quot;-1&quot;&gt;Caveats &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#caveats&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;caveats&quot; tabindex=&quot;-1&quot;&gt;Caveats &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#caveats&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A couple caveats before I begin getting technical:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Teams is massive. One of the hard things with talking about Teams is that you can’t easily compare it to just one competitor. It’s a lot of tools rolled into one. And it’s just one part of Microsoft 365. We aren’t going to cover nearly everything that is possible in 45 minutes. I’m going to hopefully give enough of an introduction answering some key questions I’ve heard come up a few times.&lt;/li&gt;
 &lt;li&gt;One of the other hard things talking about Teams is that Microsoft is kind of bad at branding. They use a lot of the same words repeatedly to refer to related but not exactly the same things. So you do get scenarios like having a Teams app on your device which has the Teams app in the sidebar which has multiple Teams in it and all of those Teams are associated with SharePoint Team sites. Don’t feel bad if somebody says a term and you don’t know what it means.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;big-picture&quot; tabindex=&quot;-1&quot;&gt;Big picture &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#big-picture&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;big-picture&quot; tabindex=&quot;-1&quot;&gt;Big picture &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#big-picture&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is an older diagram that Microsoft has used in the past and I have held on to because I think it is a helpful explanation of the big picture. There are a lot of tools in Microsoft 365 that overlap, but this summarizes pretty well what the most important value is for the big communications pieces.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/09/Communication-Loops.jpg&quot; alt=&quot;Communication Loops: Teams, Yammer, Outlook, SharePoint, Groups&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Your inner loop is Teams. This is where you’re going to spend the bulk of your conversations with the people that you work with the most, like your department.&lt;/p&gt;
@@ -2124,7 +2124,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;Email is for targeted communications. It’s also ubiquitous. You’re going to need it sometimes, but if you’re talking to that inner loop, you might want to pause and consider whether it would work better in Teams or not before you send an email.&lt;/p&gt;
 &lt;p&gt;In the middle of everything is SharePoint. SharePoint can get a lot more complicated than this but for today, you can think of SharePoint as shared file storage.&lt;/p&gt;
 &lt;p&gt;Underneath it all is Microsoft 365 Groups. These provide the permission structure that spans across all those tools and some more. If you are added to the Group, you get access to all the tools defined for that group: Teams, a shared email, shared calendar, SharePoint files, Planner for task management, and more. Generally speaking, in a large organization, only IT and a few more can create Groups. That’s done intentionally so that there isn’t too much sprawl of thousands of groups and everybody using a different strategy for them. Owners of the groups usually have some control over who is in the group as well as some other settings. Exactly who can control what setting is often determined by a policy set by IT.&lt;/p&gt;
-&lt;h2 id=&quot;teams-overview&quot; tabindex=&quot;-1&quot;&gt;Teams Overview &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#teams-overview&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;teams-overview&quot; tabindex=&quot;-1&quot;&gt;Teams Overview &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#teams-overview&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With that big picture out of the way, I’m going to do a quick walk through of what you see in the Teams app.&lt;/p&gt;
 &lt;p&gt;Search bar: across the top in the middle is a search bar. This can be used to search across everything in Teams, including people, files, and messages.&lt;/p&gt;
 &lt;p&gt;It does not search across other aspects of Microsoft 365, such as SharePoint sites not associated with teams or associated with teams you aren’t in. There is a relatively new tool called Microsoft Search that has been slowly rolling out over a few years. That is available in some other places and gives you results from everywhere in Microsoft 365. I will quickly demo that later. The Teams search does not do that yet but probably will eventually. For now, it just gives you results from Teams.&lt;/p&gt;
@@ -2137,7 +2137,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;Files: this is another window into your files. They can be files across your teams as well as in your individual OneDrive. Sometimes you can also add other cloud services like Google Drive and Dropbox in here, but that’s determined by organizational policy.&lt;/p&gt;
 &lt;p&gt;Calls: the Calls section, in my opinion, is not that useful unless you’re using the &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-teams/microsoft-teams-phone-numbers/&quot;&gt;Teams phone system&lt;/a&gt;. With that, your calls from regular phones would ring in Teams, which could be on a computer or a dedicated phone device. If you aren’t using Teams phone systems, this Calls section is a pretty basic dashboard of recent calls and speed dial.&lt;/p&gt;
 &lt;p&gt;Then there’s the ellipses. There are plenty of other apps available to install within Teams. Teams really is a platform in its own right, not just an app. Some of these apps that can be added are from Microsoft, some from other providers, and your organization could even build your own app and deploy it just for you. Depending on your workflow, some of these other apps may be helpful to you, so it is worth taking a look at what is available.&lt;/p&gt;
-&lt;h2 id=&quot;chat-vs-teams&quot; tabindex=&quot;-1&quot;&gt;Chat vs Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#chat-vs-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;chat-vs-teams&quot; tabindex=&quot;-1&quot;&gt;Chat vs Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#chat-vs-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The biggest question I have heard when it comes to communication in Teams is when to use the Chat area and when to use the Teams area.&lt;/p&gt;
 &lt;p&gt;I’ll do Chat first because it is a bit simpler. You can think of Chat as something like Skype or Skype for Business. You can send short text chats and have audio and video calls with one other person or a small group of people. You can even message people outside your organization if they are using Teams, Skype for Business, or consumer Skype.&lt;/p&gt;
 &lt;p&gt;It appears as one long running conversation. If I start talking to somebody about one issue, then we switch to a different issue, then go back to the first issue, it’s all going to be jumbled together, so there isn’t an easy way to say “show me everything about this one issue.” The other important detail is that these conversations are visible only to the people in the conversation.&lt;/p&gt;
@@ -2147,7 +2147,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;Each channel is set up with some tabs at the top. Tabs allow you to add different content, which could be in Microsoft 365 or could be somewhere else. That’s part of how it really becomes a project dashboard. The idea is that if somebody new were to join the project, they would be able to look at this one screen and they would see everything they need to see: past conversations about the project, task lists, documentation. None of that is available if all the conversations happen in Chat instead. To add new tabs, you just use the little + button. As with the apps in the sidebar, there are a lot available.&lt;/p&gt;
 &lt;p&gt;There’s also a handful of other useful features on the Team that you don’t get with Chat. One of my favourites is that you can share an email to a channel, if the team’s policy allows it. This is great in scenarios like getting an email but you need to consult with your group before you respond, so that you can coordinate who is going to answer what. There is a button in Outlook that can do that, or you can look up the email address for a channel and forward an email to it.&lt;/p&gt;
 &lt;p&gt;So to summarize: Chat is good when you need to message somebody outside your organization or somebody who you don’t have regular ongoing work with as part of a Team. But the Team should be the default for most conversations with that “inner loop” of people you work with regularly, so that you can have the full advantages of the project dashboard approach.&lt;/p&gt;
-&lt;h2 id=&quot;notifications&quot; tabindex=&quot;-1&quot;&gt;Notifications &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#notifications&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;notifications&quot; tabindex=&quot;-1&quot;&gt;Notifications &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#notifications&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the questions I got was about notifications, specifically how to know when the person you are trying to contact will be notified and when they will not.&lt;/p&gt;
 &lt;p&gt;One way people get notified is if they are subscribed to a channel. Anybody can choose to subscribe to any channel they are a part of. Then they will be notified based on the settings they choose. I recommend this for anybody who is effectively a project manager to be subscribed to all conversations on the channel. Those people won’t necessarily need to respond to every conversation, but they probably should keep a high-level overview of what’s happening.&lt;/p&gt;
 &lt;p&gt;If the person you are messaging isn’t subscribed, or if you don’t know whether they are subscribed, you can still notify them using an @ mention:&lt;/p&gt;
@@ -2159,7 +2159,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;People will also receive a notification if you respond to a conversation started by them. You don’t have to @ message the person if you are replying to their conversation.&lt;/p&gt;
 &lt;p&gt;And finally, they will be notified if you react (like) to a message by them.&lt;/p&gt;
 &lt;p&gt;So the rule of thumb is that if you are in doubt and you need somebody or a small group of people to see it, use an @ mention. But you don’t have to when responding to their message or if you know they’re subscribed to the channel.&lt;/p&gt;
-&lt;h2 id=&quot;files&quot; tabindex=&quot;-1&quot;&gt;Files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;files&quot; tabindex=&quot;-1&quot;&gt;Files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’m going to move on to the biggest set of questions I got which had to do with file management. How do I find my files? Where do I put a new file? Who has access to the file?&lt;/p&gt;
 &lt;p&gt;I’ll say upfront that there is a bit of a blessing and a curse scenario here. There are a lot of entry points to get to your files. The curse of that is that it can be a bit overwhelming. The blessing is that you have a lot of choices to decide what works best with your workflow and you can ignore the rest. I will talk through some of these options, but you don’t need to be comfortable with all of them.&lt;/p&gt;
 &lt;p&gt;You can use an analogy like travelling to the office. When we’re all coming to the office again, we’ll all have the same destination, but we all have different starting points – our houses – and different routes to get there. What matters is that we get to campus. What matters in Microsoft 365 is that we are working from the same files. How we access that file is not as important.&lt;/p&gt;
@@ -2179,7 +2179,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;If you’re going to make a new file and don’t know where to put it, think about who needs to be able to see the file. And I think it is important to qualify that as who will ever need to see it. Maybe 99% of the time it will be you using the file, but somebody else needs it when they need to cover for you while you’re on vacation. Or if something happens and you suddenly aren’t working starting tomorrow, will everybody else have everything they need to continue your work? So, a lot of things like documentation of processes, or files in a project that others may need to reference in the future, those should all be in SharePoint, typically through a Team.&lt;/p&gt;
 &lt;p&gt;There may be more things private to you that stay in your OneDrive. In my work, that means things like configuration files for all my developer environment tools, and a copy of the profile photo I use everywhere. Nobody else ever needs to see those. But most of what I’m doing is in SharePoint, through Teams, available to others if or when they need it.&lt;/p&gt;
 &lt;p&gt;Permissions in both OneDrive and SharePoint can get a lot more complicated than the defaults – you can share from OneDrive with others – but the more you stick to the defaults the easier your life is going to be.&lt;/p&gt;
-&lt;h2 id=&quot;syncing-files&quot; tabindex=&quot;-1&quot;&gt;Syncing files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#syncing-files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;syncing-files&quot; tabindex=&quot;-1&quot;&gt;Syncing files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#syncing-files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;That’s the most important piece, understanding the destination and that Teams is one route into that destination. But it’s not the only route. I’ll cover a few more ways to access files and I’ll reiterate what I said earlier: you don’t need to do all of these. You need to find which one or ones fit your workflow.&lt;/p&gt;
 &lt;p&gt;The next most common one is synchronizing your files. You may want to synchronize files that are in a SharePoint site to your computer. This makes it so that you have a copy on your computer and whenever a change happens in either the cloud version or your desktop version, the change will be synchronized to the other location so that everybody continues to be working from the same content even if technically there is a copy.&lt;/p&gt;
 &lt;p&gt;Why would you want to do this? There are three major scenarios:&lt;/p&gt;
@@ -2191,7 +2191,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;There are also now two ways to achieve this. The older way is the Sync button which is visible both in Teams and SharePoint in the browser. Hitting that will open the OneDrive app on your computer to set up the sync.&lt;/p&gt;
 &lt;p&gt;The newer way is a “Add shortcut to OneDrive” button which shows up in SharePoint but not in Teams.&lt;/p&gt;
 &lt;p&gt;It’s too big of a tangent to break down the advantages of each, but &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/desktop-sync-files-across-onedrive-and-sharepoint/&quot;&gt;I do have a post about it&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;other-ways-to-access-files&quot; tabindex=&quot;-1&quot;&gt;Other Ways to Access Files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-12-microsoft-teams-information-session/#other-ways-to-access-files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;other-ways-to-access-files&quot; tabindex=&quot;-1&quot;&gt;Other Ways to Access Files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#other-ways-to-access-files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Those are the two ways most intuitive for most people to access their files: within Teams and synchronized to your computer.&lt;/p&gt;
 &lt;p&gt;But there are a lot more which I will mention but not demo all of them.&lt;/p&gt;
 &lt;p&gt;I mentioned &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-search-introduction/&quot;&gt;Microsoft Search&lt;/a&gt; earlier. There are a few entry points to Microsoft Search. One of them is a Bing search. Cue the jokes about somebody actually using Bing. But I have my default browser search set to Bing. The main reason is Microsoft Search. If I want to try to start a search, I can enter that in a new tab address bar like I would any other search, and part of the results is this “Work” or “School” section (depending on your organization type). That will give me lots of content across Microsoft 365 including documents, groups, people, Teams conversations, and so on.&lt;/p&gt;
@@ -2206,15 +2206,15 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>GitHub Copilot</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-22-github-copilot/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/github-copilot/"/>
 		<updated>2021-10-23T01:37:15Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-22-github-copilot/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/github-copilot/</id>
 		<content type="html">&lt;p&gt;A few months ago it was big news in the programming world when &lt;a href=&quot;https://copilot.github.com/&quot;&gt;GitHub Copilot&lt;/a&gt; was announced. This week, I was accepted into the preview, so now I have a chance to try it out and share my thoughts.&lt;/p&gt;
-&lt;h2 id=&quot;concerns&quot; tabindex=&quot;-1&quot;&gt;Concerns &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-22-github-copilot/#concerns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;concerns&quot; tabindex=&quot;-1&quot;&gt;Concerns &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-copilot/#concerns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before I do that, I’ll make a few caveats. When it was announced, the reaction was mostly positive. It is an incredible service that can really help speed up development. But there were a couple concerns I saw being raised, which I will address quickly.&lt;/p&gt;
 &lt;p&gt;One concern was that developers would allow Copilot to write large chunks of their code and not actually understand it. I’m sure this will happen and it is certainly not ideal. It’s also not that different than copying and pasting from StackOverflow without understanding. That’s why ultimately this part doesn’t concern me much.&lt;/p&gt;
 &lt;p&gt;The other concern I think is a bit more serious: licensing. Copilot combines code from publicly-available code repositories. Those repositories may have a wide variety of licenses on them. Some are completely fine with you using them in a commercial product. Some do not want you to do that at all. Some are ok with it as long as you provide credit. The problem with Copilot grabbing the code for you is that it does not filter by license and it doesn’t even point you to the original repositories that helped inspire the code. The counterpoint is that Copilot is not strictly copying code from the repositories – it is writing new code with inspiration from many repositories – but it still feels a bit closer to the ethical line than many are comfortable with.&lt;/p&gt;
-&lt;h2 id=&quot;my-first-test&quot; tabindex=&quot;-1&quot;&gt;My first test &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-22-github-copilot/#my-first-test&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;my-first-test&quot; tabindex=&quot;-1&quot;&gt;My first test &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-copilot/#my-first-test&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With that out of the way, I’ve now had a chance to try it out.&lt;/p&gt;
 &lt;p&gt;The first thing I tried was in a WordPress plugin that looks for Bible references and wraps them in links. I’ll have a post about this when it’s done, but I did this years ago in a previous job and decided to try to recreate it as a portfolio project.&lt;/p&gt;
 &lt;p&gt;I had two major problems left when I got access to Copilot. The first was easy but would take some time: I needed to list all the books of the Bible and all the common abbreviations for them. I did have a shell of a function already, but only had done anything for Genesis and Exodus. So, I wrote a comment saying this is exactly what I needed to accomplish.&lt;/p&gt;
@@ -2224,36 +2224,36 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;p&gt;Copilot kicked in. Sort of. It gave me what looked like it was exactly a slightly-older version of my code right above it, only giving me Genesis and Exodus. I can say it was kind of cool to watch the suggestion pop up, even if that excitement faded quickly once I realized it wasn’t giving me anything helpful.&lt;/p&gt;
 &lt;p&gt;The second was regex. I needed it to recognize a few different potential patterns. I also needed it to ignore if the link was in a header or another link. Similar to the first problem, I did already a shell of an idea here, but I tried to get it to help me. This time it gave me nothing useful at all – it didn’t even try to write regex.&lt;/p&gt;
 &lt;p&gt;Maybe this use case was too niche, although I imagine there are enough other uses on GitHub for a list of Bible abbreviations. Maybe it was struggling because I had already started something previously and so it stuck to that instead of starting fresh. I’m certainly not giving up on the idea. I’ll leave it enabled as I do more work. Hopefully it will offer something a bit more valuable as time goes on, and if it does, I’ll try to blog about that. For now, my grade of Copilot has to be an “incomplete.”&lt;/p&gt;
-&lt;h2 id=&quot;update&quot; tabindex=&quot;-1&quot;&gt;Update &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-22-github-copilot/#update&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;update&quot; tabindex=&quot;-1&quot;&gt;Update &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-copilot/#update&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since this initial test, I have kept Copilot turned on for more normal operations. It has helped a little with Drupal PHP work, but not much. It has helped more with CSS: sometimes it will generate something for me and I’ll try it out and adjust from there, rather than writing my own from scratch. It has prompted a good idea or two for me that way. The most I’ve found I’ve accepted the suggestions is actually not in the code itself but in writing comments; it is quite good at finishing my sentences. So, it continues to not be as dramatic for me as I’ve seen others demo, but it is certainly worth turning on.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Koa11y: Accessibility Testing Tool</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-28-koa11y-accessibility-testing-tool/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/koa11y-accessibility-testing-tool/"/>
 		<updated>2021-10-28T22:11:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-28-koa11y-accessibility-testing-tool/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/koa11y-accessibility-testing-tool/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://open-indy.github.io/Koa11y/&quot;&gt;Koa11y&lt;/a&gt; is another useful website development tool I came across recently. It is a downloadable desktop app that can be used to test out a website’s accessibility. It is not the most user-friendly app – not as intuitive as &lt;a href=&quot;https://wave.webaim.org/extension/&quot;&gt;the WAVE extension in your browser&lt;/a&gt;, for example – but a web developer should have no problem sorting out a few extra steps. Most importantly, it did return more detailed issues with the website I first tested against compared to WAVE, which can be valuable information to fix as many accessibility issues as possible.&lt;/p&gt;
 &lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/yoJDb018Edc?feature=oembed&quot; title=&quot;Koa11y: Find Accessibility Issues on your Site&quot; width=&quot;500&quot; height=&quot;320&quot;&gt;
-&lt;h2 id=&quot;koa11y-demo&quot; tabindex=&quot;-1&quot;&gt;Koa11y demo &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-28-koa11y-accessibility-testing-tool/#koa11y-demo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;koa11y-demo&quot; tabindex=&quot;-1&quot;&gt;Koa11y demo &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/koa11y-accessibility-testing-tool/#koa11y-demo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To try it out, simply download the zip file (Windows, in my case) from the link above and extract it. Launch the main executable to see a screen like this:&lt;/p&gt;
 &lt;p&gt;Enter a website that you want to run accessibility tests against. For example, I tried for ryanrobinson.technology. It will generate an HTML file saved on your computer with all the details of the report.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/10/ryanrobinson-results.png&quot; alt=&quot;&amp;quot;Results for the Ryan Robinson Technology site does not get a perfect score&amp;quot;&quot; /&gt;
 &lt;em&gt;Results for this site. Yeah, I have some work to do.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;pa11y&quot; tabindex=&quot;-1&quot;&gt;Pa11y &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-28-koa11y-accessibility-testing-tool/#pa11y&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pa11y&quot; tabindex=&quot;-1&quot;&gt;Pa11y &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/koa11y-accessibility-testing-tool/#pa11y&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is built on top of &lt;a href=&quot;https://pa11y.org/&quot;&gt;pa11y&lt;/a&gt;. Pa11y is a tool that iterates over a webpage and tells you all the accessibility errors found. It comes with a variety of configuration options. I first went down this route as I was investigating tools that might help me enforce more accessibility testing as part of a GitLab CI/CD pipeline. Unfortunately, it can only check websites which are publicly accessible, and our dev servers are protected and only accessible by our team. I wouldn’t have been able to integrate it into our pipeline until any changes had already gone to production, which defeated the purpose. But it did lead me to Koa11y which can still be a useful tool to have in the belt to periodically review sites which are publicly-accessible. If you’re looking for something a bit more programmatic in your workflow, though, give Pa11y a try. If Koa11y’s results are any indication, it’s a pretty powerful tool.&lt;/p&gt;
 &lt;/iframe&gt;</content>
 	</entry>
 	
 	<entry>
 		<title>Yubikey: Early Impressions</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-10-31-yubikey-early-impressions/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/yubikey-early-impressions/"/>
 		<updated>2021-10-31T19:25:55Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-10-31-yubikey-early-impressions/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/yubikey-early-impressions/</id>
 		<content type="html">&lt;p&gt;I recently obtained two &lt;a href=&quot;https://www.yubico.com/&quot;&gt;Yubikey security keys&lt;/a&gt; to boost my personal and professional security. I picked up one Yubikey Bio and one Yubikey 5 NFC. They recommend that you always have a backup in case you lose one, and from what I had learned, I wanted the Bio in several services that would support it, but also the 5 NFC for other services and for mobile NFC authentication.&lt;/p&gt;
 &lt;p&gt;It’s now been a week, so here are some initial thoughts.&lt;/p&gt;
-&lt;h2 id=&quot;support&quot; tabindex=&quot;-1&quot;&gt;Support &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-31-yubikey-early-impressions/#support&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;support&quot; tabindex=&quot;-1&quot;&gt;Support &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/yubikey-early-impressions/#support&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I set up on multiple services. These were the big ones to me that supported both keys:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Microsoft (personal)&lt;/li&gt;
@@ -2276,7 +2276,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Docker&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The setup process in general is easier than setting up with an authenticator app or text messaging. You just need to plug it in and enter your same PIN every time, instead of going back and forth copying a numerical string from one device to another.&lt;/p&gt;
-&lt;h2 id=&quot;bio-vs-5-nfc&quot; tabindex=&quot;-1&quot;&gt;Bio vs 5 NFC &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-31-yubikey-early-impressions/#bio-vs-5-nfc&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;bio-vs-5-nfc&quot; tabindex=&quot;-1&quot;&gt;Bio vs 5 NFC &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/yubikey-early-impressions/#bio-vs-5-nfc&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Bio, unlike the 5 NFC, has a fingerprint reader. When initially setting it up, I still had to use a PIN, but after that, I could simply tap my finger on it instead of entering the password. You still need to set a PIN on it and that will be a fall back if you can’t use the fingerprint reader, but for the most part it’s a bit easier to tap your finger.&lt;/p&gt;
 &lt;p&gt;It does not work as a fingerprint reader with Windows Hello. I thought it was supposed to, but doing some research now, nothing suggests that I can. I’ve tried it on 3 different computers (1 is work-managed) and it does not work. That’s disappointing. I thought this was a good way to get a security key and a Windows Hello device all in one.&lt;/p&gt;
 &lt;p&gt;On the other hand, there are three advantages to the Yubikey 5 NFC compared to the Bio:&lt;/p&gt;
@@ -2285,7 +2285,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;More services support it (see above).&lt;/li&gt;
 &lt;li&gt;It’s cheaper.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-10-31-yubikey-early-impressions/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/yubikey-early-impressions/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;They are great. They are more secure than using an authenticator app (somebody could hypothetically hijack my authenticator app in a way they couldn’t for the key without physically taking it from me) and easier to use.&lt;/p&gt;
 &lt;p&gt;The question is whether they are great enough to justify spending on them. If you’re doing a lot of logins with apps in your work, the answer is probably yes. If you are a casual user who only has 5 or 6 services with two-factor authentication to deal with, the answer is probably no – stick with the authenticator app on your phone.&lt;/p&gt;
 &lt;p&gt;If you decide to get some, get at least two so you have a backup. Two of the Yubikey 5 NFC’s are likely all that most people need for cheaper. If you’re logging in a lot, you may want the combination like I did: a Bio for all the desktop services that support it and a 5 NFC for mobile use and the rest.&lt;/p&gt;
@@ -2294,11 +2294,11 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Vagrant: Oracle Linux VM</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-11-10-vagrant-oracle-linux-vm/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/"/>
 		<updated>2021-11-10T21:34:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-11-10-vagrant-oracle-linux-vm/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/</id>
 		<content type="html">&lt;p&gt;This is the first in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;a series setting up a basic DevOps pipeline&lt;/a&gt; through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.&lt;/p&gt;
-&lt;h2 id=&quot;oracle-linux-8-lamp-stack&quot; tabindex=&quot;-1&quot;&gt;Oracle Linux 8 LAMP stack &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-10-vagrant-oracle-linux-vm/#oracle-linux-8-lamp-stack&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oracle-linux-8-lamp-stack&quot; tabindex=&quot;-1&quot;&gt;Oracle Linux 8 LAMP stack &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#oracle-linux-8-lamp-stack&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The VM will be using &lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant &lt;/a&gt;and &lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;Oracle VirtualBox&lt;/a&gt;. Every user will need to install both, as well as the VirtualBox extensions, for this to work.&lt;/p&gt;
 &lt;p&gt;The configuration for the Vagrant box can be found on &lt;a href=&quot;https://github.com/ryan-l-robinson&quot;&gt;my GitHub&lt;/a&gt;. For the sake of this demonstration, it is a fairly simple Oracle Linux 8, using a build in the Vagrant repository.&lt;/p&gt;
 &lt;p&gt;The first script, provision.sh, sets up the basic VM with a LAMP stack:&lt;/p&gt;
@@ -2310,7 +2310,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;&lt;a href=&quot;https://getcomposer.org/&quot;&gt;Composer&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That’s a nice generic LAMP stack. If you want an Oracle Linux 8 LAMP stack for some other purpose, you can stop there.&lt;/p&gt;
-&lt;h2 id=&quot;drupal-9-local-dev&quot; tabindex=&quot;-1&quot;&gt;Drupal 9 local dev &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-10-vagrant-oracle-linux-vm/#drupal-9-local-dev&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;drupal-9-local-dev&quot; tabindex=&quot;-1&quot;&gt;Drupal 9 local dev &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#drupal-9-local-dev&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my case, the purpose of this vagrant box is for the first stage of development on a Drupal 9 website. So I’m going to go a few steps further to get it ready for the specific Drupal 9 project. That includes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/my-web-development-workflow/&quot;&gt;it can be used to connect to GitLab&lt;/a&gt;&lt;/li&gt;
@@ -2319,7 +2319,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Self-signed keys so that https browsing will be possible&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I may write up specific details of some of these later, but &lt;a href=&quot;https://github.com/ryan-l-robinson/Oracle-Linux-LAMP&quot;&gt;the bottom line is the code in GitHub.&lt;/a&gt; This part is in the provision script d9.sh, which also references a separate script specifically for the database import called importdb.sh.&lt;/p&gt;
-&lt;h2 id=&quot;the-user-experience&quot; tabindex=&quot;-1&quot;&gt;The user experience &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-10-vagrant-oracle-linux-vm/#the-user-experience&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-user-experience&quot; tabindex=&quot;-1&quot;&gt;The user experience &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#the-user-experience&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The idea is that at the end of this, the person setting up their machine has very few steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;Git clone&lt;/code&gt; the repo for building the virtual machine on their PC&lt;/li&gt;
@@ -2334,14 +2334,14 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Android: Email Apps</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/android-email-apps/"/>
 		<updated>2021-11-12T13:18:09Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/android-email-apps/</id>
 		<content type="html">&lt;p&gt;I recently got a Pixel 6. It’s great. For the previous 3 and a bit years I had been using a BlackBerry Key2. There was lots I liked about the Key2, but 3 years later I had never received an Android version update. I was still getting security updates, but I decided with the Pixel 6 launch it was time for an update.&lt;/p&gt;
 &lt;p&gt;That context to say that I was using the BlackBerry apps for email, contacts, tasks, and calendar. The exception was my work email, which doesn’t allow app passwords and the BlackBerry app incredibly did not support modern authentication with multi-factor.&lt;/p&gt;
 &lt;p&gt;So, I decided with the new phone that it was a good chance to evaluate Android email apps again. My qualifier is that I use Microsoft email – personal and business – not Gmail. So I immediately ruled out the Gmail app.&lt;/p&gt;
 &lt;p&gt;Here’s a quick review of the ones I checked out:&lt;/p&gt;
-&lt;h2 id=&quot;bluemail&quot; tabindex=&quot;-1&quot;&gt;BlueMail &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#bluemail&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;bluemail&quot; tabindex=&quot;-1&quot;&gt;BlueMail &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#bluemail&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Some positives:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Calendar and contacts integrated nicely&lt;/li&gt;
@@ -2354,9 +2354,9 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;I didn’t love the design, although I couldn’t nail down exactly why. The dark mode is not that dark. The colour combinations are a bit odd.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Conclusion: on paper it hits my biggest requirements, but there’s just something about the design that led me to move on quickly.&lt;/p&gt;
-&lt;h2 id=&quot;newton&quot; tabindex=&quot;-1&quot;&gt;Newton &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#newton&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;newton&quot; tabindex=&quot;-1&quot;&gt;Newton &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#newton&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Not free after the first 14 days. Nevermind.&lt;/p&gt;
-&lt;h2 id=&quot;edison&quot; tabindex=&quot;-1&quot;&gt;Edison &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#edison&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;edison&quot; tabindex=&quot;-1&quot;&gt;Edison &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#edison&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First, it appears in the app screen as simply “email.” That was confusing when I had all of these apps installed at once, but I see the value in that decision normally. In normal contexts where you only have one email app, having that app called “email” is nicer than remembering it’s called Edison.&lt;/p&gt;
 &lt;p&gt;Some positives:&lt;/p&gt;
 &lt;ul&gt;
@@ -2371,7 +2371,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Lots of little prompts trying to sell me on the premium subscription&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Conclusion: definitely does some good things, but it doesn’t solve the calendar/contact piece and I know I would regularly get annoyed at the ads for premium.&lt;/p&gt;
-&lt;h2 id=&quot;spark&quot; tabindex=&quot;-1&quot;&gt;Spark &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#spark&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;spark&quot; tabindex=&quot;-1&quot;&gt;Spark &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#spark&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There’s a lot I like about Spark, including a lot that overlaps with what I liked about BlackBerry Hub:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;It had the simplest login. Most of the others required first selecting the email provider (Gmail, Outlook, Exchange, etc). A lot of people would know this, but not everyone. Even if you do, it’s a few extra clicks. Spark will look it up for you – you just have to know the address and it will redirect you to the appropriate login.&lt;/li&gt;
@@ -2386,11 +2386,11 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;/ul&gt;
 &lt;p&gt;Finally, a neutral for me is that it uses a smart inbox to predict what you consider most important and prioritize them in your inbox. I know some people like this idea. I do not. I also turn off the equivalent feature in desktop Outlook. I am an aggressive manager of my inbox already and having something “smart” hiding things from me just confuses my own system. It can be turned off, so this isn’t a big deal.&lt;/p&gt;
 &lt;p&gt;Conclusion: other than the lack of calendar and tasks, it did feel like it hit on a lot of the things I liked about the BlackBerry app.&lt;/p&gt;
-&lt;h2 id=&quot;nine&quot; tabindex=&quot;-1&quot;&gt;Nine &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#nine&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;nine&quot; tabindex=&quot;-1&quot;&gt;Nine &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#nine&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I didn’t get too far with Nine before encountering a couple things that worried me. First, it says it won’t limit any basic features for 14 days. In other words, it won’t be free after 14 days. It doesn’t give any hint within the app of what it will cost. I had to jump through a few websites before I found a price, and even that wasn’t entirely clear if that price was a one-time price, a yearly price, or a monthly price. If it clearly said “$15 one-time fee” I would be a lot more interested than having no idea what it will cost.&lt;/p&gt;
 &lt;p&gt;I got over that and decided to start trying to set up an account. It didn’t ask me what type of email it was. I was prepared to list that as a positive as I have for a couple others. I entered my email address. The next screen told me to enter the password to my IMAP email, not taking me to a Microsoft sign-in screen. My email is a Microsoft email, but with a custom domain, from the days of Windows Live Domains. So that’s not great that it didn’t figure that out. Fortunately, there was an option to manually specify, so I went back and chose instead to specify that it was indeed a Microsoft account.&lt;/p&gt;
 &lt;p&gt;After that, this email app is all positives for me. It has all the positives I listed above for Spark, but also integration of calendar, contacts, tasks, and notes. There are widgets to easily pin those different components to the home screen, even though it’s one app. After those first couple bad impressions, Nine is fantastic.&lt;/p&gt;
-&lt;h2 id=&quot;outlook&quot; tabindex=&quot;-1&quot;&gt;Outlook &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#outlook&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;outlook&quot; tabindex=&quot;-1&quot;&gt;Outlook &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#outlook&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is the one I had already tried. Some good things:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Includes calendar and contacts management.&lt;/li&gt;
@@ -2403,16 +2403,16 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Slower getting emails for some reason&lt;/li&gt;
 &lt;li&gt;Not quite as many configuration options as some of the others (like LED notification colours, quick actions on notifications)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-12-android-email-apps/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Nine is my winner. I will gladly pay $15 USD one-time for such a good app. I’m happy that I found an app that checked all my boxes and without a subscription fee.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Enterprise Administrator Expert</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-11-21-microsoft-enterprise-administrator-expert/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-enterprise-administrator-expert/"/>
 		<updated>2021-11-21T22:25:43Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-11-21-microsoft-enterprise-administrator-expert/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-enterprise-administrator-expert/</id>
 		<content type="html">&lt;p&gt;Last week, I passed &lt;a href=&quot;https://docs.microsoft.com/en-us/learn/certifications/exams/ms-101&quot;&gt;the MS-101 exam&lt;/a&gt;. This completed a goal I have had for a few years, earning me &lt;a href=&quot;https://docs.microsoft.com/en-us/learn/certifications/m365-enterprise-administrator/&quot;&gt;the Microsoft Enterprise Administrator Expert certification.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I first got into SharePoint about 6 years ago. It was before modern SharePoint, so not the most pleasant experience, but I still found myself fascinated by it. I decided I wanted to learn more about that space and pursue some certifications in it.&lt;/p&gt;
 &lt;p&gt;I began working toward the MCSE which would take 3 exams. I got the first one, the 70-346, in November 2018. When I got back that day and went to book the next one, Microsoft had announced changes to the certifications. My 70-346 was not going to expire but was effectively obsolete.&lt;/p&gt;
@@ -2427,15 +2427,15 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Windows 10: Hosts File</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-11-29-windows-10-hosts-file/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/"/>
 		<updated>2021-11-29T13:55:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-11-29-windows-10-hosts-file/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/</id>
 		<content type="html">&lt;p&gt;Configuring a hosts file on your computer allows your browsing traffic to go to a different server than is listed by public DNS. This can be essential for a few scenarios, such as:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;migrating a site to a new server and needing to test it before changing the public DNS&lt;/li&gt;
 &lt;li&gt;development on dev/staging servers which do not have public DNS listings&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;open-the-file&quot; tabindex=&quot;-1&quot;&gt;Open the file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-29-windows-10-hosts-file/#open-the-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;open-the-file&quot; tabindex=&quot;-1&quot;&gt;Open the file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#open-the-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The hosts file in Windows is located at C:&#92;Windows&#92;System32&#92;drivers&#92;etc&#92;hosts. I find I routinely forget that, so I added a shortcut to my primary document folder so I can get back to it faster. To do that in Windows, browse to the folder where you want the shortcut. Right-click and select New Shortcut. In the prompt that opens, enter C:&#92;Windows&#92;System32&#92;drivers&#92;etc&#92;hosts for the location of the item. Click next, then provide it a shortcut name – that could stay simple as “hosts” or something else. Save it, and now you’re good to go.&lt;/p&gt;
 &lt;p&gt;Side note: Linux has a similar system for overriding public DNS. The hosts file there is typically located at /etc/hosts and is structured the same way.&lt;/p&gt;
 &lt;p&gt;You will need to edit this file as an administrator in order to make changes. You can approach this either way:&lt;/p&gt;
@@ -2444,7 +2444,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Some editors such as Visual Studio Code will allow you to open the file first as a non-administrator, then when you try to save it will fail and prompt you if you want to save it as an administrator instead.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Since I use VS Code for my main editor anyway, I tend to use option 2 as a bit faster most of the time.&lt;/p&gt;
-&lt;h2 id=&quot;file-contents&quot; tabindex=&quot;-1&quot;&gt;File contents &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-11-29-windows-10-hosts-file/#file-contents&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;file-contents&quot; tabindex=&quot;-1&quot;&gt;File contents &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#file-contents&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local library website VM at &lt;a href=&quot;https://local.library.wlu.ca/&quot;&gt;https://local.library.wlu.ca&lt;/a&gt;, add this line:&lt;/p&gt;
 &lt;pre class=&quot;language-text&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;127.0.0.1 domain1.com&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you want to have multiple domains on the same IP address, like a dev server that has a couple different test sites on it, you can structure it in one of two ways. The shorter version has one line per IP address, followed by all the domains:&lt;/p&gt;
@@ -2460,9 +2460,9 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Mail Tester</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-12-03-mail-tester/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/mail-tester/"/>
 		<updated>2021-12-04T01:35:34Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-12-03-mail-tester/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/mail-tester/</id>
 		<content type="html">&lt;p&gt;A common scenario with many web services like a CRM is sending mail and realizing that it is often going to the junk of recipients.&lt;/p&gt;
 &lt;p&gt;There are several reasons why a message may go to spam. Some of those reasons come from the content of the message. Some are because of filters set up by the recipient or their email provider. And some factors come down to technical configuration on the part of the sender.&lt;/p&gt;
 &lt;p&gt;It’s this last group which can be aided by a tool like &lt;a href=&quot;https://www.mail-tester.com/&quot;&gt;mail-tester.com&lt;/a&gt;. It is simple to use:&lt;/p&gt;
@@ -2478,18 +2478,18 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Microsoft Teams: Search Filters</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-12-08-microsoft-teams-search-filters/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-search-filters/"/>
 		<updated>2021-12-08T16:48:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-12-08-microsoft-teams-search-filters/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-search-filters/</id>
 		<content type="html">&lt;p&gt;I recently was asked whether it is possible to search in Microsoft Teams for a file but only within a specific site. The short answer is yes, but that’s not the default search behaviour. When you use the search bar in Teams, it will default to all types of results across all Teams you are a member of. But then you can filter from there. This is significantly improved by &lt;a href=&quot;https://techcommunity.microsoft.com/t5/microsoft-teams-blog/new-and-improved-search-results-experience-on-microsoft-teams/ba-p/3035064&quot;&gt;some recent changes&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;So, if I know I am looking for a particular file in a particular Team, I can do that this way:&lt;/p&gt;
-&lt;h2 id=&quot;teams&quot; tabindex=&quot;-1&quot;&gt;Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-08-microsoft-teams-search-filters/#teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;teams&quot; tabindex=&quot;-1&quot;&gt;Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-search-filters/#teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Start the search in the usual way by typing your search term in the search bar at the top of Teams. By default you’ll see all types of results from all Teams, and it might not be obvious that you have more filter options than the basic content type filters. But, once you click on those, you’ll get more filters specific to that type of content. For the example of Files, you’ll see the ability to filter by Team, File Type, Modified by, and Date.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/12/Teams-Search-filters.png&quot; alt=&quot;&amp;quot;Search filters in Microsoft Teams&amp;quot;&quot; /&gt;
 &lt;em&gt;Teams search for “test” with Files filter.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;For the example scenario originally asked of me, the goal would be achieved by using the Team filter.&lt;/p&gt;
 &lt;p&gt;In other words, Teams search starts at universal, then provides filters to help you get more specific.&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint&quot; tabindex=&quot;-1&quot;&gt;SharePoint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-08-microsoft-teams-search-filters/#sharepoint&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint&quot; tabindex=&quot;-1&quot;&gt;SharePoint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-search-filters/#sharepoint&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;By comparison, SharePoint search behaves a bit differently. When you are on a particular site other than the Home site, it will default scope to only that site and others in the same hub, even if you are a part of other sites. Then you have filters to expand. It’s essentially the opposite direction. It can assume based on the current site that you are looking for content on that site.&lt;/p&gt;
 &lt;p&gt;This difference makes sense, as the Teams search bar stays in the same place no matter what you are currently viewing. There isn’t an easy way for Teams to know in advance which Team you want to search. So it makes sense to start at everything and move backwards, while SharePoint can start specific and allow you to move outward.&lt;/p&gt;
 </content>
@@ -2497,18 +2497,18 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Drupal: Install PECL UploadProgress</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/"/>
 		<updated>2021-12-10T12:55:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/</id>
 		<content type="html">&lt;p&gt;Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.&lt;/p&gt;
-&lt;h2 id=&quot;add-required-packages&quot; tabindex=&quot;-1&quot;&gt;Add required packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/#add-required-packages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-required-packages&quot; tabindex=&quot;-1&quot;&gt;Add required packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#add-required-packages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are a few preliminary packages that you’ll need: gcc, make, php-devel, and php-pear. You can install in Oracle Linux 8 using this command:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; gcc &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; php-devel php-pear&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You don’t have to provide the -y. That will pre-approve any other prompts that come up, including if it requires installing other dependent packages. If you want to be more careful, don’t use that, but it can come in handy in contexts like installing this through a script.&lt;/p&gt;
-&lt;h2 id=&quot;install-pecl&quot; tabindex=&quot;-1&quot;&gt;Install PECL &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/#install-pecl&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;install-pecl&quot; tabindex=&quot;-1&quot;&gt;Install PECL &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#install-pecl&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now that you’ve got the dependencies, you can install uploadprogress:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; pecl &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; uploadprogress&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;add-to-php-ini&quot; tabindex=&quot;-1&quot;&gt;Add to php.ini &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/#add-to-php-ini&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-to-php-ini&quot; tabindex=&quot;-1&quot;&gt;Add to php.ini &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#add-to-php-ini&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The packages are now in place, but your PHP installation will not make use of it unless it is recognized as an extension in your php.ini file. In the default Oracle Linux 8 setup, this file is located at /etc/php.ini. You’ll need to add this line to your file:&lt;/p&gt;
 &lt;pre class=&quot;language-text&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;extension=uploadprogress&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can edit that file directly using your preferred editor to add this line to the file, or if you are using this within a script, you can have the script write it to the end of the file like this:&lt;/p&gt;
@@ -2517,7 +2517,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;extension=uploadprogress&quot;&lt;/span&gt; /etc/php.ini&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;extension=uploadprogress&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/php.ini
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;restart&quot; tabindex=&quot;-1&quot;&gt;Restart &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-10-drupal-install-pecl-uploadprogress/#restart&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;restart&quot; tabindex=&quot;-1&quot;&gt;Restart &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#restart&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, you’ll need to restart Apache and PHP for this to go into effect:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl restart php-fpm
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl restart httpd&lt;/code&gt;&lt;/pre&gt;
@@ -2527,11 +2527,11 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>pa11y CI: Oracle Linux 8 Installation</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-12-13-pa11y-ci-oracle-linux-8-installation/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/"/>
 		<updated>2021-12-13T19:17:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-12-13-pa11y-ci-oracle-linux-8-installation/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/</id>
 		<content type="html">&lt;p&gt;I’ve mentioned before that &lt;a href=&quot;https://github.com/pa11y/pa11y-ci&quot;&gt;pa11y&lt;/a&gt; is a great tool for accessibility testing, specifically in the context of &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/koa11y-accessibility-testing-tool/&quot;&gt;the koa11y desktop tool.&lt;/a&gt; In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.&lt;/p&gt;
-&lt;h2 id=&quot;nodejs&quot; tabindex=&quot;-1&quot;&gt;NodeJS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-13-pa11y-ci-oracle-linux-8-installation/#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;nodejs&quot; tabindex=&quot;-1&quot;&gt;NodeJS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pa11y requires &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;NodeJS&lt;/a&gt;. To add that to Oracle Linux 8, run this command:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; nodejs &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you want to add an efficiency check within a larger bash script, you can first check whether it is already installed:&lt;/p&gt;
@@ -2539,7 +2539,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;yum list &lt;span class=&quot;token parameter variable&quot;&gt;--installed&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; nodejs &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; nodejs &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;pa11y&quot; tabindex=&quot;-1&quot;&gt;Pa11y &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-13-pa11y-ci-oracle-linux-8-installation/#pa11y&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pa11y&quot; tabindex=&quot;-1&quot;&gt;Pa11y &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/#pa11y&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now you can install Pa11y itself using npm:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; pa11y &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; --unsafe-perm&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;true --allow-root&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note the extra flags for unsafe-perms and allow-root, which don’t sound like good things. But without them, it will fail to have the permissions to write everything in all the directories it needs to be able to write.&lt;/p&gt;
@@ -2548,7 +2548,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; list nodejs &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; pa11y &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; --unsafe-perm&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;true --allow-root
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;dependencies&quot; tabindex=&quot;-1&quot;&gt;Dependencies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-13-pa11y-ci-oracle-linux-8-installation/#dependencies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dependencies&quot; tabindex=&quot;-1&quot;&gt;Dependencies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/#dependencies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pa11y is now installed, but trying it out, it won’t actually work, citing other libraries that are missing. There are several of these. To install all of them:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;#Install libraries&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; pango.x86_64 libXcomposite.x86_64
@@ -2566,19 +2566,19 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>SharePoint: Hub to Hub Association</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-12-16-sharepoint-hub-to-hub-association/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/"/>
 		<updated>2021-12-16T12:15:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-12-16-sharepoint-hub-to-hub-association/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/</id>
 		<content type="html">&lt;p&gt;A long-awaited feature has arrived in SharePoint: &lt;a href=&quot;https://docs.microsoft.com/en-gb/SharePoint/hub-to-hub-association&quot;&gt;the ability to associate one hub site with another hub site&lt;/a&gt;. Over a year ago I saw references to a PowerShell cmdlet to do this in the official documentation pages, but with a note that it was in limited preview so most of us wouldn’t be able to do it yet. Now it has finally rolled out to general availability.&lt;/p&gt;
-&lt;h2 id=&quot;why-do-this&quot; tabindex=&quot;-1&quot;&gt;Why do this &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-16-sharepoint-hub-to-hub-association/#why-do-this&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;why-do-this&quot; tabindex=&quot;-1&quot;&gt;Why do this &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#why-do-this&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Associating one hub with another hub changes one thing: search results. If you’re in one hub and do a search, results from other associated hubs can be prioritized alongside other sites in the same hub. This is a nice extra level of controlling your search results for a pretty common scenario.&lt;/p&gt;
 &lt;p&gt;For example, imagine being in a small team with lots of projects. You want a site for every project, associated to your team’s hub site (for the search results, for a sites web part, etc). But your team is also a part of a larger department and you may have a lot of useful general resources on that site. Now when you search from your team’s SharePoint you can get results in both directions: the projects in the same hub and the general documents of the associated department hub.&lt;/p&gt;
-&lt;h2 id=&quot;what-it-doesn-t-do&quot; tabindex=&quot;-1&quot;&gt;What it doesn’t do &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-16-sharepoint-hub-to-hub-association/#what-it-doesn-t-do&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-it-doesn-t-do&quot; tabindex=&quot;-1&quot;&gt;What it doesn’t do &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#what-it-doesn-t-do&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It does not change any of the other things that come with the first level of hub association, most of which makes sense if you think about them.&lt;/p&gt;
 &lt;p&gt;Navigation doesn’t change. There is a shared hub menu. Nothing from the associated hub’s navigation will appear. But it makes sense that it doesn’t really work to have two conflicting navigation areas.&lt;/p&gt;
 &lt;p&gt;The automatic application of site designs for all sites in a hub also stays as only sites in that hub. This makes sense for the same reason navigation does: you can’t really have two site designs applied to the same site at once.&lt;/p&gt;
 &lt;p&gt;The sites web part, with the setting to filter by hub associations, doesn’t change. This one I think could make sense to expand, for scenarios much like the search: it could have one filter setting for only sites in this hub and another filter for sites in associated hubs as well. I may be missing something for why that couldn’t work, so maybe that feature will come later.&lt;/p&gt;
-&lt;h2 id=&quot;more-details&quot; tabindex=&quot;-1&quot;&gt;More details &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-12-16-sharepoint-hub-to-hub-association/#more-details&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;more-details&quot; tabindex=&quot;-1&quot;&gt;More details &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#more-details&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Check out &lt;a href=&quot;https://sharepointmaven.com/how-to-add-a-hub-to-another-hub-in-sharepoint-online/&quot;&gt;SharePoint Maven’s recent post for more details&lt;/a&gt;.&lt;/p&gt;
 </content>
 	</entry>
