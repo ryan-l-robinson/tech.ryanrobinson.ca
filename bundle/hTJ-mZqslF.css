@@ -20,8 +20,12 @@
 .post-tag {
 	text-transform: capitalize;
 }
-.postlist-item > .post-tag {
-	align-self: center;
+
+/** Post description block **/
+.post-description {
+    margin: 1em 3em;
+    background-color: var(--grey);
+    border: 1px solid var(--black);
 }
 
 /** Post footer **/
