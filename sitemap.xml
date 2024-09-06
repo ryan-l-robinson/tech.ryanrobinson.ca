@@ -732,12 +732,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -777,11 +777,6 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/mysql/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
@@ -792,17 +787,22 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/mysql/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/github-pages/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/html/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/html/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
