@@ -8,7 +8,6 @@
     --max-width: 1280px;
     --main-gutter-x: 1em;
     --main-gutter-y: 1em;
-	--font-family-monospace: "Roboto Mono", "Courier New", Courier, monospace;
 	--syntax-tab-size: 2;
 }
 
@@ -37,11 +36,6 @@
 @font-face {
     font-family: "Atkinson Hyperlegible";
     src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
-}
-
-@font-face {
-    font-family: "Roboto Mono";
-    src: url('/RobotoMono-VariableFont_wght.ttf');
 }
 
 /* Global stylesheet */
