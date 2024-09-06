@@ -2585,9 +2585,9 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Drupal 7: Hide Label on Node Display</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-01-04-drupal-7-hide-label-on-node-display/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-7-hide-label-node-display/"/>
 		<updated>2022-01-05T00:02:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-01-04-drupal-7-hide-label-on-node-display/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-7-hide-label-node-display/</id>
 		<content type="html">&lt;p&gt;I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.&lt;/p&gt;
 &lt;p&gt;If I wanted to always hide the label for a field, that’s easy enough in the default Drupal display settings for the content type. But what about this scenario where we want to show the label when there is content and hide the label when there isn’t content?&lt;/p&gt;
 &lt;p&gt;In theory, the logic for this is simple. In the node template for that content type – in the node–content-type.tpl.php in the templates folder of your theme – we want to add some simple logic that says to not show the field at all if the value of the field is empty.&lt;/p&gt;
@@ -2615,18 +2615,18 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Drupal GitPod Container 1: .Dockerfile</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/"/>
 		<updated>2022-01-20T16:00:48Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://gitpod.io/&quot;&gt;GitPod&lt;/a&gt; is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt; – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.&lt;/p&gt;
 &lt;p&gt;In this &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;mini-series&lt;/a&gt; I describe how I created a generic Drupal-friendly container working with GitPod. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-GitPod&quot;&gt;It is available in my GitHub&lt;/a&gt;. Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.&lt;/p&gt;
-&lt;h2 id=&quot;the-dockerfile&quot; tabindex=&quot;-1&quot;&gt;The Dockerfile &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#the-dockerfile&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-dockerfile&quot; tabindex=&quot;-1&quot;&gt;The Dockerfile &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#the-dockerfile&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This solution starts from &lt;a href=&quot;https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile&quot;&gt;the GitPod-provided MySQL image&lt;/a&gt;. That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; gitpod/workspace-mysql&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The biggest catch with using this image is that you might end up with the latest PHP version, and there’s a good chance that your Drupal site doesn’t support that yet. So you probably want to add a section to change the PHP to one that you know currently works:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; update-alternatives --set php /usr/bin/php8.0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.&lt;/p&gt;
-&lt;h3 id=&quot;php-packages&quot; tabindex=&quot;-1&quot;&gt;PHP packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#php-packages&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;php-packages&quot; tabindex=&quot;-1&quot;&gt;PHP packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#php-packages&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-install-pecl-uploadprogress/&quot;&gt;installing PECL UploadProgress for Oracle Linux&lt;/a&gt;, which is similar but a bit different than these Ubuntu commands.&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; root&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# Install other needed packages&lt;/span&gt;
@@ -2634,7 +2634,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; apt install -y php-pear php-apcu php-json php-xdebug build-essential mysql-client sendmail&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; pecl install apcu&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; pecl install uploadprogress&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;composer&quot; tabindex=&quot;-1&quot;&gt;Composer &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#composer&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;composer&quot; tabindex=&quot;-1&quot;&gt;Composer &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#composer&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Drupal can work without composer, &lt;a href=&quot;https://www.drupal.org/docs/develop/using-composer/using-composer-with-drupal&quot;&gt;but your life is going to be a lot easier with it&lt;/a&gt;. Here’s how I added that to my Dockerfile:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Install latest composer&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; php -r &lt;span class=&quot;token string&quot;&gt;&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;&lt;/span&gt;&lt;/span&gt;
@@ -2642,7 +2642,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; php composer-setup.php --install-dir /usr/bin --filename composer&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; php -r &lt;span class=&quot;token string&quot;&gt;&quot;unlink(&#39;composer-setup.php&#39;);&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;At this point, the server is ready to provide the core packages that run Drupal well.&lt;/p&gt;
-&lt;h2 id=&quot;pa11y-accessibility-testing&quot; tabindex=&quot;-1&quot;&gt;Pa11y accessibility testing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#pa11y-accessibility-testing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pa11y-accessibility-testing&quot; tabindex=&quot;-1&quot;&gt;Pa11y accessibility testing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#pa11y-accessibility-testing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/pa11y-ci-oracle-linux-8-installation/&quot;&gt;I’ve also mentioned pa11y recently&lt;/a&gt;, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Install pa11y accessibility testing tool, including NodeJS&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium&lt;/span&gt;
@@ -2651,24 +2651,24 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; apt-get install -y nodejs libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm-amdgpu1 libxkbcommon-x11-0 libxcomposite-dev libxdamage-dev libxrandr-dev libgbm-dev libgtk-3-common libxshmfence-dev software-properties-common&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; apt-get install -y apparmor snapd apparmor-profiles-extra apparmor-utils kdialog chromium-browser libappindicator1 fonts-liberation&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; npm install pa11y -g --unsafe-perm=true --allow-root&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;ports&quot; tabindex=&quot;-1&quot;&gt;Ports &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#ports&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ports&quot; tabindex=&quot;-1&quot;&gt;Ports &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#ports&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Finally, I’m going to open the standard ports: 80 (HTTP), 443 (HTTPS), and 3306 (MySQL). This doesn’t seem to be actually necessary but it can help to remind yourself what ports you’re using.&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 80&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 443&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3306&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;what-s-next&quot; tabindex=&quot;-1&quot;&gt;What’s Next &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-20-drupal-gitpod-container-1-dockerfile/#what-s-next&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-s-next&quot; tabindex=&quot;-1&quot;&gt;What’s Next &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#what-s-next&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In an upcoming post, I’ll continue with the other large file to make this work: the .gitpod.yml. A third post will cover a few smaller changes I had to make to other configuration.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Drupal: Assign Permissions Based on Username File</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-01-24-drupal-assign-permissions-based-on-username-file/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/"/>
 		<updated>2022-01-25T01:20:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-01-24-drupal-assign-permissions-based-on-username-file/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/</id>
 		<content type="html">&lt;p&gt;Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.&lt;/p&gt;
 &lt;p&gt;I have pulled out a generic version of this code and &lt;a href=&quot;https://github.com/ryan-l-robinson/drupal-permissions-from-file&quot;&gt;made it available on my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;hook-on-login&quot; tabindex=&quot;-1&quot;&gt;Hook on login &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-24-drupal-assign-permissions-based-on-username-file/#hook-on-login&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;hook-on-login&quot; tabindex=&quot;-1&quot;&gt;Hook on login &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#hook-on-login&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with &lt;a href=&quot;https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x&quot;&gt;the hook_user_login hook&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
  * Implements hook_user_login
@@ -2685,7 +2685,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;read-file&quot; tabindex=&quot;-1&quot;&gt;Read file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-24-drupal-assign-permissions-based-on-username-file/#read-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;read-file&quot; tabindex=&quot;-1&quot;&gt;Read file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#read-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Next we have another function that checks to see if the username is in the file or not:&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
 * Reads from file and determine whether the specified user is in the list
@@ -2695,7 +2695,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;preg_match&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string double-quoted-string&quot;&gt;&quot;/&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$account&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;/span&gt;/&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$contents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
   &lt;span class=&quot;token comment&quot;&gt;// returns if name is in the file.&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;assign-or-remove-role&quot; tabindex=&quot;-1&quot;&gt;Assign or Remove Role &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-24-drupal-assign-permissions-based-on-username-file/#assign-or-remove-role&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;assign-or-remove-role&quot; tabindex=&quot;-1&quot;&gt;Assign or Remove Role &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#assign-or-remove-role&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, we can assign permissions based on whether or not their username is in the file.&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
 * Calls function that checks if permissions should be found
@@ -2717,26 +2717,26 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	
 	<entry>
 		<title>Drupal GitPod Container 2: .gitpod.yml</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/"/>
 		<updated>2022-01-28T13:17:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/</id>
 		<content type="html">&lt;p&gt;This post picks up in a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;mini-series&lt;/a&gt; describing how I created a generic Drupal-friendly container working with &lt;a href=&quot;https://gitpod.io/&quot;&gt;GitPod&lt;/a&gt;. The &lt;a href=&quot;https://tech.ryanrobinson.ca/drupal/gitpod-container-1-dockerfile/&quot;&gt;first covered the GitPod.Dockerfile&lt;/a&gt; to build the core LAMP stack image.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-GitPod&quot;&gt;The entire project is available in my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.&lt;/p&gt;
 &lt;pre class=&quot;language-gitpod&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitpod&quot;&gt;image:
   file: .gitpod/GitPod.Dockerfile&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;tasks&quot; tabindex=&quot;-1&quot;&gt;Tasks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#tasks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;tasks&quot; tabindex=&quot;-1&quot;&gt;Tasks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#tasks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It then runs a handful of tasks, split into two sections. The tasks under “init” will run only when the container is created for the first time. The tasks under “command” will run every time the container is started, even if you’re re-opening an existing container.&lt;/p&gt;
-&lt;h3 id=&quot;create-the-database&quot; tabindex=&quot;-1&quot;&gt;Create the database &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#create-the-database&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;create-the-database&quot; tabindex=&quot;-1&quot;&gt;Create the database &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#create-the-database&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Creating the database is straightforward and familiar enough to any who have used MySQL from a command line before:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; mysql &lt;span class=&quot;token parameter variable&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;CREATE DATABASE IF NOT EXISTS drupal&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;install-codebase&quot; tabindex=&quot;-1&quot;&gt;Install codebase &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#install-codebase&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;install-codebase&quot; tabindex=&quot;-1&quot;&gt;Install codebase &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#install-codebase&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The contributed codebase can be built using composer install:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;composer&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I’m also going to copy the settings file into place:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; .gitpod/drupal.settings.php web/sites/default/settings.php&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That settings file includes several alterations including where to find the configuration and content sync directories, how to connect to the database, and which URL is allowed to login from. Most of it will be familiar to those who have used Drupal settings files before, but I will cover anything unique in my next post for this series.&lt;/p&gt;
-&lt;h3 id=&quot;drupal-settings-and-content&quot; tabindex=&quot;-1&quot;&gt;Drupal settings and content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#drupal-settings-and-content&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;drupal-settings-and-content&quot; tabindex=&quot;-1&quot;&gt;Drupal settings and content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#drupal-settings-and-content&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;This is the hardest part of working with Drupal websites. All of the configuration and content is held in the database, not the codebase. Drupal (since 8) offers a configuration sync tool out of the box, and a content sync tool as a module. Broadly speaking, the configuration tool is usually pretty reliable, while the content tool has had some occasional glitches in my time using it.&lt;/p&gt;
 &lt;p&gt;I install the site using &lt;a href=&quot;https://www.drush.org/latest/commands/site_install/&quot;&gt;the drush site-install tool&lt;/a&gt;:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;vendor/drush/drush/drush &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; site-install minimal --existing-config&lt;/code&gt;&lt;/pre&gt;
@@ -2751,21 +2751,21 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
     vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; system.site page.front /node/&lt;span class=&quot;token variable&quot;&gt;$home_id&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The key for that structure to be maintained is that the homepage is of the content type “Home” and with the title of “Home.” If that isn’t met, this workaround will fail.&lt;/p&gt;
-&lt;h3 id=&quot;admin-password&quot; tabindex=&quot;-1&quot;&gt;Admin password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#admin-password&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;admin-password&quot; tabindex=&quot;-1&quot;&gt;Admin password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#admin-password&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;By default, the site install at this point created a default super-admin user with a random password. For the purpose of this demo, I wanted to control what that admin password was so I could put it in the GitHub README and keep it saved in my &lt;a href=&quot;https://ryanrobinson.technology/all/tools/security-essentials-password-manager/&quot;&gt;password manager&lt;/a&gt;. So, I used drush to always reset the admin password back to what I wanted it to be:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;vendor/drush/drush/drush user:password admin &lt;span class=&quot;token string&quot;&gt;&quot;ZNB*ufm1tyz4rwc@yzk&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;cleanup&quot; tabindex=&quot;-1&quot;&gt;Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#cleanup&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;cleanup&quot; tabindex=&quot;-1&quot;&gt;Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#cleanup&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There are two more small acts of clean up that I want, to minimize warning errors that would otherwise appear as soon as I sign in. One is to rebuild the content permissions and the other is to run cron.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;vendor/drush/drush/drush php-eval &lt;span class=&quot;token string&quot;&gt;&#39;node_access_rebuild();&#39;&lt;/span&gt;
 vendor/drush/drush/drush &lt;span class=&quot;token function&quot;&gt;cron&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;drush-alias&quot; tabindex=&quot;-1&quot;&gt;Drush alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#drush-alias&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;drush-alias&quot; tabindex=&quot;-1&quot;&gt;Drush alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#drush-alias&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I want to be able to use the command &lt;code&gt;drush&lt;/code&gt; instead of always having to reference the full path to drush, as I did above. So I add an alias to my .bashrc. You can also do this by adding the location of drush to the PATH. Arguably that is more correct but this was simpler in a GitPod scenario where containers are constantly being built and destroyed and so don’t always have to be precisely the long-term ideal.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;alias drush=&quot;/workspace/drupal-gitpod/vendor/drush/drush/drush&quot;&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; ~/.bashrc&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;command&quot; tabindex=&quot;-1&quot;&gt;Command &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#command&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;command&quot; tabindex=&quot;-1&quot;&gt;Command &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#command&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The command tasks accomplish two simple things: start Apache, and source the bashrc to make sure it notices the drush alias.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; ~/.bashrc
 apachectl start&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;ports&quot; tabindex=&quot;-1&quot;&gt;Ports &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#ports&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ports&quot; tabindex=&quot;-1&quot;&gt;Ports &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#ports&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The GitPod.yml file optionally defines ports and what to do when they open. You don’t need to have this section. The ports will open either way. But it can be nice to specify in advance what you want to do when each port opens. In this case, I’m ignoring everything except for 8001, which I will open in the browser, since that is the port for the Apache access. If you don’t specify, it will give you a popup with each port opened asking what you want to do, so this saves some time.&lt;/p&gt;
 &lt;pre class=&quot;language-gitpod&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitpod&quot;&gt;ports:
   - port: 8001
@@ -2776,7 +2776,7 @@ apachectl start&lt;/code&gt;&lt;/pre&gt;
     onOpen: ignore
   - port: 3306
     onOpen: ignore&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;github&quot; tabindex=&quot;-1&quot;&gt;GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;github&quot; tabindex=&quot;-1&quot;&gt;GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This section starts with a somewhat misleading key “github.” These functions are not exclusive to GitHub – they can be used with any of the supported version control platforms with GitLab and Bitbucket as well. The main valuable thing here to me is defining prebuilds, which enables GitPod to start building the new image as soon as code changes are submitted to the repository. That saves time when you’re ready to start working and it’s already good to go, instead of waiting a few minutes.&lt;/p&gt;
 &lt;pre class=&quot;language-gitpod&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitpod&quot;&gt;github:
   prebuilds:
@@ -2788,7 +2788,7 @@ apachectl start&lt;/code&gt;&lt;/pre&gt;
     addComment: false
     addBadge: true
     addLabel: true&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;extensions&quot; tabindex=&quot;-1&quot;&gt;Extensions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#extensions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;extensions&quot; tabindex=&quot;-1&quot;&gt;Extensions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#extensions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The final section of this file is to install &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;VS Code&lt;/a&gt; extensions. There is one big qualifier here: it can only install extensions that are available in &lt;a href=&quot;https://open-vsx.org/&quot;&gt;the Open VSX registry&lt;/a&gt;. This may not be everything available for VS Code, with the most notable exclusion for me being &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/github-copilot/&quot;&gt;GitHub Copilot&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here’s my Drupal 9 friendly set of extensions:&lt;/p&gt;
 &lt;pre class=&quot;language-gitpod&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitpod&quot;&gt;vscode:
@@ -2800,19 +2800,19 @@ apachectl start&lt;/code&gt;&lt;/pre&gt;
     - gruntfuggly.todo-tree
     - mblode.twig-language
     - vscode-icons-team.vscode-icons&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;almost-there&quot; tabindex=&quot;-1&quot;&gt;Almost there… &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-01-28-drupal-gitpod-container-2-gitpod-yml/#almost-there&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;almost-there&quot; tabindex=&quot;-1&quot;&gt;Almost there… &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#almost-there&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post of this series, I’ll look at a few other configuration changes I needed to make for this to work.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Drupal GitPod Container 3: Settings and Config</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-02-01-drupal-gitpod-container-3-settings-and-config/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/"/>
 		<updated>2022-02-01T20:02:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-02-01-drupal-gitpod-container-3-settings-and-config/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/</id>
 		<content type="html">&lt;p&gt;This post continues a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;mini-series&lt;/a&gt; in which I describe how I created a generic Drupal-friendly container working with GitPod. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-GitPod&quot;&gt;The code is available in my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The first two posts covered the two big files: GitPod.Dockerfile and .gitpod.yml. This final post will cover a few minor changes I had to make to other configuration files.&lt;/p&gt;
-&lt;h2 id=&quot;apache-conf&quot; tabindex=&quot;-1&quot;&gt;Apache Conf &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-01-drupal-gitpod-container-3-settings-and-config/#apache-conf&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;apache-conf&quot; tabindex=&quot;-1&quot;&gt;Apache Conf &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/#apache-conf&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Only one thing needs to change from the default Apache configuration file: telling it to look at /web for the actual website content, instead of /var/www/html. That’s because a Drupal project typically has a top level that includes several necessary pieces of the site like the composer.json file, private files, and configuration sync files, outside the folder where the public site’s content is found.&lt;/p&gt;
 &lt;p&gt;That’s done by changing the document root from &lt;code&gt;&amp;quot;${GITPOD_REPO_ROOT}&amp;quot;&lt;/code&gt; to &lt;code&gt;&amp;quot;${GITPOD_REPO_ROOT}/web&amp;quot;&lt;/code&gt;, so the relevant section of the file looks something like this:&lt;/p&gt;
 &lt;pre class=&quot;language-apache&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-apache&quot;&gt;# Directory and files to be served
@@ -2830,14 +2830,14 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 &lt;/Directory&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To use this conf file, I saved my complete file in the .gitpod directory and then had the GitPod.Dockerfile copy that file into place:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; .gitpod/apache2.conf /etc/apache2/apache2.conf&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;php-ini&quot; tabindex=&quot;-1&quot;&gt;PHP.ini &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-01-drupal-gitpod-container-3-settings-and-config/#php-ini&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;php-ini&quot; tabindex=&quot;-1&quot;&gt;PHP.ini &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/#php-ini&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The PHP.ini is similarly close to the default Ubuntu, but not quite. We’ll have to add support for a few extensions at minimum. There are a couple ways to do this. One approach is to have the script add the lines to enable the extensions, without touching anything else. The advantage of this is keeping everything else to the default, which may matter as the GitPod base image changes over time. That would look like:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;extension=uploadprogress&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/php/8.0/apache2/php.ini&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The other alternative as I’ve done here is to completely overwrite the php.ini file with my own. The advantage of that approach is to also control all the other variables like the memory limit. The more you want to change from the default, the more this approach makes better sense than adding individual lines. So in that case, the file is copying using this line in the .gitpod.yml:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.ini&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max_execution_time from 30s to 300s, I might do this:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; sed -i &lt;span class=&quot;token string&quot;&gt;&quot;s/max_execution_time = 30/max_execution_time = 300/g&quot;&lt;/span&gt; /etc/php/8.0/apache2/php.ini&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;drupal-settings&quot; tabindex=&quot;-1&quot;&gt;Drupal settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-01-drupal-gitpod-container-3-settings-and-config/#drupal-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;drupal-settings&quot; tabindex=&quot;-1&quot;&gt;Drupal settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/#drupal-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Most of the Drupal settings are similar to the default. The largest change is familiar to any Drupal developer: set the database credentials. Since this is a GitPod container which gets created and destroyed on the fly regularly, I went simple using the root user and no password. A production server would have a different user and a good password.&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$databases&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
   &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;database&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;drupal&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
@@ -2867,12 +2867,12 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 	
 	<entry>
 		<title>GitLab DevOps: PHP Lint</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-02-05-gitlab-devops-php-lint/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/"/>
 		<updated>2022-02-05T13:51:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-02-05-gitlab-devops-php-lint/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/</id>
 		<content type="html">&lt;p&gt;Here’s another piece in a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps&lt;/a&gt; setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.&lt;/p&gt;
 &lt;p&gt;I split this into two pieces, taking advantage of &lt;a href=&quot;https://docs.gitlab.com/ee/ci/yaml/index.html#extends&quot;&gt;GitLab’s ability to extend other functions, even functions in other projects&lt;/a&gt;. My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in &lt;a href=&quot;https://github.com/ryan-l-robinson/GitLab-CI-CD&quot;&gt;my personal GitHub&lt;/a&gt;. I know that’s an unintuitive combination.&lt;/p&gt;
-&lt;h2 id=&quot;the-generic-ci-cd-functions&quot; tabindex=&quot;-1&quot;&gt;The generic CI/CD functions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-05-gitlab-devops-php-lint/#the-generic-ci-cd-functions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-generic-ci-cd-functions&quot; tabindex=&quot;-1&quot;&gt;The generic CI/CD functions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-generic-ci-cd-functions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To be able to test, I first need a general Oracle Linux 8 image that can run PHP 8.0 and composer for a Drupal site.&lt;/p&gt;
 &lt;pre class=&quot;language-gitlab&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitlab&quot;&gt;## Build an Oracle Linux 8 container, used by other tests below ##
 .ol8_lamp_build:
@@ -2913,7 +2913,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
           cd $cwd;
         done;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This has variables for the directory to start testing from, as well as what extensions to test. The extension variable defaults to only php files, but it can be overridden to include other extensions, which is valuable with Drupal where other extensions get used for php code like .module and .theme.&lt;/p&gt;
-&lt;h2 id=&quot;the-project-s-ci-file&quot; tabindex=&quot;-1&quot;&gt;The project’s CI file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-05-gitlab-devops-php-lint/#the-project-s-ci-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-project-s-ci-file&quot; tabindex=&quot;-1&quot;&gt;The project’s CI file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-project-s-ci-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Part two is the specific project that then references those generic templates. Using the full project reference, under the assumption that in a real situation this would be in a differernt GitLab project, that looks something like this in the project’s .gitlab-ci.yml file:&lt;/p&gt;
 &lt;pre class=&quot;language-gitlab&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitlab&quot;&gt;# Includes general CI jobs to extend from
 include:
@@ -2940,13 +2940,13 @@ php:
 	
 	<entry>
 		<title>GitLab DevOps: GitLab Runner</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-02-09-gitlab-devops-gitlab-runner/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/"/>
 		<updated>2022-02-09T14:03:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-02-09-gitlab-devops-gitlab-runner/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/</id>
 		<content type="html">&lt;p&gt;This relates to &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the GitLab DevOps process&lt;/a&gt;. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.&lt;/p&gt;
 &lt;p&gt;But there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.&lt;/p&gt;
 &lt;p&gt;Here’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.&lt;/p&gt;
-&lt;h2 id=&quot;install-gitlab-runner-package&quot; tabindex=&quot;-1&quot;&gt;Install GitLab Runner package &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-09-gitlab-devops-gitlab-runner/#install-gitlab-runner-package&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;install-gitlab-runner-package&quot; tabindex=&quot;-1&quot;&gt;Install GitLab Runner package &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#install-gitlab-runner-package&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First you need to install the GitLab Runner package on your server. GitLab will give you the instructions to do this, but here’s the general idea.&lt;/p&gt;
 &lt;p&gt;First, copy the package to your server, in the /usr/local/bin folder:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--output&lt;/span&gt; /usr/local/bin/gitlab-runner &lt;span class=&quot;token string&quot;&gt;&quot;https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -2955,7 +2955,7 @@ php:
 &lt;p&gt;Navigate to that folder and install:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /usr/local/bin
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; ./gitlab-runner &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--user&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;libgit --working-directory&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/home/libgit&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;register-a-runner&quot; tabindex=&quot;-1&quot;&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-09-gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;&lt;/a&gt;Register a runner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-09-gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;register-a-runner&quot; tabindex=&quot;-1&quot;&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;&lt;/a&gt;Register a runner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once the runner is installed, you’ll need to register at least one runner on the server.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; ./gitlab-runner register &lt;span class=&quot;token parameter variable&quot;&gt;--url&lt;/span&gt; https://gitlab.com/ --registration-token &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;token&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The script will prompt you with a few configuration options. Some are fairly obvious, but I’ll note a couple others.&lt;/p&gt;
@@ -2980,12 +2980,12 @@ php:
 	
 	<entry>
 		<title>Drupal: Fluid UI</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-02-13-drupal-fluid-ui/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-fluid-ui/"/>
 		<updated>2022-02-14T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-02-13-drupal-fluid-ui/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-fluid-ui/</id>
 		<content type="html">&lt;p&gt;In doing research on accessibility tools that could be incorporated into a Drupal site, a co-worker recommended &lt;a href=&quot;https://fluidproject.org/&quot;&gt;Fluid UI&lt;/a&gt;. This is not the same Fluid Framework used by Microsoft as the backbone of &lt;a href=&quot;https://www.zdnet.com/article/microsoft-introduces-loop-a-new-collaboration-tool-built-on-fluid-framework/&quot;&gt;the new Microsoft Loop tool&lt;/a&gt;, or &lt;a href=&quot;https://developer.microsoft.com/en-us/fluentui&quot;&gt;the Fluent UI Microsoft design language&lt;/a&gt;. There’s lots of use of Fluid and Fluent out there.&lt;/p&gt;
 &lt;p&gt;This one is an open source group out of Toronto focused on web accessibility, and they offer their tools in a few different formats. One is as &lt;a href=&quot;https://www.drupal.org/project/fluidui&quot;&gt;a convenient Drupal module&lt;/a&gt;. I installed it on a dev site and took a look at what it offered.&lt;/p&gt;
-&lt;h2 id=&quot;the-toolbar&quot; tabindex=&quot;-1&quot;&gt;The toolbar &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-13-drupal-fluid-ui/#the-toolbar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-toolbar&quot; tabindex=&quot;-1&quot;&gt;The toolbar &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-fluid-ui/#the-toolbar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It creates a toolbar across the top of the site, hidden by default behind a “+ Show Preferences” button. When expanded, there are a few options which can be valuable accessibility improvements.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/01/Fluid-UI-components.png&quot; alt=&quot;Fluid UI toolbar: text size, text style, line spacing, contrast, table of contents&quot; /&gt;
 &lt;em&gt;The toolbar with the 5 components&lt;/em&gt;&lt;/p&gt;
@@ -2997,7 +2997,7 @@ php:
 &lt;/ul&gt;
 &lt;p&gt;The only one I don’t quite understand the value of is the table of contents. It gives a bland unstyled list of links, programmatically generated based on the headers on the page. I’m not sure who this is for. Sighted users can see the headers. Blind or low-vision users can navigate in a screen reader by the header levels already, much more useful than a table of contents at the top. I assume there is a use case because these developers know a lot more about accessibility than I do, but I have failed to think of what it is. Feel free to comment if you know.&lt;/p&gt;
 &lt;p&gt;It’s also a bit odd visually, needing to scroll sideways to see all the options. I’d like to think there would be a better way to display them all.&lt;/p&gt;
-&lt;h2 id=&quot;configuration&quot; tabindex=&quot;-1&quot;&gt;Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-13-drupal-fluid-ui/#configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configuration&quot; tabindex=&quot;-1&quot;&gt;Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-fluid-ui/#configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It has limited admin configuration options both around what pages the toolbox should appear on:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/01/Fluid-UI-configuration.png&quot; alt=&quot;Fluid UI configuration options, described below&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -3005,19 +3005,19 @@ php:
 &lt;li&gt;Hide the toolbox on these pages (text area to specify pages). There might be some unique pages where it doesn’t work very well, so you can name those as exceptions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I am a little tempted to come up with a basic settings page that can turn on or off each component, instead of it being an all-or-nothing, and maybe be able to change the order of the components, then offer that back to the developers. It’s not a big need, though; most are going to be happy with leaving everything on.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-13-drupal-fluid-ui/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-fluid-ui/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Overall, it’s a good tool. It is a little rough, so I do hope they smooth it out some more, but it’s certainly much better than not offering these accessibility improvements at all.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Drupal: Sync Configuration</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-02-17-drupal-sync-configuration/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/"/>
 		<updated>2022-02-18T00:14:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-02-17-drupal-sync-configuration/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/</id>
 		<content type="html">&lt;p&gt;Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps&lt;/a&gt; posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.&lt;/p&gt;
 &lt;p&gt;Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.&lt;/p&gt;
-&lt;h2 id=&quot;what-s-included&quot; tabindex=&quot;-1&quot;&gt;What’s included &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-17-drupal-sync-configuration/#what-s-included&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-s-included&quot; tabindex=&quot;-1&quot;&gt;What’s included &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#what-s-included&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is not a full database backup, but it does include most settings, such as:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Enabled extensions and themes&lt;/li&gt;
@@ -3030,7 +3030,7 @@ php:
 &lt;p&gt;This distinction between configuration and content makes sense in a couple ways.&lt;/p&gt;
 &lt;p&gt;Configuration changes are usually made first in your development environment, tested thoroughly, and then pushed through the pipeline. That’s not true for content. Content is often going to be created or edited first by the regular site users on production. Those don’t need technical teams to approve and test everything and are available to more users to do directly and have go into effect immediately.&lt;/p&gt;
 &lt;p&gt;You also don’t need to synchronize all content in the same way, since for the most part the presence or absence of an extra basic page node does not affect the ability to sufficiently test anything new that needs to be tested. It’s ok if you let your production site’s content get ahead of your development environment in a way that you don’t want to happen with configuration.&lt;/p&gt;
-&lt;h2 id=&quot;git-workflow&quot; tabindex=&quot;-1&quot;&gt;Git workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-17-drupal-sync-configuration/#git-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;git-workflow&quot; tabindex=&quot;-1&quot;&gt;Git workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#git-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The ideal flow for these changes is integrated with your code git flow. You can export your configuration on dev, add it to the git repository, push through to the next server in your CI/CD chain, and import it there. Much of this can be streamlined with CI/CD tools, but here are the manual steps:&lt;/p&gt;
 &lt;p&gt;To export the configuration:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;drush config-export&lt;/code&gt;&lt;/pre&gt;
@@ -3043,7 +3043,7 @@ php:
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; pull
 drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;More on &lt;a href=&quot;https://www.drush.org/latest/commands/config_import/&quot;&gt;the drush command&lt;/a&gt; can be seen here.&lt;/p&gt;
-&lt;h2 id=&quot;manual&quot; tabindex=&quot;-1&quot;&gt;Manual &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-02-17-drupal-sync-configuration/#manual&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;manual&quot; tabindex=&quot;-1&quot;&gt;Manual &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#manual&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can also sync config manually one group of settings at a time. This is a slower process, so you wouldn’t take this route in a normal workflow of pushing dev changes out to production.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/01/Config-sync.png&quot; alt=&quot;Configuration sync screen, allowing for import, export, and full archive or single items&quot; /&gt;
 &lt;em&gt;Screenshot of importing a single configuration item&lt;/em&gt;&lt;/p&gt;
@@ -3053,9 +3053,9 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft Teams: Guest Notifications</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-03-microsoft-teams-guest-notifications/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/microsoft-teams-guest-notifications/"/>
 		<updated>2022-03-03T16:44:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-03-microsoft-teams-guest-notifications/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/microsoft-teams-guest-notifications/</id>
 		<content type="html">&lt;p&gt;Microsoft Teams has the great ability to invite users who are in other organizations to join your Teams in order to collaborate, assuming your IT admin has not turned that feature off. Guests in the Team can’t do everything that an internal member can do, but it’s pretty close, so it’s a strong environment for connecting with partners.&lt;/p&gt;
 &lt;p&gt;But there is one pretty significant catch to be aware of: notifications.&lt;/p&gt;
 &lt;p&gt;Here’s a way to think about it that I find helpful: it comes down to who owns the data. When somebody messages in a Team channel thread, that data is owned by that Team.&lt;/p&gt;
@@ -3072,19 +3072,19 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Drupal: Ckeditor Abbreviation</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-07-drupal-ckeditor-abbreviation/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-ckeditor-abbreviation/"/>
 		<updated>2022-03-07T16:35:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-07-drupal-ckeditor-abbreviation/</id>
-		<content type="html">&lt;p&gt;One of the HTML tags that many are not aware of is &lt;a href=&quot;https://www.w3schools.com/TAGS/tag_abbr.asp&quot;&gt;the &amp;lt;abbr&amp;gt; tag&lt;/a&gt;. This is a useful tag to help provide explanations of abbreviations within the body of the text. If you’re reading along and see an abbreviation for &lt;abbr title=&quot;WordPress&quot;&gt;WP&lt;/abbr&gt; and you know what it is, you can keep reading. If you’re reading along and see an abbreviation and don’t know what it is, you can hover over it and it will show you an explanation. It’s a win-win, providing an explanation for those that need it without needing to add more text in the main body which may come across as over-explaining for those that don’t need it.&lt;/p&gt;
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-ckeditor-abbreviation/</id>
+		<content type="html">&lt;p&gt;One of the HTML tags that many are not aware of is &lt;a href=&quot;https://www.w3schools.com/TAGS/tag_abbr.asp&quot;&gt;the &lt;abbr&gt; tag&lt;/abbr&gt;&lt;/a&gt;. This is a useful tag to help provide explanations of abbreviations within the body of the text. If you’re reading along and see an abbreviation for &lt;abbr title=&quot;WordPress&quot;&gt;WP&lt;/abbr&gt; and you know what it is, you can keep reading. If you’re reading along and see an abbreviation and don’t know what it is, you can hover over it and it will show you an explanation. It’s a win-win, providing an explanation for those that need it without needing to add more text in the main body which may come across as over-explaining for those that don’t need it.&lt;/p&gt;
 &lt;p&gt;To make it easy to insert this tag into Drupal content, you can install &lt;a href=&quot;https://www.drupal.org/project/ckeditor_abbreviation&quot;&gt;the ckeditor_abbreviation module&lt;/a&gt;. This is a simple but effective module that adds a button to the ckeditor WYSIWYG editing panel that enables users to add an &amp;lt;abbr&amp;gt; without touching any code. The interface fits in seamlessly, with a similar experience to adding a link.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>GitHub and GitLab: Diagrams in Markdown</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-09-github-and-gitlab-diagrams-in-markdown/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/github-gitlab-diagrams-markdown/"/>
 		<updated>2022-03-10T01:00:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-09-github-and-gitlab-diagrams-in-markdown/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/github-gitlab-diagrams-markdown/</id>
 		<content type="html">&lt;p&gt;GitHub recently announced &lt;a href=&quot;https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/&quot;&gt;a great new feature that allows for generating diagrams within markdown&lt;/a&gt;. I tested this out and it also works in GitLab.&lt;/p&gt;
 &lt;p&gt;If you’re writing a lot of documentation in markdown, as you probably are if you’re using GitHub or GitLab, this can be really nice when you need diagrams, like mapping out your CI/CD system or server maps. You can build diagrams much faster than putting something together in Photoshop or some other diagramming tool that exports an image which you then need to upload.&lt;/p&gt;
 &lt;p&gt;This is all it takes, building off the standard code markdown “` markers and using arrows to indicate links between objects.&lt;/p&gt;
@@ -3099,9 +3099,9 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Free as in Cats</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-12-free-as-in-cats/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/free-as-in-cats/"/>
 		<updated>2022-03-12T13:58:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-12-free-as-in-cats/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/free-as-in-cats/</id>
 		<content type="html">&lt;p&gt;I once heard the phrase that most open source projects (the context was specifically Drupal) was not free as in beer but was free as in cats.&lt;/p&gt;
 &lt;p&gt;What he meant by that is that you may not pay for the code up front, but you probably do have to pay to keep it running and you need to give it your attention if you really want to get the best of it. It’s not something you can enjoy with no responsibility.&lt;/p&gt;
 &lt;p&gt;Cats need food, attention (sometimes while you’re trying to sleep or use your computer), clean litter, play time, and so on. Open source technology needs code maintenance and infrastructure to run it.&lt;/p&gt;
@@ -3114,16 +3114,16 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>PHP: XDebug in VS Code</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/"/>
 		<updated>2022-03-15T12:04:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://xdebug.org/&quot;&gt;XDebug&lt;/a&gt; is a helpful tool when debugging PHP code. XDebug is a step debugging tools that helps you inspect functionality of PHP code in a cleaner way than regularly writing dump/log statements.&lt;/p&gt;
 &lt;p&gt;I will not get into details here about setting up XDebug on a server, but you can find that with some Internet searching. Instead, this post is about how to use XDebug within Visual Studio Code.&lt;/p&gt;
-&lt;h2 id=&quot;install-the-extension&quot; tabindex=&quot;-1&quot;&gt;Install the Extension &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/#install-the-extension&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;install-the-extension&quot; tabindex=&quot;-1&quot;&gt;Install the Extension &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/#install-the-extension&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First, install &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug&quot;&gt;the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/03/PHP-Debug-extension-page.png&quot; alt=&quot;&amp;quot;Visual Studio Code extension page&amp;quot;&quot; /&gt;
 &lt;em&gt;Screenshot of the extension in the directory&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&quot;start-the-listener&quot; tabindex=&quot;-1&quot;&gt;Start the Listener &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/#start-the-listener&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;start-the-listener&quot; tabindex=&quot;-1&quot;&gt;Start the Listener &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/#start-the-listener&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To start the XDebug listener:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.&lt;/li&gt;
@@ -3132,14 +3132,14 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/03/Debug-panel.png&quot; alt=&quot;&amp;quot;XDebug in VS Code debug panel&amp;quot;&quot; /&gt;
 &lt;em&gt;Debug panel&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&quot;monitor-notices-warnings-etc&quot; tabindex=&quot;-1&quot;&gt;Monitor Notices, Warnings, etc &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/#monitor-notices-warnings-etc&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;monitor-notices-warnings-etc&quot; tabindex=&quot;-1&quot;&gt;Monitor Notices, Warnings, etc &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/#monitor-notices-warnings-etc&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You can monitor for any notices, warnings, errors, or exceptions that occur while the listener is running.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.&lt;/li&gt;
 &lt;li&gt;If it is collapsed, expand the “Breakpoints” accordion section.&lt;/li&gt;
 &lt;li&gt;Select under what conditions you want to break and show you results, e.g. Notices, Warnings.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;add-a-breakpoint&quot; tabindex=&quot;-1&quot;&gt;Add a Breakpoint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-15-php-xdebug-in-vs-code/#add-a-breakpoint&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;add-a-breakpoint&quot; tabindex=&quot;-1&quot;&gt;Add a Breakpoint &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/php-xdebug-vs-code/#add-a-breakpoint&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You can add a breakpoint at a line in the code and have XDebug report the value of variables as of the start of that line.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;In the VS Code editor for the code you want to check, scroll to the left of the line of code you want to break. This will cause a little red dot to appear. Click on that red dot to create the breakpoint.&lt;/li&gt;
@@ -3153,12 +3153,12 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Drupal Docker: devcontainer</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-18-drupal-docker-devcontainer/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/"/>
 		<updated>2022-03-18T12:38:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-18-drupal-docker-devcontainer/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/</id>
 		<content type="html">&lt;p&gt;I have previously shared &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/vagrant-oracle-linux-vm/&quot;&gt;setting up local development environments using vagrant&lt;/a&gt; and &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;GitPod&lt;/a&gt; in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.&lt;/p&gt;
 &lt;p&gt;Code for this is found in &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;overview&quot; tabindex=&quot;-1&quot;&gt;Overview &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-18-drupal-docker-devcontainer/#overview&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;overview&quot; tabindex=&quot;-1&quot;&gt;Overview &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#overview&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There will need to be several files to make this work:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;devcontainer.json for how to integrate with &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;VS Code&lt;/a&gt;&lt;/li&gt;
@@ -3167,7 +3167,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;php.Dockerfile for the PHP-FPM container (Oracle Linux based)&lt;/li&gt;
 &lt;li&gt;db.Dockerfile for the MariaDB database container (a simpler image from an official MariaDB image)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;devcontainer-json&quot; tabindex=&quot;-1&quot;&gt;Devcontainer.json &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-18-drupal-docker-devcontainer/#devcontainer-json&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;devcontainer-json&quot; tabindex=&quot;-1&quot;&gt;Devcontainer.json &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#devcontainer-json&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ll start at the first file which gets called when you open VS Code: the .devcontainer/devcontainer.json.&lt;/p&gt;
 &lt;p&gt;The most important pieces are near the top. This includes:&lt;/p&gt;
 &lt;p&gt;Where to find the Docker composer file:&lt;/p&gt;
@@ -3193,7 +3193,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
       &quot;vscode-icons-team.vscode-icons&quot;,
       &quot;xdebug.php-debug&quot;,
     ],&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;scripts&quot; tabindex=&quot;-1&quot;&gt;Scripts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-03-18-drupal-docker-devcontainer/#scripts&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;scripts&quot; tabindex=&quot;-1&quot;&gt;Scripts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#scripts&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You can trigger other scripts to run at various points in the process.&lt;/p&gt;
 &lt;p&gt;The primary one I made use of is postCreateCommand. This will run only once when the container is first built. This one is much more complicated building the entire site. I’ll have another post dedicated to that script.&lt;/p&gt;
 &lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;    &quot;postCreateCommand&quot;: &quot;/bin/bash -c &#92;&quot;/postCreateCommand.sh&#92;&quot;&quot;,&lt;/code&gt;&lt;/pre&gt;
@@ -3204,30 +3204,30 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Power Apps: People Lookup</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-02-People-Lookup/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/people-lookup/"/>
 		<updated>2022-05-02T16:00:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-02-People-Lookup/</id>
-		<content type="html">&lt;h2 id=&quot;background&quot; tabindex=&quot;-1&quot;&gt;Background &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-02-People-Lookup/#background&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		<id>https://tech.ryanrobinson.ca/posts/2022/people-lookup/</id>
+		<content type="html">&lt;h2 id=&quot;background&quot; tabindex=&quot;-1&quot;&gt;Background &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/people-lookup/#background&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A while ago I started a post in the series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions. Back then, it was much more complicated to add a user from your Azure Active Directory as a field stored on an item. It&#39;s trivial when you&#39;re using a SharePoint list as the back-end for the data storage, since there are people lookup fields in SharePoint lists. But it&#39;s more complicated if you want to put it into DataVerse or not store it anywhere - only send it directly to a Power Automate Flow.&lt;/p&gt;
 &lt;p&gt;The latter is what I wanted to do with the SharePoint site provisioning. I wanted to accept a user on the Power Apps form and then the Flow would assign permissions based on that. I did not successfully finish writing that up, so I&#39;ll only include my old incomplete notes below.&lt;/p&gt;
-&lt;h2 id=&quot;good-news&quot; tabindex=&quot;-1&quot;&gt;Good News! &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-02-People-Lookup/#good-news&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;good-news&quot; tabindex=&quot;-1&quot;&gt;Good News! &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/people-lookup/#good-news&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I finish the post now because there&#39;s great news: &lt;a href=&quot;https://powerapps.microsoft.com/en-us/blog/announcing-the-aad-user-virtual-table-find-and-add-any-aad-user-to-your-records/&quot;&gt;Microsoft has now made that much easier out of the box&lt;/a&gt;. That post includes lots of information for how to use this new tool.&lt;/p&gt;
-&lt;h2 id=&quot;old-way&quot; tabindex=&quot;-1&quot;&gt;Old Way &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-02-People-Lookup/#old-way&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;old-way&quot; tabindex=&quot;-1&quot;&gt;Old Way &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/people-lookup/#old-way&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here&#39;s the video from the old way of doing it that I was starting to implement, but you can now safely ignore that and use the new way instead.&lt;/p&gt;
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xs_hWRNCwuA&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content>
 	</entry>
 	
 	<entry>
 		<title>Tel Links</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-03-tel-links/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/tel-links/"/>
 		<updated>2022-05-04T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-03-tel-links/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/tel-links/</id>
 		<content type="html">&lt;p&gt;For many years there has been a standard for making links that open phone apps to dial a phone number. This is really great. Imagine you&#39;re browsing a website for a pizza place and you want to start a phone call to place the order. Without a tel link, especially on mobile, you&#39;re stuck memorizing the number and copying it over to your phone app. With a tel link, you quickly click on the link and your phone app is opened with the number in the dialpad.&lt;/p&gt;
 &lt;p&gt;The problem comes with extensions. How do you tell the phone app to dial an extension after the base number?&lt;/p&gt;
 &lt;p&gt;Some quick searching of the Internet seems to point toward the use of w (for wait) or p (for pause) as the marker between the number and the extension, e.g. 555-555-5555w555 or 555-555-5555p555. I tested these options on my Android phone and on Skype on a Windows 10 machine (the version from the Store). They did not work.&lt;/p&gt;
 &lt;p&gt;Some more research found that another option was a comma (,). This one does work on both iOS and Android. It does not work with desktop Skype.&lt;/p&gt;
 &lt;p&gt;It also might not cover absolutely everything that has to be pressed. For example, in the system I tested in, it required pressing # after the extension. It did not work to add # to the end of the link, e.g. tel:+1555-555-5555,555#&lt;/p&gt;
-&lt;h2 id=&quot;now-what&quot; tabindex=&quot;-1&quot;&gt;Now What? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-03-tel-links/#now-what&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;now-what&quot; tabindex=&quot;-1&quot;&gt;Now What? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/tel-links/#now-what&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;So, what should you do? It&#39;s not very consistent, unfortunately. If you know your audience is solely or mostly iOS and Android, you can proceed with the comma approach. But that will fail completely - not gracefully - in other uncommon circumstances like Skype. That might be an acceptable trade most of the time, because how many people are really clicking on a phone link on something other than iOS or Android at this point?&lt;/p&gt;
 &lt;p&gt;A middle ground approach is to link the base phone number without the extension. This will work on any phone app that supports the tel protocol. This leaves some minor room for confusion, though: somebody clicks the link, it launches the phone app, then you hear it asking for an extension, so you have to switch back to the browser to read the extension, and switch back to the app to enter it. That&#39;s a bit of an annoying surprise, but I&#39;m in the camp that it is still less annoying than having no link at all.&lt;/p&gt;
 &lt;p&gt;And of course, that&#39;s the third option: don&#39;t link anything. This would be the philosophy that it&#39;s better to do nothing if you can&#39;t do it perfect.&lt;/p&gt;
@@ -3236,51 +3236,51 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	</entry>
 	
 	<entry>
-		<title>GitHub Pages: Building a Site</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/"/>
+		<title>GitHub Pages: Building a Jekyll Site</title>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/building-jekyll/"/>
 		<updated>2022-05-05T11:39:18Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/building-jekyll/</id>
 		<content type="html">&lt;p&gt;I recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/civicrm/free-as-in-cats/&quot;&gt;free as in cats&lt;/a&gt; and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.&lt;/p&gt;
 &lt;p&gt;Here’s a high level look at how I did it, and the code &lt;a href=&quot;https://github.com/ryan-l-robinson/ryan-l-robinson.github.io&quot;&gt;is available in my GitHub&lt;/a&gt;. The main branch is everything I control, then the GitHub Actions generate the site on the gh-pages branch.&lt;/p&gt;
-&lt;h2 id=&quot;chirpy-theme&quot; tabindex=&quot;-1&quot;&gt;Chirpy Theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/#chirpy-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;chirpy-theme&quot; tabindex=&quot;-1&quot;&gt;Chirpy Theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#chirpy-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I looked around for a bit and chose to start from &lt;a href=&quot;http://jekyllthemes.org/themes/jekyll-theme-chirpy/&quot;&gt;the Chirpy theme&lt;/a&gt;. I like its simple design while still supporting the key blog features: categories, tags, archive timeline. And the biggest selling point was the switch between dark and light modes. That’s a nice feature to offer visitors.&lt;/p&gt;
 &lt;p&gt;It does have a few things I wish were better. The navigation sidebar is not in a nav element, so that&#39;s a bit less than ideal accessibility. It also leans heavily on using ID for every element instead of class, which means my &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt; is constantly warning me that this is a fragile way to build a site. And the default colour contrasts are not strong enough in several places, but that can be overridden with CSS (see below).&lt;/p&gt;
 &lt;p&gt;Knowing myself, I&#39;ll probably try to find a different theme in 1-2 years, but for now, this will do.&lt;/p&gt;
-&lt;h2 id=&quot;config&quot; tabindex=&quot;-1&quot;&gt;Config &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/#config&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;config&quot; tabindex=&quot;-1&quot;&gt;Config &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#config&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next step was to create the general config of the site and any pages outside of the blog posts like the About page. Config provided several options including where to find the profile photo, which social network links to show in the sidebar and as share buttons on posts, whether to default to light or dark mode.&lt;/p&gt;
 &lt;p&gt;About is a simple markdown file with some front matter, and placed within the _tabs folder which will add it to the main navigation. Adding more pages to this _tabs folder will add them to the main navigation as well.&lt;/p&gt;
-&lt;h2 id=&quot;assets&quot; tabindex=&quot;-1&quot;&gt;Assets &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/#assets&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;assets&quot; tabindex=&quot;-1&quot;&gt;Assets &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#assets&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The largest piece of work was editing the assets, specifically the CSS stylesheet. The key idea for this is that anything I put in a folder called “assets” would add to and override the default assets folder on the site. This includes images and stylesheets. This stylesheet behaviour is similar to WordPress where you can have a child theme build on and override certain pieces of the stylesheet.&lt;/p&gt;
-&lt;h2 id=&quot;posts&quot; tabindex=&quot;-1&quot;&gt;Posts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/#posts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;posts&quot; tabindex=&quot;-1&quot;&gt;Posts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#posts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I chose to use a WordPress plugin to export everything on my WordPress site into Jekyll format. It worked pretty well, but did leave a few pieces I wanted to clean up myself. Some of the front matter it included was not relevant to my theme, so I removed those. The image in the front matter was not the right syntax, so I had to adjust each of those. And it wrapped every image in a figure tag with a caption, while this theme supports a simpler syntax for images, so I also replaced those. Some of the code around images and YouTube video embeds were messier than they needed to be.&lt;/p&gt;
 &lt;p&gt;I&#39;ll have more in a future post about how I write and publish posts.&lt;/p&gt;
-&lt;h2 id=&quot;domain&quot; tabindex=&quot;-1&quot;&gt;Domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-05-Building-a-Site/#domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;domain&quot; tabindex=&quot;-1&quot;&gt;Domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;What I have not done yet is assigning a domain. I will move my ryanrobinson.techology domain to here, but haven&#39;t yet. &lt;a href=&quot;https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site&quot;&gt;It seems like a pretty straightforward process&lt;/a&gt;.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>WordPress vs Jekyll</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/"/>
 		<updated>2022-05-10T15:22:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/</id>
 		<content type="html">&lt;p&gt;I recently switched from running this blog off a WordPress site to running it off a GitHub Pages site built on a Jekyll theme. Here&#39;s a few thoughts on the pro&#39;s and con&#39;s of each.&lt;/p&gt;
-&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;WordPress offers support for multiple users with different permissions. You can have some admins with full site control, some editors to oversee content, some authors who can only write new content.&lt;/p&gt;
 &lt;p&gt;Jekyll does not, except inasmuch as you have multiple contributors to the GitHub project. You can set a different author name for a post in the front matter, but there&#39;s no permission level for ongoing content management.&lt;/p&gt;
-&lt;h2 id=&quot;ease-of-building&quot; tabindex=&quot;-1&quot;&gt;Ease of building &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#ease-of-building&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ease-of-building&quot; tabindex=&quot;-1&quot;&gt;Ease of building &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#ease-of-building&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Somebody inexperienced with website building can still have a pretty good WordPress ssite ready in half an hour, especially on WordPress.com but even on many self-hosted WordPress sites since many hosts provide tools to quickly install it in a few clicks.&lt;/p&gt;
 &lt;p&gt;Jekyll takes more expertise. Even when using an existing theme, you still need to learn a few things about GitHub, edit configuration in files (not interfaces), and handle tasks like resizing image assets and cleaning up code yourself.&lt;/p&gt;
-&lt;h2 id=&quot;cost&quot; tabindex=&quot;-1&quot;&gt;Cost &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#cost&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;cost&quot; tabindex=&quot;-1&quot;&gt;Cost &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#cost&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;GitHub Pages is &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/civicrm/free-as-in-cats/&quot;&gt;free as in cats&lt;/a&gt;. WordPress will usually cost at least a little in hosting, unless you do the free ad-supported WordPress.com instead, but that has other limitations.&lt;/p&gt;
-&lt;h2 id=&quot;maintenance&quot; tabindex=&quot;-1&quot;&gt;Maintenance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#maintenance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;maintenance&quot; tabindex=&quot;-1&quot;&gt;Maintenance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#maintenance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With a WordPress self-hosted site you need to update WordPress, plugins, and server software like PHP on a regular basis or you&#39;ll have exposed security vulnerabilities. It&#39;s not hard most of the time - unless you hit a situation like your theme not working with secure versions of PHP - but it is something you need to remember.&lt;/p&gt;
 &lt;p&gt;There&#39;s none of that with a Jekyll GitHub Pages site. Just don&#39;t delete your GitHub project. There is no PHP, no server maintenance, no juggling of a dozen contributed modules that may or may not be maintained.&lt;/p&gt;
-&lt;h2 id=&quot;formatting&quot; tabindex=&quot;-1&quot;&gt;Formatting &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#formatting&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;formatting&quot; tabindex=&quot;-1&quot;&gt;Formatting &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#formatting&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;WordPress offers a lot of built-in editing and formatting tools, well beyond the basics of HTML tags. It has a lot of little features that add up. A couple of my favourites include searching for other pages on your site to add links, which means you seldom end up with a bad link, and an image upload interface paired with resizing tools to always show at the right size.&lt;/p&gt;
 &lt;p&gt;With Jekyll the sites are written in markdown. It&#39;s a bit faster if you know what you&#39;re doing but has a lesser set of design options, such as no columns. Depending on your editor, you may also need to memorize the markdown syntax for each format you want, without a WYSIWYG. It also doesn&#39;t have those other helpful checks like confirming that a link really does exist on the site before you publish it.&lt;/p&gt;
 &lt;p&gt;So which is faster? Depends on the complexity of your posts. If you&#39;re mostly writing text with some headers, like this post, markdown can be pretty quick and easy on any device. But if you want columns, easy images, links to other pages on your site... WordPress may end up faster.&lt;/p&gt;
-&lt;h2 id=&quot;more-features&quot; tabindex=&quot;-1&quot;&gt;More Features &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-10-WordPress-vs-Jekyll/#more-features&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;more-features&quot; tabindex=&quot;-1&quot;&gt;More Features &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#more-features&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;WordPress also includes other features like:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Scheduling to publish at a certain time in the future - useful to optimize your release window for maximum engagement&lt;/li&gt;
@@ -3293,19 +3293,19 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft 365: Email Suspected of Spam</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/"/>
 		<updated>2022-05-13T01:35:47Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/</id>
-		<content type="html">&lt;h2 id=&quot;what-s-the-error-message&quot; tabindex=&quot;-1&quot;&gt;What’s the error message &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/#what-s-the-error-message&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		<id>https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/</id>
+		<content type="html">&lt;h2 id=&quot;what-s-the-error-message&quot; tabindex=&quot;-1&quot;&gt;What’s the error message &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#what-s-the-error-message&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A scenario I encountered recently was a user getting this error message:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Your message couldn&#39;t be delivered because you weren&#39;t recognized as a valid sender. The most common reason for this is that your email address is suspected of sending spam and it&#39;s no longer allowed to send messages outside of your organization. Contact your email admin for assistance.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This happened with every email they tried to send.&lt;/p&gt;
-&lt;h2 id=&quot;why-it-happened&quot; tabindex=&quot;-1&quot;&gt;Why it happened &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/#why-it-happened&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;why-it-happened&quot; tabindex=&quot;-1&quot;&gt;Why it happened &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#why-it-happened&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;They were not actually sending spam in the truest sense of that word. But they were sending bulk emails out of Outlook like any other email, and possibly without some of the requirements we have in Canada for anti-spam legislation (e.g. there has to be a link to unsubcribe from any bulk mailing list). So, even if it wasn&#39;t truly spam, it had some of the characteristics of spam: sending a lot at once, with the same generic message, without the ability to unsubscribe. Microsoft&#39;s email service concluded that this was spam, probably because you got hacked, and thus shut down the account until an administrator could investigate.&lt;/p&gt;
 &lt;p&gt;The valuable thing to remember here is that Microsoft 365 email mailboxes are not intended for bulk mail distribution. There are specific services like MailChimp that are designed to handle all those extra factors in a way that a standard email doesn&#39;t. They will send out in staggered time, with multiple servers. They&#39;ll have templates that ensure you aren&#39;t missing any legal requirements. So, don&#39;t use a standard email - Microsoft or otherwise - to send bulk mail. It will catch up to you eventually.&lt;/p&gt;
-&lt;h2 id=&quot;how-to-fix-it&quot; tabindex=&quot;-1&quot;&gt;How to fix it &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-12-Microsoft-365-Email-Suspected-of-Spam/#how-to-fix-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;how-to-fix-it&quot; tabindex=&quot;-1&quot;&gt;How to fix it &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#how-to-fix-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;After this error occurs, an administrator with the necessary permissions will have to unblock the user&#39;s account. Don&#39;t do this until you&#39;re confident that you&#39;ve dealt with the root issue, i.e. that the sender is not sending bulk email anymore.&lt;/p&gt;
 &lt;p&gt;Once you&#39;re ready:&lt;/p&gt;
 &lt;ol&gt;
@@ -3317,18 +3317,18 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>GitHub Pages: Mobile Authoring</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-15-Mobile-Authoring/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/"/>
 		<updated>2022-05-16T02:47:58Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-15-Mobile-Authoring/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/github-pages/building-site/&quot;&gt;I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free&lt;/a&gt;. It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.&lt;/p&gt;
 &lt;p&gt;One thing I was worried about, though, is writing from my phone. My habit has often been that I write rough notes on my phone, then finalize it on a computer and hit publish. I didn’t want to lose that. So here’s what I did.&lt;/p&gt;
-&lt;h2 id=&quot;mobile-app&quot; tabindex=&quot;-1&quot;&gt;Mobile App &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-15-Mobile-Authoring/#mobile-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;mobile-app&quot; tabindex=&quot;-1&quot;&gt;Mobile App &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/#mobile-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First I needed an app on my Android phone to edit the Markdown files. I tried a few and settled on &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.gsantner.markor&amp;amp;gl=US&quot;&gt;Markor&lt;/a&gt;. It can stay opened to an entire folder, can create files, edit files, delete files. You can write in markdown and preview what it looks like (without anything like CSS styling from the site, of course). It does have some modes that are unnecessary to me - to do and quick notes - and no way to turn them off in the interface.&lt;/p&gt;
 &lt;p&gt;The runner up was &lt;a href=&quot;https://play.google.com/store/apps/details?id=co.easy4u.writer&amp;amp;gl=US&quot;&gt;WriterPlus&lt;/a&gt;. It was a cleaner interface. It&#39;s more of a pure distraction-free writing app. But it did not have syntax highlighting, WYSIWYG buttons, or a preview mode. Those aren&#39;t big losses for my purposes mostly of writing notes on the phone to be finalized on a computer, but I decided Markor was worth the trade.&lt;/p&gt;
-&lt;h2 id=&quot;sync&quot; tabindex=&quot;-1&quot;&gt;Sync &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-15-Mobile-Authoring/#sync&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sync&quot; tabindex=&quot;-1&quot;&gt;Sync &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/#sync&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next problem is getting those markdown files to the GitHub repositories. One app, &lt;a href=&quot;https://play.google.com/store/apps/details?id=io.gitjournal.gitjournal&amp;amp;gl=US&quot;&gt;GitJournal&lt;/a&gt;, did promise to do this directly from the phone, although I did not go all the way through tests for that. But I wasn&#39;t looking for that. As I said in the intro, I usually like to write from my phone but then finalize it from a computer. So I was happy with a middle step of getting my notes to a computer and then using the computer to get it to GitHub.&lt;/p&gt;
 &lt;p&gt;That brought me to &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.onesyncv2&amp;amp;gl=US&quot;&gt;the OneSync app&lt;/a&gt;. This lets me sync the folder of the whole project to my OneDrive. I can write on my phone and then pick up later on a computer or vice versa.&lt;/p&gt;
-&lt;h2 id=&quot;commit-to-github&quot; tabindex=&quot;-1&quot;&gt;Commit to GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-05-15-Mobile-Authoring/#commit-to-github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;commit-to-github&quot; tabindex=&quot;-1&quot;&gt;Commit to GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/#commit-to-github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;After that is straightforward. The files are on my computer in a project folder via OneDrive. Now I can open that folder in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;, finalize the changes, and commit to GitHub which will rebuild the site based on the latest files. Publishing only one article at a time is simple enough if you’re familiar with git: you can stage and commit that file while leaving others uncommitted as “drafts.” or I can keep drafts in a different folder, in which case they can be committed without publishing.&lt;/p&gt;
 &lt;p&gt;I&#39;ve gone as far as having separate folders depending on the stage of what I&#39;m writing: there are ideas for new drafts, there are drafts where I have started but not finished the necessary demos and tests, there are drafts where everything is ready but not finished writing, and there are posts that can be published. All but posts go in the gitignore so they stay synced in my OneDrive but not in my GitHub.&lt;/p&gt;
 </content>
@@ -3336,9 +3336,9 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Drupal: Sync Content</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-05-26-Sync-Content/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-sync-content/"/>
 		<updated>2022-05-26T19:31:19Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-05-26-Sync-Content/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-sync-content/</id>
 		<content type="html">&lt;p&gt;I have &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-sync-configuration/&quot;&gt;previously covered syncing configuration across Drupal&lt;/a&gt;. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.&lt;/p&gt;
 &lt;p&gt;There is &lt;a href=&quot;https://www.drupal.org/project/content_sync&quot;&gt;an extra module available called content_sync&lt;/a&gt;. Unfortunately, it is not a very reliable extra module, at least in my configuration. With that said, I will still share the main extra consideration to take into your plans.&lt;/p&gt;
 &lt;p&gt;The caveat for this is that it gets a bit more complicated in most regular usage than configuration, because content changes can happen in both directions.&lt;/p&gt;
@@ -3358,19 +3358,19 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Drupal Docker: The Dockerfiles</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-06-23-The-Dockerfiles/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-dockerfiles/"/>
 		<updated>2022-06-24T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-06-23-The-Dockerfiles/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-dockerfiles/</id>
 		<content type="html">&lt;p&gt;This continues a mini-series describing how I set up a Drupal development environment using &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop and the VS Code devcontainer functionality&lt;/a&gt;. The full code is available in &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post takes a look at the three Dockerfiles required:&lt;/p&gt;
-&lt;h2 id=&quot;mariadb&quot; tabindex=&quot;-1&quot;&gt;MariaDB &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-23-The-Dockerfiles/#mariadb&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;mariadb&quot; tabindex=&quot;-1&quot;&gt;MariaDB &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-dockerfiles/#mariadb&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Let’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Use the default MariaDB image, not a specific Oracle Linux one&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; mariadb:latest&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Expose the MySQL port to be accessible to the web container.&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3306&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;php&quot; tabindex=&quot;-1&quot;&gt;PHP &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-23-The-Dockerfiles/#php&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;php&quot; tabindex=&quot;-1&quot;&gt;PHP &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-dockerfiles/#php&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This image starts from Oracle Linux, a requirement of this particular hosting environment:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; oraclelinux:8&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; root&lt;/span&gt;
@@ -3416,7 +3416,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Start PHP-FPM&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;php-fpm&quot;&lt;/span&gt;]&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;-F&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;-R&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;apache&quot; tabindex=&quot;-1&quot;&gt;Apache &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-23-The-Dockerfiles/#apache&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;apache&quot; tabindex=&quot;-1&quot;&gt;Apache &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-dockerfiles/#apache&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The final container, web, is the main one that the devcontainer will connect to, running Apache as its main service. Much of this repeats the PHP container, so I won’t go through all that again. Here’s what’s different.&lt;/p&gt;
 &lt;p&gt;It includes a few more useful packages:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Install other needed packages&lt;/span&gt;
@@ -3462,15 +3462,15 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>GitLab DevOps: Local Workflows</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/"/>
 		<updated>2022-06-27T01:54:15Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/</id>
 		<content type="html">&lt;p&gt;This continues a series setting up a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps pipeline&lt;/a&gt; through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.&lt;/p&gt;
-&lt;h2 id=&quot;branch-diagram&quot; tabindex=&quot;-1&quot;&gt;Branch diagram &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/#branch-diagram&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;branch-diagram&quot; tabindex=&quot;-1&quot;&gt;Branch diagram &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#branch-diagram&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This diagram is meant to help explain the flow of code in this system. The development happens in your local branch. When you want to deploy to the dev server, request merging into the dev branch. When you want to deploy to the staging server, request merging into the main branch. There is a CI/CD job for deploying to production as well, but that’s a manual process – not automatic on a branch merge like the other two. The CI files for the deploying will be covered in a later post.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/01/Git-Deployment-Workflow.png&quot; alt=&quot;Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server.&quot; /&gt;
 &lt;em&gt;Diagram of branches and servers&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;the-editing-and-browsing-workflow&quot; tabindex=&quot;-1&quot;&gt;The editing and browsing workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/#the-editing-and-browsing-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-editing-and-browsing-workflow&quot; tabindex=&quot;-1&quot;&gt;The editing and browsing workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#the-editing-and-browsing-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My preferred editor is &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;. Whether the VM/container is vagrant, &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/docker/&quot;&gt;Docker Desktop&lt;/a&gt;, or &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod/&quot;&gt;GitPod&lt;/a&gt;, you can use VS Code with it. The best experience is with Docker, then GitPod, and finally vagrant will work but similar to any other server, with no extra special functionality like adding extensions. You could of course also use a different editor / terminal.&lt;/p&gt;
 &lt;p&gt;Along with being able to edit, this is a website, so it’s pretty important to test out what the website looks like with the current code and database. Exactly what that looks like will depend on whether you’re using a GitPod, a vagrant, or a Docker. I won’t detail all the Apache configuration needed here, since they’ll vary for each system.&lt;/p&gt;
 &lt;p&gt;They are covered more in the posts about having a Drupal-friendly environment in each of the respective virtualization/containerization systems:&lt;/p&gt;
@@ -3479,14 +3479,14 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;GitPod&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;commit-to-gitlab&quot; tabindex=&quot;-1&quot;&gt;Commit to GitLab &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/#commit-to-gitlab&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;commit-to-gitlab&quot; tabindex=&quot;-1&quot;&gt;Commit to GitLab &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#commit-to-gitlab&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In this setup, we’ll have one branch of the GitLab repository for each user. That way each user will not interfere with any work done by other users on other VMs.&lt;/p&gt;
 &lt;p&gt;To start a new branch and switch to it, I run this:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout &lt;span class=&quot;token parameter variable&quot;&gt;-b&lt;/span&gt; ryan&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To add changes to and then commit to the ryan branch, I run this:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;file to add&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit &lt;span class=&quot;token parameter variable&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[description of what changed]&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;merge-request&quot; tabindex=&quot;-1&quot;&gt;Merge request &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-06-26-Local-Workflows/#merge-request&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;merge-request&quot; tabindex=&quot;-1&quot;&gt;Merge request &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#merge-request&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When I think it’s ready to be merged into the main branch, I go into the GitLab interface and put in a merge request from my ryan branch into whatever other branch I’m trying to merge it into (either dev or main in this scenario). There are a handful of good options available including who the merge is assigned to, who should do an extra code review first, and what project milestone it should be associated with.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.gitlab.com/ee/user/project/merge_requests/&quot;&gt;GitLab has good documentation on merge requests&lt;/a&gt;, so I will not detail them any further here.&lt;/p&gt;
 </content>
@@ -3494,9 +3494,9 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Drupal Docker: The First-Run Script</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-06-28-Drupal-Docker-Config-Script/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-docker-config-script/"/>
 		<updated>2022-06-29T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-06-28-Drupal-Docker-Config-Script/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-docker-config-script/</id>
 		<content type="html">&lt;p&gt;This continues a mini-series describing how I set up a Drupal development environment using &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop and the VS Code devcontainer functionality&lt;/a&gt;. The full code is available in &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-gitpod-container-2-gitpod-yml/&quot;&gt;the GitPod.yml file&lt;/a&gt; of &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;the GitPod series&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:&lt;/p&gt;
@@ -3558,9 +3558,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Local Development: Vagrant, Docker Desktop, and GitPod</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/local-development-options/"/>
 		<updated>2022-07-03T01:43:09Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/local-development-options/</id>
 		<content type="html">&lt;p&gt;I&#39;ve now broken down some of what I&#39;ve learned about different virtualization/containerization options:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/vagrant&quot;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
@@ -3568,21 +3568,21 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod/&quot;&gt;GitPod&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I also learned that each of these options have some pro&#39;s and con&#39;s attached to consider.&lt;/p&gt;
-&lt;h2 id=&quot;vagrant-pro-s&quot; tabindex=&quot;-1&quot;&gt;Vagrant Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#vagrant-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;vagrant-pro-s&quot; tabindex=&quot;-1&quot;&gt;Vagrant Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#vagrant-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Vagrant is likely to be the most intuitive to develop since it maps the closest to building a server (other than building a server), if you are used to building servers. It&#39;s not a whole new syntax and way of thinking to learn.&lt;/p&gt;
-&lt;h2 id=&quot;vagrant-con-s&quot; tabindex=&quot;-1&quot;&gt;Vagrant Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#vagrant-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;vagrant-con-s&quot; tabindex=&quot;-1&quot;&gt;Vagrant Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#vagrant-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is very slow to build the VM, when it works at all. Fully building the VM and starting the Drupal 9 website I was using this for could take 6-8 hours.&lt;/p&gt;
 &lt;p&gt;It continues to be very slow in usage afterward: browsing the site, running composer updates from the terminal, etc.&lt;/p&gt;
 &lt;p&gt;It can be very buggy, with issues like arbitrarily changing permissions on a file so that you can no longer delete them from your computer even with admin access. I&#39;ve got files on my computer that as far as I can tell there is no way to delete. Eventually it stopped working for me entirely.&lt;/p&gt;
 &lt;p&gt;There are no extra tools for integration with &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;, although you can ssh to a vagrant VM the same way you can to any other server.&lt;/p&gt;
-&lt;h2 id=&quot;docker-desktop-pro-s&quot; tabindex=&quot;-1&quot;&gt;Docker Desktop Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#docker-desktop-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;docker-desktop-pro-s&quot; tabindex=&quot;-1&quot;&gt;Docker Desktop Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#docker-desktop-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Compared to Vagrant, Docker is much faster to build the image, at about 1-2 hours for the same Drupal 9 site.&lt;/p&gt;
 &lt;p&gt;It has great integration with Visual Studio Code via the .devcontainer functionality, including installation of any extensions and pre-defining settings for all users. I have detailed much of my setup here in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;my Drupal Docker series&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It has a strong community to draw on for support and for images. It&#39;s the most popular option now and that means you&#39;ll be able to find what you need more easily than for other options.&lt;/p&gt;
-&lt;h2 id=&quot;docker-desktop-con-s&quot; tabindex=&quot;-1&quot;&gt;Docker Desktop Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#docker-desktop-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;docker-desktop-con-s&quot; tabindex=&quot;-1&quot;&gt;Docker Desktop Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#docker-desktop-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is less intuitive to develop the images if you haven&#39;t used Docker before. Learning the new syntaxes (Dockerfile, Docker compose) is straightforward, but there is a shift in thinking to containers.&lt;/p&gt;
 &lt;p&gt;It is for the most part about as slow as vagrant to operate after the site is built, although you can improve that a bit by editing your wslconfig file to allot more RAM.&lt;/p&gt;
-&lt;h2 id=&quot;gitpod-pro-s&quot; tabindex=&quot;-1&quot;&gt;GitPod Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#gitpod-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;gitpod-pro-s&quot; tabindex=&quot;-1&quot;&gt;GitPod Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#gitpod-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;GitPod is much faster, both to build and to use afterward, although the build time does sometimes vary wildly and stall out. Even the odd slow time is at least as fast as Docker, but the inconsistency can be disruptive. It&#39;s possible that this is not a serious problem and it only happens in my stress test scenarios like constantly building new containers.&lt;/p&gt;
 &lt;p&gt;The pre-build functionality allows for the build to happen before you actually need it.&lt;/p&gt;
 &lt;p&gt;It does facilitate keeping everybody on the same code base since it builds directly from the GitLab repository each time. There&#39;s little concern about getting a commit behind.&lt;/p&gt;
@@ -3590,21 +3590,21 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;p&gt;It allows for defining what to do when each port opens, e.g. open in the browser when Apache starts up so you can browse the site. This is a small time saver.&lt;/p&gt;
 &lt;p&gt;It does not tie up your computer&#39;s resources and does not require at least 32GB of RAM like the locally-hosted options do.&lt;/p&gt;
 &lt;p&gt;It does not need your computer to support virtual machines / containers (i.e. Windows 10/11 Pro).&lt;/p&gt;
-&lt;h2 id=&quot;gitpod-con-s&quot; tabindex=&quot;-1&quot;&gt;GitPod Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#gitpod-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;gitpod-con-s&quot; tabindex=&quot;-1&quot;&gt;GitPod Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#gitpod-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It&#39;s great when you&#39;re using a Debian-based image, but does not support other Linux variants or multiple containers.&lt;/p&gt;
 &lt;p&gt;Data for their SaaS offering is held in the US and EU. Those are the only data residency options. Canada where I am is not an option. If you&#39;re concerned about data staying in your country and you&#39;re not in the US or EU, this is a problem. Otherwise, they do offer self-hosting on Azure/AWS/Google Cloud where you can control where it gets stored, but if you&#39;re going that far, is it that much better than other options?&lt;/p&gt;
 &lt;p&gt;It does not automatically open VS Code Desktop. It will open in the browser that looks exactly like VS Code, then you can prompt it to open VS Code desktop, which will take clearing a couple other permission prompts. This isn&#39;t a big deal if you&#39;re opening VS Code once per day, but if you&#39;re in and out for a lot of quick changes, that does add up.&lt;/p&gt;
 &lt;p&gt;In my context, it also cannot open VS Code at all if I was on my work network, leaving me to only edit in the browser. It did work early on, and maybe it will work again. I also have no idea to what degree this is on GitPod&#39;s end vs our end, so I don&#39;t say this as much to negatively review GitPod as to say it is another factor to consider.&lt;/p&gt;
 &lt;p&gt;It does not support all Visual Studio Code extensions - only those which are in the Open VSX directory - which means a few absences like &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/github-copilot/&quot;&gt;GitHub Copilot&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;local-server-pro-s&quot; tabindex=&quot;-1&quot;&gt;Local Server Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#local-server-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;local-server-pro-s&quot; tabindex=&quot;-1&quot;&gt;Local Server Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#local-server-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You could sidestep all of these questions about local development options and build your own servers.&lt;/p&gt;
 &lt;p&gt;This makes it easiest to guarantee a match with your production servers.&lt;/p&gt;
 &lt;p&gt;There shouldn&#39;t be any performance issues or use up any of your computer&#39;s resources.&lt;/p&gt;
-&lt;h2 id=&quot;local-server-con-s&quot; tabindex=&quot;-1&quot;&gt;Local Server Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#local-server-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;local-server-con-s&quot; tabindex=&quot;-1&quot;&gt;Local Server Con&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#local-server-con-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This approach doesn&#39;t scale very well if you work on a team or on multiple projects. You would need at least one virtual server per person per project. All of that scale is being paid for while not being used most of the time.&lt;/p&gt;
 &lt;p&gt;Depending on your organization structures, you may need to work across different departments to maintain the servers.&lt;/p&gt;
 &lt;p&gt;There are no extra tools for integration with Visual Studio Code, although you can ssh to it the same way you can to any other server.&lt;/p&gt;
-&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;Summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-02-Local-Development-Options/#summary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;Summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#summary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my day job context, we settled on using Docker Desktop. It&#39;s not as fast as GitPod, but it&#39;s close enough and it was worth the trade to be able to build containers exactly as we want and with no data residency concerns because nothing leaves our devices.&lt;/p&gt;
 &lt;p&gt;In my experimental and demo stuff that often gets profiled here, I&#39;m often using GitPod. It&#39;s fast, I can run it from any device, and it&#39;s great for demonstration purposes since I can set it up so that anybody can have a site running my code within a couple minutes.&lt;/p&gt;
 </content>
@@ -3612,22 +3612,22 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Drupal: Override Title Tag of Profiles</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-07-10-Profile-Title-Override/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/profile-title-override/"/>
 		<updated>2022-07-11T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-07-10-Profile-Title-Override/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/profile-title-override/</id>
 		<content type="html">&lt;p&gt;The profile module is a nice tool to have on a Drupal site if you&#39;re looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page&#39;s title which shows up as [Profile Name] #[id], e.g. &amp;quot;Staff Profile #1&amp;quot;. That&#39;s not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you&#39;ll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.&lt;/p&gt;
 &lt;p&gt;With the fields in place, this post, and &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-profile-title-override&quot;&gt;accompanying GitHub code and configuration&lt;/a&gt;, is how I worked around those issues.&lt;/p&gt;
-&lt;h2 id=&quot;the-url-alias&quot; tabindex=&quot;-1&quot;&gt;The URL Alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-10-Profile-Title-Override/#the-url-alias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-url-alias&quot; tabindex=&quot;-1&quot;&gt;The URL Alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/profile-title-override/#the-url-alias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Like other nodes, the URL can be changed using &lt;a href=&quot;https://drupal.org/project/pathauto&quot;&gt;the pathauto module&lt;/a&gt; to generate based on a pattern. Note that this takes a change in the pathauto configuration, which might not be obvious if like me you did the initial round of pathauto configuration long before adding profiles.&lt;/p&gt;
 &lt;p&gt;Here&#39;s a screenshot of the settings page, which can be found at /admin/config/search/path/settings:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/07/Pathauto_entities.png&quot; alt=&quot;Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Once the ability to set paths for profiles is turned on, you can switch over to the Patterns tab and create the pattern. I made mine &lt;code&gt;/staff/[profile:field_first_name]-[profile:field_last_name]&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;the-page-title&quot; tabindex=&quot;-1&quot;&gt;The Page Title &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-10-Profile-Title-Override/#the-page-title&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-page-title&quot; tabindex=&quot;-1&quot;&gt;The Page Title &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/profile-title-override/#the-page-title&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I fixed the page title displayed within the body with a view. I also altered the display of a profile to not show the default title and not show the first name and last name otherwise.&lt;/p&gt;
 &lt;p&gt;I won&#39;t break down every setting, but here&#39;s a screenshot of the view configuration:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/07/Profile_Title_View.PNG&quot; alt=&quot;Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;You can also see this in configuration YML form in the GitHub project&#39;s /sync/config/views.view.profile.yml file. Once the view is ready, add the block to the correct place in your theme, and turn off the standard Page Title block for those pages (based on the URL).&lt;/p&gt;
-&lt;h2 id=&quot;the-browser-title&quot; tabindex=&quot;-1&quot;&gt;The Browser Title &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-07-10-Profile-Title-Override/#the-browser-title&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-browser-title&quot; tabindex=&quot;-1&quot;&gt;The Browser Title &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/profile-title-override/#the-browser-title&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The second one required a custom module, albeit a relatively simple one. This is the key part:&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
  * Implements hook_preprocess_html
@@ -3677,9 +3677,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Drupal: Hide Block on Own Profile</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-03-28-drupal-profile-block-hidden-own/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-profile-block-hidden-own/"/>
 		<updated>2022-07-12T20:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-03-28-drupal-profile-block-hidden-own/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-profile-block-hidden-own/</id>
 		<content type="html">&lt;p&gt;Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.&lt;/p&gt;
 &lt;p&gt;Here&#39;s the wrinkle in the default behaviour: it won&#39;t give you a contact link when you&#39;re viewing your own content, but it also isn&#39;t returning as nothing at all, so the title for the block appeared with nothing beneath it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/07/Empty_Email_Sidebar.png&quot; alt=&quot;Screenshot of empty box only saying the title &amp;quot;Email&amp;quot;&quot; /&gt;&lt;/p&gt;
@@ -3705,9 +3705,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Drupal: CSS Structure</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Drupal-CSS-Structures/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-css-structures/"/>
 		<updated>2022-09-19T21:00:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Drupal-CSS-Structures/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-css-structures/</id>
 		<content type="html">&lt;p&gt;Specificity rules for CSS priority in Drupal are determined on two axes:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Active custom subthemes take priority over their parent theme.&lt;/li&gt;
@@ -3749,9 +3749,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Microsoft Word: Inclusive Writing Options</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Word-Inclusive-Writing/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/word-inclusive-writing/"/>
 		<updated>2022-09-19T21:12:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Word-Inclusive-Writing/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/word-inclusive-writing/</id>
 		<content type="html">&lt;p&gt;I recently learned that Word has a lot of options for what kinds of prompts the spelling and grammar check will give you. One category of these options is inclusivity, helping you write in a way that better includes everyone. Many of these also conveniently double as being more concise, e.g. &amp;quot;child&amp;quot; instead of &amp;quot;boy or girl&amp;quot; or &amp;quot;spouse&amp;quot; instead of &amp;quot;husband or wife.&amp;quot;&lt;/p&gt;
 &lt;p&gt;To turn these on (using the latest Windows version of Word):&lt;/p&gt;
 &lt;ol&gt;
@@ -3780,12 +3780,12 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Drupal: Security Audit</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/"/>
 		<updated>2022-09-19T23:19:19Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/</id>
 		<content type="html">&lt;p&gt;About a year ago, I (virtually) attended &lt;a href=&quot;https://www.drupalgovcon.org/&quot;&gt;the DrupalGovCon 2021 conference&lt;/a&gt;. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.&lt;/p&gt;
 &lt;figure class=&quot;wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;&lt;div class=&quot;nv-iframe-embed&quot;&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&quot; title=&quot;Tips for Securing Your Drupal Application&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;&lt;figcaption&gt;DrupalGovCon video: Tips for Securing Your Drupal Application&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;security-modules&quot; tabindex=&quot;-1&quot;&gt;Security Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/#security-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;security-modules&quot; tabindex=&quot;-1&quot;&gt;Security Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#security-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Review settings of security modules including:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[ ] jsonapi_extras&lt;/li&gt;
@@ -3796,7 +3796,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;li&gt;[ ] reCAPTCHA&lt;/li&gt;
 &lt;li&gt;[ ] seckit&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;dev-modules&quot; tabindex=&quot;-1&quot;&gt;Dev Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/#dev-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dev-modules&quot; tabindex=&quot;-1&quot;&gt;Dev Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#dev-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ensure none of your development modules are on production:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;field_ui&lt;/li&gt;
@@ -3806,7 +3806,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;li&gt;stage_file_proxy&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I don&#39;t have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.&lt;/p&gt;
-&lt;h2 id=&quot;config-cleanup&quot; tabindex=&quot;-1&quot;&gt;Config Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/#config-cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;config-cleanup&quot; tabindex=&quot;-1&quot;&gt;Config Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#config-cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[ ] Remove unused views&lt;/li&gt;
 &lt;li&gt;[ ] Check that there is correct access control on all views&lt;/li&gt;
@@ -3816,14 +3816,14 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;li&gt;[ ] Confirm that file size upload limits are reasonable&lt;/li&gt;
 &lt;li&gt;[ ] Confirm that private and public file directories are used properly&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;custom-modules-and-themes&quot; tabindex=&quot;-1&quot;&gt;Custom Modules and Themes &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/#custom-modules-and-themes&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;custom-modules-and-themes&quot; tabindex=&quot;-1&quot;&gt;Custom Modules and Themes &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#custom-modules-and-themes&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code&lt;/li&gt;
 &lt;li&gt;[ ] Check code in an editor like VS Code that warns you of unsanitary code&lt;/li&gt;
 &lt;li&gt;[ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it&#39;s still good practice.&lt;/li&gt;
 &lt;li&gt;[ ] Review any TODO / FIXME etc in the code&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-09-19-Security-Audit/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn&#39;t? Does anybody have more permissions than they need?&lt;/li&gt;
 &lt;li&gt;[ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.&lt;/li&gt;
@@ -3833,34 +3833,34 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Twitter, Mastodon, and CounterSocial</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/"/>
 		<updated>2022-11-21T13:18:09Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/</id>
 		<content type="html">&lt;p&gt;If you&#39;re on this site, you&#39;re probably aware enough of the chaos around Twitter. I started to write a post about &lt;strong&gt;why&lt;/strong&gt; I was leaving Twitter, narrowing in on the various terrible management practices (printing off code, firing based on lines committed, losing entire security teams, etc.) at the time when everybody was focussed on the verification disaster. Then all the stuff I was worried about completely exploded so now everybody is well aware of that, too, and it is likely a matter of days to weeks before Twitter completely fails. So there didn&#39;t seem to be much point there.&lt;/p&gt;
 &lt;p&gt;I also started a post about &lt;strong&gt;how&lt;/strong&gt; I left Twitter. I was going to detail how I repeatedly notified everybody there while I started moving more and more to using Mastodon and CounterSocial instead. Then after the latest round of Twitter employees being fired, I realized about 7% of my Twitter follows were already on Mastodon. I&#39;m not sure that many people really need to hear about how I migrated as if that was unusual.&lt;/p&gt;
 &lt;p&gt;So, how about this post idea instead: a quick rundown of Mastodon and CounterSocial and how they compare to Twitter. For the most part, Mastodon and CounterSocial line up with each other, as CounterSocial forked off of Mastodon in the past over some licensing disagreements (I have no interest in picking a side), but there are a couple big differences.&lt;/p&gt;
-&lt;h2 id=&quot;the-algorithm&quot; tabindex=&quot;-1&quot;&gt;The Algorithm &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#the-algorithm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-algorithm&quot; tabindex=&quot;-1&quot;&gt;The Algorithm &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#the-algorithm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The biggest difference from Twitter to the others is that Twitter relies heavily on the algorithm to determine what gets on your feed. Their business model - like all the other major social networks - is based on selling as many of the most targeted ads as possible. You are the product and advertisers are the customers. To do that, they have to collect as much data about you as possible. To do that, they need to keep you engaged as much as possible. To do that, they develop algorithms to target content to you, regardless of whether you actually chose to see that content, so that you can never be &amp;quot;caught up&amp;quot; and return to your normal life without fear of missing out.&lt;/p&gt;
 &lt;p&gt;Much has been said about the dangers of these kinds of algorithms. They prey on some of our worst impulses, feeding us things that make us angry. Many right-wing personalities have caught on to this, realizing they can make a big following by gaming the algorithm: they say something that gets people mad, everybody shares it either in support or to dunk on it, and all of that adds up to exponential growth in their audience as the algorithm boosts it even more. The end result is more hate speech, more anger, and more polarization.&lt;/p&gt;
 &lt;p&gt;They also need to collect massive amounts of data in order to categorize us effectively for advertisers. While Twitter had a pretty good security record, this does open up the potential for huge data leaks. I don&#39;t expect that pretty good record to last much longer, which is why I&#39;m inclined to delete my Twitter instead of merely deactivating or stopping use of it.&lt;/p&gt;
 &lt;p&gt;There certainly are some positives as well. They are designed to give you what you will respond to, so sometimes that&#39;s really good, with it helping surface people you want to follow who may not be big enough to trend in general but is exactly the kind of person you want to know about (especially when dealing with marginalized groups), or making you aware of breaking news very quickly.&lt;/p&gt;
 &lt;p&gt;There&#39;s also the simple reality that many people are happy with this trade, giving up loads of data rather than needing to pay for a service. It lowers the barrier to entry.&lt;/p&gt;
 &lt;p&gt;Mastodon and CounterSocial do not use an algorithm. You see what you chose to see. You can follow accounts and hashtags and those can boost (retweet) from other accounts into your home timeline. You can also check in on your local timeline (both Mastodon and CounterSocial) or global federated timeline (Mastodon only, since CounterSocial does not federate with anybody else). But you&#39;ll never get recommendations decided by a mysterious machine learning algorithm. The speed of discovery is limited to human speed, not machine speed.&lt;/p&gt;
-&lt;h2 id=&quot;verification&quot; tabindex=&quot;-1&quot;&gt;Verification &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#verification&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;verification&quot; tabindex=&quot;-1&quot;&gt;Verification &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#verification&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Verification - at least before the recent changes - was the largest advantage Twitter had over Mastodon and CounterSocial. Trust is important in an information ecosystem to know that people are who they say they are.&lt;/p&gt;
 &lt;p&gt;Mastodon and CounterSocial do have a form of verification, but it&#39;s a verification of links, not of identity. It is a system that allows you to set up a link on your website to Mastodon/CoSo, which confirms that the website owner and the account owner are the same person. It does not necessarily confirm that the account is who they say they are. Somebody could impersonate me by setting up a fake website to go alongside the fake account. That it is a lot more work, so it might happen in targeted ways of public figures, but it won&#39;t happen as much in casual mass bot attacks. It also doesn&#39;t give a &amp;quot;blue check&amp;quot; equivalent, so it isn&#39;t obvious at a glance whether somebody is who they say they are. As more public figures and journalists move to Mastodon and to a lesser extent CounterSocial, this will be really interesting to watch whether they need to come up with some kind of system, and in the case of Mastodon, whether that would even be possible in a decentralized system.&lt;/p&gt;
-&lt;h2 id=&quot;servers-and-onboarding&quot; tabindex=&quot;-1&quot;&gt;Servers and Onboarding &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#servers-and-onboarding&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;servers-and-onboarding&quot; tabindex=&quot;-1&quot;&gt;Servers and Onboarding &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#servers-and-onboarding&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here&#39;s where CounterSocial aligns with Twitter instead of Mastodon. For each of those, you sign up and you&#39;re in. It&#39;s pretty straightforward, not much different than any other website.&lt;/p&gt;
 &lt;p&gt;Mastodon gets more complicated. It&#39;s a protocol of federated servers called instances, not a &amp;quot;platform.&amp;quot; This means upfront that you have a question to figure out: what instance should I join?&lt;/p&gt;
 &lt;p&gt;Veterans will think this is no big deal, but if you&#39;ve never dealt with something like this before, staring down hundreds of servers is not an obvious choice. There isn&#39;t much in the way of advice for how to decide, or tools to filter a list. Do you care about the data residency of the server? Do you care about how the admins make decisions? Do you care about what rules it has, or what other instances it has blocked? Do you want general topic or a specific interest or identity group?&lt;/p&gt;
 &lt;p&gt;I landed on the largest Canadian server, mstdn.ca, but only after trying four others over four days. A couple were tech specific. A couple were big general ones. Once I found this one, I was happy for Canadian data residency, general topics, an admin who has so far done pretty well keeping up with the demand, and reasonable rules.&lt;/p&gt;
 &lt;p&gt;If you pick a bad server, you may end up with some problems. Maybe that server doesn&#39;t moderate well and there&#39;s hate speech (or spam, or porn). This means you get a lot of hate speech in your local feed, but it also means other instances might block your instance so that the hate speech doesn&#39;t spread. That leaves you isolated to your server, completely losing out on the advantages of the whole federated concept.&lt;/p&gt;
 &lt;p&gt;You could end up spending a couple hours getting set up only to have a miserable experience on a bad server and conclude Mastodon is horrible, when really that one server was horrible. In my opinion it&#39;s worth it in the long run, but it&#39;s a bit of a mess to sort out.&lt;/p&gt;
-&lt;h2 id=&quot;user-interface&quot; tabindex=&quot;-1&quot;&gt;User Interface &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#user-interface&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;user-interface&quot; tabindex=&quot;-1&quot;&gt;User Interface &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#user-interface&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Twitter has polished their interface over the years. There may be things you don&#39;t like, but they know what they&#39;re doing.&lt;/p&gt;
 &lt;p&gt;Mastodon depends wildly on which app you use. I&#39;m on Tusky on Android, which is pretty good but does have some weird holes like searching for users on other instances without entering the whole instance address. But it is attractive, easy to use, and has a good range of options.&lt;/p&gt;
 &lt;p&gt;CounterSocial is the definite loser here. It isn&#39;t hard to use but it doesn&#39;t fit the Android design language at all, it only has a pseudo dark mode - no light mode and no true dark mode - and is weirdly small on the screen.&lt;/p&gt;
-&lt;h2 id=&quot;features&quot; tabindex=&quot;-1&quot;&gt;Features &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#features&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;features&quot; tabindex=&quot;-1&quot;&gt;Features &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#features&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A couple significant features are not in Mastodon or CounterSocial that you might have gotten used to on Twitter.&lt;/p&gt;
 &lt;p&gt;There is no quote tweet. This is intentional as it is a feature that is most often used for piling on harassment. But there are lots of positive uses for it as well, so the loss will be felt by many. I used it a lot to comment on a news story as I spread it onto my feed.&lt;/p&gt;
 &lt;p&gt;Search on Twitter indexes everything, all the text of every tweet. Mastodon and CounterSocial do not. They only index profiles, hashtags, and posts that you have already interacted with. This is intentional as it gives those posting some control: if you want it to be searchable, add the hashtags you want it to be searchable by, but if you want to be able to keep it a little more private, you can. This limits harassment of mass searching for text and attacking anybody you find.&lt;/p&gt;
@@ -3873,18 +3873,18 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 &lt;p&gt;Mastodon and CounterSocial allow you to mute somebody for a shorter period of time, not always an all or nothing permanent decision. This is great if you just need to tune out somebody for a bit but you&#39;re happy to see them again later.&lt;/p&gt;
 &lt;p&gt;Many other features are comparable, including muting, blocking, and adding image descriptions for accessibility.&lt;/p&gt;
 &lt;p&gt;Overall, in raw features, Mastodon wins out. Losing circles is unfortunate, but some of these other tools truly are great to have and easy to use.&lt;/p&gt;
-&lt;h2 id=&quot;payment&quot; tabindex=&quot;-1&quot;&gt;Payment &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#payment&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;payment&quot; tabindex=&quot;-1&quot;&gt;Payment &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#payment&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As discussed above, Twitter is mostly funded by mining data for targeted ads. They also added Twitter Blue as a freemium style plan to get more features, which the Elon Musk era is leaning into.&lt;/p&gt;
 &lt;p&gt;CounterSocial is freemium. You can do all the basics for free, but you&#39;ll need a Pro account to do several things including some of the features I&#39;ve named above.&lt;/p&gt;
 &lt;p&gt;Mastodon is donation based. The instance admins pay the costs and hope that they get enough donations to cover it. So if you are joining Mastodon, have found a good instance, and have some room in the budget, consider kicking a few dollars to your admin.&lt;/p&gt;
-&lt;h2 id=&quot;culture&quot; tabindex=&quot;-1&quot;&gt;Culture &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#culture&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;culture&quot; tabindex=&quot;-1&quot;&gt;Culture &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#culture&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Twitter had a famously unique culture. It was the place where news broke. It was the place where movements started and spread to the mainstream, including both movements for justice and movements of hate. There were plenty of niche corners for your favourite topics, but you would also inevitably get caught up in the big news of the day.&lt;/p&gt;
 &lt;p&gt;It&#39;s hard to completely judge Mastodon and CounterSocial since they have been overrun by Twitter exiles. But what I can mostly say is this:&lt;/p&gt;
 &lt;p&gt;CounterSocial seems to be much more the home for those who want to talk US left-wing politics. That&#39;s a good portion of the firehose. As a Canadian, that isn&#39;t a great selling point to me. Mastodon certainly has those corners, but it&#39;s also easier to avoid them and to fully delve in completely different topics instead, especially technology.&lt;/p&gt;
 &lt;p&gt;Both do suffer from a bit of arrogance. They&#39;re proud of the fact they built these networks without big money algorithms, and they should be. But sometimes they also come across as looking down on those who are new and confused why things are different. I&#39;ve seen this more with CounterSocial which loves to set itself in opposition to Mastodon as well as in opposition to Twitter, but I have seen it in Mastodon as well.&lt;/p&gt;
 &lt;p&gt;Both have stronger stances on paper against hate speech and trolls than Twitter. But moderation is a lot easier said than done. Ultimately this all depends on moderator abilities to keep up and to act consistently to avoid frustrations. It will be interesting to see what happens here as Mastodon in particular is growing so rapidly and &lt;strong&gt;will&lt;/strong&gt; become a target.&lt;/p&gt;
 &lt;p&gt;CounterSocial is a bit more &amp;quot;extroverted&amp;quot; by which I mean that it is more normal to get replies from (mostly friendly) strangers.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-11-21-Twitter-Mastodon-CoSo/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have just completed deactivating my Twitter.&lt;/p&gt;
 &lt;p&gt;I am really finding a new online home on Mastodon. It&#39;s where the most people are headed now and has a great range of features, topics discussed, and it has a friendly interface. It&#39;s really just the hurdle of picking an instance you&#39;ll need to get over first, and that is understandably a larger hurdle than is worth it for some people.&lt;/p&gt;
 &lt;p&gt;CounterSocial will be a great option for a lot of people. It&#39;s a lot faster to get an accurate gauge of whether it&#39;s good for you or not, without the instance decisions, so I would say to go ahead and check it out if everything I&#39;ve written makes it sound appealing to you. It may not be my long-term option, aside from the fact that a few people I know are on there and I would like to keep up with them.&lt;/p&gt;
@@ -3893,9 +3893,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>New Certificate: Power Platform App Maker</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-12-10-power-platform-certificate/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/power-platform-certificate/"/>
 		<updated>2022-12-10T16:48:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-12-10-power-platform-certificate/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/power-platform-certificate/</id>
 		<content type="html">&lt;p&gt;This week I completed a new certification! I am now Microsoft certified as a &lt;a href=&quot;https://www.credly.com/badges/f62e6037-44d4-4ee2-9fd8-a83b84500910/public_url&quot;&gt;Power Platform App Maker Associate,&lt;/a&gt;, having completed &lt;a href=&quot;https://learn.microsoft.com/en-us/certifications/exams/pl-100&quot;&gt;the PL-100 exam&lt;/a&gt;. This covers a lot of the introductory understanding of the Power Platform including Power Apps, Power Automate, Power BI, and Power Virtual Agent. There&#39;s a lot of great tools in here and I&#39;m happy that I&#39;ve gotten a good introductory grasp of them.&lt;/p&gt;
 &lt;p&gt;It is listed on the &lt;a href=&quot;https://tech.ryanrobinson.ca/about&quot;&gt;about page&lt;/a&gt; along with my other certifications.&lt;/p&gt;
 </content>
@@ -3903,9 +3903,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>Drupal: Active Links in Views</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-12-29-active-links-views/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/active-links-views/"/>
 		<updated>2022-12-30T01:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-12-29-active-links-views/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/active-links-views/</id>
 		<content type="html">&lt;p&gt;Drupal 9 provides a different style for active links - i.e. a link that goes to the same page that you&#39;re already on - in most contexts. This helps identify for users when it would be redundant to select it again. There&#39;s one exception where it doesn&#39;t do this out of the box, however: within views.&lt;/p&gt;
 &lt;p&gt;Here&#39;s how I got around that. First add this file to the theme&#39;s /js folder, in a new file called &lt;code&gt;active-links.js&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&quot;language-jquery&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-jquery&quot;&gt;(function (Drupal) {
@@ -3926,13 +3926,13 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>GitLab DevOps: Deploy to Server</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/"/>
 		<updated>2022-12-30T20:45:05Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/</id>
 		<content type="html">&lt;p&gt;This continues with &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the long-stalled GitLab DevOps series&lt;/a&gt;. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.&lt;/p&gt;
 &lt;p&gt;You will first need &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/gitlab-devops-gitlab-runner/&quot;&gt;a GitLab runner&lt;/a&gt; on the server you want to deploy to.&lt;/p&gt;
 &lt;p&gt;As with the earlier post on &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/gitlab-devops-php-lint/&quot;&gt;PHP linting within GitLab CI/CD&lt;/a&gt;, in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in &lt;a href=&quot;https://github.com/ryan-l-robinson/GitLab-CI-CD&quot;&gt;one project of my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;deploy-yml&quot; tabindex=&quot;-1&quot;&gt;Deploy.yml &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/#deploy-yml&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;deploy-yml&quot; tabindex=&quot;-1&quot;&gt;Deploy.yml &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#deploy-yml&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The deploy file provides you a baseline template for deploying code changes, which is in the general CI/CD functionality project. Here&#39;s what that might look like:&lt;/p&gt;
 &lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## Deploy Jobs ##&lt;/span&gt;
 &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
@@ -3953,7 +3953,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
     &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; git reset &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;hard
     &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; git stash
     &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; git pull&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;project-gitlab-ci-yml&quot; tabindex=&quot;-1&quot;&gt;Project .gitlab-ci.yml &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/#project-gitlab-ci-yml&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;project-gitlab-ci-yml&quot; tabindex=&quot;-1&quot;&gt;Project .gitlab-ci.yml &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#project-gitlab-ci-yml&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other key component is the project&#39;s file to extend this deploy job.&lt;/p&gt;
 &lt;p&gt;Start the project&#39;s .gitlab-ci.yml file with including the deploy file from the other project. In a scenario where that is a different project but accessible to the same GitLab user, it would look like this, assuming the project is called gitlab-ci:&lt;/p&gt;
 &lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Includes general CI jobs&lt;/span&gt;
@@ -4026,13 +4026,13 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
   &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; manual&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You will need one of these types of jobs for each server to deploy to, with each&#39;s corresponding variables. This demo includes a dev server, a staging server, and two production servers.&lt;/p&gt;
-&lt;h2 id=&quot;project-access-token&quot; tabindex=&quot;-1&quot;&gt;Project access token &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/#project-access-token&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;project-access-token&quot; tabindex=&quot;-1&quot;&gt;Project access token &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#project-access-token&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For this to work smoothly, you can use a project access token. This is a unique token that can be set up on a project – essentially a service account – rather than the connection being tied to a particular user. This is helpful to avoid problem scenarios like a sudden change of staff when the deploy was set up using the former staff&#39;s account that no longer exists.&lt;/p&gt;
 &lt;p&gt;Create a project token by going to the project -&amp;gt; Settings -&amp;gt; Project Access Tokens. Name the token something descriptive for the server that will be using it, e.g. Dev Server. Specify the permissions for that token. Within this workflow I&#39;ve been walking through here, that is only read access so it can pull within the deployment job. It does not need to be able to write back to the GitLab project, since code changes will always start at local and push through, never the other way around.&lt;/p&gt;
 &lt;p&gt;Now when you clone the project or add remote for the new server, add it using a variation on the https format rather than the SSH format:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;https://oauth2:[token]@[GitLab project address]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;next-drupal-configuration&quot; tabindex=&quot;-1&quot;&gt;Next: Drupal Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/2022-12-30-GitLab-DevOps-Deploy-to-Server/#next-drupal-configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;next-drupal-configuration&quot; tabindex=&quot;-1&quot;&gt;Next: Drupal Configuration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#next-drupal-configuration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This deploys code changes to the servers. You quite possibly need more actions to take place, like database updates, depending on what platform you&#39;re using. In my context of developing this for Drupal, there are several more steps needed. Those will be covered in the next post in this series.&lt;/p&gt;
 </content>
 	</entry>
