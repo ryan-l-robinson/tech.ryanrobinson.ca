@@ -417,12 +417,12 @@
 &lt;/ol&gt;
 &lt;p&gt;That’s it. It’s a pretty intuitive process even if you are brand new to GitHub.&lt;/p&gt;
 &lt;p&gt;Once it’s set up, you get a few useful features:&lt;/p&gt;
-&lt;h2 id=&quot;visual-cues&quot; tabindex=&quot;-1&quot;&gt;Visual cues &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/#visual-cues&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;visual-cues&quot; tabindex=&quot;-1&quot;&gt;Visual Cues &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/#visual-cues&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The most valuable component to me is the visual cues of changes. It’s like having a constant diff between your current version and the last commit. If you add a line, that line will be marked green in the sidebar. If you change a line, that line will be marked blue in the sidebar. If you delete a line, there will be a little red arrow where it was.&lt;/p&gt;
 &lt;p&gt;Clicking on the area of those colour indicators will pop up a full diff of the changed section. That will also include quick options like reverting all changes on that section.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-GitDiff.png&quot; alt=&quot;Blue bar on side indicates changed lines, and the diff is shown below&quot; /&gt;
 &lt;em&gt;Demo of an altered line, after clicking on the blue bar to see the diff&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;commit-and-push&quot; tabindex=&quot;-1&quot;&gt;Commit and push &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/#commit-and-push&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;commit-and-push&quot; tabindex=&quot;-1&quot;&gt;Commit and Push &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/#commit-and-push&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Your standard git workflow actions can all be done from the Source Control section in the sidebar. It will show you everything that has changed since the last commit, with options to open the file, discard changes, or stage the file for the next commit. Above the file list you can enter your commit message and hit the checkmark to commit. Other actions like pushing and pulling are tucked away in the ellipses overflow menu.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-SourceControl.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;You still have to understand the basics of what is involved in git source control, but you don’t have to memorize the commands for each step. Everything is available visually.&lt;/p&gt;
@@ -496,23 +496,23 @@
 &lt;h2 id=&quot;testing-with-wave&quot; tabindex=&quot;-1&quot;&gt;Testing with WAVE &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#testing-with-wave&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The best tool for testing out a website is the WAVE evaluation tool, which is available as an extension for your browser. It will scan the code of the page and tell you any accessibility problems it finds, flagging them with different levels of seriousness. It also has a section for contrast issues when the foreground colour of text is too close to the background colour.&lt;/p&gt;
 &lt;p&gt;Note that with WordPress WAVE will always pick up a few issues from the admin toolbar if you are logged in when you run it. That’s not great, but it’s out of the control of the site developer and it doesn’t impact regular visitors.&lt;/p&gt;
-&lt;h2 id=&quot;pick-a-theme&quot; tabindex=&quot;-1&quot;&gt;Pick a theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#pick-a-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pick-a-theme&quot; tabindex=&quot;-1&quot;&gt;Pick a Theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#pick-a-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The theme decision will determine a lot of your site’s accessibility. Some themes have a lot of accessibility problems built right into them and it will be hard for you to change the code yourself to fix it. Take your time shopping for themes. Activate a theme and use the WAVE accessibility tool to see how well it scores. If there are little things like missing ALT text, you might be able to work around that without changing the theme, but be cautious if it has a lot of issues like inconsistent headers or a search bar without a label.&lt;/p&gt;
 &lt;p&gt;You may not find a theme that’s perfect, but if you put in the time, you’ll at least get pretty close.&lt;/p&gt;
-&lt;h2 id=&quot;contrasting-colours&quot; tabindex=&quot;-1&quot;&gt;Contrasting colours &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#contrasting-colours&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;contrasting-colours&quot; tabindex=&quot;-1&quot;&gt;Contrasting Colours &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#contrasting-colours&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Picking a colour scheme of a site goes beyond simply looking good. There needs to be strong enough contrast between the background colour and the foreground text colour to be sure that people with low vision can differentiate.&lt;/p&gt;
 &lt;p&gt;There are levels to this. Hitting the most strict AAA sometimes can be hard to do in light of other factors like brand consistency, but you want to make sure you at least hit the AA standard. The WAVE tool can help measure your contrast and even help you pick colours for stronger contrast.&lt;/p&gt;
-&lt;h2 id=&quot;the-wp-accessibility-plugin&quot; tabindex=&quot;-1&quot;&gt;The WP-Accessibility plugin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#the-wp-accessibility-plugin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-wp-accessibility-plugin&quot; tabindex=&quot;-1&quot;&gt;The WP-Accessibility Plugin &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#the-wp-accessibility-plugin&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Sometimes if your theme doesn’t do a great job hitting all the accessibility requirements, the WP-Accessibility plugin can help. It includes a few helpful tools like:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Adds the title of the blog post to the “read more” text. This helps for people with screenreaders. When all the links say “read more,” a screenreader jumping through links just says “read more” over and over again, which isn’t helpful. It’s a lot more helpful when it says “read more Accessibility in WordPress.”&lt;/li&gt;
 &lt;li&gt;Adds an accessibility toolbar on the side of your site for adjusting font size and contrast.&lt;/li&gt;
 &lt;li&gt;Attempts to add a label to the search bar, although I’ve had mixed success with that option.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;use-the-right-headers&quot; tabindex=&quot;-1&quot;&gt;Use the right headers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#use-the-right-headers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;use-the-right-headers&quot; tabindex=&quot;-1&quot;&gt;Use the Right Headers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#use-the-right-headers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;That covers the general site setup. Now we’re into features that anybody should consider when writing content like this blog post.&lt;/p&gt;
 &lt;p&gt;Many people misuse header tags. They are not solely for formatting. They also help identify how content is related to each other. Your site should have an h1 tag, either for the site title or page title. Then everything below that should be an h2. Content that is a sub-category of an h2 should be identified with an h3. And so on. You shouldn’t skip tags from an h2 down to an h5, for example, or always use h2 no matter what without considering what should maybe be lower.&lt;/p&gt;
-&lt;h2 id=&quot;always-add-alt-text&quot; tabindex=&quot;-1&quot;&gt;Always add ALT text &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#always-add-alt-text&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;almost-always-add-alt-text&quot; tabindex=&quot;-1&quot;&gt;(Almost) Always Add ALT Text &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessibility-in-wordpress/#almost-always-add-alt-text&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is the accessibility issue that most often gets discussed, but it’s still very easy to miss in WordPress. ALT text is a technique to describe what a screenreader says to a user that can’t see the picture. You should always set ALT text unless the photo is purely decorative like an icon.&lt;/p&gt;
 &lt;p&gt;WordPress offers the option to set ALT text, but it doesn’t require it. It’s also not quite as in-your-face in the new Gutenberg block editor as it used to be in the classic WordPress editor, so it’s easy to add an image and forget to dig into the settings for the ALT text option.&lt;/p&gt;
 </content>
@@ -3563,9 +3563,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<id>https://tech.ryanrobinson.ca/posts/2022/local-development-options/</id>
 		<content type="html">&lt;p&gt;I&#39;ve now broken down some of what I&#39;ve learned about different virtualization/containerization options:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/vagrant&quot;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/docker/&quot;&gt;Docker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod/&quot;&gt;GitPod&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Vagrant&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;li&gt;GitPod&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I also learned that each of these options have some pro&#39;s and con&#39;s attached to consider.&lt;/p&gt;
 &lt;h2 id=&quot;vagrant-pro-s&quot; tabindex=&quot;-1&quot;&gt;Vagrant Pro&#39;s &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/local-development-options/#vagrant-pro-s&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
