@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 6 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -109,7 +109,7 @@ body {
 
 .container {
     display: block;
-    width: var(--max-width);
+    width: calc(var(--max-width) - 2rem);
     margin: 0 auto;
 	padding: 1em;
 }

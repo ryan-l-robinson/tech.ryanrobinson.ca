@@ -717,6 +717,11 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
@@ -727,17 +732,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -777,12 +777,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-framework/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/it-on-film/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-framework/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -817,17 +817,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/drupal-docker/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/html/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/drupal-docker/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
