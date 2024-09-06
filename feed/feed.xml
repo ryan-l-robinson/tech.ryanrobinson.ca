@@ -3171,28 +3171,28 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I’ll start at the first file which gets called when you open VS Code: the .devcontainer/devcontainer.json.&lt;/p&gt;
 &lt;p&gt;The most important pieces are near the top. This includes:&lt;/p&gt;
 &lt;p&gt;Where to find the Docker composer file:&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;  &quot;dockerComposeFile&quot;: &quot;../docker-compose.yml&quot;,&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dockerComposeFile&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;../docker-compose.yml&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What user to connect as:&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;  &quot;remoteUser&quot;: &quot;drupal&quot;,&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;remoteUser&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;drupal&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What service to connect to and what other services to start up in the background:&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;  &quot;service&quot;: &quot;web&quot;,
-  &quot;runServices&quot;: [&quot;web&quot;, &quot;php&quot;, &quot;db&quot;],&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;service&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;web&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;runServices&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;web&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;php&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In my case, my primary is called web for the main Apache container, with two other services for PHP and DB (MariaDB).&lt;/p&gt;
 &lt;p&gt;What location on the container should be your workspace after connecting:&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;  &quot;workspaceFolder&quot;: &quot;/var/www/html&quot;,&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;workspaceFolder&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/var/www/html&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can also define what extensions and settings should be installed in this container. Unlike &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-gitpod-container-2-gitpod-yml/&quot;&gt;the GitPod equivalent&lt;/a&gt;, this can be any VS Code extension, not only the Open VSX ones. I’ve written &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/favourite-visual-studio-code-extensions/&quot;&gt;some of my favourite extensions in the past&lt;/a&gt;, but this is a good sample of some I use specifically with Drupal:&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;    &quot;extensions&quot;: [
-      &quot;gruntfuggly.todo-tree&quot;,
-      &quot;eamodio.gitlens&quot;,
-      &quot;gitkraken.gitkraken-authentication&quot;,
-      &quot;cweijan.vscode-mysql-client2&quot;,
-      &quot;esbenp.prettier-vscode&quot;,
-      &quot;whatwedo.twig&quot;,
-      &quot;marcostazi.vs-code-drupal&quot;,
-      &quot;github.copilot&quot;,
-      &quot;vscode-icons-team.vscode-icons&quot;,
-      &quot;xdebug.php-debug&quot;,
-    ],&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;extensions&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;gruntfuggly.todo-tree&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;eamodio.gitlens&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;gitkraken.gitkraken-authentication&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;cweijan.vscode-mysql-client2&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;esbenp.prettier-vscode&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;whatwedo.twig&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;marcostazi.vs-code-drupal&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;github.copilot&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;vscode-icons-team.vscode-icons&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;xdebug.php-debug&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;scripts&quot; tabindex=&quot;-1&quot;&gt;Scripts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#scripts&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You can trigger other scripts to run at various points in the process.&lt;/p&gt;
 &lt;p&gt;The primary one I made use of is postCreateCommand. This will run only once when the container is first built. This one is much more complicated building the entire site. I’ll have another post dedicated to that script.&lt;/p&gt;
@@ -4231,9 +4231,9 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 	
 	<entry>
 		<title>GitLab&#39;s New Web IDE</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2023/gitLab-ide/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2023/gitlab-ide/"/>
 		<updated>2023-01-03T15:22:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2023/gitLab-ide/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2023/gitlab-ide/</id>
 		<content type="html">&lt;p&gt;I discovered a few days ago that GitLab has a new web IDE that is based on Visual Studio Code. &lt;a href=&quot;https://about.gitlab.com/blog/2022/12/15/get-ready-for-new-gitlab-web-ide/&quot;&gt;The blog about this new editor&lt;/a&gt; highlights a few advantages this gives compared to their previous editor, including:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Flexible layouts, with the possibility for multiple panes open at once.&lt;/li&gt;

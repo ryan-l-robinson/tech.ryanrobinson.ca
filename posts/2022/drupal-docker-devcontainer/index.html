@@ -39,7 +39,6 @@
 		<p>Tags:
 		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
 		<a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a>, 
-		<a href="/tags/gitpod/" class="post-tag">GitPod</a>, 
 		<a href="/tags/php/" class="post-tag">PHP</a>
 		</p>
 	
@@ -63,28 +62,28 @@
 <p>I’ll start at the first file which gets called when you open VS Code: the .devcontainer/devcontainer.json.</p>
 <p>The most important pieces are near the top. This includes:</p>
 <p>Where to find the Docker composer file:</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">  "dockerComposeFile": "../docker-compose.yml",</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">  <span class="token property">"dockerComposeFile"</span><span class="token operator">:</span> <span class="token string">"../docker-compose.yml"</span><span class="token punctuation">,</span></code></pre>
 <p>What user to connect as:</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">  "remoteUser": "drupal",</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">  <span class="token property">"remoteUser"</span><span class="token operator">:</span> <span class="token string">"drupal"</span><span class="token punctuation">,</span></code></pre>
 <p>What service to connect to and what other services to start up in the background:</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">  "service": "web",
-  "runServices": ["web", "php", "db"],</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">  <span class="token property">"service"</span><span class="token operator">:</span> <span class="token string">"web"</span><span class="token punctuation">,</span>
+  <span class="token property">"runServices"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"web"</span><span class="token punctuation">,</span> <span class="token string">"php"</span><span class="token punctuation">,</span> <span class="token string">"db"</span><span class="token punctuation">]</span><span class="token punctuation">,</span></code></pre>
 <p>In my case, my primary is called web for the main Apache container, with two other services for PHP and DB (MariaDB).</p>
 <p>What location on the container should be your workspace after connecting:</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">  "workspaceFolder": "/var/www/html",</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">  <span class="token property">"workspaceFolder"</span><span class="token operator">:</span> <span class="token string">"/var/www/html"</span><span class="token punctuation">,</span></code></pre>
 <p>You can also define what extensions and settings should be installed in this container. Unlike <a href="/websites/drupal/drupal-gitpod-container-2-gitpod-yml/">the GitPod equivalent</a>, this can be any VS Code extension, not only the Open VSX ones. I’ve written <a href="/websites/favourite-visual-studio-code-extensions/">some of my favourite extensions in the past</a>, but this is a good sample of some I use specifically with Drupal:</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">    "extensions": [
-      "gruntfuggly.todo-tree",
-      "eamodio.gitlens",
-      "gitkraken.gitkraken-authentication",
-      "cweijan.vscode-mysql-client2",
-      "esbenp.prettier-vscode",
-      "whatwedo.twig",
-      "marcostazi.vs-code-drupal",
-      "github.copilot",
-      "vscode-icons-team.vscode-icons",
-      "xdebug.php-debug",
-    ],</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">    <span class="token property">"extensions"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"gruntfuggly.todo-tree"</span><span class="token punctuation">,</span>
+      <span class="token string">"eamodio.gitlens"</span><span class="token punctuation">,</span>
+      <span class="token string">"gitkraken.gitkraken-authentication"</span><span class="token punctuation">,</span>
+      <span class="token string">"cweijan.vscode-mysql-client2"</span><span class="token punctuation">,</span>
+      <span class="token string">"esbenp.prettier-vscode"</span><span class="token punctuation">,</span>
+      <span class="token string">"whatwedo.twig"</span><span class="token punctuation">,</span>
+      <span class="token string">"marcostazi.vs-code-drupal"</span><span class="token punctuation">,</span>
+      <span class="token string">"github.copilot"</span><span class="token punctuation">,</span>
+      <span class="token string">"vscode-icons-team.vscode-icons"</span><span class="token punctuation">,</span>
+      <span class="token string">"xdebug.php-debug"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span></code></pre>
 <h3 id="scripts" tabindex="-1">Scripts <a class="header-anchor" href="#scripts">#</a></h3>
 <p>You can trigger other scripts to run at various points in the process.</p>
 <p>The primary one I made use of is postCreateCommand. This will run only once when the container is first built. This one is much more complicated building the entire site. I’ll have another post dedicated to that script.</p>
@@ -147,6 +146,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-docker-devcontainer/` was built on 2024-09-06T20:15:39.625Z -->
+		<!-- This page `/posts/2022/drupal-docker-devcontainer/` was built on 2024-09-06T20:25:33.130Z -->
 	</body>
 </html>

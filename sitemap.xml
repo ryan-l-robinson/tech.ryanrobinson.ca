@@ -567,7 +567,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2023/gitLab-ide/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2023/gitlab-ide/</loc>
 		<lastmod>2023-01-03</lastmod>
 	</url>
 	
@@ -712,17 +712,17 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/microsoft-teams/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -797,17 +797,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/github-pages/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/static-sites/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/html/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -817,12 +812,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/gitpod/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/gitlab/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -832,7 +822,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/tech-and-society/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-githug/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
