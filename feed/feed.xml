@@ -621,12 +621,12 @@
 	
 	<entry>
 		<title>SMTP Through a Google Account</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-28-smtp-through-a-google-account/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/"/>
 		<updated>2021-04-28T19:55:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-28-smtp-through-a-google-account/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/</id>
 		<content type="html">&lt;p&gt;Many applications like business scanners or hosted CRM systems come with features that send email. To do so, it has to be able to connect to an email account that it sends on behalf of. The main challenge is that most good modern email services are strict about allowing emails to be sent on their behalf. Microsoft 365 is particularly strict. Google is a bit easier, but does require an extra step which is not obvious.&lt;/p&gt;
 &lt;p&gt;First, decide which Google account you’ll want to do this. I recommend that it is an account solely for this purpose. &lt;strong&gt;It definitely should not be a regular user account that might contain sensitive data&lt;/strong&gt;. The reason is what will come up below: by nature of this functionality you will need to disable some of the advanced Google security so that &lt;a href=&quot;https://tech.ryanrobinson.ca/security-essentials-multi-factor-authentication/&quot;&gt;it is protected only by a password&lt;/a&gt; (generally a bad idea). Create a specific Gmail account for this purpose, like &amp;lt;company name&amp;gt;.crm@gmail.com.&lt;/p&gt;
-&lt;h2 id=&quot;configure-settings&quot; tabindex=&quot;-1&quot;&gt;Configure settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-28-smtp-through-a-google-account/#configure-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configure-settings&quot; tabindex=&quot;-1&quot;&gt;Configure settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#configure-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Next, you need to find the options in the application trying to send the email. Look for something with “SMTP” in it. It could also be something more generic like “outbound email.”&lt;/p&gt;
 &lt;p&gt;Once you find those settings options in the system that you want to be able to send from as your Gmail, fill in the valued needed for Gmail. &lt;a href=&quot;https://support.google.com/mail/answer/7126229?hl=en&quot;&gt;The values are mostly easy to find on the Internet&lt;/a&gt;, but I’ll copy them here as well:&lt;/p&gt;
 &lt;ul&gt;
@@ -637,7 +637,7 @@
 &lt;li&gt;Port for SSL: 465&lt;/li&gt;
 &lt;li&gt;Port for TLS (if available): 587&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;less-secure-access&quot; tabindex=&quot;-1&quot;&gt;Less secure access &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-28-smtp-through-a-google-account/#less-secure-access&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;less-secure-access&quot; tabindex=&quot;-1&quot;&gt;Less secure access &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#less-secure-access&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There’s one more important step that is not obvious. By default, Google accounts do not allow you to access by SMTP over anything it deems a “less secure app.” Your CRM or scanner connecting over SMTP will probably be considered a less secure app.&lt;/p&gt;
 &lt;p&gt;So, you’ll also need to disable that option. You can do that here when logged in: &lt;a href=&quot;https://myaccount.google.com/lesssecureapps&quot;&gt;Less Secure Apps option&lt;/a&gt;. Note that you’ll also have to turn off two-factor authentication to be allowed to do this.&lt;/p&gt;
 &lt;p&gt;Once that’s done, go ahead and test to confirm it worked.&lt;/p&gt;
@@ -646,9 +646,9 @@
 	
 	<entry>
 		<title>Microsoft Teams: Change Your Profile Picture as a Guest</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-30-change-your-profile-picture-as-a-guest-in-microsoft-teams/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/change-profile-picture-guest-microsoft-teams/"/>
 		<updated>2021-04-30T14:10:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-30-change-your-profile-picture-as-a-guest-in-microsoft-teams/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/change-profile-picture-guest-microsoft-teams/</id>
 		<content type="html">&lt;p&gt;If you’ve operated as a guest in a different company’s Microsoft Teams tenant, you may have noticed that you don’t get the same user photo that you do in your own tenant. Instead, you only get your initials in a colour background. If you’re signing in as a guest regularly in a different tenant, that can get a bit annoying. There’s no clear interface option to change it either.&lt;/p&gt;
 &lt;p&gt;Fortunately, &lt;a href=&quot;https://blog.yannickreekmans.be/change-own-profile-picture-as-guest-in-microsoft-teams/&quot;&gt;Yannick Reekmans has found a way to do it and detailed it in his blog&lt;/a&gt;. I won’t cover all the steps here and I have not personally tried it yet, but this sounds like it would be worth it – at least for those of us who are comfortable looking at developer tools in our browser. Check out the details there and let me know if it works for you.&lt;/p&gt;
 </content>
@@ -656,18 +656,18 @@
 	
 	<entry>
 		<title>Data Loss Prevention (DLP) Policies</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/"/>
 		<updated>2021-05-03T16:04:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/</id>
 		<content type="html">&lt;p&gt;Data Loss Prevention in Microsoft 365 is a feature that helps prevent loss of sensitive data (that makes sense) coming out of your system. This can be within emails or within files, although the latter requires a higher license. Here’s how it works.&lt;/p&gt;
-&lt;h2 id=&quot;sensitive-data-types&quot; tabindex=&quot;-1&quot;&gt;Sensitive data types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/#sensitive-data-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sensitive-data-types&quot; tabindex=&quot;-1&quot;&gt;Sensitive data types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/#sensitive-data-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At the heart of the DLP functionality is the idea of sensitive data types and the ability to recognize those types automatically using pattern recognition.&lt;/p&gt;
 &lt;p&gt;A common example is a credit card. In general, you don’t want people in your organization to be able to share credit card information (especially not by email). Credit card numbers follow a particular pattern of 16 digits. That makes it easier for the Microsoft pattern recognition to detect.&lt;/p&gt;
 &lt;p&gt;Other patterns may not be as easy to identify, but Microsoft is able to draw on a massive amount of data points and come up with a level of confidence. It may come back saying that it is 70% confident that this document contains a credit card number.&lt;/p&gt;
 &lt;p&gt;You can also add your own sensitive data types and train them with enough data for the machine learning machine to establish some confidence in what does and does not meet that type. Perhaps you have your own internal system with ID numbers for clients that you want to protect in some way; you could set that up as a sensitive data type.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/DLP-Sensitive-Information-Types.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of current sensitive info types available by default&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;dlp-rules&quot; tabindex=&quot;-1&quot;&gt;DLP rules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/#dlp-rules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dlp-rules&quot; tabindex=&quot;-1&quot;&gt;DLP rules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/#dlp-rules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next question is what you want to do when that sensitive data is identified. This is where the DLP rules come in. With DLP rules you can set multiple options:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;What sensitive data type(s) should the rule apply to&lt;/li&gt;
@@ -677,22 +677,22 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/DLP-Policy-Settings.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of DLP policy setting options&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;other-uses-of-sensitive-data-types&quot; tabindex=&quot;-1&quot;&gt;Other uses of sensitive data types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/#other-uses-of-sensitive-data-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;other-uses-of-sensitive-data-types&quot; tabindex=&quot;-1&quot;&gt;Other uses of sensitive data types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/#other-uses-of-sensitive-data-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;These sensitive data types can also inform other types of security and compliance rules throughout your Microsoft 365. For example, you can have retention rules based on the sensitive data type scanner which says, for example: if the file has a passport number, retain for 7 years after last modification and then delete.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/Retention-Tag.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of making a retention tag based on sensitive information type&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;learn-more&quot; tabindex=&quot;-1&quot;&gt;Learn more &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-03-data-loss-prevention-dlp-policies/#learn-more&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;learn-more&quot; tabindex=&quot;-1&quot;&gt;Learn more &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/data-loss-prevention-policies/#learn-more&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is a very broad introduction to the idea. To dig in deep to what is possible, &lt;a href=&quot;https://docs.microsoft.com/en-us/exchange/security-and-compliance/data-loss-prevention/data-loss-prevention&quot;&gt;check out the Microsoft docs&lt;/a&gt;.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>My (Freelance) Web Development Workflow</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/"/>
 		<updated>2021-05-04T13:11:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/</id>
 		<content type="html">&lt;p&gt;When I work on a freelance website (I have more advanced tools in my day job), especially once I need to deploy some custom code, I have several tools at my disposal I want to set up. Here’s what those tools and that setup process looks like. For the purpose of this post, I’m assuming I already have the SFTP and SSH credentials from the website host.&lt;/p&gt;
-&lt;h2 id=&quot;ssh-keys&quot; tabindex=&quot;-1&quot;&gt;SSH keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#ssh-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ssh-keys&quot; tabindex=&quot;-1&quot;&gt;SSH keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#ssh-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The one-time need is to prepare my SSH keys. This requires three files which can be created with PuTTYgen, part of the package that comes with PuTTY.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create your SSH key using the “Generate” button, if you don’t already have one you could load.&lt;/li&gt;
@@ -703,7 +703,7 @@
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/PuTTYgen.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;PuTTYgen window, before creating/loading a key&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The file created by step 2 will be used in PuTTY. The file created in step 3 will be added to each site’s authorized_keys file as well as GitHub. The file created in step 4 will be used by Visual Studio Code.&lt;/p&gt;
-&lt;h2 id=&quot;putty&quot; tabindex=&quot;-1&quot;&gt;PuTTY &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#putty&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;putty&quot; tabindex=&quot;-1&quot;&gt;PuTTY &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#putty&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;PuTTY’s piece of the puzzle is to provide SSH access for executing shell commands on the site. This may not be necessary if you can use the integrated terminal in Visual Studio Code, but the host I use does not allow that due to security restrictions.&lt;/p&gt;
 &lt;p&gt;Before adding any specific site, I want to change a couple of settings for the default configuration to aid in using the SSH key for authentication. In the sidebar menu, select Connection -&amp;gt; SSH -&amp;gt; Auth, then:&lt;/p&gt;
 &lt;ol&gt;
@@ -720,7 +720,7 @@
 &lt;li&gt;Click “Save.”&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;In the future when I want to open it, I simply double-click on the saved session.&lt;/p&gt;
-&lt;h2 id=&quot;authorized-keys&quot; tabindex=&quot;-1&quot;&gt;Authorized_keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#authorized-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;authorized-keys&quot; tabindex=&quot;-1&quot;&gt;Authorized_keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#authorized-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you’ve done the first part and try to load up a site, you will get prompted for the password. That’s because the web server hasn’t been told it’s safe to authorize with that SSH key yet. To do that, update the file at ~/.ssh/authorized_keys to contain a line with the contents of id_rsa.pub file. You can have multiple lines in authorized_keys if there are more people working on the site.&lt;/p&gt;
 &lt;p&gt;There are lots of approaches to updating that file (cPanel, SFTP, etc.), but I usually do it by connecting first with PuTTY (using a password the first time) and then editing the file with vi:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; .ssh
@@ -739,7 +739,7 @@ i &lt;span class=&quot;token comment&quot;&gt;#enters insert mode&lt;/span&gt;
 &lt;/ol&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;700&lt;/span&gt; ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;github&quot; tabindex=&quot;-1&quot;&gt;GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;github&quot; tabindex=&quot;-1&quot;&gt;GitHub &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#github&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Any code that I want to customize unique to this site, not just using available plugins and themes published elsewhere, I want to commit my code to GitHub.&lt;/p&gt;
 &lt;p&gt;Here’s a common scenario for me: I’ve created a child theme to apply some tweaks to a published theme elsewhere. When a core theme gets updated, that can create conflicts, so I usually want to see specifically what files got updated. If that includes any of the files I overrode in my child theme, I want to know that. Then I can look at the specific lines that have been changed, and copy those changes if necessary into my child theme.&lt;/p&gt;
 &lt;p&gt;Here are the commands for me to configure the git repository, using the themes folder as the example:&lt;/p&gt;
@@ -750,7 +750,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; origin &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;SSH path to repository&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push &lt;span class=&quot;token parameter variable&quot;&gt;-u&lt;/span&gt; origin main&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It is important that you use the SSH path to the repository, not the HTTPS path. You’ll need it to be using the SSH path to be able to forward your SSH key using PuTTY to connect to GitHub. Note that it is possible to initialize the GitHub repository all in Visual Studio Code, but it does default to using the HTTPS path instead of SSH, so doing it that way means you’d have to change the .git/config file later.&lt;/p&gt;
-&lt;h2 id=&quot;visual-studio-code&quot; tabindex=&quot;-1&quot;&gt;Visual Studio Code &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#visual-studio-code&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;visual-studio-code&quot; tabindex=&quot;-1&quot;&gt;Visual Studio Code &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#visual-studio-code&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; is my code editor of choice, so this is an essential piece of the puzzle if I am doing any customizations to the site. I’ve written more about Visual Studio Code in the past:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/visual-studio-code-remote-ssh-development/&quot;&gt;Remote SSH in Visual Studio Code.&lt;/a&gt;&lt;/li&gt;
@@ -770,7 +770,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
   ForwardAgent yes
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Refresh the list of SSH targets in the remote explorer so the new URL will appear. Click on the “Connect to Host in New Window” icon beside the new URL. Enter the SSH key passphrase to connect. Click on the file browser icon in the left menu and select “Open Folder.” Browse to the root location of the site that you want to work from. Once you’ve opened a specific folder, you can jump straight to that folder from the SSH Targets list.&lt;/p&gt;
-&lt;h2 id=&quot;filezilla&quot; tabindex=&quot;-1&quot;&gt;FileZilla &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-04-my-web-development-workflow/#filezilla&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;filezilla&quot; tabindex=&quot;-1&quot;&gt;FileZilla &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#filezilla&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://filezilla-project.org/&quot;&gt;FileZilla&lt;/a&gt; is a great tool for SFTP access to a website. I don’t need this too often, but it can come in handy if I have to transfer files from my computer to the web server or vice versa. This is all done in the interface.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Click on the Site Manager link in the top left.&lt;/li&gt;
@@ -784,9 +784,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Azure AD: Guest Users from Google</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-06-microsoft-365-guest-users-from-google/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-365-guest-users-google/"/>
 		<updated>2021-05-06T11:29:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-06-microsoft-365-guest-users-from-google/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-365-guest-users-google/</id>
 		<content type="html">&lt;p&gt;Most users of Microsoft 365 have encountered the idea of guest users at some point. If you want to share company resources to somebody outside the company, you can do that. By default this works with the guest able to sign in with a business Microsoft account (Office) or a consumer Microsoft account (MSA).&lt;/p&gt;
 &lt;p&gt;This is not on by default, but you can take that a step further and allow guest users to authenticate logging in to guest resources using their &lt;strong&gt;Google&lt;/strong&gt; accounts. In many scenarios, this is helpful compared to the default. Especially if it’s something like dealing with volunteers, you don’t really want to force them to make a Microsoft account if they don’t otherwise have one. If they don’t have a Microsoft they probably have a Google. It can also help if you use Google Suite for your main company email but also want some other functionality with Office, so that you only need to login with the Google rather than have a whole new set of users.&lt;/p&gt;
 &lt;p&gt;I won’t repeat the full steps here. &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/active-directory/external-identities/google-federation&quot;&gt;Microsoft’s documentation covers that well&lt;/a&gt;. I just wanted to share that it was possible as it is a bit of a hidden gem that isn’t obvious when you get started in Microsoft 365.&lt;/p&gt;
@@ -795,9 +795,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Azure AD: Conditional Access Policies</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-10-microsoft-conditional-access-policies/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-conditional-access-policies/"/>
 		<updated>2021-05-10T12:24:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-10-microsoft-conditional-access-policies/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-conditional-access-policies/</id>
 		<content type="html">&lt;p&gt;Passwords are inadequate. Even for standard consumer tools, you should have at least two more tools in your toolbox: &lt;a href=&quot;https://tech.ryanrobinson.ca/security-essentials-password-manager/&quot;&gt;a password manager&lt;/a&gt; and &lt;a href=&quot;https://tech.ryanrobinson.ca/security-essentials-multi-factor-authentication/&quot;&gt;multi-factor authentication&lt;/a&gt;. Those help make passwords suck less. But they do leave open some questions like: should you need to perform multi-factor authentication every time you log in? Should access be all or nothing, or should there be any accounting for degrees of risk?&lt;/p&gt;
 &lt;p&gt;Conditional access policies, part of Microsoft Azure AD, goes a step further. It’s built on a &lt;a href=&quot;https://www.microsoft.com/en-ca/security/business/zero-trust&quot;&gt;zero trust model&lt;/a&gt;, meaning that it starts by assuming that you shouldn’t have access and then builds up trust based on several factors. Those factors usually include a password (except for &lt;a href=&quot;https://www.microsoft.com/en-ca/security/business/identity-access-management/passwordless-authentication&quot;&gt;the new passwordless option&lt;/a&gt;), but are not limited to them, in order to help cover over all the problems that come with passwords. Some of these other conditions include:&lt;/p&gt;
 &lt;ul&gt;
@@ -822,18 +822,18 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft Endpoint Manager: Enrolling Devices</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/"/>
 		<updated>2021-05-12T08:11:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/</id>
 		<content type="html">&lt;p&gt;Suppose you’ve started to move toward managing your devices in Microsoft Endpoint Manager (Intune). &lt;a href=&quot;https://docs.microsoft.com/en-us/mem/intune/enrollment/device-enrollment&quot;&gt;There are a lot of methods available to do that&lt;/a&gt;. I’ll highlight just a few of the most interesting:&lt;/p&gt;
-&lt;h2 id=&quot;windows-autopilot&quot; tabindex=&quot;-1&quot;&gt;Windows Autopilot &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/#windows-autopilot&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;windows-autopilot&quot; tabindex=&quot;-1&quot;&gt;Windows Autopilot &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/#windows-autopilot&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If the device was set up with Windows Autopilot, enrolling to Endpoint Manager is one of the options to happen immediately as part of the setup. No further actions are necessary.&lt;/p&gt;
-&lt;h2 id=&quot;auto-enroll&quot; tabindex=&quot;-1&quot;&gt;Auto-enroll &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/#auto-enroll&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;auto-enroll&quot; tabindex=&quot;-1&quot;&gt;Auto-enroll &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/#auto-enroll&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Auto-enrollment makes the process very simple. If you’ve set up automatic Mobile Development Management (MDM) and/or Mobile App Management (MAM) for all users or for a group that includes that user, then as soon as the user signs in on the machine with their business account, the device is added to Endpoint Manager.&lt;/p&gt;
 &lt;p&gt;There are some other settings around this including whether they have to agree to a terms of use when they first sign in.&lt;/p&gt;
-&lt;h2 id=&quot;device-enrollment-manager&quot; tabindex=&quot;-1&quot;&gt;Device enrollment manager &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/#device-enrollment-manager&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;device-enrollment-manager&quot; tabindex=&quot;-1&quot;&gt;Device enrollment manager &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/#device-enrollment-manager&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you prefer a more manual approach, you can designate specific staff (e.g. your IT team) as Device Enrollment Managers. Users with this permission can enroll up to 1000 devices each.&lt;/p&gt;
-&lt;h2 id=&quot;co-management&quot; tabindex=&quot;-1&quot;&gt;Co-management &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-12-enrolling-devices-in-endpoint-manager/#co-management&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;co-management&quot; tabindex=&quot;-1&quot;&gt;Co-management &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/enrolling-devices-endpoint-manager/#co-management&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you have an on-premise network with Configuration Manager, you can use co-management to split MDM duties between the two systems. You can even pick which workloads you want to be handled by Configuration Manager and which you want to be handled by Endpoint Manager.&lt;/p&gt;
 &lt;p&gt;This can be a good strategy if you already have Configuration Manager and want to transition to Endpoint Manager one workload at a time, or could be a more permanent solution if you want to keep certain workloads on Configuration Manager.&lt;/p&gt;
 </content>
@@ -841,9 +841,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Cannot Modify Header Information: Headers Already Sent</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-14-cannot-modify-header-information-headers-already-sent/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/cannot-modify-header-information-headers-already-sent/"/>
 		<updated>2021-05-14T14:34:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-14-cannot-modify-header-information-headers-already-sent/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/cannot-modify-header-information-headers-already-sent/</id>
 		<content type="html">&lt;p&gt;Recently I loaded up a client website to do some standard WordPress. The public site was fine, but when I tried to login to the admin, I got the dreaded White Screen of Death. For those unfamiliar, this is a blank white screen, with no error visible to help diagnose the problem.&lt;/p&gt;
 &lt;p&gt;I began doing some general research on the White Screen of Death and trying the different common solutions: disable plugins (by renaming the plugins folder via FTP), update themes, update WordPress core. Nothing worked.&lt;/p&gt;
 &lt;p&gt;Then I checked out the Apache error log and got a big hint:&lt;/p&gt;
@@ -857,9 +857,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>This Page Can&amp;#8217;t Load Google Maps Correctly</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-17-google-maps-error/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/google-maps-error/"/>
 		<updated>2021-05-17T19:54:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-17-google-maps-error/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/google-maps-error/</id>
 		<content type="html">&lt;p&gt;You may be browsing a website – your own or somebody else’s – and see this error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“This page can’t load Google Maps correctly. Do you own this website?”&lt;/p&gt;
@@ -878,9 +878,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft Endpoint Manager: Windows Autopilot</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-19-windows-autopilot/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/windows-autopilot/"/>
 		<updated>2021-05-19T20:08:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-19-windows-autopilot/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/windows-autopilot/</id>
 		<content type="html">&lt;p&gt;Windows Autopilot is a great system for deploying new Windows 10 devices, especially in the age of COVID-19 and so many working from home. &lt;a href=&quot;https://docs.microsoft.com/en-us/mem/autopilot/windows-autopilot&quot;&gt;Here’s the official documentation breaking down the details&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The high level overview is that the user of the machine receives it, perhaps at home or perhaps in an office. They turn it on. Depending on the configuration options the admin has set up, they may have as few as two things they need to do to get the device ready for use:&lt;/p&gt;
 &lt;ol&gt;
@@ -893,12 +893,12 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Power Automate: Create Site with SharePoint REST API</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-21-power-automate-create-site-with-sharepoint-rest-api/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/"/>
 		<updated>2021-05-21T16:13:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-21-power-automate-create-site-with-sharepoint-rest-api/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;This post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.&lt;/p&gt;
-&lt;h2 id=&quot;check-if-site-already-exists&quot; tabindex=&quot;-1&quot;&gt;Check if site already exists &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-21-power-automate-create-site-with-sharepoint-rest-api/#check-if-site-already-exists&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;check-if-site-already-exists&quot; tabindex=&quot;-1&quot;&gt;Check if site already exists &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#check-if-site-already-exists&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This can be done with &lt;a href=&quot;https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest&quot;&gt;the SharePoint REST API&lt;/a&gt; if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.&lt;/p&gt;
 &lt;p&gt;You will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.&lt;/p&gt;
 &lt;p&gt;I’ll use the Get Site API call to see if the site already exists.&lt;/p&gt;
@@ -926,7 +926,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Boolean test: is equal to&lt;/li&gt;
 &lt;li&gt;Second piece of equation: 0&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;create-site&quot; tabindex=&quot;-1&quot;&gt;Create site &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-21-power-automate-create-site-with-sharepoint-rest-api/#create-site&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;create-site&quot; tabindex=&quot;-1&quot;&gt;Create site &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#create-site&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We’re ready to create the site, which can also be done with REST API calls.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Create-site.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of creating a SharePoint by REST API&lt;/em&gt;&lt;/p&gt;
@@ -959,12 +959,12 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>SharePoint: Content Types</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-24-sharepoint-content-types/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/"/>
 		<updated>2021-05-24T20:22:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-24-sharepoint-content-types/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/</id>
 		<content type="html">&lt;p&gt;Content types are one of those features of SharePoint where you can be using SharePoint for years and never notice is there. They often aren’t an absolute necessity. But they do make some things much easier. The average user may not need to be familiar with them, but administrators should be.&lt;/p&gt;
 &lt;p&gt;There are two major advantages to using content types: a standardized set of columns (metadata) and file templates.&lt;/p&gt;
-&lt;h2 id=&quot;columns&quot; tabindex=&quot;-1&quot;&gt;Columns &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-24-sharepoint-content-types/#columns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;columns&quot; tabindex=&quot;-1&quot;&gt;Columns &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/#columns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Columns in SharePoint are metadata about a file or about a list item. These can be of a variety of data types including yes/no fields, dropdown option lists, short text, long text, and more. The easy way to remember why they’re called columns is to imagine them in the most common view, with one row in a table for each item and a column in the table for each piece of data about that item. Once they’re all set up, columns can make a lot of things easier including seeing relevant data at a glance, searching for, sorting, and filtering the content.&lt;/p&gt;
 &lt;p&gt;Now suppose you have 20 custom SharePoint lists that are fundamentally the same idea. Perhaps they had to be split to exist on different sites with different permissions, or perhaps they had to be split to keep each list under the 5000 limit threshold where viewing a list gets limited. They should all have the same 30 custom columns of data that needs to be tracked.&lt;/p&gt;
 &lt;p&gt;Without content types, the way to do this is to repeat the process creating a column on every list separately. That’s already annoying. It gets even more annoying if you have to make a change – perhaps you realize a certain column should be long text instead of short text – and go through all 20 lists again. What if you make a mistake and name the column differently on one of the 20 lists but there’s already data in it by the time you notice? That might throw off other pieces like Power Automate processes.&lt;/p&gt;
@@ -972,7 +972,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;em&gt;Custom columns for the Press Release content type&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;With content types, it gets much easier and much less error-prone. You define the columns on the content type in one place, either specific to one site or globally for all sites, and add the content types to the list/library. If globally, it can take a couple of hours to propagate to all of the lists, but that’s it. That’s the whole process.&lt;/p&gt;
 &lt;p&gt;Most of the time the instinct with a new list or library is to add the columns directly to that list or library and completely ignore content types. That’s fine if you know if you’re never going to need the same column set on another list. But if there’s any chance you will need it again, save yourself a lot of hassle and make it a content type in the first place.&lt;/p&gt;
-&lt;h2 id=&quot;templates&quot; tabindex=&quot;-1&quot;&gt;Templates &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-24-sharepoint-content-types/#templates&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;templates&quot; tabindex=&quot;-1&quot;&gt;Templates &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/#templates&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other big selling point of content types is specific to file libraries (not lists). Suppose you have a company template that all of your press release statements start from (company letterhead, etc.).&lt;/p&gt;
 &lt;p&gt;Without content types with templates, your process may look something like this:&lt;/p&gt;
 &lt;ul&gt;
@@ -984,16 +984,16 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Advanced-settings-on-content-type.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Advanced settings on a content type, including being able to upload a template&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;With a content type, this gets much cleaner. Add the template file to the content type. Then when somebody tries to make a new item of that content type, it will start with the templated file instead of a blank document. They can edit the file from there. It’s fast and intuitive, access to editing the template is tightly controlled, and there’s no risk of somebody forgetting to copy before they dive in to edit.&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint-syntex&quot; tabindex=&quot;-1&quot;&gt;SharePoint Syntex &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-24-sharepoint-content-types/#sharepoint-syntex&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint-syntex&quot; tabindex=&quot;-1&quot;&gt;SharePoint Syntex &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/#sharepoint-syntex&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ll add a third point. &lt;a href=&quot;https://docs.microsoft.com/en-us/microsoft-365/contentunderstanding/#get-started&quot;&gt;SharePoint Syntex&lt;/a&gt; is a relatively new product offering that uses machine learning to read data from files and apply that to the columns. It’s a valuable way to help automate applying metadata to files, which is something that people tend to not enjoy doing manually. I have not extensively tested out SharePoint Syntex, but it is my understanding that the machine learning models are applied on specific content types. If you want to use this tool you’ll end up using content types whether you realize it or not.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Endpoint Manager: Device Configuration Policies</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-26-device-configuration-policies/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/device-configuration-policies/"/>
 		<updated>2021-05-26T07:38:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-26-device-configuration-policies/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/device-configuration-policies/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/enrolling-devices-in-endpoint-manager/&quot;&gt;You’ve got your devices enrolled in Endpoint Manager&lt;/a&gt;. Now what? This opens up lots of tools including configuration policies.&lt;/p&gt;
 &lt;p&gt;Configuration policies allow for quickly rolling out the desired configuration to the device, without the user having to manually set it up. This can include a lot of different settings and vary by the operating system of the device. Some of the more interesting tools for Windows 10 includes:&lt;/p&gt;
 &lt;ul&gt;
@@ -1018,12 +1018,12 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Power Automate: Temporary Site Scripts and Designs</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/"/>
 		<updated>2021-05-28T11:00:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/&quot;&gt;In the last post in this series&lt;/a&gt;, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.&lt;/p&gt;
-&lt;h2 id=&quot;write-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Write the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#write-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;write-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Write the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#write-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.&lt;/p&gt;
 &lt;p&gt;Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/SiteScript.png&quot; alt=&quot;&quot; /&gt;
@@ -1048,7 +1048,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
     &amp;quot;version&amp;quot;: 1
   }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;register-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Register the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#register-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;register-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Register the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#register-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Register-Site-Script.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of action to register site script&lt;/em&gt;&lt;/p&gt;
@@ -1075,7 +1075,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Type: String&lt;/li&gt;
 &lt;li&gt;Value: body(‘Create_temp_site_script’)?[‘Id’]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;create-the-temporary-design&quot; tabindex=&quot;-1&quot;&gt;Create the temporary design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#create-the-temporary-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;create-the-temporary-design&quot; tabindex=&quot;-1&quot;&gt;Create the temporary design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#create-the-temporary-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Create-Site-Design.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of registering the site design&lt;/em&gt;&lt;/p&gt;
@@ -1107,7 +1107,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Type: String&lt;/li&gt;
 &lt;li&gt;Value: body(‘Create_temp_site_design’)?[‘Id’]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;delay&quot; tabindex=&quot;-1&quot;&gt;Delay &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#delay&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;delay&quot; tabindex=&quot;-1&quot;&gt;Delay &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#delay&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You may want a bit of a delay before applying the site design. This is to ensure that the site does already exist before you try to apply the design. Rather than guessing a specific amount of time for the site to be prepared (5 minutes has always been sufficient in my tests), you could also use a test to see if the site exists yet with a REST API call like the one above. In that case you could put that within a loop:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Enter loop only if site does not exist.&lt;/li&gt;
@@ -1116,7 +1116,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Delay-5-minutes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;You also may need to delay much longer if your site scripts rely on &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/content-types/&quot;&gt;global content types&lt;/a&gt;. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.&lt;/p&gt;
-&lt;h2 id=&quot;apply-the-site-design&quot; tabindex=&quot;-1&quot;&gt;Apply the site design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#apply-the-site-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;apply-the-site-design&quot; tabindex=&quot;-1&quot;&gt;Apply the site design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#apply-the-site-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Yet another REST API call will allow you to apply the site design that is now registered.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Apply-Site-Design.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of applying the site design&lt;/em&gt;&lt;/p&gt;
@@ -1133,7 +1133,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &amp;quot;webUrl&amp;quot;:&amp;quot;@{variables(&#39;siteURL&#39;)}&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;clean-up&quot; tabindex=&quot;-1&quot;&gt;Clean up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-28-power-automate-temporary-site-scripts-and-designs/#clean-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;clean-up&quot; tabindex=&quot;-1&quot;&gt;Clean up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#clean-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Delete-Site-Design.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of deleting the site design&lt;/em&gt;&lt;/p&gt;
@@ -1165,9 +1165,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft Endpoint Manager: Device Compliance Policies</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-05-31-device-compliance-policies/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/device-compliance-policies/"/>
 		<updated>2021-05-31T15:16:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-05-31-device-compliance-policies/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/device-compliance-policies/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/enrolling-devices-in-endpoint-manager/&quot;&gt;Once you’ve got devices enrolled in Microsoft Endpoint Manager&lt;/a&gt;, one of the very useful things you can apply are compliance policies. These provide you a way to monitor and enforce restrictions on devices which are not following the proper practices that you want in your organization.These compliance policies can be set up for devices of multiple operating systems:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Android&lt;/li&gt;
@@ -1178,7 +1178,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;As is the case elsewhere in Endpoint Manager, Chromebook is the noticeable omission.&lt;/p&gt;
 &lt;p&gt;The exact options from there will vary depending on the platform, but they break down into three decisions: how do you define non-compliance (compliance settings), what happens if it’s not compliant (actions for noncompliance), and who is bound by this compliance policy (assignments).&lt;/p&gt;
-&lt;h2 id=&quot;compliance-settings&quot; tabindex=&quot;-1&quot;&gt;Compliance settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-31-device-compliance-policies/#compliance-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;compliance-settings&quot; tabindex=&quot;-1&quot;&gt;Compliance settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/device-compliance-policies/#compliance-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This tab defines what it takes to be considered compliant vs non-compliant. Windows 10 has the most options and I won’t list them all, but some that stand out include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Require Bitlocker&lt;/strong&gt;: encrypted hard drive&lt;/li&gt;
@@ -1192,7 +1192,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In general, I suggest that you at least require Bitlocker, firewall, antivirus, antispyware, and Defender antimalware with real-time protection. There are a lot of variables, e.g. if you are using a different anti-virus solution instead, but I think that’s a good baseline.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Device-Compliance-Settings.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of some of the device compliance settings, including requiring Bitlocker&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;actions-for-noncompliance&quot; tabindex=&quot;-1&quot;&gt;Actions for noncompliance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-31-device-compliance-policies/#actions-for-noncompliance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;actions-for-noncompliance&quot; tabindex=&quot;-1&quot;&gt;Actions for noncompliance &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/device-compliance-policies/#actions-for-noncompliance&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next question is what you want to happen if the device violates the compliance rules. There are a few options:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Mark as noncompliant&lt;/strong&gt;: you’ll always want this, but you get an option of how long before that happens. That decision will depend largely on other settings. For example, if this is the only consequence, it can be a good way to monitor violations to mark noncompliant immediately. But if you’re pairing it with something like conditional access, you don’t want to end up immediately locking out a user from company resources because they were a little slow updating Windows. In that case, you’re likely better off sending an email warning right away and not marking noncompliant for a couple of weeks.&lt;/li&gt;
@@ -1201,7 +1201,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Device-Compliance-Actions.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Possible actions when device is not compliant&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;assignments&quot; tabindex=&quot;-1&quot;&gt;Assignments &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-05-31-device-compliance-policies/#assignments&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;assignments&quot; tabindex=&quot;-1&quot;&gt;Assignments &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/device-compliance-policies/#assignments&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, there are options for who this compliance policy applies to: all users or specific groups. You may want to apply a more lenient policy to everybody, then have more strict policies for users like senior management who have access to the most sensitive information.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Device-Compliance-Assignments.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Options for who this policy is applied to&lt;/em&gt;&lt;/p&gt;
@@ -1210,9 +1210,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Power Automate: The First Function</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-02-power-automate-the-first-function/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/power-automate-the-first-function/"/>
 		<updated>2021-06-02T17:41:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-02-power-automate-the-first-function/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/power-automate-the-first-function/</id>
 		<content type="html">&lt;p&gt;A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.&lt;/p&gt;
 &lt;p&gt;How do you get around that? The Microsoft Tech Community recently answered that with the first() function. The full details are in the link below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/avoid-unnecessary-looping-apply-to-each-in-power-automate/ba-p/2190265?WT.mc_id=m365-24198-cxa&amp;amp;utm_source=collab365&amp;amp;utm_medium=collab365today&amp;amp;utm_campaign=daily_digest&quot;&gt;Avoid Unnecessary Looping (Apply to each) in Power Automate – Microsoft Tech Community&lt;/a&gt;&lt;/p&gt;
@@ -1221,9 +1221,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>HTwoO in SharePoint Framework</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-04-htwoo-in-sharepoint-framework/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/htwoo-sharepoint-framework/"/>
 		<updated>2021-06-04T17:48:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-04-htwoo-in-sharepoint-framework/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/htwoo-sharepoint-framework/</id>
 		<content type="html">&lt;p&gt;I recently learned about a new framework for a fully HTML and CSS implementation of Microsoft’s Fluent Design system. This can make your life a lot easier when designing web apps that stick to that design. I haven’t tried it out yet – I’m hoping to get a full SharePoint Framework experiment together soon – but it looks very promising.&lt;/p&gt;
 &lt;p&gt;Here are some key links to help:&lt;/p&gt;
 &lt;ul&gt;
@@ -1236,9 +1236,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>The Time I Recommended Yammer</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-07-the-time-i-recommended-yammer/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/recommended-yammer/"/>
 		<updated>2021-06-07T11:38:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-07-the-time-i-recommended-yammer/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/recommended-yammer/</id>
 		<content type="html">&lt;p&gt;Yammer is often the forgotten piece of Microsoft 365. Some people would even argue that Microsoft has largely forgotten about it. It’s an enterprise social network. It feels a lot like using Facebook, but it’s restricted to your organization.&lt;/p&gt;
 &lt;p&gt;Several years ago I was tasked with planning an intranet based on SharePoint. A significant portion of the goal was to further enhance communication across the organization, including more casual conversations and not just strictly work conversations. The assumption going in was that SharePoint was the solution for that as well as sharing resource files.&lt;/p&gt;
 &lt;p&gt;Note that this was not long before modern SharePoint began. It was mostly ugly. The conversation web part sucked. It was quite functional for managing files, but was not a pleasant experience. I realized that no, SharePoint is not the solution for everything.&lt;/p&gt;
@@ -1253,16 +1253,16 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Microsoft Cloud App Security</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-10-microsoft-cloud-app-security/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-cloud-app-security/"/>
 		<updated>2021-06-10T11:05:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-10-microsoft-cloud-app-security/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-cloud-app-security/</id>
 		<content type="html">&lt;p&gt;If you’re an IT admin, do you know what apps users are putting on devices alongside company data? Do you know all the apps that they are directly putting company data into, thinking it helps solve a problem for them? This is the problem of “Shadow IT.” If it’s a personal device, it’s even worse, as they might be installing all kinds of insecure apps without IT approval and it wouldn’t take much to make a mistake like copying and pasting company data or uploading a file into the wrong app.&lt;/p&gt;
 &lt;p&gt;The first lesson of this problem is that it is very important that IT provides the apps that every user needs. Users shouldn’t have to decide for themselves what to use and whether it is secure enough. If they’re forced to make those decisions instead of IT, there’s a good chance they won’t consistently make good ones.&lt;/p&gt;
 &lt;p&gt;The Microsoft Cloud App Security dashboard helps with this problem. It empowers admins to see the apps being installed on corporate devices. It also allows you to set policies around those apps to help contain data.&lt;/p&gt;
-&lt;h2 id=&quot;discover&quot; tabindex=&quot;-1&quot;&gt;Discover &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-10-microsoft-cloud-app-security/#discover&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;discover&quot; tabindex=&quot;-1&quot;&gt;Discover &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-cloud-app-security/#discover&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Step one is discovering what apps are on the devices. The Discover -&amp;gt; Create snapshot report will allow you to create a report based on the logs from services like corporate firewalls.&lt;/p&gt;
 &lt;p&gt;The Cloud app catalog will show all of the apps in Microsoft’s directory. There are thousands. They all come with detailed risk scores providing information on the app, including its security, and legal. For example, SugarCRM scores an 8 overall, with a 7 in general, 10 in security, 4 in compliance, and 10 in legal. That’s pretty good, but depending on the needs of your organization (like HIPAA compliance), there might be some issues to look into there. This is helpful information to decide whether to approve or deny an app for your users.&lt;/p&gt;
-&lt;h2 id=&quot;investigate&quot; tabindex=&quot;-1&quot;&gt;Investigate &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-10-microsoft-cloud-app-security/#investigate&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;investigate&quot; tabindex=&quot;-1&quot;&gt;Investigate &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-cloud-app-security/#investigate&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Investigate section allows for checking in on reports for users, files, and activity across connected apps. You can set up connected apps in this section as well, so that apps like Office 365 report back to CAS.# PPoliciesThe policies section comes with several great policies by default. Familiarize yourself with these defaults before starting to create a new one, as there might already be something close to what you want that just needs a bit of tweaking. There’s a lot here, so I’ll run down the policy types quickly:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;Access:&lt;/em&gt;  these require first having &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-conditional-access-policies/&quot;&gt;conditional access policies&lt;/a&gt; configured. Then you can enforce access requirements logging in to other apps.&lt;/li&gt;
@@ -1278,21 +1278,21 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>SharePoint: Overriding a Site&amp;#8217;s Home Page</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-14-overriding-a-sharepoint-sites-home-page/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/"/>
 		<updated>2021-06-14T17:26:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-14-overriding-a-sharepoint-sites-home-page/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;At this point in the series, we’ve now created new SharePoint sites and applied temporary site scripts and site designs. There is one big feature missing from site scripts and site designs, though: templating the home page. You can’t simply say that a project site design should always contain a home page with these specific web parts. This may not be true forever – Microsoft is steadily improving site templating – but as of working on this project a few months ago, it required a bit of a workaround.&lt;/p&gt;
-&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-14-overriding-a-sharepoint-sites-home-page/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here’s the basic idea that we’ll do to get around this:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Design your homepage on some other SharePoint site, with permissions locked down so that nobody sees it or can edit it who shouldn’t.&lt;/li&gt;
 &lt;li&gt;Within the provisioning Flow, after the new site is created, copy the page from the template site to the new site, overriding the name of “Home” so that it takes over the homepage.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;the-pro-and-con&quot; tabindex=&quot;-1&quot;&gt;The pro and con &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-14-overriding-a-sharepoint-sites-home-page/#the-pro-and-con&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-pro-and-con&quot; tabindex=&quot;-1&quot;&gt;The pro and con &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/#the-pro-and-con&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The nicest thing about this approach is that it makes it very easy to update the home page. Anybody with the permission to do so can go to that template site’s home page and edit it. That’s it. There is no PowerShell or JSON to update a site script or design.&lt;/p&gt;
 &lt;p&gt;The biggest negative is the other side of that coin: it requires that nobody delete or rename that homepage file on that template site and there’s no warning if somebody did try to do that. You can recover within 93 days if somebody does delete it and you notice by way of the Flow failing, but it’s still not ideal that it’s even possible for a user to do that without knowing the consequences.&lt;/p&gt;
-&lt;h2 id=&quot;the-copy-action&quot; tabindex=&quot;-1&quot;&gt;The copy action &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-14-overriding-a-sharepoint-sites-home-page/#the-copy-action&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-copy-action&quot; tabindex=&quot;-1&quot;&gt;The copy action &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/#the-copy-action&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you don’t already have a template site with some locked down permissions, create it and then design the homepage. This homepage can use relative web parts, like the documents library of that site.&lt;/p&gt;
 &lt;p&gt;When that’s ready, it only takes a “Copy file” SharePoint action in the Flow to handle the copying. This can be a bit smoother than some previous actions which required the HTTP REST API calls. Those needed more flexibility using variables defined in the Flow. This one is copying from the same location every time, so it can stay simpler.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/CopyHomepage.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -1310,13 +1310,13 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Considerations Migrating IMAP to M365</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/"/>
 		<updated>2021-06-16T13:46:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/</id>
 		<content type="html">&lt;p&gt;Email migrations are one of those tasks you won’t have to do often, but you’ll really want to make sure you’re doing it correctly when it does need to happen. As much as collaboration tools like Microsoft Teams and Slack have taken over a lot of communication, email is still a central component of many organizations.&lt;/p&gt;
 &lt;p&gt;There are lots of permutations of migrating email from one service to another. In this post I’ll focus on one I’ve done a few times and is more likely with smaller organizations: from a web server to Microsoft 365. These smaller organizations often set up their email on the same server as their website many years ago. Those email services are usually quite bad – slow, low storage limits, bad spam filtering, emails might sync across devices but contacts and calendar don’t, etc. – but maybe they were good enough for a long time and it’s a pain to switch. The need for a migration might also come up when the organization wants to move their website hosting and suddenly realizes the flaw in having their email hosting connected to the same account.&lt;/p&gt;
 &lt;p&gt;I’m not going to break down the detailed steps of a migration. These are well documented by Microsoft. Instead, I’m going to mention a few potential complications to be aware of.&lt;/p&gt;
-&lt;h2 id=&quot;plan-your-time&quot; tabindex=&quot;-1&quot;&gt;Plan your time &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/#plan-your-time&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;plan-your-time&quot; tabindex=&quot;-1&quot;&gt;Plan your time &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/#plan-your-time&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Some of the steps take time. You won’t do this all in one day. But if you plan it properly, it can be a seamless transition for the users. So plan out what your steps will look like, which might be something like this:&lt;/p&gt;
 &lt;p&gt;Day one: create the new accounts in Microsoft 365. Take a look at the migration process to make sure you’ve got a good understanding. Especially if you haven’t done it before, do a trial run with just one of the email accounts. Put out the request for all the credentials you need, including the IMAP server details and the passwords of current users. Make sure to collect these securely, using tools like &lt;a href=&quot;https://quickforget.com/&quot;&gt;QuickForget&lt;/a&gt;. Also make sure you have any alternate emails for users in case you need to contact them while they don’t have their work email.&lt;/p&gt;
 &lt;p&gt;Wait a couple of days to get all the passwords.&lt;/p&gt;
@@ -1325,7 +1325,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Day five: once you’ve confirmed everything is copied over well, change the DNS records to point all new email to Microsoft 365 instead of the IMAP server. This could take from minutes to a day depending on the DNS server. Do this outside of business hours if possible, so the users never notice the in-between period where some emails go to the old mailbox and some to the new. Let the users know that they should start accessing from Microsoft 365 any time now, reminding them of the instructions.&lt;/p&gt;
 &lt;p&gt;Day six: confirm everybody is successfully accessing the new mailbox, providing added training or support as necessary.&lt;/p&gt;
 &lt;p&gt;You don’t have to follow this exact timeline. It’s just a demonstration to point out there will be gap times where you have to wait between steps, so plan accordingly.&lt;/p&gt;
-&lt;h2 id=&quot;pop-and-imap&quot; tabindex=&quot;-1&quot;&gt;POP and IMAP &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/#pop-and-imap&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pop-and-imap&quot; tabindex=&quot;-1&quot;&gt;POP and IMAP &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/#pop-and-imap&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Make sure people aren’t accessing via POP. If a user is checking their email only using Outlook on a single computer with the POP protocol instead of IMAP, changes they make on their computer (like folder structures) do not sync back to the server. The migration process is server-to-server, so this means that you end up migrating the unsorted mailbox on the server instead of the nicely organized structure of the computer. That’s not good.&lt;/p&gt;
 &lt;p&gt;In this case, the best solution may be to use the PST export and import in desktop Outlook to migrate this mailbox.&lt;/p&gt;
 &lt;ul&gt;
@@ -1335,9 +1335,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Wait for everything to sync back to the Microsoft server, possibly hours depending on the mailbox size.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;It’s a slow but straightforward process, not too onerous as long as you don’t have to do it for a lot of users.&lt;/p&gt;
-&lt;h2 id=&quot;contacts-and-calendar&quot; tabindex=&quot;-1&quot;&gt;Contacts and calendar &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/#contacts-and-calendar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;contacts-and-calendar&quot; tabindex=&quot;-1&quot;&gt;Contacts and calendar &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/#contacts-and-calendar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;IMAP migrations handle email, including folder structures. They don’t include contacts and calendar. Users have to do that manually. If the users want to migrate those things (they may not, depending how they use them), make sure they have instructions for how to export their address book and calendar and then import to the new Microsoft mailbox.&lt;/p&gt;
-&lt;h2 id=&quot;training&quot; tabindex=&quot;-1&quot;&gt;Training &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-16-considerations-migrating-imap-to-m365/#training&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;training&quot; tabindex=&quot;-1&quot;&gt;Training &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/considerations-migrating-imap-to-m365/#training&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ve already mentioned this, but don’t forget training. If you spend a lot of time in Microsoft 365 like I do, it might be easy to overlook that you’ve just set up accounts for people who may have never used Microsoft services before. You’ll need to make sure they know everything they need to know. That includes things like:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;How to check their new email: on the web, desktop Outlook, mobile Outlook or other app&lt;/li&gt;
@@ -1349,9 +1349,9 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Movie Directory Part 1: The Data</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-18-movie-directory-part-1-the-data/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-1-the-data/"/>
 		<updated>2021-06-18T13:52:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-18-movie-directory-part-1-the-data/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-1-the-data/</id>
 		<content type="html">&lt;p&gt;I recently decided to do more experimentation with Dataverse (formerly Common Data Service) in the Power Platform. I did this by making myself an app to solve a need I have myself: a movie directory app. I wanted to be able to:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Track in what formats I own a movie (Blu-ray, DVD, digital)&lt;/li&gt;
@@ -1378,13 +1378,13 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>CiviCRM: Personal Campaign Pages</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-21-civicrm-personal-campaign-pages/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/civicrm-personal-campaign-pages/"/>
 		<updated>2021-06-21T14:28:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-21-civicrm-personal-campaign-pages/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/civicrm-personal-campaign-pages/</id>
 		<content type="html">&lt;p&gt;Have you ever taken part in a non-profit fundraising event where you get your own personal webpage that you can direct people to as a way for them to sponsor you directly in the event? Personally I am happy to participate in &lt;a href=&quot;https://cnoy.org/home&quot;&gt;the Coldest Night of the Year&lt;/a&gt; every year, which does have this type of system (not in CiviCRM).&lt;/p&gt;
 &lt;p&gt;In the language of &lt;a href=&quot;https://tech.ryanrobinson.ca/crm/civicrm/civicrm-overview/&quot;&gt;CiviCRM&lt;/a&gt;, these are Personal Campaign Pages. While CiviCRM does offer this functionality, it has some major holes in it. Like a few areas of CiviCRM, it feels like somebody threw it together quickly and then mostly forgot about it. Consequently, I had a hard time ever recommending it as a good solution, even if a client was already heavily using CiviCRM happily. &lt;a href=&quot;https://docs.civicrm.org/user/en/latest/contributions/personal-campaign-pages/&quot;&gt;Here’s the official documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here are the three biggest problems I found when trying to use this feature:&lt;/p&gt;
-&lt;h2 id=&quot;confusing-to-set-up&quot; tabindex=&quot;-1&quot;&gt;Confusing to set up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-21-civicrm-personal-campaign-pages/#confusing-to-set-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;confusing-to-set-up&quot; tabindex=&quot;-1&quot;&gt;Confusing to set up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/civicrm-personal-campaign-pages/#confusing-to-set-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The way that CiviCRM presents options to you is confusing. Personal campaign pages can be used to recruit new participants or to gather donations. They can also be attached to either an event or a contribution page. So there are four combinations:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;On an event, using campaign pages to recruit new participants&lt;/li&gt;
@@ -1393,36 +1393,36 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;On a contribution page, using campaign pages to fundraise&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Maybe having all four options is justifiable. The bigger problem is the settings don’t make it clear enough which combination you want until you try it out and realize you got it wrong.&lt;/p&gt;
-&lt;h2 id=&quot;no-participant-directory&quot; tabindex=&quot;-1&quot;&gt;No participant directory &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-21-civicrm-personal-campaign-pages/#no-participant-directory&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;no-participant-directory&quot; tabindex=&quot;-1&quot;&gt;No participant directory &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/civicrm-personal-campaign-pages/#no-participant-directory&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The most natural thing that you want in a scenario like Coldest Night of the Year? A list of all the participants so that visitors to the site can find who they want to support, as well as things like leaderboards. This is common in these fundraising systems. The CiviCRM PCPs do not offer this.&lt;/p&gt;
 &lt;p&gt;If your CiviCRM is built on top of a Drupal site (the best option), you can make something work using views to find all the PCPs of participants tied to an event. But that shouldn’t be necessary; that really should be a feature that’s part of the CiviCRM offering. We put in a lot of effort with views and custom PHP development to try to make some friendly user interfaces for participants and donors and even then it was a little rough compared to other systems out there.&lt;/p&gt;
-&lt;h2 id=&quot;no-teams&quot; tabindex=&quot;-1&quot;&gt;No teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-21-civicrm-personal-campaign-pages/#no-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;no-teams&quot; tabindex=&quot;-1&quot;&gt;No teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/civicrm-personal-campaign-pages/#no-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A lot of these types of events go most smoothly when the participants can sign up as part of a team, which adds elements of comradery and competition. The CiviCRM function does not handle this at all. There was an extension that did it, but that extension got abandoned after a couple of years, leaving one of our clients stranded without that working at all anymore and data in their database with no easy way to convert it to something useful. When it was working, it was similarly as rough as our participant directory workarounds.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Excel vs SharePoint Lists</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/"/>
 		<updated>2021-06-23T18:50:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/</id>
 		<content type="html">&lt;p&gt;I’ve been asked the question before: when should I use Microsoft Excel and when should I use SharePoint lists? At first I didn’t have a great answer, but I thought about it, looked into it a bit more, and this is what I settled on:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Excel is better when you need to do operations on the whole data set. SharePoint lists are better when the list items stand more-or-less as independent objects.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Let’s break down a bit of why I concluded that.&lt;/p&gt;
-&lt;h2 id=&quot;excel-operations&quot; tabindex=&quot;-1&quot;&gt;Excel: operations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/#excel-operations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;excel-operations&quot; tabindex=&quot;-1&quot;&gt;Excel: operations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/#excel-operations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Excel can do a lot of data crunching that SharePoint lists don’t on their own (maybe with Power BI, but let’s ignore that for now). You want to make an easy chart summarizing the data? That’s Excel. You want to sum a column? That’s Excel. You want to calculate different multipliers based on different variables, like a complex budget or quote spreadsheet? That’s Excel.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Excel-sums.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;A simple Excel table doing sum calculations in both directions&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint-list-editing&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: editing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/#sharepoint-list-editing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint-list-editing&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: editing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/#sharepoint-list-editing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SharePoint lists are much easier to edit if you need to change one particular item. You can open up a form, either using the default SharePoint forms or a connected Power App, to edit that particular item. You can also edit that one through a stand-alone Power App, through a Flow in Power Apps, or through the mobile Lists app. Much more than with Excel, it is designed to see a single item on its own and make edits as necessary.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Edit-Issue.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Form to edit a single item in SharePoint&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint-list-sorting-and-filtering&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: sorting and filtering &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/#sharepoint-list-sorting-and-filtering&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint-list-sorting-and-filtering&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: sorting and filtering &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/#sharepoint-list-sorting-and-filtering&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Excel can do some sorting and filtering, but it isn’t completely intuitive. It’s easy to accidentally end up sorting just one column instead of all the associated data in other columns, ruining the data (hit undo).&lt;/p&gt;
 &lt;p&gt;Sorting and filtering is much more intuitive in SharePoint lists. You’ve likely encountered the same kinds of interface on many other websites with rows of data. Just click on the heading to sort or bring up the filters menu. You won’t ever accidentally jumble your data because every row is a distinct object.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Column-settings.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Options that appear when clicking on a column header, including sorting&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;sharepoint-list-saved-views&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: saved views &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-23-microsoft-excel-vs-sharepoint-lists/#sharepoint-list-saved-views&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;sharepoint-list-saved-views&quot; tabindex=&quot;-1&quot;&gt;SharePoint list: saved views &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-excel-vs-sharepoint-lists/#sharepoint-list-saved-views&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Related to sorting and filtering, SharePoint makes it easy to save different views. These views can be simple tables but with different sorts and filters applied, or could be much more complicated with &lt;a href=&quot;https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/column-formatting&quot;&gt;list and column formatting&lt;/a&gt;. These views can be saved and shared with everybody else that uses the list, or could be kept private for just you. This is extremely valuable functionality.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Views-menu.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Views menu including editing views and changing between existing views&lt;/em&gt;&lt;/p&gt;
@@ -1431,12 +1431,12 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 	
 	<entry>
 		<title>Movie Directory Part 2: Gallery and Filters</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-25-movie-directory-part-2-gallery-and-filters/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/"/>
 		<updated>2021-06-25T18:03:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-25-movie-directory-part-2-gallery-and-filters/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/</id>
 		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/power-apps/movie-directory-part-1-the-data/&quot;&gt;Movie Directory Part 1&lt;/a&gt;, I described what I was aiming to achieve with this personal project, as well as the Dataverse structure.&lt;/p&gt;
 &lt;p&gt;In this post, I’ll describe at a high level the design of the Power App and the gallery view and filters. Most of it I’ll keep at a high-level, not step-by-step, as I used a lot of the out-of-the-box functionality.&lt;/p&gt;
-&lt;h2 id=&quot;screens&quot; tabindex=&quot;-1&quot;&gt;Screens &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-25-movie-directory-part-2-gallery-and-filters/#screens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;screens&quot; tabindex=&quot;-1&quot;&gt;Screens &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/#screens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are four screens involved in the app:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Gallery view that shows all of the movies, with the cover art behind the title, year, and last time we watched it&lt;/li&gt;
@@ -1444,7 +1444,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;View details screen of a single movie&lt;/li&gt;
 &lt;li&gt;Edit details screen of a single movie, including a new movie&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;all-movies&quot; tabindex=&quot;-1&quot;&gt;All Movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-25-movie-directory-part-2-gallery-and-filters/#all-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;all-movies&quot; tabindex=&quot;-1&quot;&gt;All Movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/#all-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Gallery-view.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Gallery view. We own all the Alien movies&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The majority of this screen is a Gallery component, with some minor changes to show exact details I wanted to show. The biggest change is incorporating the filters from the filters screen, which required this in the OnVisible field to handle whether there are filters set or not:&lt;/p&gt;
@@ -1468,7 +1468,7 @@ Set(MoviesFilter3,If(!IsBlank(varLastWatched),Filter(MoviesFilter2,&#39;Last Wat
 &lt;p&gt;Another minor tweak included adding the Filters icon, which navigates to the filters screen with this formula in the OnSelect:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Navigate(MovieFilters)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;filters&quot; tabindex=&quot;-1&quot;&gt;Filters &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-25-movie-directory-part-2-gallery-and-filters/#filters&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;filters&quot; tabindex=&quot;-1&quot;&gt;Filters &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/#filters&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Filters.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Filters screen&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The filters screen is nothing flashy, but functional. The watchlist field is a simple dropdown, where the items field comes from the Dataverse tables:&lt;/p&gt;
@@ -1492,11 +1492,11 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Movie Directory Part 3: View and Edit</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-06-29-movie-directory-part-3-view-and-edit/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/"/>
 		<updated>2021-06-29T11:05:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-06-29-movie-directory-part-3-view-and-edit/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/</id>
 		<content type="html">&lt;p&gt;This continues a short series about &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/movie-directory/&quot;&gt;a movie directory personal project&lt;/a&gt; exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.&lt;/p&gt;
-&lt;h2 id=&quot;view-screen&quot; tabindex=&quot;-1&quot;&gt;View screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-29-movie-directory-part-3-view-and-edit/#view-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;view-screen&quot; tabindex=&quot;-1&quot;&gt;View screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#view-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/View-Movie.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;View movie screen of Alien3, with all the options selected&lt;/em&gt;&lt;/p&gt;
@@ -1519,7 +1519,7 @@ Navigate(AllMovies)
 &lt;pre&gt;&lt;code&gt;BrowseGallery1.Selected.Cover.Full
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;and a Transparency of 0.6, to make sure the text above it is still readable.&lt;/p&gt;
-&lt;h2 id=&quot;edit-screen&quot; tabindex=&quot;-1&quot;&gt;Edit screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-29-movie-directory-part-3-view-and-edit/#edit-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;edit-screen&quot; tabindex=&quot;-1&quot;&gt;Edit screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#edit-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Edit-screen.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Edit screen for Alien3&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.&lt;/p&gt;
@@ -1544,24 +1544,24 @@ Navigate(AllMovies)
 UpdateContext({showPopup:false});
 Navigate(AllMovies)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;what-s-left&quot; tabindex=&quot;-1&quot;&gt;What’s left &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-06-29-movie-directory-part-3-view-and-edit/#what-s-left&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-s-left&quot; tabindex=&quot;-1&quot;&gt;What’s left &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#what-s-left&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At this point, I have a data structure and a fully functioning app. What I haven’t covered yet is how to most efficiently load in 300+ movies. A final post in this series will look at that problem, through a Power Automate Flow that I wrote to import all the movie information from our previous system and help collect cover images for all these movies quickly.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Movie Directory Part 4: Import</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/"/>
 		<updated>2021-07-01T15:03:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/</id>
 		<content type="html">&lt;p&gt;This continues a short series about &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/movie-directory/&quot;&gt;a movie directory personal project&lt;/a&gt; exploring Power Apps and Dataverse. In the first three posts, I’ve laid out the data structure in Dataverse and the app itself. This post will tackle how I was able to quickly fill in the 300+ movies in our collection converting from our previous system, files on a computer arranged for use on a Plex server. This will all be done in Power Automate.&lt;/p&gt;
-&lt;h2 id=&quot;the-old-structure&quot; tabindex=&quot;-1&quot;&gt;The old structure &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#the-old-structure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-old-structure&quot; tabindex=&quot;-1&quot;&gt;The old structure &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-old-structure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here’s how the old structure was, to work nicely with a &lt;a href=&quot;https://www.plex.tv/&quot;&gt;Plex&lt;/a&gt; server:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;There was a folder in my OneDrive differentiating where we owned each movie. Some movies were only on disc. Others were in one or more digital stores as well. As I tried to get more and more digital copies of movies we already owned, I would move a file from the general Movies folder into the correct digital store folder. This wasn’t a complete system, though. For example, it didn’t differentiate Blu-ray vs DVD, and if I had something in both Google and Microsoft it would only be in the Google folder.&lt;/li&gt;
 &lt;li&gt;Every file was named in the format “Movie Title (Year).” The year is valuable in Plex to help differentiate if there are multiple movies with the same title.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;the-variables&quot; tabindex=&quot;-1&quot;&gt;The variables &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#the-variables&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-variables&quot; tabindex=&quot;-1&quot;&gt;The variables &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-variables&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To start the Flow, I declared several variables:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ownedPlatform: will come from what folder it was in&lt;/li&gt;
@@ -1571,12 +1571,12 @@ Navigate(AllMovies)
 &lt;li&gt;yearStartIndex: to help with the parsing&lt;/li&gt;
 &lt;li&gt;imdbAPIkey: my API key for IMDB, which I will use for grabbing cover images&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;get-the-movies&quot; tabindex=&quot;-1&quot;&gt;Get the movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#get-the-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;get-the-movies&quot; tabindex=&quot;-1&quot;&gt;Get the movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#get-the-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First I’ll get all the movies. This is straightforward with a OneDrive “get files” action. I did find that I could only do a certain number of files at once, so I did it in chunks by having a separate “To Copy” folder, in which I put the next batch as I needed to copy them.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Get-Movies.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of getting movies from OneDrive&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I’ll then enter a loop of all the results, handling one movie at a time. This is a simple Apply to Each loop using the “value” from the previous step’s results.&lt;/p&gt;
-&lt;h2 id=&quot;parse-name-and-year&quot; tabindex=&quot;-1&quot;&gt;Parse name and year &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#parse-name-and-year&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;parse-name-and-year&quot; tabindex=&quot;-1&quot;&gt;Parse name and year &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#parse-name-and-year&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Start by grabbing the file name and putting it into the variable:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/fileName.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Set variable to “Name without extension”&lt;/em&gt;&lt;/p&gt;
@@ -1588,7 +1588,7 @@ Navigate(AllMovies)
 &lt;em&gt;Set variable to: replace(substring(variables(‘fileName’),0,sub(variables(‘yearStartIndex’),2)),””,”)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/movieYear.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Set variable to: int(substring(variables(‘fileName’),variables(‘yearStartIndex’),4))&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;add-to-excel&quot; tabindex=&quot;-1&quot;&gt;Add to Excel &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#add-to-excel&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-to-excel&quot; tabindex=&quot;-1&quot;&gt;Add to Excel &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#add-to-excel&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ll now add details for the movie into Dataverse. I also had some checking to confirm that the movie wasn’t already in the Dataverse table, but I’ll skip those details.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/CreateMovie.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Create a new record in Dataverse&lt;/em&gt;&lt;/p&gt;
@@ -1597,14 +1597,14 @@ Navigate(AllMovies)
 &lt;li&gt;The Name and Year are filled by the variables we parsed from the file name earlier.&lt;/li&gt;
 &lt;li&gt;The Owned dropdown is determined by the folder the file was in. In my case I just changed this manually between running it against each folder.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;imdb-api&quot; tabindex=&quot;-1&quot;&gt;IMDB API &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#imdb-api&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;imdb-api&quot; tabindex=&quot;-1&quot;&gt;IMDB API &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#imdb-api&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ll now use the IMDB API to get the cover image for the movie, which I’ll upload to my OneDrive to make it easier to attach them to the right Dataverse object. I likely could have gotten as far as it automatically uploading the image directly into Dataverse with a premium subscription, but I didn’t have that and didn’t find a way around it in a reasonable amount of time.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/IMDB-API.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Get IMDB details. See the IMDB API for details.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Part of what that returns is a URL to the cover image for the movie. I’ll now upload that file into a designated folder in OneDrive.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Upload-Cover-to-OneDrive.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Source URL: body(‘Get_IMDB’)?[‘results’][0][‘Image’]&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-01-movie-directory-part-4-import/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#conclusion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There were still some pieces I had to do manually, like attach the image to each movie, but even that was a much quicker process.&lt;/p&gt;
 &lt;p&gt;In a different Flow, I also added some logic that guessed whether a movie was Blu-ray, DVD, or digital only based on the size of the file. That wasn’t very complicated, but I left it out of this version as I found I often needed to clean up the owned column anyway because of the number of other exceptions (a movie in both Google and Microsoft).&lt;/p&gt;
 &lt;p&gt;Ultimately, I ended up not actually using this movie directory database app. The main reason was that it was too slow. It is not equivalent in performance to a native Android app. But it was a great test, achieving all the features I wanted to do, and I definitely learned a lot more about Dataverse, Power Apps, and Power Automate along the way.&lt;/p&gt;
@@ -1613,9 +1613,9 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Google vs Microsoft Personal and Business Accounts</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/google-microsoft-personal-business-accounts/"/>
 		<updated>2021-07-05T14:05:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/google-microsoft-personal-business-accounts/</id>
 		<content type="html">&lt;p&gt;I recently started doing an email migration into Google Workspace. As I was creating the users, I encountered a wrinkle: one of the email addresses already had a personal Google account associated with it. Google gave me two options:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Notify the user of the personal account, prompting them to allow the account to be claimed by the organization.&lt;/li&gt;
@@ -1623,7 +1623,7 @@ Navigate(AllMovies)
 &lt;/ol&gt;
 &lt;p&gt;There was no option to allow the email to be associated with both a personal and a business account at the same time.&lt;/p&gt;
 &lt;p&gt;This is a different approach than Microsoft. Microsoft does allow you to have the same email address on both a personal account and a business account. This made me think about the pro’s and con’s of both approaches.&lt;/p&gt;
-&lt;h2 id=&quot;the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both&quot; tabindex=&quot;-1&quot;&gt;The problem with Google’s approach: what if you want the same email on both? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/#the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both&quot; tabindex=&quot;-1&quot;&gt;The problem with Google’s approach: what if you want the same email on both? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/google-microsoft-personal-business-accounts/#the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This new situation did remind me of hitting a similar situation when I got my first Android device. I had a Google account, but it was technically a business account, created years ago when GSuite was free. I initially set up my Android with that. Then I started hitting some limitations, like not being able to use family sharing of Google Play purchases.&lt;/p&gt;
 &lt;p&gt;So I was stuck with three options:&lt;/p&gt;
 &lt;ol&gt;
@@ -1635,12 +1635,12 @@ Navigate(AllMovies)
 &lt;p&gt;I do still have one smaller problem with it. I have a Google account that is the same email as my primary Microsoft account. My calendar is on the Microsoft account. I would love for Google Assistant to see the calendar, but it can’t read the Microsoft calendar directly and I can’t share from Microsoft to Google because that is normally possible by sending an email and in this case that would just send the invite right back to the Microsoft mailbox sending it. Being able to put an alias on a Google account like you can a Microsoft would solve it, but Google doesn’t offer that.&lt;/p&gt;
 &lt;p&gt;It will be a much bigger problem if I ever move that domain to Google business email. Aliases would also make this easier. With this particular domain, that is unlikely. But if I was advising somebody else on this problem, I would suggest number 2. Just use a separate email @gmail.com that is explicitly for all things Google. Don’t try to be cute with your custom domain, or you could end up in a very bad situation. It would be nice if Google warned you about this possibility when you sign up with a different domain (maybe it does in small print I missed).&lt;/p&gt;
 &lt;p&gt;That situation demonstrates the advantage of Microsoft’s approach: &lt;strong&gt;you can choose to keep your personal content and your business content separate&lt;/strong&gt; even if you intentionally or accidentally used the same email address on both. Plus Microsoft offers aliases which can help you untangle them if you later need to; I would be a lot more sympathetic to Google’s approach if they offered that.&lt;/p&gt;
-&lt;h2 id=&quot;the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business&quot; tabindex=&quot;-1&quot;&gt;The problem with Microsoft’s approach: most people won’t remember what is on personal vs business &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/#the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business&quot; tabindex=&quot;-1&quot;&gt;The problem with Microsoft’s approach: most people won’t remember what is on personal vs business &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/google-microsoft-personal-business-accounts/#the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The problem with Microsoft’s account is essentially the reverse. You’re allowed to have the same email on both a personal and a business account. That’s great to keep things separated. Now you need to remember which account you used for that thing you’re trying to do. If you’re diligent about keeping work in the work account and personal content in the personal content, that’s not too bad. That’s not always possible and people aren’t always going to be good at it.&lt;/p&gt;
 &lt;p&gt;Here’s another scenario I’ve seen: an organization built a SharePoint portal system for partners across lots of organizations. Some of those partner organizations use Microsoft 365. Some do not. To let the partners in who are not using Microsoft 365, the portal has to allow logging in with consumer Microsoft accounts. In theory, the goal should be that every partner who does have Microsoft 365 business account uses their business account, while personal accounts are the fallback for everybody else.&lt;/p&gt;
 &lt;p&gt;In practice, it got a lot messier than that. Some people had business accounts, but didn’t understand they could use that, so they created a separate personal account, maybe using their same business email and maybe using a different email. Then they go to the portal and it says they don’t have access. They confirm they are logged in with their work email, so that’s strange. They give up and contact me for support. I dig into the Azure Active Directory and discover this partner used a personal Microsoft account, not a business account. So they end up needing to log out of their business email account they use for everything else and logging in with a personal Microsoft account with the same email address that they’re using for just this one thing probably by accident. That’s confusing.&lt;/p&gt;
 &lt;p&gt;This is the value of Google’s approach: &lt;strong&gt;there is no confusing dialogue asking you whether you want to sign in with the business or personal account&lt;/strong&gt;. There is no need to remember what services are associated with which account on the same email.&lt;/p&gt;
-&lt;h2 id=&quot;winner&quot; tabindex=&quot;-1&quot;&gt;Winner? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-05-google-vs-microsoft-handling-of-personal-and-business-accounts/#winner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;winner&quot; tabindex=&quot;-1&quot;&gt;Winner? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/google-microsoft-personal-business-accounts/#winner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For the majority of normal users in the majority of cases, Google’s scenario is better. It’s easier. Most average people just want a separate personal account from their business account using different emails and they’re not concerned about custom domains. Google’s approach enforces the simplicity that most people want.&lt;/p&gt;
 &lt;p&gt;For Microsoft power users like me who can keep it straight, their approach is better. I’ve considered whether I should move my primary personal email (a custom domain that was signed up in the days of Windows Live Domain) from a consumer Microsoft account to a Microsoft 365 account. If I do decide to do that, here’s how I would:&lt;/p&gt;
 &lt;ol&gt;
@@ -1657,11 +1657,11 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Web Hosting Distinctions</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/"/>
 		<updated>2021-07-08T18:15:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/</id>
 		<content type="html">&lt;p&gt;There’s a confusing thing that has come up with several clients who don’t know all the intricacies of website work (completely understandably; that’s why they pay me). When we talk about hosting services around website work, there are a few different things we could be referring to: the domain, the DNS, the website content, and email. To make it more confusing, sometimes all of them are with the same provider and other times they’ve divided up in different combinations.&lt;/p&gt;
-&lt;h2 id=&quot;domain&quot; tabindex=&quot;-1&quot;&gt;Domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/#domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;domain&quot; tabindex=&quot;-1&quot;&gt;Domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The first step in the chain is registering the domain. Once you’ve got the domain registered, you own it and can do whatever you want with it. For example, I own the domain alliterationapplications.com that I bought through a particular domain registrar that I like.&lt;/p&gt;
 &lt;p&gt;The important things to know about the domain registrar:&lt;/p&gt;
 &lt;ul&gt;
@@ -1669,7 +1669,7 @@ Navigate(AllMovies)
 &lt;li&gt;WHOIS privacy is a great idea, especially if you’re not a big company. This hides your contact details from the public.&lt;/li&gt;
 &lt;li&gt;Set the nameservers to point to the DNS provider. This may be in the same place as the domain registrar or may be elsewhere, like where the website content is hosted.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;dns&quot; tabindex=&quot;-1&quot;&gt;DNS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/#dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dns&quot; tabindex=&quot;-1&quot;&gt;DNS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Domain Name Service specifies details about what services are associated with the domain. The big two of these are the next items for clarification: email and website content. But there could be other things as well, like the Microsoft Endpoint Manager service for device management.&lt;/p&gt;
 &lt;p&gt;DNS related to email should have at least two components:&lt;/p&gt;
 &lt;ul&gt;
@@ -1678,10 +1678,10 @@ Navigate(AllMovies)
 &lt;/ul&gt;
 &lt;p&gt;DNS related to website content is typically a simple A record pointing to the IP address of the web server. Some DNS providers also have a FWD record type which will forward all browser traffic to a different URL, e.g. my ryanrobinson.ca domain currently forwards to my LinkedIn (although I think I will merge it together with this site at some point).&lt;/p&gt;
 &lt;p&gt;You rarely need to change your DNS – only when you change those other services – and there typically is no recurring fee, with your DNS hosting most often combined with either your domain hosting or website content hosting.&lt;/p&gt;
-&lt;h2 id=&quot;website-content&quot; tabindex=&quot;-1&quot;&gt;Website content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/#website-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;website-content&quot; tabindex=&quot;-1&quot;&gt;Website content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#website-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The content of your website, usually consisting of several files and at least one database, reside on a web server. I won’t dive into all the considerations choosing a web content host, but if you’re talking about a simple site like this one, you don’t need anything special.&lt;/p&gt;
 &lt;p&gt;There will always be some recurring fee for website hosting, although it may get combined into a package with domain or DNS. If the server is well-managed by a good support team, then you won’t need to worry about much other than keeping the account active. If it is a web server where you have to manage it yourself, you will need to pay attention to details like security updates and PHP versions.&lt;/p&gt;
-&lt;h2 id=&quot;email&quot; tabindex=&quot;-1&quot;&gt;Email &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-08-web-hosting-distinctions/#email&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;email&quot; tabindex=&quot;-1&quot;&gt;Email &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#email&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, you may or may not have email associated with your domain. This email might be hosted on a web server (the same as the website content) or could be somewhere else like Google or Microsoft.&lt;/p&gt;
 &lt;p&gt;If it’s on a web server with the website, it’s probably part of the package or a small fee extra. It is very low-quality email compared to Microsoft or Google: low storage limits, no sync of contacts/calendar, bad spam filters, etc.&lt;/p&gt;
 &lt;p&gt;If the email is hosted elsewhere like Google or Microsoft, you do have another recurring fee (unless you’re a non-profit getting it for free), but you get much higher quality email as well as a variety of other services like cloud storage which can provide huge productivity advantages.&lt;/p&gt;
@@ -1690,38 +1690,38 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Microsoft Teams: Favourite Hidden Features</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/"/>
 		<updated>2021-07-21T12:24:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/</id>
 		<content type="html">&lt;p&gt;Microsoft Teams is a very big program, essentially combining together equivalent functionality to Skype, Slack, Zoom, Google Drive, VOIP phone systems, and a few more all into one… plus the ability to develop your own apps for it. New features keep coming at a rapid pace. That makes it easy to miss some of the helpful little things that Teams offers. I’ll have more posts soon about organization admin settings and policies for Teams, but here are a few of my favourite tricks that most typical users can take advantage of in their own workflows but may not be obvious.&lt;/p&gt;
-&lt;h2 id=&quot;title-on-conversations&quot; tabindex=&quot;-1&quot;&gt;Title on Conversations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/#title-on-conversations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;title-on-conversations&quot; tabindex=&quot;-1&quot;&gt;Title on Conversations &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/#title-on-conversations&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Having conversations in the Teams channels is great. It is a useful tool for having quick conversations in a nice threaded interface that stay available for search later. One common problem, though, is that when there’s a bunch of conversations, it is hard to find your way back to the one that you’re looking for.&lt;/p&gt;
 &lt;p&gt;One feature that really helps with this: add a title to the conversation. By default when you try to start a new conversation, you only get a little text book to enter the content. But there’s more you can do. One of those in the bottom left is a little format icon. Click on that and you’ll see a few options including bold, italics, underline, quote, code, and alignment. My favourite, though, is that it adds a place to add a title for the post. This makes it a lot easier when you’re scrolling through old conversations to see a summary of what that conversation is about, in larger font.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/07/Title-on-Teams-Conversations.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Demo of a post with a title, a post without a title, and the options for a new conversation after hitting the Format button&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;tasks&quot; tabindex=&quot;-1&quot;&gt;Tasks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/#tasks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;tasks&quot; tabindex=&quot;-1&quot;&gt;Tasks &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/#tasks&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This one is slightly less hidden. It might even be more obvious in the sidebar in your organization. But for me, when it became available, it was tucked away where it wasn’t obvious. If you use one of Planner or To-Do to manage your tasks, the Tasks app is helpful. If you use both, it is almost essential. It will combine together the tasks from all of your Planner boards and your To-Do list into one place, including tools like sorting. If your work setup is something like: Planner contains tasks for shared group projects and To-Do contains your individual tasks – basically what each are designed for – then this is currently the only way to see them all in one place.&lt;/p&gt;
 &lt;p&gt;It is missing one thing, though: flagged emails don’t appear here. They do appear in To-Do and will appear alongside your tasks in Outlook, but it is missing from Tasks in Teams. So it still isn’t quite all your tasks in one place, but it’s a big step in the right direction.&lt;/p&gt;
-&lt;h2 id=&quot;task-from-conversation&quot; tabindex=&quot;-1&quot;&gt;Task from Conversation &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/#task-from-conversation&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;task-from-conversation&quot; tabindex=&quot;-1&quot;&gt;Task from Conversation &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/#task-from-conversation&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Speaking of tasks, how common is it to be having a conversation and you realize you need to flag this as a task to take care of later, before it risks getting buried under too many other conversations? If you’ve flagged an email in Outlook, it’s the same concept.&lt;/p&gt;
 &lt;p&gt;This was not originally an out-of-the-box feature, and I even made myself a Flow to handle it for me because I needed it so much. It is available now, but might be a little hidden. Scroll over the conversation so you see the reaction menu and an ellipses. Click on that ellipses to see more options. Scroll down to More Actions to see even more options. To add to confusion, you might see “Tasks” twice: one with the To-Do logo and one with the Tasks in Teams logo. If you want to make a task in To-Do, feel free to use either one. If you want to put it into Planner, you’ll have to use the Tasks in Teams one.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/07/Task-from-Conversation.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Demo of the menu finding the “create task” link&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;team-tags&quot; tabindex=&quot;-1&quot;&gt;Team Tags &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/#team-tags&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;team-tags&quot; tabindex=&quot;-1&quot;&gt;Team Tags &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/#team-tags&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;What if you have some sub-groups within a Team? For example, in my previous job, we had a Team dedicated to responding to website hacks. This Team included members from the website hosting team, the custom software team, and the web services team. In the context of a website hack, you might not want to slow down and be picky about who exactly in the team should take care of a certain task. You might prefer to simply say “we need somebody from hosting to come at this part of the problem while somebody from web services comes at it from this side.” In that type of scenario, how do you go about saying the “somebody in hosting” part, without tagging every member individually?&lt;/p&gt;
 &lt;p&gt;You create a tag. A tag can function as short-hand for multiple members within a group. You can @ mention a tag the same way you can @ mention an individual or the entire Team.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/07/Create-a-Tag.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Creating a tag called “Demo” with me as the only member&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;how-about-you&quot; tabindex=&quot;-1&quot;&gt;How about you? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-07-21-my-favourite-microsoft-teams-hidden-features/#how-about-you&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;how-about-you&quot; tabindex=&quot;-1&quot;&gt;How about you? &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-microsoft-teams-hidden-features/#how-about-you&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Do you have any favourite hidden features in Teams I didn’t mention?&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Teams: App Policies</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-app-policies-define-sidebar-for-most-users/"/>
 		<updated>2021-08-02T13:05:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-app-policies-define-sidebar-for-most-users/</id>
 		<content type="html">&lt;p&gt;Suppose you want to lock the sidebar in Teams for some users to ensure that they don’t have different experiences, which can help with providing support and documentation as well as make sure nobody accidentally loses their easy access to the app they want to use. But you don’t want to lock all users; there are some like your IT department that might need some freedom to use their Teams differently.&lt;/p&gt;
 &lt;p&gt;This can be done with an app setup policy in the Microsoft Teams admin centre.&lt;/p&gt;
 &lt;p&gt;For this example, I’ll set the taskbar to contain:&lt;/p&gt;
@@ -1734,7 +1734,7 @@ Navigate(AllMovies)
 &lt;/ul&gt;
 &lt;p&gt;I’ve removed the Calls app from the default, since I don’t use Teams for a phone system and the Calls app is somewhat underwhelming without that.&lt;/p&gt;
 &lt;p&gt;I’ll also default install Tasks by Planner and To Do, but not force it on the taskbar.&lt;/p&gt;
-&lt;h2 id=&quot;edit-the-global-policy&quot; tabindex=&quot;-1&quot;&gt;Edit the global policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/#edit-the-global-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;edit-the-global-policy&quot; tabindex=&quot;-1&quot;&gt;Edit the global policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-app-policies-define-sidebar-for-most-users/#edit-the-global-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Start out in the Teams Admin Centre, at &lt;a href=&quot;https://admin.teams.microsoft.com/&quot;&gt;https://admin.teams.microsoft.com&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In the navigation, go to Teams Apps -&amp;gt; Setup Policies.&lt;/p&gt;
 &lt;p&gt;Click on the Global (Org-wide default) policy. Change a few settings here:&lt;/p&gt;
@@ -1751,7 +1751,7 @@ Navigate(AllMovies)
 &lt;em&gt;Sidebar, with no Calls app&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Furthermore, if they try to pin any other apps to their sidebar, they will not see the “pin” option anymore.&lt;/p&gt;
 &lt;p&gt;We now have a default locked sidebar for all users.&lt;/p&gt;
-&lt;h2 id=&quot;create-a-custom-policy&quot; tabindex=&quot;-1&quot;&gt;Create a custom policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/#create-a-custom-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;create-a-custom-policy&quot; tabindex=&quot;-1&quot;&gt;Create a custom policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-app-policies-define-sidebar-for-most-users/#create-a-custom-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next step is that we want there to be an exception for one user. Back on the setup policies screen in the Teams Admin Centre, I’ll add a new policy.&lt;/p&gt;
 &lt;p&gt;On the screen to edit the policy. This time I’ll:&lt;/p&gt;
 &lt;ul&gt;
@@ -1761,7 +1761,7 @@ Navigate(AllMovies)
 &lt;p&gt;Click Save when done.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/07/Freedom-policy.png&quot; alt=&quot;Policy editing screen with general settings, installed apps, and pinned apps&quot; /&gt;
 &lt;em&gt;Screenshot of the editing screen for the policy that does not lock the taskbar&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;apply-the-custom-policy&quot; tabindex=&quot;-1&quot;&gt;Apply the custom policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-02-microsoft-teams-app-policies-define-sidebar-for-most-users/#apply-the-custom-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;apply-the-custom-policy&quot; tabindex=&quot;-1&quot;&gt;Apply the custom policy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-app-policies-define-sidebar-for-most-users/#apply-the-custom-policy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now that the policy is created, you need to assign it to a user. Select the policy, then click the Manage user button. It will pop out a sidebar with a people search box to look up your users that you want to apply the policy to. Select Add for that user. Once you’ve added everybody, click Apply.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/08/Add-user-to-Teams-app-policy.png&quot; alt=&quot;Manager users for the &amp;quot;Freedom&amp;quot; policy, adding the user &amp;quot;Ryan Robinson&amp;quot;&quot; /&gt;
 &lt;em&gt;Sidebar for adding users to a policy&lt;/em&gt;&lt;/p&gt;
@@ -1771,12 +1771,12 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Microsoft Teams: Network Tests</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-05-microsoft-teams-network-tests/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-network-tests/"/>
 		<updated>2021-08-05T12:19:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-05-microsoft-teams-network-tests/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-network-tests/</id>
 		<content type="html">&lt;p&gt;If you’re going to deploy Microsoft Teams in your business network, you’ll need to confirm first that your network can handle it. That means fast enough bandwidth speeds to handle everything you want all of your employees to be able to do, as well as having all the ports open for the necessary traffic to get through. If you’re going to need hundreds of users on the same network sharing their screens alongside their video and audio in meetings of 50 people, that will eat up a lot of network resources.&lt;/p&gt;
 &lt;p&gt;Microsoft has offered a few tools to help with this preparation.&lt;/p&gt;
-&lt;h2 id=&quot;required-bandwidth&quot; tabindex=&quot;-1&quot;&gt;Required bandwidth &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-05-microsoft-teams-network-tests/#required-bandwidth&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;required-bandwidth&quot; tabindex=&quot;-1&quot;&gt;Required bandwidth &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-network-tests/#required-bandwidth&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here’s the guidance from Microsoft for speeds required to use Teams well:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Peer-to-peer audio: 30 Kbps (approximately dial-up Internet)&lt;/li&gt;
@@ -1788,7 +1788,7 @@ Navigate(AllMovies)
 &lt;li&gt;HD group video calls on a 1080p screen: 1 Mbps / 2 Mbps&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Most home high-speed Internet living in a city will be fast enough to cover a few people on a call at once pretty comfortably. But that might get a bit more complicated when you’re dealing with large numbers of people in a single office.&lt;/p&gt;
-&lt;h2 id=&quot;network-planner-and-network-testing-companion&quot; tabindex=&quot;-1&quot;&gt;Network Planner and Network Testing Companion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-05-microsoft-teams-network-tests/#network-planner-and-network-testing-companion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;network-planner-and-network-testing-companion&quot; tabindex=&quot;-1&quot;&gt;Network Planner and Network Testing Companion &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-network-tests/#network-planner-and-network-testing-companion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Network Planner is a tool in the &lt;a href=&quot;https://admin.teams.microsoft.com/&quot;&gt;Teams Admin Centre&lt;/a&gt; that helps you determine just how fast of network you need to support all your users. You enter details about how much you think you’ll need to use Teams and it will calculate for you what bandwidth you need.&lt;/p&gt;
 &lt;p&gt;Start out by selecting Network Planner from the menu. First, check the personas. These are the different types of users and what you expect they will need. Check the default ones to see if they meet your needs, or add more custom ones if the defaults don’t.&lt;/p&gt;
 &lt;p&gt;Then select to add a new network plan and name the plan.&lt;/p&gt;
@@ -1800,27 +1800,27 @@ Navigate(AllMovies)
 &lt;em&gt;Preparing a report with 160 office workers and 40 remote workers&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;After you generate the report, it will tell you exactly what speeds you need for that many users to carry out the needed tasks.&lt;/p&gt;
 &lt;p&gt;A related tool is the Network Testing Companion. This is an app that can be run on your PC to test out your network’s configuration and tell you things like what ports need to be opened.&lt;/p&gt;
-&lt;h2 id=&quot;qos&quot; tabindex=&quot;-1&quot;&gt;QoS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-05-microsoft-teams-network-tests/#qos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;qos&quot; tabindex=&quot;-1&quot;&gt;QoS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-network-tests/#qos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Quality of Service configuration is a tool that allows you to prioritize certain traffic if you’re pushing the limits of your network. Generally speaking, if you’re on a video call with audio, it is more important that the audio gets through than the video. QoS can help make sure the audio gets through even if the video doesn’t.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Teams: Lifecycle</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/"/>
 		<updated>2021-08-10T12:20:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/</id>
 		<content type="html">&lt;p&gt;If you’ve been paying attention to Microsoft 365 products in the last 5 years or so, you’ve likely noticed that things have moved toward a much flatter architecture where users have more freedom to set up their own Teams / SharePoint sites, etc. In many ways this is great, but it does carry some risks of sprawl caused by users casually creating data structures and then forgetting about them.&lt;/p&gt;
 &lt;p&gt;Fortunately, Microsoft does offer some mechanisms in the Teams lifecycle to help with this.&lt;/p&gt;
-&lt;h2 id=&quot;templates&quot; tabindex=&quot;-1&quot;&gt;Templates &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/#templates&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;templates&quot; tabindex=&quot;-1&quot;&gt;Templates &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/#templates&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First up, when you’re creating a Team, a helpful tool to create them properly is templates. Some are available by default plus you can create your own. These help you establish if you have common needs for a Team, e.g. if you have a Team for every website project you can start that Team with a Web Project template that provides the exact channels and apps you need on website projects. This doesn’t stop the sprawl of creating too many groups, but it does help ensure that when groups are created, they are created properly and consistently.&lt;/p&gt;
-&lt;h2 id=&quot;team-creation-policies&quot; tabindex=&quot;-1&quot;&gt;Team creation policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/#team-creation-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;team-creation-policies&quot; tabindex=&quot;-1&quot;&gt;Team creation policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/#team-creation-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;By default every user in the organization can create Groups and Teams. That can be restricted, though. Especially in larger organizations, you may want to restrict to only a select few others outside the IT team who can create Teams. This can be done by creating a security group in Azure AD and granting them and only them the permission to create groups.&lt;/p&gt;
-&lt;h2 id=&quot;expiration-policies&quot; tabindex=&quot;-1&quot;&gt;Expiration policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/#expiration-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;expiration-policies&quot; tabindex=&quot;-1&quot;&gt;Expiration policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/#expiration-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One helpful tool to follow up on any groups that may have been created and never used is the expiration policy. The policy checks to make sure the group is still being used every x number of days. If it is, it will automatically renew. If it is not, it will email the group owner asking them if the group needs to be renewed or not. If the owner does not renew the group, it will be deleted.&lt;/p&gt;
-&lt;h2 id=&quot;naming-policies&quot; tabindex=&quot;-1&quot;&gt;Naming policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/#naming-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;naming-policies&quot; tabindex=&quot;-1&quot;&gt;Naming policies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/#naming-policies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you have a lot of teams, you want to name them consistently. Group naming policies can be used to add prefixes or suffixes to group names. For the example of project teams, maybe you want every team to start or end with the word Project.&lt;/p&gt;
-&lt;h2 id=&quot;archive-restore-delete&quot; tabindex=&quot;-1&quot;&gt;Archive, restore, delete &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-10-microsoft-teams-lifecycle/#archive-restore-delete&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;archive-restore-delete&quot; tabindex=&quot;-1&quot;&gt;Archive, restore, delete &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-lifecycle/#archive-restore-delete&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Archive is another option for a team that mostly shuts down the Team, but keeps all the content available in a read-only format. It’s a good way to say that we’re done with this Team, but we might still need to reference it in the future, or keep it for legal compliance reasons.&lt;/p&gt;
 &lt;p&gt;If a team is archived, it can be restored back to the fully active mode.&lt;/p&gt;
 &lt;p&gt;Deleting is the permanent action. You will have 30 days that an admin can recover the group, but otherwise, that’s it. In general, you probably should archive groups that had significant content in them, while delete is only used for cleaning up accidental creations or obsolete groups where all the relevant content has been moved elsewhere.&lt;/p&gt;
@@ -1829,15 +1829,15 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Microsoft Teams: Guest Access</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/"/>
 		<updated>2021-08-13T12:31:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/</id>
 		<content type="html">&lt;p&gt;Microsoft Teams is not just for users in your organization. You can also use it to collaborate with people from other organizations or no organization at all. Here are a few things to keep in mind:&lt;/p&gt;
-&lt;h2 id=&quot;chat-external-and-guest&quot; tabindex=&quot;-1&quot;&gt;Chat: External and Guest &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/#chat-external-and-guest&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;chat-external-and-guest&quot; tabindex=&quot;-1&quot;&gt;Chat: External and Guest &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/#chat-external-and-guest&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The “chat” app in Microsoft Teams allows you to message users one-to-one or in small groups. This includes users in your organizations, but (if the organization allows it) also includes being able to message users with Teams in other organizations, in Skype for Business for other organizations, and in Skype consumer.&lt;/p&gt;
 &lt;p&gt;It’s the Teams users in other organizations that have one of the more confusing issues with Teams: external vs guest. Guests are users in other organizations that you have invited into your organization’s Azure AD, most likely to join a Team or SharePoint site to share resources. They would be signed in to their account but on your organization’s resources. External users are users in other organizations, signed in to their usual tenant.&lt;/p&gt;
 &lt;p&gt;Where it gets confusing is when somebody has become a guest in your organization. If you try to start a chat with them, you’ll see options to message them either as a guest or an external. Unfortunately, the Teams client only allows you to receive notifications from one tenant at a time. That user has to be either signed in to their tenant (which would make them external to you) or your tenant (which would make them a guest to you) at any given time, not both. You may need to have some preliminary conversations to know which one they expect you to message them on.&lt;/p&gt;
-&lt;h2 id=&quot;guest-users&quot; tabindex=&quot;-1&quot;&gt;Guest Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/#guest-users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;guest-users&quot; tabindex=&quot;-1&quot;&gt;Guest Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/#guest-users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The bigger question is adding guests to the resources within your tenant, to use within Teams as well as possibly elsewhere.&lt;/p&gt;
 &lt;p&gt;Depending on what you want guests to be able to use, you need to enable guest access in a few Microsoft 365 workloads:&lt;/p&gt;
 &lt;ul&gt;
@@ -1846,21 +1846,21 @@ Navigate(AllMovies)
 &lt;li&gt;Teams Admin Centre to allow adding guests to teams&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Anybody with permissions to do so can add guest users to a team. The user accepting the invitation is not always intuitive if they do not already have some familiarity with Microsoft 365, so you’ll want to have some documentation ready if you’re going to do this often.&lt;/p&gt;
-&lt;h2 id=&quot;guest-permissions-in-teams&quot; tabindex=&quot;-1&quot;&gt;Guest permissions in Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/#guest-permissions-in-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;guest-permissions-in-teams&quot; tabindex=&quot;-1&quot;&gt;Guest permissions in Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/#guest-permissions-in-teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &lt;a href=&quot;https://admin.teams.microsoft.com/&quot;&gt;Teams Admin Centre&lt;/a&gt; has plenty of options to configure exactly what you want guests to be able to do within the categories of calling, meeting, and messaging. You may want them to be able to do virtually everything an internal user can do, or you may want to significantly limit them to certain functions. It all depends on the relationship with your partner and the nature of the work you need to share.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/08/Guest-Policies.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of guest policy options&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;There are also a couple smaller options that can be changed per team for whether guests can create, update, and delete channels in that team.&lt;/p&gt;
-&lt;h2 id=&quot;access-reviews&quot; tabindex=&quot;-1&quot;&gt;Access reviews &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-13-guest-access-in-teams/#access-reviews&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;access-reviews&quot; tabindex=&quot;-1&quot;&gt;Access reviews &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/guest-access-in-teams/#access-reviews&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview&quot;&gt;Azure AD access reviews&lt;/a&gt; are not only about guest access, but they are a tool in Azure AD for prompt group owners regularly to make sure they don’t have anybody in their groups who don’t still need to be there. Having extra users in a group are not quite as big of a deal with internal users. Internal users might be able to see it anyway and are more likely to remember to remove themselves from a group. Guest users are more likely to have been forgotten about because of a project a couple of years ago. Access reviews can be a good way to catch those.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Microsoft Teams: Information Barriers</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-16-microsoft-teams-information-barriers/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-barriers/"/>
 		<updated>2021-08-16T12:59:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-16-microsoft-teams-information-barriers/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-barriers/</id>
 		<content type="html">&lt;p&gt;What if you need to partition your organization so that some members of your tenant cannot communicate with others in Teams? For example, maybe you have interns who you do want to have Teams access but not to any sensitive information.&lt;/p&gt;
 &lt;p&gt;Information barriers are the solution you need. You can block interaction across the barriers so that the interns cannot see any content from anybody else or vice versa.&lt;/p&gt;
 &lt;p&gt;Creating the barriers is done by PowerShell. There is not currently a web admin interface to do it.&lt;/p&gt;
@@ -1882,18 +1882,18 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>Microsoft Teams: Phone Numbers</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/"/>
 		<updated>2021-08-19T06:58:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/</id>
 		<content type="html">&lt;p&gt;I personally have not used Microsoft Teams as a phone system. My employers have stuck completely with Internet-based communications, mostly to others in the same organization. But if you want to integrate your organization’s phone system into Teams and have your phone calls ring through in Teams, that’s absolutely possible.&lt;/p&gt;
 &lt;p&gt;Here’s an introduction on some of the things to consider:&lt;/p&gt;
-&lt;h2 id=&quot;calling-plan-or-direct-routing&quot; tabindex=&quot;-1&quot;&gt;Calling Plan or Direct Routing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/#calling-plan-or-direct-routing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;calling-plan-or-direct-routing&quot; tabindex=&quot;-1&quot;&gt;Calling Plan or Direct Routing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/#calling-plan-or-direct-routing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Your first decision in setting up a phone system in Teams is between:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Calling plan: simplest solution, letting Microsoft handle everything&lt;/li&gt;
 &lt;li&gt;Direct routing: allows for more complexity and keeping a previous phone provider&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;add-phone-numbers&quot; tabindex=&quot;-1&quot;&gt;Add phone numbers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/#add-phone-numbers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-phone-numbers&quot; tabindex=&quot;-1&quot;&gt;Add phone numbers &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/#add-phone-numbers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are two basic options when you want to add phone numbers to your Teams deployment: add new numbers, or port existing numbers from a previous provider. You can do this from the &lt;a href=&quot;https://admin.teams.microsoft.com/&quot;&gt;Teams Admin Centre&lt;/a&gt; -&amp;gt; Voice -&amp;gt; Phone Numbers.&lt;/p&gt;
 &lt;p&gt;Ordering numbers has a few types to choose from:&lt;/p&gt;
 &lt;ul&gt;
@@ -1903,21 +1903,21 @@ Navigate(AllMovies)
 &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant&quot;&gt;Auto attendant&lt;/a&gt; (toll or toll-free): attendant for callers to be able to select how they would like to be routed, e.g. select 1 for tech support, 2 for accounts, etc.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Along with the type, you’ll need to specify a location – country and area code – as well as the quantity for how many you need.&lt;/p&gt;
-&lt;h2 id=&quot;emergency-addresses&quot; tabindex=&quot;-1&quot;&gt;Emergency addresses &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/#emergency-addresses&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;emergency-addresses&quot; tabindex=&quot;-1&quot;&gt;Emergency addresses &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/#emergency-addresses&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Every phone number has to have an emergency address tied to it, so that if a user calls emergency services they can trace it back and find them. With Teams phone systems, you can and should have one emergency address configured for each of your office locations. When you are assigning the number, you then specify at which emergency location that person is working.&lt;/p&gt;
-&lt;h2 id=&quot;dial-plans&quot; tabindex=&quot;-1&quot;&gt;Dial plans &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-08-19-microsoft-teams-phone-numbers/#dial-plans&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;dial-plans&quot; tabindex=&quot;-1&quot;&gt;Dial plans &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-phone-numbers/#dial-plans&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you’ve worked in most large offices, you’ve probably encountered the use of something like “dial 9 for external numbers.” These kinds of scenarios are handled with dial plans. You can specify what digits (up to 4 digits) must be used to dial out to external numbers.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Visual Studio Code: Favourite Extensions</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-06-favourite-visual-studio-code-extensions/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/favourite-visual-studio-code-extensions/"/>
 		<updated>2021-09-07T01:13:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-06-favourite-visual-studio-code-extensions/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/favourite-visual-studio-code-extensions/</id>
 		<content type="html">&lt;p&gt;I’ve written before about &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;, my preferred text editor. One of the great things about VS Code is the large number of extensions that are available, while continuing to be a lightweight and efficient program even with lots of extensions installed.&lt;/p&gt;
 &lt;p&gt;Here are some of my favourite VS Code extensions in my workflow:&lt;/p&gt;
-&lt;h2 id=&quot;general&quot; tabindex=&quot;-1&quot;&gt;General &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-06-favourite-visual-studio-code-extensions/#general&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;general&quot; tabindex=&quot;-1&quot;&gt;General &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-visual-studio-code-extensions/#general&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;GitLens&lt;/strong&gt;: If, like most, you are using Git for version control, GitLens is a nice addition on top of &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/using-github-from-visual-studio-code/&quot;&gt;the default Visual Studio Code capabilities for Git&lt;/a&gt;. It adds features like seeing who committed what line of code on what date, within the editor as you’re going, which can inform your decisions especially when examining legacy code.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;GitLab Workflow&lt;/strong&gt;: If GitLab is the home for your code repositories and you make use of some of the GitLab project management features such as issues and merge requests, GitLab Workflow can be a good addition to your VS Code installation. I track much of my task list using GitLab Issues and it is very handy to be able to see them directly alongside my code, even if with only a subset of the features you would get in the web browser (e.g. you can view all the conversation but not change details like due date).&lt;/li&gt;
@@ -1925,7 +1925,7 @@ Navigate(AllMovies)
 &lt;li&gt;&lt;strong&gt;vscode-icons:&lt;/strong&gt; If you’re browsing a large file system, it can get a bit visually overwhelming to see long lists of directories. This extension helps by providing icons to differentiate more easily at a glance.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Prettier&lt;/strong&gt;: Code style is important, especially in a team. Prettier helps maintain consistent style.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;web-development&quot; tabindex=&quot;-1&quot;&gt;Web development &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-06-favourite-visual-studio-code-extensions/#web-development&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;web-development&quot; tabindex=&quot;-1&quot;&gt;Web development &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/favourite-visual-studio-code-extensions/#web-development&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Remote – SSH&lt;/strong&gt;: &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/visual-studio-code-remote-ssh-development/&quot;&gt;I’ve written about this in more detail,&lt;/a&gt; but if you’re working remotely on some other server, this is essential. It’s a lot easier to work directly on one of those servers than to write on your computer and upload with every change. It even offers an integrated terminal so you don’t need a separate terminal app.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Remote – SSH: Editing Configuration Files&lt;/strong&gt;: In conjunction with the Remote SSH extension, this extension helps with syntax highlighting when you need to edit your SSH config files, which you will need to do setting up each site.&lt;/li&gt;
@@ -1940,9 +1940,9 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>SimplyTest.Me: Drupal Project Test</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-10-simplytest-me-drupal-project-test/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/simplytest-me-drupal-project-test/"/>
 		<updated>2021-09-10T13:14:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-10-simplytest-me-drupal-project-test/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/simplytest-me-drupal-project-test/</id>
 		<content type="html">&lt;p&gt;Have you ever wanted to test out a Drupal module without actually installing it on your site? &lt;a href=&quot;https://simplytest.me/#&quot;&gt;SimplyTest.Me&lt;/a&gt; is the answer. All you have to do is pick a module or theme, including a specific version, that you want to test and it will generate a sandbox site for you to check it out. It’s fairly comprehensive and spins up the sandbox within a few minutes.&lt;/p&gt;
 &lt;p&gt;As with many similar tools, whether this is useful to you or not depends on your workflow and your team’s requirements. If you are the sole developer and you have a safe testing environment already, you’ll have a more complete test by going ahead and installing the module on your test site. That way you can see not only how the module operates but also how it interacts with the rest of your site. But if you are just checking something out to get the basic idea of a module, especially a more intensive module like Drupal Commerce, or you don’t have your own playground site, then this can be a good first step.&lt;/p&gt;
 </content>
@@ -1950,12 +1950,12 @@ Navigate(AllMovies)
 	
 	<entry>
 		<title>MySQL Workbench</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-15-mysql-workbench/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/mysql-workbench/"/>
 		<updated>2021-09-15T05:17:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-15-mysql-workbench/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/mysql-workbench/</id>
 		<content type="html">&lt;p&gt;You know what desktop app made the largest improvement to my workflows when I discovered it? Not &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;, as much as my writing sometimes hypes it up as my preferred text editor. There were already good text editors.&lt;/p&gt;
 &lt;p&gt;No, the desktop tool that made the biggest improvement to my workflows was &lt;a href=&quot;https://www.mysql.com/products/workbench/&quot;&gt;MySQL Workbench&lt;/a&gt;. If you work with MySQL databases at all, this will make your life so much easier than navigating those databases in a command line.&lt;/p&gt;
-&lt;h2 id=&quot;advantages&quot; tabindex=&quot;-1&quot;&gt;Advantages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-15-mysql-workbench/#advantages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;advantages&quot; tabindex=&quot;-1&quot;&gt;Advantages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/mysql-workbench/#advantages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is much easier and more user-friendly to browse a database. You can see all the tables in a database along the side panel and clicking on one inserts it into a query, avoiding typos copying it. When you run a SELECT command and get lots of results in a terminal, it often doesn’t stay lined up very well. It’s virtually impossible to read large data sets not lined up. But in Workbench, everything stays perfectly in its columns.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/09/Result-Grid.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Demo of the result grid, using tests on my dev site&lt;/em&gt;&lt;/p&gt;
@@ -1966,31 +1966,31 @@ Navigate(AllMovies)
 &lt;p&gt;You still need to know enough MySQL to write many types of queries, but an added bonus is that it provides syntax checking. If you know a bit but aren’t an expert in writing MySQL queries, this can be a big help.&lt;/p&gt;
 &lt;p&gt;You can have multiple sites/databases saved to quickly switch between. You can also have multiple query tabs to jump back and forth between, which can be quite helpful when investigating several tables at once.&lt;/p&gt;
 &lt;p&gt;Finally, MySQL Workbench includes a variety of features such as importing from csv and exporting to csv. That pair of features can be great if you need to migrate to another system with some data cleanup in between.&lt;/p&gt;
-&lt;h2 id=&quot;download&quot; tabindex=&quot;-1&quot;&gt;Download &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-15-mysql-workbench/#download&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;download&quot; tabindex=&quot;-1&quot;&gt;Download &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/mysql-workbench/#download&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can &lt;a href=&quot;https://www.mysql.com/products/workbench/&quot;&gt;download MySQL Workbench for free&lt;/a&gt;. It will prompt you to create an account, but there is also a link to download without an account if you’d prefer.&lt;/p&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Domain Change</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/domain-change/"/>
 		<updated>2021-09-19T19:46:56Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/domain-change/</id>
 		<content type="html">&lt;p&gt;This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.&lt;/p&gt;
 &lt;p&gt;With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.&lt;/p&gt;
-&lt;h2 id=&quot;rearrange-content&quot; tabindex=&quot;-1&quot;&gt;Rearrange content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#rearrange-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;rearrange-content&quot; tabindex=&quot;-1&quot;&gt;Rearrange content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#rearrange-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.&lt;/p&gt;
-&lt;h2 id=&quot;change-domain-a-record&quot; tabindex=&quot;-1&quot;&gt;Change domain A record &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#change-domain-a-record&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;change-domain-a-record&quot; tabindex=&quot;-1&quot;&gt;Change domain A record &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#change-domain-a-record&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To tell the wider Internet what to do when they try to visit ryanrobinson.technology, I had to go into my DNS records for the domain. It was previously using a simple FWD record to redirect any traffic to it to alliterationapplications.com, but now I want essentially the opposite. ryanrobinson.technology needs to be hosted and alliterationapplications.com needs to redirect traffic away instead. So, I removed the FWD record and added an A record to my IP address instead.&lt;/p&gt;
-&lt;h2 id=&quot;add-domain-to-server-account&quot; tabindex=&quot;-1&quot;&gt;Add domain to server account &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#add-domain-to-server-account&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-domain-to-server-account&quot; tabindex=&quot;-1&quot;&gt;Add domain to server account &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#add-domain-to-server-account&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’m on a shared hosting service with a cPanel. Step one was to add the extra domain ryanrobinson.technology to the same account as alliterationapplications.com. I specified that I wanted it to be a different document root than the existing site.&lt;/p&gt;
 &lt;p&gt;I also took advantage of the AutoSSL feature in cPanel to generate an SSL certificate for the new domain.&lt;/p&gt;
-&lt;h2 id=&quot;new-database&quot; tabindex=&quot;-1&quot;&gt;New Database &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#new-database&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;new-database&quot; tabindex=&quot;-1&quot;&gt;New Database &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#new-database&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I created a new database and new database user for the new site installation.&lt;/p&gt;
-&lt;h2 id=&quot;duplicator&quot; tabindex=&quot;-1&quot;&gt;Duplicator &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#duplicator&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;duplicator&quot; tabindex=&quot;-1&quot;&gt;Duplicator &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#duplicator&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I used &lt;a href=&quot;https://wordpress.org/plugins/duplicator/&quot;&gt;Duplicator&lt;/a&gt; to make a copy of the site and install it in a new folder.&lt;/p&gt;
 &lt;p&gt;At this point I had a functioning site at both domains.&lt;/p&gt;
-&lt;h2 id=&quot;htaccess-on-old-domain&quot; tabindex=&quot;-1&quot;&gt;.htaccess on old domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#htaccess-on-old-domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;htaccess-on-old-domain&quot; tabindex=&quot;-1&quot;&gt;.htaccess on old domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#htaccess-on-old-domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.&lt;/p&gt;
 &lt;p&gt;To achieve that, I added this to the .htaccess of alliterationapplications.com&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;pre class=&amp;quot;wp-block-code&amp;quot;&amp;gt;```
@@ -1999,7 +1999,7 @@ RewriteEngine on
 RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &amp;lt;/IfModule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;cleanup&quot; tabindex=&quot;-1&quot;&gt;Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-09-19-domain-change/#cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;cleanup&quot; tabindex=&quot;-1&quot;&gt;Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#cleanup&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, I cleaned up everything from alliterationapplications.com that I no longer needed: the database and all the files in the alliterationapplications.com document root other than the .htaccess file. That’s not truly necessary, but does keep my storage usage down.&lt;/p&gt;
 </content>
 	</entry>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Power Automate: Temporary Site Scripts and Designs</title>
+		<meta name="description" content="Technologist writing about web development, Microsoft 365, and more.">
+
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/bundle/1701Y3RM_l.css">
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+		<header>
+			<div class="container header-container">
+				<p>Ryan Robinson Technology</p>
+				<p>Search box goes here?</p>
+				<nav class="top-nav" aria-describedby="top-nav">
+					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
+					<ul class="top-nav-list">
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main id="skip">
+			<div class="container">
+				
+<h1>Power Automate: Temporary Site Scripts and Designs</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-05-28">May 28, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p><a href="/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
+<h2 id="write-the-temporary-script" tabindex="-1">Write the temporary script <a class="header-anchor" href="#write-the-temporary-script">#</a></h2>
+<p>Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.</p>
+<p>Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:</p>
+<p><img src="/assets/img/2021/05/SiteScript.png" alt="">
+<em>Screenshot of setting up the site script variable</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteScript</li>
+<li>Type: String</li>
+<li>Value:</li>
+</ul>
+<pre><code>{
+    &quot;$schema&quot;: &quot;https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json&quot;,
+    &quot;actions&quot;: [
+      {
+        &quot;verb&quot;: &quot;addNavLink&quot;,
+        &quot;displayName&quot;: &quot;External Site&quot;,
+        &quot;url&quot;: &quot;@{variables('linkURL')}&quot;,
+&quot;isWebRelative&quot;: false
+      }
+    ],
+    &quot;version&quot;: 1
+  }
+</code></pre>
+<h2 id="register-the-temporary-script" tabindex="-1">Register the temporary script <a class="header-anchor" href="#register-the-temporary-script">#</a></h2>
+<p>Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.</p>
+<p><img src="/assets/img/2021/05/Register-Site-Script.png" alt="">
+<em>Screenshot of action to register site script</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: root site, or some other site on the tenant you know already exists</li>
+<li>Method: POST</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteScript(Title=’Temporary script for adding link’)</li>
+<li>Header 1 key: accept</li>
+<li>Header 1 value: application/json;odata.metadata=minimal</li>
+<li>Header 2 key: Content-Type</li>
+<li>Header 2 value: application/json;charset=utf-8</li>
+<li>Header 3 key: odata-version</li>
+<li>Header 3 value: 4.0</li>
+</ul>
+<p>I also created a variable to capture the ID of the site script that was just created. You could do without this step, instead referencing back to the body of the response every time you need it, but it is easier to keep track of with a variable.</p>
+<p><img src="/assets/img/2021/05/SiteScript-ID.png" alt="">
+<em>Screenshot of setting the siteScriptID variable</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteScriptID</li>
+<li>Type: String</li>
+<li>Value: body(‘Create_temp_site_script’)?[‘Id’]</li>
+</ul>
+<h2 id="create-the-temporary-design" tabindex="-1">Create the temporary design <a class="header-anchor" href="#create-the-temporary-design">#</a></h2>
+<p>Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.</p>
+<p><img src="/assets/img/2021/05/Create-Site-Design.png" alt="">
+<em>Screenshot of registering the site design</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: root site, or another site on the tenant you know exists</li>
+<li>Uri: /_api/Microsoft.SharePoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre><code>{
+&quot;info&quot;:{
+&quot;Title&quot;:&quot;Temporary site design for @{variables('siteName')}&quot;,
+&quot;Description&quot;:&quot;Applies navigation links&quot;,
+&quot;SiteScriptIds&quot;:[&quot;@{variables('siteScriptID')}&quot;],
+&quot;WebTemplate&quot;:&quot;68&quot;
+}
+}
+</code></pre>
+<p>Note that WebTemplate 68 is a communication site. 64 would be a team site.</p>
+<p>As with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.</p>
+<p><img src="/assets/img/2021/05/Site-Design-ID.png" alt="">
+<em>Screenshot of setting site design ID variable</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteDesignID</li>
+<li>Type: String</li>
+<li>Value: body(‘Create_temp_site_design’)?[‘Id’]</li>
+</ul>
+<h2 id="delay" tabindex="-1">Delay <a class="header-anchor" href="#delay">#</a></h2>
+<p>You may want a bit of a delay before applying the site design. This is to ensure that the site does already exist before you try to apply the design. Rather than guessing a specific amount of time for the site to be prepared (5 minutes has always been sufficient in my tests), you could also use a test to see if the site exists yet with a REST API call like the one above. In that case you could put that within a loop:</p>
+<ol>
+<li>Enter loop only if site does not exist.</li>
+<li>In loop, delay one minute, then check if site exists yet.</li>
+</ol>
+<p>That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.</p>
+<p><img src="/assets/img/2021/06/Delay-5-minutes.png" alt=""></p>
+<p>You also may need to delay much longer if your site scripts rely on <a href="/microsoft-365/sharepoint/content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
+<h2 id="apply-the-site-design" tabindex="-1">Apply the site design <a class="header-anchor" href="#apply-the-site-design">#</a></h2>
+<p>Yet another REST API call will allow you to apply the site design that is now registered.</p>
+<p><img src="/assets/img/2021/05/Apply-Site-Design.png" alt="">
+<em>Screenshot of applying the site design</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the new project site’s URL</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.ApplySiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre><code>{
+&quot;siteDesignId&quot;:&quot;@{variables('siteDesignID')}&quot;,
+&quot;webUrl&quot;:&quot;@{variables('siteURL')}&quot;
+}
+</code></pre>
+<h2 id="clean-up" tabindex="-1">Clean up <a class="header-anchor" href="#clean-up">#</a></h2>
+<p>You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.</p>
+<p><img src="/assets/img/2021/05/Delete-Site-Design.png" alt="">
+<em>Screenshot of deleting the site design</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the root site, or another site on tenant you know exists</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre><code>{&quot;id&quot;:&quot;@{variables('siteDesignID')}&quot;}
+</code></pre>
+<p><img src="/assets/img/2021/05/Delete-Site-Script.png" alt="">
+<em>Screenshot of deleting the site script</em></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the root site, or another site on tenant you know exists</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteScript</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre><code>{&quot;id&quot;:&quot;@{variables('siteScriptID')}&quot;}
+</code></pre>
+<p>That’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p><p>Next: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p>
+</div>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container">
+				<ul class="social-links">
+					<li>
+						<a rel="me" href="https://ryanrobinson.ca">
+							<span class="visually-hidden">Ryan Robinson Homepage</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
+							<span class="visually-hidden">LinkedIn</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://github.com/ryan-l-robinson">
+							<span class="visually-hidden">GitHub</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://dev.to/ryanr">
+							<span class="visually-hidden">Dev.To</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://mstdn.ca/@Ryan">
+							<span class="visually-hidden">Mastodon</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
+							<span class="visually-hidden">Bluesky</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+						</a>
+					</li>
+					<li>
+						<a rel="me" href="/feed/feed.xml" aria-label="rss">
+							<span class="visually-hidden">RSS Feed</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+						</a>
+					</li>
+				</ul>
+				<p>&copy; 2024 Ryan Robinson. Powered by <a href="https://www.11ty.dev/">Eleventy</a> on <a href="https://pages.github.com/">GitHub Pages</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
+			</div>
+		</footer>
+
+		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-and-designs/` was built on 2024-09-06T17:43:39.339Z -->
+	</body>
+</html>
