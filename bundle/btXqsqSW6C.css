@@ -1,43 +1,51 @@
-/** Styles for individual posts **/
+.postlist { counter-reset: start-from 4 }
+/** Styles only needed for the views summarizing multiple posts */
 
-/* Post metadata */
-.post-metadata {
-	display: flex;
-	flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-	gap: .5em 3em;
-    border-bottom: 1px dashed var(--red);
-	padding: 0 0 0.5em 0;
-	margin: 0;
+.postlist {
+	list-style: none;
+	padding: 0;
 }
-.post-metadata p {
-    margin: 0;
-}
-.post-tag {
-	text-transform: capitalize;
+.postlist-item {
+	display: block;
+	margin: 1em 0;
+	border-bottom: 1px dashed var(--red);
+	padding: 0 0 1em 0;
 }
 
-/** Post description block **/
-.post-description {
-    margin: 1em 3em;
-    background-color: var(--grey);
-    border: 1px solid var(--black);
+.postlist-item-title {
+	margin-bottom: 0;
+	padding-bottom: 0.25em;
 }
 
-/** Post footer **/
-.links-nextprev {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1em 3em;
-    border-top: 1px dashed var(--red);
-	padding: 1em 0 0;
+.postlist-item-time-container {
+	margin: 0.5em 0;
+	line-height: 1em;
 }
 
-.links-nextprev p {
-    margin: 0;
+.postlist-item-time {
+	font-size: 0.8em;
+}
+
+.postlist-item :last-child {
+	margin-bottom: 0;
+}
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
 }
 /* Variables and general site-wide styles */
 :root {
@@ -146,37 +154,6 @@ a {
 
 li {
 	line-height: 1.5;
-}
-
-table {
-	margin: 1em 0;
-}
-table td,
-table th {
-	padding-right: 1em;
-}
-
-pre,
-code {
-	font-family: var(--font-family-monospace);
-}
-pre:not([class*="language-"]) {
-	margin: .5em 0;
-	line-height: 1.375; /* 22px /16 */
-	-moz-tab-size: var(--syntax-tab-size);
-	-o-tab-size: var(--syntax-tab-size);
-	tab-size: var(--syntax-tab-size);
-	-webkit-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-}
-code {
-	word-break: break-all;
 }
 header {
     width: 100%;
