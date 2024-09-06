@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Web Browser: Microsoft Edge vs Chrome</title>
+		<title>OneDrive vs SharePoint</title>
 		<meta name="description" content="Technologist writing about web development, Microsoft 365, and more.">
 
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
@@ -31,39 +31,34 @@
 		<main id="skip">
 			<div class="container">
 				
-<h1>Web Browser: Microsoft Edge vs Chrome</h1>
+<h1>OneDrive vs SharePoint</h1>
 
 <div class="post-metadata">
-	<p><time datetime="2021-04-19">April 19, 2021</time></p>
+	<p><time datetime="2021-04-21">April 21, 2021</time></p>
+	<p>Tags: <a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a></p>
 </div>
 
 
 
-<p>It should come as no surprise that my web browser of choice is Microsoft Edge, given Microsoft’s offering is my choice in almost everything (except Microsoft News which I don’t like at all).</p>
-<p>This was not always true. The previous version of Edge was not great for me. Internet Explorer before it was very bad, not just for me but pretty much everybody. That changed when Microsoft opted to rebuild Edge based on the Chromium open-source code base. It now has all the best parts of Google Chrome including themes, extensions, and the rendering engine.</p>
-<p>On top of that, it does a few things I like better than Chrome.</p>
-<h2 id="privacy" tabindex="-1">Privacy <a class="header-anchor" href="#privacy">#</a></h2>
-<p>The key difference for me is privacy.</p>
-<p>Most of Google’s profit comes from advertising targeted based on a massive amount of data they know about you because they track you all over the Internet. Chrome helps them build up more data about you in a few ways.</p>
-<p>For one, Chrome syncs your account using a Google account. All of your browsing is data sent back to Google. Microsoft has a similar syncing function but using a Microsoft account instead. It’s a fair argument if you don’t see a difference between giving lots of data to Google vs Microsoft, but Microsoft’s business is not built on data mining in the same way.</p>
-<p>Google Chrome is also very forgiving of everybody else’s trackers, like Facebook’s. Most websites you visit have a bunch of trackers on them so ad sales companies like Facebook can follow you around the Internet. If you don’t want to be followed around the Internet, Edge is more aggressive about blocking these blockers than Chrome.</p>
-<h2 id="speed" tabindex="-1">Speed <a class="header-anchor" href="#speed">#</a></h2>
-<p><a href="https://www.tomsguide.com/news/chrome-firefox-edge-ram-comparison">Edge uses up less memory and runs faster</a>. That may be because of the blocking of trackers, since all of those trackers running take up resources in the system.</p>
-<p>If you’re somebody who runs a lot of tabs at once, or using a machine with limited memory, this could be a deciding factor on its own.</p>
-<h2 id="new-tab-for-office-accounts" tabindex="-1">New tab for Office accounts <a class="header-anchor" href="#new-tab-for-office-accounts">#</a></h2>
-<p>If you’re logged in through a business account, one of the options for the New Tab screen is your Office documents. It’s essentially the same screen you get when you visit office.com. Putting that on the New Tab screen is a great way to be reminded and have quick access to your most important documents within the flow of your normal browsing.</p>
-<h2 id="timeline" tabindex="-1">Timeline <a class="header-anchor" href="#timeline">#</a></h2>
-<p>When you use Edge, on desktop or mobile, it integrates with your Windows 10 Timeline. This makes it convenient to scroll back through your history if you need something, like if you first viewed a page on mobile and now want to continue on desktop.</p>
-<p>Update: it sounds like the Timeline sync will be going away for consumer accounts and will only be available for business accounts soon.</p>
-<h2 id="vertical-tabs" tabindex="-1">Vertical tabs <a class="header-anchor" href="#vertical-tabs">#</a></h2>
-<p>Lining up your browsing tabs on the left side of your screen instead of the top takes some getting used to, but once you get the hang of it, it is a much more efficient use of space at least on widescreen monitors where you already have more width than most websites are designed for, but could really use the extra height. The main downside is that it’s slower to switch tabs using a mouse, so I may get used to Alt+Tab to switch instead of using a mouse so much.</p>
-<h2 id="it-s-already-installed" tabindex="-1">It’s already installed <a class="header-anchor" href="#it-s-already-installed">#</a></h2>
-<p>This is a little thing, and yes, the argument I’m about to make is exactly what got Microsoft into anti-trust trouble years ago. The argument is simple: Windows 10 comes with Edge.</p>
-<p>Having Edge and Chrome installed means that both update in the background, eating up memory. Having both means double the potential security vulnerabilities. And of course, it simply takes that bit of extra time to go download and configure Chrome.</p>
-<p>Even if it was otherwise equal to Chrome, there is no reason to install Chrome. If it’s a bit better, as I believe, there’s even less reason.</p>
-<p>If you haven’t tried Edge yet and you’re not heavily invested in the Google ecosystem, it might be worth a shot for you too.</p>
+<p>The first question that typically comes up when moving files to Microsoft 365 is this: what’s the difference between OneDrive and SharePoint? Which files should I put where?</p>
+<h2 id="permissions" tabindex="-1">Permissions <a class="header-anchor" href="#permissions">#</a></h2>
+<p>The most important difference is the default permissions. <strong>In short, files that are for just you should be in OneDrive. Files that are for others should be in SharePoint.</strong> OneDrive is individual by default. SharePoint is shared by default.</p>
+<p>This includes files where you are doing most/all of the work but others might need to access them at some point in the future. You want to minimize friction if somebody else on a team suddenly needs to access that file. At best when the file was put initially in your OneDrive, they need to request that you share it, which could have been avoided by putting it in a shared location in the first place. At worst, what if you aren’t available? They might not be able to get to the file they need right now, or might need to take up the time of an administrator to step in.</p>
+<p>There is a mechanism for admins to give one user access to another user’s OneDrive. This can be helpful in circumstances like a sudden termination where it turns out the terminated employee had some files that others need. But at most this should be used for times like a new employee taking over the same role as a previous user, where there are files that are only used by that one role.</p>
+<p>SharePoint sites are most easily set up attached to Microsoft 365 Groups. Those Groups already carry permissions across all the services of Microsoft 365 like Planner and Teams. If you devise some logical groups, your files can neatly into those groups. Users don’t have to think about permissions for each file; they just need to put it in the relevant group.</p>
+<p>This also extends to search. When files are in SharePoint, anybody with the permissions to see it will also be able to find it within <a href="/microsoft-365/microsoft-search-introduction/">Microsoft Search</a>, unless search indexing is turned off for that SharePoint site.</p>
+<h2 id="columns-views-and-content-types" tabindex="-1">Columns, views, and content types <a class="header-anchor" href="#columns-views-and-content-types">#</a></h2>
+<p>SharePoint brings a pile of functionality that isn’t available in OneDrive. These include:</p>
+<ul>
+<li>Columns, for tracking custom data about the file</li>
+<li>Views, for presenting the files in different ways such as sorting, filtering, and grouping the results</li>
+<li>Content types, for enforcing certain types across multiple document libraries, including possibly with file templates</li>
+<li>Power Automate processes shared with others</li>
+<li>Power Apps forms shared with others</li>
+</ul>
+<p>If your workflow benefits from anything more complicated than just a few people able to see the same file, these extra tools can make a huge difference. This lines up nicely with the permissions aspect, since those functions are also generally most useful when the file is for multiple users.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/accessibility-in-wordpress/">WordPress: Accessibility Basics</a></p><p>Next: <a href="/posts/2021/2021-04-21-onedrive-vs-sharepoint/">OneDrive vs SharePoint</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/web-browser-edge-chrome/">Web Browser: Microsoft Edge vs Chrome</a></p><p>Next: <a href="/posts/2021/accessing-microsoft-365-files/">SharePoint: Accessing Files</a></p>
 </div>
 			</div>
 		</main>
@@ -102,6 +97,12 @@
 						</a>
 					</li>
 					<li>
+						<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
+							<span class="visually-hidden">Bluesky</span>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+						</a>
+					</li>
+					<li>
 						<a rel="me" href="/feed/feed.xml" aria-label="rss">
 							<span class="visually-hidden">RSS Feed</span>
 							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
@@ -112,6 +113,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/` was built on 2024-09-06T14:56:44.316Z -->
+		<!-- This page `/posts/2021/onedrive-sharepoint/` was built on 2024-09-06T15:03:22.854Z -->
 	</body>
 </html>

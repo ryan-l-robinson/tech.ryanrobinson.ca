@@ -520,28 +520,28 @@
 	
 	<entry>
 		<title>Web Browser: Microsoft Edge vs Chrome</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/"/>
 		<updated>2021-04-19T16:50:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/</id>
 		<content type="html">&lt;p&gt;It should come as no surprise that my web browser of choice is Microsoft Edge, given Microsoft’s offering is my choice in almost everything (except Microsoft News which I don’t like at all).&lt;/p&gt;
 &lt;p&gt;This was not always true. The previous version of Edge was not great for me. Internet Explorer before it was very bad, not just for me but pretty much everybody. That changed when Microsoft opted to rebuild Edge based on the Chromium open-source code base. It now has all the best parts of Google Chrome including themes, extensions, and the rendering engine.&lt;/p&gt;
 &lt;p&gt;On top of that, it does a few things I like better than Chrome.&lt;/p&gt;
-&lt;h2 id=&quot;privacy&quot; tabindex=&quot;-1&quot;&gt;Privacy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#privacy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;privacy&quot; tabindex=&quot;-1&quot;&gt;Privacy &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#privacy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The key difference for me is privacy.&lt;/p&gt;
 &lt;p&gt;Most of Google’s profit comes from advertising targeted based on a massive amount of data they know about you because they track you all over the Internet. Chrome helps them build up more data about you in a few ways.&lt;/p&gt;
 &lt;p&gt;For one, Chrome syncs your account using a Google account. All of your browsing is data sent back to Google. Microsoft has a similar syncing function but using a Microsoft account instead. It’s a fair argument if you don’t see a difference between giving lots of data to Google vs Microsoft, but Microsoft’s business is not built on data mining in the same way.&lt;/p&gt;
 &lt;p&gt;Google Chrome is also very forgiving of everybody else’s trackers, like Facebook’s. Most websites you visit have a bunch of trackers on them so ad sales companies like Facebook can follow you around the Internet. If you don’t want to be followed around the Internet, Edge is more aggressive about blocking these blockers than Chrome.&lt;/p&gt;
-&lt;h2 id=&quot;speed&quot; tabindex=&quot;-1&quot;&gt;Speed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#speed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;speed&quot; tabindex=&quot;-1&quot;&gt;Speed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#speed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.tomsguide.com/news/chrome-firefox-edge-ram-comparison&quot;&gt;Edge uses up less memory and runs faster&lt;/a&gt;. That may be because of the blocking of trackers, since all of those trackers running take up resources in the system.&lt;/p&gt;
 &lt;p&gt;If you’re somebody who runs a lot of tabs at once, or using a machine with limited memory, this could be a deciding factor on its own.&lt;/p&gt;
-&lt;h2 id=&quot;new-tab-for-office-accounts&quot; tabindex=&quot;-1&quot;&gt;New tab for Office accounts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#new-tab-for-office-accounts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;new-tab-for-office-accounts&quot; tabindex=&quot;-1&quot;&gt;New tab for Office accounts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#new-tab-for-office-accounts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you’re logged in through a business account, one of the options for the New Tab screen is your Office documents. It’s essentially the same screen you get when you visit office.com. Putting that on the New Tab screen is a great way to be reminded and have quick access to your most important documents within the flow of your normal browsing.&lt;/p&gt;
-&lt;h2 id=&quot;timeline&quot; tabindex=&quot;-1&quot;&gt;Timeline &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#timeline&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;timeline&quot; tabindex=&quot;-1&quot;&gt;Timeline &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#timeline&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When you use Edge, on desktop or mobile, it integrates with your Windows 10 Timeline. This makes it convenient to scroll back through your history if you need something, like if you first viewed a page on mobile and now want to continue on desktop.&lt;/p&gt;
 &lt;p&gt;Update: it sounds like the Timeline sync will be going away for consumer accounts and will only be available for business accounts soon.&lt;/p&gt;
-&lt;h2 id=&quot;vertical-tabs&quot; tabindex=&quot;-1&quot;&gt;Vertical tabs &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#vertical-tabs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;vertical-tabs&quot; tabindex=&quot;-1&quot;&gt;Vertical tabs &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#vertical-tabs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Lining up your browsing tabs on the left side of your screen instead of the top takes some getting used to, but once you get the hang of it, it is a much more efficient use of space at least on widescreen monitors where you already have more width than most websites are designed for, but could really use the extra height. The main downside is that it’s slower to switch tabs using a mouse, so I may get used to Alt+Tab to switch instead of using a mouse so much.&lt;/p&gt;
-&lt;h2 id=&quot;it-s-already-installed&quot; tabindex=&quot;-1&quot;&gt;It’s already installed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/#it-s-already-installed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;it-s-already-installed&quot; tabindex=&quot;-1&quot;&gt;It’s already installed &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/#it-s-already-installed&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is a little thing, and yes, the argument I’m about to make is exactly what got Microsoft into anti-trust trouble years ago. The argument is simple: Windows 10 comes with Edge.&lt;/p&gt;
 &lt;p&gt;Having Edge and Chrome installed means that both update in the background, eating up memory. Having both means double the potential security vulnerabilities. And of course, it simply takes that bit of extra time to go download and configure Chrome.&lt;/p&gt;
 &lt;p&gt;Even if it was otherwise equal to Chrome, there is no reason to install Chrome. If it’s a bit better, as I believe, there’s even less reason.&lt;/p&gt;
@@ -551,17 +551,17 @@
 	
 	<entry>
 		<title>OneDrive vs SharePoint</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-21-onedrive-vs-sharepoint/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/"/>
 		<updated>2021-04-21T06:59:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-21-onedrive-vs-sharepoint/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/</id>
 		<content type="html">&lt;p&gt;The first question that typically comes up when moving files to Microsoft 365 is this: what’s the difference between OneDrive and SharePoint? Which files should I put where?&lt;/p&gt;
-&lt;h2 id=&quot;permissions&quot; tabindex=&quot;-1&quot;&gt;Permissions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-21-onedrive-vs-sharepoint/#permissions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;permissions&quot; tabindex=&quot;-1&quot;&gt;Permissions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/#permissions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The most important difference is the default permissions. &lt;strong&gt;In short, files that are for just you should be in OneDrive. Files that are for others should be in SharePoint.&lt;/strong&gt; OneDrive is individual by default. SharePoint is shared by default.&lt;/p&gt;
 &lt;p&gt;This includes files where you are doing most/all of the work but others might need to access them at some point in the future. You want to minimize friction if somebody else on a team suddenly needs to access that file. At best when the file was put initially in your OneDrive, they need to request that you share it, which could have been avoided by putting it in a shared location in the first place. At worst, what if you aren’t available? They might not be able to get to the file they need right now, or might need to take up the time of an administrator to step in.&lt;/p&gt;
 &lt;p&gt;There is a mechanism for admins to give one user access to another user’s OneDrive. This can be helpful in circumstances like a sudden termination where it turns out the terminated employee had some files that others need. But at most this should be used for times like a new employee taking over the same role as a previous user, where there are files that are only used by that one role.&lt;/p&gt;
 &lt;p&gt;SharePoint sites are most easily set up attached to Microsoft 365 Groups. Those Groups already carry permissions across all the services of Microsoft 365 like Planner and Teams. If you devise some logical groups, your files can neatly into those groups. Users don’t have to think about permissions for each file; they just need to put it in the relevant group.&lt;/p&gt;
 &lt;p&gt;This also extends to search. When files are in SharePoint, anybody with the permissions to see it will also be able to find it within &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-search-introduction/&quot;&gt;Microsoft Search&lt;/a&gt;, unless search indexing is turned off for that SharePoint site.&lt;/p&gt;
-&lt;h2 id=&quot;columns-views-and-content-types&quot; tabindex=&quot;-1&quot;&gt;Columns, views, and content types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-21-onedrive-vs-sharepoint/#columns-views-and-content-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;columns-views-and-content-types&quot; tabindex=&quot;-1&quot;&gt;Columns, views, and content types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/#columns-views-and-content-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SharePoint brings a pile of functionality that isn’t available in OneDrive. These include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Columns, for tracking custom data about the file&lt;/li&gt;
@@ -576,15 +576,15 @@
 	
 	<entry>
 		<title>SharePoint: Accessing Files</title>
-		<link href="https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/"/>
+		<link href="https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/"/>
 		<updated>2021-04-23T01:22:00Z</updated>
-		<id>https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/</id>
+		<id>https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/</id>
 		<content type="html">&lt;p&gt;Suppose you’ve now set up all of your files for your organization in &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/onedrive-vs-sharepoint/&quot;&gt;the ideal way, with some in individual user OneDrives and others in group SharePoint sites&lt;/a&gt;. The natural follow-up question is: now how do I access those files within my workflow?&lt;/p&gt;
 &lt;p&gt;There are a lot of options. This isn’t an exhaustive list, but in this post I’ll quickly mention several different ways to access your files that are housed in Microsoft 365 (OneDrive for Business and SharePoint). If you know of more that I missed, leave a comment.&lt;/p&gt;
-&lt;h2 id=&quot;directly-in-your-browser&quot; tabindex=&quot;-1&quot;&gt;Directly in your browser &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#directly-in-your-browser&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;directly-in-your-browser&quot; tabindex=&quot;-1&quot;&gt;Directly in your browser &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#directly-in-your-browser&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can access in your web browser directly looking at the location of the file, either on the SharePoint site or the OneDrive site. Browsing on the site has some advantages like seeing all the columns (metadata) about the files and views for easy filtering and sorting.&lt;/p&gt;
 &lt;p&gt;This is something that is more worthwhile if you’re going to use other features of SharePoint, particularly if you’ve built navigation between the different sites. If you don’t have an intuitive navigation between the sites, it still creates the problem of having to find the file. It depends on your environment and your workflow, but for the most part, this is more of a fallback plan and not how you are likely to most often access your regular files.&lt;/p&gt;
-&lt;h2 id=&quot;teams&quot; tabindex=&quot;-1&quot;&gt;Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;teams&quot; tabindex=&quot;-1&quot;&gt;Teams &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#teams&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If Teams is your primary work dashboard, this is the best solution all around. In this scenario, you create a Team and the channels within the Team. Each channel will automatically create a folder in the document library of the corresponding SharePoint site, named to match that of the channel. This folder is automatically added to the channel as a tab at the top called “Files.”&lt;/p&gt;
 &lt;p&gt;This creates a great intuitive interface where you can do almost everything in Teams. As of this writing there are few exceptions for features available in the SharePoint bar that isn’t on the Teams bar, features which are more for power users:&lt;/p&gt;
 &lt;ul&gt;
@@ -596,15 +596,15 @@
 &lt;li&gt;Manage My Alerts&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;There is, however, a button to open the document library in SharePoint in your browser. The average user doesn’t need to do any of those functions very often if ever and would be perfectly happy doing all their file access in Teams, but if you do start out in Teams and realize you need more, there’s a quick link to do it.&lt;/p&gt;
-&lt;h2 id=&quot;onedrive-sync-client&quot; tabindex=&quot;-1&quot;&gt;OneDrive sync client &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#onedrive-sync-client&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;onedrive-sync-client&quot; tabindex=&quot;-1&quot;&gt;OneDrive sync client &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#onedrive-sync-client&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If Teams is the most modern way to work, using the OneDrive sync client is the most traditional and the most comfortable for a lot of people. In this way, you access files housed in the cloud just as easily as you’re already used to accessing files on your computer.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/desktop-sync-files-across-onedrive-and-sharepoint/&quot;&gt;In another post, I broke down two different approaches to syncing your files from OneDrive and SharePoint together to your computer with the OneDrive sync client&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;desktop-and-mobile-apps&quot; tabindex=&quot;-1&quot;&gt;Desktop and mobile apps &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#desktop-and-mobile-apps&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;desktop-and-mobile-apps&quot; tabindex=&quot;-1&quot;&gt;Desktop and mobile apps &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#desktop-and-mobile-apps&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Know that you’re looking for a Word document, particularly one that you’ve accessed recently? A quick solution to open it again is to open the Word app. The launch page will show your recent documents, your pinned documents, and documents shared with you. You can also fully browse your SharePoint structure to find the file, although that might not be the most intuitive for many people.&lt;/p&gt;
 &lt;p&gt;This is also true for mobile. There are mobile apps for Word, Excel, PowerPoint, Office (one app with lightweight versions of the core apps), OneNote, OneDrive, and SharePoint. These all work for finding your recent files of that type and with some degree of ability to browse.&lt;/p&gt;
-&lt;h2 id=&quot;windows-search&quot; tabindex=&quot;-1&quot;&gt;Windows Search &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#windows-search&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;windows-search&quot; tabindex=&quot;-1&quot;&gt;Windows Search &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#windows-search&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;On a related note: Windows Search will turn up results on all recent documents you’ve opened on that computer, not just files that are synced and located on that computer. If you’ve opened it once from Teams and closed it, you can get back quickly using the search bar built into Windows.&lt;/p&gt;
-&lt;h2 id=&quot;office-com-and-similar&quot; tabindex=&quot;-1&quot;&gt;Office.com (and similar) &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#office-com-and-similar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;office-com-and-similar&quot; tabindex=&quot;-1&quot;&gt;Office.com (and similar) &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#office-com-and-similar&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are multiple places that give you more or less the same interface that helps surface your recent documents, pinned documents, documents recommended for you, files shared with you. These include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.office.com/&quot;&gt;The Office.com launching page&lt;/a&gt; or the Office app in Windows&lt;/li&gt;
@@ -612,9 +612,9 @@
 &lt;li&gt;The homepage in Delve&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The exact details vary, but they share in common a similar idea of trying to help you get back to your most important files quickly. You won’t necessarily find everything this way, but a lot of the time you just want to find that file again that you were using yesterday, and this will help a lot in those scenarios.&lt;/p&gt;
-&lt;h2 id=&quot;microsoft-search&quot; tabindex=&quot;-1&quot;&gt;Microsoft Search &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#microsoft-search&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;microsoft-search&quot; tabindex=&quot;-1&quot;&gt;Microsoft Search &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#microsoft-search&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’ve written another post already about &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-search-introduction/&quot;&gt;my appreciation for Microsoft Search as perhaps the most underrated tool in Microsoft 365&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;android-launcher&quot; tabindex=&quot;-1&quot;&gt;Android launcher &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/#android-launcher&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;android-launcher&quot; tabindex=&quot;-1&quot;&gt;Android launcher &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/#android-launcher&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you’re using Android for your mobile device, you can use &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.microsoft.launcher&amp;amp;hl=en_US&amp;amp;gl=US&quot;&gt;the Microsoft Launcher&lt;/a&gt;. This is a nice Android launcher in a few ways, but among its features are some quick widgets for accessing things like your calendar and yes, your recent documents. If you find yourself in scenarios like working on a file on your computer and then wanting to continue on your mobile during your bus ride home, this is a helpful way to immediately do that.&lt;/p&gt;
 </content>
 	</entry>

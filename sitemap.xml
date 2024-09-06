@@ -82,17 +82,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-19-web-browser-microsoft-edge-vs-chrome/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/web-browser-edge-chrome/</loc>
 		<lastmod>2021-04-19</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-21-onedrive-vs-sharepoint/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/</loc>
 		<lastmod>2021-04-21</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/2021-04-22-accessing-microsoft-365-files/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/accessing-microsoft-365-files/</loc>
 		<lastmod>2021-04-23</lastmod>
 	</url>
 	
@@ -747,12 +747,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/movie-directory/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -782,12 +782,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/microsoft-teams/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
