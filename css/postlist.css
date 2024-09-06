@@ -8,15 +8,8 @@
 .postlist-item {
 	display: block;
 	margin: 0 1em;
+	border-bottom: 1px dashed var(--red);
 	padding: 0 0 1em 0;
-}
-.postlist-item:after {
-	content: "";
-	display: block;
-	margin: 0 auto;
-	width: 70%;
-	border-bottom: 1px solid var(--red);
-	padding-bottom: 0.5em;
 }
 
 .postlist-item-title {
