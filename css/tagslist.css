@@ -3,7 +3,7 @@
     columns: 2;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   
     .tags-list {
       columns: 1;
