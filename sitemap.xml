@@ -192,7 +192,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/posts/2021/overriding-a-sharepoint-sites-home-page/</loc>
+		<loc>https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/</loc>
 		<lastmod>2021-06-14</lastmod>
 	</url>
 	
@@ -722,17 +722,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/microsoft-teams/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -762,12 +757,12 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-github/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-github/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
@@ -797,17 +792,17 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/drupal-docker/</loc>
+		<lastmod>2024-09-06</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
-		<lastmod>2024-09-06</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/drupal-docker/</loc>
 		<lastmod>2024-09-06</lastmod>
 	</url>
 	
