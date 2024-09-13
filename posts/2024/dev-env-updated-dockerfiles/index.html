@@ -45,9 +45,6 @@
 
 
 
-
-
-
 <p>A while ago I wrote about building a <a href="/tags/drupal-docker/">Docker Desktop dev environment for Drupal</a>. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">It can be seen on my GitHub</a>.</p>
 <h2 id="the-web-image" tabindex="-1">The Web Image <a class="header-anchor" href="#the-web-image">#</a></h2>
 <p>This new setup has both Apache and PHP in the same container, is about 40% of the total image size compared to the previous one, and runs much faster, probably because Apache and PHP are in the same container instead of having to communicate across the network. Let's start with the basic start to the image and its shell.</p>
@@ -191,74 +188,74 @@ EXPOSE 3306</code></pre>
 
 
 				<aside class="sidebar-block" aria-label="Tags for posts">
-					<h2>Posts by Tag</h2>
-					<ul class="tags-list">
-					
-						
-						<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-					
-						
-						<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-					
-						
-						<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
-					
-						
-						<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
-					
-						
-						<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-					
-						
-						<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
-					
-						
-						<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
-					
-						
-						<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-					
-						
-						<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
-					
-						
-						<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
-					
-						
-						<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-					
-						
-						<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-					
-						
-						<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-					
-						
-						<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
-					
-						
-						<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-					
-						
-						<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-					
-						
-						<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-					
-						
-						<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
-					
-						
-						<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-					
-						
-						<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-					
-						
-						<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-					
-					</ul>
-				</aside>
+	<h2>Posts by Tag</h2>
+	<ul class="tags-list">
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
+	
+		
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+	
+		
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+	</ul>
+</aside>
 			</div>
 		</main>
 
@@ -312,6 +309,6 @@ EXPOSE 3306</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/dev-env-updated-dockerfiles/` was built on 2024-09-13T19:31:52.512Z -->
+		<!-- This page `/posts/2024/dev-env-updated-dockerfiles/` was built on 2024-09-13T19:35:43.842Z -->
 	</body>
 </html>

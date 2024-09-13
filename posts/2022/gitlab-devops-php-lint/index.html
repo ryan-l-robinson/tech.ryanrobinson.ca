@@ -47,9 +47,6 @@
 
 
 
-
-
-
 <p>Here’s another piece in a <a href="/tags/gitlab-devops/">GitLab DevOps</a> setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.</p>
 <p>I split this into two pieces, taking advantage of <a href="https://docs.gitlab.com/ee/ci/yaml/index.html#extends">GitLab’s ability to extend other functions, even functions in other projects</a>. My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in <a href="https://github.com/ryan-l-robinson/GitLab-CI-CD">my personal GitHub</a>. I know that’s an unintuitive combination.</p>
 <h2 id="the-generic-ci-cd-functions" tabindex="-1">The generic CI/CD functions <a class="header-anchor" href="#the-generic-ci-cd-functions">#</a></h2>
@@ -124,74 +121,74 @@ php:
 
 
 				<aside class="sidebar-block" aria-label="Tags for posts">
-					<h2>Posts by Tag</h2>
-					<ul class="tags-list">
-					
-						
-						<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-					
-						
-						<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-					
-						
-						<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
-					
-						
-						<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
-					
-						
-						<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-					
-						
-						<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
-					
-						
-						<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
-					
-						
-						<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-					
-						
-						<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
-					
-						
-						<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
-					
-						
-						<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-					
-						
-						<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-					
-						
-						<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-					
-						
-						<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
-					
-						
-						<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-					
-						
-						<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-					
-						
-						<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-					
-						
-						<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
-					
-						
-						<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-					
-						
-						<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-					
-						
-						<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-					
-					</ul>
-				</aside>
+	<h2>Posts by Tag</h2>
+	<ul class="tags-list">
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
+	
+		
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+	
+		
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+	</ul>
+</aside>
 			</div>
 		</main>
 
@@ -245,6 +242,6 @@ php:
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-13T19:31:52.337Z -->
+		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-13T19:35:43.633Z -->
 	</body>
 </html>

@@ -45,9 +45,6 @@
 
 
 
-
-
-
 <p>A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.</p>
 <p>How do you get around that? The Microsoft Tech Community recently answered that with the first() function. The full details are in the link below:</p>
 <p><a href="https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/avoid-unnecessary-looping-apply-to-each-in-power-automate/ba-p/2190265?WT.mc_id=m365-24198-cxa&amp;utm_source=collab365&amp;utm_medium=collab365today&amp;utm_campaign=daily_digest">Avoid Unnecessary Looping (Apply to each) in Power Automate – Microsoft Tech Community</a></p>
@@ -60,74 +57,74 @@
 
 
 				<aside class="sidebar-block" aria-label="Tags for posts">
-					<h2>Posts by Tag</h2>
-					<ul class="tags-list">
-					
-						
-						<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-					
-						
-						<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-					
-						
-						<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
-					
-						
-						<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
-					
-						
-						<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-					
-						
-						<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
-					
-						
-						<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
-					
-						
-						<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-					
-						
-						<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
-					
-						
-						<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
-					
-						
-						<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-					
-						
-						<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-					
-						
-						<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-					
-						
-						<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
-					
-						
-						<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-					
-						
-						<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-					
-						
-						<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-					
-						
-						<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
-					
-						
-						<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-					
-						
-						<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-					
-						
-						<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-					
-					</ul>
-				</aside>
+	<h2>Posts by Tag</h2>
+	<ul class="tags-list">
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
+	
+		
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+	
+		
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+	</ul>
+</aside>
 			</div>
 		</main>
 
@@ -181,6 +178,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2024-09-13T19:31:51.996Z -->
+		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2024-09-13T19:35:43.300Z -->
 	</body>
 </html>
