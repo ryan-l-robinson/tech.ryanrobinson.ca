@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 12 }
+.postlist { counter-reset: start-from 15 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -202,6 +202,10 @@ main {
 .sidebar {
 	width: 30%;
 	padding: 2em 1em 0 0;
+}
+
+.sidebar-block {
+	border: 1px dashed var(--red);
 }
   
 .tags-list {
