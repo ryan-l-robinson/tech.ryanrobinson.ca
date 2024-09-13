@@ -84,7 +84,7 @@ body {
 
 main {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     flex-wrap: wrap;
 	width: 100%;
@@ -101,7 +101,7 @@ main {
     width: 70%;
 }
 
-@media(max-width: 1360px) {
+@media(max-width: 60em) {
     .sidebar,
     .main-content {
         width: 100%;

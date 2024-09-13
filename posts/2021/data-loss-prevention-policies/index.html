@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,52 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Data Loss Prevention (DLP) Policies</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-05-03">May 3, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/ms-101/" class="post-tag">MS-101</a>, 
+		<a href="/tags/security/" class="post-tag">Security</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Data Loss Prevention in Microsoft 365 is a feature that helps prevent loss of sensitive data (that makes sense) coming out of your system. This can be within emails or within files, although the latter requires a higher license. Here’s how it works.</p>
+<h2 id="sensitive-data-types" tabindex="-1">Sensitive data types <a class="header-anchor" href="#sensitive-data-types">#</a></h2>
+<p>At the heart of the DLP functionality is the idea of sensitive data types and the ability to recognize those types automatically using pattern recognition.</p>
+<p>A common example is a credit card. In general, you don’t want people in your organization to be able to share credit card information (especially not by email). Credit card numbers follow a particular pattern of 16 digits. That makes it easier for the Microsoft pattern recognition to detect.</p>
+<p>Other patterns may not be as easy to identify, but Microsoft is able to draw on a massive amount of data points and come up with a level of confidence. It may come back saying that it is 70% confident that this document contains a credit card number.</p>
+<p>You can also add your own sensitive data types and train them with enough data for the machine learning machine to establish some confidence in what does and does not meet that type. Perhaps you have your own internal system with ID numbers for clients that you want to protect in some way; you could set that up as a sensitive data type.</p>
+<p><img src="/assets/img/2021/04/DLP-Sensitive-Information-Types.png" alt="">
+<em>Screenshot of current sensitive info types available by default</em></p>
+<h2 id="dlp-rules" tabindex="-1">DLP rules <a class="header-anchor" href="#dlp-rules">#</a></h2>
+<p>The next question is what you want to do when that sensitive data is identified. This is where the DLP rules come in. With DLP rules you can set multiple options:</p>
+<ul>
+<li>What sensitive data type(s) should the rule apply to</li>
+<li>Name of the policy</li>
+<li>What systems should the rule be monitoring, for example Exchange, OneDrive, SharePoint</li>
+<li>What to do when the data type is detected: notify the user, email an admin, and/or restrict access to the content</li>
+</ul>
+<p><img src="/assets/img/2021/04/DLP-Policy-Settings.png" alt="">
+<em>Screenshot of DLP policy setting options</em></p>
+<h2 id="other-uses-of-sensitive-data-types" tabindex="-1">Other uses of sensitive data types <a class="header-anchor" href="#other-uses-of-sensitive-data-types">#</a></h2>
+<p>These sensitive data types can also inform other types of security and compliance rules throughout your Microsoft 365. For example, you can have retention rules based on the sensitive data type scanner which says, for example: if the file has a passport number, retain for 7 years after last modification and then delete.</p>
+<p><img src="/assets/img/2021/04/Retention-Tag.png" alt="">
+<em>Screenshot of making a retention tag based on sensitive information type</em></p>
+<h2 id="learn-more" tabindex="-1">Learn more <a class="header-anchor" href="#learn-more">#</a></h2>
+<p>This is a very broad introduction to the idea. To dig in deep to what is possible, <a href="https://docs.microsoft.com/en-us/exchange/security-and-compliance/data-loss-prevention/data-loss-prevention">check out the Microsoft docs</a>.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/change-profile-picture-guest-microsoft-teams/">Microsoft Teams: Change Your Profile Picture as a Guest</a></p><p>Next: <a href="/posts/2021/web-development-workflow/">My (Freelance) Web Development Workflow</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,52 +144,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Data Loss Prevention (DLP) Policies</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-05-03">May 3, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/tags/ms-101/" class="post-tag">MS-101</a>, 
-		<a href="/tags/security/" class="post-tag">Security</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Data Loss Prevention in Microsoft 365 is a feature that helps prevent loss of sensitive data (that makes sense) coming out of your system. This can be within emails or within files, although the latter requires a higher license. Here’s how it works.</p>
-<h2 id="sensitive-data-types" tabindex="-1">Sensitive data types <a class="header-anchor" href="#sensitive-data-types">#</a></h2>
-<p>At the heart of the DLP functionality is the idea of sensitive data types and the ability to recognize those types automatically using pattern recognition.</p>
-<p>A common example is a credit card. In general, you don’t want people in your organization to be able to share credit card information (especially not by email). Credit card numbers follow a particular pattern of 16 digits. That makes it easier for the Microsoft pattern recognition to detect.</p>
-<p>Other patterns may not be as easy to identify, but Microsoft is able to draw on a massive amount of data points and come up with a level of confidence. It may come back saying that it is 70% confident that this document contains a credit card number.</p>
-<p>You can also add your own sensitive data types and train them with enough data for the machine learning machine to establish some confidence in what does and does not meet that type. Perhaps you have your own internal system with ID numbers for clients that you want to protect in some way; you could set that up as a sensitive data type.</p>
-<p><img src="/assets/img/2021/04/DLP-Sensitive-Information-Types.png" alt="">
-<em>Screenshot of current sensitive info types available by default</em></p>
-<h2 id="dlp-rules" tabindex="-1">DLP rules <a class="header-anchor" href="#dlp-rules">#</a></h2>
-<p>The next question is what you want to do when that sensitive data is identified. This is where the DLP rules come in. With DLP rules you can set multiple options:</p>
-<ul>
-<li>What sensitive data type(s) should the rule apply to</li>
-<li>Name of the policy</li>
-<li>What systems should the rule be monitoring, for example Exchange, OneDrive, SharePoint</li>
-<li>What to do when the data type is detected: notify the user, email an admin, and/or restrict access to the content</li>
-</ul>
-<p><img src="/assets/img/2021/04/DLP-Policy-Settings.png" alt="">
-<em>Screenshot of DLP policy setting options</em></p>
-<h2 id="other-uses-of-sensitive-data-types" tabindex="-1">Other uses of sensitive data types <a class="header-anchor" href="#other-uses-of-sensitive-data-types">#</a></h2>
-<p>These sensitive data types can also inform other types of security and compliance rules throughout your Microsoft 365. For example, you can have retention rules based on the sensitive data type scanner which says, for example: if the file has a passport number, retain for 7 years after last modification and then delete.</p>
-<p><img src="/assets/img/2021/04/Retention-Tag.png" alt="">
-<em>Screenshot of making a retention tag based on sensitive information type</em></p>
-<h2 id="learn-more" tabindex="-1">Learn more <a class="header-anchor" href="#learn-more">#</a></h2>
-<p>This is a very broad introduction to the idea. To dig in deep to what is possible, <a href="https://docs.microsoft.com/en-us/exchange/security-and-compliance/data-loss-prevention/data-loss-prevention">check out the Microsoft docs</a>.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/change-profile-picture-guest-microsoft-teams/">Microsoft Teams: Change Your Profile Picture as a Guest</a></p><p>Next: <a href="/posts/2021/web-development-workflow/">My (Freelance) Web Development Workflow</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -196,6 +196,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/data-loss-prevention-policies/` was built on 2024-09-13T16:06:54.839Z -->
+		<!-- This page `/posts/2021/data-loss-prevention-policies/` was built on 2024-09-13T16:10:57.914Z -->
 	</body>
 </html>

@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,41 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Drupal: Sync Content</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-05-26">May 26, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/devops/" class="post-tag">DevOps</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>I have <a href="/websites/drupal/drupal-sync-configuration/">previously covered syncing configuration across Drupal</a>. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.</p>
+<p>There is <a href="https://www.drupal.org/project/content_sync">an extra module available called content_sync</a>. Unfortunately, it is not a very reliable extra module, at least in my configuration. With that said, I will still share the main extra consideration to take into your plans.</p>
+<p>The caveat for this is that it gets a bit more complicated in most regular usage than configuration, because content changes can happen in both directions.</p>
+<p>Some changes will happen in the same direction as code changes and most configuration changes, especially in the early stages of the project before production is launched: first it gets changed on the local development system, then pushed through the stages to get to production.</p>
+<p>After a site is launched, often the changes in content are being made by regular users on the production site. Maybe in your context the only content editors are also the website administrators, in which case this isn’t a concern, but often you’ll need to navigate how to make sure you don’t get conflicts.</p>
+<p>In our case, in the early stage I did have content changes going the same direction as configuration:</p>
+<ol>
+<li>Add content on my local Docker container</li>
+<li>Export the content</li>
+<li>Push the content sync files through to GitLab, which continues the CI/CD processes to the next server</li>
+<li>The CI/CD imports the content on the next server</li>
+</ol>
+<p>It started to break down around the same time that we let beta testers onto the dev server. I did warn the beta testers that this is a playground server to try things and try to find bugs, not a server to finalize content, with it in mind that I would likely be overriding content with my usual daily changes. But content_sync completely stopped working around the same time, so I made the call that I would stop using it instead.</p>
+<p>I am still loosely keeping an eye on that module's development. I would like to have it for the occasional manual sync requirements between servers.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gh-pages-mobile-authoring/">GitHub Pages: Mobile Authoring</a></p><p>Next: <a href="/posts/2022/drupal-dockerfiles/">Drupal Docker: The Dockerfiles</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,41 +133,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Drupal: Sync Content</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-05-26">May 26, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/devops/" class="post-tag">DevOps</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>I have <a href="/websites/drupal/drupal-sync-configuration/">previously covered syncing configuration across Drupal</a>. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.</p>
-<p>There is <a href="https://www.drupal.org/project/content_sync">an extra module available called content_sync</a>. Unfortunately, it is not a very reliable extra module, at least in my configuration. With that said, I will still share the main extra consideration to take into your plans.</p>
-<p>The caveat for this is that it gets a bit more complicated in most regular usage than configuration, because content changes can happen in both directions.</p>
-<p>Some changes will happen in the same direction as code changes and most configuration changes, especially in the early stages of the project before production is launched: first it gets changed on the local development system, then pushed through the stages to get to production.</p>
-<p>After a site is launched, often the changes in content are being made by regular users on the production site. Maybe in your context the only content editors are also the website administrators, in which case this isn’t a concern, but often you’ll need to navigate how to make sure you don’t get conflicts.</p>
-<p>In our case, in the early stage I did have content changes going the same direction as configuration:</p>
-<ol>
-<li>Add content on my local Docker container</li>
-<li>Export the content</li>
-<li>Push the content sync files through to GitLab, which continues the CI/CD processes to the next server</li>
-<li>The CI/CD imports the content on the next server</li>
-</ol>
-<p>It started to break down around the same time that we let beta testers onto the dev server. I did warn the beta testers that this is a playground server to try things and try to find bugs, not a server to finalize content, with it in mind that I would likely be overriding content with my usual daily changes. But content_sync completely stopped working around the same time, so I made the call that I would stop using it instead.</p>
-<p>I am still loosely keeping an eye on that module's development. I would like to have it for the occasional manual sync requirements between servers.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gh-pages-mobile-authoring/">GitHub Pages: Mobile Authoring</a></p><p>Next: <a href="/posts/2022/drupal-dockerfiles/">Drupal Docker: The Dockerfiles</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -185,6 +185,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-sync-content/` was built on 2024-09-13T16:06:55.516Z -->
+		<!-- This page `/posts/2022/drupal-sync-content/` was built on 2024-09-13T16:10:58.535Z -->
 	</body>
 </html>

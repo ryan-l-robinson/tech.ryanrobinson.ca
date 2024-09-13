@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,36 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Tel Links</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-05-04">May 4, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>For many years there has been a standard for making links that open phone apps to dial a phone number. This is really great. Imagine you're browsing a website for a pizza place and you want to start a phone call to place the order. Without a tel link, especially on mobile, you're stuck memorizing the number and copying it over to your phone app. With a tel link, you quickly click on the link and your phone app is opened with the number in the dialpad.</p>
+<p>The problem comes with extensions. How do you tell the phone app to dial an extension after the base number?</p>
+<p>Some quick searching of the Internet seems to point toward the use of w (for wait) or p (for pause) as the marker between the number and the extension, e.g. 555-555-5555w555 or 555-555-5555p555. I tested these options on my Android phone and on Skype on a Windows 10 machine (the version from the Store). They did not work.</p>
+<p>Some more research found that another option was a comma (,). This one does work on both iOS and Android. It does not work with desktop Skype.</p>
+<p>It also might not cover absolutely everything that has to be pressed. For example, in the system I tested in, it required pressing # after the extension. It did not work to add # to the end of the link, e.g. tel:+1555-555-5555,555#</p>
+<h2 id="now-what" tabindex="-1">Now What? <a class="header-anchor" href="#now-what">#</a></h2>
+<p>So, what should you do? It's not very consistent, unfortunately. If you know your audience is solely or mostly iOS and Android, you can proceed with the comma approach. But that will fail completely - not gracefully - in other uncommon circumstances like Skype. That might be an acceptable trade most of the time, because how many people are really clicking on a phone link on something other than iOS or Android at this point?</p>
+<p>A middle ground approach is to link the base phone number without the extension. This will work on any phone app that supports the tel protocol. This leaves some minor room for confusion, though: somebody clicks the link, it launches the phone app, then you hear it asking for an extension, so you have to switch back to the browser to read the extension, and switch back to the app to enter it. That's a bit of an annoying surprise, but I'm in the camp that it is still less annoying than having no link at all.</p>
+<p>And of course, that's the third option: don't link anything. This would be the philosophy that it's better to do nothing if you can't do it perfect.</p>
+<p>In my context, we went with the comma. We know the audience is going to be almost if not entirely iOS and Android wanting that functionality. But which one you go with may depend on your context, because unfortunately it is not a completely universal standard.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/people-lookup/">Power Apps: People Lookup</a></p><p>Next: <a href="/posts/2022/building-jekyll/">GitHub Pages: Building a Jekyll Site</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,36 +128,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Tel Links</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-05-04">May 4, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>For many years there has been a standard for making links that open phone apps to dial a phone number. This is really great. Imagine you're browsing a website for a pizza place and you want to start a phone call to place the order. Without a tel link, especially on mobile, you're stuck memorizing the number and copying it over to your phone app. With a tel link, you quickly click on the link and your phone app is opened with the number in the dialpad.</p>
-<p>The problem comes with extensions. How do you tell the phone app to dial an extension after the base number?</p>
-<p>Some quick searching of the Internet seems to point toward the use of w (for wait) or p (for pause) as the marker between the number and the extension, e.g. 555-555-5555w555 or 555-555-5555p555. I tested these options on my Android phone and on Skype on a Windows 10 machine (the version from the Store). They did not work.</p>
-<p>Some more research found that another option was a comma (,). This one does work on both iOS and Android. It does not work with desktop Skype.</p>
-<p>It also might not cover absolutely everything that has to be pressed. For example, in the system I tested in, it required pressing # after the extension. It did not work to add # to the end of the link, e.g. tel:+1555-555-5555,555#</p>
-<h2 id="now-what" tabindex="-1">Now What? <a class="header-anchor" href="#now-what">#</a></h2>
-<p>So, what should you do? It's not very consistent, unfortunately. If you know your audience is solely or mostly iOS and Android, you can proceed with the comma approach. But that will fail completely - not gracefully - in other uncommon circumstances like Skype. That might be an acceptable trade most of the time, because how many people are really clicking on a phone link on something other than iOS or Android at this point?</p>
-<p>A middle ground approach is to link the base phone number without the extension. This will work on any phone app that supports the tel protocol. This leaves some minor room for confusion, though: somebody clicks the link, it launches the phone app, then you hear it asking for an extension, so you have to switch back to the browser to read the extension, and switch back to the app to enter it. That's a bit of an annoying surprise, but I'm in the camp that it is still less annoying than having no link at all.</p>
-<p>And of course, that's the third option: don't link anything. This would be the philosophy that it's better to do nothing if you can't do it perfect.</p>
-<p>In my context, we went with the comma. We know the audience is going to be almost if not entirely iOS and Android wanting that functionality. But which one you go with may depend on your context, because unfortunately it is not a completely universal standard.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/people-lookup/">Power Apps: People Lookup</a></p><p>Next: <a href="/posts/2022/building-jekyll/">GitHub Pages: Building a Jekyll Site</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -180,6 +180,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/tel-links/` was built on 2024-09-13T16:06:55.605Z -->
+		<!-- This page `/posts/2022/tel-links/` was built on 2024-09-13T16:10:58.630Z -->
 	</body>
 </html>

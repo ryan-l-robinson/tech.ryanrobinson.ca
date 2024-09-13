@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,44 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>CiviCRM: Personal Campaign Pages</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-06-21">June 21, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/crm/" class="post-tag">CRM</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Have you ever taken part in a non-profit fundraising event where you get your own personal webpage that you can direct people to as a way for them to sponsor you directly in the event? Personally I am happy to participate in <a href="https://cnoy.org/home">the Coldest Night of the Year</a> every year, which does have this type of system (not in CiviCRM).</p>
+<p>In the language of <a href="/crm/civicrm/civicrm-overview/">CiviCRM</a>, these are Personal Campaign Pages. While CiviCRM does offer this functionality, it has some major holes in it. Like a few areas of CiviCRM, it feels like somebody threw it together quickly and then mostly forgot about it. Consequently, I had a hard time ever recommending it as a good solution, even if a client was already heavily using CiviCRM happily. <a href="https://docs.civicrm.org/user/en/latest/contributions/personal-campaign-pages/">Here’s the official documentation</a>.</p>
+<p>Here are the three biggest problems I found when trying to use this feature:</p>
+<h2 id="confusing-to-set-up" tabindex="-1">Confusing to set up <a class="header-anchor" href="#confusing-to-set-up">#</a></h2>
+<p>The way that CiviCRM presents options to you is confusing. Personal campaign pages can be used to recruit new participants or to gather donations. They can also be attached to either an event or a contribution page. So there are four combinations:</p>
+<ul>
+<li>On an event, using campaign pages to recruit new participants</li>
+<li>On an event, using campaign pages for participants to fundraise (the most common I’ve seen, like the CNOY setup)</li>
+<li>On a contribution page, using campaign pages to recruit participants (this scenario makes the least sense to me)</li>
+<li>On a contribution page, using campaign pages to fundraise</li>
+</ul>
+<p>Maybe having all four options is justifiable. The bigger problem is the settings don’t make it clear enough which combination you want until you try it out and realize you got it wrong.</p>
+<h2 id="no-participant-directory" tabindex="-1">No participant directory <a class="header-anchor" href="#no-participant-directory">#</a></h2>
+<p>The most natural thing that you want in a scenario like Coldest Night of the Year? A list of all the participants so that visitors to the site can find who they want to support, as well as things like leaderboards. This is common in these fundraising systems. The CiviCRM PCPs do not offer this.</p>
+<p>If your CiviCRM is built on top of a Drupal site (the best option), you can make something work using views to find all the PCPs of participants tied to an event. But that shouldn’t be necessary; that really should be a feature that’s part of the CiviCRM offering. We put in a lot of effort with views and custom PHP development to try to make some friendly user interfaces for participants and donors and even then it was a little rough compared to other systems out there.</p>
+<h2 id="no-teams" tabindex="-1">No teams <a class="header-anchor" href="#no-teams">#</a></h2>
+<p>A lot of these types of events go most smoothly when the participants can sign up as part of a team, which adds elements of comradery and competition. The CiviCRM function does not handle this at all. There was an extension that did it, but that extension got abandoned after a couple of years, leaving one of our clients stranded without that working at all anymore and data in their database with no easy way to convert it to something useful. When it was working, it was similarly as rough as our participant directory workarounds.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-part-1-the-data/">Movie Directory Part 1: The Data</a></p><p>Next: <a href="/posts/2021/microsoft-excel-vs-sharepoint-lists/">Microsoft Excel vs SharePoint Lists</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,44 +136,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>CiviCRM: Personal Campaign Pages</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-06-21">June 21, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/crm/" class="post-tag">CRM</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Have you ever taken part in a non-profit fundraising event where you get your own personal webpage that you can direct people to as a way for them to sponsor you directly in the event? Personally I am happy to participate in <a href="https://cnoy.org/home">the Coldest Night of the Year</a> every year, which does have this type of system (not in CiviCRM).</p>
-<p>In the language of <a href="/crm/civicrm/civicrm-overview/">CiviCRM</a>, these are Personal Campaign Pages. While CiviCRM does offer this functionality, it has some major holes in it. Like a few areas of CiviCRM, it feels like somebody threw it together quickly and then mostly forgot about it. Consequently, I had a hard time ever recommending it as a good solution, even if a client was already heavily using CiviCRM happily. <a href="https://docs.civicrm.org/user/en/latest/contributions/personal-campaign-pages/">Here’s the official documentation</a>.</p>
-<p>Here are the three biggest problems I found when trying to use this feature:</p>
-<h2 id="confusing-to-set-up" tabindex="-1">Confusing to set up <a class="header-anchor" href="#confusing-to-set-up">#</a></h2>
-<p>The way that CiviCRM presents options to you is confusing. Personal campaign pages can be used to recruit new participants or to gather donations. They can also be attached to either an event or a contribution page. So there are four combinations:</p>
-<ul>
-<li>On an event, using campaign pages to recruit new participants</li>
-<li>On an event, using campaign pages for participants to fundraise (the most common I’ve seen, like the CNOY setup)</li>
-<li>On a contribution page, using campaign pages to recruit participants (this scenario makes the least sense to me)</li>
-<li>On a contribution page, using campaign pages to fundraise</li>
-</ul>
-<p>Maybe having all four options is justifiable. The bigger problem is the settings don’t make it clear enough which combination you want until you try it out and realize you got it wrong.</p>
-<h2 id="no-participant-directory" tabindex="-1">No participant directory <a class="header-anchor" href="#no-participant-directory">#</a></h2>
-<p>The most natural thing that you want in a scenario like Coldest Night of the Year? A list of all the participants so that visitors to the site can find who they want to support, as well as things like leaderboards. This is common in these fundraising systems. The CiviCRM PCPs do not offer this.</p>
-<p>If your CiviCRM is built on top of a Drupal site (the best option), you can make something work using views to find all the PCPs of participants tied to an event. But that shouldn’t be necessary; that really should be a feature that’s part of the CiviCRM offering. We put in a lot of effort with views and custom PHP development to try to make some friendly user interfaces for participants and donors and even then it was a little rough compared to other systems out there.</p>
-<h2 id="no-teams" tabindex="-1">No teams <a class="header-anchor" href="#no-teams">#</a></h2>
-<p>A lot of these types of events go most smoothly when the participants can sign up as part of a team, which adds elements of comradery and competition. The CiviCRM function does not handle this at all. There was an extension that did it, but that extension got abandoned after a couple of years, leaving one of our clients stranded without that working at all anymore and data in their database with no easy way to convert it to something useful. When it was working, it was similarly as rough as our participant directory workarounds.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-part-1-the-data/">Movie Directory Part 1: The Data</a></p><p>Next: <a href="/posts/2021/microsoft-excel-vs-sharepoint-lists/">Microsoft Excel vs SharePoint Lists</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -188,6 +188,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/civicrm-personal-campaign-pages/` was built on 2024-09-13T16:06:54.825Z -->
+		<!-- This page `/posts/2021/civicrm-personal-campaign-pages/` was built on 2024-09-13T16:10:57.900Z -->
 	</body>
 </html>

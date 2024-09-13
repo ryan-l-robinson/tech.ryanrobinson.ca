@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,43 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Drupal: Include Default View in Module</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2023-02-23">February 23, 2023</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>You may be working on a Drupal module and want to include a default view.</p>
+<h2 id="install" tabindex="-1">Install <a class="header-anchor" href="#install">#</a></h2>
+<p>This is actually quite simple: put the configuration file in the config/install folder within the module, with the proper configuration name, and it will install.</p>
+<p>This would be the full configuration file, the same as you would generate using the configuration sync tools.
+You can write this file from scratch, especially if they're hidden options. If it is something that has a user interface, you can do what I tend to do: determine all your preferred settings and test it out within the interface, then export the configuration from either the UI (/admin/config/development/configuration/single/export) or drush (<code>drush config-export</code> but that does all configuration, not only the specific one you want).</p>
+<h2 id="uninstall" tabindex="-1">Uninstall <a class="header-anchor" href="#uninstall">#</a></h2>
+<p>What about uninstalling the configuration you've installed with the module? This will depend on the context of your module, but you may want to also uninstall this configuration when the module is uninstalled. The configuration might no longer make sense without the module, or you might create conflicts if you installed it once, uninstalled the module but left the configuration, then tried to install it again.</p>
+<p>To do that, add a few lines like this to the uninstall hook of the .module file, for example with a config file named webform.webform.event_registration:</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
+ * Implements hook_uninstall
+ * */</span>
+<span class="token keyword">function</span> <span class="token function-definition function">module_name_uninstall</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/mastodon-apps-android/">Mastodon Apps on Android</a></p><p>Next: <a href="/posts/2023/algorithms/">On Algorithms and Section 230</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,43 +135,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Drupal: Include Default View in Module</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2023-02-23">February 23, 2023</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>You may be working on a Drupal module and want to include a default view.</p>
-<h2 id="install" tabindex="-1">Install <a class="header-anchor" href="#install">#</a></h2>
-<p>This is actually quite simple: put the configuration file in the config/install folder within the module, with the proper configuration name, and it will install.</p>
-<p>This would be the full configuration file, the same as you would generate using the configuration sync tools.
-You can write this file from scratch, especially if they're hidden options. If it is something that has a user interface, you can do what I tend to do: determine all your preferred settings and test it out within the interface, then export the configuration from either the UI (/admin/config/development/configuration/single/export) or drush (<code>drush config-export</code> but that does all configuration, not only the specific one you want).</p>
-<h2 id="uninstall" tabindex="-1">Uninstall <a class="header-anchor" href="#uninstall">#</a></h2>
-<p>What about uninstalling the configuration you've installed with the module? This will depend on the context of your module, but you may want to also uninstall this configuration when the module is uninstalled. The configuration might no longer make sense without the module, or you might create conflicts if you installed it once, uninstalled the module but left the configuration, then tried to install it again.</p>
-<p>To do that, add a few lines like this to the uninstall hook of the .module file, for example with a config file named webform.webform.event_registration:</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
- * Implements hook_uninstall
- * */</span>
-<span class="token keyword">function</span> <span class="token function-definition function">module_name_uninstall</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2023/mastodon-apps-android/">Mastodon Apps on Android</a></p><p>Next: <a href="/posts/2023/algorithms/">On Algorithms and Section 230</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -187,6 +187,6 @@ You can write this file from scratch, especially if they're hidden options. If i
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2024-09-13T16:06:55.734Z -->
+		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2024-09-13T16:10:58.754Z -->
 	</body>
 </html>

@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,35 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>GitHub and GitLab: Diagrams in Markdown</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-03-10">March 10, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>GitHub recently announced <a href="https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/">a great new feature that allows for generating diagrams within markdown</a>. I tested this out and it also works in GitLab.</p>
+<p>If you’re writing a lot of documentation in markdown, as you probably are if you’re using GitHub or GitLab, this can be really nice when you need diagrams, like mapping out your CI/CD system or server maps. You can build diagrams much faster than putting something together in Photoshop or some other diagramming tool that exports an image which you then need to upload.</p>
+<p>This is all it takes, building off the standard code markdown “` markers and using arrows to indicate links between objects.</p>
+<pre class="language-markdown" tabindex="0"><code class="language-markdown">mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;</code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-ckeditor-abbreviation/">Drupal: Ckeditor Abbreviation</a></p><p>Next: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,35 +127,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>GitHub and GitLab: Diagrams in Markdown</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-03-10">March 10, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>GitHub recently announced <a href="https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/">a great new feature that allows for generating diagrams within markdown</a>. I tested this out and it also works in GitLab.</p>
-<p>If you’re writing a lot of documentation in markdown, as you probably are if you’re using GitHub or GitLab, this can be really nice when you need diagrams, like mapping out your CI/CD system or server maps. You can build diagrams much faster than putting something together in Photoshop or some other diagramming tool that exports an image which you then need to upload.</p>
-<p>This is all it takes, building off the standard code markdown “` markers and using arrows to indicate links between objects.</p>
-<pre class="language-markdown" tabindex="0"><code class="language-markdown">mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;</code></pre>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-ckeditor-abbreviation/">Drupal: Ckeditor Abbreviation</a></p><p>Next: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -179,6 +179,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/github-gitlab-diagrams-markdown/` was built on 2024-09-13T16:06:55.557Z -->
+		<!-- This page `/posts/2022/github-gitlab-diagrams-markdown/` was built on 2024-09-13T16:10:58.569Z -->
 	</body>
 </html>

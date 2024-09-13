@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,73 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Drupal: Assign Permissions Based on Username File</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-01-25">January 25, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.</p>
+<p>I have pulled out a generic version of this code and <a href="https://github.com/ryan-l-robinson/drupal-permissions-from-file">made it available on my GitHub</a>.</p>
+<h2 id="hook-on-login" tabindex="-1">Hook on login <a class="header-anchor" href="#hook-on-login">#</a></h2>
+<p>First, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with <a href="https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x">the hook_user_login hook</a>.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
+ * Implements hook_user_login
+ */</span>
+<span class="token keyword">function</span> <span class="token function-definition function">permissions_from_file_user_login</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$edit</span><span class="token punctuation">,</span> <span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// assign the "test role" role, if necessary.</span>
+  <span class="token function">_permissions_from_file_update_permissions</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// do not redirect password reset requests.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'form_id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'form_id'</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string single-quoted-string">'user_pass_reset'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">drupal_goto</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="read-file" tabindex="-1">Read file <a class="header-anchor" href="#read-file">#</a></h2>
+<p>Next we have another function that checks to see if the username is in the file or not:</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
+* Reads from file and determine whether the specified user is in the list
+**/</span>
+<span class="token keyword">function</span> <span class="token function-definition function">_permissions_from_file_is_role</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token variable">$contents</span> <span class="token operator">=</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/usernames/roleusernames.csv'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/<span class="token interpolation"><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">name</span></span>/"</span><span class="token punctuation">,</span><span class="token variable">$contents</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token comment">// returns if name is in the file.</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="assign-or-remove-role" tabindex="-1">Assign or Remove Role <a class="header-anchor" href="#assign-or-remove-role">#</a></h2>
+<p>Finally, we can assign permissions based on whether or not their username is in the file.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
+* Calls function that checks if permissions should be found
+**/</span>
+<span class="token keyword">function</span> <span class="token function-definition function">_permissions_from_file_update_permissions</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token variable">$is_role</span> <span class="token operator">=</span> <span class="token function">_permissions_from_file_is_role</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token variable">$role</span> <span class="token operator">=</span> <span class="token function">user_role_load_by_name</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'test role'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$is_role</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// add permissions to that user</span>
+    <span class="token function">user_multiple_role_edit</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">uid</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'add_role'</span><span class="token punctuation">,</span> <span class="token variable">$role</span><span class="token operator">-></span><span class="token property">rid</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// delete the role assignment, if it exists</span>
+    <span class="token function">user_multiple_role_edit</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">uid</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'remove_role'</span><span class="token punctuation">,</span> <span class="token variable">$role</span><span class="token operator">-></span><span class="token property">rid</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-2-gitpod-yml/">Drupal GitPod Container 2: .gitpod.yml</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,73 +165,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Drupal: Assign Permissions Based on Username File</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-01-25">January 25, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.</p>
-<p>I have pulled out a generic version of this code and <a href="https://github.com/ryan-l-robinson/drupal-permissions-from-file">made it available on my GitHub</a>.</p>
-<h2 id="hook-on-login" tabindex="-1">Hook on login <a class="header-anchor" href="#hook-on-login">#</a></h2>
-<p>First, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with <a href="https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x">the hook_user_login hook</a>.</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
- * Implements hook_user_login
- */</span>
-<span class="token keyword">function</span> <span class="token function-definition function">permissions_from_file_user_login</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$edit</span><span class="token punctuation">,</span> <span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-  <span class="token comment">// assign the "test role" role, if necessary.</span>
-  <span class="token function">_permissions_from_file_update_permissions</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment">// do not redirect password reset requests.</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'form_id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'form_id'</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string single-quoted-string">'user_pass_reset'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">drupal_goto</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'target'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="read-file" tabindex="-1">Read file <a class="header-anchor" href="#read-file">#</a></h2>
-<p>Next we have another function that checks to see if the username is in the file or not:</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
-* Reads from file and determine whether the specified user is in the list
-**/</span>
-<span class="token keyword">function</span> <span class="token function-definition function">_permissions_from_file_is_role</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token variable">$contents</span> <span class="token operator">=</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/usernames/roleusernames.csv'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/<span class="token interpolation"><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">name</span></span>/"</span><span class="token punctuation">,</span><span class="token variable">$contents</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-  <span class="token comment">// returns if name is in the file.</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="assign-or-remove-role" tabindex="-1">Assign or Remove Role <a class="header-anchor" href="#assign-or-remove-role">#</a></h2>
-<p>Finally, we can assign permissions based on whether or not their username is in the file.</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
-* Calls function that checks if permissions should be found
-**/</span>
-<span class="token keyword">function</span> <span class="token function-definition function">_permissions_from_file_update_permissions</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token variable">$is_role</span> <span class="token operator">=</span> <span class="token function">_permissions_from_file_is_role</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token variable">$role</span> <span class="token operator">=</span> <span class="token function">user_role_load_by_name</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'test role'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$is_role</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// add permissions to that user</span>
-    <span class="token function">user_multiple_role_edit</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">uid</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'add_role'</span><span class="token punctuation">,</span> <span class="token variable">$role</span><span class="token operator">-></span><span class="token property">rid</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token comment">// delete the role assignment, if it exists</span>
-    <span class="token function">user_multiple_role_edit</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token variable">$account</span><span class="token operator">-></span><span class="token property">uid</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'remove_role'</span><span class="token punctuation">,</span> <span class="token variable">$role</span><span class="token operator">-></span><span class="token property">rid</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-2-gitpod-yml/">Drupal GitPod Container 2: .gitpod.yml</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -217,6 +217,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-13T16:06:55.433Z -->
+		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-13T16:10:58.439Z -->
 	</body>
 </html>

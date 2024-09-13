@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,46 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Drupal: Hide Block on Own Profile</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-07-12">July 12, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
+<p>Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.</p>
+<p><img src="/assets/img/2022/07/Empty_Email_Sidebar.png" alt="Screenshot of empty box only saying the title &quot;Email&quot;"></p>
+<p>The key to solve this is the &quot;exclude&quot; option on contextual filters. There's one contextual filter for the user ID associated to the profile that you're viewing.</p>
+<p><img src="/assets/img/2022/07/View_Contextual_Filter_Only_Matching_User.png" alt="Screenshot of the configuration page. Details below"></p>
+<p>To add this:</p>
+<ul>
+<li>Add a contextual filter searching for the User ID</li>
+<li>Set the default value to &quot;User ID from profile route match&quot;</li>
+</ul>
+<p>I needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.</p>
+<p><img src="/assets/img/2022/07/View_Contextual_Filter_Exclude_Current_User.png" alt="Screenshot of the configuraton page. Details below."></p>
+<p>To add this:</p>
+<ul>
+<li>Add a contextual filter searching for the User ID</li>
+<li>Set the default value to &quot;User ID from logged in user&quot;</li>
+<li>Under the &quot;more&quot; section, check the &quot;exclude&quot; option</li>
+</ul>
+<p>Finally, change the option on the view in the Advanced -&gt; Other section for &quot;Hide block if the view output is empty&quot; to Yes. This will turn off the block entirely when there is no results, such as if you're viewing your own profile when that contextual filter is in place.</p>
+<p>That did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you're viewing your own profile.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/profile-title-override/">Drupal: Override Title Tag of Profiles</a></p><p>Next: <a href="/posts/2022/drupal-css-structures/">Drupal: CSS Structure</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,46 +138,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Drupal: Hide Block on Own Profile</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-07-12">July 12, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
-<p>Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.</p>
-<p><img src="/assets/img/2022/07/Empty_Email_Sidebar.png" alt="Screenshot of empty box only saying the title &quot;Email&quot;"></p>
-<p>The key to solve this is the &quot;exclude&quot; option on contextual filters. There's one contextual filter for the user ID associated to the profile that you're viewing.</p>
-<p><img src="/assets/img/2022/07/View_Contextual_Filter_Only_Matching_User.png" alt="Screenshot of the configuration page. Details below"></p>
-<p>To add this:</p>
-<ul>
-<li>Add a contextual filter searching for the User ID</li>
-<li>Set the default value to &quot;User ID from profile route match&quot;</li>
-</ul>
-<p>I needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.</p>
-<p><img src="/assets/img/2022/07/View_Contextual_Filter_Exclude_Current_User.png" alt="Screenshot of the configuraton page. Details below."></p>
-<p>To add this:</p>
-<ul>
-<li>Add a contextual filter searching for the User ID</li>
-<li>Set the default value to &quot;User ID from logged in user&quot;</li>
-<li>Under the &quot;more&quot; section, check the &quot;exclude&quot; option</li>
-</ul>
-<p>Finally, change the option on the view in the Advanced -&gt; Other section for &quot;Hide block if the view output is empty&quot; to Yes. This will turn off the block entirely when there is no results, such as if you're viewing your own profile when that contextual filter is in place.</p>
-<p>That did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you're viewing your own profile.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/profile-title-override/">Drupal: Override Title Tag of Profiles</a></p><p>Next: <a href="/posts/2022/drupal-css-structures/">Drupal: CSS Structure</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -190,6 +190,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-profile-block-hidden-own/` was built on 2024-09-13T16:06:55.502Z -->
+		<!-- This page `/posts/2022/drupal-profile-block-hidden-own/` was built on 2024-09-13T16:10:58.514Z -->
 	</body>
 </html>

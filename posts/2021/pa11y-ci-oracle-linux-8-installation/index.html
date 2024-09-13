@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,58 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>pa11y CI: Oracle Linux 8 Installation</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-12-13">December 13, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
+		<a href="/tags/linux/" class="post-tag">Linux</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>I’ve mentioned before that <a href="https://github.com/pa11y/pa11y-ci">pa11y</a> is a great tool for accessibility testing, specifically in the context of <a href="/websites/koa11y-accessibility-testing-tool/">the koa11y desktop tool.</a> In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.</p>
+<h2 id="nodejs" tabindex="-1">NodeJS <a class="header-anchor" href="#nodejs">#</a></h2>
+<p>Pa11y requires <a href="https://nodejs.org/en/">NodeJS</a>. To add that to Oracle Linux 8, run this command:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> yum <span class="token function">install</span> nodejs <span class="token parameter variable">-y</span></code></pre>
+<p>If you want to add an efficiency check within a larger bash script, you can first check whether it is already installed:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install NodeJS and NPM</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>yum list <span class="token parameter variable">--installed</span> <span class="token operator">|</span> <span class="token function">grep</span> nodejs <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">sudo</span> yum <span class="token function">install</span> nodejs <span class="token parameter variable">-y</span>
+<span class="token keyword">fi</span></code></pre>
+<h2 id="pa11y" tabindex="-1">Pa11y <a class="header-anchor" href="#pa11y">#</a></h2>
+<p>Now you can install Pa11y itself using npm:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> pa11y <span class="token parameter variable">-g</span> --unsafe-perm<span class="token operator">=</span>true --allow-root</code></pre>
+<p>Note the extra flags for unsafe-perms and allow-root, which don’t sound like good things. But without them, it will fail to have the permissions to write everything in all the directories it needs to be able to write.</p>
+<p>As above, you can add an efficiency check if you’re doing this within a script:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install pa11y</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">npm</span> list nodejs <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> pa11y <span class="token parameter variable">-g</span> --unsafe-perm<span class="token operator">=</span>true --allow-root
+<span class="token keyword">fi</span></code></pre>
+<h2 id="dependencies" tabindex="-1">Dependencies <a class="header-anchor" href="#dependencies">#</a></h2>
+<p>Pa11y is now installed, but trying it out, it won’t actually work, citing other libraries that are missing. There are several of these. To install all of them:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install libraries</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> pango.x86_64 libXcomposite.x86_64
+ libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm
+
+<span class="token comment">#Install fonts</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc</code></pre>
+<p>As above, in a scripting context you might want to check if it is already installed, with something like this:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>yum list <span class="token parameter variable">--installed</span> <span class="token operator">|</span> <span class="token function">grep</span> pango.x86_64 <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">sudo</span> yum <span class="token function">install</span> pango.x86_64 <span class="token parameter variable">-y</span>
+<span class="token keyword">fi</span></code></pre>
+<p><a href="https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/blob/main/pa11y.sh">The full script is available in my GitHub.</a></p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/drupal-pecl-uploadprogress/">Drupal: Install PECL UploadProgress</a></p><p>Next: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,58 +150,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>pa11y CI: Oracle Linux 8 Installation</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-12-13">December 13, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
-		<a href="/tags/linux/" class="post-tag">Linux</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>I’ve mentioned before that <a href="https://github.com/pa11y/pa11y-ci">pa11y</a> is a great tool for accessibility testing, specifically in the context of <a href="/websites/koa11y-accessibility-testing-tool/">the koa11y desktop tool.</a> In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.</p>
-<h2 id="nodejs" tabindex="-1">NodeJS <a class="header-anchor" href="#nodejs">#</a></h2>
-<p>Pa11y requires <a href="https://nodejs.org/en/">NodeJS</a>. To add that to Oracle Linux 8, run this command:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> yum <span class="token function">install</span> nodejs <span class="token parameter variable">-y</span></code></pre>
-<p>If you want to add an efficiency check within a larger bash script, you can first check whether it is already installed:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install NodeJS and NPM</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>yum list <span class="token parameter variable">--installed</span> <span class="token operator">|</span> <span class="token function">grep</span> nodejs <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token function">sudo</span> yum <span class="token function">install</span> nodejs <span class="token parameter variable">-y</span>
-<span class="token keyword">fi</span></code></pre>
-<h2 id="pa11y" tabindex="-1">Pa11y <a class="header-anchor" href="#pa11y">#</a></h2>
-<p>Now you can install Pa11y itself using npm:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> pa11y <span class="token parameter variable">-g</span> --unsafe-perm<span class="token operator">=</span>true --allow-root</code></pre>
-<p>Note the extra flags for unsafe-perms and allow-root, which don’t sound like good things. But without them, it will fail to have the permissions to write everything in all the directories it needs to be able to write.</p>
-<p>As above, you can add an efficiency check if you’re doing this within a script:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install pa11y</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">npm</span> list nodejs <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> pa11y <span class="token parameter variable">-g</span> --unsafe-perm<span class="token operator">=</span>true --allow-root
-<span class="token keyword">fi</span></code></pre>
-<h2 id="dependencies" tabindex="-1">Dependencies <a class="header-anchor" href="#dependencies">#</a></h2>
-<p>Pa11y is now installed, but trying it out, it won’t actually work, citing other libraries that are missing. There are several of these. To install all of them:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token comment">#Install libraries</span>
-<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> pango.x86_64 libXcomposite.x86_64
- libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm
-
-<span class="token comment">#Install fonts</span>
-<span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token parameter variable">-y</span> xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc</code></pre>
-<p>As above, in a scripting context you might want to check if it is already installed, with something like this:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>yum list <span class="token parameter variable">--installed</span> <span class="token operator">|</span> <span class="token function">grep</span> pango.x86_64 <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span><span class="token variable">)</span></span>"</span> <span class="token parameter variable">-eq</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token function">sudo</span> yum <span class="token function">install</span> pango.x86_64 <span class="token parameter variable">-y</span>
-<span class="token keyword">fi</span></code></pre>
-<p><a href="https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/blob/main/pa11y.sh">The full script is available in my GitHub.</a></p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/drupal-pecl-uploadprogress/">Drupal: Install PECL UploadProgress</a></p><p>Next: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -202,6 +202,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/pa11y-ci-oracle-linux-8-installation/` was built on 2024-09-13T16:06:55.222Z -->
+		<!-- This page `/posts/2021/pa11y-ci-oracle-linux-8-installation/` was built on 2024-09-13T16:10:58.261Z -->
 	</body>
 </html>

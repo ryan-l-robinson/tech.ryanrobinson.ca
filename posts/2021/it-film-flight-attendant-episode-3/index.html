@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,40 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>IT on Film: Flight Attendant Episode 3</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-03-29">March 29, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/security/" class="post-tag">Security</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>In episode 3 of <a href="https://www.imdb.com/title/tt7569576/?ref_=fn_al_tt_1">The Flight Attendant (HBO Max)</a>, Megan agrees to do some corporate espionage against her husband’s large company. It isn’t clear what the company is – maybe it will explain as the story continues in later episodes – but it is clear that he has access to some significant trade secrets. So Megan encourages her husband to bring his laptop home, then casually finds the file and copies it to a jump drive.</p>
+<p>Two things immediately stood out to me as problems with this scene from a basic IT security perspective.</p>
+<h2 id="the-computer-password" tabindex="-1">The Computer Password <a class="header-anchor" href="#the-computer-password">#</a></h2>
+<p>This is one that I catch a lot in movies and TV. Why could she just open her husband’s work laptop and be logged in, no password needed? It’s possible there’s some simple user error here, where her husband was just on the computer and didn’t bother to lock it in his own house when he walked away.</p>
+<p>That is understandable, but given how important these trade secrets of a large company are, I would have thought there would be some stronger policies enforced on the machine. With Microsoft Endpoint Manager (and probably similar in other device management systems), the IT Administrator for this big company with important secrets could force the device to lock after x minutes of inactivity, as low as 1 minute. It could be paired with Windows Hello for Business – a fingerprint reader or infrared camera – so that he could still get in quickly each time it locked, but nobody else could. If this policy was set, Megan would have had to act fast to get in, even when her husband was careless about locking.</p>
+<p><img src="/assets/img/2021/03/Device-Compliance-10-Minute-Lock.png" alt="">
+<em>Screenshot of the configuration settings for automatic lock after 10 minutes of inactivity.</em></p>
+<p>Windows 10 also has options like Dynamic Lock, which will automatically lock the computer when a paired Bluetooth device (most likely a phone) is out of range. There may not be an option in Microsoft Endpoint Manager to force that, though, and would require the user to do the Bluetooth pairing.</p>
+<p>Of course none of this matters if Megan’s husband intentionally let her in, but there’s a lot the IT Admins can go to almost eliminate scenarios like her breaking in without his help.</p>
+<h2 id="information-protection" tabindex="-1">Information Protection <a class="header-anchor" href="#information-protection">#</a></h2>
+<p>Ok, so let’s assume that Megan has successfully gotten into the computer and found the file. Maybe her husband intentionally let her in. Maybe he was a little sloppy and either it didn’t have adequate protections or she was fast. That still leaves another problem: she still shouldn’t be able to copy it out to a jump drive.</p>
+<p>This can be prevented with <a href="https://azure.microsoft.com/en-ca/services/information-protection/">Azure Information Protection</a> (again, it is possible that similar products from other providers offer the same idea). If this file is as sensitive as the context of the show suggests, it should be tagged with an appropriate protection policy, which can define things like not being allowed to copy it. If that was enabled, Megan would not have simply been able to copy sensitive data onto a USB drive.</p>
+<p>Of course responsible IT policy wouldn’t make very good TV. In this case, this subplot would hit a dead-end quickly if Megan couldn’t steal a file that was properly protected. But in the real world, if you’re dealing with sensitive data, you should be using every tool at your disposal to keep it from being stolen.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/wordpress-com-vs-org/">WordPress: .com vs .org</a></p><p>Next: <a href="/posts/2021/civicrm-overview/">CiviCRM: Overview</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,40 +132,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>IT on Film: Flight Attendant Episode 3</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-03-29">March 29, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/tags/security/" class="post-tag">Security</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>In episode 3 of <a href="https://www.imdb.com/title/tt7569576/?ref_=fn_al_tt_1">The Flight Attendant (HBO Max)</a>, Megan agrees to do some corporate espionage against her husband’s large company. It isn’t clear what the company is – maybe it will explain as the story continues in later episodes – but it is clear that he has access to some significant trade secrets. So Megan encourages her husband to bring his laptop home, then casually finds the file and copies it to a jump drive.</p>
-<p>Two things immediately stood out to me as problems with this scene from a basic IT security perspective.</p>
-<h2 id="the-computer-password" tabindex="-1">The Computer Password <a class="header-anchor" href="#the-computer-password">#</a></h2>
-<p>This is one that I catch a lot in movies and TV. Why could she just open her husband’s work laptop and be logged in, no password needed? It’s possible there’s some simple user error here, where her husband was just on the computer and didn’t bother to lock it in his own house when he walked away.</p>
-<p>That is understandable, but given how important these trade secrets of a large company are, I would have thought there would be some stronger policies enforced on the machine. With Microsoft Endpoint Manager (and probably similar in other device management systems), the IT Administrator for this big company with important secrets could force the device to lock after x minutes of inactivity, as low as 1 minute. It could be paired with Windows Hello for Business – a fingerprint reader or infrared camera – so that he could still get in quickly each time it locked, but nobody else could. If this policy was set, Megan would have had to act fast to get in, even when her husband was careless about locking.</p>
-<p><img src="/assets/img/2021/03/Device-Compliance-10-Minute-Lock.png" alt="">
-<em>Screenshot of the configuration settings for automatic lock after 10 minutes of inactivity.</em></p>
-<p>Windows 10 also has options like Dynamic Lock, which will automatically lock the computer when a paired Bluetooth device (most likely a phone) is out of range. There may not be an option in Microsoft Endpoint Manager to force that, though, and would require the user to do the Bluetooth pairing.</p>
-<p>Of course none of this matters if Megan’s husband intentionally let her in, but there’s a lot the IT Admins can go to almost eliminate scenarios like her breaking in without his help.</p>
-<h2 id="information-protection" tabindex="-1">Information Protection <a class="header-anchor" href="#information-protection">#</a></h2>
-<p>Ok, so let’s assume that Megan has successfully gotten into the computer and found the file. Maybe her husband intentionally let her in. Maybe he was a little sloppy and either it didn’t have adequate protections or she was fast. That still leaves another problem: she still shouldn’t be able to copy it out to a jump drive.</p>
-<p>This can be prevented with <a href="https://azure.microsoft.com/en-ca/services/information-protection/">Azure Information Protection</a> (again, it is possible that similar products from other providers offer the same idea). If this file is as sensitive as the context of the show suggests, it should be tagged with an appropriate protection policy, which can define things like not being allowed to copy it. If that was enabled, Megan would not have simply been able to copy sensitive data onto a USB drive.</p>
-<p>Of course responsible IT policy wouldn’t make very good TV. In this case, this subplot would hit a dead-end quickly if Megan couldn’t steal a file that was properly protected. But in the real world, if you’re dealing with sensitive data, you should be using every tool at your disposal to keep it from being stolen.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/wordpress-com-vs-org/">WordPress: .com vs .org</a></p><p>Next: <a href="/posts/2021/civicrm-overview/">CiviCRM: Overview</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -184,6 +184,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/it-film-flight-attendant-episode-3/` was built on 2024-09-13T16:06:54.990Z -->
+		<!-- This page `/posts/2021/it-film-flight-attendant-episode-3/` was built on 2024-09-13T16:10:58.039Z -->
 	</body>
 </html>

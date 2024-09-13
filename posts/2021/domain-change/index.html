@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,47 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Domain Change</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-09-19">September 19, 2021</time></p>
+	
+</div>
+
+
+
+
+<p>This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.</p>
+<p>With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.</p>
+<h2 id="rearrange-content" tabindex="-1">Rearrange content <a class="header-anchor" href="#rearrange-content">#</a></h2>
+<p>I won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.</p>
+<h2 id="change-domain-a-record" tabindex="-1">Change domain A record <a class="header-anchor" href="#change-domain-a-record">#</a></h2>
+<p>To tell the wider Internet what to do when they try to visit ryanrobinson.technology, I had to go into my DNS records for the domain. It was previously using a simple FWD record to redirect any traffic to it to alliterationapplications.com, but now I want essentially the opposite. ryanrobinson.technology needs to be hosted and alliterationapplications.com needs to redirect traffic away instead. So, I removed the FWD record and added an A record to my IP address instead.</p>
+<h2 id="add-domain-to-server-account" tabindex="-1">Add domain to server account <a class="header-anchor" href="#add-domain-to-server-account">#</a></h2>
+<p>I’m on a shared hosting service with a cPanel. Step one was to add the extra domain ryanrobinson.technology to the same account as alliterationapplications.com. I specified that I wanted it to be a different document root than the existing site.</p>
+<p>I also took advantage of the AutoSSL feature in cPanel to generate an SSL certificate for the new domain.</p>
+<h2 id="new-database" tabindex="-1">New Database <a class="header-anchor" href="#new-database">#</a></h2>
+<p>I created a new database and new database user for the new site installation.</p>
+<h2 id="duplicator" tabindex="-1">Duplicator <a class="header-anchor" href="#duplicator">#</a></h2>
+<p>I used <a href="https://wordpress.org/plugins/duplicator/">Duplicator</a> to make a copy of the site and install it in a new folder.</p>
+<p>At this point I had a functioning site at both domains.</p>
+<h2 id="htaccess-on-old-domain" tabindex="-1">.htaccess on old domain <a class="header-anchor" href="#htaccess-on-old-domain">#</a></h2>
+<p>I then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.</p>
+<p>To achieve that, I added this to the .htaccess of alliterationapplications.com</p>
+<pre><code>&lt;pre class=&quot;wp-block-code&quot;&gt;```
+&lt;IfModule mod_rewrite.c&gt;
+RewriteEngine on
+RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
+&lt;/IfModule&gt;
+</code></pre>
+<h2 id="cleanup" tabindex="-1">Cleanup <a class="header-anchor" href="#cleanup">#</a></h2>
+<p>Finally, I cleaned up everything from alliterationapplications.com that I no longer needed: the database and all the files in the alliterationapplications.com document root other than the .htaccess file. That’s not truly necessary, but does keep my storage usage down.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/mysql-workbench/">MySQL Workbench</a></p><p>Next: <a href="/posts/2021/browser-extension-stylus/">Browser Extension: Stylus</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,47 +139,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Domain Change</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-09-19">September 19, 2021</time></p>
-	
-</div>
-
-
-
-
-<p>This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.</p>
-<p>With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.</p>
-<h2 id="rearrange-content" tabindex="-1">Rearrange content <a class="header-anchor" href="#rearrange-content">#</a></h2>
-<p>I won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.</p>
-<h2 id="change-domain-a-record" tabindex="-1">Change domain A record <a class="header-anchor" href="#change-domain-a-record">#</a></h2>
-<p>To tell the wider Internet what to do when they try to visit ryanrobinson.technology, I had to go into my DNS records for the domain. It was previously using a simple FWD record to redirect any traffic to it to alliterationapplications.com, but now I want essentially the opposite. ryanrobinson.technology needs to be hosted and alliterationapplications.com needs to redirect traffic away instead. So, I removed the FWD record and added an A record to my IP address instead.</p>
-<h2 id="add-domain-to-server-account" tabindex="-1">Add domain to server account <a class="header-anchor" href="#add-domain-to-server-account">#</a></h2>
-<p>I’m on a shared hosting service with a cPanel. Step one was to add the extra domain ryanrobinson.technology to the same account as alliterationapplications.com. I specified that I wanted it to be a different document root than the existing site.</p>
-<p>I also took advantage of the AutoSSL feature in cPanel to generate an SSL certificate for the new domain.</p>
-<h2 id="new-database" tabindex="-1">New Database <a class="header-anchor" href="#new-database">#</a></h2>
-<p>I created a new database and new database user for the new site installation.</p>
-<h2 id="duplicator" tabindex="-1">Duplicator <a class="header-anchor" href="#duplicator">#</a></h2>
-<p>I used <a href="https://wordpress.org/plugins/duplicator/">Duplicator</a> to make a copy of the site and install it in a new folder.</p>
-<p>At this point I had a functioning site at both domains.</p>
-<h2 id="htaccess-on-old-domain" tabindex="-1">.htaccess on old domain <a class="header-anchor" href="#htaccess-on-old-domain">#</a></h2>
-<p>I then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.</p>
-<p>To achieve that, I added this to the .htaccess of alliterationapplications.com</p>
-<pre><code>&lt;pre class=&quot;wp-block-code&quot;&gt;```
-&lt;IfModule mod_rewrite.c&gt;
-RewriteEngine on
-RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
-&lt;/IfModule&gt;
-</code></pre>
-<h2 id="cleanup" tabindex="-1">Cleanup <a class="header-anchor" href="#cleanup">#</a></h2>
-<p>Finally, I cleaned up everything from alliterationapplications.com that I no longer needed: the database and all the files in the alliterationapplications.com document root other than the .htaccess file. That’s not truly necessary, but does keep my storage usage down.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/mysql-workbench/">MySQL Workbench</a></p><p>Next: <a href="/posts/2021/browser-extension-stylus/">Browser Extension: Stylus</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -191,6 +191,6 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/domain-change/` was built on 2024-09-13T16:06:54.909Z -->
+		<!-- This page `/posts/2021/domain-change/` was built on 2024-09-13T16:10:57.968Z -->
 	</body>
 </html>

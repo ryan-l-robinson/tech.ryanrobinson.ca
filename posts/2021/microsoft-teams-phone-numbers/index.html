@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/9e9NKONZTe.css">
+		<link rel="stylesheet" href="/bundle/P01xynJYI9.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,6 +29,49 @@
 		</header>
 
 		<main id="skip">
+			<div class="main-content">
+				
+<h1>Microsoft Teams: Phone Numbers</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-08-19">August 19, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/ms-700/" class="post-tag">MS-700</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>I personally have not used Microsoft Teams as a phone system. My employers have stuck completely with Internet-based communications, mostly to others in the same organization. But if you want to integrate your organization’s phone system into Teams and have your phone calls ring through in Teams, that’s absolutely possible.</p>
+<p>Here’s an introduction on some of the things to consider:</p>
+<h2 id="calling-plan-or-direct-routing" tabindex="-1">Calling Plan or Direct Routing <a class="header-anchor" href="#calling-plan-or-direct-routing">#</a></h2>
+<p>Your first decision in setting up a phone system in Teams is between:</p>
+<ul>
+<li>Calling plan: simplest solution, letting Microsoft handle everything</li>
+<li>Direct routing: allows for more complexity and keeping a previous phone provider</li>
+</ul>
+<h2 id="add-phone-numbers" tabindex="-1">Add phone numbers <a class="header-anchor" href="#add-phone-numbers">#</a></h2>
+<p>There are two basic options when you want to add phone numbers to your Teams deployment: add new numbers, or port existing numbers from a previous provider. You can do this from the <a href="https://admin.teams.microsoft.com">Teams Admin Centre</a> -&gt; Voice -&gt; Phone Numbers.</p>
+<p>Ordering numbers has a few types to choose from:</p>
+<ul>
+<li>User: a regular number for a single user</li>
+<li>Dedicated conference bridge (toll or toll-free): for conference rooms with multiple people calling in at once</li>
+<li><a href="https://docs.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue">Call queue</a> (toll or toll-free): used to define how to route calls between multiple agents, with features like wait music</li>
+<li><a href="https://docs.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant">Auto attendant</a> (toll or toll-free): attendant for callers to be able to select how they would like to be routed, e.g. select 1 for tech support, 2 for accounts, etc.</li>
+</ul>
+<p>Along with the type, you’ll need to specify a location – country and area code – as well as the quantity for how many you need.</p>
+<h2 id="emergency-addresses" tabindex="-1">Emergency addresses <a class="header-anchor" href="#emergency-addresses">#</a></h2>
+<p>Every phone number has to have an emergency address tied to it, so that if a user calls emergency services they can trace it back and find them. With Teams phone systems, you can and should have one emergency address configured for each of your office locations. When you are assigning the number, you then specify at which emergency location that person is working.</p>
+<h2 id="dial-plans" tabindex="-1">Dial plans <a class="header-anchor" href="#dial-plans">#</a></h2>
+<p>If you’ve worked in most large offices, you’ve probably encountered the use of something like “dial 9 for external numbers.” These kinds of scenarios are handled with dial plans. You can specify what digits (up to 4 digits) must be used to dial out to external numbers.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-teams-information-barriers/">Microsoft Teams: Information Barriers</a></p><p>Next: <a href="/posts/2021/favourite-visual-studio-code-extensions/">Visual Studio Code: Favourite Extensions</a></p>
+</div>
+			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -98,49 +141,6 @@
 				
 				</ul>
 			</aside>
-			<div class="main-content">
-				
-<h1>Microsoft Teams: Phone Numbers</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-08-19">August 19, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/tags/ms-700/" class="post-tag">MS-700</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>I personally have not used Microsoft Teams as a phone system. My employers have stuck completely with Internet-based communications, mostly to others in the same organization. But if you want to integrate your organization’s phone system into Teams and have your phone calls ring through in Teams, that’s absolutely possible.</p>
-<p>Here’s an introduction on some of the things to consider:</p>
-<h2 id="calling-plan-or-direct-routing" tabindex="-1">Calling Plan or Direct Routing <a class="header-anchor" href="#calling-plan-or-direct-routing">#</a></h2>
-<p>Your first decision in setting up a phone system in Teams is between:</p>
-<ul>
-<li>Calling plan: simplest solution, letting Microsoft handle everything</li>
-<li>Direct routing: allows for more complexity and keeping a previous phone provider</li>
-</ul>
-<h2 id="add-phone-numbers" tabindex="-1">Add phone numbers <a class="header-anchor" href="#add-phone-numbers">#</a></h2>
-<p>There are two basic options when you want to add phone numbers to your Teams deployment: add new numbers, or port existing numbers from a previous provider. You can do this from the <a href="https://admin.teams.microsoft.com">Teams Admin Centre</a> -&gt; Voice -&gt; Phone Numbers.</p>
-<p>Ordering numbers has a few types to choose from:</p>
-<ul>
-<li>User: a regular number for a single user</li>
-<li>Dedicated conference bridge (toll or toll-free): for conference rooms with multiple people calling in at once</li>
-<li><a href="https://docs.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue">Call queue</a> (toll or toll-free): used to define how to route calls between multiple agents, with features like wait music</li>
-<li><a href="https://docs.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant">Auto attendant</a> (toll or toll-free): attendant for callers to be able to select how they would like to be routed, e.g. select 1 for tech support, 2 for accounts, etc.</li>
-</ul>
-<p>Along with the type, you’ll need to specify a location – country and area code – as well as the quantity for how many you need.</p>
-<h2 id="emergency-addresses" tabindex="-1">Emergency addresses <a class="header-anchor" href="#emergency-addresses">#</a></h2>
-<p>Every phone number has to have an emergency address tied to it, so that if a user calls emergency services they can trace it back and find them. With Teams phone systems, you can and should have one emergency address configured for each of your office locations. When you are assigning the number, you then specify at which emergency location that person is working.</p>
-<h2 id="dial-plans" tabindex="-1">Dial plans <a class="header-anchor" href="#dial-plans">#</a></h2>
-<p>If you’ve worked in most large offices, you’ve probably encountered the use of something like “dial 9 for external numbers.” These kinds of scenarios are handled with dial plans. You can specify what digits (up to 4 digits) must be used to dial out to external numbers.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-teams-information-barriers/">Microsoft Teams: Information Barriers</a></p><p>Next: <a href="/posts/2021/favourite-visual-studio-code-extensions/">Visual Studio Code: Favourite Extensions</a></p>
-</div>
-			</div>
 		</main>
 
 		<footer>
@@ -193,6 +193,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/microsoft-teams-phone-numbers/` was built on 2024-09-13T16:06:55.100Z -->
+		<!-- This page `/posts/2021/microsoft-teams-phone-numbers/` was built on 2024-09-13T16:10:58.168Z -->
 	</body>
 </html>
