@@ -12,14 +12,16 @@ main {
 /** Sidebar **/
 .sidebar {
 	width: 30%;
-	padding: 2em 1em 0 0;
+	padding: 1em 1em 0 0;
 }
 
 .sidebar-block {
 	border: 1px dashed var(--red);
+	padding: 0.5em;
 }
   
 .tags-list {
+	margin-bottom: 0;
 	padding-left: 1em;
 	columns: 1;
 }
