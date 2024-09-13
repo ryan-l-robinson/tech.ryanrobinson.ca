@@ -9,11 +9,17 @@ main {
     background-color: var(--background-color);
 }
 
+/** Sidebar **/
 .sidebar {
-    width: 30%;
-    padding: 0 1em;
+	width: 30%;
+	padding: 0 1em 0 0;
+}
+  
+.tags-list {
+	padding-left: 1em;
 }
 
+/** Main content **/
 .main-content {
     width: 70%;
 }
@@ -23,6 +29,16 @@ main {
     .main-content {
         width: 100%;
     }
+
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
 }
 
 main :first-child {

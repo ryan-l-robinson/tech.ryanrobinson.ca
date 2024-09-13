@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 16 }
+.postlist { counter-reset: start-from 5 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -198,11 +198,17 @@ main {
     background-color: var(--background-color);
 }
 
+/** Sidebar **/
 .sidebar {
-    width: 30%;
-    padding: 0 1em;
+	width: 30%;
+	padding: 0 1em 0 0;
+}
+  
+.tags-list {
+	padding-left: 1em;
 }
 
+/** Main content **/
 .main-content {
     width: 70%;
 }
@@ -212,6 +218,16 @@ main {
     .main-content {
         width: 100%;
     }
+
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
 }
 
 main :first-child {
@@ -289,19 +305,4 @@ footer p a {
 .social-links svg:is(:hover, :focus) {
     background-color: var(--white);
     fill: var(--red);
-}
-/** Styles for the tags list view **/
-.tags-list {
-  columns: 2;
-}
-
-aside.sidebar .tags-list {
-  columns: 1;
-}
-
-@media (max-width: 768px) {
-  
-  .tags-list {
-    columns: 1;
-  }
 }
