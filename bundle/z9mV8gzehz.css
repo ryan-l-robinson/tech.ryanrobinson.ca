@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -142,7 +142,19 @@ main {
 }
 
 .sidebar {
+    width: 30%;
     padding: 0 1em;
+}
+
+.main-content {
+    width: 70%;
+}
+
+@media(max-width: 1360px) {
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
 }
 
 p {
