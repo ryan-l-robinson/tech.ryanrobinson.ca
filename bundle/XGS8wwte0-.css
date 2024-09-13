@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 16 }
+.postlist { counter-reset: start-from 20 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -132,9 +132,17 @@ body {
 }
 
 main {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
 	width: 100%;
 	max-width: var(--max-width);
     background-color: var(--background-color);
+}
+
+.sidebar {
+    padding: 0 1em;
 }
 
 p {
@@ -274,12 +282,16 @@ footer p a {
 }
 /** Styles for the tags list view **/
 .tags-list {
-    columns: 2;
+  columns: 2;
+}
+
+aside.sidebar .tags-list {
+  columns: 1;
 }
 
 @media (max-width: 768px) {
   
-    .tags-list {
-      columns: 1;
-    }
+  .tags-list {
+    columns: 1;
+  }
 }

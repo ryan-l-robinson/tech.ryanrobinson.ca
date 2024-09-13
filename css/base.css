@@ -83,9 +83,17 @@ body {
 }
 
 main {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
 	width: 100%;
 	max-width: var(--max-width);
     background-color: var(--background-color);
+}
+
+.sidebar {
+    padding: 0 1em;
 }
 
 p {

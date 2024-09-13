@@ -1,11 +1,15 @@
 /** Styles for the tags list view **/
 .tags-list {
-    columns: 2;
+  columns: 2;
+}
+
+aside.sidebar .tags-list {
+  columns: 1;
 }
 
 @media (max-width: 768px) {
   
-    .tags-list {
-      columns: 1;
-    }
+  .tags-list {
+    columns: 1;
+  }
 }
