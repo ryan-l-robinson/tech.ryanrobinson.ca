@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,49 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Security Essentials: Multi-factor Authentication</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-03-07">March 7, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/security/" class="post-tag">Security</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>I typically have two main pieces of advice for basic information security that anybody can and should do.</p>
-<ul>
-<li>Use multi-factor authentication everywhere it is offered</li>
-<li>Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill</li>
-</ul>
-<p>I’ll look at the benefits of a password manager in another post soon. But first, let’s look at multi-factor authentication.</p>
-<h2 id="the-idea" tabindex="-1">The idea <a class="header-anchor" href="#the-idea">#</a></h2>
-<p>The idea of multi-factor authentication is that you prove you are who you say you are through an extra “factor” beyond just a password. This is because it is relatively easy for a password to be stolen, distributed, and used. If all it takes for somebody to get into your important accounts is a username and password, that’s a low barrier to cause a lot of damage, especially when you add that most people reuse the same passwords on multiple sites (more on that in the password manager post).</p>
-<h2 id="verification-options" tabindex="-1">Verification options <a class="header-anchor" href="#verification-options">#</a></h2>
-<p>The extra factor may be something you know like a security question or something you have like a fingerprint. <a href="https://docs.microsoft.com/en-gb/learn/modules/secure-aad-users-with-mfa/5-configure-authentication-methods">This Microsoft doc breaks down the options in terms of what is available within Azure AD authentication</a>, but most services offer some subset of those options.</p>
-<p>At the lowest end of the security scale are security questions, which are essentially just an extra password except easier to guess. Many places including Microsoft don’t offer a security question option.</p>
-<p>In the middle and the most common are SMS codes texted to your phone or voice calls made to your phone saying the code. That’s good enough for most people, but determined hackers can carry out <a href="https://www.vice.com/en/article/3kx4ej/sim-jacking-mobile-phone-fraud">sim-jacking</a> to get through.</p>
-<p>The highest end of the security scale is an authentication app on your phone (Microsoft Authenticator, Google Authenticator) or a dedicated security key device that must be plugged into your computer via USB (<a href="https://www.yubico.com/products">YubiKey</a>). With these protections, a hacker would have to know your username and password AND also have your phone logged in to the authenticator app or the physical security key. That means they would have to physically rob you on top of cracking your password, which significantly cuts down on how many people can realistically pull it off. It also makes it likely you’ll notice before much damage is done.</p>
-<h2 id="using-an-authenticator-app" tabindex="-1">Using an authenticator app <a class="header-anchor" href="#using-an-authenticator-app">#</a></h2>
-<p>The authenticator apps may sound like more work than a simple text, but it really is easier on top of being more secure. I use Microsoft Authenticator and that’s what I will be referencing specifically, but Google Authenticator and others have similar if not identical functionality.</p>
-<p>Adding an account is simple. The hardest part may be finding the setting to enable it on the desired account. Some services make it obvious and strongly encourage you to enable multi-factor authentication. Others offer it but tuck it away in settings that you may not ever notice without looking for it. But once you do, if there’s an option to use an authenticator app, choose that and you’ll get a QR code.</p>
-<p>In the top right corner of Microsoft Authenticator is a menu option with “Add account.” It then offers you the choice of a Microsoft personal account, a Microsoft work or school account, or other. The Microsoft option will allow you to set it up with a simple login, but all of the options allow you to scan the QR code. A quick point of your phone camera at your screen and you’re good to go.</p>
-<p>The next time you try to log in and get prompted for the multi-factor – and it won’t typically be every time you log in since most services don’t prompt in low-risk scenarios like the same browser on the same computer at the same IP address as a login yesterday – then there are a couple of ways to verify your identity.</p>
-<ul>
-<li>Microsoft accounts in Microsoft Authenticator will push a notification prompt and all you need to do is select the Approve button. The small risk in this scenario is that people get used to clicking Approve whenever it pops up and may do it without thinking twice when an attacker is trying to get in.</li>
-<li>Otherwise you’ll need to copy the 6 digit code generated in the app into the web browser or app you’re trying to log into. These codes recycle quickly, generating new ones every 30 seconds, so it is virtually impossible for an attacker to guess the right one in time.</li>
-</ul>
-<p>That’s it! It’s true that it is more work than just a password, but very little. You won’t have to do it often, mostly just when you use a new computer or phone. In exchange, you get a level of security that stops approximately 99.9% of attacks before they even get into your account. You won’t regret taking that bit of extra time to set up multi-factor authentication, but you will absolutely will regret it if you don’t and somebody gets into your account.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/security-essentials-password-manager/">Security Essentials: Password Manager</a></p><p>Next: <a href="/posts/2021/wordpress-com-vs-org/">WordPress: .com vs .org</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -141,6 +98,49 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Security Essentials: Multi-factor Authentication</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-03-07">March 7, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/security/" class="post-tag">Security</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>I typically have two main pieces of advice for basic information security that anybody can and should do.</p>
+<ul>
+<li>Use multi-factor authentication everywhere it is offered</li>
+<li>Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill</li>
+</ul>
+<p>I’ll look at the benefits of a password manager in another post soon. But first, let’s look at multi-factor authentication.</p>
+<h2 id="the-idea" tabindex="-1">The idea <a class="header-anchor" href="#the-idea">#</a></h2>
+<p>The idea of multi-factor authentication is that you prove you are who you say you are through an extra “factor” beyond just a password. This is because it is relatively easy for a password to be stolen, distributed, and used. If all it takes for somebody to get into your important accounts is a username and password, that’s a low barrier to cause a lot of damage, especially when you add that most people reuse the same passwords on multiple sites (more on that in the password manager post).</p>
+<h2 id="verification-options" tabindex="-1">Verification options <a class="header-anchor" href="#verification-options">#</a></h2>
+<p>The extra factor may be something you know like a security question or something you have like a fingerprint. <a href="https://docs.microsoft.com/en-gb/learn/modules/secure-aad-users-with-mfa/5-configure-authentication-methods">This Microsoft doc breaks down the options in terms of what is available within Azure AD authentication</a>, but most services offer some subset of those options.</p>
+<p>At the lowest end of the security scale are security questions, which are essentially just an extra password except easier to guess. Many places including Microsoft don’t offer a security question option.</p>
+<p>In the middle and the most common are SMS codes texted to your phone or voice calls made to your phone saying the code. That’s good enough for most people, but determined hackers can carry out <a href="https://www.vice.com/en/article/3kx4ej/sim-jacking-mobile-phone-fraud">sim-jacking</a> to get through.</p>
+<p>The highest end of the security scale is an authentication app on your phone (Microsoft Authenticator, Google Authenticator) or a dedicated security key device that must be plugged into your computer via USB (<a href="https://www.yubico.com/products">YubiKey</a>). With these protections, a hacker would have to know your username and password AND also have your phone logged in to the authenticator app or the physical security key. That means they would have to physically rob you on top of cracking your password, which significantly cuts down on how many people can realistically pull it off. It also makes it likely you’ll notice before much damage is done.</p>
+<h2 id="using-an-authenticator-app" tabindex="-1">Using an authenticator app <a class="header-anchor" href="#using-an-authenticator-app">#</a></h2>
+<p>The authenticator apps may sound like more work than a simple text, but it really is easier on top of being more secure. I use Microsoft Authenticator and that’s what I will be referencing specifically, but Google Authenticator and others have similar if not identical functionality.</p>
+<p>Adding an account is simple. The hardest part may be finding the setting to enable it on the desired account. Some services make it obvious and strongly encourage you to enable multi-factor authentication. Others offer it but tuck it away in settings that you may not ever notice without looking for it. But once you do, if there’s an option to use an authenticator app, choose that and you’ll get a QR code.</p>
+<p>In the top right corner of Microsoft Authenticator is a menu option with “Add account.” It then offers you the choice of a Microsoft personal account, a Microsoft work or school account, or other. The Microsoft option will allow you to set it up with a simple login, but all of the options allow you to scan the QR code. A quick point of your phone camera at your screen and you’re good to go.</p>
+<p>The next time you try to log in and get prompted for the multi-factor – and it won’t typically be every time you log in since most services don’t prompt in low-risk scenarios like the same browser on the same computer at the same IP address as a login yesterday – then there are a couple of ways to verify your identity.</p>
+<ul>
+<li>Microsoft accounts in Microsoft Authenticator will push a notification prompt and all you need to do is select the Approve button. The small risk in this scenario is that people get used to clicking Approve whenever it pops up and may do it without thinking twice when an attacker is trying to get in.</li>
+<li>Otherwise you’ll need to copy the 6 digit code generated in the app into the web browser or app you’re trying to log into. These codes recycle quickly, generating new ones every 30 seconds, so it is virtually impossible for an attacker to guess the right one in time.</li>
+</ul>
+<p>That’s it! It’s true that it is more work than just a password, but very little. You won’t have to do it often, mostly just when you use a new computer or phone. In exchange, you get a level of security that stops approximately 99.9% of attacks before they even get into your account. You won’t regret taking that bit of extra time to set up multi-factor authentication, but you will absolutely will regret it if you don’t and somebody gets into your account.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/security-essentials-password-manager/">Security Essentials: Password Manager</a></p><p>Next: <a href="/posts/2021/wordpress-com-vs-org/">WordPress: .com vs .org</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -193,6 +193,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/security-essentials-multi-factor-authentication/` was built on 2024-09-13T16:02:32.866Z -->
+		<!-- This page `/posts/2021/security-essentials-multi-factor-authentication/` was built on 2024-09-13T16:04:21.291Z -->
 	</body>
 </html>

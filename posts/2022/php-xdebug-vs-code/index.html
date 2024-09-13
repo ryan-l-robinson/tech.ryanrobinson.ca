@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,58 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>PHP: XDebug in VS Code</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-03-15">March 15, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/php/" class="post-tag">PHP</a>, 
-		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
-		</p>
-	
-</div>
-
-
-
-
-<p><a href="https://xdebug.org/">XDebug</a> is a helpful tool when debugging PHP code. XDebug is a step debugging tools that helps you inspect functionality of PHP code in a cleaner way than regularly writing dump/log statements.</p>
-<p>I will not get into details here about setting up XDebug on a server, but you can find that with some Internet searching. Instead, this post is about how to use XDebug within Visual Studio Code.</p>
-<h2 id="install-the-extension" tabindex="-1">Install the Extension <a class="header-anchor" href="#install-the-extension">#</a></h2>
-<p>First, install <a href="https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug">the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory</a>.</p>
-<p><img src="/assets/img/2022/03/PHP-Debug-extension-page.png" alt="&quot;Visual Studio Code extension page&quot;">
-<em>Screenshot of the extension in the directory</em></p>
-<h3 id="start-the-listener" tabindex="-1">Start the Listener <a class="header-anchor" href="#start-the-listener">#</a></h3>
-<p>To start the XDebug listener:</p>
-<ol>
-<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
-<li>Click the play button beside the XDebug listener. Depending on your developer environment, you may have other listeners as well.</li>
-</ol>
-<p>A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.</p>
-<p><img src="/assets/img/2022/03/Debug-panel.png" alt="&quot;XDebug in VS Code debug panel&quot;">
-<em>Debug panel</em></p>
-<h3 id="monitor-notices-warnings-etc" tabindex="-1">Monitor Notices, Warnings, etc <a class="header-anchor" href="#monitor-notices-warnings-etc">#</a></h3>
-<p>You can monitor for any notices, warnings, errors, or exceptions that occur while the listener is running.</p>
-<ol>
-<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
-<li>If it is collapsed, expand the “Breakpoints” accordion section.</li>
-<li>Select under what conditions you want to break and show you results, e.g. Notices, Warnings.</li>
-</ol>
-<h3 id="add-a-breakpoint" tabindex="-1">Add a Breakpoint <a class="header-anchor" href="#add-a-breakpoint">#</a></h3>
-<p>You can add a breakpoint at a line in the code and have XDebug report the value of variables as of the start of that line.</p>
-<ol>
-<li>In the VS Code editor for the code you want to check, scroll to the left of the line of code you want to break. This will cause a little red dot to appear. Click on that red dot to create the breakpoint.</li>
-<li>Carry out your test scenario (e.g. load the page that calls that PHP in your browser).</li>
-<li>See the results with the values of each variable at the breakpoint, within the Run and Debug window in VS Code.</li>
-</ol>
-<p><img src="/assets/img/2022/03/XDebug-breakpoint.png" alt="&quot;Visual Studio Code with an XDebug breakpoint set&quot;">
-<em>Breakpoint beside line of PHP code</em></p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p><p>Next: <a href="/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -150,6 +98,58 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>PHP: XDebug in VS Code</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-03-15">March 15, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/php/" class="post-tag">PHP</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		</p>
+	
+</div>
+
+
+
+
+<p><a href="https://xdebug.org/">XDebug</a> is a helpful tool when debugging PHP code. XDebug is a step debugging tools that helps you inspect functionality of PHP code in a cleaner way than regularly writing dump/log statements.</p>
+<p>I will not get into details here about setting up XDebug on a server, but you can find that with some Internet searching. Instead, this post is about how to use XDebug within Visual Studio Code.</p>
+<h2 id="install-the-extension" tabindex="-1">Install the Extension <a class="header-anchor" href="#install-the-extension">#</a></h2>
+<p>First, install <a href="https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug">the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory</a>.</p>
+<p><img src="/assets/img/2022/03/PHP-Debug-extension-page.png" alt="&quot;Visual Studio Code extension page&quot;">
+<em>Screenshot of the extension in the directory</em></p>
+<h3 id="start-the-listener" tabindex="-1">Start the Listener <a class="header-anchor" href="#start-the-listener">#</a></h3>
+<p>To start the XDebug listener:</p>
+<ol>
+<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
+<li>Click the play button beside the XDebug listener. Depending on your developer environment, you may have other listeners as well.</li>
+</ol>
+<p>A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.</p>
+<p><img src="/assets/img/2022/03/Debug-panel.png" alt="&quot;XDebug in VS Code debug panel&quot;">
+<em>Debug panel</em></p>
+<h3 id="monitor-notices-warnings-etc" tabindex="-1">Monitor Notices, Warnings, etc <a class="header-anchor" href="#monitor-notices-warnings-etc">#</a></h3>
+<p>You can monitor for any notices, warnings, errors, or exceptions that occur while the listener is running.</p>
+<ol>
+<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
+<li>If it is collapsed, expand the “Breakpoints” accordion section.</li>
+<li>Select under what conditions you want to break and show you results, e.g. Notices, Warnings.</li>
+</ol>
+<h3 id="add-a-breakpoint" tabindex="-1">Add a Breakpoint <a class="header-anchor" href="#add-a-breakpoint">#</a></h3>
+<p>You can add a breakpoint at a line in the code and have XDebug report the value of variables as of the start of that line.</p>
+<ol>
+<li>In the VS Code editor for the code you want to check, scroll to the left of the line of code you want to break. This will cause a little red dot to appear. Click on that red dot to create the breakpoint.</li>
+<li>Carry out your test scenario (e.g. load the page that calls that PHP in your browser).</li>
+<li>See the results with the values of each variable at the breakpoint, within the Run and Debug window in VS Code.</li>
+</ol>
+<p><img src="/assets/img/2022/03/XDebug-breakpoint.png" alt="&quot;Visual Studio Code with an XDebug breakpoint set&quot;">
+<em>Breakpoint beside line of PHP code</em></p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p><p>Next: <a href="/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -202,6 +202,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/php-xdebug-vs-code/` was built on 2024-09-13T16:02:33.183Z -->
+		<!-- This page `/posts/2022/php-xdebug-vs-code/` was built on 2024-09-13T16:04:21.594Z -->
 	</body>
 </html>

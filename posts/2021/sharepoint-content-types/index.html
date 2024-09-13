@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,50 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>SharePoint: Content Types</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-05-24">May 24, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Content types are one of those features of SharePoint where you can be using SharePoint for years and never notice is there. They often aren’t an absolute necessity. But they do make some things much easier. The average user may not need to be familiar with them, but administrators should be.</p>
-<p>There are two major advantages to using content types: a standardized set of columns (metadata) and file templates.</p>
-<h2 id="columns" tabindex="-1">Columns <a class="header-anchor" href="#columns">#</a></h2>
-<p>Columns in SharePoint are metadata about a file or about a list item. These can be of a variety of data types including yes/no fields, dropdown option lists, short text, long text, and more. The easy way to remember why they’re called columns is to imagine them in the most common view, with one row in a table for each item and a column in the table for each piece of data about that item. Once they’re all set up, columns can make a lot of things easier including seeing relevant data at a glance, searching for, sorting, and filtering the content.</p>
-<p>Now suppose you have 20 custom SharePoint lists that are fundamentally the same idea. Perhaps they had to be split to exist on different sites with different permissions, or perhaps they had to be split to keep each list under the 5000 limit threshold where viewing a list gets limited. They should all have the same 30 custom columns of data that needs to be tracked.</p>
-<p>Without content types, the way to do this is to repeat the process creating a column on every list separately. That’s already annoying. It gets even more annoying if you have to make a change – perhaps you realize a certain column should be long text instead of short text – and go through all 20 lists again. What if you make a mistake and name the column differently on one of the 20 lists but there’s already data in it by the time you notice? That might throw off other pieces like Power Automate processes.</p>
-<p><img src="/assets/img/2021/05/Custom-columns-on-content-type.png" alt="">
-<em>Custom columns for the Press Release content type</em></p>
-<p>With content types, it gets much easier and much less error-prone. You define the columns on the content type in one place, either specific to one site or globally for all sites, and add the content types to the list/library. If globally, it can take a couple of hours to propagate to all of the lists, but that’s it. That’s the whole process.</p>
-<p>Most of the time the instinct with a new list or library is to add the columns directly to that list or library and completely ignore content types. That’s fine if you know if you’re never going to need the same column set on another list. But if there’s any chance you will need it again, save yourself a lot of hassle and make it a content type in the first place.</p>
-<h2 id="templates" tabindex="-1">Templates <a class="header-anchor" href="#templates">#</a></h2>
-<p>The other big selling point of content types is specific to file libraries (not lists). Suppose you have a company template that all of your press release statements start from (company letterhead, etc.).</p>
-<p>Without content types with templates, your process may look something like this:</p>
-<ul>
-<li>Keep the template starting point file in a SharePoint site where only those who need it can see it.</li>
-<li>Every time somebody needs it, they go find that file and make a copy of it into the new location where they need a new one.</li>
-<li>They are then free to edit the copied version.</li>
-</ul>
-<p>At best this is slow, with time needed to copy the template every time. At worst, it introduces other problems: can you adequately control who can edit the template file? what if somebody accidentally starts editing the template instead of making a new copy, an easy mistake to make?</p>
-<p><img src="/assets/img/2021/05/Advanced-settings-on-content-type.png" alt="">
-<em>Advanced settings on a content type, including being able to upload a template</em></p>
-<p>With a content type, this gets much cleaner. Add the template file to the content type. Then when somebody tries to make a new item of that content type, it will start with the templated file instead of a blank document. They can edit the file from there. It’s fast and intuitive, access to editing the template is tightly controlled, and there’s no risk of somebody forgetting to copy before they dive in to edit.</p>
-<h2 id="sharepoint-syntex" tabindex="-1">SharePoint Syntex <a class="header-anchor" href="#sharepoint-syntex">#</a></h2>
-<p>I’ll add a third point. <a href="https://docs.microsoft.com/en-us/microsoft-365/contentunderstanding/#get-started">SharePoint Syntex</a> is a relatively new product offering that uses machine learning to read data from files and apply that to the columns. It’s a valuable way to help automate applying metadata to files, which is something that people tend to not enjoy doing manually. I have not extensively tested out SharePoint Syntex, but it is my understanding that the machine learning models are applied on specific content types. If you want to use this tool you’ll end up using content types whether you realize it or not.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/power-automate-create-site-with-sharepoint-rest-api/">Power Automate: Create Site with SharePoint REST API</a></p><p>Next: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -142,6 +98,50 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>SharePoint: Content Types</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-05-24">May 24, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Content types are one of those features of SharePoint where you can be using SharePoint for years and never notice is there. They often aren’t an absolute necessity. But they do make some things much easier. The average user may not need to be familiar with them, but administrators should be.</p>
+<p>There are two major advantages to using content types: a standardized set of columns (metadata) and file templates.</p>
+<h2 id="columns" tabindex="-1">Columns <a class="header-anchor" href="#columns">#</a></h2>
+<p>Columns in SharePoint are metadata about a file or about a list item. These can be of a variety of data types including yes/no fields, dropdown option lists, short text, long text, and more. The easy way to remember why they’re called columns is to imagine them in the most common view, with one row in a table for each item and a column in the table for each piece of data about that item. Once they’re all set up, columns can make a lot of things easier including seeing relevant data at a glance, searching for, sorting, and filtering the content.</p>
+<p>Now suppose you have 20 custom SharePoint lists that are fundamentally the same idea. Perhaps they had to be split to exist on different sites with different permissions, or perhaps they had to be split to keep each list under the 5000 limit threshold where viewing a list gets limited. They should all have the same 30 custom columns of data that needs to be tracked.</p>
+<p>Without content types, the way to do this is to repeat the process creating a column on every list separately. That’s already annoying. It gets even more annoying if you have to make a change – perhaps you realize a certain column should be long text instead of short text – and go through all 20 lists again. What if you make a mistake and name the column differently on one of the 20 lists but there’s already data in it by the time you notice? That might throw off other pieces like Power Automate processes.</p>
+<p><img src="/assets/img/2021/05/Custom-columns-on-content-type.png" alt="">
+<em>Custom columns for the Press Release content type</em></p>
+<p>With content types, it gets much easier and much less error-prone. You define the columns on the content type in one place, either specific to one site or globally for all sites, and add the content types to the list/library. If globally, it can take a couple of hours to propagate to all of the lists, but that’s it. That’s the whole process.</p>
+<p>Most of the time the instinct with a new list or library is to add the columns directly to that list or library and completely ignore content types. That’s fine if you know if you’re never going to need the same column set on another list. But if there’s any chance you will need it again, save yourself a lot of hassle and make it a content type in the first place.</p>
+<h2 id="templates" tabindex="-1">Templates <a class="header-anchor" href="#templates">#</a></h2>
+<p>The other big selling point of content types is specific to file libraries (not lists). Suppose you have a company template that all of your press release statements start from (company letterhead, etc.).</p>
+<p>Without content types with templates, your process may look something like this:</p>
+<ul>
+<li>Keep the template starting point file in a SharePoint site where only those who need it can see it.</li>
+<li>Every time somebody needs it, they go find that file and make a copy of it into the new location where they need a new one.</li>
+<li>They are then free to edit the copied version.</li>
+</ul>
+<p>At best this is slow, with time needed to copy the template every time. At worst, it introduces other problems: can you adequately control who can edit the template file? what if somebody accidentally starts editing the template instead of making a new copy, an easy mistake to make?</p>
+<p><img src="/assets/img/2021/05/Advanced-settings-on-content-type.png" alt="">
+<em>Advanced settings on a content type, including being able to upload a template</em></p>
+<p>With a content type, this gets much cleaner. Add the template file to the content type. Then when somebody tries to make a new item of that content type, it will start with the templated file instead of a blank document. They can edit the file from there. It’s fast and intuitive, access to editing the template is tightly controlled, and there’s no risk of somebody forgetting to copy before they dive in to edit.</p>
+<h2 id="sharepoint-syntex" tabindex="-1">SharePoint Syntex <a class="header-anchor" href="#sharepoint-syntex">#</a></h2>
+<p>I’ll add a third point. <a href="https://docs.microsoft.com/en-us/microsoft-365/contentunderstanding/#get-started">SharePoint Syntex</a> is a relatively new product offering that uses machine learning to read data from files and apply that to the columns. It’s a valuable way to help automate applying metadata to files, which is something that people tend to not enjoy doing manually. I have not extensively tested out SharePoint Syntex, but it is my understanding that the machine learning models are applied on specific content types. If you want to use this tool you’ll end up using content types whether you realize it or not.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/power-automate-create-site-with-sharepoint-rest-api/">Power Automate: Create Site with SharePoint REST API</a></p><p>Next: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -194,6 +194,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/sharepoint-content-types/` was built on 2024-09-13T16:02:32.881Z -->
+		<!-- This page `/posts/2021/sharepoint-content-types/` was built on 2024-09-13T16:04:21.284Z -->
 	</body>
 </html>

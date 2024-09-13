@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,42 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Microsoft Teams: Information Barriers</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-08-16">August 16, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/ms-700/" class="post-tag">MS-700</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>What if you need to partition your organization so that some members of your tenant cannot communicate with others in Teams? For example, maybe you have interns who you do want to have Teams access but not to any sensitive information.</p>
-<p>Information barriers are the solution you need. You can block interaction across the barriers so that the interns cannot see any content from anybody else or vice versa.</p>
-<p>Creating the barriers is done by PowerShell. There is not currently a web admin interface to do it.</p>
-<p>Create one organization segment for interns:</p>
-<pre><code>New-OrganizationSegment -Name &quot;Interns&quot; -UserGroupFilter &quot;Title -contains 'Intern'&quot;
-</code></pre>
-<p>Repeat for another segment called staff:</p>
-<pre><code>New-OrganizationSegment -Name &quot;Staff&quot; -UserGroupFilter &quot;Title -not (-contains 'Intern')&quot;
-</code></pre>
-<p>Now that you have the two segments, create the barrier between them:</p>
-<pre><code>New-InformationBarrierPolicy -Name &quot;Interns&quot; -AssignedSegment &quot;Interns&quot; -SegmentsBlocked &quot;Staff&quot; -State Inactive
-</code></pre>
-<p>Finally, apply the information barriers:</p>
-<pre><code>Start-InformationBarrierPoliciesApplication
-</code></pre>
-<p>It could take several hours to go into effect.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/guest-access-in-teams/">Microsoft Teams: Guest Access</a></p><p>Next: <a href="/posts/2021/microsoft-teams-phone-numbers/">Microsoft Teams: Phone Numbers</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -134,6 +98,42 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Microsoft Teams: Information Barriers</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-08-16">August 16, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/ms-700/" class="post-tag">MS-700</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>What if you need to partition your organization so that some members of your tenant cannot communicate with others in Teams? For example, maybe you have interns who you do want to have Teams access but not to any sensitive information.</p>
+<p>Information barriers are the solution you need. You can block interaction across the barriers so that the interns cannot see any content from anybody else or vice versa.</p>
+<p>Creating the barriers is done by PowerShell. There is not currently a web admin interface to do it.</p>
+<p>Create one organization segment for interns:</p>
+<pre><code>New-OrganizationSegment -Name &quot;Interns&quot; -UserGroupFilter &quot;Title -contains 'Intern'&quot;
+</code></pre>
+<p>Repeat for another segment called staff:</p>
+<pre><code>New-OrganizationSegment -Name &quot;Staff&quot; -UserGroupFilter &quot;Title -not (-contains 'Intern')&quot;
+</code></pre>
+<p>Now that you have the two segments, create the barrier between them:</p>
+<pre><code>New-InformationBarrierPolicy -Name &quot;Interns&quot; -AssignedSegment &quot;Interns&quot; -SegmentsBlocked &quot;Staff&quot; -State Inactive
+</code></pre>
+<p>Finally, apply the information barriers:</p>
+<pre><code>Start-InformationBarrierPoliciesApplication
+</code></pre>
+<p>It could take several hours to go into effect.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/guest-access-in-teams/">Microsoft Teams: Guest Access</a></p><p>Next: <a href="/posts/2021/microsoft-teams-phone-numbers/">Microsoft Teams: Phone Numbers</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -186,6 +186,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/microsoft-teams-information-barriers/` was built on 2024-09-13T16:02:32.701Z -->
+		<!-- This page `/posts/2021/microsoft-teams-information-barriers/` was built on 2024-09-13T16:04:21.129Z -->
 	</body>
 </html>

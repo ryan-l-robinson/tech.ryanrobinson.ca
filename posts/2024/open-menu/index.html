@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,52 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Drupal: Open Menu</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2024-02-21">February 21, 2024</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
-		</p>
-	
-</div>
-
-
-
-
-<p><a href="/websites/drupal/idrc-presentation/">In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC</a>. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.</p>
-<p>As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.</p>
-<p>There's <a href="https://github.com/ryan-l-robinson/Drupal-open-menu">a GitPod demo version of my solution on my GitHub</a>. That’s only the relevant customizations, not a full functioning site, and you'd need to add a couple of menu items to really see it in action.</p>
-<p>Here's an example screenshot of the open menu structure:</p>
-<p><img src="/assets/img/2024/open-menu-example.png" alt="&quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&quot;"></p>
-<h2 id="menu-entity-index" tabindex="-1">Menu Entity Index <a class="header-anchor" href="#menu-entity-index">#</a></h2>
-<p>If you’re familiar with Drupal, you likely read the introduction and immediately thought of views. Views are the perfect solution whenever you are looking at a scenario involving one data source displayed in multiple ways. Drupal 9 does not expose everything I needed to views on its own, but there is a module that fills in the gap: <a href="https://www.drupal.org/project/menu_entity_index">Menu Entity Index</a>.</p>
-<p>Once that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.</p>
-<p><img src="/assets/img/2024/menu-entity-index-settings.png" alt="&quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&quot;"></p>
-<p>Notably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.</p>
-<h2 id="configure-the-view" tabindex="-1">Configure the view <a class="header-anchor" href="#configure-the-view">#</a></h2>
-<p>The configuration for the view itself won't be too much of a surprise for anybody who has configured views before. It has a grouped block for each second-level menu, where the header had a programmatically-set ID so that they can be used for links (both from that top block and from the top level of the main menu itself). There's a lot of mundane configuration here so I won't break it all down, but <a href="https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/sync/config/views.view.open_menu.yml">here's the configuration file</a> if you want to import to your site, or you can check it out using the GitPod demo and going to Structure -&gt; Views -&gt; Open Menu.</p>
-<h2 id="overriding-the-view-template" tabindex="-1">Overriding the view template <a class="header-anchor" href="#overriding-the-view-template">#</a></h2>
-<p>I still had one more problem. The view involved used the grouping function to bunch together the results. I wanted the group label to be an h2 and have an id on it, so I did that using the rewrite the results functions. That worked with no issues.</p>
-<p>But I noticed it was also supplying an empty h3 immediately before my h2. That doesn’t hurt sighted users, but it does complicate the experience for screen reader users. It took some time to realize the h3 was coming from a template file in the views core module: views-view-unformatted.</p>
-<p>Once I knew the source of the original file, I could edit it directly, but that would be lost as soon as there was an update to the theme. The more permanent answer is a subtheme with an override of that file. That seems a little excessive in the case of this demo, but in a real site you'll probably want a custom subtheme for all your CSS and templates anyway.</p>
-<p><a href="https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/web/themes/custom/demo/templates/views/views-view-unformatted.html.twig">That file is also in the GitHub</a>, but it was a pretty tiny change removing the h3 wrapper from the grouping.</p>
-<h2 id="caveats" tabindex="-1">Caveats <a class="header-anchor" href="#caveats">#</a></h2>
-<p>There are a few caveats to this system:</p>
-<ul>
-<li>There's no handling for menu items more than 2 levels deep. That may well be possible, but we didn't need it, so I haven't included it in this demo.</li>
-<li>No views pages in the menu will show up in the open menu. But view blocks inserted into a page, where the page is in the menu, will show up.</li>
-<li>Be very careful changing the module settings. Perhaps this is fixed two years later, but at the time, attempting to index certain entity types would result in a white screen of death on the next cron run. We've never had problems with indexing content.</li>
-</ul>
-<p>You could add some built-in warnings to the admin interface, or even override admin forms, to try to suppress the possibility of those caveats causing a problem, but this blog post was long enough so I'll leave it here.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2024/dark-content-mode/">Dark Content Mode</a></p><p>Next: <a href="/posts/2024/idrc-presentation/">IDRC Presentation on Open Menu</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -144,6 +98,52 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Drupal: Open Menu</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2024-02-21">February 21, 2024</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
+		</p>
+	
+</div>
+
+
+
+
+<p><a href="/websites/drupal/idrc-presentation/">In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC</a>. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.</p>
+<p>As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.</p>
+<p>There's <a href="https://github.com/ryan-l-robinson/Drupal-open-menu">a GitPod demo version of my solution on my GitHub</a>. That’s only the relevant customizations, not a full functioning site, and you'd need to add a couple of menu items to really see it in action.</p>
+<p>Here's an example screenshot of the open menu structure:</p>
+<p><img src="/assets/img/2024/open-menu-example.png" alt="&quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&quot;"></p>
+<h2 id="menu-entity-index" tabindex="-1">Menu Entity Index <a class="header-anchor" href="#menu-entity-index">#</a></h2>
+<p>If you’re familiar with Drupal, you likely read the introduction and immediately thought of views. Views are the perfect solution whenever you are looking at a scenario involving one data source displayed in multiple ways. Drupal 9 does not expose everything I needed to views on its own, but there is a module that fills in the gap: <a href="https://www.drupal.org/project/menu_entity_index">Menu Entity Index</a>.</p>
+<p>Once that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.</p>
+<p><img src="/assets/img/2024/menu-entity-index-settings.png" alt="&quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&quot;"></p>
+<p>Notably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.</p>
+<h2 id="configure-the-view" tabindex="-1">Configure the view <a class="header-anchor" href="#configure-the-view">#</a></h2>
+<p>The configuration for the view itself won't be too much of a surprise for anybody who has configured views before. It has a grouped block for each second-level menu, where the header had a programmatically-set ID so that they can be used for links (both from that top block and from the top level of the main menu itself). There's a lot of mundane configuration here so I won't break it all down, but <a href="https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/sync/config/views.view.open_menu.yml">here's the configuration file</a> if you want to import to your site, or you can check it out using the GitPod demo and going to Structure -&gt; Views -&gt; Open Menu.</p>
+<h2 id="overriding-the-view-template" tabindex="-1">Overriding the view template <a class="header-anchor" href="#overriding-the-view-template">#</a></h2>
+<p>I still had one more problem. The view involved used the grouping function to bunch together the results. I wanted the group label to be an h2 and have an id on it, so I did that using the rewrite the results functions. That worked with no issues.</p>
+<p>But I noticed it was also supplying an empty h3 immediately before my h2. That doesn’t hurt sighted users, but it does complicate the experience for screen reader users. It took some time to realize the h3 was coming from a template file in the views core module: views-view-unformatted.</p>
+<p>Once I knew the source of the original file, I could edit it directly, but that would be lost as soon as there was an update to the theme. The more permanent answer is a subtheme with an override of that file. That seems a little excessive in the case of this demo, but in a real site you'll probably want a custom subtheme for all your CSS and templates anyway.</p>
+<p><a href="https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/web/themes/custom/demo/templates/views/views-view-unformatted.html.twig">That file is also in the GitHub</a>, but it was a pretty tiny change removing the h3 wrapper from the grouping.</p>
+<h2 id="caveats" tabindex="-1">Caveats <a class="header-anchor" href="#caveats">#</a></h2>
+<p>There are a few caveats to this system:</p>
+<ul>
+<li>There's no handling for menu items more than 2 levels deep. That may well be possible, but we didn't need it, so I haven't included it in this demo.</li>
+<li>No views pages in the menu will show up in the open menu. But view blocks inserted into a page, where the page is in the menu, will show up.</li>
+<li>Be very careful changing the module settings. Perhaps this is fixed two years later, but at the time, attempting to index certain entity types would result in a white screen of death on the next cron run. We've never had problems with indexing content.</li>
+</ul>
+<p>You could add some built-in warnings to the admin interface, or even override admin forms, to try to suppress the possibility of those caveats causing a problem, but this blog post was long enough so I'll leave it here.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2024/dark-content-mode/">Dark Content Mode</a></p><p>Next: <a href="/posts/2024/idrc-presentation/">IDRC Presentation on Open Menu</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -196,6 +196,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/open-menu/` was built on 2024-09-13T16:02:33.397Z -->
+		<!-- This page `/posts/2024/open-menu/` was built on 2024-09-13T16:04:21.800Z -->
 	</body>
 </html>

@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,35 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Dark Content Mode</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2024-02-21">February 21, 2024</time></p>
-	
-		<p>Tags:
-		<a href="/tags/css/" class="post-tag">CSS</a>, 
-		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>In case you haven't caught it yet, there's new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.</p>
-<p>It's already become my default on Android Edge, inheriting that I have my device in dark mode. I haven't found it to be default on any other browser (including desktop Edge). Chrome has it as an experiment features flag in chrome://flags, so I did most of my testing by enabling that.</p>
-<h2 id="issues-found" tabindex="-1">Issues Found <a class="header-anchor" href="#issues-found">#</a></h2>
-<p>The biggest problem I found in my main work site was with images that were previously assuming white backgrounds. I found the nicest solution to that was using an SVG instead of a PNG file, which the dark content mode adapted to invert the colours quite nicely.</p>
-<p>There were also some insufficient contrast I discovered, like grey borders around form text boxes, that were maybe a little weak in light mode but were barely visible in dark mode. Many of these were quickly solvable by making it a stronger contrast. For example, instead of a grey border against the white background, I made it into a black border. It content dark mode, it would flip to a white border on black background. Both modes came out looking better.</p>
-<p>I identified a few other contrast elements that were not quite ideal. But attempting a similar approach did not work. There were a few variations where I had black against the default light theme and trying it with the dark content mode turned it into a grey instead of a white - far from invisible, but not as strong of a contrast as I wanted. This is a new feature, not enabled by default other than that Android Edge that few people use, so I'm hoping this gets cleaned up on the browser end and there isn't much else I need to do.</p>
-<h2 id="no-way-to-target" tabindex="-1">No Way to Target? <a class="header-anchor" href="#no-way-to-target">#</a></h2>
-<p>I tried the media query for <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> but it doesn't help for this. That detects if the device prefers dark mode, not if the browser's dark content mode is on. It's nice if you want to specifically define what everything should look like in dark vs light modes. But as far as I could find, there's no way to specifically target content dark mode at this time.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2024/vs-code-extensions-workflows/">VS Code Extensions: My Workflows</a></p><p>Next: <a href="/posts/2024/open-menu/">Drupal: Open Menu</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -127,6 +98,35 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Dark Content Mode</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2024-02-21">February 21, 2024</time></p>
+	
+		<p>Tags:
+		<a href="/tags/css/" class="post-tag">CSS</a>, 
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>In case you haven't caught it yet, there's new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.</p>
+<p>It's already become my default on Android Edge, inheriting that I have my device in dark mode. I haven't found it to be default on any other browser (including desktop Edge). Chrome has it as an experiment features flag in chrome://flags, so I did most of my testing by enabling that.</p>
+<h2 id="issues-found" tabindex="-1">Issues Found <a class="header-anchor" href="#issues-found">#</a></h2>
+<p>The biggest problem I found in my main work site was with images that were previously assuming white backgrounds. I found the nicest solution to that was using an SVG instead of a PNG file, which the dark content mode adapted to invert the colours quite nicely.</p>
+<p>There were also some insufficient contrast I discovered, like grey borders around form text boxes, that were maybe a little weak in light mode but were barely visible in dark mode. Many of these were quickly solvable by making it a stronger contrast. For example, instead of a grey border against the white background, I made it into a black border. It content dark mode, it would flip to a white border on black background. Both modes came out looking better.</p>
+<p>I identified a few other contrast elements that were not quite ideal. But attempting a similar approach did not work. There were a few variations where I had black against the default light theme and trying it with the dark content mode turned it into a grey instead of a white - far from invisible, but not as strong of a contrast as I wanted. This is a new feature, not enabled by default other than that Android Edge that few people use, so I'm hoping this gets cleaned up on the browser end and there isn't much else I need to do.</p>
+<h2 id="no-way-to-target" tabindex="-1">No Way to Target? <a class="header-anchor" href="#no-way-to-target">#</a></h2>
+<p>I tried the media query for <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> but it doesn't help for this. That detects if the device prefers dark mode, not if the browser's dark content mode is on. It's nice if you want to specifically define what everything should look like in dark vs light modes. But as far as I could find, there's no way to specifically target content dark mode at this time.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2024/vs-code-extensions-workflows/">VS Code Extensions: My Workflows</a></p><p>Next: <a href="/posts/2024/open-menu/">Drupal: Open Menu</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -179,6 +179,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/dark-content-mode/` was built on 2024-09-13T16:02:33.362Z -->
+		<!-- This page `/posts/2024/dark-content-mode/` was built on 2024-09-13T16:04:21.780Z -->
 	</body>
 </html>

@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,71 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Drupal GitPod Container 1: .Dockerfile</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-01-20">January 20, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>, 
-		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
-		</p>
-	
-</div>
-
-
-
-
-<p><a href="https://gitpod.io">GitPod</a> is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with <a href="/tags/visual-studio-code/">Visual Studio Code</a> – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.</p>
-<p>In this <a href="/tags/gitpod-drupal/">mini-series</a> I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">It is available in my GitHub</a>. Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.</p>
-<h2 id="the-dockerfile" tabindex="-1">The Dockerfile <a class="header-anchor" href="#the-dockerfile">#</a></h2>
-<p>This solution starts from <a href="https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile">the GitPod-provided MySQL image</a>. That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> gitpod/workspace-mysql</span></code></pre>
-<p>The biggest catch with using this image is that you might end up with the latest PHP version, and there’s a good chance that your Drupal site doesn’t support that yet. So you probably want to add a section to change the PHP to one that you know currently works:</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">RUN</span> update-alternatives --set php /usr/bin/php8.0</span></code></pre>
-<p>That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.</p>
-<h3 id="php-packages" tabindex="-1">PHP packages <a class="header-anchor" href="#php-packages">#</a></h3>
-<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/websites/drupal/drupal-install-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">USER</span> root</span>
-<span class="token comment"># Install other needed packages</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apt update</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apt install -y php-pear php-apcu php-json php-xdebug build-essential mysql-client sendmail</span>
-<span class="token instruction"><span class="token keyword">RUN</span> pecl install apcu</span>
-<span class="token instruction"><span class="token keyword">RUN</span> pecl install uploadprogress</span></code></pre>
-<h3 id="composer" tabindex="-1">Composer <a class="header-anchor" href="#composer">#</a></h3>
-<p>Drupal can work without composer, <a href="https://www.drupal.org/docs/develop/using-composer/using-composer-with-drupal">but your life is going to be a lot easier with it</a>. Here’s how I added that to my Dockerfile:</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install latest composer</span>
-<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"copy('https://getcomposer.org/installer', 'composer-setup.php');"</span></span>
-<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</span></span>
-<span class="token instruction"><span class="token keyword">RUN</span> php composer-setup.php --install-dir /usr/bin --filename composer</span>
-<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"unlink('composer-setup.php');"</span></span></code></pre>
-<p>At this point, the server is ready to provide the core packages that run Drupal well.</p>
-<h2 id="pa11y-accessibility-testing" tabindex="-1">Pa11y accessibility testing <a class="header-anchor" href="#pa11y-accessibility-testing">#</a></h2>
-<p><a href="/websites/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install pa11y accessibility testing tool, including NodeJS</span>
-<span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium</span>
-<span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh</span>
-<span class="token instruction"><span class="token keyword">RUN</span> bash nodesource_setup.sh</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apt-get install -y nodejs libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm-amdgpu1 libxkbcommon-x11-0 libxcomposite-dev libxdamage-dev libxrandr-dev libgbm-dev libgtk-3-common libxshmfence-dev software-properties-common</span>
-<span class="token instruction"><span class="token keyword">RUN</span> apt-get install -y apparmor snapd apparmor-profiles-extra apparmor-utils kdialog chromium-browser libappindicator1 fonts-liberation</span>
-<span class="token instruction"><span class="token keyword">RUN</span> npm install pa11y -g --unsafe-perm=true --allow-root</span></code></pre>
-<h3 id="ports" tabindex="-1">Ports <a class="header-anchor" href="#ports">#</a></h3>
-<p>Finally, I’m going to open the standard ports: 80 (HTTP), 443 (HTTPS), and 3306 (MySQL). This doesn’t seem to be actually necessary but it can help to remind yourself what ports you’re using.</p>
-<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">EXPOSE</span> 80</span>
-<span class="token instruction"><span class="token keyword">EXPOSE</span> 443</span>
-<span class="token instruction"><span class="token keyword">EXPOSE</span> 3306</span></code></pre>
-<h2 id="what-s-next" tabindex="-1">What’s Next <a class="header-anchor" href="#what-s-next">#</a></h2>
-<p>In an upcoming post, I’ll continue with the other large file to make this work: the .gitpod.yml. A third post will cover a few smaller changes I had to make to other configuration.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-7-hide-label-node-display/">Drupal 7: Hide Label on Node Display</a></p><p>Next: <a href="/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -163,6 +98,71 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Drupal GitPod Container 1: .Dockerfile</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-01-20">January 20, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		</p>
+	
+</div>
+
+
+
+
+<p><a href="https://gitpod.io">GitPod</a> is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with <a href="/tags/visual-studio-code/">Visual Studio Code</a> – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.</p>
+<p>In this <a href="/tags/gitpod-drupal/">mini-series</a> I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">It is available in my GitHub</a>. Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.</p>
+<h2 id="the-dockerfile" tabindex="-1">The Dockerfile <a class="header-anchor" href="#the-dockerfile">#</a></h2>
+<p>This solution starts from <a href="https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile">the GitPod-provided MySQL image</a>. That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> gitpod/workspace-mysql</span></code></pre>
+<p>The biggest catch with using this image is that you might end up with the latest PHP version, and there’s a good chance that your Drupal site doesn’t support that yet. So you probably want to add a section to change the PHP to one that you know currently works:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">RUN</span> update-alternatives --set php /usr/bin/php8.0</span></code></pre>
+<p>That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.</p>
+<h3 id="php-packages" tabindex="-1">PHP packages <a class="header-anchor" href="#php-packages">#</a></h3>
+<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/websites/drupal/drupal-install-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">USER</span> root</span>
+<span class="token comment"># Install other needed packages</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt update</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt install -y php-pear php-apcu php-json php-xdebug build-essential mysql-client sendmail</span>
+<span class="token instruction"><span class="token keyword">RUN</span> pecl install apcu</span>
+<span class="token instruction"><span class="token keyword">RUN</span> pecl install uploadprogress</span></code></pre>
+<h3 id="composer" tabindex="-1">Composer <a class="header-anchor" href="#composer">#</a></h3>
+<p>Drupal can work without composer, <a href="https://www.drupal.org/docs/develop/using-composer/using-composer-with-drupal">but your life is going to be a lot easier with it</a>. Here’s how I added that to my Dockerfile:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install latest composer</span>
+<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"copy('https://getcomposer.org/installer', 'composer-setup.php');"</span></span>
+<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</span></span>
+<span class="token instruction"><span class="token keyword">RUN</span> php composer-setup.php --install-dir /usr/bin --filename composer</span>
+<span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"unlink('composer-setup.php');"</span></span></code></pre>
+<p>At this point, the server is ready to provide the core packages that run Drupal well.</p>
+<h2 id="pa11y-accessibility-testing" tabindex="-1">Pa11y accessibility testing <a class="header-anchor" href="#pa11y-accessibility-testing">#</a></h2>
+<p><a href="/websites/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install pa11y accessibility testing tool, including NodeJS</span>
+<span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium</span>
+<span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh</span>
+<span class="token instruction"><span class="token keyword">RUN</span> bash nodesource_setup.sh</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get install -y nodejs libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm-amdgpu1 libxkbcommon-x11-0 libxcomposite-dev libxdamage-dev libxrandr-dev libgbm-dev libgtk-3-common libxshmfence-dev software-properties-common</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get install -y apparmor snapd apparmor-profiles-extra apparmor-utils kdialog chromium-browser libappindicator1 fonts-liberation</span>
+<span class="token instruction"><span class="token keyword">RUN</span> npm install pa11y -g --unsafe-perm=true --allow-root</span></code></pre>
+<h3 id="ports" tabindex="-1">Ports <a class="header-anchor" href="#ports">#</a></h3>
+<p>Finally, I’m going to open the standard ports: 80 (HTTP), 443 (HTTPS), and 3306 (MySQL). This doesn’t seem to be actually necessary but it can help to remind yourself what ports you’re using.</p>
+<pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">EXPOSE</span> 80</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 443</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 3306</span></code></pre>
+<h2 id="what-s-next" tabindex="-1">What’s Next <a class="header-anchor" href="#what-s-next">#</a></h2>
+<p>In an upcoming post, I’ll continue with the other large file to make this work: the .gitpod.yml. A third post will cover a few smaller changes I had to make to other configuration.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-7-hide-label-node-display/">Drupal 7: Hide Label on Node Display</a></p><p>Next: <a href="/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -215,6 +215,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-13T16:02:33.071Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-13T16:04:21.484Z -->
 	</body>
 </html>

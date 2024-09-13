@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,47 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>PowerShell: Updating Site Scripts and Designs</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2021-04-05">April 5, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>This post begins a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
-<p><a href="https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/site-design-overview">Site scripts and site designs</a> are a great feature of SharePoint. They allow for developing and using templates on SharePoint sites that can do many useful things like:</p>
-<ul>
-<li>Create a list or library</li>
-<li>Apply column or view formatting on a list or library</li>
-<li>Apply a site logo image</li>
-</ul>
-<p>There is one annoying limitation, though. These scripts and designed are entirely created through PowerShell. That can make it a pain when you’re testing out a new script and need to update it frequently with each change, especially if you’re handling multiple scripts at once.</p>
-<p>So I wrote some PowerShell that handled some basic logic for me:</p>
-<ul>
-<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/connect-sposervice?view=sharepoint-ps">Connect to the Microsoft 365 account</a></li>
-<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/get-spositescript?view=sharepoint-ps">Check if the script already exists</a></li>
-<li>If yes, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spositescript?view=sharepoint-ps">update that script </a>reading from the latest file with an incremented version number</li>
-<li>If no, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/add-spositescript?view=sharepoint-ps">create a new site script</a></li>
-<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/get-spositedesign?view=sharepoint-ps">Check if the site design already exists</a></li>
-<li>If yes, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spositedesign?view=sharepoint-ps">update that design to include the relevant scripts</a>, with an incremented version number</li>
-<li>If no, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/add-spositedesign?view=sharepoint-ps">create a new design to include the relevant scripts</a></li>
-</ul>
-<p>The code is available on <a href="https://github.com/ryan-l-robinson/SharePoint-Site-Update">my GitHub account</a>. The current version is minimal, but I may return someday to make some more updates to it like how to automate multiple scripts on the same design.</p>
-<p>With this PowerShell script, you only need to tweak it to fit your scheme, and then run the PowerShell each time you need to upload your site script’s changes to your SharePoint tenant. The README file on GitHub provides more detail.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/desktop-sync-files-onedrive-sharepoint/">SharePoint: Desktop Sync Files</a></p><p>Next: <a href="/posts/2021/microsoft-search-introduction/">Microsoft Search: Introduction</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -139,6 +98,47 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>PowerShell: Updating Site Scripts and Designs</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2021-04-05">April 5, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>This post begins a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p><a href="https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/site-design-overview">Site scripts and site designs</a> are a great feature of SharePoint. They allow for developing and using templates on SharePoint sites that can do many useful things like:</p>
+<ul>
+<li>Create a list or library</li>
+<li>Apply column or view formatting on a list or library</li>
+<li>Apply a site logo image</li>
+</ul>
+<p>There is one annoying limitation, though. These scripts and designed are entirely created through PowerShell. That can make it a pain when you’re testing out a new script and need to update it frequently with each change, especially if you’re handling multiple scripts at once.</p>
+<p>So I wrote some PowerShell that handled some basic logic for me:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/connect-sposervice?view=sharepoint-ps">Connect to the Microsoft 365 account</a></li>
+<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/get-spositescript?view=sharepoint-ps">Check if the script already exists</a></li>
+<li>If yes, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spositescript?view=sharepoint-ps">update that script </a>reading from the latest file with an incremented version number</li>
+<li>If no, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/add-spositescript?view=sharepoint-ps">create a new site script</a></li>
+<li><a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/get-spositedesign?view=sharepoint-ps">Check if the site design already exists</a></li>
+<li>If yes, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spositedesign?view=sharepoint-ps">update that design to include the relevant scripts</a>, with an incremented version number</li>
+<li>If no, <a href="https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/add-spositedesign?view=sharepoint-ps">create a new design to include the relevant scripts</a></li>
+</ul>
+<p>The code is available on <a href="https://github.com/ryan-l-robinson/SharePoint-Site-Update">my GitHub account</a>. The current version is minimal, but I may return someday to make some more updates to it like how to automate multiple scripts on the same design.</p>
+<p>With this PowerShell script, you only need to tweak it to fit your scheme, and then run the PowerShell each time you need to upload your site script’s changes to your SharePoint tenant. The README file on GitHub provides more detail.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/desktop-sync-files-onedrive-sharepoint/">SharePoint: Desktop Sync Files</a></p><p>Next: <a href="/posts/2021/microsoft-search-introduction/">Microsoft Search: Introduction</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -191,6 +191,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/powershell-updating-site-scripts-designs/` was built on 2024-09-13T16:02:32.848Z -->
+		<!-- This page `/posts/2021/powershell-updating-site-scripts-designs/` was built on 2024-09-13T16:04:21.266Z -->
 	</body>
 </html>

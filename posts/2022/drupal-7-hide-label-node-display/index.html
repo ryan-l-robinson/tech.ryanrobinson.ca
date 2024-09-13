@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,49 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Drupal 7: Hide Label on Node Display</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-01-05">January 5, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.</p>
-<p>If I wanted to always hide the label for a field, that’s easy enough in the default Drupal display settings for the content type. But what about this scenario where we want to show the label when there is content and hide the label when there isn’t content?</p>
-<p>In theory, the logic for this is simple. In the node template for that content type – in the node–content-type.tpl.php in the templates folder of your theme – we want to add some simple logic that says to not show the field at all if the value of the field is empty.</p>
-<p>If you don’t already have a node–content-type.tpl.php, copy your default node.tpl.php file, rename it to node–content-type.tpl.php, and then the changes you’ll want to add are before the main content variable is rendered for the page.</p>
-<p>A couple wrinkles did make it a bit more complicated, though.</p>
-<p>First, you cannot check if the value of the field is set. It is always set. That’s entirely reasonable, but not obvious, so I still mention it.</p>
-<p>Second and a lot less reasonable, I couldn’t even use a test for if the field is empty. This is where I spent the bulk of my time being confused. I would write the value of the field to a log or message to test and it should show nothing. I could inspect the code and there was nothing – not even a space or a hidden HTML tag. But if I tried to test for empty() or the string to equal ”, it still said no, it’s not empty. Eventually I checked the length of that string and discovered it was 2, not 0.</p>
-<p>I do not know if that is universal in Drupal 7 or if there was something weird with this one site. It’s possible you’ll be able to get away with a simple empty() test instead of the strlen() test.</p>
-<p>So this was my final code addition to the node template file:</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">//hide some labels if the corresponding value is empty</span>
-
-<span class="token variable">$field_value</span> <span class="token operator">=</span> <span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'#object'</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token property">field_field_name</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'und'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'value'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$field_value</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>You could also do this in one line instead, depending on where you fall in the debate between easy readability vs minimal code. I left it as two different lines to be easier for somebody looking at it to understand what was happening.</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">//hide field label if the corresponding value is empty</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'#object'</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token property">field_field_name</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'und'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'value'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -141,6 +98,49 @@
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Drupal 7: Hide Label on Node Display</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-01-05">January 5, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.</p>
+<p>If I wanted to always hide the label for a field, that’s easy enough in the default Drupal display settings for the content type. But what about this scenario where we want to show the label when there is content and hide the label when there isn’t content?</p>
+<p>In theory, the logic for this is simple. In the node template for that content type – in the node–content-type.tpl.php in the templates folder of your theme – we want to add some simple logic that says to not show the field at all if the value of the field is empty.</p>
+<p>If you don’t already have a node–content-type.tpl.php, copy your default node.tpl.php file, rename it to node–content-type.tpl.php, and then the changes you’ll want to add are before the main content variable is rendered for the page.</p>
+<p>A couple wrinkles did make it a bit more complicated, though.</p>
+<p>First, you cannot check if the value of the field is set. It is always set. That’s entirely reasonable, but not obvious, so I still mention it.</p>
+<p>Second and a lot less reasonable, I couldn’t even use a test for if the field is empty. This is where I spent the bulk of my time being confused. I would write the value of the field to a log or message to test and it should show nothing. I could inspect the code and there was nothing – not even a space or a hidden HTML tag. But if I tried to test for empty() or the string to equal ”, it still said no, it’s not empty. Eventually I checked the length of that string and discovered it was 2, not 0.</p>
+<p>I do not know if that is universal in Drupal 7 or if there was something weird with this one site. It’s possible you’ll be able to get away with a simple empty() test instead of the strlen() test.</p>
+<p>So this was my final code addition to the node template file:</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">//hide some labels if the corresponding value is empty</span>
+
+<span class="token variable">$field_value</span> <span class="token operator">=</span> <span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'#object'</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token property">field_field_name</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'und'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'value'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$field_value</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You could also do this in one line instead, depending on where you fall in the debate between easy readability vs minimal code. I left it as two different lines to be easier for somebody looking at it to understand what was happening.</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">//hide field label if the corresponding value is empty</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'#object'</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token property">field_field_name</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'und'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'value'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -193,6 +193,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-7-hide-label-node-display/` was built on 2024-09-13T16:02:33.001Z -->
+		<!-- This page `/posts/2022/drupal-7-hide-label-node-display/` was built on 2024-09-13T16:04:21.429Z -->
 	</body>
 </html>

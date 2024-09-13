@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/X_mJxvkw12.css">
+		<link rel="stylesheet" href="/bundle/8qB8I2syP_.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -29,61 +29,6 @@
 		</header>
 
 		<main id="skip">
-			<div class="main-content">
-				
-<h1>Drupal: Sync Configuration</h1>
-
-<div class="post-metadata">
-	<p><time datetime="2022-02-18">February 18, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a>
-		</p>
-	
-</div>
-
-
-
-
-<p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
-<p>Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.</p>
-<h2 id="what-s-included" tabindex="-1">What’s included <a class="header-anchor" href="#what-s-included">#</a></h2>
-<p>It is not a full database backup, but it does include most settings, such as:</p>
-<ul>
-<li>Enabled extensions and themes</li>
-<li>Theme configuration</li>
-<li>Views</li>
-<li>Blocks</li>
-<li>Module settings</li>
-</ul>
-<p>What it does not include is node or entity content. With the possible exception of initially building the site, that shouldn’t have any meaningful deficit on completing the work.</p>
-<p>This distinction between configuration and content makes sense in a couple ways.</p>
-<p>Configuration changes are usually made first in your development environment, tested thoroughly, and then pushed through the pipeline. That’s not true for content. Content is often going to be created or edited first by the regular site users on production. Those don’t need technical teams to approve and test everything and are available to more users to do directly and have go into effect immediately.</p>
-<p>You also don’t need to synchronize all content in the same way, since for the most part the presence or absence of an extra basic page node does not affect the ability to sufficiently test anything new that needs to be tested. It’s ok if you let your production site’s content get ahead of your development environment in a way that you don’t want to happen with configuration.</p>
-<h2 id="git-workflow" tabindex="-1">Git workflow <a class="header-anchor" href="#git-workflow">#</a></h2>
-<p>The ideal flow for these changes is integrated with your code git flow. You can export your configuration on dev, add it to the git repository, push through to the next server in your CI/CD chain, and import it there. Much of this can be streamlined with CI/CD tools, but here are the manual steps:</p>
-<p>To export the configuration:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">drush config-export</code></pre>
-<p>Add to the git repository and commit:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> sync/config/*
-<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Updated configuration"</span>
-<span class="token function">git</span> push</code></pre>
-<p>Switch over to the other server and do essentially the reverse:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">git</span> fetch
-<span class="token function">git</span> pull
-drush config-import</code></pre>
-<p>More on <a href="https://www.drush.org/latest/commands/config_import/">the drush command</a> can be seen here.</p>
-<h2 id="manual" tabindex="-1">Manual <a class="header-anchor" href="#manual">#</a></h2>
-<p>You can also sync config manually one group of settings at a time. This is a slower process, so you wouldn’t take this route in a normal workflow of pushing dev changes out to production.</p>
-<p><img src="/assets/img/2022/01/Config-sync.png" alt="Configuration sync screen, allowing for import, export, and full archive or single items">
-<em>Screenshot of importing a single configuration item</em></p>
-<p>I won’t detail that here, since the interface does make it fairly intuitive, but you can approach it halfway – sync the files but then import them one at a time from the synchronize tab – or you can avoid syncing entirely and instead manually copy the configuration file shown on one Drupal site into the other.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-fluid-ui/">Drupal: Fluid UI</a></p><p>Next: <a href="/posts/2022/microsoft-teams-guest-notifications/">Microsoft Teams: Guest Notifications</a></p>
-</div>
-			</div>
 			<aside class="sidebar">
 				<h2>Posts by Tag</h2>
 				<ul class="tags-list">
@@ -153,6 +98,61 @@ drush config-import</code></pre>
 				
 				</ul>
 			</aside>
+			<div class="main-content">
+				
+<h1>Drupal: Sync Configuration</h1>
+
+<div class="post-metadata">
+	<p><time datetime="2022-02-18">February 18, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a>
+		</p>
+	
+</div>
+
+
+
+
+<p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
+<p>Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.</p>
+<h2 id="what-s-included" tabindex="-1">What’s included <a class="header-anchor" href="#what-s-included">#</a></h2>
+<p>It is not a full database backup, but it does include most settings, such as:</p>
+<ul>
+<li>Enabled extensions and themes</li>
+<li>Theme configuration</li>
+<li>Views</li>
+<li>Blocks</li>
+<li>Module settings</li>
+</ul>
+<p>What it does not include is node or entity content. With the possible exception of initially building the site, that shouldn’t have any meaningful deficit on completing the work.</p>
+<p>This distinction between configuration and content makes sense in a couple ways.</p>
+<p>Configuration changes are usually made first in your development environment, tested thoroughly, and then pushed through the pipeline. That’s not true for content. Content is often going to be created or edited first by the regular site users on production. Those don’t need technical teams to approve and test everything and are available to more users to do directly and have go into effect immediately.</p>
+<p>You also don’t need to synchronize all content in the same way, since for the most part the presence or absence of an extra basic page node does not affect the ability to sufficiently test anything new that needs to be tested. It’s ok if you let your production site’s content get ahead of your development environment in a way that you don’t want to happen with configuration.</p>
+<h2 id="git-workflow" tabindex="-1">Git workflow <a class="header-anchor" href="#git-workflow">#</a></h2>
+<p>The ideal flow for these changes is integrated with your code git flow. You can export your configuration on dev, add it to the git repository, push through to the next server in your CI/CD chain, and import it there. Much of this can be streamlined with CI/CD tools, but here are the manual steps:</p>
+<p>To export the configuration:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">drush config-export</code></pre>
+<p>Add to the git repository and commit:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> sync/config/*
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Updated configuration"</span>
+<span class="token function">git</span> push</code></pre>
+<p>Switch over to the other server and do essentially the reverse:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">git</span> fetch
+<span class="token function">git</span> pull
+drush config-import</code></pre>
+<p>More on <a href="https://www.drush.org/latest/commands/config_import/">the drush command</a> can be seen here.</p>
+<h2 id="manual" tabindex="-1">Manual <a class="header-anchor" href="#manual">#</a></h2>
+<p>You can also sync config manually one group of settings at a time. This is a slower process, so you wouldn’t take this route in a normal workflow of pushing dev changes out to production.</p>
+<p><img src="/assets/img/2022/01/Config-sync.png" alt="Configuration sync screen, allowing for import, export, and full archive or single items">
+<em>Screenshot of importing a single configuration item</em></p>
+<p>I won’t detail that here, since the interface does make it fairly intuitive, but you can approach it halfway – sync the files but then import them one at a time from the synchronize tab – or you can avoid syncing entirely and instead manually copy the configuration file shown on one Drupal site into the other.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-fluid-ui/">Drupal: Fluid UI</a></p><p>Next: <a href="/posts/2022/microsoft-teams-guest-notifications/">Microsoft Teams: Guest Notifications</a></p>
+</div>
+			</div>
 		</main>
 
 		<footer>
@@ -205,6 +205,6 @@ drush config-import</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-sync-configuration/` was built on 2024-09-13T16:02:33.106Z -->
+		<!-- This page `/posts/2022/drupal-sync-configuration/` was built on 2024-09-13T16:04:21.512Z -->
 	</body>
 </html>
