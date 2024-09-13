@@ -48,6 +48,8 @@
 
 
 
+
+
 <p>This continues with <a href="/tags/gitlab-devops/">the long-stalled GitLab DevOps series</a>. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.</p>
 <p>You will first need <a href="/websites/gitlab-devops-gitlab-runner/">a GitLab runner</a> on the server you want to deploy to.</p>
 <p>As with the earlier post on <a href="/websites/drupal/gitlab-devops-php-lint/">PHP linting within GitLab CI/CD</a>, in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in <a href="https://github.com/ryan-l-robinson/GitLab-CI-CD">one project of my GitHub</a>.</p>
@@ -281,6 +283,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-deploy-server/` was built on 2024-09-13T18:38:41.705Z -->
+		<!-- This page `/posts/2022/gitlab-devops-deploy-server/` was built on 2024-09-13T18:41:37.957Z -->
 	</body>
 </html>
