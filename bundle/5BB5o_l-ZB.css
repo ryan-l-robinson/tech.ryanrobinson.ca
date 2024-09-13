@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 50 }
+.postlist { counter-reset: start-from 12 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -194,7 +194,7 @@ main {
     flex-wrap: wrap;
 	width: 100%;
 	max-width: var(--max-width);
-	padding: var(--y-gutter) var(--x-gutter);
+	padding: var(--main-gutter-y) var(--main-gutter-x);
     background-color: var(--background-color);
 }
 
