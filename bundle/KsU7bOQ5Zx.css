@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 18 }
+.postlist { counter-reset: start-from 15 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -206,6 +206,7 @@ main {
   
 .tags-list {
 	padding-left: 1em;
+	columns: 1;
 }
 
 /** Main content **/

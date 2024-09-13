@@ -747,11 +747,6 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
-		<lastmod>2024-09-13</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-github/</loc>
 		<lastmod>2024-09-13</lastmod>
 	</url>
@@ -777,6 +772,11 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
+		<lastmod>2024-09-13</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/gitlab-devops/</loc>
 		<lastmod>2024-09-13</lastmod>
 	</url>
@@ -787,17 +787,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
-		<lastmod>2024-09-13</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
 		<lastmod>2024-09-13</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/drupal-docker/</loc>
+		<lastmod>2024-09-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
 		<lastmod>2024-09-13</lastmod>
 	</url>
 	

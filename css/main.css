@@ -17,6 +17,7 @@ main {
   
 .tags-list {
 	padding-left: 1em;
+	columns: 1;
 }
 
 /** Main content **/
