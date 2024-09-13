@@ -46,8 +46,6 @@
 
 
 
-
-
 <p>In one particular site, we chose to block the user registration and user password reset options. The site is using SSO login anyway, so this would really only impact our development team's superuser admin account (user 1) that is typically blocked outside of an emergency, so this seals up a possible attack vector with no user impact.</p>
 <p>User registration can also be blocked with site configuration, so I wouldn't have bothered with custom code for only that part. But since I was doing it for the password reset anyway, I decided to go ahead with the extra layer of protection on the registration route as well.</p>
 <p>I achieved this with a simple custom module which you can view in full <a href="https://github.com/ryan-l-robinson/Drupal-disable-password-reset">in my GitHub</a>. Here's the key part, blocking access to the routes:</p>
@@ -191,6 +189,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/drupal-disable-pw-reset/` was built on 2024-09-13T18:41:38.068Z -->
+		<!-- This page `/posts/2023/drupal-disable-pw-reset/` was built on 2024-09-13T18:48:14.061Z -->
 	</body>
 </html>
