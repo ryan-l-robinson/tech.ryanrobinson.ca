@@ -19,12 +19,6 @@ main {
 	border: 1px dashed var(--red);
 	padding: 0.5em;
 }
-  
-.tags-list {
-	margin-bottom: 0;
-	padding-left: 1em;
-	columns: 1;
-}
 
 /** Main content **/
 .main-content {
@@ -36,16 +30,6 @@ main {
     .main-content {
         width: 100%;
     }
-
-	.tags-list {
-		columns: 2;
-	}
-}
-
-@media(max-width: 30em) {
-	.tags-list {
-		columns: 1;
-	}
 }
 
 main :first-child {

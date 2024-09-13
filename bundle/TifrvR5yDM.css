@@ -1,52 +1,3 @@
-.postlist { counter-reset: start-from 8 }
-/** Styles only needed for the views summarizing multiple posts */
-
-.postlist {
-	list-style: none;
-	padding: 0;
-}
-.postlist-item {
-	display: block;
-	margin: 1em 0;
-	border-bottom: 1px dashed var(--red);
-	padding: 0 0 1em 0;
-}
-
-.postlist-item-title {
-	margin-bottom: 0;
-	padding-bottom: 0.25em;
-}
-
-.postlist-item-time-container {
-	margin: 0.5em 0;
-	line-height: 1em;
-}
-
-.postlist-item-time {
-	font-size: 0.8em;
-}
-
-.postlist-item :last-child {
-	margin-bottom: 0;
-}
-/* Message Box */
-.message-box {
-	--color-message-box: #ffc;
-
-	display: block;
-	background-color: var(--color-message-box);
-	color: var(--color-gray-90);
-	padding: 1em 0.625em; /* 16px 10px /16 */
-}
-.message-box ol {
-	margin-top: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	.message-box {
-		--color-message-box: #082840;
-	}
-}
 /* Variables and general site-wide styles */
 :root {
     --white: #ffffff;
@@ -208,12 +159,6 @@ main {
 	border: 1px dashed var(--red);
 	padding: 0.5em;
 }
-  
-.tags-list {
-	margin-bottom: 0;
-	padding-left: 1em;
-	columns: 1;
-}
 
 /** Main content **/
 .main-content {
@@ -225,16 +170,6 @@ main {
     .main-content {
         width: 100%;
     }
-
-	.tags-list {
-		columns: 2;
-	}
-}
-
-@media(max-width: 30em) {
-	.tags-list {
-		columns: 1;
-	}
 }
 
 main :first-child {
@@ -290,7 +225,26 @@ footer p {
 footer p a {
     color: var(--white);
 }
+/** Aligns with the tagslist.njk include **/
+.tags-list {
+	margin-bottom: 0;
+	padding-left: 1em;
+	columns: 1;
+}
 
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 60em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
+}
+/** Aligns with the sociallinks.njk include file **/
 .social-links {
     padding-left: 0;
     list-style-type: none;

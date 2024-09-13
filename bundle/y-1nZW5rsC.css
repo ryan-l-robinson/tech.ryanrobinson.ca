@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 16 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -208,12 +208,6 @@ main {
 	border: 1px dashed var(--red);
 	padding: 0.5em;
 }
-  
-.tags-list {
-	margin-bottom: 0;
-	padding-left: 1em;
-	columns: 1;
-}
 
 /** Main content **/
 .main-content {
@@ -225,16 +219,6 @@ main {
     .main-content {
         width: 100%;
     }
-
-	.tags-list {
-		columns: 2;
-	}
-}
-
-@media(max-width: 30em) {
-	.tags-list {
-		columns: 1;
-	}
 }
 
 main :first-child {
@@ -290,7 +274,26 @@ footer p {
 footer p a {
     color: var(--white);
 }
+/** Aligns with the tagslist.njk include **/
+.tags-list {
+	margin-bottom: 0;
+	padding-left: 1em;
+	columns: 1;
+}
 
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 60em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
+}
+/** Aligns with the sociallinks.njk include file **/
 .social-links {
     padding-left: 0;
     list-style-type: none;
