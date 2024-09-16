@@ -269,6 +269,7 @@ footer {
 
 footer p {
     text-align: center;
+    color: var(--white);
 }
 
 footer p a {
