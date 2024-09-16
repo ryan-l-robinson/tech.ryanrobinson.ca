@@ -41,8 +41,8 @@ main a {
 }
 
 main a:is(:hover,:focus) {
-    background-color: var(--text-color-link-hover);
-    color: var(--white);
+    background-color: var(--text-color-link-hover-background);
+    color: var(--text-color-link-hover);
 }
 main a[href]:active {
 	color: var(--text-color-link-active);
