@@ -13,3 +13,8 @@ footer p {
 footer p a {
     color: var(--white);
 }
+
+footer p a:is(:hover,:focus) {
+    background-color: var(--white);
+    color: var(--blue);
+}

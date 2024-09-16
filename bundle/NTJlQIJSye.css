@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 33 }
+.postlist { counter-reset: start-from 4 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -274,6 +274,11 @@ footer p {
 
 footer p a {
     color: var(--white);
+}
+
+footer p a:is(:hover,:focus) {
+    background-color: var(--white);
+    color: var(--blue);
 }
 /** Aligns with the tagslist.njk include **/
 .tags-list {
