@@ -48,7 +48,7 @@
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
 <p>This post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.</p>
-<h2 id="check-if-site-already-exists" tabindex="-1">Check if site already exists <a class="header-anchor" href="#check-if-site-already-exists">#</a></h2>
+<h2 id="check-if-site-already-exists" tabindex="-1">Check if Site Already Exists <a class="header-anchor" href="#check-if-site-already-exists">#</a></h2>
 <p>This can be done with <a href="https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest">the SharePoint REST API</a> if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.</p>
 <p>You will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.</p>
 <p>I’ll use the Get Site API call to see if the site already exists.</p>
@@ -76,7 +76,7 @@
 <li>Boolean test: is equal to</li>
 <li>Second piece of equation: 0</li>
 </ul>
-<h2 id="create-site" tabindex="-1">Create site <a class="header-anchor" href="#create-site">#</a></h2>
+<h2 id="create-site" tabindex="-1">Create Site <a class="header-anchor" href="#create-site">#</a></h2>
 <p>We’re ready to create the site, which can also be done with REST API calls.</p>
 <p><img src="/assets/img/2021/05/Create-site.png" alt="">
 <em>Screenshot of creating a SharePoint by REST API</em></p>
@@ -91,17 +91,14 @@
 <li>Header 2 value: 4.0</li>
 <li>Body:</li>
 </ul>
-<pre><code>&lt;pre class=&quot;wp-block-code&quot;&gt;```
-{
-&quot;request&quot;: {
-&quot;Url&quot;:&quot;@{variables('siteURL')}&quot;,
-&quot;Title&quot;:&quot;@{variables('projectName')}&quot;,
-&quot;Description&quot;:&quot;Project site for: @{variables('projectName')}&quot;,
-&quot;Lcid&quot;:1033,
-&quot;WebTemplate&quot;:&quot;STS#3&quot;
-}
-}
-</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token property">"request"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+<span class="token property">"Url"</span><span class="token operator">:</span><span class="token string">"@{variables('siteURL')}"</span><span class="token punctuation">,</span>
+<span class="token property">"Title"</span><span class="token operator">:</span><span class="token string">"@{variables('projectName')}"</span><span class="token punctuation">,</span>
+<span class="token property">"Description"</span><span class="token operator">:</span><span class="token string">"Project site for: @{variables('projectName')}"</span><span class="token punctuation">,</span>
+<span class="token property">"Lcid"</span><span class="token operator">:</span><span class="token number">1033</span><span class="token punctuation">,</span>
+<span class="token property">"WebTemplate"</span><span class="token operator">:</span><span class="token string">"STS#3"</span>
+<span class="token punctuation">}</span></code></pre>
 <p>You can customize details from here, like adding error checking for the other site statuses, added an owner to the site you create, changing the template of the site, and so on.</p>
 <p>The next post in this series will work on adding temporary site scripts and designs for the new site.</p>
 
@@ -145,7 +142,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -236,6 +233,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-create-site-with-sharepoint-rest-api/` was built on 2024-09-17T14:42:35.965Z -->
+		<!-- This page `/posts/2021/power-automate-create-site-with-sharepoint-rest-api/` was built on 2024-09-17T15:22:28.138Z -->
 	</body>
 </html>

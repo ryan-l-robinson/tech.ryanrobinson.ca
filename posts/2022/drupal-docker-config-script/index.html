@@ -48,7 +48,7 @@
 
 
 <p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
-<p>This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to <a href="/websites/drupal/drupal-gitpod-container-2-gitpod-yml/">the GitPod.yml file</a> of <a href="/tags/gitpod-drupal/">the GitPod series</a>.</p>
+<p>This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to <a href="/posts/2022/drupal-gitpod-container-2-gitpod-yml/">the GitPod.yml file</a> of <a href="/tags/gitpod-drupal/">the GitPod series</a>.</p>
 <p>This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span></code></pre>
 <p>Enforce permissions on the SSH keys, needed for the git SSH connection to work:</p>
@@ -144,7 +144,7 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -235,6 +235,6 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2024-09-17T14:42:36.178Z -->
+		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2024-09-17T15:22:28.352Z -->
 	</body>
 </html>

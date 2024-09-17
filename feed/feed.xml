@@ -66,7 +66,7 @@
 		<link href="https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/"/>
 		<updated>2021-02-25T16:12:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/</id>
-		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/viva-topics-configuration/&quot;&gt;my previous post&lt;/a&gt;, I walked through my thoughts on the configuration process for the new Microsoft Viva Topics functionality within Microsoft 365. In this post I’ll dive into what the experience is like for users once it is configured.&lt;/p&gt;
+		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-configuration/&quot;&gt;my previous post&lt;/a&gt;, I walked through my thoughts on the configuration process for the new Microsoft Viva Topics functionality within Microsoft 365. In this post I’ll dive into what the experience is like for users once it is configured.&lt;/p&gt;
 &lt;h2 id=&quot;creating-editing-a-topic&quot; tabindex=&quot;-1&quot;&gt;Creating / Editing a Topic &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/viva-topics-experience/#creating-editing-a-topic&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can edit a topic page similar to editing any other SharePoint page, but there is a lot less flexibility. It has a predefined set of features and you cannot add other web parts.&lt;/p&gt;
 &lt;ul&gt;
@@ -145,8 +145,8 @@
 &lt;li&gt;Use multi-factor authentication everywhere it is offered&lt;/li&gt;
 &lt;li&gt;Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://ryanlrobinson.wordpress.com/2021/03/07/security-essentials-multi-factor-authentication/&quot;&gt;My previous post dealt with multi-factor authentication&lt;/a&gt;. This post will look at password managers.&lt;/p&gt;
-&lt;h2 id=&quot;passwords-are-the-worst&quot; tabindex=&quot;-1&quot;&gt;Passwords are the worst &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#passwords-are-the-worst&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/&quot;&gt;My previous post dealt with multi-factor authentication&lt;/a&gt;. This post will look at password managers.&lt;/p&gt;
+&lt;h2 id=&quot;passwords-are-the-worst&quot; tabindex=&quot;-1&quot;&gt;Passwords are the Worst &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#passwords-are-the-worst&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Why do you need a password manager? The short answer: passwords are the worst, but with a few exceptions, we still need them for everything. There are a few problems with passwords:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;We need too many of them, so most people start reusing the same few passwords across multiple services. This opens a big security vulnerability: if the password for one service gets leaked, attackers will try the same username / password across lots of other services and get in to them all.&lt;/li&gt;
@@ -156,7 +156,7 @@
 &lt;li&gt;They are a thin line of defense if they are the only thing keeping somebody out of your account. Even if the password is great, that’s still only one thing that anybody from anywhere could guess and break in.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The last one is dealt with by multi-factor authentication. Most of the others – other than the typing on TV scenario – are dealt with by a password manager.&lt;/p&gt;
-&lt;h2 id=&quot;the-password-manager-solution&quot; tabindex=&quot;-1&quot;&gt;The password manager solution &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#the-password-manager-solution&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-password-manager-solution&quot; tabindex=&quot;-1&quot;&gt;The Password Manager Solution &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#the-password-manager-solution&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The gist of the idea of a password manager is that you only need to remember one password to get into your password manager account, and that account remembers all your other passwords. That solves the memory problem.&lt;/p&gt;
 &lt;p&gt;Most if not all password managers also include a feature that will generate random passwords for you, storing them to the password manager all in one step. That solves the picking unique strong passwords problem.&lt;/p&gt;
 &lt;p&gt;Most if not all password managers have browser extensions and auto-fill in apps on phones. You don’t have to look up the password and copy/paste it over. You just click on the right account from your password manager and it fills it in for you. You never even need to look at the password for the account you’re logging in to, let alone remembering it and typing it out. That solves the annoying to type out problem.&lt;/p&gt;
@@ -168,7 +168,7 @@
 &lt;li&gt;Identifies if any credentials have been leaked, as found on &lt;a href=&quot;https://haveibeenpwned.com/&quot;&gt;haveibeenpwned.com&lt;/a&gt;. If any credentials show up here, you need to change them immediately – on everywhere with that password, not just the one that leaked it.&lt;/li&gt;
 &lt;li&gt;Identifies weak passwords that have low levels of randomness and could be easier for an attacker to guess or brute force.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;getting-started&quot; tabindex=&quot;-1&quot;&gt;Getting started &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#getting-started&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;getting-started&quot; tabindex=&quot;-1&quot;&gt;Getting Started &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-password-manager/#getting-started&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Most of the password managers have some level of free trial with limited functionality. That’s a great way to get a sense of what it is like to use one before you commit to spending on a particular service.&lt;/p&gt;
 &lt;p&gt;Personally, I am now using &lt;a href=&quot;https://1password.com/&quot;&gt;1Password&lt;/a&gt;. It offers all of the things I have mentioned above, in a friendly user interface and a reasonable monthly price.&lt;/p&gt;
 &lt;p&gt;Before that I used the free version of LastPass. For a long time it had the best free offering by far, but that has been scaled back since.&lt;/p&gt;
@@ -188,14 +188,14 @@
 &lt;li&gt;Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I’ll look at the benefits of a password manager in another post soon. But first, let’s look at multi-factor authentication.&lt;/p&gt;
-&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The Idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The idea of multi-factor authentication is that you prove you are who you say you are through an extra “factor” beyond just a password. This is because it is relatively easy for a password to be stolen, distributed, and used. If all it takes for somebody to get into your important accounts is a username and password, that’s a low barrier to cause a lot of damage, especially when you add that most people reuse the same passwords on multiple sites (more on that in the password manager post).&lt;/p&gt;
-&lt;h2 id=&quot;verification-options&quot; tabindex=&quot;-1&quot;&gt;Verification options &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#verification-options&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;verification-options&quot; tabindex=&quot;-1&quot;&gt;Verification Options &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#verification-options&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The extra factor may be something you know like a security question or something you have like a fingerprint. &lt;a href=&quot;https://docs.microsoft.com/en-gb/learn/modules/secure-aad-users-with-mfa/5-configure-authentication-methods&quot;&gt;This Microsoft doc breaks down the options in terms of what is available within Azure AD authentication&lt;/a&gt;, but most services offer some subset of those options.&lt;/p&gt;
 &lt;p&gt;At the lowest end of the security scale are security questions, which are essentially just an extra password except easier to guess. Many places including Microsoft don’t offer a security question option.&lt;/p&gt;
 &lt;p&gt;In the middle and the most common are SMS codes texted to your phone or voice calls made to your phone saying the code. That’s good enough for most people, but determined hackers can carry out &lt;a href=&quot;https://www.vice.com/en/article/3kx4ej/sim-jacking-mobile-phone-fraud&quot;&gt;sim-jacking&lt;/a&gt; to get through.&lt;/p&gt;
 &lt;p&gt;The highest end of the security scale is an authentication app on your phone (Microsoft Authenticator, Google Authenticator) or a dedicated security key device that must be plugged into your computer via USB (&lt;a href=&quot;https://www.yubico.com/products&quot;&gt;YubiKey&lt;/a&gt;). With these protections, a hacker would have to know your username and password AND also have your phone logged in to the authenticator app or the physical security key. That means they would have to physically rob you on top of cracking your password, which significantly cuts down on how many people can realistically pull it off. It also makes it likely you’ll notice before much damage is done.&lt;/p&gt;
-&lt;h2 id=&quot;using-an-authenticator-app&quot; tabindex=&quot;-1&quot;&gt;Using an authenticator app &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#using-an-authenticator-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;using-an-authenticator-app&quot; tabindex=&quot;-1&quot;&gt;Using an Authenticator App &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/#using-an-authenticator-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The authenticator apps may sound like more work than a simple text, but it really is easier on top of being more secure. I use Microsoft Authenticator and that’s what I will be referencing specifically, but Google Authenticator and others have similar if not identical functionality.&lt;/p&gt;
 &lt;p&gt;Adding an account is simple. The hardest part may be finding the setting to enable it on the desired account. Some services make it obvious and strongly encourage you to enable multi-factor authentication. Others offer it but tuck it away in settings that you may not ever notice without looking for it. But once you do, if there’s an option to use an authenticator app, choose that and you’ll get a QR code.&lt;/p&gt;
 &lt;p&gt;In the top right corner of Microsoft Authenticator is a menu option with “Add account.” It then offers you the choice of a Microsoft personal account, a Microsoft work or school account, or other. The Microsoft option will allow you to set it up with a simple login, but all of the options allow you to scan the QR code. A quick point of your phone camera at your screen and you’re good to go.&lt;/p&gt;
@@ -461,7 +461,7 @@
 &lt;p&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock&quot;&gt;This extension&lt;/a&gt; applies a different colour theme to my workspace for each website I was connected to. This is really valuable especially if you find yourself working on multiple websites on the same day as the visual cue helps avoid accidentally updating the wrong site.&lt;/p&gt;
 &lt;p&gt;You can manually set these for each site, which could be used for scenarios like setting the code window to match the branding of that site for an even stronger visual cue, or you can check the box to surprise me with a random colour whenever one isn’t already set.&lt;/p&gt;
 &lt;h2 id=&quot;git-integration&quot; tabindex=&quot;-1&quot;&gt;Git integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vs-code-remote-ssh-development/#git-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/using-github-from-visual-studio-code/&quot;&gt;I wrote another recent post that breaks down how Git integration in Code in general&lt;/a&gt;. The main difference here is how it ties into the next point: if you can’t use the integrated shell because of the security on the system, you also won’t be able to push in the version control interface.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/&quot;&gt;I wrote another recent post that breaks down how Git integration in Code in general&lt;/a&gt;. The main difference here is how it ties into the next point: if you can’t use the integrated shell because of the security on the system, you also won’t be able to push in the version control interface.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/04/VSCode-SourceControl.png&quot; alt=&quot;Source control window showing the files staged and not staged yet, with interface options for everything you need.&quot; /&gt;
 &lt;em&gt;Demo of the source control window&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&quot;shell-integration&quot; tabindex=&quot;-1&quot;&gt;Shell integration &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vs-code-remote-ssh-development/#shell-integration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -562,7 +562,7 @@
 &lt;p&gt;There is a mechanism for admins to give one user access to another user’s OneDrive. This can be helpful in circumstances like a sudden termination where it turns out the terminated employee had some files that others need. But at most this should be used for times like a new employee taking over the same role as a previous user, where there are files that are only used by that one role.&lt;/p&gt;
 &lt;p&gt;SharePoint sites are most easily set up attached to Microsoft 365 Groups. Those Groups already carry permissions across all the services of Microsoft 365 like Planner and Teams. If you devise some logical groups, your files can neatly into those groups. Users don’t have to think about permissions for each file; they just need to put it in the relevant group.&lt;/p&gt;
 &lt;p&gt;This also extends to search. When files are in SharePoint, anybody with the permissions to see it will also be able to find it within &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/microsoft-search-introduction/&quot;&gt;Microsoft Search&lt;/a&gt;, unless search indexing is turned off for that SharePoint site.&lt;/p&gt;
-&lt;h2 id=&quot;columns-views-and-content-types&quot; tabindex=&quot;-1&quot;&gt;Columns, views, and content types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/#columns-views-and-content-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;columns-views-and-content-types&quot; tabindex=&quot;-1&quot;&gt;Columns, Views, and Content Types &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/onedrive-sharepoint/#columns-views-and-content-types&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SharePoint brings a pile of functionality that isn’t available in OneDrive. These include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Columns, for tracking custom data about the file&lt;/li&gt;
@@ -626,8 +626,8 @@
 		<updated>2021-04-28T19:55:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/</id>
 		<content type="html">&lt;p&gt;Many applications like business scanners or hosted CRM systems come with features that send email. To do so, it has to be able to connect to an email account that it sends on behalf of. The main challenge is that most good modern email services are strict about allowing emails to be sent on their behalf. Microsoft 365 is particularly strict. Google is a bit easier, but does require an extra step which is not obvious.&lt;/p&gt;
-&lt;p&gt;First, decide which Google account you’ll want to do this. I recommend that it is an account solely for this purpose. &lt;strong&gt;It definitely should not be a regular user account that might contain sensitive data&lt;/strong&gt;. The reason is what will come up below: by nature of this functionality you will need to disable some of the advanced Google security so that &lt;a href=&quot;https://tech.ryanrobinson.ca/security-essentials-multi-factor-authentication/&quot;&gt;it is protected only by a password&lt;/a&gt; (generally a bad idea). Create a specific Gmail account for this purpose, like &amp;lt;company name&amp;gt;.crm@gmail.com.&lt;/p&gt;
-&lt;h2 id=&quot;configure-settings&quot; tabindex=&quot;-1&quot;&gt;Configure settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#configure-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;First, decide which Google account you’ll want to do this. I recommend that it is an account solely for this purpose. &lt;strong&gt;It definitely should not be a regular user account that might contain sensitive data&lt;/strong&gt;. The reason is what will come up below: by nature of this functionality you will need to disable some of the advanced Google security so that &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/security-essentials-multi-factor-authentication/&quot;&gt;it is protected only by a password&lt;/a&gt; (generally a bad idea). Create a specific Gmail account for this purpose, like &amp;lt;company name&amp;gt;.crm@gmail.com.&lt;/p&gt;
+&lt;h2 id=&quot;configure-settings&quot; tabindex=&quot;-1&quot;&gt;Configure Settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#configure-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Next, you need to find the options in the application trying to send the email. Look for something with “SMTP” in it. It could also be something more generic like “outbound email.”&lt;/p&gt;
 &lt;p&gt;Once you find those settings options in the system that you want to be able to send from as your Gmail, fill in the valued needed for Gmail. &lt;a href=&quot;https://support.google.com/mail/answer/7126229?hl=en&quot;&gt;The values are mostly easy to find on the Internet&lt;/a&gt;, but I’ll copy them here as well:&lt;/p&gt;
 &lt;ul&gt;
@@ -638,7 +638,7 @@
 &lt;li&gt;Port for SSL: 465&lt;/li&gt;
 &lt;li&gt;Port for TLS (if available): 587&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;less-secure-access&quot; tabindex=&quot;-1&quot;&gt;Less secure access &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#less-secure-access&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;less-secure-access&quot; tabindex=&quot;-1&quot;&gt;Less Secure Access &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/smtp-google-account/#less-secure-access&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There’s one more important step that is not obvious. By default, Google accounts do not allow you to access by SMTP over anything it deems a “less secure app.” Your CRM or scanner connecting over SMTP will probably be considered a less secure app.&lt;/p&gt;
 &lt;p&gt;So, you’ll also need to disable that option. You can do that here when logged in: &lt;a href=&quot;https://myaccount.google.com/lesssecureapps&quot;&gt;Less Secure Apps option&lt;/a&gt;. Note that you’ll also have to turn off two-factor authentication to be allowed to do this.&lt;/p&gt;
 &lt;p&gt;Once that’s done, go ahead and test to confirm it worked.&lt;/p&gt;
@@ -693,7 +693,7 @@
 		<updated>2021-05-04T13:11:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/</id>
 		<content type="html">&lt;p&gt;When I work on a freelance website (I have more advanced tools in my day job), especially once I need to deploy some custom code, I have several tools at my disposal I want to set up. Here’s what those tools and that setup process looks like. For the purpose of this post, I’m assuming I already have the SFTP and SSH credentials from the website host.&lt;/p&gt;
-&lt;h2 id=&quot;ssh-keys&quot; tabindex=&quot;-1&quot;&gt;SSH keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#ssh-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ssh-keys&quot; tabindex=&quot;-1&quot;&gt;SSH Keys &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#ssh-keys&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The one-time need is to prepare my SSH keys. This requires three files which can be created with PuTTYgen, part of the package that comes with PuTTY.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create your SSH key using the “Generate” button, if you don’t already have one you could load.&lt;/li&gt;
@@ -754,8 +754,8 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;visual-studio-code&quot; tabindex=&quot;-1&quot;&gt;Visual Studio Code &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/#visual-studio-code&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt; is my code editor of choice, so this is an essential piece of the puzzle if I am doing any customizations to the site. I’ve written more about Visual Studio Code in the past:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/visual-studio-code-remote-ssh-development/&quot;&gt;Remote SSH in Visual Studio Code.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/using-github-from-visual-studio-code/&quot;&gt;GitHub in Visual Studio Code.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/vs-code-remote-ssh-development/&quot;&gt;Remote SSH in Visual Studio Code.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/github-visual-studio-code/&quot;&gt;GitHub in Visual Studio Code.&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;When I have a new site to add, I do this:&lt;/p&gt;
 &lt;ol&gt;
@@ -899,7 +899,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 		<id>https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;This post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.&lt;/p&gt;
-&lt;h2 id=&quot;check-if-site-already-exists&quot; tabindex=&quot;-1&quot;&gt;Check if site already exists &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#check-if-site-already-exists&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;check-if-site-already-exists&quot; tabindex=&quot;-1&quot;&gt;Check if Site Already Exists &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#check-if-site-already-exists&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This can be done with &lt;a href=&quot;https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest&quot;&gt;the SharePoint REST API&lt;/a&gt; if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.&lt;/p&gt;
 &lt;p&gt;You will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.&lt;/p&gt;
 &lt;p&gt;I’ll use the Get Site API call to see if the site already exists.&lt;/p&gt;
@@ -927,7 +927,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Boolean test: is equal to&lt;/li&gt;
 &lt;li&gt;Second piece of equation: 0&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;create-site&quot; tabindex=&quot;-1&quot;&gt;Create site &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#create-site&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;create-site&quot; tabindex=&quot;-1&quot;&gt;Create Site &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/#create-site&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We’re ready to create the site, which can also be done with REST API calls.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Create-site.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of creating a SharePoint by REST API&lt;/em&gt;&lt;/p&gt;
@@ -942,17 +942,14 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Header 2 value: 4.0&lt;/li&gt;
 &lt;li&gt;Body:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;pre class=&amp;quot;wp-block-code&amp;quot;&amp;gt;```
-{
-&amp;quot;request&amp;quot;: {
-&amp;quot;Url&amp;quot;:&amp;quot;@{variables(&#39;siteURL&#39;)}&amp;quot;,
-&amp;quot;Title&amp;quot;:&amp;quot;@{variables(&#39;projectName&#39;)}&amp;quot;,
-&amp;quot;Description&amp;quot;:&amp;quot;Project site for: @{variables(&#39;projectName&#39;)}&amp;quot;,
-&amp;quot;Lcid&amp;quot;:1033,
-&amp;quot;WebTemplate&amp;quot;:&amp;quot;STS#3&amp;quot;
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;request&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Url&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteURL&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;projectName&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Project site for: @{variables(&#39;projectName&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Lcid&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1033&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;WebTemplate&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;STS#3&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can customize details from here, like adding error checking for the other site statuses, added an owner to the site you create, changing the template of the site, and so on.&lt;/p&gt;
 &lt;p&gt;The next post in this series will work on adding temporary site scripts and designs for the new site.&lt;/p&gt;
 </content>
@@ -1023,7 +1020,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 		<updated>2021-05-28T11:00:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/&quot;&gt;In the last post in this series&lt;/a&gt;, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-create-site-with-sharepoint-rest-api/&quot;&gt;In the last post in this series&lt;/a&gt;, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.&lt;/p&gt;
 &lt;h2 id=&quot;write-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Write the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#write-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.&lt;/p&gt;
 &lt;p&gt;Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:&lt;/p&gt;
@@ -1036,20 +1033,19 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Type: String&lt;/li&gt;
 &lt;li&gt;Value:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;{
-    &amp;quot;$schema&amp;quot;: &amp;quot;https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json&amp;quot;,
-    &amp;quot;actions&amp;quot;: [
-      {
-        &amp;quot;verb&amp;quot;: &amp;quot;addNavLink&amp;quot;,
-        &amp;quot;displayName&amp;quot;: &amp;quot;External Site&amp;quot;,
-        &amp;quot;url&amp;quot;: &amp;quot;@{variables(&#39;linkURL&#39;)}&amp;quot;,
-&amp;quot;isWebRelative&amp;quot;: false
-      }
-    ],
-    &amp;quot;version&amp;quot;: 1
-  }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;register-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Register the temporary script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#register-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;$schema&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;actions&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;verb&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;addNavLink&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;displayName&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;External Site&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;linkURL&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;isWebRelative&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;register-the-temporary-script&quot; tabindex=&quot;-1&quot;&gt;Register the Temporary Script &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#register-the-temporary-script&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Register-Site-Script.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of action to register site script&lt;/em&gt;&lt;/p&gt;
@@ -1076,7 +1072,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Type: String&lt;/li&gt;
 &lt;li&gt;Value: body(‘Create_temp_site_script’)?[‘Id’]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;create-the-temporary-design&quot; tabindex=&quot;-1&quot;&gt;Create the temporary design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#create-the-temporary-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;create-the-temporary-design&quot; tabindex=&quot;-1&quot;&gt;Create the Temporary Design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#create-the-temporary-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Create-Site-Design.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of registering the site design&lt;/em&gt;&lt;/p&gt;
@@ -1088,15 +1084,14 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Headers: [same as registering the site script above]&lt;/li&gt;
 &lt;li&gt;Body:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;{
-&amp;quot;info&amp;quot;:{
-&amp;quot;Title&amp;quot;:&amp;quot;Temporary site design for @{variables(&#39;siteName&#39;)}&amp;quot;,
-&amp;quot;Description&amp;quot;:&amp;quot;Applies navigation links&amp;quot;,
-&amp;quot;SiteScriptIds&amp;quot;:[&amp;quot;@{variables(&#39;siteScriptID&#39;)}&amp;quot;],
-&amp;quot;WebTemplate&amp;quot;:&amp;quot;68&amp;quot;
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;info&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Temporary site design for @{variables(&#39;siteName&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;Description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Applies navigation links&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;SiteScriptIds&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteScriptID&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;WebTemplate&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;68&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that WebTemplate 68 is a communication site. 64 would be a team site.&lt;/p&gt;
 &lt;p&gt;As with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Site-Design-ID.png&quot; alt=&quot;&quot; /&gt;
@@ -1116,7 +1111,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;p&gt;That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Delay-5-minutes.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;You also may need to delay much longer if your site scripts rely on &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/content-types/&quot;&gt;global content types&lt;/a&gt;. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.&lt;/p&gt;
+&lt;p&gt;You also may need to delay much longer if your site scripts rely on &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-content-types/&quot;&gt;global content types&lt;/a&gt;. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.&lt;/p&gt;
 &lt;h2 id=&quot;apply-the-site-design&quot; tabindex=&quot;-1&quot;&gt;Apply the site design &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#apply-the-site-design&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Yet another REST API call will allow you to apply the site design that is now registered.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Apply-Site-Design.png&quot; alt=&quot;&quot; /&gt;
@@ -1129,12 +1124,11 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Headers: [same as registering the site script above]&lt;/li&gt;
 &lt;li&gt;Body:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;{
-&amp;quot;siteDesignId&amp;quot;:&amp;quot;@{variables(&#39;siteDesignID&#39;)}&amp;quot;,
-&amp;quot;webUrl&amp;quot;:&amp;quot;@{variables(&#39;siteURL&#39;)}&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;clean-up&quot; tabindex=&quot;-1&quot;&gt;Clean up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#clean-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;siteDesignId&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteDesignID&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token property&quot;&gt;&quot;webUrl&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteURL&#39;)}&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;clean-up&quot; tabindex=&quot;-1&quot;&gt;Clean Up &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/power-automate-temporary-site-scripts-and-designs/#clean-up&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Delete-Site-Design.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of deleting the site design&lt;/em&gt;&lt;/p&gt;
@@ -1146,8 +1140,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Headers: [same as registering the site script above]&lt;/li&gt;
 &lt;li&gt;Body:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;{&amp;quot;id&amp;quot;:&amp;quot;@{variables(&#39;siteDesignID&#39;)}&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteDesignID&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/05/Delete-Site-Script.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of deleting the site script&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Details:&lt;/p&gt;
@@ -1158,8 +1151,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Headers: [same as registering the site script above]&lt;/li&gt;
 &lt;li&gt;Body:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;{&amp;quot;id&amp;quot;:&amp;quot;@{variables(&#39;siteScriptID&#39;)}&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;@{variables(&#39;siteScriptID&#39;)}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.&lt;/p&gt;
 </content>
 	</entry>
@@ -1284,16 +1276,16 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 		<id>https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/</id>
 		<content type="html">&lt;p&gt;This post continues a series on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/&quot;&gt;SharePoint site provisioning&lt;/a&gt;, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&lt;/p&gt;
 &lt;p&gt;At this point in the series, we’ve now created new SharePoint sites and applied temporary site scripts and site designs. There is one big feature missing from site scripts and site designs, though: templating the home page. You can’t simply say that a project site design should always contain a home page with these specific web parts. This may not be true forever – Microsoft is steadily improving site templating – but as of working on this project a few months ago, it required a bit of a workaround.&lt;/p&gt;
-&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-idea&quot; tabindex=&quot;-1&quot;&gt;The Idea &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-idea&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here’s the basic idea that we’ll do to get around this:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Design your homepage on some other SharePoint site, with permissions locked down so that nobody sees it or can edit it who shouldn’t.&lt;/li&gt;
 &lt;li&gt;Within the provisioning Flow, after the new site is created, copy the page from the template site to the new site, overriding the name of “Home” so that it takes over the homepage.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;the-pro-and-con&quot; tabindex=&quot;-1&quot;&gt;The pro and con &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-pro-and-con&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-pro-and-con&quot; tabindex=&quot;-1&quot;&gt;The Pro and Con &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-pro-and-con&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The nicest thing about this approach is that it makes it very easy to update the home page. Anybody with the permission to do so can go to that template site’s home page and edit it. That’s it. There is no PowerShell or JSON to update a site script or design.&lt;/p&gt;
 &lt;p&gt;The biggest negative is the other side of that coin: it requires that nobody delete or rename that homepage file on that template site and there’s no warning if somebody did try to do that. You can recover within 93 days if somebody does delete it and you notice by way of the Flow failing, but it’s still not ideal that it’s even possible for a user to do that without knowing the consequences.&lt;/p&gt;
-&lt;h2 id=&quot;the-copy-action&quot; tabindex=&quot;-1&quot;&gt;The copy action &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-copy-action&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-copy-action&quot; tabindex=&quot;-1&quot;&gt;The Copy Action &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/overriding-sharepoint-sites-home-page/#the-copy-action&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you don’t already have a template site with some locked down permissions, create it and then design the homepage. This homepage can use relative web parts, like the documents library of that site.&lt;/p&gt;
 &lt;p&gt;When that’s ready, it only takes a “Copy file” SharePoint action in the Flow to handle the copying. This can be a bit smoother than some previous actions which required the HTTP REST API calls. Those needed more flexibility using variables defined in the Flow. This one is copying from the same location every time, so it can stay simpler.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/CopyHomepage.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -1435,7 +1427,7 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/"/>
 		<updated>2021-06-25T18:03:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/</id>
-		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/power-apps/movie-directory-part-1-the-data/&quot;&gt;Movie Directory Part 1&lt;/a&gt;, I described what I was aiming to achieve with this personal project, as well as the Dataverse structure.&lt;/p&gt;
+		<content type="html">&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-1-the-data/&quot;&gt;Movie Directory Part 1&lt;/a&gt;, I described what I was aiming to achieve with this personal project, as well as the Dataverse structure.&lt;/p&gt;
 &lt;p&gt;In this post, I’ll describe at a high level the design of the Power App and the gallery view and filters. Most of it I’ll keep at a high-level, not step-by-step, as I used a lot of the out-of-the-box functionality.&lt;/p&gt;
 &lt;h2 id=&quot;screens&quot; tabindex=&quot;-1&quot;&gt;Screens &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-2-gallery-and-filters/#screens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are four screens involved in the app:&lt;/p&gt;
@@ -1497,7 +1489,7 @@ Navigate(AllMovies)
 		<updated>2021-06-29T11:05:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/</id>
 		<content type="html">&lt;p&gt;This continues a short series about &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/movie-directory/&quot;&gt;a movie directory personal project&lt;/a&gt; exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.&lt;/p&gt;
-&lt;h2 id=&quot;view-screen&quot; tabindex=&quot;-1&quot;&gt;View screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#view-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;view-screen&quot; tabindex=&quot;-1&quot;&gt;View Screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#view-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/View-Movie.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;View movie screen of Alien3, with all the options selected&lt;/em&gt;&lt;/p&gt;
@@ -1520,7 +1512,7 @@ Navigate(AllMovies)
 &lt;pre&gt;&lt;code&gt;BrowseGallery1.Selected.Cover.Full
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;and a Transparency of 0.6, to make sure the text above it is still readable.&lt;/p&gt;
-&lt;h2 id=&quot;edit-screen&quot; tabindex=&quot;-1&quot;&gt;Edit screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#edit-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;edit-screen&quot; tabindex=&quot;-1&quot;&gt;Edit Screen &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-3-view-and-edit/#edit-screen&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Edit-screen.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Edit screen for Alien3&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.&lt;/p&gt;
@@ -1556,13 +1548,13 @@ Navigate(AllMovies)
 		<updated>2021-07-01T15:03:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/</id>
 		<content type="html">&lt;p&gt;This continues a short series about &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/movie-directory/&quot;&gt;a movie directory personal project&lt;/a&gt; exploring Power Apps and Dataverse. In the first three posts, I’ve laid out the data structure in Dataverse and the app itself. This post will tackle how I was able to quickly fill in the 300+ movies in our collection converting from our previous system, files on a computer arranged for use on a Plex server. This will all be done in Power Automate.&lt;/p&gt;
-&lt;h2 id=&quot;the-old-structure&quot; tabindex=&quot;-1&quot;&gt;The old structure &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-old-structure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-old-structure&quot; tabindex=&quot;-1&quot;&gt;The Old Structure &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-old-structure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here’s how the old structure was, to work nicely with a &lt;a href=&quot;https://www.plex.tv/&quot;&gt;Plex&lt;/a&gt; server:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;There was a folder in my OneDrive differentiating where we owned each movie. Some movies were only on disc. Others were in one or more digital stores as well. As I tried to get more and more digital copies of movies we already owned, I would move a file from the general Movies folder into the correct digital store folder. This wasn’t a complete system, though. For example, it didn’t differentiate Blu-ray vs DVD, and if I had something in both Google and Microsoft it would only be in the Google folder.&lt;/li&gt;
 &lt;li&gt;Every file was named in the format “Movie Title (Year).” The year is valuable in Plex to help differentiate if there are multiple movies with the same title.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;the-variables&quot; tabindex=&quot;-1&quot;&gt;The variables &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-variables&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-variables&quot; tabindex=&quot;-1&quot;&gt;The Variables &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#the-variables&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To start the Flow, I declared several variables:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ownedPlatform: will come from what folder it was in&lt;/li&gt;
@@ -1572,12 +1564,12 @@ Navigate(AllMovies)
 &lt;li&gt;yearStartIndex: to help with the parsing&lt;/li&gt;
 &lt;li&gt;imdbAPIkey: my API key for IMDB, which I will use for grabbing cover images&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;get-the-movies&quot; tabindex=&quot;-1&quot;&gt;Get the movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#get-the-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;get-the-movies&quot; tabindex=&quot;-1&quot;&gt;Get the Movies &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#get-the-movies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First I’ll get all the movies. This is straightforward with a OneDrive “get files” action. I did find that I could only do a certain number of files at once, so I did it in chunks by having a separate “To Copy” folder, in which I put the next batch as I needed to copy them.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/Get-Movies.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Screenshot of getting movies from OneDrive&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I’ll then enter a loop of all the results, handling one movie at a time. This is a simple Apply to Each loop using the “value” from the previous step’s results.&lt;/p&gt;
-&lt;h2 id=&quot;parse-name-and-year&quot; tabindex=&quot;-1&quot;&gt;Parse name and year &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#parse-name-and-year&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;parse-name-and-year&quot; tabindex=&quot;-1&quot;&gt;Parse Name and Year &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/movie-directory-part-4-import/#parse-name-and-year&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Start by grabbing the file name and putting it into the variable:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2021/06/fileName.png&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Set variable to “Name without extension”&lt;/em&gt;&lt;/p&gt;
@@ -1679,7 +1671,7 @@ Navigate(AllMovies)
 &lt;/ul&gt;
 &lt;p&gt;DNS related to website content is typically a simple A record pointing to the IP address of the web server. Some DNS providers also have a FWD record type which will forward all browser traffic to a different URL, e.g. my ryanrobinson.ca domain currently forwards to my LinkedIn (although I think I will merge it together with this site at some point).&lt;/p&gt;
 &lt;p&gt;You rarely need to change your DNS – only when you change those other services – and there typically is no recurring fee, with your DNS hosting most often combined with either your domain hosting or website content hosting.&lt;/p&gt;
-&lt;h2 id=&quot;website-content&quot; tabindex=&quot;-1&quot;&gt;Website content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#website-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;website-content&quot; tabindex=&quot;-1&quot;&gt;Website Content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#website-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The content of your website, usually consisting of several files and at least one database, reside on a web server. I won’t dive into all the considerations choosing a web content host, but if you’re talking about a simple site like this one, you don’t need anything special.&lt;/p&gt;
 &lt;p&gt;There will always be some recurring fee for website hosting, although it may get combined into a package with domain or DNS. If the server is well-managed by a good support team, then you won’t need to worry about much other than keeping the account active. If it is a web server where you have to manage it yourself, you will need to pay attention to details like security updates and PHP versions.&lt;/p&gt;
 &lt;h2 id=&quot;email&quot; tabindex=&quot;-1&quot;&gt;Email &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-hosting-distinctions/#email&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -1864,17 +1856,13 @@ Navigate(AllMovies)
 &lt;p&gt;Information barriers are the solution you need. You can block interaction across the barriers so that the interns cannot see any content from anybody else or vice versa.&lt;/p&gt;
 &lt;p&gt;Creating the barriers is done by PowerShell. There is not currently a web admin interface to do it.&lt;/p&gt;
 &lt;p&gt;Create one organization segment for interns:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;New-OrganizationSegment -Name &amp;quot;Interns&amp;quot; -UserGroupFilter &amp;quot;Title -contains &#39;Intern&#39;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;New-OrganizationSegment&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name &lt;span class=&quot;token string&quot;&gt;&quot;Interns&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;UserGroupFilter &lt;span class=&quot;token string&quot;&gt;&quot;Title -contains &#39;Intern&#39;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Repeat for another segment called staff:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;New-OrganizationSegment -Name &amp;quot;Staff&amp;quot; -UserGroupFilter &amp;quot;Title -not (-contains &#39;Intern&#39;)&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;New-OrganizationSegment&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name &lt;span class=&quot;token string&quot;&gt;&quot;Staff&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;UserGroupFilter &lt;span class=&quot;token string&quot;&gt;&quot;Title -not (-contains &#39;Intern&#39;)&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now that you have the two segments, create the barrier between them:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;New-InformationBarrierPolicy -Name &amp;quot;Interns&amp;quot; -AssignedSegment &amp;quot;Interns&amp;quot; -SegmentsBlocked &amp;quot;Staff&amp;quot; -State Inactive
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;New-InformationBarrierPolicy&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name &lt;span class=&quot;token string&quot;&gt;&quot;Interns&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;AssignedSegment &lt;span class=&quot;token string&quot;&gt;&quot;Interns&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;SegmentsBlocked &lt;span class=&quot;token string&quot;&gt;&quot;Staff&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;State Inactive&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally, apply the information barriers:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Start-InformationBarrierPoliciesApplication
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;Start-InformationBarrierPoliciesApplication&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It could take several hours to go into effect.&lt;/p&gt;
 </content>
 	</entry>
@@ -1977,11 +1965,11 @@ Navigate(AllMovies)
 		<id>https://tech.ryanrobinson.ca/posts/2021/domain-change/</id>
 		<content type="html">&lt;p&gt;This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.&lt;/p&gt;
 &lt;p&gt;With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.&lt;/p&gt;
-&lt;h2 id=&quot;rearrange-content&quot; tabindex=&quot;-1&quot;&gt;Rearrange content &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#rearrange-content&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;rearrange-xontent&quot; tabindex=&quot;-1&quot;&gt;Rearrange Xontent &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#rearrange-xontent&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.&lt;/p&gt;
-&lt;h2 id=&quot;change-domain-a-record&quot; tabindex=&quot;-1&quot;&gt;Change domain A record &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#change-domain-a-record&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;change-domain-a-record&quot; tabindex=&quot;-1&quot;&gt;Change Domain A Record &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#change-domain-a-record&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To tell the wider Internet what to do when they try to visit ryanrobinson.technology, I had to go into my DNS records for the domain. It was previously using a simple FWD record to redirect any traffic to it to alliterationapplications.com, but now I want essentially the opposite. ryanrobinson.technology needs to be hosted and alliterationapplications.com needs to redirect traffic away instead. So, I removed the FWD record and added an A record to my IP address instead.&lt;/p&gt;
-&lt;h2 id=&quot;add-domain-to-server-account&quot; tabindex=&quot;-1&quot;&gt;Add domain to server account &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#add-domain-to-server-account&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-domain-to-server-account&quot; tabindex=&quot;-1&quot;&gt;Add Domain to Server Account &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#add-domain-to-server-account&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I’m on a shared hosting service with a cPanel. Step one was to add the extra domain ryanrobinson.technology to the same account as alliterationapplications.com. I specified that I wanted it to be a different document root than the existing site.&lt;/p&gt;
 &lt;p&gt;I also took advantage of the AutoSSL feature in cPanel to generate an SSL certificate for the new domain.&lt;/p&gt;
 &lt;h2 id=&quot;new-database&quot; tabindex=&quot;-1&quot;&gt;New Database &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#new-database&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -1989,7 +1977,7 @@ Navigate(AllMovies)
 &lt;h2 id=&quot;duplicator&quot; tabindex=&quot;-1&quot;&gt;Duplicator &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#duplicator&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I used &lt;a href=&quot;https://wordpress.org/plugins/duplicator/&quot;&gt;Duplicator&lt;/a&gt; to make a copy of the site and install it in a new folder.&lt;/p&gt;
 &lt;p&gt;At this point I had a functioning site at both domains.&lt;/p&gt;
-&lt;h2 id=&quot;htaccess-on-old-domain&quot; tabindex=&quot;-1&quot;&gt;.htaccess on old domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#htaccess-on-old-domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;htaccess-on-old-domain&quot; tabindex=&quot;-1&quot;&gt;.htaccess on Old Domain &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/domain-change/#htaccess-on-old-domain&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.&lt;/p&gt;
 &lt;p&gt;To achieve that, I added this to the .htaccess of alliterationapplications.com&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;pre class=&amp;quot;wp-block-code&amp;quot;&amp;gt;```
@@ -2047,7 +2035,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<link href="https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-mysql-extension/"/>
 		<updated>2021-09-29T20:16:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-mysql-extension/</id>
-		<content type="html">&lt;p&gt;In a recent post I talked about &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/mysql-workbench/&quot;&gt;how great MySQL Workbench is&lt;/a&gt;. A few days later, I discovered a Visual Studio Code extension simply called MySQL. It is not as robust in some ways as Workbench (e.g. bulk importing and exporting).&lt;/p&gt;
+		<content type="html">&lt;p&gt;In a recent post I talked about &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/mysql-workbench/&quot;&gt;how great MySQL Workbench is&lt;/a&gt;. A few days later, I discovered a Visual Studio Code extension simply called MySQL. It is not as robust in some ways as Workbench (e.g. bulk importing and exporting).&lt;/p&gt;
 &lt;p&gt;However, it does meet all the same core functionality such as:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;browse the tables and databases available to the user, with all the data kept in nice clear and easy-to-read lines&lt;/li&gt;
@@ -2070,7 +2058,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<updated>2021-10-04T14:14:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/visual-studio-code-grep/</id>
 		<content type="html">&lt;p&gt;This is a quick post about a feature I discovered by accident in Visual Studio Code that I really like:&lt;/p&gt;
-&lt;p&gt;I was working in &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/visual-studio-code-remote-ssh-development/&quot;&gt;a Linux machine and ran a grep in the integrated terminal&lt;/a&gt; to find a particular piece of code. The terminal gave me the results in the usual way, with the file names highlighted, the line in the code, and a bit of the code around what I searched for. Then I happened to scroll over the file name in the results and it showed me a tooltip offering that I could open the file by holding Ctrl and clicking on the path.&lt;/p&gt;
+&lt;p&gt;I was working in &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/vs-code-remote-ssh-development/&quot;&gt;a Linux machine and ran a grep in the integrated terminal&lt;/a&gt; to find a particular piece of code. The terminal gave me the results in the usual way, with the file names highlighted, the line in the code, and a bit of the code around what I searched for. Then I happened to scroll over the file name in the results and it showed me a tooltip offering that I could open the file by holding Ctrl and clicking on the path.&lt;/p&gt;
 &lt;p&gt;So I tried it, and it worked as advertised. This is one of those tiny things that will really add up. I use grep a lot. Most of the time when I do I want to open one or more of the files found. Without this little feature, that means copying the path to the file into a new command. That’s a small amount of time, but it does add up.&lt;/p&gt;
 </content>
 	</entry>
@@ -2189,7 +2177,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;/ol&gt;
 &lt;p&gt;There are also now two ways to achieve this. The older way is the Sync button which is visible both in Teams and SharePoint in the browser. Hitting that will open the OneDrive app on your computer to set up the sync.&lt;/p&gt;
 &lt;p&gt;The newer way is a “Add shortcut to OneDrive” button which shows up in SharePoint but not in Teams.&lt;/p&gt;
-&lt;p&gt;It’s too big of a tangent to break down the advantages of each, but &lt;a href=&quot;https://tech.ryanrobinson.ca/microsoft-365/sharepoint/desktop-sync-files-across-onedrive-and-sharepoint/&quot;&gt;I do have a post about it&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It’s too big of a tangent to break down the advantages of each, but &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/desktop-sync-files-onedrive-sharepoint/&quot;&gt;I do have a post about it&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;other-ways-to-access-files&quot; tabindex=&quot;-1&quot;&gt;Other Ways to Access Files &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/microsoft-teams-information-session/#other-ways-to-access-files&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Those are the two ways most intuitive for most people to access their files: within Teams and synchronized to your computer.&lt;/p&gt;
 &lt;p&gt;But there are a lot more which I will mention but not demo all of them.&lt;/p&gt;
@@ -2297,7 +2285,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<updated>2021-11-10T21:34:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/</id>
 		<content type="html">&lt;p&gt;This is the first in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;a series setting up a basic DevOps pipeline&lt;/a&gt; through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.&lt;/p&gt;
-&lt;h2 id=&quot;oracle-linux-8-lamp-stack&quot; tabindex=&quot;-1&quot;&gt;Oracle Linux 8 LAMP stack &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#oracle-linux-8-lamp-stack&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;oracle-linux-8-lamp-stack&quot; tabindex=&quot;-1&quot;&gt;Oracle Linux 8 LAMP Stack &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#oracle-linux-8-lamp-stack&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The VM will be using &lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant &lt;/a&gt;and &lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;Oracle VirtualBox&lt;/a&gt;. Every user will need to install both, as well as the VirtualBox extensions, for this to work.&lt;/p&gt;
 &lt;p&gt;The configuration for the Vagrant box can be found on &lt;a href=&quot;https://github.com/ryan-l-robinson&quot;&gt;my GitHub&lt;/a&gt;. For the sake of this demonstration, it is a fairly simple Oracle Linux 8, using a build in the Vagrant repository.&lt;/p&gt;
 &lt;p&gt;The first script, provision.sh, sets up the basic VM with a LAMP stack:&lt;/p&gt;
@@ -2309,16 +2297,16 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;&lt;a href=&quot;https://getcomposer.org/&quot;&gt;Composer&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That’s a nice generic LAMP stack. If you want an Oracle Linux 8 LAMP stack for some other purpose, you can stop there.&lt;/p&gt;
-&lt;h2 id=&quot;drupal-9-local-dev&quot; tabindex=&quot;-1&quot;&gt;Drupal 9 local dev &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#drupal-9-local-dev&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;drupal-9-local-dev&quot; tabindex=&quot;-1&quot;&gt;Drupal 9 Local Dev &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#drupal-9-local-dev&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my case, the purpose of this vagrant box is for the first stage of development on a Drupal 9 website. So I’m going to go a few steps further to get it ready for the specific Drupal 9 project. That includes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/my-web-development-workflow/&quot;&gt;it can be used to connect to GitLab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/web-development-workflow/&quot;&gt;it can be used to connect to GitLab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Configures git including pulling the latest version of the code from the GitLab&lt;/li&gt;
 &lt;li&gt;Imports a MySQL database if one is provided&lt;/li&gt;
 &lt;li&gt;Self-signed keys so that https browsing will be possible&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I may write up specific details of some of these later, but &lt;a href=&quot;https://github.com/ryan-l-robinson/Oracle-Linux-LAMP&quot;&gt;the bottom line is the code in GitHub.&lt;/a&gt; This part is in the provision script d9.sh, which also references a separate script specifically for the database import called importdb.sh.&lt;/p&gt;
-&lt;h2 id=&quot;the-user-experience&quot; tabindex=&quot;-1&quot;&gt;The user experience &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#the-user-experience&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-user-experience&quot; tabindex=&quot;-1&quot;&gt;The User Experience &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/#the-user-experience&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The idea is that at the end of this, the person setting up their machine has very few steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;Git clone&lt;/code&gt; the repo for building the virtual machine on their PC&lt;/li&gt;
@@ -2434,7 +2422,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;migrating a site to a new server and needing to test it before changing the public DNS&lt;/li&gt;
 &lt;li&gt;development on dev/staging servers which do not have public DNS listings&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;open-the-file&quot; tabindex=&quot;-1&quot;&gt;Open the file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#open-the-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;open-the-file&quot; tabindex=&quot;-1&quot;&gt;Open the File &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#open-the-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The hosts file in Windows is located at C:&#92;Windows&#92;System32&#92;drivers&#92;etc&#92;hosts. I find I routinely forget that, so I added a shortcut to my primary document folder so I can get back to it faster. To do that in Windows, browse to the folder where you want the shortcut. Right-click and select New Shortcut. In the prompt that opens, enter C:&#92;Windows&#92;System32&#92;drivers&#92;etc&#92;hosts for the location of the item. Click next, then provide it a shortcut name – that could stay simple as “hosts” or something else. Save it, and now you’re good to go.&lt;/p&gt;
 &lt;p&gt;Side note: Linux has a similar system for overriding public DNS. The hosts file there is typically located at /etc/hosts and is structured the same way.&lt;/p&gt;
 &lt;p&gt;You will need to edit this file as an administrator in order to make changes. You can approach this either way:&lt;/p&gt;
@@ -2443,8 +2431,8 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;li&gt;Some editors such as Visual Studio Code will allow you to open the file first as a non-administrator, then when you try to save it will fail and prompt you if you want to save it as an administrator instead.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Since I use VS Code for my main editor anyway, I tend to use option 2 as a bit faster most of the time.&lt;/p&gt;
-&lt;h2 id=&quot;file-contents&quot; tabindex=&quot;-1&quot;&gt;File contents &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#file-contents&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local library website VM at &lt;a href=&quot;https://local.library.wlu.ca/&quot;&gt;https://local.library.wlu.ca&lt;/a&gt;, add this line:&lt;/p&gt;
+&lt;h2 id=&quot;file-contents&quot; tabindex=&quot;-1&quot;&gt;File Contents &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/windows-10-hosts-file/#file-contents&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local VM at &lt;a href=&quot;https://domain1.com/&quot;&gt;https://domain1.com&lt;/a&gt;, add this line:&lt;/p&gt;
 &lt;pre class=&quot;language-text&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;127.0.0.1 domain1.com&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you want to have multiple domains on the same IP address, like a dev server that has a couple different test sites on it, you can structure it in one of two ways. The shorter version has one line per IP address, followed by all the domains:&lt;/p&gt;
 &lt;pre class=&quot;language-text&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;127.0.0.1 domain1.com domain2.com domain3.com&lt;/code&gt;&lt;/pre&gt;
@@ -2500,7 +2488,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<updated>2021-12-10T12:55:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/</id>
 		<content type="html">&lt;p&gt;Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.&lt;/p&gt;
-&lt;h2 id=&quot;add-required-packages&quot; tabindex=&quot;-1&quot;&gt;Add required packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#add-required-packages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;add-required-packages&quot; tabindex=&quot;-1&quot;&gt;Add Required Packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/#add-required-packages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are a few preliminary packages that you’ll need: gcc, make, php-devel, and php-pear. You can install in Oracle Linux 8 using this command:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; gcc &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; php-devel php-pear&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You don’t have to provide the -y. That will pre-approve any other prompts that come up, including if it requires installing other dependent packages. If you want to be more careful, don’t use that, but it can come in handy in contexts like installing this through a script.&lt;/p&gt;
@@ -2529,7 +2517,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<link href="https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/"/>
 		<updated>2021-12-13T19:17:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/</id>
-		<content type="html">&lt;p&gt;I’ve mentioned before that &lt;a href=&quot;https://github.com/pa11y/pa11y-ci&quot;&gt;pa11y&lt;/a&gt; is a great tool for accessibility testing, specifically in the context of &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/koa11y-accessibility-testing-tool/&quot;&gt;the koa11y desktop tool.&lt;/a&gt; In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.&lt;/p&gt;
+		<content type="html">&lt;p&gt;I’ve mentioned before that &lt;a href=&quot;https://github.com/pa11y/pa11y-ci&quot;&gt;pa11y&lt;/a&gt; is a great tool for accessibility testing, specifically in the context of &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/koa11y-accessibility-testing-tool/&quot;&gt;the koa11y desktop tool.&lt;/a&gt; In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.&lt;/p&gt;
 &lt;h2 id=&quot;nodejs&quot; tabindex=&quot;-1&quot;&gt;NodeJS &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pa11y requires &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;NodeJS&lt;/a&gt;. To add that to Oracle Linux 8, run this command:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; nodejs &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -2569,15 +2557,15 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<updated>2021-12-16T12:15:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/</id>
 		<content type="html">&lt;p&gt;A long-awaited feature has arrived in SharePoint: &lt;a href=&quot;https://docs.microsoft.com/en-gb/SharePoint/hub-to-hub-association&quot;&gt;the ability to associate one hub site with another hub site&lt;/a&gt;. Over a year ago I saw references to a PowerShell cmdlet to do this in the official documentation pages, but with a note that it was in limited preview so most of us wouldn’t be able to do it yet. Now it has finally rolled out to general availability.&lt;/p&gt;
-&lt;h2 id=&quot;why-do-this&quot; tabindex=&quot;-1&quot;&gt;Why do this &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#why-do-this&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;why-do-this&quot; tabindex=&quot;-1&quot;&gt;Why Do This &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#why-do-this&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Associating one hub with another hub changes one thing: search results. If you’re in one hub and do a search, results from other associated hubs can be prioritized alongside other sites in the same hub. This is a nice extra level of controlling your search results for a pretty common scenario.&lt;/p&gt;
 &lt;p&gt;For example, imagine being in a small team with lots of projects. You want a site for every project, associated to your team’s hub site (for the search results, for a sites web part, etc). But your team is also a part of a larger department and you may have a lot of useful general resources on that site. Now when you search from your team’s SharePoint you can get results in both directions: the projects in the same hub and the general documents of the associated department hub.&lt;/p&gt;
-&lt;h2 id=&quot;what-it-doesn-t-do&quot; tabindex=&quot;-1&quot;&gt;What it doesn’t do &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#what-it-doesn-t-do&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-it-doesn-t-do&quot; tabindex=&quot;-1&quot;&gt;What It Doesn’t Do &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#what-it-doesn-t-do&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It does not change any of the other things that come with the first level of hub association, most of which makes sense if you think about them.&lt;/p&gt;
 &lt;p&gt;Navigation doesn’t change. There is a shared hub menu. Nothing from the associated hub’s navigation will appear. But it makes sense that it doesn’t really work to have two conflicting navigation areas.&lt;/p&gt;
 &lt;p&gt;The automatic application of site designs for all sites in a hub also stays as only sites in that hub. This makes sense for the same reason navigation does: you can’t really have two site designs applied to the same site at once.&lt;/p&gt;
 &lt;p&gt;The sites web part, with the setting to filter by hub associations, doesn’t change. This one I think could make sense to expand, for scenarios much like the search: it could have one filter setting for only sites in this hub and another filter for sites in associated hubs as well. I may be missing something for why that couldn’t work, so maybe that feature will come later.&lt;/p&gt;
-&lt;h2 id=&quot;more-details&quot; tabindex=&quot;-1&quot;&gt;More details &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#more-details&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;more-details&quot; tabindex=&quot;-1&quot;&gt;More Details &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2021/sharepoint-hub-association/#more-details&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Check out &lt;a href=&quot;https://sharepointmaven.com/how-to-add-a-hub-to-another-hub-in-sharepoint-online/&quot;&gt;SharePoint Maven’s recent post for more details&lt;/a&gt;.&lt;/p&gt;
 </content>
 	</entry>
@@ -2626,7 +2614,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; update-alternatives --set php /usr/bin/php8.0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.&lt;/p&gt;
 &lt;h3 id=&quot;php-packages&quot; tabindex=&quot;-1&quot;&gt;PHP packages &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#php-packages&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-install-pecl-uploadprogress/&quot;&gt;installing PECL UploadProgress for Oracle Linux&lt;/a&gt;, which is similar but a bit different than these Ubuntu commands.&lt;/p&gt;
+&lt;p&gt;Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/drupal-pecl-uploadprogress/&quot;&gt;installing PECL UploadProgress for Oracle Linux&lt;/a&gt;, which is similar but a bit different than these Ubuntu commands.&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; root&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# Install other needed packages&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; apt update&lt;/span&gt;
@@ -2642,7 +2630,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; php -r &lt;span class=&quot;token string&quot;&gt;&quot;unlink(&#39;composer-setup.php&#39;);&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;At this point, the server is ready to provide the core packages that run Drupal well.&lt;/p&gt;
 &lt;h2 id=&quot;pa11y-accessibility-testing&quot; tabindex=&quot;-1&quot;&gt;Pa11y accessibility testing &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/#pa11y-accessibility-testing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/pa11y-ci-oracle-linux-8-installation/&quot;&gt;I’ve also mentioned pa11y recently&lt;/a&gt;, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/pa11y-ci-oracle-linux-8-installation/&quot;&gt;I’ve also mentioned pa11y recently&lt;/a&gt;, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Install pa11y accessibility testing tool, including NodeJS&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium&lt;/span&gt;
 &lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh&lt;/span&gt;
@@ -2667,7 +2655,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/</id>
 		<content type="html">&lt;p&gt;Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.&lt;/p&gt;
 &lt;p&gt;I have pulled out a generic version of this code and &lt;a href=&quot;https://github.com/ryan-l-robinson/drupal-permissions-from-file&quot;&gt;made it available on my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;hook-on-login&quot; tabindex=&quot;-1&quot;&gt;Hook on login &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#hook-on-login&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;hook-on-login&quot; tabindex=&quot;-1&quot;&gt;Hook on Login &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#hook-on-login&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with &lt;a href=&quot;https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x&quot;&gt;the hook_user_login hook&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
  * Implements hook_user_login
@@ -2684,7 +2672,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;read-file&quot; tabindex=&quot;-1&quot;&gt;Read file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#read-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;read-file&quot; tabindex=&quot;-1&quot;&gt;Read File &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-assign-permissions-username-file/#read-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Next we have another function that checks to see if the username is in the file or not:&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
 * Reads from file and determine whether the specified user is in the list
@@ -2719,7 +2707,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/"/>
 		<updated>2022-01-28T13:17:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/</id>
-		<content type="html">&lt;p&gt;This post picks up in a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;mini-series&lt;/a&gt; describing how I created a generic Drupal-friendly container working with &lt;a href=&quot;https://gitpod.io/&quot;&gt;GitPod&lt;/a&gt;. The &lt;a href=&quot;https://tech.ryanrobinson.ca/drupal/gitpod-container-1-dockerfile/&quot;&gt;first covered the GitPod.Dockerfile&lt;/a&gt; to build the core LAMP stack image.&lt;/p&gt;
+		<content type="html">&lt;p&gt;This post picks up in a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;mini-series&lt;/a&gt; describing how I created a generic Drupal-friendly container working with &lt;a href=&quot;https://gitpod.io/&quot;&gt;GitPod&lt;/a&gt;. The &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-1-dockerfile/&quot;&gt;first covered the GitPod.Dockerfile&lt;/a&gt; to build the core LAMP stack image.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-GitPod&quot;&gt;The entire project is available in my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.&lt;/p&gt;
 &lt;pre class=&quot;language-gitpod&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitpod&quot;&gt;image:
@@ -2750,14 +2738,14 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
     vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt; system.site page.front /node/&lt;span class=&quot;token variable&quot;&gt;$home_id&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The key for that structure to be maintained is that the homepage is of the content type “Home” and with the title of “Home.” If that isn’t met, this workaround will fail.&lt;/p&gt;
-&lt;h3 id=&quot;admin-password&quot; tabindex=&quot;-1&quot;&gt;Admin password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#admin-password&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;admin-password&quot; tabindex=&quot;-1&quot;&gt;Admin Password &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#admin-password&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;By default, the site install at this point created a default super-admin user with a random password. For the purpose of this demo, I wanted to control what that admin password was so I could put it in the GitHub README and keep it saved in my &lt;a href=&quot;https://ryanrobinson.technology/all/tools/security-essentials-password-manager/&quot;&gt;password manager&lt;/a&gt;. So, I used drush to always reset the admin password back to what I wanted it to be:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;vendor/drush/drush/drush user:password admin &lt;span class=&quot;token string&quot;&gt;&quot;ZNB*ufm1tyz4rwc@yzk&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;cleanup&quot; tabindex=&quot;-1&quot;&gt;Cleanup &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#cleanup&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There are two more small acts of clean up that I want, to minimize warning errors that would otherwise appear as soon as I sign in. One is to rebuild the content permissions and the other is to run cron.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;vendor/drush/drush/drush php-eval &lt;span class=&quot;token string&quot;&gt;&#39;node_access_rebuild();&#39;&lt;/span&gt;
 vendor/drush/drush/drush &lt;span class=&quot;token function&quot;&gt;cron&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;drush-alias&quot; tabindex=&quot;-1&quot;&gt;Drush alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#drush-alias&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;drush-alias&quot; tabindex=&quot;-1&quot;&gt;Drush Alias &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#drush-alias&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I want to be able to use the command &lt;code&gt;drush&lt;/code&gt; instead of always having to reference the full path to drush, as I did above. So I add an alias to my .bashrc. You can also do this by adding the location of drush to the PATH. Arguably that is more correct but this was simpler in a GitPod scenario where containers are constantly being built and destroyed and so don’t always have to be precisely the long-term ideal.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;alias drush=&quot;/workspace/drupal-gitpod/vendor/drush/drush/drush&quot;&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; ~/.bashrc&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;command&quot; tabindex=&quot;-1&quot;&gt;Command &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#command&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
@@ -2799,7 +2787,7 @@ apachectl start&lt;/code&gt;&lt;/pre&gt;
     - gruntfuggly.todo-tree
     - mblode.twig-language
     - vscode-icons-team.vscode-icons&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;almost-there&quot; tabindex=&quot;-1&quot;&gt;Almost there… &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#almost-there&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;almost-there&quot; tabindex=&quot;-1&quot;&gt;Almost There… &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/#almost-there&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post of this series, I’ll look at a few other configuration changes I needed to make for this to work.&lt;/p&gt;
 </content>
 	</entry>
@@ -2836,7 +2824,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.ini&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max_execution_time from 30s to 300s, I might do this:&lt;/p&gt;
 &lt;pre class=&quot;language-docker&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; sed -i &lt;span class=&quot;token string&quot;&gt;&quot;s/max_execution_time = 30/max_execution_time = 300/g&quot;&lt;/span&gt; /etc/php/8.0/apache2/php.ini&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;drupal-settings&quot; tabindex=&quot;-1&quot;&gt;Drupal settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/#drupal-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;drupal-settings&quot; tabindex=&quot;-1&quot;&gt;Drupal Settings &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-3-settings-config/#drupal-settings&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Most of the Drupal settings are similar to the default. The largest change is familiar to any Drupal developer: set the database credentials. Since this is a GitPod container which gets created and destroyed on the fly regularly, I went simple using the root user and no password. A production server would have a different user and a good password.&lt;/p&gt;
 &lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$databases&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
   &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;database&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;drupal&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
@@ -2871,68 +2859,68 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 		<id>https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/</id>
 		<content type="html">&lt;p&gt;Here’s another piece in a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps&lt;/a&gt; setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.&lt;/p&gt;
 &lt;p&gt;I split this into two pieces, taking advantage of &lt;a href=&quot;https://docs.gitlab.com/ee/ci/yaml/index.html#extends&quot;&gt;GitLab’s ability to extend other functions, even functions in other projects&lt;/a&gt;. My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in &lt;a href=&quot;https://github.com/ryan-l-robinson/GitLab-CI-CD&quot;&gt;my personal GitHub&lt;/a&gt;. I know that’s an unintuitive combination.&lt;/p&gt;
-&lt;h2 id=&quot;the-generic-ci-cd-functions&quot; tabindex=&quot;-1&quot;&gt;The generic CI/CD functions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-generic-ci-cd-functions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-generic-ci-cd-functions&quot; tabindex=&quot;-1&quot;&gt;The Generic CI/CD Functions &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-generic-ci-cd-functions&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To be able to test, I first need a general Oracle Linux 8 image that can run PHP 8.0 and composer for a Drupal site.&lt;/p&gt;
-&lt;pre class=&quot;language-gitlab&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitlab&quot;&gt;## Build an Oracle Linux 8 container, used by other tests below ##
-.ol8_lamp_build:
-  stage: test
-  image: oraclelinux:8
-  before_script:
-    - dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    - dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    - dnf -y module enable php:remi-8.0
-    - dnf install -y php php-gd php-pdo zip unzip git php-curl php-mbstring php-zip php-json php-xml php-simplexml php-mysqlnd php-pecl-apcu wget curl
-    - php -v
-    - php -r &quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;
-    - php composer-setup.php
-    - php -r &quot;unlink(&#39;composer-setup.php&#39;);&quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## Build an Oracle Linux 8 container, used by other tests below ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;.ol8_lamp_build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; oraclelinux&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;before_script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; dnf &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;y install https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//dl.fedoraproject.org/pub/epel/epel&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;release&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;8.noarch.rpm
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; dnf &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;y install https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//rpms.remirepo.net/enterprise/remi&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;release&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;8.rpm
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; dnf &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;y module enable php&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;remi&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.0&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; dnf install &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;y php php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;gd php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pdo zip unzip git php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;curl php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;mbstring php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;zip php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;json php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;xml php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;simplexml php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;mysqlnd php&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pecl&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;apcu wget curl
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; php &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;v
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; php &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;r &quot;copy(&#39;https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//getcomposer.org/installer&#39;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &#39;composer&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;setup.php&#39;);&quot;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; php composer&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;setup.php
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; php &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;r &quot;unlink(&#39;composer&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;setup.php&#39;);&quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Part one is a project containing a few generic CI job templates. One of those, in the tests.yml file, is a PHP lint test. Saying that I want to test every php file in a certain folder is not as easy as you’d think – there is no flag for applying it recursively – so it requires a loop:&lt;/p&gt;
-&lt;pre class=&quot;language-gitlab&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitlab&quot;&gt;### PHP lint test ###
-.php_lint:
-  stage: test
-  extends: .ol8_lamp_build
-  variables:
-    DIRECTORIES: &quot;./&quot;
-    EXTENSIONS: &quot;php&quot;
-  script:
-    ## Recursively checks for files of specified extensions in specified directories and completes php lint on them
-    - cwd=&quot;$(pwd)&quot;
-    - |
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;### PHP lint test ###&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;.php_lint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .ol8_lamp_build
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;DIRECTORIES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;EXTENSIONS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;php&quot;&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;## Recursively checks for files of specified extensions in specified directories and completes php lint on them&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cwd=&quot;$(pwd)&quot;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
       for DIRECTORY in $DIRECTORIES 
         do
           cd $DIRECTORY
           for EXT in $EXTENSIONS
             do
-              files=&quot;$(find -name *.${EXT} -type f)&quot;
+              files=&quot;$(find -name *.${EXT} -type f)&quot;&lt;/span&gt;
 
-              for file in ${files}
-                do php -l ${file};
+              for file in $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;files&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+                do php &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;l $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;file&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;;
               done;
             done;
           cd $cwd;
         done;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This has variables for the directory to start testing from, as well as what extensions to test. The extension variable defaults to only php files, but it can be overridden to include other extensions, which is valuable with Drupal where other extensions get used for php code like .module and .theme.&lt;/p&gt;
-&lt;h2 id=&quot;the-project-s-ci-file&quot; tabindex=&quot;-1&quot;&gt;The project’s CI file &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-project-s-ci-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-project-s-ci-file&quot; tabindex=&quot;-1&quot;&gt;The Project’s CI File &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/#the-project-s-ci-file&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Part two is the specific project that then references those generic templates. Using the full project reference, under the assumption that in a real situation this would be in a differernt GitLab project, that looks something like this in the project’s .gitlab-ci.yml file:&lt;/p&gt;
-&lt;pre class=&quot;language-gitlab&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-gitlab&quot;&gt;# Includes general CI jobs to extend from
-include:
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Includes general CI jobs to extend from&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
  
-    - project: &#39;[path to the GitLab project with CI]&#39;
-      ref: main
-      file: test.yml
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;[path to the GitLab project with CI]&#39;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; main
+      &lt;span class=&quot;token key atrule&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test.yml
 
-## Stages ##
-stages:
-  - test
+&lt;span class=&quot;token comment&quot;&gt;## Stages ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;stages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; test
 
-## Test Jobs ##
+&lt;span class=&quot;token comment&quot;&gt;## Test Jobs ##&lt;/span&gt;
 
-### Tests for PHP errors in custom code ###
-php:
-  extends: .php_lint
-  variables:
-    DIRECTORIES: ./web/themes/custom ./web/modules/custom
-    EXTENSIONS: php module theme inc&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;token comment&quot;&gt;### Tests for PHP errors in custom code ###&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;php&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .php_lint
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;DIRECTORIES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./web/themes/custom ./web/modules/custom
+    &lt;span class=&quot;token key atrule&quot;&gt;EXTENSIONS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; php module theme inc&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This example will run the PHP syntax test against all .php, .module, .theme, and .inc files located with the Drupal 8+ custom themes and custom modules directories.&lt;/p&gt;
 </content>
 	</entry>
@@ -2945,7 +2933,7 @@ php:
 		<content type="html">&lt;p&gt;This relates to &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the GitLab DevOps process&lt;/a&gt;. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.&lt;/p&gt;
 &lt;p&gt;But there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.&lt;/p&gt;
 &lt;p&gt;Here’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.&lt;/p&gt;
-&lt;h2 id=&quot;install-gitlab-runner-package&quot; tabindex=&quot;-1&quot;&gt;Install GitLab Runner package &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#install-gitlab-runner-package&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;install-gitlab-runner-package&quot; tabindex=&quot;-1&quot;&gt;Install GitLab Runner Package &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#install-gitlab-runner-package&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First you need to install the GitLab Runner package on your server. GitLab will give you the instructions to do this, but here’s the general idea.&lt;/p&gt;
 &lt;p&gt;First, copy the package to your server, in the /usr/local/bin folder:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--output&lt;/span&gt; /usr/local/bin/gitlab-runner &lt;span class=&quot;token string&quot;&gt;&quot;https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -2954,7 +2942,7 @@ php:
 &lt;p&gt;Navigate to that folder and install:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /usr/local/bin
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; ./gitlab-runner &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--user&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;libgit --working-directory&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/home/libgit&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;register-a-runner&quot; tabindex=&quot;-1&quot;&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;&lt;/a&gt;Register a runner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;register-a-runner&quot; tabindex=&quot;-1&quot;&gt;Register a Runner &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/#register-a-runner&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Once the runner is installed, you’ll need to register at least one runner on the server.&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; ./gitlab-runner register &lt;span class=&quot;token parameter variable&quot;&gt;--url&lt;/span&gt; https://gitlab.com/ --registration-token &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;token&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The script will prompt you with a few configuration options. Some are fairly obvious, but I’ll note a couple others.&lt;/p&gt;
@@ -3016,7 +3004,7 @@ php:
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/</id>
 		<content type="html">&lt;p&gt;Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps&lt;/a&gt; posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.&lt;/p&gt;
 &lt;p&gt;Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.&lt;/p&gt;
-&lt;h2 id=&quot;what-s-included&quot; tabindex=&quot;-1&quot;&gt;What’s included &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#what-s-included&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-s-included&quot; tabindex=&quot;-1&quot;&gt;What’s Included &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#what-s-included&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It is not a full database backup, but it does include most settings, such as:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Enabled extensions and themes&lt;/li&gt;
@@ -3029,7 +3017,7 @@ php:
 &lt;p&gt;This distinction between configuration and content makes sense in a couple ways.&lt;/p&gt;
 &lt;p&gt;Configuration changes are usually made first in your development environment, tested thoroughly, and then pushed through the pipeline. That’s not true for content. Content is often going to be created or edited first by the regular site users on production. Those don’t need technical teams to approve and test everything and are available to more users to do directly and have go into effect immediately.&lt;/p&gt;
 &lt;p&gt;You also don’t need to synchronize all content in the same way, since for the most part the presence or absence of an extra basic page node does not affect the ability to sufficiently test anything new that needs to be tested. It’s ok if you let your production site’s content get ahead of your development environment in a way that you don’t want to happen with configuration.&lt;/p&gt;
-&lt;h2 id=&quot;git-workflow&quot; tabindex=&quot;-1&quot;&gt;Git workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#git-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;git-workflow&quot; tabindex=&quot;-1&quot;&gt;Git Workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/#git-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The ideal flow for these changes is integrated with your code git flow. You can export your configuration on dev, add it to the git repository, push through to the next server in your CI/CD chain, and import it there. Much of this can be streamlined with CI/CD tools, but here are the manual steps:&lt;/p&gt;
 &lt;p&gt;To export the configuration:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;drush config-export&lt;/code&gt;&lt;/pre&gt;
@@ -3104,7 +3092,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<content type="html">&lt;p&gt;I once heard the phrase that most open source projects (the context was specifically Drupal) was not free as in beer but was free as in cats.&lt;/p&gt;
 &lt;p&gt;What he meant by that is that you may not pay for the code up front, but you probably do have to pay to keep it running and you need to give it your attention if you really want to get the best of it. It’s not something you can enjoy with no responsibility.&lt;/p&gt;
 &lt;p&gt;Cats need food, attention (sometimes while you’re trying to sleep or use your computer), clean litter, play time, and so on. Open source technology needs code maintenance and infrastructure to run it.&lt;/p&gt;
-&lt;p&gt;This is a conversation that came up a lot in a previous job that included consulting with non-profit clients on Constituent Relationship Management (CRM) systems. They were often very excited that we could help them get set up with &lt;a href=&quot;https://tech.ryanrobinson.ca/categories/civicrm/&quot;&gt;CiviCRM&lt;/a&gt;, an open source platform, in part because it was “free.”&lt;/p&gt;
+&lt;p&gt;This is a conversation that came up a lot in a previous job that included consulting with non-profit clients on Constituent Relationship Management (CRM) systems. They were often very excited that we could help them get set up with CiviCRM, an open source platform, in part because it was “free.”&lt;/p&gt;
 &lt;p&gt;We made a habit of explaining that the code may be free, but there would still be costs in other ways. There were costs paid to us to help them configure it properly. There were costs paid to us to apply software maintenance updates on a regular basis. There were costs for a web server to host the site, and CiviCRM did need meaningfully more power – which meant more expensive – than a simple WordPress shared host. There would often be the cost of bugs, both in terms of lost productivity while the bug was present and in terms of time/money to get the bug fixed. There were costs to develop any custom extensions. They had to know all this before they signed off on a project.&lt;/p&gt;
 &lt;p&gt;Not always, but sometimes – especially with non-profit deals available with services like Salesforce and Dynamics 365 – it would actually be cheaper in both time and money to use a paid closed source hosted platform than to use the “free” CiviCRM. That depends on a few variables including number of users and how many customizations would be needed. And of course, there were other variables as well unrelated to cost (CiviCRM is built for non-profits first). Cost isn’t the only factor, but it often is the first one that comes to mind for non-profits on a tight budget.&lt;/p&gt;
 &lt;p&gt;Open source is great. I’m thankful for many great open source systems including CiviCRM and Drupal. Just know that “free” is “as in cats” rather than “as in beer.”&lt;/p&gt;
@@ -3155,7 +3143,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/"/>
 		<updated>2022-03-18T12:38:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/</id>
-		<content type="html">&lt;p&gt;I have previously shared &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/vagrant-oracle-linux-vm/&quot;&gt;setting up local development environments using vagrant&lt;/a&gt; and &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;GitPod&lt;/a&gt; in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.&lt;/p&gt;
+		<content type="html">&lt;p&gt;I have previously shared &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/&quot;&gt;setting up local development environments using vagrant&lt;/a&gt; and &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;GitPod&lt;/a&gt; in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.&lt;/p&gt;
 &lt;p&gt;Code for this is found in &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;overview&quot; tabindex=&quot;-1&quot;&gt;Overview &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#overview&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There will need to be several files to make this work:&lt;/p&gt;
@@ -3195,9 +3183,9 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;scripts&quot; tabindex=&quot;-1&quot;&gt;Scripts &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-docker-devcontainer/#scripts&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You can trigger other scripts to run at various points in the process.&lt;/p&gt;
 &lt;p&gt;The primary one I made use of is postCreateCommand. This will run only once when the container is first built. This one is much more complicated building the entire site. I’ll have another post dedicated to that script.&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;    &quot;postCreateCommand&quot;: &quot;/bin/bash -c &#92;&quot;/postCreateCommand.sh&#92;&quot;&quot;,&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;postCreateCommand&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/bin/bash -c &#92;&quot;/postCreateCommand.sh&#92;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I also have a much simpler postAttachCommand. This only sources the ~/.bashrc to ensure the user knows where to find commands like drush and composer, which were set up by the postCreateCommand script.&lt;/p&gt;
-&lt;pre class=&quot;language-devcontainer&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-devcontainer&quot;&gt;    &quot;postAttachCommand&quot;: &quot;/bin/bash -c &#92;&quot;source ~/.bashrc&#92;&quot;&quot;,&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;postAttachCommand&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/bin/bash -c &#92;&quot;source ~/.bashrc&#92;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
 	</entry>
 	
@@ -3239,7 +3227,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2022/building-jekyll/"/>
 		<updated>2022-05-05T11:39:18Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/building-jekyll/</id>
-		<content type="html">&lt;p&gt;I recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/civicrm/free-as-in-cats/&quot;&gt;free as in cats&lt;/a&gt; and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.&lt;/p&gt;
+		<content type="html">&lt;p&gt;I recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/free-as-in-cats/&quot;&gt;free as in cats&lt;/a&gt; and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.&lt;/p&gt;
 &lt;p&gt;Here’s a high level look at how I did it, and the code &lt;a href=&quot;https://github.com/ryan-l-robinson/ryan-l-robinson.github.io&quot;&gt;is available in my GitHub&lt;/a&gt;. The main branch is everything I control, then the GitHub Actions generate the site on the gh-pages branch.&lt;/p&gt;
 &lt;h2 id=&quot;chirpy-theme&quot; tabindex=&quot;-1&quot;&gt;Chirpy Theme &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/#chirpy-theme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I looked around for a bit and chose to start from &lt;a href=&quot;http://jekyllthemes.org/themes/jekyll-theme-chirpy/&quot;&gt;the Chirpy theme&lt;/a&gt;. I like its simple design while still supporting the key blog features: categories, tags, archive timeline. And the biggest selling point was the switch between dark and light modes. That’s a nice feature to offer visitors.&lt;/p&gt;
@@ -3267,7 +3255,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;users&quot; tabindex=&quot;-1&quot;&gt;Users &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#users&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;WordPress offers support for multiple users with different permissions. You can have some admins with full site control, some editors to oversee content, some authors who can only write new content.&lt;/p&gt;
 &lt;p&gt;Jekyll does not, except inasmuch as you have multiple contributors to the GitHub project. You can set a different author name for a post in the front matter, but there&#39;s no permission level for ongoing content management.&lt;/p&gt;
-&lt;h2 id=&quot;ease-of-building&quot; tabindex=&quot;-1&quot;&gt;Ease of building &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#ease-of-building&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;ease-of-building&quot; tabindex=&quot;-1&quot;&gt;Ease of Building &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#ease-of-building&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Somebody inexperienced with website building can still have a pretty good WordPress ssite ready in half an hour, especially on WordPress.com but even on many self-hosted WordPress sites since many hosts provide tools to quickly install it in a few clicks.&lt;/p&gt;
 &lt;p&gt;Jekyll takes more expertise. Even when using an existing theme, you still need to learn a few things about GitHub, edit configuration in files (not interfaces), and handle tasks like resizing image assets and cleaning up code yourself.&lt;/p&gt;
 &lt;h2 id=&quot;cost&quot; tabindex=&quot;-1&quot;&gt;Cost &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/wordpress-jekyll/#cost&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -3295,16 +3283,16 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/"/>
 		<updated>2022-05-13T01:35:47Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/</id>
-		<content type="html">&lt;h2 id=&quot;what-s-the-error-message&quot; tabindex=&quot;-1&quot;&gt;What’s the error message &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#what-s-the-error-message&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		<content type="html">&lt;h2 id=&quot;what-s-the-error-message&quot; tabindex=&quot;-1&quot;&gt;What’s the Error Message &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#what-s-the-error-message&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A scenario I encountered recently was a user getting this error message:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Your message couldn&#39;t be delivered because you weren&#39;t recognized as a valid sender. The most common reason for this is that your email address is suspected of sending spam and it&#39;s no longer allowed to send messages outside of your organization. Contact your email admin for assistance.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This happened with every email they tried to send.&lt;/p&gt;
-&lt;h2 id=&quot;why-it-happened&quot; tabindex=&quot;-1&quot;&gt;Why it happened &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#why-it-happened&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;why-it-happened&quot; tabindex=&quot;-1&quot;&gt;Why it Happened &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#why-it-happened&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;They were not actually sending spam in the truest sense of that word. But they were sending bulk emails out of Outlook like any other email, and possibly without some of the requirements we have in Canada for anti-spam legislation (e.g. there has to be a link to unsubcribe from any bulk mailing list). So, even if it wasn&#39;t truly spam, it had some of the characteristics of spam: sending a lot at once, with the same generic message, without the ability to unsubscribe. Microsoft&#39;s email service concluded that this was spam, probably because you got hacked, and thus shut down the account until an administrator could investigate.&lt;/p&gt;
 &lt;p&gt;The valuable thing to remember here is that Microsoft 365 email mailboxes are not intended for bulk mail distribution. There are specific services like MailChimp that are designed to handle all those extra factors in a way that a standard email doesn&#39;t. They will send out in staggered time, with multiple servers. They&#39;ll have templates that ensure you aren&#39;t missing any legal requirements. So, don&#39;t use a standard email - Microsoft or otherwise - to send bulk mail. It will catch up to you eventually.&lt;/p&gt;
-&lt;h2 id=&quot;how-to-fix-it&quot; tabindex=&quot;-1&quot;&gt;How to fix it &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#how-to-fix-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;how-to-fix-it&quot; tabindex=&quot;-1&quot;&gt;How to Fix It &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/email-suspected-spam/#how-to-fix-it&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;After this error occurs, an administrator with the necessary permissions will have to unblock the user&#39;s account. Don&#39;t do this until you&#39;re confident that you&#39;ve dealt with the root issue, i.e. that the sender is not sending bulk email anymore.&lt;/p&gt;
 &lt;p&gt;Once you&#39;re ready:&lt;/p&gt;
 &lt;ol&gt;
@@ -3319,7 +3307,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/"/>
 		<updated>2022-05-16T02:47:58Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/</id>
-		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/github-pages/building-site/&quot;&gt;I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free&lt;/a&gt;. It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/building-jekyll/&quot;&gt;I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free&lt;/a&gt;. It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.&lt;/p&gt;
 &lt;p&gt;One thing I was worried about, though, is writing from my phone. My habit has often been that I write rough notes on my phone, then finalize it on a computer and hit publish. I didn’t want to lose that. So here’s what I did.&lt;/p&gt;
 &lt;h2 id=&quot;mobile-app&quot; tabindex=&quot;-1&quot;&gt;Mobile App &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gh-pages-mobile-authoring/#mobile-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First I needed an app on my Android phone to edit the Markdown files. I tried a few and settled on &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.gsantner.markor&amp;amp;gl=US&quot;&gt;Markor&lt;/a&gt;. It can stay opened to an entire folder, can create files, edit files, delete files. You can write in markdown and preview what it looks like (without anything like CSS styling from the site, of course). It does have some modes that are unnecessary to me - to do and quick notes - and no way to turn them off in the interface.&lt;/p&gt;
@@ -3338,7 +3326,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2022/drupal-sync-content/"/>
 		<updated>2022-05-26T19:31:19Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-sync-content/</id>
-		<content type="html">&lt;p&gt;I have &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-sync-configuration/&quot;&gt;previously covered syncing configuration across Drupal&lt;/a&gt;. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.&lt;/p&gt;
+		<content type="html">&lt;p&gt;I have &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-sync-configuration/&quot;&gt;previously covered syncing configuration across Drupal&lt;/a&gt;. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.&lt;/p&gt;
 &lt;p&gt;There is &lt;a href=&quot;https://www.drupal.org/project/content_sync&quot;&gt;an extra module available called content_sync&lt;/a&gt;. Unfortunately, it is not a very reliable extra module, at least in my configuration. With that said, I will still share the main extra consideration to take into your plans.&lt;/p&gt;
 &lt;p&gt;The caveat for this is that it gets a bit more complicated in most regular usage than configuration, because content changes can happen in both directions.&lt;/p&gt;
 &lt;p&gt;Some changes will happen in the same direction as code changes and most configuration changes, especially in the early stages of the project before production is launched: first it gets changed on the local development system, then pushed through the stages to get to production.&lt;/p&gt;
@@ -3465,16 +3453,16 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<updated>2022-06-27T01:54:15Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/</id>
 		<content type="html">&lt;p&gt;This continues a series setting up a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;GitLab DevOps pipeline&lt;/a&gt; through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.&lt;/p&gt;
-&lt;h2 id=&quot;branch-diagram&quot; tabindex=&quot;-1&quot;&gt;Branch diagram &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#branch-diagram&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;branch-diagram&quot; tabindex=&quot;-1&quot;&gt;Branch Diagram &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#branch-diagram&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This diagram is meant to help explain the flow of code in this system. The development happens in your local branch. When you want to deploy to the dev server, request merging into the dev branch. When you want to deploy to the staging server, request merging into the main branch. There is a CI/CD job for deploying to production as well, but that’s a manual process – not automatic on a branch merge like the other two. The CI files for the deploying will be covered in a later post.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2022/01/Git-Deployment-Workflow.png&quot; alt=&quot;Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server.&quot; /&gt;
 &lt;em&gt;Diagram of branches and servers&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;the-editing-and-browsing-workflow&quot; tabindex=&quot;-1&quot;&gt;The editing and browsing workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#the-editing-and-browsing-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-editing-and-browsing-workflow&quot; tabindex=&quot;-1&quot;&gt;The Editing and Browsing Workflow &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#the-editing-and-browsing-workflow&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My preferred editor is &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;Visual Studio Code&lt;/a&gt;. Whether the VM/container is vagrant, &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/docker/&quot;&gt;Docker Desktop&lt;/a&gt;, or &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod/&quot;&gt;GitPod&lt;/a&gt;, you can use VS Code with it. The best experience is with Docker, then GitPod, and finally vagrant will work but similar to any other server, with no extra special functionality like adding extensions. You could of course also use a different editor / terminal.&lt;/p&gt;
 &lt;p&gt;Along with being able to edit, this is a website, so it’s pretty important to test out what the website looks like with the current code and database. Exactly what that looks like will depend on whether you’re using a GitPod, a vagrant, or a Docker. I won’t detail all the Apache configuration needed here, since they’ll vary for each system.&lt;/p&gt;
 &lt;p&gt;They are covered more in the posts about having a Drupal-friendly environment in each of the respective virtualization/containerization systems:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/vagrant-oracle-linux-vm/&quot;&gt;Vagrant VM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/vagrant-oracle-linux-vm/&quot;&gt;Vagrant VM&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;GitPod&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -3485,7 +3473,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To add changes to and then commit to the ryan branch, I run this:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;file to add&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit &lt;span class=&quot;token parameter variable&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[description of what changed]&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;merge-request&quot; tabindex=&quot;-1&quot;&gt;Merge request &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#merge-request&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;merge-request&quot; tabindex=&quot;-1&quot;&gt;Merge Request &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/git-local-workflows/#merge-request&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When I think it’s ready to be merged into the main branch, I go into the GitLab interface and put in a merge request from my ryan branch into whatever other branch I’m trying to merge it into (either dev or main in this scenario). There are a handful of good options available including who the merge is assigned to, who should do an extra code review first, and what project milestone it should be associated with.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.gitlab.com/ee/user/project/merge_requests/&quot;&gt;GitLab has good documentation on merge requests&lt;/a&gt;, so I will not detail them any further here.&lt;/p&gt;
 </content>
@@ -3497,7 +3485,7 @@ drush config-import&lt;/code&gt;&lt;/pre&gt;
 		<updated>2022-06-29T01:46:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-docker-config-script/</id>
 		<content type="html">&lt;p&gt;This continues a mini-series describing how I set up a Drupal development environment using &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop and the VS Code devcontainer functionality&lt;/a&gt;. The full code is available in &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/drupal-gitpod-container-2-gitpod-yml/&quot;&gt;the GitPod.yml file&lt;/a&gt; of &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;the GitPod series&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-gitpod-container-2-gitpod-yml/&quot;&gt;the GitPod.yml file&lt;/a&gt; of &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitpod-drupal/&quot;&gt;the GitPod series&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Enforce permissions on the SSH keys, needed for the git SSH connection to work:&lt;/p&gt;
@@ -3783,7 +3771,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<updated>2022-09-19T23:19:19Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/</id>
 		<content type="html">&lt;p&gt;About a year ago, I (virtually) attended &lt;a href=&quot;https://www.drupalgovcon.org/&quot;&gt;the DrupalGovCon 2021 conference&lt;/a&gt;. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.&lt;/p&gt;
-&lt;figure class=&quot;wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;&lt;div class=&quot;nv-iframe-embed&quot;&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&quot; title=&quot;Tips for Securing Your Drupal Application&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;&lt;figcaption&gt;DrupalGovCon video: Tips for Securing Your Drupal Application&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&quot; title=&quot;Tips for Securing Your Drupal Application&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;
 &lt;h2 id=&quot;security-modules&quot; tabindex=&quot;-1&quot;&gt;Security Modules &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/drupal-security-audit/#security-modules&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Review settings of security modules including:&lt;/p&gt;
 &lt;ul&gt;
@@ -3896,7 +3884,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<updated>2022-12-10T16:48:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/power-platform-certificate/</id>
 		<content type="html">&lt;p&gt;This week I completed a new certification! I am now Microsoft certified as a &lt;a href=&quot;https://www.credly.com/badges/f62e6037-44d4-4ee2-9fd8-a83b84500910/public_url&quot;&gt;Power Platform App Maker Associate,&lt;/a&gt;, having completed &lt;a href=&quot;https://learn.microsoft.com/en-us/certifications/exams/pl-100&quot;&gt;the PL-100 exam&lt;/a&gt;. This covers a lot of the introductory understanding of the Power Platform including Power Apps, Power Automate, Power BI, and Power Virtual Agent. There&#39;s a lot of great tools in here and I&#39;m happy that I&#39;ve gotten a good introductory grasp of them.&lt;/p&gt;
-&lt;p&gt;It is listed on the &lt;a href=&quot;https://tech.ryanrobinson.ca/about&quot;&gt;about page&lt;/a&gt; along with my other certifications.&lt;/p&gt;
+&lt;p&gt;It is listed on the &lt;a href=&quot;https://tech.ryanrobinson.ca/about/&quot;&gt;about page&lt;/a&gt; along with my other certifications.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -3929,8 +3917,8 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<updated>2022-12-30T20:45:05Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/</id>
 		<content type="html">&lt;p&gt;This continues with &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the long-stalled GitLab DevOps series&lt;/a&gt;. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.&lt;/p&gt;
-&lt;p&gt;You will first need &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/gitlab-devops-gitlab-runner/&quot;&gt;a GitLab runner&lt;/a&gt; on the server you want to deploy to.&lt;/p&gt;
-&lt;p&gt;As with the earlier post on &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/gitlab-devops-php-lint/&quot;&gt;PHP linting within GitLab CI/CD&lt;/a&gt;, in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in &lt;a href=&quot;https://github.com/ryan-l-robinson/GitLab-CI-CD&quot;&gt;one project of my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You will first need &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-gitlab-runner/&quot;&gt;a GitLab runner&lt;/a&gt; on the server you want to deploy to.&lt;/p&gt;
+&lt;p&gt;As with the earlier post on &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-php-lint/&quot;&gt;PHP linting within GitLab CI/CD&lt;/a&gt;, in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in &lt;a href=&quot;https://github.com/ryan-l-robinson/GitLab-CI-CD&quot;&gt;one project of my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;deploy-yml&quot; tabindex=&quot;-1&quot;&gt;Deploy.yml &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#deploy-yml&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The deploy file provides you a baseline template for deploying code changes, which is in the general CI/CD functionality project. Here&#39;s what that might look like:&lt;/p&gt;
 &lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## Deploy Jobs ##&lt;/span&gt;
@@ -4025,7 +4013,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
   &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; manual&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You will need one of these types of jobs for each server to deploy to, with each&#39;s corresponding variables. This demo includes a dev server, a staging server, and two production servers.&lt;/p&gt;
-&lt;h2 id=&quot;project-access-token&quot; tabindex=&quot;-1&quot;&gt;Project access token &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#project-access-token&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;project-access-token&quot; tabindex=&quot;-1&quot;&gt;Project Access Token &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2022/gitlab-devops-deploy-server/#project-access-token&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For this to work smoothly, you can use a project access token. This is a unique token that can be set up on a project – essentially a service account – rather than the connection being tied to a particular user. This is helpful to avoid problem scenarios like a sudden change of staff when the deploy was set up using the former staff&#39;s account that no longer exists.&lt;/p&gt;
 &lt;p&gt;Create a project token by going to the project -&amp;gt; Settings -&amp;gt; Project Access Tokens. Name the token something descriptive for the server that will be using it, e.g. Dev Server. Specify the permissions for that token. Within this workflow I&#39;ve been walking through here, that is only read access so it can pull within the deployment job. It does not need to be able to write back to the GitLab project, since code changes will always start at local and push through, never the other way around.&lt;/p&gt;
 &lt;p&gt;Now when you clone the project or add remote for the new server, add it using a variation on the https format rather than the SSH format:&lt;/p&gt;
@@ -4041,7 +4029,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<link href="https://tech.ryanrobinson.ca/posts/2023/drupal-deploy/"/>
 		<updated>2023-01-02T15:47:05Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2023/drupal-deploy/</id>
-		<content type="html">&lt;p&gt;This continues where &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/gitlab-devops-deploy/&quot;&gt;the previous post&lt;/a&gt; in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the GitLab DevOps series&lt;/a&gt; left off. We can now deploy code changes to the new server, and that&#39;s great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.&lt;/p&gt;
+		<content type="html">&lt;p&gt;This continues where &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-deploy/&quot;&gt;the previous post&lt;/a&gt; in &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/gitlab-devops/&quot;&gt;the GitLab DevOps series&lt;/a&gt; left off. We can now deploy code changes to the new server, and that&#39;s great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.&lt;/p&gt;
 &lt;h2 id=&quot;dev-vs-production&quot; tabindex=&quot;-1&quot;&gt;Dev vs Production &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-deploy/#dev-vs-production&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The biggest challenge with this topic is navigating that there should be some things different from dev and staging servers compared to production. Some of these are cases where the module or core configuration is on each server, but with different options (e.g. &lt;a href=&quot;https://drupal.org/project/environment_indicator&quot;&gt;environment indicator&lt;/a&gt;) and others are a case of modules that are only needed on dev and staging and therefore shouldn&#39;t be on production at all (e.g. &lt;a href=&quot;https://www.drupal.org/project/maillog&quot;&gt;maillog&lt;/a&gt; and &lt;a href=&quot;https://www.drupal.org/project/stage_file_proxy&quot;&gt;stage_file_proxy&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Composer offers a good way to handle the code package building distinction. You can require a package, or require-dev a package. Then you can &lt;code&gt;composer install&lt;/code&gt; or &lt;code&gt;composer install --no-dev&lt;/code&gt; depending on the server. That part is straightforward.&lt;/p&gt;
@@ -4117,7 +4105,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
   &lt;span class=&quot;token key atrule&quot;&gt;after_script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cd $WEB_ROOT
     &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; vendor/drush/drush/drush cr&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The first job is the one detailed in &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/gitlab-devops-deploy/&quot;&gt;the previous post&lt;/a&gt;, except that it has now been moved from &lt;code&gt;script&lt;/code&gt; to &lt;code&gt;before-script&lt;/code&gt; to work better with the other pieces.&lt;/p&gt;
+&lt;p&gt;The first job is the one detailed in &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-deploy/&quot;&gt;the previous post&lt;/a&gt;, except that it has now been moved from &lt;code&gt;script&lt;/code&gt; to &lt;code&gt;before-script&lt;/code&gt; to work better with the other pieces.&lt;/p&gt;
 &lt;p&gt;The next component is composer. Drupal is built using composer packages. Any action that updates the composer.lock file - adding a new module, deleting a module, updating packages - will require this step. &lt;code&gt;composer install&lt;/code&gt; ensures that it installs the exact same versions of the exact same packages as on your other servers. It might be tempting to use &lt;code&gt;composer update&lt;/code&gt; instead to get the latest versions, but then you might end up with trying to install something that you haven&#39;t tested elsewhere yet. There are two variants of this job, one for dev servers that installs dev packages and one for production that does not.&lt;/p&gt;
 &lt;p&gt;Secondly, the configuration and databases need to be updated. &lt;code&gt;drush cr&lt;/code&gt; rebuilds your caches. There&#39;s one to start this section because it is often necessary for scenarios like a new module. The Drupal cache needs to know when there&#39;s a new module with the code in place, before you get to the &lt;code&gt;config-import&lt;/code&gt; that will try to install that module. Otherwise you&#39;ll get an error. With that settled, you can import all the configuration changes, then clear the caches again to ensure the site is now reflecting those changes. Finally, update the site&#39;s database using &lt;code&gt;drush updb&lt;/code&gt;. This is sometimes needed with new modules or updated modules that need to change the database schema. If you don&#39;t do this, you can end up with errors about missing columns in tables.&lt;/p&gt;
 &lt;p&gt;The final job only clears the caches, without any of the other changes. The reason for these separations will become more clear in the site&#39;s jobs that extend from these.&lt;/p&gt;
@@ -4390,7 +4378,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<updated>2023-01-14T18:46:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2023/cognitive-ease/</id>
 		<content type="html">&lt;p&gt;A11yTalks had a great presentation this week about designing for cognitive load. It has a lot of valuable insights about ways that we can do much better with website design that goes beyond simply meeting the WCAG checklists. Check it out below:&lt;/p&gt;
-&lt;figure&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/BXeixHLjZwM&quot; title=&quot;A11yTalks video: Designing for Cognitive Ease&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;&lt;figcaption&gt;A11yTalks video: Designing for Cognitive Ease&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/BXeixHLjZwM&quot; title=&quot;A11yTalks video: Designing for Cognitive Ease&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;
 &lt;p&gt;As a tangent, I know this site has a lot of weaknesses in its semantic design and I&#39;ve largely ignored them because this is mostly my little blog to myself that few if any will see, but I know I should look into forking from this theme to create a more accessible version.&lt;/p&gt;
 </content>
 	</entry>
@@ -4400,7 +4388,7 @@ vendor/drush/drush/drush cset &lt;span class=&quot;token parameter variable&quot
 		<link href="https://tech.ryanrobinson.ca/posts/2023/mastodon-apps-android/"/>
 		<updated>2023-02-21T13:18:09Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2023/mastodon-apps-android/</id>
-		<content type="html">&lt;p&gt;I&#39;ve been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I&#39;m far from the only one to make this migration, and that includes a lot of developers, so we&#39;re starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I&#39;ve mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when &lt;a href=&quot;https://tech.ryanrobinson.ca/android-email-apps/&quot;&gt;I spent some time testing out alternative email apps&lt;/a&gt;.&lt;/p&gt;
+		<content type="html">&lt;p&gt;I&#39;ve been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I&#39;m far from the only one to make this migration, and that includes a lot of developers, so we&#39;re starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I&#39;ve mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/&quot;&gt;I spent some time testing out alternative email apps&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Before writing this post, I put the question out on my Mastodon to see what factors others have considered in picking their preferred Android app. I&#39;ll incorporate a couple of those answers here, but first, one shared &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1De5KRwqMIdwEryfoeBLARgxF7QgKkeOQBCilKuIdAXE/edit?usp=drivesdk&quot;&gt;a very helpful spreadsheet breaking down all the options&lt;/a&gt; (not only Android). This is great if you need a high level overview of features available.&lt;/p&gt;
 &lt;p&gt;This post will try to narrow down some of what matters most to me and to others when I put the question out for feedback.&lt;/p&gt;
 &lt;h2 id=&quot;mastodon-official-app&quot; tabindex=&quot;-1&quot;&gt;Mastodon (official app) &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2023/mastodon-apps-android/#mastodon-official-app&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -4731,7 +4719,7 @@ You can write this file from scratch, especially if they&#39;re hidden options. 
 		<link href="https://tech.ryanrobinson.ca/posts/2023/future-microblogging/"/>
 		<updated>2023-07-14T13:18:09Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2023/future-microblogging/</id>
-		<content type="html">&lt;p&gt;Twitter, Mastodon, Calckey, Bluesky, Threads... And a whole bunch more that aren&#39;t even worth mentioning in my opinion (&lt;a href=&quot;https://tech.ryanrobinson.ca/twitter-mastodon-counter-social/&quot;&gt;I did try a couple of them&lt;/a&gt;). It&#39;s an interesting time for social media, especially the microblogging format.&lt;/p&gt;
+		<content type="html">&lt;p&gt;Twitter, Mastodon, Calckey, Bluesky, Threads... And a whole bunch more that aren&#39;t even worth mentioning in my opinion (&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2022/twitter-mastodon-coso/&quot;&gt;I did try a couple of them&lt;/a&gt;). It&#39;s an interesting time for social media, especially the microblogging format.&lt;/p&gt;
 &lt;p&gt;Part of what makes it so interesting is that there are real differences in philosophies of what the Internet - and therefore, society at large - should be, not only a difference in which billionaire gets to sell all our data.&lt;/p&gt;
 &lt;p&gt;So, after a particularly tumultous week, I decided now is a good time to check in with how I feel about the current options and where I see things going from here.&lt;/p&gt;
 &lt;h2 id=&quot;twitter&quot; tabindex=&quot;-1&quot;&gt;Twitter &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2023/future-microblogging/#twitter&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -4889,7 +4877,7 @@ You can write this file from scratch, especially if they&#39;re hidden options. 
 		<link href="https://tech.ryanrobinson.ca/posts/2024/open-menu/"/>
 		<updated>2024-02-21T22:44:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2024/open-menu/</id>
-		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/idrc-presentation/&quot;&gt;In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC&lt;/a&gt;. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2024/idrc-presentation/&quot;&gt;In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC&lt;/a&gt;. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.&lt;/p&gt;
 &lt;p&gt;As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.&lt;/p&gt;
 &lt;p&gt;There&#39;s &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-open-menu&quot;&gt;a GitPod demo version of my solution on my GitHub&lt;/a&gt;. That’s only the relevant customizations, not a full functioning site, and you&#39;d need to add a couple of menu items to really see it in action.&lt;/p&gt;
 &lt;p&gt;Here&#39;s an example screenshot of the open menu structure:&lt;/p&gt;
@@ -4899,9 +4887,9 @@ You can write this file from scratch, especially if they&#39;re hidden options. 
 &lt;p&gt;Once that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech.ryanrobinson.ca/assets/img/2024/menu-entity-index-settings.png&quot; alt=&quot;&amp;quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&amp;quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Notably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.&lt;/p&gt;
-&lt;h2 id=&quot;configure-the-view&quot; tabindex=&quot;-1&quot;&gt;Configure the view &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024/open-menu/#configure-the-view&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configure-the-view&quot; tabindex=&quot;-1&quot;&gt;Configure the View &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024/open-menu/#configure-the-view&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The configuration for the view itself won&#39;t be too much of a surprise for anybody who has configured views before. It has a grouped block for each second-level menu, where the header had a programmatically-set ID so that they can be used for links (both from that top block and from the top level of the main menu itself). There&#39;s a lot of mundane configuration here so I won&#39;t break it all down, but &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/sync/config/views.view.open_menu.yml&quot;&gt;here&#39;s the configuration file&lt;/a&gt; if you want to import to your site, or you can check it out using the GitPod demo and going to Structure -&amp;gt; Views -&amp;gt; Open Menu.&lt;/p&gt;
-&lt;h2 id=&quot;overriding-the-view-template&quot; tabindex=&quot;-1&quot;&gt;Overriding the view template &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024/open-menu/#overriding-the-view-template&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;overriding-the-view-template&quot; tabindex=&quot;-1&quot;&gt;Overriding the View Template &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024/open-menu/#overriding-the-view-template&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I still had one more problem. The view involved used the grouping function to bunch together the results. I wanted the group label to be an h2 and have an id on it, so I did that using the rewrite the results functions. That worked with no issues.&lt;/p&gt;
 &lt;p&gt;But I noticed it was also supplying an empty h3 immediately before my h2. That doesn’t hurt sighted users, but it does complicate the experience for screen reader users. It took some time to realize the h3 was coming from a template file in the views core module: views-view-unformatted.&lt;/p&gt;
 &lt;p&gt;Once I knew the source of the original file, I could edit it directly, but that would be lost as soon as there was an update to the theme. The more permanent answer is a subtheme with an override of that file. That seems a little excessive in the case of this demo, but in a real site you&#39;ll probably want a custom subtheme for all your CSS and templates anyway.&lt;/p&gt;
@@ -5094,7 +5082,7 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 		<link href="https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-devcontainer/"/>
 		<updated>2024-04-08T15:46:00Z</updated>
 		<id>https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-devcontainer/</id>
-		<content type="html">&lt;p&gt;This continues from &lt;a href=&quot;https://tech.ryanrobinson.ca/websites/drupal/dev-env-updated/&quot;&gt;a previous post&lt;/a&gt; about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;the Drupal Docker tag&lt;/a&gt;. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;The whole project&#39;s code can be found on my GitHub&lt;/a&gt;.&lt;/p&gt;
+		<content type="html">&lt;p&gt;This continues from &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-dockerfiles/&quot;&gt;a previous post&lt;/a&gt; about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;the Drupal Docker tag&lt;/a&gt;. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;The whole project&#39;s code can be found on my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;devcontainer&quot; tabindex=&quot;-1&quot;&gt;Devcontainer &lt;a class=&quot;header-anchor&quot; href=&quot;https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-devcontainer/#devcontainer&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;What changed in devcontainer from the previous setup? A few things:&lt;/p&gt;
 &lt;ul&gt;

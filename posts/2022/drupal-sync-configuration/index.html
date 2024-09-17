@@ -49,7 +49,7 @@
 
 <p>Having a workflow that keeps your code in sync across development, staging, and production servers – like in the series of <a href="/tags/gitlab-devops/">GitLab DevOps</a> posts I’ve been sharing recently – is important. But that doesn’t synchronize the database, which contains two major subcategories: configuration and content. It also doesn’t synchronize user-uploaded files, but that’s a subject for a different post.</p>
 <p>Fortunately, Drupal 8 introduced a new system for syncing configuration across copies of the site.</p>
-<h2 id="what-s-included" tabindex="-1">What’s included <a class="header-anchor" href="#what-s-included">#</a></h2>
+<h2 id="what-s-included" tabindex="-1">What’s Included <a class="header-anchor" href="#what-s-included">#</a></h2>
 <p>It is not a full database backup, but it does include most settings, such as:</p>
 <ul>
 <li>Enabled extensions and themes</li>
@@ -62,7 +62,7 @@
 <p>This distinction between configuration and content makes sense in a couple ways.</p>
 <p>Configuration changes are usually made first in your development environment, tested thoroughly, and then pushed through the pipeline. That’s not true for content. Content is often going to be created or edited first by the regular site users on production. Those don’t need technical teams to approve and test everything and are available to more users to do directly and have go into effect immediately.</p>
 <p>You also don’t need to synchronize all content in the same way, since for the most part the presence or absence of an extra basic page node does not affect the ability to sufficiently test anything new that needs to be tested. It’s ok if you let your production site’s content get ahead of your development environment in a way that you don’t want to happen with configuration.</p>
-<h2 id="git-workflow" tabindex="-1">Git workflow <a class="header-anchor" href="#git-workflow">#</a></h2>
+<h2 id="git-workflow" tabindex="-1">Git Workflow <a class="header-anchor" href="#git-workflow">#</a></h2>
 <p>The ideal flow for these changes is integrated with your code git flow. You can export your configuration on dev, add it to the git repository, push through to the next server in your CI/CD chain, and import it there. Much of this can be streamlined with CI/CD tools, but here are the manual steps:</p>
 <p>To export the configuration:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">drush config-export</code></pre>
@@ -121,7 +121,7 @@ drush config-import</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -212,6 +212,6 @@ drush config-import</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-sync-configuration/` was built on 2024-09-17T14:42:36.240Z -->
+		<!-- This page `/posts/2022/drupal-sync-configuration/` was built on 2024-09-17T15:22:28.401Z -->
 	</body>
 </html>

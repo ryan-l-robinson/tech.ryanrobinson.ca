@@ -48,7 +48,7 @@
 
 <p>Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.</p>
 <p>I have pulled out a generic version of this code and <a href="https://github.com/ryan-l-robinson/drupal-permissions-from-file">made it available on my GitHub</a>.</p>
-<h2 id="hook-on-login" tabindex="-1">Hook on login <a class="header-anchor" href="#hook-on-login">#</a></h2>
+<h2 id="hook-on-login" tabindex="-1">Hook on Login <a class="header-anchor" href="#hook-on-login">#</a></h2>
 <p>First, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with <a href="https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x">the hook_user_login hook</a>.</p>
 <pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
  * Implements hook_user_login
@@ -65,7 +65,7 @@
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h2 id="read-file" tabindex="-1">Read file <a class="header-anchor" href="#read-file">#</a></h2>
+<h2 id="read-file" tabindex="-1">Read File <a class="header-anchor" href="#read-file">#</a></h2>
 <p>Next we have another function that checks to see if the username is in the file or not:</p>
 <pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
 * Reads from file and determine whether the specified user is in the list
@@ -133,7 +133,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -224,6 +224,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-17T14:42:36.157Z -->
+		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-17T15:22:28.324Z -->
 	</body>
 </html>

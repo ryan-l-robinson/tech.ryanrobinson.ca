@@ -49,16 +49,16 @@
 
 
 <p>This continues a series setting up a <a href="/tags/gitlab-devops/">GitLab DevOps pipeline</a> through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.</p>
-<h2 id="branch-diagram" tabindex="-1">Branch diagram <a class="header-anchor" href="#branch-diagram">#</a></h2>
+<h2 id="branch-diagram" tabindex="-1">Branch Diagram <a class="header-anchor" href="#branch-diagram">#</a></h2>
 <p>This diagram is meant to help explain the flow of code in this system. The development happens in your local branch. When you want to deploy to the dev server, request merging into the dev branch. When you want to deploy to the staging server, request merging into the main branch. There is a CI/CD job for deploying to production as well, but that’s a manual process – not automatic on a branch merge like the other two. The CI files for the deploying will be covered in a later post.</p>
 <p><img src="/assets/img/2022/01/Git-Deployment-Workflow.png" alt="Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server.">
 <em>Diagram of branches and servers</em></p>
-<h2 id="the-editing-and-browsing-workflow" tabindex="-1">The editing and browsing workflow <a class="header-anchor" href="#the-editing-and-browsing-workflow">#</a></h2>
+<h2 id="the-editing-and-browsing-workflow" tabindex="-1">The Editing and Browsing Workflow <a class="header-anchor" href="#the-editing-and-browsing-workflow">#</a></h2>
 <p>My preferred editor is <a href="/tags/visual-studio-code/">Visual Studio Code</a>. Whether the VM/container is vagrant, <a href="/tags/docker/">Docker Desktop</a>, or <a href="/tags/gitpod/">GitPod</a>, you can use VS Code with it. The best experience is with Docker, then GitPod, and finally vagrant will work but similar to any other server, with no extra special functionality like adding extensions. You could of course also use a different editor / terminal.</p>
 <p>Along with being able to edit, this is a website, so it’s pretty important to test out what the website looks like with the current code and database. Exactly what that looks like will depend on whether you’re using a GitPod, a vagrant, or a Docker. I won’t detail all the Apache configuration needed here, since they’ll vary for each system.</p>
 <p>They are covered more in the posts about having a Drupal-friendly environment in each of the respective virtualization/containerization systems:</p>
 <ul>
-<li><a href="/websites/vagrant-oracle-linux-vm/">Vagrant VM</a></li>
+<li><a href="/posts/2021/vagrant-oracle-linux-vm/">Vagrant VM</a></li>
 <li><a href="/tags/gitpod-drupal/">GitPod</a></li>
 <li><a href="/tags/drupal-docker/">Docker Desktop</a></li>
 </ul>
@@ -69,7 +69,7 @@
 <p>To add changes to and then commit to the ryan branch, I run this:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token punctuation">[</span>file to add<span class="token punctuation">]</span>
 <span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"[description of what changed]"</span></code></pre>
-<h2 id="merge-request" tabindex="-1">Merge request <a class="header-anchor" href="#merge-request">#</a></h2>
+<h2 id="merge-request" tabindex="-1">Merge Request <a class="header-anchor" href="#merge-request">#</a></h2>
 <p>When I think it’s ready to be merged into the main branch, I go into the GitLab interface and put in a merge request from my ryan branch into whatever other branch I’m trying to merge it into (either dev or main in this scenario). There are a handful of good options available including who the merge is assigned to, who should do an extra code review first, and what project milestone it should be associated with.</p>
 <p><a href="https://docs.gitlab.com/ee/user/project/merge_requests/">GitLab has good documentation on merge requests</a>, so I will not detail them any further here.</p>
 
@@ -113,7 +113,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -204,6 +204,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/git-local-workflows/` was built on 2024-09-17T14:42:36.280Z -->
+		<!-- This page `/posts/2022/git-local-workflows/` was built on 2024-09-17T15:22:28.442Z -->
 	</body>
 </html>

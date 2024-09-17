@@ -47,7 +47,7 @@
 
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
-<p><a href="/microsoft-365/power-automate/create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
+<p><a href="/posts/2021/power-automate-create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
 <h2 id="write-the-temporary-script" tabindex="-1">Write the temporary script <a class="header-anchor" href="#write-the-temporary-script">#</a></h2>
 <p>Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.</p>
 <p>Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:</p>
@@ -60,20 +60,19 @@
 <li>Type: String</li>
 <li>Value:</li>
 </ul>
-<pre><code>{
-    &quot;$schema&quot;: &quot;https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json&quot;,
-    &quot;actions&quot;: [
-      {
-        &quot;verb&quot;: &quot;addNavLink&quot;,
-        &quot;displayName&quot;: &quot;External Site&quot;,
-        &quot;url&quot;: &quot;@{variables('linkURL')}&quot;,
-&quot;isWebRelative&quot;: false
-      }
-    ],
-    &quot;version&quot;: 1
-  }
-</code></pre>
-<h2 id="register-the-temporary-script" tabindex="-1">Register the temporary script <a class="header-anchor" href="#register-the-temporary-script">#</a></h2>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"$schema"</span><span class="token operator">:</span> <span class="token string">"https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json"</span><span class="token punctuation">,</span>
+    <span class="token property">"actions"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"verb"</span><span class="token operator">:</span> <span class="token string">"addNavLink"</span><span class="token punctuation">,</span>
+        <span class="token property">"displayName"</span><span class="token operator">:</span> <span class="token string">"External Site"</span><span class="token punctuation">,</span>
+        <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"@{variables('linkURL')}"</span><span class="token punctuation">,</span>
+<span class="token property">"isWebRelative"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span></code></pre>
+<h2 id="register-the-temporary-script" tabindex="-1">Register the Temporary Script <a class="header-anchor" href="#register-the-temporary-script">#</a></h2>
 <p>Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.</p>
 <p><img src="/assets/img/2021/05/Register-Site-Script.png" alt="">
 <em>Screenshot of action to register site script</em></p>
@@ -100,7 +99,7 @@
 <li>Type: String</li>
 <li>Value: body(‘Create_temp_site_script’)?[‘Id’]</li>
 </ul>
-<h2 id="create-the-temporary-design" tabindex="-1">Create the temporary design <a class="header-anchor" href="#create-the-temporary-design">#</a></h2>
+<h2 id="create-the-temporary-design" tabindex="-1">Create the Temporary Design <a class="header-anchor" href="#create-the-temporary-design">#</a></h2>
 <p>Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.</p>
 <p><img src="/assets/img/2021/05/Create-Site-Design.png" alt="">
 <em>Screenshot of registering the site design</em></p>
@@ -112,15 +111,14 @@
 <li>Headers: [same as registering the site script above]</li>
 <li>Body:</li>
 </ul>
-<pre><code>{
-&quot;info&quot;:{
-&quot;Title&quot;:&quot;Temporary site design for @{variables('siteName')}&quot;,
-&quot;Description&quot;:&quot;Applies navigation links&quot;,
-&quot;SiteScriptIds&quot;:[&quot;@{variables('siteScriptID')}&quot;],
-&quot;WebTemplate&quot;:&quot;68&quot;
-}
-}
-</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token property">"info"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+<span class="token property">"Title"</span><span class="token operator">:</span><span class="token string">"Temporary site design for @{variables('siteName')}"</span><span class="token punctuation">,</span>
+<span class="token property">"Description"</span><span class="token operator">:</span><span class="token string">"Applies navigation links"</span><span class="token punctuation">,</span>
+<span class="token property">"SiteScriptIds"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"@{variables('siteScriptID')}"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token property">"WebTemplate"</span><span class="token operator">:</span><span class="token string">"68"</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>Note that WebTemplate 68 is a communication site. 64 would be a team site.</p>
 <p>As with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.</p>
 <p><img src="/assets/img/2021/05/Site-Design-ID.png" alt="">
@@ -140,7 +138,7 @@
 </ol>
 <p>That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.</p>
 <p><img src="/assets/img/2021/06/Delay-5-minutes.png" alt=""></p>
-<p>You also may need to delay much longer if your site scripts rely on <a href="/microsoft-365/sharepoint/content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
+<p>You also may need to delay much longer if your site scripts rely on <a href="/posts/2021/sharepoint-content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
 <h2 id="apply-the-site-design" tabindex="-1">Apply the site design <a class="header-anchor" href="#apply-the-site-design">#</a></h2>
 <p>Yet another REST API call will allow you to apply the site design that is now registered.</p>
 <p><img src="/assets/img/2021/05/Apply-Site-Design.png" alt="">
@@ -153,12 +151,11 @@
 <li>Headers: [same as registering the site script above]</li>
 <li>Body:</li>
 </ul>
-<pre><code>{
-&quot;siteDesignId&quot;:&quot;@{variables('siteDesignID')}&quot;,
-&quot;webUrl&quot;:&quot;@{variables('siteURL')}&quot;
-}
-</code></pre>
-<h2 id="clean-up" tabindex="-1">Clean up <a class="header-anchor" href="#clean-up">#</a></h2>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token property">"siteDesignId"</span><span class="token operator">:</span><span class="token string">"@{variables('siteDesignID')}"</span><span class="token punctuation">,</span>
+<span class="token property">"webUrl"</span><span class="token operator">:</span><span class="token string">"@{variables('siteURL')}"</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="clean-up" tabindex="-1">Clean Up <a class="header-anchor" href="#clean-up">#</a></h2>
 <p>You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.</p>
 <p><img src="/assets/img/2021/05/Delete-Site-Design.png" alt="">
 <em>Screenshot of deleting the site design</em></p>
@@ -170,8 +167,7 @@
 <li>Headers: [same as registering the site script above]</li>
 <li>Body:</li>
 </ul>
-<pre><code>{&quot;id&quot;:&quot;@{variables('siteDesignID')}&quot;}
-</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token string">"@{variables('siteDesignID')}"</span><span class="token punctuation">}</span></code></pre>
 <p><img src="/assets/img/2021/05/Delete-Site-Script.png" alt="">
 <em>Screenshot of deleting the site script</em></p>
 <p>Details:</p>
@@ -182,8 +178,7 @@
 <li>Headers: [same as registering the site script above]</li>
 <li>Body:</li>
 </ul>
-<pre><code>{&quot;id&quot;:&quot;@{variables('siteScriptID')}&quot;}
-</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token string">"@{variables('siteScriptID')}"</span><span class="token punctuation">}</span></code></pre>
 <p>That’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.</p>
 
 <div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p><p>Next: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p>
@@ -226,7 +221,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -317,6 +312,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-and-designs/` was built on 2024-09-17T14:42:35.978Z -->
+		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-and-designs/` was built on 2024-09-17T15:22:28.145Z -->
 	</body>
 </html>

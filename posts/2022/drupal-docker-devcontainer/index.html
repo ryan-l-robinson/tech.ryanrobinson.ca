@@ -47,7 +47,7 @@
 
 
 
-<p>I have previously shared <a href="/websites/vagrant-oracle-linux-vm/">setting up local development environments using vagrant</a> and <a href="/tags/gitpod-drupal/">GitPod</a> in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.</p>
+<p>I have previously shared <a href="/posts/2021/vagrant-oracle-linux-vm/">setting up local development environments using vagrant</a> and <a href="/tags/gitpod-drupal/">GitPod</a> in Drupal friendly ways. This post will start a new mini-series on how I built a Docker Desktop setup for a Drupal-friendly environment that is (mostly) based on Oracle Linux 8.</p>
 <p>Code for this is found in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
 <h2 id="overview" tabindex="-1">Overview <a class="header-anchor" href="#overview">#</a></h2>
 <p>There will need to be several files to make this work:</p>
@@ -87,9 +87,9 @@
 <h3 id="scripts" tabindex="-1">Scripts <a class="header-anchor" href="#scripts">#</a></h3>
 <p>You can trigger other scripts to run at various points in the process.</p>
 <p>The primary one I made use of is postCreateCommand. This will run only once when the container is first built. This one is much more complicated building the entire site. I’ll have another post dedicated to that script.</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">    "postCreateCommand": "/bin/bash -c \"/postCreateCommand.sh\"",</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">    <span class="token property">"postCreateCommand"</span><span class="token operator">:</span> <span class="token string">"/bin/bash -c \"/postCreateCommand.sh\""</span><span class="token punctuation">,</span></code></pre>
 <p>I also have a much simpler postAttachCommand. This only sources the ~/.bashrc to ensure the user knows where to find commands like drush and composer, which were set up by the postCreateCommand script.</p>
-<pre class="language-devcontainer" tabindex="0"><code class="language-devcontainer">    "postAttachCommand": "/bin/bash -c \"source ~/.bashrc\"",</code></pre>
+<pre class="language-json" tabindex="0"><code class="language-json">    <span class="token property">"postAttachCommand"</span><span class="token operator">:</span> <span class="token string">"/bin/bash -c \"source ~/.bashrc\""</span><span class="token punctuation">,</span></code></pre>
 
 <div class="links-nextprev"><p>Previous: <a href="/posts/2022/php-xdebug-vs-code/">PHP: XDebug in VS Code</a></p><p>Next: <a href="/posts/2022/people-lookup/">Power Apps: People Lookup</a></p>
 </div>
@@ -131,7 +131,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -222,6 +222,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-docker-devcontainer/` was built on 2024-09-17T14:42:36.185Z -->
+		<!-- This page `/posts/2022/drupal-docker-devcontainer/` was built on 2024-09-17T15:22:28.345Z -->
 	</body>
 </html>

@@ -76,7 +76,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.ini</code></pre>
 <p>You could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max_execution_time from 30s to 300s, I might do this:</p>
 <pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">RUN</span> sed -i <span class="token string">"s/max_execution_time = 30/max_execution_time = 300/g"</span> /etc/php/8.0/apache2/php.ini</span></code></pre>
-<h2 id="drupal-settings" tabindex="-1">Drupal settings <a class="header-anchor" href="#drupal-settings">#</a></h2>
+<h2 id="drupal-settings" tabindex="-1">Drupal Settings <a class="header-anchor" href="#drupal-settings">#</a></h2>
 <p>Most of the Drupal settings are similar to the default. The largest change is familiar to any Drupal developer: set the database credentials. Since this is a GitPod container which gets created and destroyed on the fly regularly, I went simple using the root user and no password. A production server would have a different user and a good password.</p>
 <pre class="language-php" tabindex="0"><code class="language-php"><span class="token variable">$databases</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'default'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'default'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">array</span> <span class="token punctuation">(</span>
   <span class="token string single-quoted-string">'database'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'drupal'</span><span class="token punctuation">,</span>
@@ -142,7 +142,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -233,6 +233,6 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-3-settings-config/` was built on 2024-09-17T14:42:36.212Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-3-settings-config/` was built on 2024-09-17T15:22:28.380Z -->
 	</body>
 </html>

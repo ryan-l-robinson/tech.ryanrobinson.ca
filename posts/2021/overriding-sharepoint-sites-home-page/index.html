@@ -48,16 +48,16 @@
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
 <p>At this point in the series, we’ve now created new SharePoint sites and applied temporary site scripts and site designs. There is one big feature missing from site scripts and site designs, though: templating the home page. You can’t simply say that a project site design should always contain a home page with these specific web parts. This may not be true forever – Microsoft is steadily improving site templating – but as of working on this project a few months ago, it required a bit of a workaround.</p>
-<h2 id="the-idea" tabindex="-1">The idea <a class="header-anchor" href="#the-idea">#</a></h2>
+<h2 id="the-idea" tabindex="-1">The Idea <a class="header-anchor" href="#the-idea">#</a></h2>
 <p>Here’s the basic idea that we’ll do to get around this:</p>
 <ol>
 <li>Design your homepage on some other SharePoint site, with permissions locked down so that nobody sees it or can edit it who shouldn’t.</li>
 <li>Within the provisioning Flow, after the new site is created, copy the page from the template site to the new site, overriding the name of “Home” so that it takes over the homepage.</li>
 </ol>
-<h2 id="the-pro-and-con" tabindex="-1">The pro and con <a class="header-anchor" href="#the-pro-and-con">#</a></h2>
+<h2 id="the-pro-and-con" tabindex="-1">The Pro and Con <a class="header-anchor" href="#the-pro-and-con">#</a></h2>
 <p>The nicest thing about this approach is that it makes it very easy to update the home page. Anybody with the permission to do so can go to that template site’s home page and edit it. That’s it. There is no PowerShell or JSON to update a site script or design.</p>
 <p>The biggest negative is the other side of that coin: it requires that nobody delete or rename that homepage file on that template site and there’s no warning if somebody did try to do that. You can recover within 93 days if somebody does delete it and you notice by way of the Flow failing, but it’s still not ideal that it’s even possible for a user to do that without knowing the consequences.</p>
-<h2 id="the-copy-action" tabindex="-1">The copy action <a class="header-anchor" href="#the-copy-action">#</a></h2>
+<h2 id="the-copy-action" tabindex="-1">The Copy Action <a class="header-anchor" href="#the-copy-action">#</a></h2>
 <p>If you don’t already have a template site with some locked down permissions, create it and then design the homepage. This homepage can use relative web parts, like the documents library of that site.</p>
 <p>When that’s ready, it only takes a “Copy file” SharePoint action in the Flow to handle the copying. This can be a bit smoother than some previous actions which required the HTTP REST API calls. Those needed more flexibility using variables defined in the Flow. This one is copying from the same location every time, so it can stay simpler.</p>
 <p><img src="/assets/img/2021/06/CopyHomepage.png" alt=""></p>
@@ -111,7 +111,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -202,6 +202,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/overriding-sharepoint-sites-home-page/` was built on 2024-09-17T14:42:35.950Z -->
+		<!-- This page `/posts/2021/overriding-sharepoint-sites-home-page/` was built on 2024-09-17T15:22:28.125Z -->
 	</body>
 </html>

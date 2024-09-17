@@ -42,7 +42,8 @@
 		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
 		<a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a>, 
 		<a href="/tags/php/" class="post-tag">PHP</a>, 
-		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>, 
+		<a href="/tags/linux/" class="post-tag">Linux</a>
 		</p>
 	
 </div>
@@ -59,7 +60,7 @@
 <pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">RUN</span> update-alternatives --set php /usr/bin/php8.0</span></code></pre>
 <p>That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.</p>
 <h3 id="php-packages" tabindex="-1">PHP packages <a class="header-anchor" href="#php-packages">#</a></h3>
-<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/websites/drupal/drupal-install-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
+<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/posts/2021/drupal-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
 <pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token instruction"><span class="token keyword">USER</span> root</span>
 <span class="token comment"># Install other needed packages</span>
 <span class="token instruction"><span class="token keyword">RUN</span> apt update</span>
@@ -75,7 +76,7 @@
 <span class="token instruction"><span class="token keyword">RUN</span> php -r <span class="token string">"unlink('composer-setup.php');"</span></span></code></pre>
 <p>At this point, the server is ready to provide the core packages that run Drupal well.</p>
 <h2 id="pa11y-accessibility-testing" tabindex="-1">Pa11y accessibility testing <a class="header-anchor" href="#pa11y-accessibility-testing">#</a></h2>
-<p><a href="/websites/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
+<p><a href="/posts/2021/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
 <pre class="language-docker" tabindex="0"><code class="language-docker"><span class="token comment"># Install pa11y accessibility testing tool, including NodeJS</span>
 <span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium</span>
 <span class="token instruction"><span class="token keyword">RUN</span> curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh</span>
@@ -131,7 +132,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -222,6 +223,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-17T14:42:36.199Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-17T15:22:28.374Z -->
 	</body>
 </html>

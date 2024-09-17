@@ -49,7 +49,7 @@
 
 
 
-<p>This post picks up in a <a href="/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/drupal/gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
+<p>This post picks up in a <a href="/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
 <p><a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The entire project is available in my GitHub</a>.</p>
 <p>More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.</p>
 <pre class="language-gitpod" tabindex="0"><code class="language-gitpod">image:
@@ -80,14 +80,14 @@
     vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> system.site page.front /node/<span class="token variable">$home_id</span>
 <span class="token keyword">fi</span></code></pre>
 <p>The key for that structure to be maintained is that the homepage is of the content type “Home” and with the title of “Home.” If that isn’t met, this workaround will fail.</p>
-<h3 id="admin-password" tabindex="-1">Admin password <a class="header-anchor" href="#admin-password">#</a></h3>
+<h3 id="admin-password" tabindex="-1">Admin Password <a class="header-anchor" href="#admin-password">#</a></h3>
 <p>By default, the site install at this point created a default super-admin user with a random password. For the purpose of this demo, I wanted to control what that admin password was so I could put it in the GitHub README and keep it saved in my <a href="https://ryanrobinson.technology/all/tools/security-essentials-password-manager/">password manager</a>. So, I used drush to always reset the admin password back to what I wanted it to be:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush user:password admin <span class="token string">"ZNB*ufm1tyz4rwc@yzk"</span></code></pre>
 <h3 id="cleanup" tabindex="-1">Cleanup <a class="header-anchor" href="#cleanup">#</a></h3>
 <p>There are two more small acts of clean up that I want, to minimize warning errors that would otherwise appear as soon as I sign in. One is to rebuild the content permissions and the other is to run cron.</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush php-eval <span class="token string">'node_access_rebuild();'</span>
 vendor/drush/drush/drush <span class="token function">cron</span></code></pre>
-<h3 id="drush-alias" tabindex="-1">Drush alias <a class="header-anchor" href="#drush-alias">#</a></h3>
+<h3 id="drush-alias" tabindex="-1">Drush Alias <a class="header-anchor" href="#drush-alias">#</a></h3>
 <p>I want to be able to use the command <code>drush</code> instead of always having to reference the full path to drush, as I did above. So I add an alias to my .bashrc. You can also do this by adding the location of drush to the PATH. Arguably that is more correct but this was simpler in a GitPod scenario where containers are constantly being built and destroyed and so don’t always have to be precisely the long-term ideal.</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'alias drush="/workspace/drupal-gitpod/vendor/drush/drush/drush"'</span> <span class="token operator">>></span> ~/.bashrc</code></pre>
 <h3 id="command" tabindex="-1">Command <a class="header-anchor" href="#command">#</a></h3>
@@ -129,7 +129,7 @@ apachectl start</code></pre>
     - gruntfuggly.todo-tree
     - mblode.twig-language
     - vscode-icons-team.vscode-icons</code></pre>
-<h2 id="almost-there" tabindex="-1">Almost there… <a class="header-anchor" href="#almost-there">#</a></h2>
+<h2 id="almost-there" tabindex="-1">Almost There… <a class="header-anchor" href="#almost-there">#</a></h2>
 <p>In the last post of this series, I’ll look at a few other configuration changes I needed to make for this to work.</p>
 
 <div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-3-settings-config/">Drupal GitPod Container 3: Settings and Config</a></p>
@@ -172,7 +172,7 @@ apachectl start</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -263,6 +263,6 @@ apachectl start</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2024-09-17T14:42:36.206Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2024-09-17T15:22:28.387Z -->
 	</body>
 </html>

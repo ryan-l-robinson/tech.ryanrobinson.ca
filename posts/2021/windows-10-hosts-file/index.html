@@ -50,7 +50,7 @@
 <li>migrating a site to a new server and needing to test it before changing the public DNS</li>
 <li>development on dev/staging servers which do not have public DNS listings</li>
 </ol>
-<h2 id="open-the-file" tabindex="-1">Open the file <a class="header-anchor" href="#open-the-file">#</a></h2>
+<h2 id="open-the-file" tabindex="-1">Open the File <a class="header-anchor" href="#open-the-file">#</a></h2>
 <p>The hosts file in Windows is located at C:\Windows\System32\drivers\etc\hosts. I find I routinely forget that, so I added a shortcut to my primary document folder so I can get back to it faster. To do that in Windows, browse to the folder where you want the shortcut. Right-click and select New Shortcut. In the prompt that opens, enter C:\Windows\System32\drivers\etc\hosts for the location of the item. Click next, then provide it a shortcut name – that could stay simple as “hosts” or something else. Save it, and now you’re good to go.</p>
 <p>Side note: Linux has a similar system for overriding public DNS. The hosts file there is typically located at /etc/hosts and is structured the same way.</p>
 <p>You will need to edit this file as an administrator in order to make changes. You can approach this either way:</p>
@@ -59,8 +59,8 @@
 <li>Some editors such as Visual Studio Code will allow you to open the file first as a non-administrator, then when you try to save it will fail and prompt you if you want to save it as an administrator instead.</li>
 </ol>
 <p>Since I use VS Code for my main editor anyway, I tend to use option 2 as a bit faster most of the time.</p>
-<h2 id="file-contents" tabindex="-1">File contents <a class="header-anchor" href="#file-contents">#</a></h2>
-<p>The contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local library website VM at <a href="https://local.library.wlu.ca">https://local.library.wlu.ca</a>, add this line:</p>
+<h2 id="file-contents" tabindex="-1">File Contents <a class="header-anchor" href="#file-contents">#</a></h2>
+<p>The contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local VM at <a href="https://domain1.com">https://domain1.com</a>, add this line:</p>
 <pre class="language-text" tabindex="0"><code class="language-text">127.0.0.1 domain1.com</code></pre>
 <p>If you want to have multiple domains on the same IP address, like a dev server that has a couple different test sites on it, you can structure it in one of two ways. The shorter version has one line per IP address, followed by all the domains:</p>
 <pre class="language-text" tabindex="0"><code class="language-text">127.0.0.1 domain1.com domain2.com domain3.com</code></pre>
@@ -111,7 +111,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -202,6 +202,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/windows-10-hosts-file/` was built on 2024-09-17T14:42:36.103Z -->
+		<!-- This page `/posts/2021/windows-10-hosts-file/` was built on 2024-09-17T15:22:28.269Z -->
 	</body>
 </html>

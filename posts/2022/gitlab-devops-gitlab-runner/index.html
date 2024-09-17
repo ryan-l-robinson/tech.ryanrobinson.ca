@@ -50,7 +50,7 @@
 <p>This relates to <a href="/tags/gitlab-devops/">the GitLab DevOps process</a>. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.</p>
 <p>But there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.</p>
 <p>Here’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.</p>
-<h2 id="install-gitlab-runner-package" tabindex="-1">Install GitLab Runner package <a class="header-anchor" href="#install-gitlab-runner-package">#</a></h2>
+<h2 id="install-gitlab-runner-package" tabindex="-1">Install GitLab Runner Package <a class="header-anchor" href="#install-gitlab-runner-package">#</a></h2>
 <p>First you need to install the GitLab Runner package on your server. GitLab will give you the instructions to do this, but here’s the general idea.</p>
 <p>First, copy the package to your server, in the /usr/local/bin folder:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">curl</span> <span class="token parameter variable">-L</span> <span class="token parameter variable">--output</span> /usr/local/bin/gitlab-runner <span class="token string">"https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64"</span></code></pre>
@@ -59,7 +59,7 @@
 <p>Navigate to that folder and install:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/bin
 <span class="token function">sudo</span> ./gitlab-runner <span class="token function">install</span> <span class="token parameter variable">--user</span><span class="token operator">=</span>libgit --working-directory<span class="token operator">=</span>/home/libgit</code></pre>
-<h2 id="register-a-runner" tabindex="-1"><a href="#register-a-runner"></a>Register a runner <a class="header-anchor" href="#register-a-runner">#</a></h2>
+<h2 id="register-a-runner" tabindex="-1">Register a Runner <a class="header-anchor" href="#register-a-runner">#</a></h2>
 <p>Once the runner is installed, you’ll need to register at least one runner on the server.</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> ./gitlab-runner register <span class="token parameter variable">--url</span> https://gitlab.com/ --registration-token <span class="token punctuation">[</span>token<span class="token punctuation">]</span></code></pre>
 <p>The script will prompt you with a few configuration options. Some are fairly obvious, but I’ll note a couple others.</p>
@@ -120,7 +120,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -211,6 +211,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-gitlab-runner/` was built on 2024-09-17T14:42:36.336Z -->
+		<!-- This page `/posts/2022/gitlab-devops-gitlab-runner/` was built on 2024-09-17T15:22:28.456Z -->
 	</body>
 </html>

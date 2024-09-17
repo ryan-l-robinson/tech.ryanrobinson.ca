@@ -49,68 +49,68 @@
 
 <p>Here’s another piece in a <a href="/tags/gitlab-devops/">GitLab DevOps</a> setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.</p>
 <p>I split this into two pieces, taking advantage of <a href="https://docs.gitlab.com/ee/ci/yaml/index.html#extends">GitLab’s ability to extend other functions, even functions in other projects</a>. My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in <a href="https://github.com/ryan-l-robinson/GitLab-CI-CD">my personal GitHub</a>. I know that’s an unintuitive combination.</p>
-<h2 id="the-generic-ci-cd-functions" tabindex="-1">The generic CI/CD functions <a class="header-anchor" href="#the-generic-ci-cd-functions">#</a></h2>
+<h2 id="the-generic-ci-cd-functions" tabindex="-1">The Generic CI/CD Functions <a class="header-anchor" href="#the-generic-ci-cd-functions">#</a></h2>
 <p>To be able to test, I first need a general Oracle Linux 8 image that can run PHP 8.0 and composer for a Drupal site.</p>
-<pre class="language-gitlab" tabindex="0"><code class="language-gitlab">## Build an Oracle Linux 8 container, used by other tests below ##
-.ol8_lamp_build:
-  stage: test
-  image: oraclelinux:8
-  before_script:
-    - dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    - dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    - dnf -y module enable php:remi-8.0
-    - dnf install -y php php-gd php-pdo zip unzip git php-curl php-mbstring php-zip php-json php-xml php-simplexml php-mysqlnd php-pecl-apcu wget curl
-    - php -v
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php');"</code></pre>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">## Build an Oracle Linux 8 container, used by other tests below ##</span>
+<span class="token key atrule">.ol8_lamp_build</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> oraclelinux<span class="token punctuation">:</span><span class="token number">8</span>
+  <span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> dnf <span class="token punctuation">-</span>y install https<span class="token punctuation">:</span>//dl.fedoraproject.org/pub/epel/epel<span class="token punctuation">-</span>release<span class="token punctuation">-</span>latest<span class="token punctuation">-</span>8.noarch.rpm
+    <span class="token punctuation">-</span> dnf <span class="token punctuation">-</span>y install https<span class="token punctuation">:</span>//rpms.remirepo.net/enterprise/remi<span class="token punctuation">-</span>release<span class="token punctuation">-</span>8.rpm
+    <span class="token punctuation">-</span> dnf <span class="token punctuation">-</span>y module enable php<span class="token punctuation">:</span>remi<span class="token punctuation">-</span><span class="token number">8.0</span>
+    <span class="token punctuation">-</span> dnf install <span class="token punctuation">-</span>y php php<span class="token punctuation">-</span>gd php<span class="token punctuation">-</span>pdo zip unzip git php<span class="token punctuation">-</span>curl php<span class="token punctuation">-</span>mbstring php<span class="token punctuation">-</span>zip php<span class="token punctuation">-</span>json php<span class="token punctuation">-</span>xml php<span class="token punctuation">-</span>simplexml php<span class="token punctuation">-</span>mysqlnd php<span class="token punctuation">-</span>pecl<span class="token punctuation">-</span>apcu wget curl
+    <span class="token punctuation">-</span> php <span class="token punctuation">-</span>v
+    <span class="token punctuation">-</span> php <span class="token punctuation">-</span>r "copy('https<span class="token punctuation">:</span>//getcomposer.org/installer'<span class="token punctuation">,</span> 'composer<span class="token punctuation">-</span>setup.php');"
+    <span class="token punctuation">-</span> php composer<span class="token punctuation">-</span>setup.php
+    <span class="token punctuation">-</span> php <span class="token punctuation">-</span>r "unlink('composer<span class="token punctuation">-</span>setup.php');"</code></pre>
 <p>Part one is a project containing a few generic CI job templates. One of those, in the tests.yml file, is a PHP lint test. Saying that I want to test every php file in a certain folder is not as easy as you’d think – there is no flag for applying it recursively – so it requires a loop:</p>
-<pre class="language-gitlab" tabindex="0"><code class="language-gitlab">### PHP lint test ###
-.php_lint:
-  stage: test
-  extends: .ol8_lamp_build
-  variables:
-    DIRECTORIES: "./"
-    EXTENSIONS: "php"
-  script:
-    ## Recursively checks for files of specified extensions in specified directories and completes php lint on them
-    - cwd="$(pwd)"
-    - |
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">### PHP lint test ###</span>
+<span class="token key atrule">.php_lint</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .ol8_lamp_build
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">DIRECTORIES</span><span class="token punctuation">:</span> <span class="token string">"./"</span>
+    <span class="token key atrule">EXTENSIONS</span><span class="token punctuation">:</span> <span class="token string">"php"</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token comment">## Recursively checks for files of specified extensions in specified directories and completes php lint on them</span>
+    <span class="token punctuation">-</span> cwd="$(pwd)"
+    <span class="token punctuation">-</span> <span class="token punctuation">|</span><span class="token scalar string">
       for DIRECTORY in $DIRECTORIES 
         do
           cd $DIRECTORY
           for EXT in $EXTENSIONS
             do
-              files="$(find -name *.${EXT} -type f)"
+              files="$(find -name *.${EXT} -type f)"</span>
 
-              for file in ${files}
-                do php -l ${file};
+              for file in $<span class="token punctuation">{</span>files<span class="token punctuation">}</span>
+                do php <span class="token punctuation">-</span>l $<span class="token punctuation">{</span>file<span class="token punctuation">}</span>;
               done;
             done;
           cd $cwd;
         done;</code></pre>
 <p>This has variables for the directory to start testing from, as well as what extensions to test. The extension variable defaults to only php files, but it can be overridden to include other extensions, which is valuable with Drupal where other extensions get used for php code like .module and .theme.</p>
-<h2 id="the-project-s-ci-file" tabindex="-1">The project’s CI file <a class="header-anchor" href="#the-project-s-ci-file">#</a></h2>
+<h2 id="the-project-s-ci-file" tabindex="-1">The Project’s CI File <a class="header-anchor" href="#the-project-s-ci-file">#</a></h2>
 <p>Part two is the specific project that then references those generic templates. Using the full project reference, under the assumption that in a real situation this would be in a differernt GitLab project, that looks something like this in the project’s .gitlab-ci.yml file:</p>
-<pre class="language-gitlab" tabindex="0"><code class="language-gitlab"># Includes general CI jobs to extend from
-include:
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment"># Includes general CI jobs to extend from</span>
+<span class="token key atrule">include</span><span class="token punctuation">:</span>
  
-    - project: '[path to the GitLab project with CI]'
-      ref: main
-      file: test.yml
+    <span class="token punctuation">-</span> <span class="token key atrule">project</span><span class="token punctuation">:</span> <span class="token string">'[path to the GitLab project with CI]'</span>
+      <span class="token key atrule">ref</span><span class="token punctuation">:</span> main
+      <span class="token key atrule">file</span><span class="token punctuation">:</span> test.yml
 
-## Stages ##
-stages:
-  - test
+<span class="token comment">## Stages ##</span>
+<span class="token key atrule">stages</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> test
 
-## Test Jobs ##
+<span class="token comment">## Test Jobs ##</span>
 
-### Tests for PHP errors in custom code ###
-php:
-  extends: .php_lint
-  variables:
-    DIRECTORIES: ./web/themes/custom ./web/modules/custom
-    EXTENSIONS: php module theme inc</code></pre>
+<span class="token comment">### Tests for PHP errors in custom code ###</span>
+<span class="token key atrule">php</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .php_lint
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">DIRECTORIES</span><span class="token punctuation">:</span> ./web/themes/custom ./web/modules/custom
+    <span class="token key atrule">EXTENSIONS</span><span class="token punctuation">:</span> php module theme inc</code></pre>
 <p>This example will run the PHP syntax test against all .php, .module, .theme, and .inc files located with the Drupal 8+ custom themes and custom modules directories.</p>
 
 <div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-gitpod-container-3-settings-config/">Drupal GitPod Container 3: Settings and Config</a></p><p>Next: <a href="/posts/2022/gitlab-devops-gitlab-runner/">GitLab DevOps: GitLab Runner</a></p>
@@ -153,7 +153,7 @@ php:
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (4)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
 		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
@@ -244,6 +244,6 @@ php:
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-17T14:42:36.301Z -->
+		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-17T15:22:28.483Z -->
 	</body>
 </html>
