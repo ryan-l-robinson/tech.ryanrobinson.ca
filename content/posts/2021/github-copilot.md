@@ -18,7 +18,7 @@ One concern was that developers would allow Copilot to write large chunks of the
 
 The other concern I think is a bit more serious: licensing. Copilot combines code from publicly-available code repositories. Those repositories may have a wide variety of licenses on them. Some are completely fine with you using them in a commercial product. Some do not want you to do that at all. Some are ok with it as long as you provide credit. The problem with Copilot grabbing the code for you is that it does not filter by license and it doesn’t even point you to the original repositories that helped inspire the code. The counterpoint is that Copilot is not strictly copying code from the repositories – it is writing new code with inspiration from many repositories – but it still feels a bit closer to the ethical line than many are comfortable with.
 
-## My first test
+## My First Test
 
 With that out of the way, I’ve now had a chance to try it out.
 

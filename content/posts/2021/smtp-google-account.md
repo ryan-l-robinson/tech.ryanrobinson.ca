@@ -8,7 +8,7 @@ tags:
 
 Many applications like business scanners or hosted CRM systems come with features that send email. To do so, it has to be able to connect to an email account that it sends on behalf of. The main challenge is that most good modern email services are strict about allowing emails to be sent on their behalf. Microsoft 365 is particularly strict. Google is a bit easier, but does require an extra step which is not obvious.
 
-First, decide which Google account you’ll want to do this. I recommend that it is an account solely for this purpose. **It definitely should not be a regular user account that might contain sensitive data**. The reason is what will come up below: by nature of this functionality you will need to disable some of the advanced Google security so that [it is protected only by a password](/posts/2021/security-essentials-multi-factor-authentication/) (generally a bad idea). Create a specific Gmail account for this purpose, like &lt;company name&gt;.crm@gmail.com.
+First, decide which Google account you’ll want to do this. I recommend that it is an account solely for this purpose. **It definitely should not be a regular user account that might contain sensitive data**. The reason is what will come up below: by nature of this functionality you will need to disable some of the advanced Google security so that [it is protected only by a password](/posts/2021/security-essentials-multi-factor-authentication/) (generally a bad idea). Create a specific Gmail account for this purpose, like [company name].crm@gmail.com.
 
 ## Configure Settings
 

@@ -10,7 +10,7 @@ Drupal 9 provides a different style for active links - i.e. a link that goes to 
 
 Here's how I got around that. First add this file to the theme's /js folder, in a new file called `active-links.js`.
 
-```jquery
+```js
 (function (Drupal) {
   var viewLinks = document.querySelectorAll('.view a[href="'+window.location.pathname+'"]');
   for (let i = 0; i < viewLinks.length; i++) {

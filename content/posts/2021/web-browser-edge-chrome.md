@@ -26,7 +26,7 @@ Google Chrome is also very forgiving of everybody else’s trackers, like Facebo
 
 If you’re somebody who runs a lot of tabs at once, or using a machine with limited memory, this could be a deciding factor on its own.
 
-## New tab for Office accounts
+## New Tab for Office Accounts
 
 If you’re logged in through a business account, one of the options for the New Tab screen is your Office documents. It’s essentially the same screen you get when you visit office.com. Putting that on the New Tab screen is a great way to be reminded and have quick access to your most important documents within the flow of your normal browsing.
 
@@ -36,11 +36,11 @@ When you use Edge, on desktop or mobile, it integrates with your Windows 10 Time
 
 Update: it sounds like the Timeline sync will be going away for consumer accounts and will only be available for business accounts soon.
 
-## Vertical tabs
+## Vertical Tabs
 
 Lining up your browsing tabs on the left side of your screen instead of the top takes some getting used to, but once you get the hang of it, it is a much more efficient use of space at least on widescreen monitors where you already have more width than most websites are designed for, but could really use the extra height. The main downside is that it’s slower to switch tabs using a mouse, so I may get used to Alt+Tab to switch instead of using a mouse so much.
 
-## It’s already installed
+## It’s Already Installed
 
 This is a little thing, and yes, the argument I’m about to make is exactly what got Microsoft into anti-trust trouble years ago. The argument is simple: Windows 10 comes with Edge.
 

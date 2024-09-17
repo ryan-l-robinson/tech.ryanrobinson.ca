@@ -13,7 +13,7 @@ In the language of [CiviCRM](/posts/2021/civicrm-overview/), these are Personal 
 
 Here are the three biggest problems I found when trying to use this feature:
 
-## Confusing to set up
+## Confusing to Set Up
 
 The way that CiviCRM presents options to you is confusing. Personal campaign pages can be used to recruit new participants or to gather donations. They can also be attached to either an event or a contribution page. So there are four combinations:
 
@@ -24,12 +24,12 @@ The way that CiviCRM presents options to you is confusing. Personal campaign pag
 
 Maybe having all four options is justifiable. The bigger problem is the settings don’t make it clear enough which combination you want until you try it out and realize you got it wrong.
 
-## No participant directory
+## No Participant Directory
 
 The most natural thing that you want in a scenario like Coldest Night of the Year? A list of all the participants so that visitors to the site can find who they want to support, as well as things like leaderboards. This is common in these fundraising systems. The CiviCRM PCPs do not offer this.
 
 If your CiviCRM is built on top of a Drupal site (the best option), you can make something work using views to find all the PCPs of participants tied to an event. But that shouldn’t be necessary; that really should be a feature that’s part of the CiviCRM offering. We put in a lot of effort with views and custom PHP development to try to make some friendly user interfaces for participants and donors and even then it was a little rough compared to other systems out there.
 
-## No teams
+## No Teams
 
 A lot of these types of events go most smoothly when the participants can sign up as part of a team, which adds elements of comradery and competition. The CiviCRM function does not handle this at all. There was an extension that did it, but that extension got abandoned after a couple of years, leaving one of our clients stranded without that working at all anymore and data in their database with no easy way to convert it to something useful. When it was working, it was similarly as rough as our participant directory workarounds.

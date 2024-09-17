@@ -16,7 +16,7 @@ This post takes a look at the three Dockerfiles required:
 
 Let’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:
 
-```docker
+```Dockerfile
 # Use the default MariaDB image, not a specific Oracle Linux one
 FROM mariadb:latest
 
@@ -28,7 +28,7 @@ EXPOSE 3306
 
 This image starts from Oracle Linux, a requirement of this particular hosting environment:
 
-```docker
+```Dockerfile
 FROM oraclelinux:8
 USER root
 SHELL ["/bin/bash", "-c"]
@@ -36,21 +36,21 @@ SHELL ["/bin/bash", "-c"]
 
 It adds some other useful utilities, although they may not really be needed here since I won’t be accessing this container directly:
 
-```docker
+```Dockerfile
 # Install other useful packages
 RUN dnf install -y curl wget zip
 ```
 
 It creates a directory that is necessary for running PHP-FPM:
 
-```docker
+```Dockerfile
 # Create required directory
 RUN mkdir -p /run/php-fpm
 ```
 
 It installs PHP 8.0, which requires a different repository (at least so far):
 
-```docker
+```Dockerfile
 # Install PHP 8.0, which needs a different repository
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -61,14 +61,14 @@ RUN dnf -y install php
 
 It adds several PHP extensions, including a few that are recommended by not required by Drupal (apcu and uploadprogress):
 
-```docker
+```Dockerfile
 # Install PHP extensions, including PECL with APCU and UploadProgress extensions, recommended by Drupal
 RUN dnf install -y php-gd php-pdo php-zip php-mysqlnd gcc make php-devel php-pear php-pecl-apcu php-pecl-uploadprogress
 ```
 
 It installs XDebug, the PHP debugging tool:
 
-```docker
+```Dockerfile
 # Install XDebug
 RUN dnf install -y php-pecl-xdebug
 RUN touch /var/log/xdebug.log
@@ -77,7 +77,7 @@ COPY /conf/xdebug.ini /etc/php.d/xdebug.ini
 
 It makes several changes to php.ini to increase performance:
 
-```docker
+```Dockerfile
 # Increase resources for PHP
 RUN sed -i "s/max_execution_time = 30/max_execution_time = 300/g" /etc/php.ini
 RUN sed -i "s/max_input_time = 60/max_input_time = 600/g" /etc/php.ini
@@ -92,7 +92,7 @@ RUN echo "ProxyTimeout 1200" >> /etc/httpd/conf.d/php.conf
 
 It updates the php-fpm configuration to allow listeners from other clients (the web container):
 
-```docker
+```Dockerfile
 # Update PHP-FPM configuration including allowing listeners from other clients, defining the OPCache, and listening on port 9000
 RUN sed -i "s/listen.allowed_clients = 127.0.0.1/;listen.allowed_clients = 127.0.0.1/g" /etc/php-fpm.d/www.conf
 RUN sed -i "s/;php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/g" /etc/php-fpm.d/www.conf
@@ -101,7 +101,7 @@ RUN sed -i "s/listen = \/run\/php-fpm\/www.sock/listen = 9000/g" /etc/php-fpm.d/
 
 And finally, it starts php-fpm as the service running in the foreground for this container:
 
-```docker
+```Dockerfile
 # Start PHP-FPM
 ENTRYPOINT ["php-fpm"]
 CMD ["-F", "-R"]
@@ -113,14 +113,14 @@ The final container, web, is the main one that the devcontainer will connect to,
 
 It includes a few more useful packages:
 
-```docker
+```Dockerfile
 # Install other needed packages
 RUN dnf install -y curl wget git zip mod_ssl httpd php-gd openssl which mariadb sudo patch vim
 ```
 
 It configures Apache, including creating a self-signed SSL certificate for https browsing:
 
-```docker
+```Dockerfile
 # Apache configuration, including SSL certificates and logs
 RUN mkdir -p /etc/httpd/certs
 COPY /conf/openssl-config.txt /etc/httpd/certs/openssl-config.txt
@@ -132,7 +132,7 @@ COPY /conf/local.drupal.com.conf /etc/httpd/conf.d/local.drupal.com.conf
 
 It adds the drupal user and alters some other permissions so it can edit the web folder directly without sudo, and can sudo when necessary:
 
-```docker
+```Dockerfile
 # Add drupal user within the apache group
 RUN useradd drupal
 RUN usermod -aG apache drupal
@@ -146,7 +146,7 @@ RUN sed -i "s/# %wheel	ALL=(ALL)	NOPASSWD: ALL/%sudo	ALL=(ALL)	NOPASSWD: ALL/g" 
 
 It installs composer, an essential for Drupal management:
 
-```docker
+```Dockerfile
 # Install latest composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir /usr/bin --filename composer

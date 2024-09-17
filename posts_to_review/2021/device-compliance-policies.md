@@ -19,7 +19,7 @@ As is the case elsewhere in Endpoint Manager, Chromebook is the noticeable omiss
 
 The exact options from there will vary depending on the platform, but they break down into three decisions: how do you define non-compliance (compliance settings), what happens if it’s not compliant (actions for noncompliance), and who is bound by this compliance policy (assignments).
 
-## Compliance settings
+## Compliance Settings
 
 This tab defines what it takes to be considered compliant vs non-compliant. Windows 10 has the most options and I won’t list them all, but some that stand out include:
 
@@ -36,7 +36,7 @@ In general, I suggest that you at least require Bitlocker, firewall, antivirus, 
 ![](/assets/img/2021/05/Device-Compliance-Settings.png)
 _Screenshot of some of the device compliance settings, including requiring Bitlocker_
 
-## Actions for noncompliance
+## Actions for Noncompliance
 
 The next question is what you want to happen if the device violates the compliance rules. There are a few options:
 

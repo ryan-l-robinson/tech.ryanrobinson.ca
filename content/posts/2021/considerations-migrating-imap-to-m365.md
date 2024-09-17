@@ -43,7 +43,7 @@ In this case, the best solution may be to use the PST export and import in deskt
 
 It’s a slow but straightforward process, not too onerous as long as you don’t have to do it for a lot of users.
 
-## Contacts and calendar
+## Contacts and Calendar
 
 IMAP migrations handle email, including folder structures. They don’t include contacts and calendar. Users have to do that manually. If the users want to migrate those things (they may not, depending how they use them), make sure they have instructions for how to export their address book and calendar and then import to the new Microsoft mailbox.
 

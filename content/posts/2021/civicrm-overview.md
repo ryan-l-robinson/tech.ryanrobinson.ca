@@ -26,7 +26,7 @@ Similarly, CiviCRM has some good functionality around public event signup forms.
 
 ## The Cautions
 
-### Everything else
+### Everything Else
 
 If you look up CiviCRM you’ll see it offer several components which sound great, like bulk mailing, case management, and volunteer management. They aren’t lying, but they are really at varying degrees of a complete solution. A lot of the components end up a disappointment once you start putting them to heavy use and realize they don’t offer much beyond the minimum. For example, there is a bulk mail tool and some features of it work great, but with some major caveats:
 
@@ -44,7 +44,7 @@ The rest of the time, you have to make a decision to either leave the bug alone 
 
 Most of these bugs are not security risks. Your data is generally safe. The consequences of the bugs are usually more like being unable to edit contributions of time, or issue tax receipts, or view a certain report. They may not be site breaking bugs or security risks, but it’s also hard to fully trust the system housing important data and processes.
 
-### It’s not really free
+### It’s Not Really Free
 
 A common misconception is that open-source means that it is free forever. This is especially pointed out in contrast to the monthly costs of systems like Salesforce or Dynamics (both of which do offer charitable discounts).
 
@@ -61,7 +61,7 @@ For example, a potential best-case scenario: if you’re a charity (not just a n
 
 But if you have 50 users, or if Salesforce doesn’t do everything you need and you have to also buy licenses to several add-ons, that’s going to get much more expensive very fast.
 
-### No email integration
+### No Email Integration
 
 One of the most central concepts of a CRM system is that it is provides one system of record for everything you need to know about your constituents. Other CRMs like Salesforce and Dynamics provide tools built right into your email to track your email communications into the CRM, so there is no extra work needed to keep those records up to date.
 

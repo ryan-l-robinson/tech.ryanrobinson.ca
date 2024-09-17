@@ -15,7 +15,7 @@ There was no option to allow the email to be associated with both a personal and
 
 This is a different approach than Microsoft. Microsoft does allow you to have the same email address on both a personal account and a business account. This made me think about the pro’s and con’s of both approaches.
 
-## The problem with Google’s approach: what if you want the same email on both?
+## The Problem with Google’s Approach
 
 This new situation did remind me of hitting a similar situation when I got my first Android device. I had a Google account, but it was technically a business account, created years ago when GSuite was free. I initially set up my Android with that. Then I started hitting some limitations, like not being able to use family sharing of Google Play purchases.
 
@@ -33,7 +33,7 @@ It will be a much bigger problem if I ever move that domain to Google business e
 
 That situation demonstrates the advantage of Microsoft’s approach: **you can choose to keep your personal content and your business content separate** even if you intentionally or accidentally used the same email address on both. Plus Microsoft offers aliases which can help you untangle them if you later need to; I would be a lot more sympathetic to Google’s approach if they offered that.
 
-## The problem with Microsoft’s approach: most people won’t remember what is on personal vs business
+## The Problem with Microsoft’s Approach
 
 The problem with Microsoft’s account is essentially the reverse. You’re allowed to have the same email on both a personal and a business account. That’s great to keep things separated. Now you need to remember which account you used for that thing you’re trying to do. If you’re diligent about keeping work in the work account and personal content in the personal content, that’s not too bad. That’s not always possible and people aren’t always going to be good at it.
 

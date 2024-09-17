@@ -10,7 +10,7 @@ Drupal does not come with any kind of recycle bin / trash system out of the box,
 
 There is a demo of this [available on my GitHub](https://github.com/ryan-l-robinson/Drupal-recycle-bin), with a GitPod container to test it out.
 
-## Permissions: Only Admins can Delete
+## Permissions: Only Admins Can Delete
 
 Check permissions for each content type to confirm that only admins can delete anything. Everybody else will only be able to use the flag field we're about to create to request deletion, not directly delete anything.
 

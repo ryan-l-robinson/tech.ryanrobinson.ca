@@ -8,7 +8,7 @@ This site is now ryanrobinson.technology instead of alliterationapplications.com
 
 With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.
 
-## Rearrange Xontent
+## Rearrange Content
 
 I won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.
 

@@ -9,7 +9,7 @@ tags:
 
 Data Loss Prevention in Microsoft 365 is a feature that helps prevent loss of sensitive data (that makes sense) coming out of your system. This can be within emails or within files, although the latter requires a higher license. Here’s how it works.
 
-## Sensitive data types
+## Sensitive Data Types
 
 At the heart of the DLP functionality is the idea of sensitive data types and the ability to recognize those types automatically using pattern recognition.
 
@@ -22,7 +22,7 @@ You can also add your own sensitive data types and train them with enough data f
 ![](/assets/img/2021/04/DLP-Sensitive-Information-Types.png)
 _Screenshot of current sensitive info types available by default_
 
-## DLP rules
+## DLP Rules
 
 The next question is what you want to do when that sensitive data is identified. This is where the DLP rules come in. With DLP rules you can set multiple options:
 
@@ -34,13 +34,13 @@ The next question is what you want to do when that sensitive data is identified.
 ![](/assets/img/2021/04/DLP-Policy-Settings.png)
 _Screenshot of DLP policy setting options_
 
-## Other uses of sensitive data types
+## Other Uses of Sensitive Data Types
 
 These sensitive data types can also inform other types of security and compliance rules throughout your Microsoft 365. For example, you can have retention rules based on the sensitive data type scanner which says, for example: if the file has a passport number, retain for 7 years after last modification and then delete.
 
 ![](/assets/img/2021/04/Retention-Tag.png)
 _Screenshot of making a retention tag based on sensitive information type_
 
-## Learn more
+## Learn More
 
 This is a very broad introduction to the idea. To dig in deep to what is possible, [check out the Microsoft docs](https://docs.microsoft.com/en-us/exchange/security-and-compliance/data-loss-prevention/data-loss-prevention).

@@ -21,13 +21,13 @@ In this [mini-series](/tags/gitpod-drupal/) I describe how I created a generic D
 
 This solution starts from [the GitPod-provided MySQL image](https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile). That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.
 
-```docker
+```Dockerfile
 FROM gitpod/workspace-mysql
 ```
 
 The biggest catch with using this image is that you might end up with the latest PHP version, and there’s a good chance that your Drupal site doesn’t support that yet. So you probably want to add a section to change the PHP to one that you know currently works:
 
-```docker
+```Dockerfile
 RUN update-alternatives --set php /usr/bin/php8.0
 ```
 
@@ -37,7 +37,7 @@ That doesn’t cover everything, though. There are a few more things I want for 
 
 Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about [installing PECL UploadProgress for Oracle Linux](/posts/2021/drupal-pecl-uploadprogress/), which is similar but a bit different than these Ubuntu commands.
 
-```docker
+```Dockerfile
 USER root
 # Install other needed packages
 RUN apt update
@@ -50,7 +50,7 @@ RUN pecl install uploadprogress
 
 Drupal can work without composer, [but your life is going to be a lot easier with it](https://www.drupal.org/docs/develop/using-composer/using-composer-with-drupal). Here’s how I added that to my Dockerfile:
 
-```docker
+```Dockerfile
 # Install latest composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -64,7 +64,7 @@ At this point, the server is ready to provide the core packages that run Drupal 
 
 [I’ve also mentioned pa11y recently](/posts/2021/pa11y-ci-oracle-linux-8-installation/), the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:
 
-```docker
+```Dockerfile
 # Install pa11y accessibility testing tool, including NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
@@ -78,7 +78,7 @@ RUN npm install pa11y -g --unsafe-perm=true --allow-root
 
 Finally, I’m going to open the standard ports: 80 (HTTP), 443 (HTTPS), and 3306 (MySQL). This doesn’t seem to be actually necessary but it can help to remind yourself what ports you’re using.
 
-```docker
+```Dockerfile
 EXPOSE 80
 EXPOSE 443
 EXPOSE 3306

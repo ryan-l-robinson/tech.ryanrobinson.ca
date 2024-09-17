@@ -47,4 +47,4 @@ This is the accessibility issue that most often gets discussed, but it’s still
 
 WordPress offers the option to set ALT text, but it doesn’t require it. It’s also not quite as in-your-face in the new Gutenberg block editor as it used to be in the classic WordPress editor, so it’s easy to add an image and forget to dig into the settings for the ALT text option.
 
-Update: in 2023 I wrote [another post discussing how descriptive ALT text should really be](https://tech.ryanrobinson.ca/posts/2023/descriptive-alt/), and in some cases you may not want ALT text at all.
+Update: in 2023 I wrote [another post discussing how descriptive ALT text should really be](/posts/2023/descriptive-alt/), and in some cases you may not want ALT text at all.

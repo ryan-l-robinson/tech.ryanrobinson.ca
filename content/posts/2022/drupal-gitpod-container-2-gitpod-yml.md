@@ -17,7 +17,7 @@ This post picks up in a [mini-series](/tags/gitpod-drupal/) describing how I cre
 
 More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.
 
-```gitpod
+```yml
 image:
   file: .gitpod/GitPod.Dockerfile
 ```
@@ -50,7 +50,7 @@ sudo cp .gitpod/drupal.settings.php web/sites/default/settings.php
 
 That settings file includes several alterations including where to find the configuration and content sync directories, how to connect to the database, and which URL is allowed to login from. Most of it will be familiar to those who have used Drupal settings files before, but I will cover anything unique in my next post for this series.
 
-### Drupal settings and content
+### Drupal Settings and Content
 
 This is the hardest part of working with Drupal websites. All of the configuration and content is held in the database, not the codebase. Drupal (since 8) offers a configuration sync tool out of the box, and a content sync tool as a module. Broadly speaking, the configuration tool is usually pretty reliable, while the content tool has had some occasional glitches in my time using it.
 
