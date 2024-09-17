@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 10 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -24,7 +24,7 @@
     align-items: center;
 	gap: .5em 3em;
 	padding: 0;
-	margin: 0;
+	margin: 0.5em 0;
 }
 .postlist-metadata p {
 	margin: 0;
