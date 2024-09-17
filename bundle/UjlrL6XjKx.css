@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 20 }
+.postlist { counter-reset: start-from 138 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -15,6 +15,7 @@
 .postlist-item-title {
 	margin-bottom: 0;
 	padding-bottom: 0.25em;
+	line-height: 1.4em;
 }
 
 .postlist-metadata {
