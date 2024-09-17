@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	title: "Ryan Robinson Technology",
 	url: "https://tech.ryanrobinson.ca/",
 	language: "en",
