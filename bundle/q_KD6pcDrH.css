@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -15,6 +15,23 @@
 .postlist-item-title {
 	margin-bottom: 0;
 	padding-bottom: 0.25em;
+}
+
+.postlist-metadata {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+	gap: .5em 3em;
+    border-bottom: 1px dashed var(--red);
+	padding: 0 0 0.5em 0;
+	margin: 0;
+}
+.postlist-metadata p {
+    margin: 0;
+}
+.postlist-tag {
+	text-transform: capitalize;
 }
 
 .postlist-item-time-container {
