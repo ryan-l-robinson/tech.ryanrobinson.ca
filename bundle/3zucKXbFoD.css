@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 18 }
+.postlist { counter-reset: start-from 12 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -23,18 +23,16 @@
     justify-content: space-between;
     align-items: center;
 	gap: .5em 3em;
-	padding: 0 0 0.5em 0;
+	padding: 0;
 	margin: 0;
 }
 .postlist-metadata p {
 	margin: 0.5em 0;
-	line-height: 1em;}
+	line-height: 1em;
+	font-size: 0.8em;
+}
 .postlist-tag {
 	text-transform: capitalize;
-}
-
-.postlist-item-time {
-	font-size: 0.8em;
 }
 
 .postlist-item :last-child {
