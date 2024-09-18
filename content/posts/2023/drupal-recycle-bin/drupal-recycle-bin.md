@@ -16,21 +16,21 @@ Check permissions for each content type to confirm that only admins can delete a
 
 Go to the node permissions screen at /admin/people/permissions. Look for the permissions of each content type that are "Delete own content" or "Delete any content." For the purposes of this demo, only the admin users should have these permissions. Your permission structure may be more complicated.
 
-!["Screenshot of the permissions screen, with all permissions given to admins and no permissions given to others. The key for this example is that only admins have the Delete permissions"](/assets/img/2023/03/RecycleBinPermissions.png)
+!["Screenshot of the permissions screen, with all permissions given to admins and no permissions given to others. The key for this example is that only admins have the Delete permissions"](./permissions.png)
 
 ## Field: Flag for Delete
 
 Proceed to the Manage Fields page of the first content type that you want to have this feature on. For example, if my content type is recyclable_content_type, I would go to /admin/structure/types/manage/recyclable_content_type_/fields. Create a boolean field.
 
-!["Screenshot of the form to create a new field. A new field of type Boolean is being created with the label of Flag for Delete."](/assets/img/2023/03/RecycleBinAddField.png)
+!["Screenshot of the form to create a new field. A new field of type Boolean is being created with the label of Flag for Delete."](./add-field.png)
 
 Limit the field to only allow one value at a time.
 
-!["Screenshot of the form for setting storage on the field. This field allows only 1 value."](/assets/img/2023/03/RecycleBinFieldStorage.png)
+!["Screenshot of the form for setting storage on the field. This field allows only 1 value."](./field-storage.png)
 
 The final screen for creating the field allows you to add more options that are mostly about helping your content creators understand what this is doing. I'll add some help text as well as change the On and Off labels to be more clear of what they mean.
 
-!["Flag for Delete field settings. This includes setting the help text to explain to the users what it does, changing the On label to Delete and the Off label to Keep."](/assets/img/2023/03/RecycleBinFieldHelp.png)
+!["Flag for Delete field settings. This includes setting the help text to explain to the users what it does, changing the On label to Delete and the Off label to Keep."](./field-help.png)
 
 You now have the field on this content type ready to use. You may also want to go into "Manage form display" and "Manage display" to customize how this appears for your users. In my case, on the form I put it inside a Details sidebar paired with the published option. I then used a module like [condition_field](https://www.drupal.org/project/condition_field) to only show that option when the node is already marked as unpublished, so that somebody cannot accidentally mark something for deletion without unpublishing it first. Finally, on the display I hid it entirely because the public should never see that field - it is only for back-end processes.
 
@@ -44,28 +44,28 @@ You can either create a new view or add a new display to an existing view. I'm g
 
 I put it in the menu under Content of the Admin menu, and with the path /admin/content/delete.
 
-!["First settings show the path set to /admin/content/delete. Second setting shows the Menu link as Normal and labelled Ready for Deletion."](/assets/img/2023/03/RecycleBinViewPageSettings.png)
+!["First settings show the path set to /admin/content/delete. Second setting shows the Menu link as Normal and labelled Ready for Deletion."](./view-page-settings.png)
 
 ### Flag for Delete filter
 
 Add a filter to the view, overriding this page only, on the Flag for Delete field.
 
-!["Screenshot of the views admin to add a filter. A filter on the field Flag for Delete is being added."](/assets/img/2023/03/RecycleBinAddFlagFilter.png)
+!["Screenshot of the views admin to add a filter. A filter on the field Flag for Delete is being added."](./add-flag-filter.png)
 
-!["Screenshot of the views admin, setting the value of Flag for Delete is equal to True."](/assets/img/2023/03/RecycleBinViewConfigureFilter.png)
+!["Screenshot of the views admin, setting the value of Flag for Delete is equal to True."](./view-configure-filter.png)
 
 ### Published filter
 
 The view I duplicated from already had a Published filter, but it was exposed to allow users to select. So I'm going to edit that one to only show unpublished content. I only want unpublished content, because if somebody has flagged for delete but it is still published, that suggests they might have made a mistake.
 
-!["Configuration for the Published filter on the view, set as is equal to Published status of No."](/assets/img/2023/03/RecycleBinViewPublishedFilter.png)
+!["Configuration for the Published filter on the view, set as is equal to Published status of No."](./view-published-filter.png)
 
 ### Date Updated filter
 
 Finally, in my case, I also wanted to filter on the date updated, so that only content that hasn't been updated within the past 30 days would show up. Anything less than that suggests that the content creator may be having second thoughts and isn't really ready to delete it yet. In your context, you may not want this delay at all, or you may want a much longer delay.
 
-!["Screenshot of adding the Updated date filter to the view"](/assets/img/2023/03/RecycleBinViewAddUpdatedFilter.png)
+!["Screenshot of adding the Updated date filter to the view"](./add-updated-filter.png)
 
-!["Screenshot of settings for the Updated filter, setting the operator to Is Less Than and the value as an offset of -30 days"](/assets/img/2023/03/RecycleBinViewConfigureUpdatedFilter.png)
+!["Screenshot of settings for the Updated filter, setting the operator to Is Less Than and the value as an offset of -30 days"](./configure-updated-filter.png)
 
 Now admins can periodically check and bulk delete any content that is flagged for delete, unpublished, and last updated more than 30 days ago. You can also do any of the usual views changes from here as you desire, including adding views, changing text to show when there are no results, adding CSS classes, etc.

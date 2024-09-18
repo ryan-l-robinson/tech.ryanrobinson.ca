@@ -15,7 +15,7 @@ There's [a GitPod demo version of my solution on my GitHub](https://github.com/r
 
 Here's an example screenshot of the open menu structure:
 
-!["Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3."](/assets/img/2024/open-menu-example.png)
+!["Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3."](./example.png)
 
 ## Menu Entity Index
 
@@ -23,7 +23,7 @@ If you’re familiar with Drupal, you likely read the introduction and immediate
 
 Once that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.
 
-!["Settings for menu entity index. The first block is tracked menus and the second is tracked entity types."](/assets/img/2024/menu-entity-index-settings.png)
+!["Settings for menu entity index. The first block is tracked menus and the second is tracked entity types."](./menu-entity-index-settings.png)
 
 Notably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.
 

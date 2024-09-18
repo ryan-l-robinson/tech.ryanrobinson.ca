@@ -16,27 +16,27 @@ First, create the paragraph and its corresponding fields. In my case, I wanted t
 
 I created the paragraph type and called it “Contact.”
 
-!["Creating a paragraph type called Contact"](/assets/img/2023/03/Paragraphs-sidebar-create-paragraph.PNG)
+!["Creating a paragraph type called Contact"](./create-paragraph.PNG)
 
 Next, add a field for the label, as a text select to choose from a few pre-defined options including "Primary Contact," "Secondary Contact," etc. Only allow one label per paragraph, which is different from where we'll later allow multiple paragraphs per node.
 
-!["Creating a field called Contact Label, as a Text (List) type"](/assets/img/2023/03/Paragraphs-sidebar-create-label-field.PNG)
+!["Creating a field called Contact Label, as a Text (List) type"](./create-label-field.PNG)
 
-!["Settings for the label field, including the valid options and to allow allow 1 value."](/assets/img/2023/03/Paragraphs-sidebar-label-settings.PNG)
+!["Settings for the label field, including the valid options and to allow allow 1 value."](./label-settings.PNG)
 
 Finally, add a field for the user reference. Set this up to show up as an autocomplete, filtering to only show those who are of the Staff role.
 
-!["Creating a user entity reference field called Contact User"](/assets/img/2023/03/Paragraphs-sidebar-create-user-field.PNG)
+!["Creating a user entity reference field called Contact User"](./create-user-field.PNG)
 
-!["The user entity reference settings, filtering to only show those of the role Staff"](/assets/img/2023/03/Paragraphs-sidebar-user-filter.PNG)
+!["The user entity reference settings, filtering to only show those of the role Staff"](./user-filter.PNG)
 
 ## Assign to a content type
 
 Add a field on the content type that references this paragraph. The field type is going to be an entity reference revision.
 
-!["Adding the paragraph reference to the Page content type"](/assets/img/2023/03/Paragraphs-sidebar-add-field-to-content-type.PNG)
+!["Adding the paragraph reference to the Page content type"](./add-field-content-type.PNG)
 
-!["The settings for the entity field, filtering to be able to select paragraphs of type Contact"](/assets/img/2023/03/Paragraphs-sidebar-entity-reference-paragraph-type.PNG)
+!["The settings for the entity field, filtering to be able to select paragraphs of type Contact"](./entity-reference-paragraph-type.PNG)
 
 In this case, since it's going to display it in the sidebar using a view, also remove it from the display for the content type. I won't get into details of designing the page on this post.
 
@@ -46,21 +46,21 @@ This step can be repeated to add the field to multiple content types, so that yo
 
 For the sake of this demo, I'll only add a couple of fields to the profile - a name, a phone number, and an email - and I won't do any of the design of the profile page, just creating the fields for the purpose of showing it in the sidebar of the content.
 
-!["Created fields for the profile: name, phone, and email"](/assets/img/2023/03/Paragraphs-sidebar-profile-fields.PNG)
+!["Created fields for the profile: name, phone, and email"](./profile-fields.PNG)
 
 ## Create sidebar view
 
 That's all the underlying structure. We can now proceed to creating the view itself. This will be a view of content, because while it will be showing paragraphs, it will be showing those paragraphs based on the content being viewed. It will be a block, since we're going to want blocks that can be placed in theme block regions.
 
-!["Settings for creating the view. The essential component is the view settings showing Content."](/assets/img/2023/03/Paragraphs-sidebar-start-view.PNG)
+!["Settings for creating the view. The essential component is the view settings showing Content."](./start-view.PNG)
 
 Next, make a contextual filter so it will only show content related to the current content on display. This will be on the node ID of the page being viewed, so that only paragraphs related to the current node will come up as results. Create a filter for content ID and set the default to be "Content ID from URL."
 
-!["Settings for the contextual filter, the content ID set to default on the content ID in the URL."](/assets/img/2023/03/paragraphs-sidebar-contextual-filter.jpg)
+!["Settings for the contextual filter, the content ID set to default on the content ID in the URL."](./contextual-filter.jpg)
 
 Now we need to create the link between the page being viewed and its contact paragraphs. This can be done with the relationships functionality of views. Under Relationships, click on Add, then select "Paragraph referenced from field_contact."
 
-!["Adding a relationship to paragraph referenced from field_contact."](/assets/img/2023/03/paragraphs-sidebar-relationship.jpg)
+!["Adding a relationship to paragraph referenced from field_contact."](./relationship.jpg)
 
 We then need two more relationships:
 
@@ -82,10 +82,10 @@ We can go back to the settings on the Unformmated list to group results by the l
 
 Finally, add the block to show in that sidebar for all relevant content types. Of course this will depend on your theme having a sidebar region, but most have at least one.
 
-!["Adding a block to appear in the sidebar of the Page content type"](/assets/img/2023/03/paragraphs-sidebar-block.jpg)
+!["Adding a block to appear in the sidebar of the Page content type"](./block.jpg)
 
 ## Final result
 
 Here's an example of what all of this looks like, at its most basic level without any extra CSS styles added:
 
-!["Sidebar in place on a demo page, showing the Primary Contact label, name Ryan Robinson linked to the profile, email address, and phone number as a valid phone link."](/assets/img/2023/03/paragraphs-sidebar-demo.jpg)
+!["Sidebar in place on a demo page, showing the Primary Contact label, name Ryan Robinson linked to the profile, email address, and phone number as a valid phone link."](./demo.jpg)

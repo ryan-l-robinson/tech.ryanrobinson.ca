@@ -55,7 +55,7 @@ The most important is the second group, the basic options of how to grab the dat
 - Processor: Node
 - Content type: [Your content type, in this case it was Resources]
 
-![Screenshot of feeds settings screen, showing options described above](/assets/img/2023/01/FeedSettings.png)
+![Screenshot of feeds settings screen, showing options described above](./feed-settings.png)
 
 On the mapping screen, I added a straightforward mapping between the Field Collection Title in your csv file and a temporary text column (allowing multiple values) created in your content type of the new site.
 
@@ -63,7 +63,7 @@ After this, the import will be able to bring in data and put it in new nodes of 
 
 Now I went over to the Tamper tab and found the field you need to split up and added an "Explode" tamper plugin for that field, specifying the string separator and a label. I repeated this on each these temporary multiple fields.
 
-![Screenshot of tamper screen, showing options described above](/assets/img/2023/01/FeedsTamper.png)
+![Screenshot of tamper screen, showing options described above](./feed-tamper.png)
 
 This will now leave us with multiple entries in the temporary field directly on the node. We still need to turn those into paragraphs and associate those paragraphs with the node, which is where we run out of options within Feeds to handle it on its own.
 
