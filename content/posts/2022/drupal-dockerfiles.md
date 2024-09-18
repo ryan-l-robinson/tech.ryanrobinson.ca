@@ -156,7 +156,7 @@ ENV COMPOSER_PROCESS_TIMEOUT=9999
 
 It installs pa11y for accessibility testing:
 
-```docker
+```Dockerfile
 # Install pa11y accessibility testing tool, including NodeJS
 RUN dnf install -y nodejs pango.x86_64 libXcomposite.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc libxshmfence
 RUN npm install pa11y -g --unsafe-perm=true --allow-root
@@ -164,7 +164,7 @@ RUN npm install pa11y -g --unsafe-perm=true --allow-root
 
 It adds executable permissions to the postCreateCommand script which I will detail in a later post:
 
-```docker
+```Dockerfile
 # Scripts for further actions to take on creation and attachment
 COPY ./scripts/postCreateCommand.sh /postCreateCommand.sh
 RUN ["chmod", "+x", "/postCreateCommand.sh"]
@@ -172,7 +172,7 @@ RUN ["chmod", "+x", "/postCreateCommand.sh"]
 
 And finally, it runs Apache as its primary foreground process:
 
-```docker
+```Dockerfile
 # Start Apache
 ENTRYPOINT ["/usr/sbin/httpd"]
 CMD ["-D", "FOREGROUND"]

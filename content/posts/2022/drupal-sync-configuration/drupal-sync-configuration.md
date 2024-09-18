@@ -62,7 +62,6 @@ More on [the drush command](https://www.drush.org/latest/commands/config_import/
 
 You can also sync config manually one group of settings at a time. This is a slower process, so you wouldn’t take this route in a normal workflow of pushing dev changes out to production.
 
-![Configuration sync screen, allowing for import, export, and full archive or single items](/assets/img/2022/01/Config-sync.png)
-_Screenshot of importing a single configuration item_
+![Configuration sync screen, allowing for import, export, and full archive or single items](./config-sync.png)
 
 I won’t detail that here, since the interface does make it fairly intuitive, but you can approach it halfway – sync the files but then import them one at a time from the synchronize tab – or you can avoid syncing entirely and instead manually copy the configuration file shown on one Drupal site into the other.

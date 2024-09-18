@@ -16,7 +16,7 @@ To turn these on (using the latest Windows version of Word):
 4. Under "When correcting spelling and grammar in Word," select the "Settings" button beside "Writing Style"
 5. This will open a pane with a long list of options, including the inclusive writing tools. Check the box beside each option you want to turn on and apply your choices.
 
-!["Screenshot of the inclusive writing options"](/assets/img/2022/09/word-inclusive-language.png)
+!["Screenshot of the inclusive writing options"](./word-inclusive-language.png)
 
 The option categories are:
 

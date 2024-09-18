@@ -15,8 +15,7 @@ This one is an open source group out of Toronto focused on web accessibility, an
 
 It creates a toolbar across the top of the site, hidden by default behind a “+ Show Preferences” button. When expanded, there are a few options which can be valuable accessibility improvements.
 
-![Fluid UI toolbar: text size, text style, line spacing, contrast, table of contents](/assets/img/2022/01/Fluid-UI-components.png)
-_The toolbar with the 5 components_
+![Fluid UI toolbar: text size, text style, line spacing, contrast, table of contents](./components.png)
 
 - Change font size or spacing between lines
 - Change to a high-contrast colour palette
@@ -31,7 +30,7 @@ It’s also a bit odd visually, needing to scroll sideways to see all the option
 
 It has limited admin configuration options both around what pages the toolbox should appear on:
 
-![Fluid UI configuration options, described below](/assets/img/2022/01/Fluid-UI-configuration.png)
+![Fluid UI configuration options, described below](./configuration.png)
 
 - Display on admin pages (yes/no checkbox). By default this is off, meaning it only shows on the public pages, but if you’re aiming to improve accessibility of administration as well, you’ll want to turn this on.
 - Hide the toolbox on these pages (text area to specify pages). There might be some unique pages where it doesn’t work very well, so you can name those as exceptions.

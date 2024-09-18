@@ -15,8 +15,7 @@ This continues a series setting up a [GitLab DevOps pipeline](/tags/gitlab-devop
 
 This diagram is meant to help explain the flow of code in this system. The development happens in your local branch. When you want to deploy to the dev server, request merging into the dev branch. When you want to deploy to the staging server, request merging into the main branch. There is a CI/CD job for deploying to production as well, but that’s a manual process – not automatic on a branch merge like the other two. The CI files for the deploying will be covered in a later post.
 
-![Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server.](/assets/img/2022/01/Git-Deployment-Workflow.png)
-_Diagram of branches and servers_
+![Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server.](./git-deployment-workflow.png)
 
 ## The Editing and Browsing Workflow
 

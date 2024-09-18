@@ -17,7 +17,7 @@ Like other nodes, the URL can be changed using [the pathauto module](https://dru
 
 Here's a screenshot of the settings page, which can be found at /admin/config/search/path/settings:
 
-![Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User](/assets/img/2022/07/Pathauto_entities.png)
+![Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User](./pathauto-entities.png)
 
 Once the ability to set paths for profiles is turned on, you can switch over to the Patterns tab and create the pattern. I made mine `/staff/[profile:field_first_name]-[profile:field_last_name]`.
 
@@ -27,7 +27,7 @@ I fixed the page title displayed within the body with a view. I also altered the
 
 I won't break down every setting, but here's a screenshot of the view configuration:
 
-![Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them](/assets/img/2022/07/Profile_Title_View.PNG)
+![Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them](./profile-title-view.PNG)
 
 You can also see this in configuration YML form in the GitHub project's /sync/config/views.view.profile.yml file. Once the view is ready, add the block to the correct place in your theme, and turn off the standard Page Title block for those pages (based on the URL).
 

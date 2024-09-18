@@ -39,7 +39,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 
 To use this conf file, I saved my complete file in the .gitpod directory and then had the GitPod.Dockerfile copy that file into place:
 
-```docker
+```Dockerfile
 COPY .gitpod/apache2.conf /etc/apache2/apache2.conf
 ```
 
@@ -59,7 +59,7 @@ sudo cp /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.i
 
 You could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max\_execution\_time from 30s to 300s, I might do this:
 
-```docker
+```Dockerfile
 RUN sed -i "s/max_execution_time = 30/max_execution_time = 300/g" /etc/php/8.0/apache2/php.ini
 ```
 

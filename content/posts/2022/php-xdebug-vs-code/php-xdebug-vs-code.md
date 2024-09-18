@@ -16,8 +16,7 @@ I will not get into details here about setting up XDebug on a server, but you ca
 
 First, install [the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug).
 
-!["Visual Studio Code extension page"](/assets/img/2022/03/PHP-Debug-extension-page.png)
-_Screenshot of the extension in the directory_
+!["Visual Studio Code extension page"](php-debug-extension-page.png)
 
 ### Start the Listener
 
@@ -28,8 +27,7 @@ To start the XDebug listener:
 
 A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.
 
-!["XDebug in VS Code debug panel"](/assets/img/2022/03/Debug-panel.png)
-_Debug panel_
+!["XDebug in VS Code debug panel"](./debug-panel.png)
 
 ### Monitor Notices, Warnings, etc
 
@@ -47,5 +45,4 @@ You can add a breakpoint at a line in the code and have XDebug report the value 
 2. Carry out your test scenario (e.g. load the page that calls that PHP in your browser).
 3. See the results with the values of each variable at the breakpoint, within the Run and Debug window in VS Code.
 
-!["Visual Studio Code with an XDebug breakpoint set"](/assets/img/2022/03/XDebug-breakpoint.png)
-_Breakpoint beside line of PHP code_
+!["Visual Studio Code with an XDebug breakpoint set"](./xdebug-breakpoint.png)

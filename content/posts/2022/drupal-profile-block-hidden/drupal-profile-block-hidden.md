@@ -10,11 +10,11 @@ Recently I was building a Drupal 9 site that included staff profiles as well as 
 
 Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.
 
-![Screenshot of empty box only saying the title "Email"](/assets/img/2022/07/Empty_Email_Sidebar.png)
+![Screenshot of empty box only saying the title "Email"](./empty-email-sidebar.png)
 
 The key to solve this is the "exclude" option on contextual filters. There's one contextual filter for the user ID associated to the profile that you're viewing.
 
-![Screenshot of the configuration page. Details below](/assets/img/2022/07/View_Contextual_Filter_Only_Matching_User.png)
+![Screenshot of the configuration page. Details below](./only-matching-user.png)
 
 To add this:
 
@@ -23,7 +23,7 @@ To add this:
 
 I needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.
 
-![Screenshot of the configuraton page. Details below.](/assets/img/2022/07/View_Contextual_Filter_Exclude_Current_User.png)
+![Screenshot of the configuraton page. Details below.](./exclude-current-user.png)
 
 To add this:
 
