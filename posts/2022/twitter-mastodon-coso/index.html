@@ -6,10 +6,10 @@
 		<title>Twitter, Mastodon, and CounterSocial</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
+		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,9 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/">Home</a></li>
-						<li class="nav-item"><a href="/about/">About</a></li>
-						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -31,13 +32,14 @@
 		<main id="skip">
 			<div class="main-content">
 				
-<h1>Twitter, Mastodon, and CounterSocial</h1>
+<article data-pagefind-body="">
+<h1 id="twitter-mastodon-and-countersocial">Twitter, Mastodon, and CounterSocial</h1>
 
 <div class="post-metadata">
 	<p><time datetime="2022-11-21">November 21, 2022</time></p>
 	
 		<p>Tags:
-		<a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a>
+		<a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a>
 		</p>
 	
 </div>
@@ -48,28 +50,28 @@
 <p>If you're on this site, you're probably aware enough of the chaos around Twitter. I started to write a post about <strong>why</strong> I was leaving Twitter, narrowing in on the various terrible management practices (printing off code, firing based on lines committed, losing entire security teams, etc.) at the time when everybody was focussed on the verification disaster. Then all the stuff I was worried about completely exploded so now everybody is well aware of that, too, and it is likely a matter of days to weeks before Twitter completely fails. So there didn't seem to be much point there.</p>
 <p>I also started a post about <strong>how</strong> I left Twitter. I was going to detail how I repeatedly notified everybody there while I started moving more and more to using Mastodon and CounterSocial instead. Then after the latest round of Twitter employees being fired, I realized about 7% of my Twitter follows were already on Mastodon. I'm not sure that many people really need to hear about how I migrated as if that was unusual.</p>
 <p>So, how about this post idea instead: a quick rundown of Mastodon and CounterSocial and how they compare to Twitter. For the most part, Mastodon and CounterSocial line up with each other, as CounterSocial forked off of Mastodon in the past over some licensing disagreements (I have no interest in picking a side), but there are a couple big differences.</p>
-<h2 id="the-algorithm" tabindex="-1">The Algorithm <a class="header-anchor" href="#the-algorithm">#</a></h2>
+<h2 id="the-algorithm">The Algorithm</h2>
 <p>The biggest difference from Twitter to the others is that Twitter relies heavily on the algorithm to determine what gets on your feed. Their business model - like all the other major social networks - is based on selling as many of the most targeted ads as possible. You are the product and advertisers are the customers. To do that, they have to collect as much data about you as possible. To do that, they need to keep you engaged as much as possible. To do that, they develop algorithms to target content to you, regardless of whether you actually chose to see that content, so that you can never be &quot;caught up&quot; and return to your normal life without fear of missing out.</p>
 <p>Much has been said about the dangers of these kinds of algorithms. They prey on some of our worst impulses, feeding us things that make us angry. Many right-wing personalities have caught on to this, realizing they can make a big following by gaming the algorithm: they say something that gets people mad, everybody shares it either in support or to dunk on it, and all of that adds up to exponential growth in their audience as the algorithm boosts it even more. The end result is more hate speech, more anger, and more polarization.</p>
 <p>They also need to collect massive amounts of data in order to categorize us effectively for advertisers. While Twitter had a pretty good security record, this does open up the potential for huge data leaks. I don't expect that pretty good record to last much longer, which is why I'm inclined to delete my Twitter instead of merely deactivating or stopping use of it.</p>
 <p>There certainly are some positives as well. They are designed to give you what you will respond to, so sometimes that's really good, with it helping surface people you want to follow who may not be big enough to trend in general but is exactly the kind of person you want to know about (especially when dealing with marginalized groups), or making you aware of breaking news very quickly.</p>
 <p>There's also the simple reality that many people are happy with this trade, giving up loads of data rather than needing to pay for a service. It lowers the barrier to entry.</p>
 <p>Mastodon and CounterSocial do not use an algorithm. You see what you chose to see. You can follow accounts and hashtags and those can boost (retweet) from other accounts into your home timeline. You can also check in on your local timeline (both Mastodon and CounterSocial) or global federated timeline (Mastodon only, since CounterSocial does not federate with anybody else). But you'll never get recommendations decided by a mysterious machine learning algorithm. The speed of discovery is limited to human speed, not machine speed.</p>
-<h2 id="verification" tabindex="-1">Verification <a class="header-anchor" href="#verification">#</a></h2>
+<h2 id="verification">Verification</h2>
 <p>Verification - at least before the recent changes - was the largest advantage Twitter had over Mastodon and CounterSocial. Trust is important in an information ecosystem to know that people are who they say they are.</p>
 <p>Mastodon and CounterSocial do have a form of verification, but it's a verification of links, not of identity. It is a system that allows you to set up a link on your website to Mastodon/CoSo, which confirms that the website owner and the account owner are the same person. It does not necessarily confirm that the account is who they say they are. Somebody could impersonate me by setting up a fake website to go alongside the fake account. That it is a lot more work, so it might happen in targeted ways of public figures, but it won't happen as much in casual mass bot attacks. It also doesn't give a &quot;blue check&quot; equivalent, so it isn't obvious at a glance whether somebody is who they say they are. As more public figures and journalists move to Mastodon and to a lesser extent CounterSocial, this will be really interesting to watch whether they need to come up with some kind of system, and in the case of Mastodon, whether that would even be possible in a decentralized system.</p>
-<h2 id="servers-and-onboarding" tabindex="-1">Servers and Onboarding <a class="header-anchor" href="#servers-and-onboarding">#</a></h2>
+<h2 id="servers-and-onboarding">Servers and Onboarding</h2>
 <p>Here's where CounterSocial aligns with Twitter instead of Mastodon. For each of those, you sign up and you're in. It's pretty straightforward, not much different than any other website.</p>
 <p>Mastodon gets more complicated. It's a protocol of federated servers called instances, not a &quot;platform.&quot; This means upfront that you have a question to figure out: what instance should I join?</p>
 <p>Veterans will think this is no big deal, but if you've never dealt with something like this before, staring down hundreds of servers is not an obvious choice. There isn't much in the way of advice for how to decide, or tools to filter a list. Do you care about the data residency of the server? Do you care about how the admins make decisions? Do you care about what rules it has, or what other instances it has blocked? Do you want general topic or a specific interest or identity group?</p>
 <p>I landed on the largest Canadian server, mstdn.ca, but only after trying four others over four days. A couple were tech specific. A couple were big general ones. Once I found this one, I was happy for Canadian data residency, general topics, an admin who has so far done pretty well keeping up with the demand, and reasonable rules.</p>
 <p>If you pick a bad server, you may end up with some problems. Maybe that server doesn't moderate well and there's hate speech (or spam, or porn). This means you get a lot of hate speech in your local feed, but it also means other instances might block your instance so that the hate speech doesn't spread. That leaves you isolated to your server, completely losing out on the advantages of the whole federated concept.</p>
 <p>You could end up spending a couple hours getting set up only to have a miserable experience on a bad server and conclude Mastodon is horrible, when really that one server was horrible. In my opinion it's worth it in the long run, but it's a bit of a mess to sort out.</p>
-<h2 id="user-interface" tabindex="-1">User Interface <a class="header-anchor" href="#user-interface">#</a></h2>
+<h2 id="user-interface">User Interface</h2>
 <p>Twitter has polished their interface over the years. There may be things you don't like, but they know what they're doing.</p>
 <p>Mastodon depends wildly on which app you use. I'm on Tusky on Android, which is pretty good but does have some weird holes like searching for users on other instances without entering the whole instance address. But it is attractive, easy to use, and has a good range of options.</p>
 <p>CounterSocial is the definite loser here. It isn't hard to use but it doesn't fit the Android design language at all, it only has a pseudo dark mode - no light mode and no true dark mode - and is weirdly small on the screen.</p>
-<h2 id="features" tabindex="-1">Features <a class="header-anchor" href="#features">#</a></h2>
+<h2 id="features">Features</h2>
 <p>A couple significant features are not in Mastodon or CounterSocial that you might have gotten used to on Twitter.</p>
 <p>There is no quote tweet. This is intentional as it is a feature that is most often used for piling on harassment. But there are lots of positive uses for it as well, so the loss will be felt by many. I used it a lot to comment on a news story as I spread it onto my feed.</p>
 <p>Search on Twitter indexes everything, all the text of every tweet. Mastodon and CounterSocial do not. They only index profiles, hashtags, and posts that you have already interacted with. This is intentional as it gives those posting some control: if you want it to be searchable, add the hashtags you want it to be searchable by, but if you want to be able to keep it a little more private, you can. This limits harassment of mass searching for text and attacking anybody you find.</p>
@@ -82,24 +84,25 @@
 <p>Mastodon and CounterSocial allow you to mute somebody for a shorter period of time, not always an all or nothing permanent decision. This is great if you just need to tune out somebody for a bit but you're happy to see them again later.</p>
 <p>Many other features are comparable, including muting, blocking, and adding image descriptions for accessibility.</p>
 <p>Overall, in raw features, Mastodon wins out. Losing circles is unfortunate, but some of these other tools truly are great to have and easy to use.</p>
-<h2 id="payment" tabindex="-1">Payment <a class="header-anchor" href="#payment">#</a></h2>
+<h2 id="payment">Payment</h2>
 <p>As discussed above, Twitter is mostly funded by mining data for targeted ads. They also added Twitter Blue as a freemium style plan to get more features, which the Elon Musk era is leaning into.</p>
 <p>CounterSocial is freemium. You can do all the basics for free, but you'll need a Pro account to do several things including some of the features I've named above.</p>
 <p>Mastodon is donation based. The instance admins pay the costs and hope that they get enough donations to cover it. So if you are joining Mastodon, have found a good instance, and have some room in the budget, consider kicking a few dollars to your admin.</p>
-<h2 id="culture" tabindex="-1">Culture <a class="header-anchor" href="#culture">#</a></h2>
+<h2 id="culture">Culture</h2>
 <p>Twitter had a famously unique culture. It was the place where news broke. It was the place where movements started and spread to the mainstream, including both movements for justice and movements of hate. There were plenty of niche corners for your favourite topics, but you would also inevitably get caught up in the big news of the day.</p>
 <p>It's hard to completely judge Mastodon and CounterSocial since they have been overrun by Twitter exiles. But what I can mostly say is this:</p>
 <p>CounterSocial seems to be much more the home for those who want to talk US left-wing politics. That's a good portion of the firehose. As a Canadian, that isn't a great selling point to me. Mastodon certainly has those corners, but it's also easier to avoid them and to fully delve in completely different topics instead, especially technology.</p>
 <p>Both do suffer from a bit of arrogance. They're proud of the fact they built these networks without big money algorithms, and they should be. But sometimes they also come across as looking down on those who are new and confused why things are different. I've seen this more with CounterSocial which loves to set itself in opposition to Mastodon as well as in opposition to Twitter, but I have seen it in Mastodon as well.</p>
 <p>Both have stronger stances on paper against hate speech and trolls than Twitter. But moderation is a lot easier said than done. Ultimately this all depends on moderator abilities to keep up and to act consistently to avoid frustrations. It will be interesting to see what happens here as Mastodon in particular is growing so rapidly and <strong>will</strong> become a target.</p>
 <p>CounterSocial is a bit more &quot;extroverted&quot; by which I mean that it is more normal to get replies from (mostly friendly) strangers.</p>
-<h2 id="conclusion" tabindex="-1">Conclusion <a class="header-anchor" href="#conclusion">#</a></h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>I have just completed deactivating my Twitter.</p>
 <p>I am really finding a new online home on Mastodon. It's where the most people are headed now and has a great range of features, topics discussed, and it has a friendly interface. It's really just the hurdle of picking an instance you'll need to get over first, and that is understandably a larger hurdle than is worth it for some people.</p>
 <p>CounterSocial will be a great option for a lot of people. It's a lot faster to get an accurate gauge of whether it's good for you or not, without the instance decisions, so I would say to go ahead and check it out if everything I've written makes it sound appealing to you. It may not be my long-term option, aside from the fact that a few people I know are on there and I would like to keep up with them.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-security-audit/">Drupal: Security Audit</a></p><p>Next: <a href="/posts/2022/power-platform-certificate/">New Certificate: Power Platform App Maker</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2022/drupal-security-audit/">Drupal: Security Audit</a></p><p>Next: <a href="/eleventy-base-blog/posts/2022/power-platform-certificate/">New Certificate: Power Platform App Maker</a></p>
 </div>
+</article>
 			</div>
 			<div class="sidebar">
 				
@@ -107,71 +110,71 @@
 
 				
 <aside class="sidebar-block" aria-label="Tags for posts">
-	<h2>Posts by Tag</h2>
+	<h2 id="posts-by-tag">Posts by Tag</h2>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -185,43 +188,43 @@
 	<li>
 		<a rel="me" href="https://ryanrobinson.ca">
     		<span class="visually-hidden">Ryan Robinson Homepage</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
 			<span class="visually-hidden">LinkedIn</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://github.com/ryan-l-robinson">
 			<span class="visually-hidden">GitHub</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://dev.to/ryanr">
 			<span class="visually-hidden">Dev.To</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://mstdn.ca/@Ryan">
 	    	<span class="visually-hidden">Mastodon</span>
-    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>
+    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
 			<span class="visually-hidden">Bluesky</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"></path></svg>
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
 	</li>
 </ul>
@@ -229,6 +232,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/twitter-mastodon-coso/` was built on 2024-09-18T13:58:24.806Z -->
+		<!-- This page `/eleventy-base-blog/posts/2022/twitter-mastodon-coso/` was built on 2024-09-20T23:12:49.001Z -->
 	</body>
 </html>

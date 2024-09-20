@@ -6,10 +6,10 @@
 		<title>Google vs Microsoft Personal and Business Accounts</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/bundle/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
+		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,9 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/">Home</a></li>
-						<li class="nav-item"><a href="/about/">About</a></li>
-						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -31,13 +32,14 @@
 		<main id="skip">
 			<div class="main-content">
 				
-<h1>Google vs Microsoft Personal and Business Accounts</h1>
+<article data-pagefind-body="">
+<h1 id="google-vs-microsoft-personal-and-business-accounts">Google vs Microsoft Personal and Business Accounts</h1>
 
 <div class="post-metadata">
 	<p><time datetime="2021-07-05">July 5, 2021</time></p>
 	
 		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		<a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
 		</p>
 	
 </div>
@@ -52,7 +54,7 @@
 </ol>
 <p>There was no option to allow the email to be associated with both a personal and a business account at the same time.</p>
 <p>This is a different approach than Microsoft. Microsoft does allow you to have the same email address on both a personal account and a business account. This made me think about the pro’s and con’s of both approaches.</p>
-<h2 id="the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both" tabindex="-1">The problem with Google’s approach: what if you want the same email on both? <a class="header-anchor" href="#the-problem-with-google-s-approach-what-if-you-want-the-same-email-on-both">#</a></h2>
+<h2 id="the-problem-with-google-s-approach">The Problem with Google’s Approach</h2>
 <p>This new situation did remind me of hitting a similar situation when I got my first Android device. I had a Google account, but it was technically a business account, created years ago when GSuite was free. I initially set up my Android with that. Then I started hitting some limitations, like not being able to use family sharing of Google Play purchases.</p>
 <p>So I was stuck with three options:</p>
 <ol>
@@ -64,12 +66,12 @@
 <p>I do still have one smaller problem with it. I have a Google account that is the same email as my primary Microsoft account. My calendar is on the Microsoft account. I would love for Google Assistant to see the calendar, but it can’t read the Microsoft calendar directly and I can’t share from Microsoft to Google because that is normally possible by sending an email and in this case that would just send the invite right back to the Microsoft mailbox sending it. Being able to put an alias on a Google account like you can a Microsoft would solve it, but Google doesn’t offer that.</p>
 <p>It will be a much bigger problem if I ever move that domain to Google business email. Aliases would also make this easier. With this particular domain, that is unlikely. But if I was advising somebody else on this problem, I would suggest number 2. Just use a separate email @gmail.com that is explicitly for all things Google. Don’t try to be cute with your custom domain, or you could end up in a very bad situation. It would be nice if Google warned you about this possibility when you sign up with a different domain (maybe it does in small print I missed).</p>
 <p>That situation demonstrates the advantage of Microsoft’s approach: <strong>you can choose to keep your personal content and your business content separate</strong> even if you intentionally or accidentally used the same email address on both. Plus Microsoft offers aliases which can help you untangle them if you later need to; I would be a lot more sympathetic to Google’s approach if they offered that.</p>
-<h2 id="the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business" tabindex="-1">The problem with Microsoft’s approach: most people won’t remember what is on personal vs business <a class="header-anchor" href="#the-problem-with-microsoft-s-approach-most-people-won-t-remember-what-is-on-personal-vs-business">#</a></h2>
+<h2 id="the-problem-with-microsoft-s-approach">The Problem with Microsoft’s Approach</h2>
 <p>The problem with Microsoft’s account is essentially the reverse. You’re allowed to have the same email on both a personal and a business account. That’s great to keep things separated. Now you need to remember which account you used for that thing you’re trying to do. If you’re diligent about keeping work in the work account and personal content in the personal content, that’s not too bad. That’s not always possible and people aren’t always going to be good at it.</p>
 <p>Here’s another scenario I’ve seen: an organization built a SharePoint portal system for partners across lots of organizations. Some of those partner organizations use Microsoft 365. Some do not. To let the partners in who are not using Microsoft 365, the portal has to allow logging in with consumer Microsoft accounts. In theory, the goal should be that every partner who does have Microsoft 365 business account uses their business account, while personal accounts are the fallback for everybody else.</p>
 <p>In practice, it got a lot messier than that. Some people had business accounts, but didn’t understand they could use that, so they created a separate personal account, maybe using their same business email and maybe using a different email. Then they go to the portal and it says they don’t have access. They confirm they are logged in with their work email, so that’s strange. They give up and contact me for support. I dig into the Azure Active Directory and discover this partner used a personal Microsoft account, not a business account. So they end up needing to log out of their business email account they use for everything else and logging in with a personal Microsoft account with the same email address that they’re using for just this one thing probably by accident. That’s confusing.</p>
 <p>This is the value of Google’s approach: <strong>there is no confusing dialogue asking you whether you want to sign in with the business or personal account</strong>. There is no need to remember what services are associated with which account on the same email.</p>
-<h2 id="winner" tabindex="-1">Winner? <a class="header-anchor" href="#winner">#</a></h2>
+<h2 id="winner">Winner?</h2>
 <p>For the majority of normal users in the majority of cases, Google’s scenario is better. It’s easier. Most average people just want a separate personal account from their business account using different emails and they’re not concerned about custom domains. Google’s approach enforces the simplicity that most people want.</p>
 <p>For Microsoft power users like me who can keep it straight, their approach is better. I’ve considered whether I should move my primary personal email (a custom domain that was signed up in the days of Windows Live Domain) from a consumer Microsoft account to a Microsoft 365 account. If I do decide to do that, here’s how I would:</p>
 <ol>
@@ -82,8 +84,9 @@
 <p>What Microsoft doesn’t offer is transferring an alias from one account to another. I have a better outlook.com alias on a different Microsoft account that I would love to switch to my main account, if I gave up the custom domain alias. I would pay extra for the ability to merge them / migrate the alias. As a few accounts with tech giants own more and more of our lives, I think it’s going to be more and more important that they offer a way to solve problems like this.</p>
 <p><strong>The real ideal to me is probably to restrict it like Google, but have aliases like Microsoft.</strong> That’s the best of both worlds to me: clear separation of accounts while having the flexibility if you need to make a change.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-part-4-import/">Movie Directory Part 4: Import</a></p><p>Next: <a href="/posts/2021/web-hosting-distinctions/">Web Hosting Distinctions</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2021/movie-directory-4-import/">Movie Directory Part 4: Import</a></p><p>Next: <a href="/eleventy-base-blog/posts/2021/web-hosting-distinctions/">Web Hosting Distinctions</a></p>
 </div>
+</article>
 			</div>
 			<div class="sidebar">
 				
@@ -91,71 +94,71 @@
 
 				
 <aside class="sidebar-block" aria-label="Tags for posts">
-	<h2>Posts by Tag</h2>
+	<h2 id="posts-by-tag">Posts by Tag</h2>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -169,43 +172,43 @@
 	<li>
 		<a rel="me" href="https://ryanrobinson.ca">
     		<span class="visually-hidden">Ryan Robinson Homepage</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
 			<span class="visually-hidden">LinkedIn</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://github.com/ryan-l-robinson">
 			<span class="visually-hidden">GitHub</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://dev.to/ryanr">
 			<span class="visually-hidden">Dev.To</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M120.1 208.3c-3.9-2.9-7.8-4.4-11.7-4.4H91v104.5h17.5c3.9 0 7.8-1.5 11.7-4.4 3.9-2.9 5.8-7.3 5.8-13.1v-69.7c0-5.8-2-10.2-5.8-13.1zM404.1 32H43.9C19.7 32 .1 51.6 0 75.8v360.4C.1 460.4 19.7 480 43.9 480h360.2c24.2 0 43.8-19.6 43.9-43.8V75.8c-.1-24.2-19.7-43.8-43.9-43.8zM154.2 291.2c0 18.8-11.6 47.3-48.4 47.3h-46.4V173h47.4c35.4 0 47.4 28.5 47.4 47.3l0 70.9zm100.7-88.7H201.6v38.4h32.6v29.6H201.6v38.4h53.3v29.6h-62.2c-11.2 .3-20.4-8.5-20.7-19.7V193.7c-.3-11.2 8.6-20.4 19.7-20.7h63.2l0 29.5zm103.6 115.3c-13.2 30.8-36.9 24.6-47.4 0l-38.5-144.8h32.6l29.7 113.7 29.6-113.7h32.6l-38.5 144.8z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://mstdn.ca/@Ryan">
 	    	<span class="visually-hidden">Mastodon</span>
-    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>
+    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"></path></svg>
 		</a>
 	</li>
 	<li>
 		<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
 			<span class="visually-hidden">Bluesky</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"></path></svg>
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
-			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
 	</li>
 </ul>
@@ -213,6 +216,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/google-microsoft-personal-business-accounts/` was built on 2024-09-18T13:58:24.197Z -->
+		<!-- This page `/eleventy-base-blog/posts/2021/google-microsoft-personal-business-accounts/` was built on 2024-09-20T23:12:48.959Z -->
 	</body>
 </html>
