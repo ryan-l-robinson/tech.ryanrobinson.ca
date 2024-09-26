@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 3 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
