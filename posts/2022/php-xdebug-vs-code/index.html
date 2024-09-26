@@ -6,10 +6,10 @@
 		<title>PHP: XDebug in VS Code</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2022-03-15">March 15, 2022</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a>, 
-		<a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		<a href="/tags/php/" class="post-tag">PHP</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
 		</p>
 	
 </div>
@@ -52,7 +52,7 @@
 <p>I will not get into details here about setting up XDebug on a server, but you can find that with some Internet searching. Instead, this post is about how to use XDebug within Visual Studio Code.</p>
 <h2 id="install-the-extension">Install the Extension</h2>
 <p>First, install <a href="https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug">the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory</a>.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.avif 505w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.webp 505w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.png" alt="&quot;Visual Studio Code extension page&quot;" width="505" height="218"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.avif 505w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.webp 505w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.png" alt="&quot;Visual Studio Code extension page&quot;" width="505" height="218"></picture></p>
 <h3 id="start-the-listener">Start the Listener</h3>
 <p>To start the XDebug listener:</p>
 <ol>
@@ -60,7 +60,7 @@
 <li>Click the play button beside the XDebug listener. Depending on your developer environment, you may have other listeners as well.</li>
 </ol>
 <p>A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.avif 170w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.webp 170w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.png" alt="&quot;XDebug in VS Code debug panel&quot;" width="170" height="25"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.avif 170w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.webp 170w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.png" alt="&quot;XDebug in VS Code debug panel&quot;" width="170" height="25"></picture></p>
 <h3 id="monitor-notices-warnings-etc">Monitor Notices, Warnings, etc</h3>
 <p>You can monitor for any notices, warnings, errors, or exceptions that occur while the listener is running.</p>
 <ol>
@@ -75,9 +75,9 @@
 <li>Carry out your test scenario (e.g. load the page that calls that PHP in your browser).</li>
 <li>See the results with the values of each variable at the breakpoint, within the Run and Debug window in VS Code.</li>
 </ol>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.avif 392w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.webp 392w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.png" alt="&quot;Visual Studio Code with an XDebug breakpoint set&quot;" width="392" height="53"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.avif 392w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.webp 392w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.png" alt="&quot;Visual Studio Code with an XDebug breakpoint set&quot;" width="392" height="53"></picture></p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2022/free-as-in-cats/">Free as in Cats</a></p><p>Next: <a href="/eleventy-base-blog/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p><p>Next: <a href="/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></p>
 </div>
 </article>
 			</div>
@@ -91,67 +91,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -199,7 +199,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -209,6 +209,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2022/php-xdebug-vs-code/` was built on 2024-09-20T23:23:14.906Z -->
+		<!-- This page `/posts/2022/php-xdebug-vs-code/` was built on 2024-09-26T17:59:20.993Z -->
 	</body>
 </html>

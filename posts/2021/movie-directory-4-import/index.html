@@ -6,10 +6,10 @@
 		<title>Movie Directory Part 4: Import</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2021-07-01">July 1, 2021</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a>
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/movie-directory/" class="post-tag">Movie Directory</a>
 		</p>
 	
 </div>
@@ -48,7 +48,7 @@
 
 
 
-<p>This continues a short series about <a href="/eleventy-base-blog/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first three posts, I’ve laid out the data structure in Dataverse and the app itself. This post will tackle how I was able to quickly fill in the 300+ movies in our collection converting from our previous system, files on a computer arranged for use on a Plex server. This will all be done in Power Automate.</p>
+<p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first three posts, I’ve laid out the data structure in Dataverse and the app itself. This post will tackle how I was able to quickly fill in the 300+ movies in our collection converting from our previous system, files on a computer arranged for use on a Plex server. This will all be done in Power Automate.</p>
 <h2 id="the-old-structure">The Old Structure</h2>
 <p>Here’s how the old structure was, to work nicely with a <a href="https://www.plex.tv/">Plex</a> server:</p>
 <ul>
@@ -67,19 +67,19 @@
 </ul>
 <h2 id="get-the-movies">Get the Movies</h2>
 <p>First I’ll get all the movies. This is straightforward with a OneDrive “get files” action. I did find that I could only do a certain number of files at once, so I did it in chunks by having a separate “To Copy” folder, in which I put the next batch as I needed to copy them.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/iZHO-G0leE-600.avif 600w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/iZHO-G0leE-600.webp 600w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/iZHO-G0leE-600.png" alt="&quot;Getting movies from OneDrive&quot;" width="600" height="101"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.avif 600w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.png" alt="&quot;Getting movies from OneDrive&quot;" width="600" height="101"></picture></p>
 <p>I’ll then enter a loop of all the results, handling one movie at a time. This is a simple Apply to Each loop using the “value” from the previous step’s results.</p>
 <h2 id="parse-name-and-year">Parse Name and Year</h2>
 <p>Start by grabbing the file name and putting it into the variable:</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/yubqNv41nG-597.avif 597w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/yubqNv41nG-597.webp 597w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/yubqNv41nG-597.png" alt="&quot;Set variable to “Name without extension”" width="597" height="135"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/yubqNv41nG-597.avif 597w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/yubqNv41nG-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/yubqNv41nG-597.png" alt="&quot;Set variable to “Name without extension”" width="597" height="135"></picture></p>
 <p>To parse the fileName, I needed to find where the movie name ends and the year begins. The easy way to do that is to look for the last instance of a closing parenthesis.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.avif 599w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.webp 599w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.png" alt="&quot;Set variable to: add(indexOf(variables(‘fileName’),'(‘),1)&quot;" width="599" height="139"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.avif 599w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.webp 599w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.png" alt="&quot;Set variable to: add(indexOf(variables(‘fileName’),'(‘),1)&quot;" width="599" height="139"></picture></p>
 <p>That will make it easy to get the movie name and year.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.avif 600w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.webp 600w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.png" alt="&quot;Set variable to: replace(substring(variables(‘fileName’),0,sub(variables(‘yearStartIndex’),2)),””,”)&quot;" width="600" height="137"></picture></p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.avif 599w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.webp 599w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.png" alt="&quot;Set variable to: int(substring(variables(‘fileName’),variables(‘yearStartIndex’),4)&quot;" width="599" height="138"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.avif 600w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.png" alt="&quot;Set variable to: replace(substring(variables(‘fileName’),0,sub(variables(‘yearStartIndex’),2)),””,”)&quot;" width="600" height="137"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.avif 599w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.webp 599w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.png" alt="&quot;Set variable to: int(substring(variables(‘fileName’),variables(‘yearStartIndex’),4)&quot;" width="599" height="138"></picture></p>
 <h2 id="add-to-excel">Add to Excel</h2>
 <p>I’ll now add details for the movie into Dataverse. I also had some checking to confirm that the movie wasn’t already in the Dataverse table, but I’ll skip those details.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.avif 601w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.webp 601w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.png" alt="&quot;Create a new record in Dataverse&quot;" width="601" height="681"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.png" alt="&quot;Create a new record in Dataverse&quot;" width="601" height="681"></picture></p>
 <p>Of note here:</p>
 <ul>
 <li>The Name and Year are filled by the variables we parsed from the file name earlier.</li>
@@ -87,15 +87,15 @@
 </ul>
 <h2 id="imdb-api">IMDB API</h2>
 <p>I’ll now use the IMDB API to get the cover image for the movie, which I’ll upload to my OneDrive to make it easier to attach them to the right Dataverse object. I likely could have gotten as far as it automatically uploading the image directly into Dataverse with a premium subscription, but I didn’t have that and didn’t find a way around it in a reasonable amount of time.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.avif 601w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.webp 601w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.png" alt="&quot;Get IMDB details. See the IMDB API for details.&quot;" width="601" height="356"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.png" alt="&quot;Get IMDB details. See the IMDB API for details.&quot;" width="601" height="356"></picture></p>
 <p>Part of what that returns is a URL to the cover image for the movie. I’ll now upload that file into a designated folder in OneDrive.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/O2qWH9YESu-601.avif 601w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-4-import/O2qWH9YESu-601.webp 601w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-4-import/O2qWH9YESu-601.png" alt="&quot;Source URL: body(‘GetIMDB’)?‘results’0‘Image’&quot;" width="601" height="179"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.png" alt="&quot;Source URL: body(‘GetIMDB’)?‘results’0‘Image’&quot;" width="601" height="179"></picture></p>
 <h2 id="conclusion">Conclusion</h2>
 <p>There were still some pieces I had to do manually, like attach the image to each movie, but even that was a much quicker process.</p>
 <p>In a different Flow, I also added some logic that guessed whether a movie was Blu-ray, DVD, or digital only based on the size of the file. That wasn’t very complicated, but I left it out of this version as I found I often needed to clean up the owned column anyway because of the number of other exceptions (a movie in both Google and Microsoft).</p>
 <p>Ultimately, I ended up not actually using this movie directory database app. The main reason was that it was too slow. It is not equivalent in performance to a native Android app. But it was a great test, achieving all the features I wanted to do, and I definitely learned a lot more about Dataverse, Power Apps, and Power Automate along the way.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/">Movie Directory Part 3: View and Edit</a></p><p>Next: <a href="/eleventy-base-blog/posts/2021/google-microsoft-personal-business-accounts/">Google vs Microsoft Personal and Business Accounts</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-3-view-edit/">Movie Directory Part 3: View and Edit</a></p><p>Next: <a href="/posts/2021/google-microsoft-personal-business-accounts/">Google vs Microsoft Personal and Business Accounts</a></p>
 </div>
 </article>
 			</div>
@@ -109,67 +109,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -217,7 +217,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -227,6 +227,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2021/movie-directory-4-import/` was built on 2024-09-20T23:23:14.894Z -->
+		<!-- This page `/posts/2021/movie-directory-4-import/` was built on 2024-09-26T17:59:20.987Z -->
 	</body>
 </html>

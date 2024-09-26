@@ -6,10 +6,10 @@
 		<title>Movie Directory Part 3: View and Edit</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2021-06-29">June 29, 2021</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
-		<a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a>
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/movie-directory/" class="post-tag">Movie Directory</a>
 		</p>
 	
 </div>
@@ -48,10 +48,10 @@
 
 
 
-<p>This continues a short series about <a href="/eleventy-base-blog/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
+<p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
 <h2 id="view-screen">View Screen</h2>
 <p>The view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.avif 314w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.webp 314w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.png" alt="&quot;View movie screen of Alien3, with all the options selected&quot;" width="314" height="567"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.avif 314w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.webp 314w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.png" alt="&quot;View movie screen of Alien3, with all the options selected&quot;" width="314" height="567"></picture></p>
 <p>The text fields are straightforward. The icons are a bit more complicated. There is one data field with choices for all the different platforms that we own a movie, but I wanted to show it differently, with one icon for everywhere we owned it while hiding the icons for platforms we don’t own it.</p>
 <p>There are six icons for ownership plus a JustWatch link. I grouped the six into two rows, putting Blu-ray, DVD, and Movies Anywhere on one line and Google Play, Microsoft, and Vudu on the next. Whether each icon is visible or not is determined by this value in the Visible field:</p>
 <pre class="language-powerfx" tabindex="0"><code class="language-powerfx">If([@Owned].'Blu-ray' in BrowseGallery1.Selected.Owned, true, false)</code></pre>
@@ -67,10 +67,10 @@
 <pre class="language-powerfx" tabindex="0"><code class="language-powerfx">BrowseGallery1.Selected.Cover.Full</code></pre>
 <p>and a Transparency of 0.6, to make sure the text above it is still readable.</p>
 <h2 id="edit-screen">Edit Screen</h2>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.avif 609w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.webp 609w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.png" alt="&quot;Edit screen for Alien3" width="609" height="1078"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.avif 609w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.webp 609w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.png" alt="&quot;Edit screen for Alien3" width="609" height="1078"></picture></p>
 <p>The layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.</p>
 <p>I did add one more complicated piece, though. I was worried about having the delete icon so close to the save button, despite that being the default placement within Power Apps. So, I built a confirmation dialogue.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.avif 606w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.webp 606w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.png" alt="&quot;Delete dialogue&quot;" width="606" height="1069"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.avif 606w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.webp 606w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.png" alt="&quot;Delete dialogue&quot;" width="606" height="1069"></picture></p>
 <p>The OnSelect value for the delete button is this:</p>
 <pre class="language-powerfx" tabindex="0"><code class="language-powerfx">UpdateContext({showPopup:true})</code></pre>
 <p>This initiates a change that displays a rectangle in the middle of the screen which has the Visible property set to:</p>
@@ -87,7 +87,7 @@ Navigate(AllMovies)</code></pre>
 <h2 id="what-s-left">What’s Left</h2>
 <p>At this point, I have a data structure and a fully functioning app. What I haven’t covered yet is how to most efficiently load in 300+ movies. A final post in this series will look at that problem, through a Power Automate Flow that I wrote to import all the movie information from our previous system and help collect cover images for all these movies quickly.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2021/movie-directory-2-gallery-filters/">Movie Directory Part 2: Gallery and Filters</a></p><p>Next: <a href="/eleventy-base-blog/posts/2021/movie-directory-4-import/">Movie Directory Part 4: Import</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-2-gallery-filters/">Movie Directory Part 2: Gallery and Filters</a></p><p>Next: <a href="/posts/2021/movie-directory-4-import/">Movie Directory Part 4: Import</a></p>
 </div>
 </article>
 			</div>
@@ -101,67 +101,67 @@ Navigate(AllMovies)</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -209,7 +209,7 @@ Navigate(AllMovies)</code></pre>
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -219,6 +219,6 @@ Navigate(AllMovies)</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2021/movie-directory-3-view-edit/` was built on 2024-09-20T23:23:14.893Z -->
+		<!-- This page `/posts/2021/movie-directory-3-view-edit/` was built on 2024-09-26T17:59:20.987Z -->
 	</body>
 </html>

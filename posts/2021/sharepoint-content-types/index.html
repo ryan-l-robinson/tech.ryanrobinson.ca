@@ -6,10 +6,10 @@
 		<title>SharePoint: Content Types</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,7 +39,7 @@
 	<p><time datetime="2021-05-24">May 24, 2021</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
 		</p>
 	
 </div>
@@ -53,7 +53,7 @@
 <p>Columns in SharePoint are metadata about a file or about a list item. These can be of a variety of data types including yes/no fields, dropdown option lists, short text, long text, and more. The easy way to remember why they’re called columns is to imagine them in the most common view, with one row in a table for each item and a column in the table for each piece of data about that item. Once they’re all set up, columns can make a lot of things easier including seeing relevant data at a glance, searching for, sorting, and filtering the content.</p>
 <p>Now suppose you have 20 custom SharePoint lists that are fundamentally the same idea. Perhaps they had to be split to exist on different sites with different permissions, or perhaps they had to be split to keep each list under the 5000 limit threshold where viewing a list gets limited. They should all have the same 30 custom columns of data that needs to be tracked.</p>
 <p>Without content types, the way to do this is to repeat the process creating a column on every list separately. That’s already annoying. It gets even more annoying if you have to make a change – perhaps you realize a certain column should be long text instead of short text – and go through all 20 lists again. What if you make a mistake and name the column differently on one of the 20 lists but there’s already data in it by the time you notice? That might throw off other pieces like Power Automate processes.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.avif 1146w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.webp 1146w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.png" alt="&quot;Custom columns for the Press Release content type&quot;" width="1146" height="322"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.avif 1146w"><source type="image/webp" srcset="/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.webp 1146w"><img loading="lazy" decoding="async" src="/posts/2021/sharepoint-content-types/MU6ZMDj83D-1146.png" alt="&quot;Custom columns for the Press Release content type&quot;" width="1146" height="322"></picture></p>
 <p>With content types, it gets much easier and much less error-prone. You define the columns on the content type in one place, either specific to one site or globally for all sites, and add the content types to the list/library. If globally, it can take a couple of hours to propagate to all of the lists, but that’s it. That’s the whole process.</p>
 <p>Most of the time the instinct with a new list or library is to add the columns directly to that list or library and completely ignore content types. That’s fine if you know if you’re never going to need the same column set on another list. But if there’s any chance you will need it again, save yourself a lot of hassle and make it a content type in the first place.</p>
 <h2 id="templates">Templates</h2>
@@ -65,12 +65,12 @@
 <li>They are then free to edit the copied version.</li>
 </ul>
 <p>At best this is slow, with time needed to copy the template every time. At worst, it introduces other problems: can you adequately control who can edit the template file? what if somebody accidentally starts editing the template instead of making a new copy, an easy mistake to make?</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.avif 598w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.webp 598w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.png" alt="&quot;Advanced settings on a content type, including being able to upload a template&quot;" width="598" height="572"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.avif 598w"><source type="image/webp" srcset="/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.webp 598w"><img loading="lazy" decoding="async" src="/posts/2021/sharepoint-content-types/g-GpQjnFTn-598.png" alt="&quot;Advanced settings on a content type, including being able to upload a template&quot;" width="598" height="572"></picture></p>
 <p>With a content type, this gets much cleaner. Add the template file to the content type. Then when somebody tries to make a new item of that content type, it will start with the templated file instead of a blank document. They can edit the file from there. It’s fast and intuitive, access to editing the template is tightly controlled, and there’s no risk of somebody forgetting to copy before they dive in to edit.</p>
 <h2 id="sharepoint-syntex">SharePoint Syntex</h2>
 <p>I’ll add a third point. <a href="https://docs.microsoft.com/en-us/microsoft-365/contentunderstanding/#get-started">SharePoint Syntex</a> is a relatively new product offering that uses machine learning to read data from files and apply that to the columns. It’s a valuable way to help automate applying metadata to files, which is something that people tend to not enjoy doing manually. I have not extensively tested out SharePoint Syntex, but it is my understanding that the machine learning models are applied on specific content types. If you want to use this tool you’ll end up using content types whether you realize it or not.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/">Power Automate: Create Site with SharePoint REST API</a></p><p>Next: <a href="/eleventy-base-blog/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/">Power Automate: Create Site with SharePoint REST API</a></p><p>Next: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p>
 </div>
 </article>
 			</div>
@@ -84,67 +84,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -192,7 +192,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -202,6 +202,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2021/sharepoint-content-types/` was built on 2024-09-20T23:23:14.899Z -->
+		<!-- This page `/posts/2021/sharepoint-content-types/` was built on 2024-09-26T17:59:20.991Z -->
 	</body>
 </html>

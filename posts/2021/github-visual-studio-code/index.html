@@ -6,10 +6,10 @@
 		<title>Visual Studio Code: Using GitHub</title>
 		<meta name="description" content="An overview of working with GitHub from VS Code">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2021-04-09">April 9, 2021</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
 		</p>
 	
 </div>
@@ -65,16 +65,16 @@
 <h2 id="visual-cues">Visual Cues</h2>
 <p>The most valuable component to me is the visual cues of changes. It’s like having a constant diff between your current version and the last commit. If you add a line, that line will be marked green in the sidebar. If you change a line, that line will be marked blue in the sidebar. If you delete a line, there will be a little red arrow where it was.</p>
 <p>Clicking on the area of those colour indicators will pop up a full diff of the changed section. That will also include quick options like reverting all changes on that section.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.avif 1363w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.webp 1363w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.png" alt="Blue bar on side indicates changed lines, and the diff is shown below" width="1363" height="238"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.avif 1363w"><source type="image/webp" srcset="/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.webp 1363w"><img loading="lazy" decoding="async" src="/posts/2021/github-visual-studio-code/m3Y1GBZKSk-1363.png" alt="Blue bar on side indicates changed lines, and the diff is shown below" width="1363" height="238"></picture></p>
 <h2 id="commit-and-push">Commit and Push</h2>
 <p>Your standard git workflow actions can all be done from the Source Control section in the sidebar. It will show you everything that has changed since the last commit, with options to open the file, discard changes, or stage the file for the next commit. Above the file list you can enter your commit message and hit the checkmark to commit. Other actions like pushing and pulling are tucked away in the ellipses overflow menu.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/gaidPzpBjx-377.avif 377w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/gaidPzpBjx-377.webp 377w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/github-visual-studio-code/gaidPzpBjx-377.png" alt="&quot;Demo of the source control panel&quot;" width="377" height="411"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/github-visual-studio-code/gaidPzpBjx-377.avif 377w"><source type="image/webp" srcset="/posts/2021/github-visual-studio-code/gaidPzpBjx-377.webp 377w"><img loading="lazy" decoding="async" src="/posts/2021/github-visual-studio-code/gaidPzpBjx-377.png" alt="&quot;Demo of the source control panel&quot;" width="377" height="411"></picture></p>
 <p>You still have to understand the basics of what is involved in git source control, but you don’t have to memorize the commands for each step. Everything is available visually.</p>
 <h2 id="gitlens">GitLens</h2>
 <p>The extension <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> adds a few more useful features and is worth adding. Among other things, it will give you blame lines that shows who last changed a line, when, and as part of what commit.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.avif 761w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.webp 761w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.png" alt="Blame line that identifies &quot;You, 4 days ago, added site design update&quot;" width="761" height="52"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.avif 761w"><source type="image/webp" srcset="/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.webp 761w"><img loading="lazy" decoding="async" src="/posts/2021/github-visual-studio-code/-BlCNBsPAm-761.png" alt="Blame line that identifies &quot;You, 4 days ago, added site design update&quot;" width="761" height="52"></picture></p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2021/microsoft-search-introduction/">Microsoft Search: Introduction</a></p><p>Next: <a href="/eleventy-base-blog/posts/2021/vs-code-remote-ssh-development/">Visual Studio Code: Remote SSH Development</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-search-introduction/">Microsoft Search: Introduction</a></p><p>Next: <a href="/posts/2021/vs-code-remote-ssh-development/">Visual Studio Code: Remote SSH Development</a></p>
 </div>
 </article>
 			</div>
@@ -88,67 +88,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -196,7 +196,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -206,6 +206,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2021/github-visual-studio-code/` was built on 2024-09-20T23:23:14.884Z -->
+		<!-- This page `/posts/2021/github-visual-studio-code/` was built on 2024-09-26T17:59:20.983Z -->
 	</body>
 </html>

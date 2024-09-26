@@ -6,10 +6,10 @@
 		<title>Drupal: Importing Multiple Paragraphs</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2023-01-04">January 4, 2023</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a>
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
 		</p>
 	
 </div>
@@ -76,11 +76,11 @@
 <li>Processor: Node</li>
 <li>Content type: [Your content type, in this case it was Resources]</li>
 </ul>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.avif 865w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.webp 865w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.png" alt="Screenshot of feeds settings screen, showing options described above" width="865" height="726"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.avif 865w"><source type="image/webp" srcset="/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.webp 865w"><img loading="lazy" decoding="async" src="/posts/2023/importing-multiple-paragraphs/q-FzoOM9y6-865.png" alt="Screenshot of feeds settings screen, showing options described above" width="865" height="726"></picture></p>
 <p>On the mapping screen, I added a straightforward mapping between the Field Collection Title in your csv file and a temporary text column (allowing multiple values) created in your content type of the new site.</p>
 <p>After this, the import will be able to bring in data and put it in new nodes of the content type, but the text in the temporary fields are still separated by the :: if there are multiple.</p>
 <p>Now I went over to the Tamper tab and found the field you need to split up and added an &quot;Explode&quot; tamper plugin for that field, specifying the string separator and a label. I repeated this on each these temporary multiple fields.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.avif 555w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.webp 555w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.png" alt="Screenshot of tamper screen, showing options described above" width="555" height="700"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.avif 555w"><source type="image/webp" srcset="/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.webp 555w"><img loading="lazy" decoding="async" src="/posts/2023/importing-multiple-paragraphs/LNybE9JoZC-555.png" alt="Screenshot of tamper screen, showing options described above" width="555" height="700"></picture></p>
 <p>This will now leave us with multiple entries in the temporary field directly on the node. We still need to turn those into paragraphs and associate those paragraphs with the node, which is where we run out of options within Feeds to handle it on its own.</p>
 <h2 id="custom-module">Custom Module</h2>
 <p>The final piece is to convert the temporary text fields into multiple associated paragraphs instead. This will be handled with a custom module. I've created <a href="https://github.com/ryan-l-robinson/Drupal-paragraph-split">a generic demo of this available in my GitHub</a>. This is the main PHP file.</p>
@@ -144,7 +144,7 @@
 <p>Note: another approach here that would also involve custom module code would be to build this handling directly into the feeds import instead of hooking on the node being created. That's probably a bit more precise to run only in this one context. This hook on node insert does run more often, which is both less efficient and could be extra safety in case somebody accidentally put data in those temporary fields manually instead of creating the paragraphs. In any case, this was a quicker one for us to prepare, which was the priority with getting a one-time import done.</p>
 <p>When the module is ready (including an info file), enable it and give it a test run.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2023/gitlab-ide/">GitLab&#39;s New Web IDE</a></p><p>Next: <a href="/eleventy-base-blog/posts/2023/drupal-disable-pw-reset/">Drupal: Disable Password Reset</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/gitlab-ide/">GitLab&#39;s New Web IDE</a></p><p>Next: <a href="/posts/2023/drupal-disable-pw-reset/">Drupal: Disable Password Reset</a></p>
 </div>
 </article>
 			</div>
@@ -158,67 +158,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -266,7 +266,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -276,6 +276,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2023/importing-multiple-paragraphs/` was built on 2024-09-20T23:23:14.909Z -->
+		<!-- This page `/posts/2023/importing-multiple-paragraphs/` was built on 2024-09-26T17:59:20.994Z -->
 	</body>
 </html>

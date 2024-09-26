@@ -6,10 +6,10 @@
 		<title>Drupal GitPod Container 1: .Dockerfile</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,13 +39,13 @@
 	<p><time datetime="2022-01-20">January 20, 2022</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a>, 
-		<a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a>, 
-		<a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>, 
-		<a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a>
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>, 
+		<a href="/tags/linux/" class="post-tag">Linux</a>
 		</p>
 	
 </div>
@@ -53,8 +53,8 @@
 
 
 
-<p><a href="https://gitpod.io">GitPod</a> is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with <a href="/eleventy-base-blog/tags/visual-studio-code/">Visual Studio Code</a> – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.</p>
-<p>In this <a href="/eleventy-base-blog/tags/gitpod-drupal/">mini-series</a> I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">It is available in my GitHub</a>. Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.</p>
+<p><a href="https://gitpod.io">GitPod</a> is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with <a href="/tags/visual-studio-code/">Visual Studio Code</a> – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.</p>
+<p>In this <a href="/tags/gitpod-drupal/">mini-series</a> I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">It is available in my GitHub</a>. Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.</p>
 <h2 id="the-dockerfile">The Dockerfile</h2>
 <p>This solution starts from <a href="https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile">the GitPod-provided MySQL image</a>. That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.</p>
 <pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">FROM gitpod/workspace-mysql</code></pre>
@@ -62,7 +62,7 @@
 <pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">RUN update-alternatives --set php /usr/bin/php8.0</code></pre>
 <p>That doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.</p>
 <h3 id="php-packages">PHP packages</h3>
-<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/eleventy-base-blog/posts/2021/drupal-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
+<p>Here’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about <a href="/posts/2021/drupal-pecl-uploadprogress/">installing PECL UploadProgress for Oracle Linux</a>, which is similar but a bit different than these Ubuntu commands.</p>
 <pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">USER root
 # Install other needed packages
 RUN apt update
@@ -78,7 +78,7 @@ RUN php composer-setup.php --install-dir /usr/bin --filename composer
 RUN php -r "unlink('composer-setup.php');"</code></pre>
 <p>At this point, the server is ready to provide the core packages that run Drupal well.</p>
 <h2 id="pa11y-accessibility-testing">Pa11y accessibility testing</h2>
-<p><a href="/eleventy-base-blog/posts/2021/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
+<p><a href="/posts/2021/pa11y-ci-oracle-linux-8-installation/">I’ve also mentioned pa11y recently</a>, the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:</p>
 <pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install pa11y accessibility testing tool, including NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
@@ -94,7 +94,7 @@ EXPOSE 3306</code></pre>
 <h2 id="what-s-next">What’s Next</h2>
 <p>In an upcoming post, I’ll continue with the other large file to make this work: the .gitpod.yml. A third post will cover a few smaller changes I had to make to other configuration.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2022/drupal-7-hide-label-node-display/">Drupal 7: Hide Label on Node Display</a></p><p>Next: <a href="/eleventy-base-blog/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-7-hide-label-node-display/">Drupal 7: Hide Label on Node Display</a></p><p>Next: <a href="/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p>
 </div>
 </article>
 			</div>
@@ -108,67 +108,67 @@ EXPOSE 3306</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -216,7 +216,7 @@ EXPOSE 3306</code></pre>
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -226,6 +226,6 @@ EXPOSE 3306</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-20T23:23:14.844Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-26T17:59:20.965Z -->
 	</body>
 </html>

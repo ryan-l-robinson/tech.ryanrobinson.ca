@@ -6,10 +6,10 @@
 		<title>GitHub Pages: Mobile Authoring</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,8 +39,8 @@
 	<p><time datetime="2022-05-16">May 16, 2022</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a>, 
-		<a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
+		<a href="/tags/static-sites/" class="post-tag">Static Sites</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
 		</p>
 	
 </div>
@@ -48,7 +48,7 @@
 
 
 
-<p><a href="/eleventy-base-blog/posts/2022/building-jekyll/">I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free</a>. It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.</p>
+<p><a href="/posts/2022/building-jekyll/">I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free</a>. It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.</p>
 <p>One thing I was worried about, though, is writing from my phone. My habit has often been that I write rough notes on my phone, then finalize it on a computer and hit publish. I didn’t want to lose that. So here’s what I did.</p>
 <h2 id="mobile-app">Mobile App</h2>
 <p>First I needed an app on my Android phone to edit the Markdown files. I tried a few and settled on <a href="https://play.google.com/store/apps/details?id=net.gsantner.markor&amp;gl=US">Markor</a>. It can stay opened to an entire folder, can create files, edit files, delete files. You can write in markdown and preview what it looks like (without anything like CSS styling from the site, of course). It does have some modes that are unnecessary to me - to do and quick notes - and no way to turn them off in the interface.</p>
@@ -57,10 +57,10 @@
 <p>The next problem is getting those markdown files to the GitHub repositories. One app, <a href="https://play.google.com/store/apps/details?id=io.gitjournal.gitjournal&amp;gl=US">GitJournal</a>, did promise to do this directly from the phone, although I did not go all the way through tests for that. But I wasn't looking for that. As I said in the intro, I usually like to write from my phone but then finalize it from a computer. So I was happy with a middle step of getting my notes to a computer and then using the computer to get it to GitHub.</p>
 <p>That brought me to <a href="https://play.google.com/store/apps/details?id=com.ttxapps.onesyncv2&amp;gl=US">the OneSync app</a>. This lets me sync the folder of the whole project to my OneDrive. I can write on my phone and then pick up later on a computer or vice versa.</p>
 <h2 id="commit-to-github">Commit to GitHub</h2>
-<p>After that is straightforward. The files are on my computer in a project folder via OneDrive. Now I can open that folder in <a href="/eleventy-base-blog/tags/visual-studio-code/">Visual Studio Code</a>, finalize the changes, and commit to GitHub which will rebuild the site based on the latest files. Publishing only one article at a time is simple enough if you’re familiar with git: you can stage and commit that file while leaving others uncommitted as “drafts.” or I can keep drafts in a different folder, in which case they can be committed without publishing.</p>
+<p>After that is straightforward. The files are on my computer in a project folder via OneDrive. Now I can open that folder in <a href="/tags/visual-studio-code/">Visual Studio Code</a>, finalize the changes, and commit to GitHub which will rebuild the site based on the latest files. Publishing only one article at a time is simple enough if you’re familiar with git: you can stage and commit that file while leaving others uncommitted as “drafts.” or I can keep drafts in a different folder, in which case they can be committed without publishing.</p>
 <p>I've gone as far as having separate folders depending on the stage of what I'm writing: there are ideas for new drafts, there are drafts where I have started but not finished the necessary demos and tests, there are drafts where everything is ready but not finished writing, and there are posts that can be published. All but posts go in the gitignore so they stay synced in my OneDrive but not in my GitHub.</p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2022/email-suspected-spam/">Microsoft 365: Email Suspected of Spam</a></p><p>Next: <a href="/eleventy-base-blog/posts/2022/drupal-sync-content/">Drupal: Sync Content</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/email-suspected-spam/">Microsoft 365: Email Suspected of Spam</a></p><p>Next: <a href="/posts/2022/drupal-sync-content/">Drupal: Sync Content</a></p>
 </div>
 </article>
 			</div>
@@ -74,67 +74,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -182,7 +182,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -192,6 +192,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2022/gh-pages-mobile-authoring/` was built on 2024-09-20T23:23:14.850Z -->
+		<!-- This page `/posts/2022/gh-pages-mobile-authoring/` was built on 2024-09-26T17:59:20.969Z -->
 	</body>
 </html>

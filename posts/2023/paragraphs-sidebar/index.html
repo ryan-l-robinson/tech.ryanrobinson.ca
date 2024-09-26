@@ -6,10 +6,10 @@
 		<title>Drupal: Paragraphs Sidebar</title>
 		<meta name="description" content="">
 
-  		<link rel="icon" type="image/x-icon" href="/eleventy-base-blog/img/favicon.ico">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/eleventy-base-blog/dist/kjFUAAw2Wi.css">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/kjFUAAw2Wi.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -20,10 +20,10 @@
 				<nav class="top-nav" aria-describedby="top-nav">
 					<h2 class="visually-hidden" id="top-nav">Top level navigation menu</h2>
 					<ul class="top-nav-list">
-						<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/tools/">Tools</a></li>
-						<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+						<li class="nav-item"><a href="/">Home</a></li>
+						<li class="nav-item"><a href="/about/">About</a></li>
+						<li class="nav-item"><a href="/tools/">Tools</a></li>
+						<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -39,7 +39,7 @@
 	<p><time datetime="2023-03-29">March 29, 2023</time></p>
 	
 		<p>Tags:
-		<a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a>
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
 		</p>
 	
 </div>
@@ -52,29 +52,29 @@
 <h2 id="create-the-paragraph-and-its-fields">Create the paragraph and its fields</h2>
 <p>First, create the paragraph and its corresponding fields. In my case, I wanted two fields: a label that will be displayed, and a user reference to connect to a staff user account.</p>
 <p>I created the paragraph type and called it “Contact.”</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.avif 727w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.webp 727w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.png" alt="&quot;Creating a paragraph type called Contact&quot;" width="727" height="648"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.avif 727w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.webp 727w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/TJcim0CzKs-727.png" alt="&quot;Creating a paragraph type called Contact&quot;" width="727" height="648"></picture></p>
 <p>Next, add a field for the label, as a text select to choose from a few pre-defined options including &quot;Primary Contact,&quot; &quot;Secondary Contact,&quot; etc. Only allow one label per paragraph, which is different from where we'll later allow multiple paragraphs per node.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.avif 621w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.webp 621w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.png" alt="&quot;Creating a field called Contact Label, as a Text (List) type&quot;" width="621" height="461"></picture></p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.avif 1342w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.webp 1342w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.png" alt="&quot;Settings for the label field, including the valid options and to allow allow 1 value.&quot;" width="1342" height="822"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.avif 621w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.webp 621w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/mAA5zGTVb_-621.png" alt="&quot;Creating a field called Contact Label, as a Text (List) type&quot;" width="621" height="461"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.avif 1342w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.webp 1342w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/CoFyU7o-OQ-1342.png" alt="&quot;Settings for the label field, including the valid options and to allow allow 1 value.&quot;" width="1342" height="822"></picture></p>
 <p>Finally, add a field for the user reference. Set this up to show up as an autocomplete, filtering to only show those who are of the Staff role.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.avif 626w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.webp 626w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.png" alt="&quot;Creating a user entity reference field called Contact User&quot;" width="626" height="448"></picture></p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.avif 541w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.webp 541w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.png" alt="&quot;The user entity reference settings, filtering to only show those of the role Staff&quot;" width="541" height="647"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.avif 626w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.webp 626w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/oDyhdo1ZfI-626.png" alt="&quot;Creating a user entity reference field called Contact User&quot;" width="626" height="448"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.avif 541w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.webp 541w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/-E7r_AEFLh-541.png" alt="&quot;The user entity reference settings, filtering to only show those of the role Staff&quot;" width="541" height="647"></picture></p>
 <h2 id="assign-to-a-content-type">Assign to a content type</h2>
 <p>Add a field on the content type that references this paragraph. The field type is going to be an entity reference revision.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.avif 625w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.webp 625w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.png" alt="&quot;Adding the paragraph reference to the Page content type&quot;" width="625" height="464"></picture></p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.avif 821w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.webp 821w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.png" alt="&quot;The settings for the entity field, filtering to be able to select paragraphs of type Contact&quot;" width="821" height="548"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.avif 625w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.webp 625w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/FykBDf9ljg-625.png" alt="&quot;Adding the paragraph reference to the Page content type&quot;" width="625" height="464"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.avif 821w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.webp 821w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/epMDxEUtFq-821.png" alt="&quot;The settings for the entity field, filtering to be able to select paragraphs of type Contact&quot;" width="821" height="548"></picture></p>
 <p>In this case, since it's going to display it in the sidebar using a view, also remove it from the display for the content type. I won't get into details of designing the page on this post.</p>
 <p>This step can be repeated to add the field to multiple content types, so that you can have the consistent design on all of them.</p>
 <h2 id="create-the-profile">Create the profile</h2>
 <p>For the sake of this demo, I'll only add a couple of fields to the profile - a name, a phone number, and an email - and I won't do any of the design of the profile page, just creating the fields for the purpose of showing it in the sidebar of the content.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.avif 1142w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.webp 1142w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.png" alt="&quot;Created fields for the profile: name, phone, and email&quot;" width="1142" height="442"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.avif 1142w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.webp 1142w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/kpHgCNHkGg-1142.png" alt="&quot;Created fields for the profile: name, phone, and email&quot;" width="1142" height="442"></picture></p>
 <h2 id="create-sidebar-view">Create sidebar view</h2>
 <p>That's all the underlying structure. We can now proceed to creating the view itself. This will be a view of content, because while it will be showing paragraphs, it will be showing those paragraphs based on the content being viewed. It will be a block, since we're going to want blocks that can be placed in theme block regions.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.avif 832w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.webp 832w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.png" alt="&quot;Settings for creating the view. The essential component is the view settings showing Content.&quot;" width="832" height="640"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.avif 832w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.webp 832w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/XYd_IjZu7c-832.png" alt="&quot;Settings for creating the view. The essential component is the view settings showing Content.&quot;" width="832" height="640"></picture></p>
 <p>Next, make a contextual filter so it will only show content related to the current content on display. This will be on the node ID of the page being viewed, so that only paragraphs related to the current node will come up as results. Create a filter for content ID and set the default to be &quot;Content ID from URL.&quot;</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.avif 1372w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.webp 1372w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.jpeg" alt="&quot;Settings for the contextual filter, the content ID set to default on the content ID in the URL.&quot;" width="1372" height="800"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.avif 1372w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.webp 1372w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/wAe670rJLW-1372.jpeg" alt="&quot;Settings for the contextual filter, the content ID set to default on the content ID in the URL.&quot;" width="1372" height="800"></picture></p>
 <p>Now we need to create the link between the page being viewed and its contact paragraphs. This can be done with the relationships functionality of views. Under Relationships, click on Add, then select &quot;Paragraph referenced from field_contact.&quot;</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.avif 1363w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.webp 1363w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.jpeg" alt="&quot;Adding a relationship to paragraph referenced from field_contact.&quot;" width="1363" height="800"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.avif 1363w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.webp 1363w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/TGRbEJCYdg-1363.jpeg" alt="&quot;Adding a relationship to paragraph referenced from field_contact.&quot;" width="1363" height="800"></picture></p>
 <p>We then need two more relationships:</p>
 <ol>
 <li>From the contact field of the paragraph back to the user: &quot;User referenced from field_contact_user.&quot;</li>
@@ -91,12 +91,12 @@
 <p>We can go back to the settings on the Unformmated list to group results by the label, so that the label will show up as a header. If you want more precise control over what HTML tags are used for which elements, <a href="https://www.drupal.org/project/semanticviews">semantic views</a> is another great module.</p>
 <h2 id="place-block-view-in-sidebar">Place block view in sidebar</h2>
 <p>Finally, add the block to show in that sidebar for all relevant content types. Of course this will depend on your theme having a sidebar region, but most have at least one.</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.avif 700w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.webp 700w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.jpeg" alt="&quot;Adding a block to appear in the sidebar of the Page content type&quot;" width="700" height="840"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.avif 700w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.webp 700w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/Gj2TF9gNNY-700.jpeg" alt="&quot;Adding a block to appear in the sidebar of the Page content type&quot;" width="700" height="840"></picture></p>
 <h2 id="final-result">Final result</h2>
 <p>Here's an example of what all of this looks like, at its most basic level without any extra CSS styles added:</p>
-<p><picture><source type="image/avif" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/fDirca0ur--1116.avif 1116w"><source type="image/webp" srcset="/eleventy-base-blog/posts/2023/paragraphs-sidebar/fDirca0ur--1116.webp 1116w"><img loading="lazy" decoding="async" src="/eleventy-base-blog/posts/2023/paragraphs-sidebar/fDirca0ur--1116.jpeg" alt="&quot;Sidebar in place on a demo page, showing the Primary Contact label, name Ryan Robinson linked to the profile, email address, and phone number as a valid phone link.&quot;" width="1116" height="381"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/paragraphs-sidebar/fDirca0ur--1116.avif 1116w"><source type="image/webp" srcset="/posts/2023/paragraphs-sidebar/fDirca0ur--1116.webp 1116w"><img loading="lazy" decoding="async" src="/posts/2023/paragraphs-sidebar/fDirca0ur--1116.jpeg" alt="&quot;Sidebar in place on a demo page, showing the Primary Contact label, name Ryan Robinson linked to the profile, email address, and phone number as a valid phone link.&quot;" width="1116" height="381"></picture></p>
 
-<div class="links-nextprev"><p>Previous: <a href="/eleventy-base-blog/posts/2023/drupal-recycle-bin/">Drupal: Recycle Bin</a></p><p>Next: <a href="/eleventy-base-blog/posts/2023/drupal-openai/">Drupal: OpenAI Module</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/drupal-recycle-bin/">Drupal: Recycle Bin</a></p><p>Next: <a href="/posts/2023/drupal-openai/">Drupal: OpenAI Module</a></p>
 </div>
 </article>
 			</div>
@@ -110,67 +110,67 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/eleventy-base-blog/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/crm/" class="post-tag">CRM</a> (4)</li>
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/php/" class="post-tag">PHP</a> (15)</li>
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/linux/" class="post-tag">Linux</a> (5)</li>
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/css/" class="post-tag">CSS</a> (3)</li>
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/devops/" class="post-tag">DevOps</a> (11)</li>
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (11)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
+		<li><a href="/tags/drupal-docker/" class="post-tag">Drupal Docker</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
+		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
 		
-		<li><a href="/eleventy-base-blog/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
+		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
 	
 	</ul>
 </aside>
@@ -218,7 +218,7 @@
 		</a>
 	</li>
 	<li>
-		<a rel="me" href="/eleventy-base-blog/feed/feed.xml" aria-label="rss">
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
 			<span class="visually-hidden">RSS Feed</span>
 			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
 		</a>
@@ -228,6 +228,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/eleventy-base-blog/posts/2023/paragraphs-sidebar/` was built on 2024-09-20T23:23:14.910Z -->
+		<!-- This page `/posts/2023/paragraphs-sidebar/` was built on 2024-09-26T17:59:20.994Z -->
 	</body>
 </html>
