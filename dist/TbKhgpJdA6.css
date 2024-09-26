@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 138 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -29,7 +29,7 @@
 }
 .postlist-metadata p {
 	margin: 0;
-	line-height: 1em;
+	line-height: 1.5em;
 	font-size: 0.8em;
 }
 .postlist-tag {
