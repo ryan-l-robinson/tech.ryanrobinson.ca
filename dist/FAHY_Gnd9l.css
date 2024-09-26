@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 15 }
+.postlist { counter-reset: start-from 20 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -44,6 +44,7 @@
 	display: flex;
 	justify-content: center;
 	gap: 1em;
+	padding-left: 0;
 	list-style: none;
 }
 
