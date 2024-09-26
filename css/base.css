@@ -52,7 +52,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 	margin: 0;
-    background-color: var(--grey);
+    background-color: var(--red);
     color: var(--text-color);
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: 16pt;
