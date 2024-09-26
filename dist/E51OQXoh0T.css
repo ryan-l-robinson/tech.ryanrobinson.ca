@@ -39,6 +39,17 @@
 .postlist-item :last-child {
 	margin-bottom: 0;
 }
+
+.pager {
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+	list-style: none;
+}
+
+.pager li[aria-current="page"] a {
+	text-decoration: none;
+}
 /* Message Box */
 .message-box {
 	--color-message-box: #ffc;
