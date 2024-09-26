@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 50 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -47,7 +47,7 @@
 	list-style: none;
 }
 
-.pager li[aria-current="page"] a {
+.pager li a[aria-current="page"] {
 	text-decoration: none;
 }
 /* Message Box */

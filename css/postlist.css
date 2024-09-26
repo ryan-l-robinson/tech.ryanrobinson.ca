@@ -46,6 +46,6 @@
 	list-style: none;
 }
 
-.pager li[aria-current="page"] a {
+.pager li a[aria-current="page"] {
 	text-decoration: none;
 }
