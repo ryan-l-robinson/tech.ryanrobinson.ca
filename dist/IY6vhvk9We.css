@@ -1,21 +1,3 @@
-/* Message Box */
-.message-box {
-	--color-message-box: #ffc;
-
-	display: block;
-	background-color: var(--color-message-box);
-	color: var(--color-gray-90);
-	padding: 1em 0.625em; /* 16px 10px /16 */
-}
-.message-box ol {
-	margin-top: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	.message-box {
-		--color-message-box: #082840;
-	}
-}
 /* Variables and general site-wide styles */
 :root {
     --white: #ffffff;
@@ -157,6 +139,8 @@ header .top-nav .top-nav-list .nav-item a:not([aria-current="page"]):is(:focus,:
     color: var(--red);
 }
 .main-wrapper {
+	display: flex;
+	justify-content: center;
 	background-color: var(--grey);
 }
 

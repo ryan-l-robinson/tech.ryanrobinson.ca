@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 16 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -220,6 +220,8 @@ header .top-nav .top-nav-list .nav-item a:not([aria-current="page"]):is(:focus,:
     color: var(--red);
 }
 .main-wrapper {
+	display: flex;
+	justify-content: center;
 	background-color: var(--grey);
 }
 
