@@ -47,6 +47,10 @@
 
 {&quot;inputPath&quot;:&quot;./content/posts/2021/vs-code-remote-ssh-development.md&quot;,&quot;fileSlug&quot;:&quot;vs-code-remote-ssh-development&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/vs-code-remote-ssh-development&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-04-12T14:27:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nOne of the greatest improvements to my website development workflow came the day I discovered I could directly code on a web server in Visual Studio Code. Before this realization I was opening files with FileZilla, which worked but took a few clicks for each change:&#92;n&#92;n1. Browse to file in FileZilla&#92;n2. Double-click to prompt opening in Code&#92;n3. Switch over to Code, make changes, and save the file&#92;n4. Switch back to FileZilla&#92;n5. Say yes on the prompt to upload the change&#92;n6. Test in browser to see if it did what I wanted it to do&#92;n7. Repeat 3-6 if necessary for next change&#92;n&#92;nBy comparison, when you access the file directly in Code, that process gets cut down to:&#92;n&#92;n1. Open file in Code, make changes, and save the file&#92;n2. Test in browser to see if it did what I wanted it to do&#92;n3. Repeat 1-2 if necessary for next change&#92;n&#92;nIf you’re making a lot of changes like testing out new CSS designs which may take several iterations to get just right, all those extra clicks add up to a lot of time. It’s also easier to remember; something that happened for me regularly is I saved the file in Code but forgot to go back to FileZilla to upload the file, then was briefly confused why my changes weren’t showing up yet.&#92;n&#92;n## Setup&#92;n&#92;nI won’t go step-by-step in getting this setup. There are [lots of great blogs](https://towardsdatascience.com/5-steps-setup-vs-code-for-remote-development-via-ssh-from-windows-to-linux-b9bae9e8f904) out there to walk you through it.&#92;n&#92;n## Peacock extension&#92;n&#92;n[This extension](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock) applies a different colour theme to my workspace for each website I was connected to. This is really valuable especially if you find yourself working on multiple websites on the same day as the visual cue helps avoid accidentally updating the wrong site.&#92;n&#92;nYou can manually set these for each site, which could be used for scenarios like setting the code window to match the branding of that site for an even stronger visual cue, or you can check the box to surprise me with a random colour whenever one isn’t already set.&#92;n&#92;n## Git integration&#92;n&#92;n[I wrote another recent post that breaks down how Git integration in Code in general](/posts/2021/github-visual-studio-code/). The main difference here is how it ties into the next point: if you can’t use the integrated shell because of the security on the system, you also won’t be able to push in the version control interface.&#92;n&#92;n![Source control window showing the files staged and not staged yet, with interface options for everything you need.](./github-visual-studio-code/source-control.png)&#92;n_Demo of the source control window_&#92;n&#92;n## Shell integration&#92;n&#92;nThis is not something I can take advantage of due to security settings of the web server I mostly work on, but it is a great idea if your server allows it. With this feature, you can directly use your shell commands within Code instead of needing a separate window in something like PuTTY or the Windows Subsystem for Linux (WSL).&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/vs-code-remote-ssh-development/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/vs-code-remote-ssh-development/index.html&quot;}
 
+	<div class="post-description">
+		An overview of connecting to SSH servers using VS Code.
+	</div>
+
 
 <p>One of the greatest improvements to my website development workflow came the day I discovered I could directly code on a web server in Visual Studio Code. Before this realization I was opening files with FileZilla, which worked but took a few clicks for each change:</p>
 <ol>
@@ -91,19 +95,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -118,37 +152,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -210,6 +214,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/vs-code-remote-ssh-development/` was built on 2024-09-27T20:44:09.069Z -->
+		<!-- This page `/posts/2021/vs-code-remote-ssh-development/` was built on 2024-09-27T20:46:32.075Z -->
 	</body>
 </html>

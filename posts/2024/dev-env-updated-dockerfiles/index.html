@@ -47,6 +47,10 @@
 
 {&quot;inputPath&quot;:&quot;./content/posts/2024/dev-env-updated-dockerfiles.md&quot;,&quot;fileSlug&quot;:&quot;dev-env-updated-dockerfiles&quot;,&quot;filePathStem&quot;:&quot;/posts/2024/dev-env-updated-dockerfiles&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2024-03-25T00:16:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nA while ago I wrote about building a [Docker Desktop dev environment for Drupal](/tags/drupal-docker/). It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. [It can be seen on my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).&#92;n&#92;n## The Web Image&#92;n&#92;nThis new setup has both Apache and PHP in the same container, is about 40% of the total image size compared to the previous one, and runs much faster, probably because Apache and PHP are in the same container instead of having to communicate across the network. Let&#39;s start with the basic start to the image and its shell.&#92;n&#92;n```Dockerfile&#92;nFROM drupal:php8.2-apache&#92;nUSER root&#92;nSHELL [&#92;&quot;/bin/bash&#92;&quot;, &#92;&quot;-c&#92;&quot;]&#92;n```&#92;n&#92;nInstall the extra useful packages - some of the most essential ones are already included in the Drupal image - and PHP development settings. The file copied from the PHP folder covers some of the XDebug configuration settings.&#92;n&#92;n```Dockerfile&#92;n# Install needed repositories and general packages, and put the php.ini in place&#92;nRUN apt-get update -y &#92;&#92;&#92;n    &amp;&amp; apt-get install -y wget git zip which sudo vim locales default-mysql-client docker nodejs npm &#92;&#92;&#92;n    &amp;&amp; apt-get upgrade -y &#92;&#92;&#92;n    &amp;&amp; mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini&#92;n&#92;n# Install PHP extensions, using PECL&#92;nRUN pecl channel-update pecl.php.net &#92;&#92;&#92;n    &amp;&amp; pecl install apcu xdebug uploadprogress &#92;&#92;&#92;n    &amp;&amp; docker-php-ext-enable apcu &#92;&#92;&#92;n    &amp;&amp; echo &#92;&quot;apc.enable_cli=1&#92;&quot; &gt;&gt; /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini &#92;&#92;&#92;n    &amp;&amp; docker-php-ext-enable xdebug &#92;&#92;&#92;n    &amp;&amp; touch /var/log/xdebug.log &#92;&#92;&#92;n    &amp;&amp; chown www-data:www-data /var/log/xdebug.log &#92;&#92;&#92;n    &amp;&amp; docker-php-ext-enable uploadprogress&#92;nCOPY /php /usr/local/etc/php/conf.d&#92;n```&#92;n&#92;nLet the default www-data user have sudo permission without passwords, which would not be the way to go in production but in a development environment is pretty useful in case you ever need to do things like install a new package without rebuilding the whole environment.&#92;n&#92;n```Dockerfile&#92;n# Add www-data user to sudo group, and allow those users to sudo without password&#92;nRUN usermod -a -G sudo www-data &#92;&#92;&#92;n    &amp;&amp; usermod -d /user/www-data www-data &#92;&#92;&#92;n    &amp;&amp; mkdir -p /user/www-data/.vscode-server &#92;&#92;&#92;n    &amp;&amp; chown -R www-data:www-data /user/www-data &#92;&#92;&#92;n    &amp;&amp; mkdir -p /user/www-data/.ssh &#92;&#92;&#92;n    &amp;&amp; chown -R www-data:www-data /user/www-data/.ssh &#92;&#92;&#92;n    &amp;&amp; chmod 700 -R /user/www-data/.ssh &#92;&#92;&#92;n    &amp;&amp; ssh-keyscan -t rsa gitlab.com &gt;&gt; /user/www-data/.ssh/known_hosts &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/%sudo&#92;tALL=(ALL:ALL) ALL/%sudo&#92;tALL=(ALL)&#92;tNOPASSWD: ALL/g&#92;&quot; /etc/sudoers&#92;n```&#92;n&#92;nFix a locale error that shows up once Apache is running, by specifying the locale it is running in. In my case, that&#39;s Canada, with Canadian English.&#92;n&#92;n```Dockerfile&#92;n# Fixes locale errors, must happen before Apache. This is using my locale of Canada&#92;nRUN echo &#92;&quot;LC_ALL=en_CA.UTF-8&#92;&quot; &gt;&gt; /etc/environment &#92;&#92;&#92;n    &amp;&amp; echo &#92;&quot;en_CA.UTF-8 UTF-8&#92;&quot; &gt;&gt; /etc/locale.gen &#92;&#92;&#92;n    &amp;&amp; echo &#92;&quot;LANG=en_CA.UTF-8&#92;&quot; &gt; /etc/locale.conf &#92;&#92;&#92;n    &amp;&amp; locale-gen en_CA.UTF-8&#92;n```&#92;n&#92;nAdd a self-signed certificate for the Apache configuration, so that we&#39;ll be able to browse the site locally with HTTPS.&#92;n&#92;n```Dockerfile&#92;n# Apache configuration, including SSL certificates and logs&#92;nCOPY /apache /etc/apache2&#92;nRUN a2enmod ssl &#92;&#92;&#92;n    &amp;&amp; mkdir -p /etc/apache2/certs &#92;&#92;&#92;n    &amp;&amp; openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/apache2/certs/example.com.key -x509 -days 3650 -out /etc/apache2/certs/example.com.crt -config /etc/apache2/certs/openssl-config.txt &#92;&#92;&#92;n    &amp;&amp; chown -R root:www-data /etc/apache2 &#92;&#92;&#92;n    &amp;&amp; chmod 770 -R /etc/apache2/certs&#92;n```&#92;n&#92;nIncrease some of the default resource limits for PHP. The defaults never seem to be nearly enough for Drupal. These go much larger, larger than you really need on production, but on local development it is easier to be safe than sorry.&#92;n&#92;n```Dockerfile&#92;n# Increase resources for PHP&#92;nRUN sed -i &#92;&quot;s/max_execution_time = 30/max_execution_time = 300/g&#92;&quot; /usr/local/etc/php/php.ini &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/max_input_time = 60/max_input_time = 600/g&#92;&quot; /usr/local/etc/php/php.ini &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/memory_limit = 128M/memory_limit = 2048M/g&#92;&quot; /usr/local/etc/php/php.ini &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/upload_max_filesize = 2M/upload_max_filesize = 128M/g&#92;&quot; /usr/local/etc/php/php.ini &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/post_max_size = 8M/post_max_size = 256M/g&#92;&quot; /usr/local/etc/php/php.ini &#92;&#92;&#92;n    &amp;&amp; sed -i &#92;&quot;s/;max_input_vars = 1000/max_input_vars = 10000/g&#92;&quot; /usr/local/etc/php/php.ini&#92;n```&#92;n&#92;nThis is a minor thing, but I like when I grep through code to see results with the colour highlights, making it much easier to read. That can be done by setting an environment variable and putting an alias for grep into a bashrc file.&#92;n&#92;n```Dockerfile&#92;n# Set up nicer grep results&#92;nENV GREP_COLORS=&#39;mt=1;37;41&#39;&#92;nCOPY .bashrc /user/www-data/.bashrc&#92;n```&#92;n&#92;nLine up the script that will be run after creating the images. That script will handle setting up the Drupal database, but I&#39;ll cover that more in the next post.&#92;n&#92;n```Dockerfile&#92;n# Scripts for further actions to take on creation and attachment&#92;nCOPY ./scripts/postCreateCommand.sh /postCreateCommand.sh&#92;n```&#92;n&#92;nCopy the Drupal settings file and the local services file. The former is the essential settings for any Drupal site, including being able to connect to the database. The latter is not essential but enables some of the development features that are ideal in local development, like seeing comments in the generated HTML code that shows you what template is being used to generate it.&#92;n&#92;n```Dockerfile&#92;n# Drupal configuration&#92;nCOPY /drupal /web/sites&#92;n```&#92;n&#92;nFinally, set the permissions on the main Drupal folder as well as on the script that we&#39;ll need to be able to run.&#92;n&#92;n```Dockerfile&#92;nRUN chown -R www-data:www-data /opt/drupal &#92;&#92;&#92;n    &amp;&amp; chown www-data:www-data /postCreateCommand.sh &#92;&#92;&#92;n    &amp;&amp; chmod 777 /postCreateCommand.sh&#92;n```&#92;n&#92;nMuch of this is the same as the previous version: adding a self-signed SSL certificate, increasing PHP resources. But a few things changed:&#92;n&#92;n- Many of the PHP extensions are already installed from the Drupal image so I didn&#39;t need to do them again in this Dockerfile.&#92;n- It needs a lot more overriding the permissions since that Drupal image already comes with a Drupal install in that /opt/drupal directory and with the www-data user, and with some as volumes which mean they immediately revert to root ownership when you attach to it.&#92;n&#92;n## The Database Image&#92;n&#92;nHere&#39;s the entire Dockerfile:&#92;n&#92;n```Dockerfile&#92;n# Use the default MariaDB image&#92;nFROM mariadb:latest&#92;n&#92;nENV MARIADB_ROOT_PASSWORD=drupalroot&#92;nENV MARIADB_DATABASE=drupal&#92;nENV MARIADB_USER=drupal&#92;nENV MARIADB_PASSWORD=drupal&#92;n&#92;n# Expose the MySQL port to be accessible to the web container.&#92;nEXPOSE 3306&#92;n```&#92;n&#92;nThis is essentially no change from the previous one, just setting the environment variables to define the database and its access.&#92;n&#92;n## Docker Compose&#92;n&#92;nThe docker compose file is not doing anything too unusual. The main thing of note is the volumes. I do not have the entire /opt/drupal set up as volumes. That&#39;s because when you attach to it, the entire area would get its permissions reassigned back to root, which causes issues. It&#39;s also not very efficient, since I really don&#39;t need things like the core files and contributed modules in the vendor folder to be persistent. So instead, it defines the pieces that are relevant to be able to build it, as well as the private and public folders where I might want to download a file for testing that the site can use.&#92;n&#92;nI also have it set up to share my user profile&#39;s SSH keys and preferred settings like the my commit name, so that I can connect to the repository without having to configure it all again with every new build.&#92;n&#92;n```yml&#92;nversion: &#92;&quot;3.9&#92;&quot;&#92;nservices:&#92;n  web:&#92;n    hostname: &#92;&quot;web&#92;&quot;&#92;n    container_name: &#92;&quot;web&#92;&quot;&#92;n    build:&#92;n      context: &#92;&quot;.devcontainer&#92;&quot;&#92;n      dockerfile: &#92;&quot;web.Dockerfile&#92;&quot;&#92;n    ports:&#92;n      - &#92;&quot;443:443&#92;&quot;&#92;n    volumes:&#92;n      - &#92;&quot;./.devcontainer/:/opt/drupal/.devcontainer/&#92;&quot;&#92;n      - &#92;&quot;./.git/:/opt/drupal/.git/&#92;&quot;&#92;n      - &#92;&quot;./.gitignore:/opt/drupal/.gitignore&#92;&quot;&#92;n      - &#92;&quot;./.vscode/:/opt/drupal/.vscode/&#92;&quot;&#92;n      - &#92;&quot;./patches/:/opt/drupal/patches/&#92;&quot;&#92;n      - &#92;&quot;./private/:/opt/drupal/private/&#92;&quot;&#92;n      - &#92;&quot;./sync/:/opt/drupal/sync/&#92;&quot;&#92;n      - &#92;&quot;./web/sites/default/files/:/opt/drupal/web/sites/default/files/&#92;&quot;&#92;n      - &#92;&quot;./composer.json:/opt/drupal/composer.json&#92;&quot;&#92;n      - &#92;&quot;./composer.lock:/opt/drupal/composer.lock&#92;&quot;&#92;n      - &#92;&quot;./docker-compose.yml:/opt/drupal/docker-compose.yml&#92;&quot;&#92;n      - &#92;&quot;./README.md:/opt/drupal/README.md&#92;&quot;&#92;n      - &#92;&quot;${USERPROFILE}/.ssh/:/user/www-data/.ssh/&#92;&quot;&#92;n      - &#92;&quot;${USERPROFILE}/.gitconfig:/user/www-data/.gitconfig&#92;&quot;&#92;n    user: &#92;&quot;www-data:www-data&#92;&quot;&#92;n    depends_on:&#92;n      - db&#92;n    networks:&#92;n      - &#92;&quot;drupal&#92;&quot;&#92;n  db:&#92;n    hostname: &#92;&quot;db&#92;&quot;&#92;n    container_name: &#92;&quot;db&#92;&quot;&#92;n    build:&#92;n      context: &#92;&quot;.devcontainer&#92;&quot;&#92;n      dockerfile: &#92;&quot;db.Dockerfile&#92;&quot;&#92;n    networks:&#92;n      - &#92;&quot;drupal&#92;&quot;&#92;n&#92;nnetworks:&#92;n  drupal:&#92;n```&#92;n&#92;n## Next Post&#92;n&#92;nIn the next post, I&#39;ll mention some of the changes to the devcontainer.json file and to the postCreateCommand script, although there&#39;s nothing too drastic there.&quot;,&quot;url&quot;:&quot;/posts/2024/dev-env-updated-dockerfiles/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2024/dev-env-updated-dockerfiles/index.html&quot;}
 
+	<div class="post-description">
+		An updated version of the Dockerfiles for a Drupal dev environment.
+	</div>
+
 
 <p>A while ago I wrote about building a <a href="/tags/drupal-docker/">Docker Desktop dev environment for Drupal</a>. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">It can be seen on my GitHub</a>.</p>
 <h2 id="the-web-image">The Web Image</h2>
@@ -197,19 +201,49 @@ EXPOSE 3306</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -224,37 +258,7 @@ EXPOSE 3306</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -316,6 +320,6 @@ EXPOSE 3306</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/dev-env-updated-dockerfiles/` was built on 2024-09-27T20:44:09.080Z -->
+		<!-- This page `/posts/2024/dev-env-updated-dockerfiles/` was built on 2024-09-27T20:46:32.108Z -->
 	</body>
 </html>
