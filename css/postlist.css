@@ -47,6 +47,10 @@
 	list-style: none;
 }
 
+.pager li {
+	height: fit-content;
+}
+
 .pager li.current-page,
 .pager li a {
 	border: 1px solid var(--grey);

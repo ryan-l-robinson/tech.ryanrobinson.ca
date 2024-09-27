@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -46,6 +46,10 @@
 	margin: 0;
 	padding: 1em;
 	list-style: none;
+}
+
+.pager li {
+	height: fit-content;
 }
 
 .pager li.current-page,
