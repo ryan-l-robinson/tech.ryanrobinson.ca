@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 </div>
 
 
-{&quot;inputPath&quot;:&quot;./content/posts/2021/cannot-modify-header-information-headers-already-sent.md&quot;,&quot;fileSlug&quot;:&quot;cannot-modify-header-information-headers-already-sent&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/cannot-modify-header-information-headers-already-sent&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-05-14T14:34:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nRecently I loaded up a client website to do some standard WordPress. The public site was fine, but when I tried to login to the admin, I got the dreaded White Screen of Death. For those unfamiliar, this is a blank white screen, with no error visible to help diagnose the problem.&#92;n&#92;nI began doing some general research on the White Screen of Death and trying the different common solutions: disable plugins (by renaming the plugins folder via FTP), update themes, update WordPress core. Nothing worked.&#92;n&#92;nThen I checked out the Apache error log and got a big hint:&#92;n&#92;n&gt; PHP Warning: Cannot modify header information – headers already sent by (output started at &#92;&#92;[file structure&#92;&#92;]/wp-config.php:174) in &#92;&#92;[file structure&#92;&#92;]/wp-login.php on line 530&#92;n&#92;nSo I did some more research on that error and found this: [How to fix PHP/WordPress Warning: Cannot Modify Header Information (templatetoaster.com)](https://blog.templatetoaster.com/cannot-modify-header-information/). The bottom line: look at the first file cited. That’s where the problem is.&#92;n&#92;nIn my case, the error was in my wp-config file. It was as simple as having extra whitespace at the end of the file. That’s enough to take down the entire admin section of the site. Ultimately it was an easy fix, but hard to find, so hopefully this helps you if you have a similar problem.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/cannot-modify-header-information-headers-already-sent/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/cannot-modify-header-information-headers-already-sent/index.html&quot;}
-
 
 <p>Recently I loaded up a client website to do some standard WordPress. The public site was fine, but when I tried to login to the admin, I got the dreaded White Screen of Death. For those unfamiliar, this is a blank white screen, with no error visible to help diagnose the problem.</p>
 <p>I began doing some general research on the White Screen of Death and trying the different common solutions: disable plugins (by renaming the plugins folder via FTP), update themes, update WordPress core. Nothing worked.</p>
@@ -71,19 +69,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -98,37 +126,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -190,6 +188,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/cannot-modify-header-information-headers-already-sent/` was built on 2024-09-27T20:50:10.217Z -->
+		<!-- This page `/posts/2021/cannot-modify-header-information-headers-already-sent/` was built on 2024-09-27T20:52:22.439Z -->
 	</body>
 </html>

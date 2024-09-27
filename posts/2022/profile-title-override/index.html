@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/profile-title-override/profile-title-override.md&quot;,&quot;fileSlug&quot;:&quot;profile-title-override&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/profile-title-override/profile-title-override&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-07-11T01:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThe profile module is a nice tool to have on a Drupal site if you&#39;re looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page&#39;s title which shows up as [Profile Name] #[id], e.g. &#92;&quot;Staff Profile #1&#92;&quot;. That&#39;s not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you&#39;ll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.&#92;n&#92;nWith the fields in place, this post, and [accompanying GitHub code and configuration](https://github.com/ryan-l-robinson/Drupal-profile-title-override), is how I worked around those issues.&#92;n&#92;n## The URL Alias&#92;n&#92;nLike other nodes, the URL can be changed using [the pathauto module](https://drupal.org/project/pathauto) to generate based on a pattern. Note that this takes a change in the pathauto configuration, which might not be obvious if like me you did the initial round of pathauto configuration long before adding profiles.&#92;n&#92;nHere&#39;s a screenshot of the settings page, which can be found at /admin/config/search/path/settings:&#92;n&#92;n![Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User](./pathauto-entities.png)&#92;n&#92;nOnce the ability to set paths for profiles is turned on, you can switch over to the Patterns tab and create the pattern. I made mine `/staff/[profile:field_first_name]-[profile:field_last_name]`.&#92;n&#92;n## The Page Title&#92;n&#92;nI fixed the page title displayed within the body with a view. I also altered the display of a profile to not show the default title and not show the first name and last name otherwise.&#92;n&#92;nI won&#39;t break down every setting, but here&#39;s a screenshot of the view configuration:&#92;n&#92;n![Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them](./profile-title-view.PNG)&#92;n&#92;nYou can also see this in configuration YML form in the GitHub project&#39;s /sync/config/views.view.profile.yml file. Once the view is ready, add the block to the correct place in your theme, and turn off the standard Page Title block for those pages (based on the URL).&#92;n&#92;n## The Browser Title&#92;n&#92;nThe second one required a custom module, albeit a relatively simple one. This is the key part:&#92;n&#92;n```php&#92;n/**&#92;n * Implements hook_preprocess_html&#92;n * &#92;n * Overrides the &#92;&quot;Public Profile #[ID]&#92;&quot; title with the first name and last name of the profiled staff member instead&#92;n */&#92;nfunction profile_title_preprocess_html(&amp;$variables) {&#92;n  if (stripos($variables[&#39;head_title&#39;][&#39;title&#39;],&#92;&quot;Staff Profile&#92;&quot;) !== false) {&#92;n    //Get the ID from the original title to be replaced&#92;n    $profile_id = substr($variables[&#39;head_title&#39;][&#39;title&#39;],stripos($variables[&#39;head_title&#39;][&#39;title&#39;],&#92;&quot;#&#92;&quot;) + 1);&#92;n&#92;n    if (isset($profile_id)) {&#92;n      //Load the profile&#92;n      $profile = &#92;&#92;Drupal::entityTypeManager()-&gt;getStorage(&#39;profile&#39;)-&gt;load($profile_id);&#92;n&#92;n      if (isset($profile)) {&#92;n        $first_name = $profile-&gt;get(&#39;field_first_name&#39;)-&gt;getString();&#92;n        $last_name = $profile-&gt;get(&#39;field_last_name&#39;)-&gt;getString();&#92;n&#92;n        if (isset($first_name) &amp;&amp; isset($last_name)) {&#92;n          //Change the title to first name and last name&#92;n          $variables[&#39;head_title&#39;][&#39;title&#39;] = &#92;&quot;$first_name $last_name&#92;&quot;;&#92;n        }&#92;n      }&#92;n    }&#92;n  }&#92;n}&#92;n```&#92;n&#92;nNote: with PHP 8+ I used str_starts_with instead of stripos, but this works just as well for this purpose.&#92;n&#92;nAlong with overriding the title, it also provides a warning to users. Because it is relying on overriding only when the current title follows a certain pattern, it is a little bit fragile in that changing the display title of the profile will result in the code no longer being activated. It won&#39;t break the site or anything, but will return to showing the default unhelpful title.&#92;n&#92;nHere&#39;s that code. It&#39;s fairly simple, firing on the hook for a profile edit form and then displaying a standard warning.&#92;n&#92;n```php&#92;n/**&#92;n * Implements hook_form_FORM_ID_alter&#92;n * &#92;n * Adds a warning to the admin page for the profile, to advise against changing the title&#92;n */&#92;nfunction profile_title_form_profile_type_edit_form_alter(&amp;$form, &#92;&#92;Drupal&#92;&#92;Core&#92;&#92;Form&#92;&#92;FormStateInterface $form_state, $form_id) {&#92;n  $message = [&#92;n              &#39;#type&#39; =&gt; &#39;container&#39;,&#92;n              &#39;#markup&#39; =&gt; &#39;&lt;p&gt;Warning: Do not change the display label of the staff public profile without altering the corresponding code in the custom module profile_title.&lt;/p&gt;&#92;n              &lt;p&gt;Failing to do so will result in the title of the profile page reverting back to showing the generic profile name instead of the staff member name.&lt;/p&gt;&#92;n              &#39;,&#92;n            ];&#92;n  &#92;&#92;Drupal::messenger()-&gt;addWarning($message);&#92;n}&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/profile-title-override/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/profile-title-override/index.html&quot;}
 
 
 <p>The profile module is a nice tool to have on a Drupal site if you're looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page's title which shows up as [Profile Name] #[id], e.g. &quot;Staff Profile #1&quot;. That's not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you'll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.</p>
@@ -121,19 +119,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -148,37 +176,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -240,6 +238,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/profile-title-override/` was built on 2024-09-27T20:50:10.251Z -->
+		<!-- This page `/posts/2022/profile-title-override/` was built on 2024-09-27T20:52:22.496Z -->
 	</body>
 </html>

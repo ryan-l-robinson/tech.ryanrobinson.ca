@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -44,8 +44,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2021/considerations-migrating-imap-to-m365.md&quot;,&quot;fileSlug&quot;:&quot;considerations-migrating-imap-to-m365&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/considerations-migrating-imap-to-m365&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-06-16T13:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nEmail migrations are one of those tasks you won’t have to do often, but you’ll really want to make sure you’re doing it correctly when it does need to happen. As much as collaboration tools like Microsoft Teams and Slack have taken over a lot of communication, email is still a central component of many organizations.&#92;n&#92;nThere are lots of permutations of migrating email from one service to another. In this post I’ll focus on one I’ve done a few times and is more likely with smaller organizations: from a web server to Microsoft 365. These smaller organizations often set up their email on the same server as their website many years ago. Those email services are usually quite bad – slow, low storage limits, bad spam filtering, emails might sync across devices but contacts and calendar don’t, etc. – but maybe they were good enough for a long time and it’s a pain to switch. The need for a migration might also come up when the organization wants to move their website hosting and suddenly realizes the flaw in having their email hosting connected to the same account.&#92;n&#92;nI’m not going to break down the detailed steps of a migration. These are well documented by Microsoft. Instead, I’m going to mention a few potential complications to be aware of.&#92;n&#92;n## Plan Your Time&#92;n&#92;nSome of the steps take time. You won’t do this all in one day. But if you plan it properly, it can be a seamless transition for the users. So plan out what your steps will look like, which might be something like this:&#92;n&#92;nDay one: create the new accounts in Microsoft 365. Take a look at the migration process to make sure you’ve got a good understanding. Especially if you haven’t done it before, do a trial run with just one of the email accounts. Put out the request for all the credentials you need, including the IMAP server details and the passwords of current users. Make sure to collect these securely, using tools like [QuickForget](https://quickforget.com). Also make sure you have any alternate emails for users in case you need to contact them while they don’t have their work email.&#92;n&#92;nWait a couple of days to get all the passwords.&#92;n&#92;nDay three: prepare the spreadsheet with all the user names and passwords. Start the migration process.&#92;n&#92;nDay four: check in to see how the migration went. Ask a few users to confirm that all their content copied correctly. Notify everybody of the time that their email will change and what they need to do to access it, with some detailed instructions of how to log in to their new accounts and add them to Outlook. They can try to access their new accounts already – they exist, just might not have all the content yet.&#92;n&#92;nDay five: once you’ve confirmed everything is copied over well, change the DNS records to point all new email to Microsoft 365 instead of the IMAP server. This could take from minutes to a day depending on the DNS server. Do this outside of business hours if possible, so the users never notice the in-between period where some emails go to the old mailbox and some to the new. Let the users know that they should start accessing from Microsoft 365 any time now, reminding them of the instructions.&#92;n&#92;nDay six: confirm everybody is successfully accessing the new mailbox, providing added training or support as necessary.&#92;n&#92;nYou don’t have to follow this exact timeline. It’s just a demonstration to point out there will be gap times where you have to wait between steps, so plan accordingly.&#92;n&#92;n## POP and IMAP&#92;n&#92;nMake sure people aren’t accessing via POP. If a user is checking their email only using Outlook on a single computer with the POP protocol instead of IMAP, changes they make on their computer (like folder structures) do not sync back to the server. The migration process is server-to-server, so this means that you end up migrating the unsorted mailbox on the server instead of the nicely organized structure of the computer. That’s not good.&#92;n&#92;nIn this case, the best solution may be to use the PST export and import in desktop Outlook to migrate this mailbox.&#92;n&#92;n- Walk the user through exporting their mailbox as a PST.&#92;n- Either walk them through adding their new account in Outlook, or have them send you the file and you can do it for them.&#92;n- Import the PST of the old mailbox into the new mailbox in Outlook.&#92;n- Wait for everything to sync back to the Microsoft server, possibly hours depending on the mailbox size.&#92;n&#92;nIt’s a slow but straightforward process, not too onerous as long as you don’t have to do it for a lot of users.&#92;n&#92;n## Contacts and Calendar&#92;n&#92;nIMAP migrations handle email, including folder structures. They don’t include contacts and calendar. Users have to do that manually. If the users want to migrate those things (they may not, depending how they use them), make sure they have instructions for how to export their address book and calendar and then import to the new Microsoft mailbox.&#92;n&#92;n## Training&#92;n&#92;nI’ve already mentioned this, but don’t forget training. If you spend a lot of time in Microsoft 365 like I do, it might be easy to overlook that you’ve just set up accounts for people who may have never used Microsoft services before. You’ll need to make sure they know everything they need to know. That includes things like:&#92;n&#92;n- How to check their new email: on the web, desktop Outlook, mobile Outlook or other app&#92;n- Installing the desktop Office apps if they’re starting those subscriptions at the same time, which is likely&#92;n- Some core Microsoft 365 admin functions like adding new users, groups, and resetting passwords for a couple of their trusted admin users&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/considerations-migrating-imap-to-m365/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/considerations-migrating-imap-to-m365/index.html&quot;}
 
 
 <p>Email migrations are one of those tasks you won’t have to do often, but you’ll really want to make sure you’re doing it correctly when it does need to happen. As much as collaboration tools like Microsoft Teams and Slack have taken over a lot of communication, email is still a central component of many organizations.</p>
@@ -94,19 +92,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -121,37 +149,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -213,6 +211,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/considerations-migrating-imap-to-m365/` was built on 2024-09-27T20:50:10.219Z -->
+		<!-- This page `/posts/2021/considerations-migrating-imap-to-m365/` was built on 2024-09-27T20:52:22.441Z -->
 	</body>
 </html>

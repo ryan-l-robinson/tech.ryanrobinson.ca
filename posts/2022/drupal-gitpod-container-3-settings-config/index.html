@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -48,8 +48,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-gitpod-container-3-settings-config.md&quot;,&quot;fileSlug&quot;:&quot;drupal-gitpod-container-3-settings-config&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-gitpod-container-3-settings-config&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-02-01T20:02:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis post continues a [mini-series](/tags/gitpod-drupal/) in which I describe how I created a generic Drupal-friendly container working with GitPod. [The code is available in my GitHub](https://github.com/ryan-l-robinson/Drupal-GitPod).&#92;n&#92;nThe first two posts covered the two big files: GitPod.Dockerfile and .gitpod.yml. This final post will cover a few minor changes I had to make to other configuration files.&#92;n&#92;n## Apache Conf&#92;n&#92;nOnly one thing needs to change from the default Apache configuration file: telling it to look at /web for the actual website content, instead of /var/www/html. That’s because a Drupal project typically has a top level that includes several necessary pieces of the site like the composer.json file, private files, and configuration sync files, outside the folder where the public site’s content is found.&#92;n&#92;nThat’s done by changing the document root from `&#92;&quot;${GITPOD_REPO_ROOT}&#92;&quot;` to `&#92;&quot;${GITPOD_REPO_ROOT}/web&#92;&quot;`, so the relevant section of the file looks something like this:&#92;n&#92;n```apache&#92;n# Directory and files to be served&#92;nDirectoryIndex index.html index.htm index.php&#92;nDocumentRoot &#92;&quot;${GITPOD_REPO_ROOT}/web&#92;&quot;&#92;n&#92;nRewriteCond  %{REQUEST_FILENAME} !^/$&#92;nRewriteCond  %{REQUEST_FILENAME} !^/(files|misc|uploads)(/.*)?&#92;nRewriteCond  %{REQUEST_FILENAME} !&#92;&#92;.(php|ico|png|jpg|gif|css|js|html?)(&#92;&#92;W.*)?&#92;nRewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]&#92;n&#92;n&lt;Directory &#92;&quot;${GITPOD_REPO_ROOT}/web&#92;&quot;&gt;&#92;n    AllowOverride all&#92;n    Require all granted&#92;n&lt;/Directory&gt;&#92;n```&#92;n&#92;nTo use this conf file, I saved my complete file in the .gitpod directory and then had the GitPod.Dockerfile copy that file into place:&#92;n&#92;n```Dockerfile&#92;nCOPY .gitpod/apache2.conf /etc/apache2/apache2.conf&#92;n```&#92;n&#92;n## PHP.ini&#92;n&#92;nThe PHP.ini is similarly close to the default Ubuntu, but not quite. We’ll have to add support for a few extensions at minimum. There are a couple ways to do this. One approach is to have the script add the lines to enable the extensions, without touching anything else. The advantage of this is keeping everything else to the default, which may matter as the GitPod base image changes over time. That would look like:&#92;n&#92;n```bash&#92;necho &#92;&quot;extension=uploadprogress&#92;&quot; &gt;&gt; /etc/php/8.0/apache2/php.ini&#92;n```&#92;n&#92;nThe other alternative as I’ve done here is to completely overwrite the php.ini file with my own. The advantage of that approach is to also control all the other variables like the memory limit. The more you want to change from the default, the more this approach makes better sense than adding individual lines. So in that case, the file is copying using this line in the .gitpod.yml:&#92;n&#92;n```bash&#92;nsudo cp /workspace/Drupal-GitPod/.gitpod/conf/php.ini /etc/php/8.0/apache2/php.ini&#92;n```&#92;n&#92;nYou could also accomplish this using sed to replace lines of the file in place, which is nice if you want to keep a perfectly-structured file replacing a default value. For example, to change the max&#92;&#92;_execution&#92;&#92;_time from 30s to 300s, I might do this:&#92;n&#92;n```Dockerfile&#92;nRUN sed -i &#92;&quot;s/max_execution_time = 30/max_execution_time = 300/g&#92;&quot; /etc/php/8.0/apache2/php.ini&#92;n```&#92;n&#92;n## Drupal Settings&#92;n&#92;nMost of the Drupal settings are similar to the default. The largest change is familiar to any Drupal developer: set the database credentials. Since this is a GitPod container which gets created and destroyed on the fly regularly, I went simple using the root user and no password. A production server would have a different user and a good password.&#92;n&#92;n```php&#92;n$databases[&#39;default&#39;][&#39;default&#39;] = array (&#92;n  &#39;database&#39; =&gt; &#39;drupal&#39;,&#92;n  &#39;username&#39; =&gt; &#39;root&#39;,&#92;n  &#39;password&#39; =&gt; &#39;&#39;,&#92;n  &#39;prefix&#39; =&gt; &#39;&#39;,&#92;n  &#39;host&#39; =&gt; &#39;127.0.0.1&#39;,&#92;n  &#39;port&#39; =&gt; &#39;3306&#39;,&#92;n  &#39;namespace&#39; =&gt; &#39;Drupal&#92;&#92;&#92;&#92;Core&#92;&#92;&#92;&#92;Database&#92;&#92;&#92;&#92;Driver&#92;&#92;&#92;&#92;mysql&#39;,&#92;n  &#39;driver&#39; =&gt; &#39;mysql&#39;,&#92;n);&#92;n```&#92;n&#92;nBeyond that, there are a couple of tweaks both related to the fact that the GitPod domain is going to change.&#92;n&#92;nFirst I set the trusted&#92;&#92;_host&#92;&#92;_patterns. The valid domains for browsing this site are either as some subdomain of gitpod.io, or as localhost.&#92;n&#92;n```php&#92;n$settings[&#39;trusted_host_patterns&#39;] = [&#92;n  &#39;^.+&#92;&#92;.gitpod&#92;&#92;.io$&#39;,&#92;n  &#39;^localhost$&#39;&#92;n];&#92;n```&#92;n&#92;nI also opened up the cookie&#92;&#92;_domain to allow anything. This is so that it doesn’t object to you first logging into the site at one GitPod subdomain, then spinning up a new container and trying to login with that one.&#92;n&#92;n```php&#92;n /**&#92;n  * Used to track what domains you&#39;re logged into&#92;n  * Set to * to accept any GitPod domain&#92;n  */&#92;n$cookie_domain = &#39;*&#39;;&#92;n```&#92;n&#92;nThat’s it! I’ve now covered having a functional Drupal-friendly GitPod container.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-gitpod-container-3-settings-config/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-gitpod-container-3-settings-config/index.html&quot;}
 
 
 <p>This post continues a <a href="/tags/gitpod-drupal/">mini-series</a> in which I describe how I created a generic Drupal-friendly container working with GitPod. <a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The code is available in my GitHub</a>.</p>
@@ -119,19 +117,49 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -146,37 +174,7 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -238,6 +236,6 @@ RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-3-settings-config/` was built on 2024-09-27T20:50:10.204Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-3-settings-config/` was built on 2024-09-27T20:52:22.462Z -->
 	</body>
 </html>

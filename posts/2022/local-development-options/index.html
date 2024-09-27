@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -44,8 +44,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/local-development-options.md&quot;,&quot;fileSlug&quot;:&quot;local-development-options&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/local-development-options&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-07-03T01:43:09.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nI&#39;ve now broken down some of what I&#39;ve learned about different virtualization/containerization options:&#92;n&#92;n- Vagrant&#92;n- Docker&#92;n- GitPod&#92;n&#92;nI also learned that each of these options have some pro&#39;s and con&#39;s attached to consider.&#92;n&#92;n## Vagrant Pro&#39;s&#92;n&#92;nVagrant is likely to be the most intuitive to develop since it maps the closest to building a server (other than building a server), if you are used to building servers. It&#39;s not a whole new syntax and way of thinking to learn.&#92;n&#92;n## Vagrant Con&#39;s&#92;n&#92;nIt is very slow to build the VM, when it works at all. Fully building the VM and starting the Drupal 9 website I was using this for could take 6-8 hours.&#92;n&#92;nIt continues to be very slow in usage afterward: browsing the site, running composer updates from the terminal, etc.&#92;n&#92;nIt can be very buggy, with issues like arbitrarily changing permissions on a file so that you can no longer delete them from your computer even with admin access. I&#39;ve got files on my computer that as far as I can tell there is no way to delete. Eventually it stopped working for me entirely.&#92;n&#92;nThere are no extra tools for integration with [Visual Studio Code](/tags/visual-studio-code/), although you can ssh to a vagrant VM the same way you can to any other server.&#92;n&#92;n## Docker Desktop Pro&#39;s&#92;n&#92;nCompared to Vagrant, Docker is much faster to build the image, at about 1-2 hours for the same Drupal 9 site.&#92;n&#92;nIt has great integration with Visual Studio Code via the .devcontainer functionality, including installation of any extensions and pre-defining settings for all users. I have detailed much of my setup here in [my Drupal Docker series](/tags/drupal-docker/).&#92;n&#92;nIt has a strong community to draw on for support and for images. It&#39;s the most popular option now and that means you&#39;ll be able to find what you need more easily than for other options.&#92;n&#92;n## Docker Desktop Con&#39;s&#92;n&#92;nIt is less intuitive to develop the images if you haven&#39;t used Docker before. Learning the new syntaxes (Dockerfile, Docker compose) is straightforward, but there is a shift in thinking to containers.&#92;n&#92;nIt is for the most part about as slow as vagrant to operate after the site is built, although you can improve that a bit by editing your wslconfig file to allot more RAM.&#92;n&#92;n## GitPod Pro&#39;s&#92;n&#92;nGitPod is much faster, both to build and to use afterward, although the build time does sometimes vary wildly and stall out. Even the odd slow time is at least as fast as Docker, but the inconsistency can be disruptive. It&#39;s possible that this is not a serious problem and it only happens in my stress test scenarios like constantly building new containers.&#92;n&#92;nThe pre-build functionality allows for the build to happen before you actually need it.&#92;n&#92;nIt does facilitate keeping everybody on the same code base since it builds directly from the GitLab repository each time. There&#39;s little concern about getting a commit behind.&#92;n&#92;nThe Git integration is the strongest. Since it is already tied to your GitLab/GitHub/Bitbucket account, the push and pull does not require extra configuration like syncing an SSH key file and entering a passphrase each time.&#92;n&#92;nIt allows for defining what to do when each port opens, e.g. open in the browser when Apache starts up so you can browse the site. This is a small time saver.&#92;n&#92;nIt does not tie up your computer&#39;s resources and does not require at least 32GB of RAM like the locally-hosted options do.&#92;n&#92;nIt does not need your computer to support virtual machines / containers (i.e. Windows 10/11 Pro).&#92;n&#92;n## GitPod Con&#39;s&#92;n&#92;nIt&#39;s great when you&#39;re using a Debian-based image, but does not support other Linux variants or multiple containers.&#92;n&#92;nData for their SaaS offering is held in the US and EU. Those are the only data residency options. Canada where I am is not an option. If you&#39;re concerned about data staying in your country and you&#39;re not in the US or EU, this is a problem. Otherwise, they do offer self-hosting on Azure/AWS/Google Cloud where you can control where it gets stored, but if you&#39;re going that far, is it that much better than other options?&#92;n&#92;nIt does not automatically open VS Code Desktop. It will open in the browser that looks exactly like VS Code, then you can prompt it to open VS Code desktop, which will take clearing a couple other permission prompts. This isn&#39;t a big deal if you&#39;re opening VS Code once per day, but if you&#39;re in and out for a lot of quick changes, that does add up.&#92;n&#92;nIn my context, it also cannot open VS Code at all if I was on my work network, leaving me to only edit in the browser. It did work early on, and maybe it will work again. I also have no idea to what degree this is on GitPod&#39;s end vs our end, so I don&#39;t say this as much to negatively review GitPod as to say it is another factor to consider.&#92;n&#92;nIt does not support all Visual Studio Code extensions - only those which are in the Open VSX directory - which means a few absences like [GitHub Copilot](/websites/github-copilot/).&#92;n&#92;n## Local Server Pro&#39;s&#92;n&#92;nYou could sidestep all of these questions about local development options and build your own servers.&#92;n&#92;nThis makes it easiest to guarantee a match with your production servers.&#92;n&#92;nThere shouldn&#39;t be any performance issues or use up any of your computer&#39;s resources.&#92;n&#92;n## Local Server Con&#39;s&#92;n&#92;nThis approach doesn&#39;t scale very well if you work on a team or on multiple projects. You would need at least one virtual server per person per project. All of that scale is being paid for while not being used most of the time.&#92;n&#92;nDepending on your organization structures, you may need to work across different departments to maintain the servers.&#92;n&#92;nThere are no extra tools for integration with Visual Studio Code, although you can ssh to it the same way you can to any other server.&#92;n&#92;n## Summary&#92;n&#92;nIn my day job context, we settled on using Docker Desktop. It&#39;s not as fast as GitPod, but it&#39;s close enough and it was worth the trade to be able to build containers exactly as we want and with no data residency concerns because nothing leaves our devices.&#92;n&#92;nIn my experimental and demo stuff that often gets profiled here, I&#39;m often using GitPod. It&#39;s fast, I can run it from any device, and it&#39;s great for demonstration purposes since I can set it up so that anybody can have a site running my code within a couple minutes.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/local-development-options/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/local-development-options/index.html&quot;}
 
 
 <p>I've now broken down some of what I've learned about different virtualization/containerization options:</p>
@@ -109,19 +107,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -136,37 +164,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -228,6 +226,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/local-development-options/` was built on 2024-09-27T20:50:10.210Z -->
+		<!-- This page `/posts/2022/local-development-options/` was built on 2024-09-27T20:52:22.466Z -->
 	</body>
 </html>

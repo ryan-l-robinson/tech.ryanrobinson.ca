@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 </div>
 
 
-{&quot;inputPath&quot;:&quot;./content/posts/2022/active-links-views.md&quot;,&quot;fileSlug&quot;:&quot;active-links-views&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/active-links-views&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-12-30T01:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nDrupal 9 provides a different style for active links - i.e. a link that goes to the same page that you&#39;re already on - in most contexts. This helps identify for users when it would be redundant to select it again. There&#39;s one exception where it doesn&#39;t do this out of the box, however: within views.&#92;n&#92;nHere&#39;s how I got around that. First add this file to the theme&#39;s /js folder, in a new file called `active-links.js`.&#92;n&#92;n```js&#92;n(function (Drupal) {&#92;n  var viewLinks = document.querySelectorAll(&#39;.view a[href=&#92;&quot;&#39;+window.location.pathname+&#39;&#92;&quot;]&#39;);&#92;n  for (let i = 0; i &lt; viewLinks.length; i++) {&#92;n    viewLinks[i].classList.add(&#92;&quot;is-active&#92;&quot;);&#92;n  }&#92;n})(Drupal);&#92;n```&#92;n&#92;nThis is a simple function, checking to see if there are any links within views that point to the same address as the current page, and if it finds any, it adds the standard `is-active` class to it.&#92;n&#92;nAs with any other new JavaScript or CSS file, you&#39;ll also need to tell Drupal to include this library if you want it to show up. Adding it to the global-styling for the theme will load it on every page. You can do that by adding a new line to the libraries.yml file, within the js section under global-styling:&#92;n&#92;n```yml&#92;nglobal-styling:&#92;n  js:&#92;n    js/active-links.js: {}&#92;n```&#92;n&#92;nThis could also be structured as a module instead of dropping it into the theme. That would make it more easily sharable for others to include it on their sites instead of needing to adapt it to their themes. But it is also a very small piece of code and that may be more hassle than its worth, so I am not currently planning on doing that.&#92;n&#92;nNote: you will probably need to clear caches, close your browser, and open a new one, before you&#39;ll notice the change in place. JavaScript will be cached so you might be tempted to think it isn&#39;t working when it really just needs to reload.&quot;,&quot;url&quot;:&quot;/posts/2022/active-links-views/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/active-links-views/index.html&quot;}
-
 
 <p>Drupal 9 provides a different style for active links - i.e. a link that goes to the same page that you're already on - in most contexts. This helps identify for users when it would be redundant to select it again. There's one exception where it doesn't do this out of the box, however: within views.</p>
 <p>Here's how I got around that. First add this file to the theme's /js folder, in a new file called <code>active-links.js</code>.</p>
@@ -78,19 +76,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -105,37 +133,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -197,6 +195,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/active-links-views/` was built on 2024-09-27T20:50:10.197Z -->
+		<!-- This page `/posts/2022/active-links-views/` was built on 2024-09-27T20:52:22.457Z -->
 	</body>
 </html>

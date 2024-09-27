@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2023/importing-multiple-paragraphs/importing-multiple-paragraphs.md&quot;,&quot;fileSlug&quot;:&quot;importing-multiple-paragraphs&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/importing-multiple-paragraphs/importing-multiple-paragraphs&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-01-04T16:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nA few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer [paragraphs](https://www.drupal.org/project/paragraphs) module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.&#92;n&#92;nA second complication comes from it being possible to have multiple field collections on the old site and also multiple paragraphs on the new site, so we&#39;ll need to navigate collapsing multiple entities with two fields each alongside the related node into one export, then import that to again have multiple paragraphs with two fields each connected to the correct node.&#92;n&#92;nThis post may not be as precise as I&#39;d usually like because it was a while ago and I can&#39;t easily recreate all of it, but hopefully it will be close enough that a Drupal admin would be able to fill in the gaps sufficiently.&#92;n&#92;n## Drupal 7 Export&#92;n&#92;nStep one is setting up the export from the old site. This relies on [the views_data_export module](https://www.drupal.org/project/views_data_export) to help generate a csv export. The view should be based on the main content type node that you&#39;ll be exporting.&#92;n&#92;nI added a relationship between the node and the field collection.&#92;n&#92;nI added each of the field collection&#39;s fields to the Fields of the view, to be included in the export. There were other fields to also consider in the export, as well as other options around formatting, but those are fairly standard views behaviour and not related to this problem, so I won&#39;t detail them.&#92;n&#92;nThe end result should be that you can get multiple rows for each node with field collection combination, e.g.:&#92;n&#92;n```csv&#92;nNode Title,Field Collection Title,Field Collection Description&#92;nNode 1,Field 1,Description 1&#92;nNode 1,Field 2,Description 2&#92;nNode 2,Field 3,Description 3&#92;n```&#92;n&#92;n## Data Cleanup in Excel&#92;n&#92;nI now needed to collapse each node into one line. I did this somewhat manually in Excel, copying field data into each row but separated by double colons (::). You can choose any character separator as long as it won&#39;t occur naturally within the field, so you probably don&#39;t want as simple as a single : or ;. In my scenario we were dealing with about 1000 nodes, about 100 of which had multiple field collections from this field. If you have much more than that, you probably want to script something to combine the rows for you.&#92;n&#92;n```csv&#92;nNode Title,Field Collection Title,Field Collection Description&#92;nNode 1,Field 1::Field 2,Description 1::Description 2&#92;nNode 2,Field 3,Description 3&#92;n```&#92;n&#92;nNote: there may be other complications here like what text encoding to use, depending on the characters in your data. Similarly you may have to navigate whether each column should be separated by a comma (,) or something else. I won&#39;t get into that here.&#92;n&#92;n## Drupal 9 Feeds Configuration&#92;n&#92;nThe data is now ready to get into the new site. This import will be handled by the [feeds](https://www.drupal.org/project/feeds) module, with help from [feeds_tamper](https://www.drupal.org/project/feeds_tamper).&#92;n&#92;nI created a new feeds type from Structure -&gt; Feed types -&gt; Add feed type. Fill in the options. &#92;n&#92;nThe most important is the second group, the basic options of how to grab the data and what to do with it:&#92;n&#92;n- Fetcher: Upload file&#92;n- Parser: CSV&#92;n- Processor: Node&#92;n- Content type: [Your content type, in this case it was Resources]&#92;n&#92;n![Screenshot of feeds settings screen, showing options described above](./feed-settings.png)&#92;n&#92;nOn the mapping screen, I added a straightforward mapping between the Field Collection Title in your csv file and a temporary text column (allowing multiple values) created in your content type of the new site.&#92;n&#92;nAfter this, the import will be able to bring in data and put it in new nodes of the content type, but the text in the temporary fields are still separated by the :: if there are multiple.&#92;n&#92;nNow I went over to the Tamper tab and found the field you need to split up and added an &#92;&quot;Explode&#92;&quot; tamper plugin for that field, specifying the string separator and a label. I repeated this on each these temporary multiple fields.&#92;n&#92;n![Screenshot of tamper screen, showing options described above](./feed-tamper.png)&#92;n&#92;nThis will now leave us with multiple entries in the temporary field directly on the node. We still need to turn those into paragraphs and associate those paragraphs with the node, which is where we run out of options within Feeds to handle it on its own.&#92;n&#92;n## Custom Module&#92;n&#92;nThe final piece is to convert the temporary text fields into multiple associated paragraphs instead. This will be handled with a custom module. I&#39;ve created [a generic demo of this available in my GitHub](https://github.com/ryan-l-robinson/Drupal-paragraph-split). This is the main PHP file.&#92;n&#92;n```php&#92;n&lt;?php&#92;n&#92;nuse Drupal&#92;&#92;Core&#92;&#92;Entity&#92;&#92;EntityInterface;&#92;nuse Drupal&#92;&#92;paragraphs&#92;&#92;Entity&#92;&#92;Paragraph;&#92;nuse Drupal&#92;&#92;user&#92;&#92;Entity&#92;&#92;User;&#92;nuse Drupal&#92;&#92;node&#92;&#92;Entity&#92;&#92;Node;&#92;n&#92;n/** &#92;n * Implements hook_ENTITY_TYPE_insert() for &#39;nodes&#39;&#92;n * When a node is created, with content in the temporary field, create the associated paragraph instead&#92;n */&#92;nfunction paragraph_split_node_insert(EntityInterface $node) {&#92;n    //If node content type is node_type&#92;n    if ($node-&gt;getType() == &#39;node_type&#39;) {&#92;n        if (!$node-&gt;get(&#39;field_title&#39;)-&gt;isEmpty) {&#92;n            $new_paragraphs = array();&#92;n&#92;n            $count = count($node-&gt;get(&#39;field_title&#39;));&#92;n            for ($k = 0; $k &lt; $count; $k++) {&#92;n&#92;n                //This is needed to handle when there is a title without a matching description&#92;n                $desc = (empty($node-&gt;get(&#39;field_description&#39;)[$k])) ? &#39;&#39; : $node-&gt;get(&#39;field_description&#39;)[$k]-&gt;getString();&#92;n&#92;n                //Create new paragraph entity&#92;n                $paragraph = Paragraph::create([&#92;n                    &#39;type&#39; =&gt; &#39;paragraph_type&#39;,&#92;n                    &#39;field_title&#39; =&gt; $node-&gt;get(&#39;field_title&#39;)[$k],&#92;n                    &#39;field_description&#39; =&gt; $desc,&#92;n                    &#39;uid&#39; =&gt; 1,&#92;n                ]);&#92;n                $paragraph-&gt;save();&#92;n&#92;n                //Add the new paragraph to the array&#92;n                array_push($new_paragraphs,array(&#92;n                    &#39;target_id&#39; =&gt; $paragraph-&gt;id(),&#92;n                    &#39;target_revision_id&#39; =&gt; $paragraph-&gt;getRevisionId(),&#92;n                ));&#92;n            }&#92;n&#92;n            //Overrides if there was already one in place, which there shouldn&#39;t be in this context of an import&#92;n            $node-&gt;field_paragraph_reference = $new_paragraphs;&#92;n        }&#92;n&#92;n        $node-&gt;save();&#92;n    }&#92;n}&#92;n```&#92;n&#92;nThe module logic is relatively straightforward:&#92;n&#92;n1. Hook is on the node being created but it will only continue on a specific node type. Everything else is irrelevant in this scenario.&#92;n2. If the temporary title field is provided, continue. Otherwise there&#39;s no extra handling needed. In this context there was never a description without a title, so this was safe. You may need more handling for those scenarios.&#92;n3. Loop on every match found, since there can be multiple in the temporary title field.&#92;n4. If there was a title but not a description - which did happen in our context, unlike the reverse - then the description, replace with a blank string.&#92;n5. Create a new paragraph entity and save it.&#92;n6. Create a new entry in the field of the node that links to the paragraph, with the paragraph&#39;s ID and revision ID.&#92;n7. Save the node when done.&#92;n&#92;nNote: another approach here that would also involve custom module code would be to build this handling directly into the feeds import instead of hooking on the node being created. That&#39;s probably a bit more precise to run only in this one context. This hook on node insert does run more often, which is both less efficient and could be extra safety in case somebody accidentally put data in those temporary fields manually instead of creating the paragraphs. In any case, this was a quicker one for us to prepare, which was the priority with getting a one-time import done.&#92;n&#92;nWhen the module is ready (including an info file), enable it and give it a test run.&quot;,&quot;url&quot;:&quot;/posts/2023/importing-multiple-paragraphs/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/importing-multiple-paragraphs/index.html&quot;}
 
 
 <p>A few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer <a href="https://www.drupal.org/project/paragraphs">paragraphs</a> module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.</p>
@@ -159,19 +157,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -186,37 +214,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -278,6 +276,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/importing-multiple-paragraphs/` was built on 2024-09-27T20:50:10.263Z -->
+		<!-- This page `/posts/2023/importing-multiple-paragraphs/` was built on 2024-09-27T20:52:22.497Z -->
 	</body>
 </html>

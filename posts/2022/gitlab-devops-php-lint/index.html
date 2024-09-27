@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -46,8 +46,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/gitlab-devops-php-lint.md&quot;,&quot;fileSlug&quot;:&quot;gitlab-devops-php-lint&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/gitlab-devops-php-lint&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-02-05T13:51:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nHere’s another piece in a [GitLab DevOps](/tags/gitlab-devops/) setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.&#92;n&#92;nI split this into two pieces, taking advantage of [GitLab’s ability to extend other functions, even functions in other projects](https://docs.gitlab.com/ee/ci/yaml/index.html#extends). My real work scenario is using GitLab, hence using GitLab CI. For the purposes of sharing here, I’ve put them in [my personal GitHub](https://github.com/ryan-l-robinson/GitLab-CI-CD). I know that’s an unintuitive combination.&#92;n&#92;n## The Generic CI/CD Functions&#92;n&#92;nTo be able to test, I first need a general Oracle Linux 8 image that can run PHP 8.0 and composer for a Drupal site.&#92;n&#92;n```yml&#92;n## Build an Oracle Linux 8 container, used by other tests below ##&#92;n.ol8_lamp_build:&#92;n  stage: test&#92;n  image: oraclelinux:8&#92;n  before_script:&#92;n    - dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm&#92;n    - dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm&#92;n    - dnf -y module enable php:remi-8.0&#92;n    - dnf install -y php php-gd php-pdo zip unzip git php-curl php-mbstring php-zip php-json php-xml php-simplexml php-mysqlnd php-pecl-apcu wget curl&#92;n    - php -v&#92;n    - php -r &#92;&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#92;&quot;&#92;n    - php composer-setup.php&#92;n    - php -r &#92;&quot;unlink(&#39;composer-setup.php&#39;);&#92;&quot;&#92;n```&#92;n&#92;nPart one is a project containing a few generic CI job templates. One of those, in the tests.yml file, is a PHP lint test. Saying that I want to test every php file in a certain folder is not as easy as you’d think – there is no flag for applying it recursively – so it requires a loop:&#92;n&#92;n```yml&#92;n### PHP lint test ###&#92;n.php_lint:&#92;n  stage: test&#92;n  extends: .ol8_lamp_build&#92;n  variables:&#92;n    DIRECTORIES: &#92;&quot;./&#92;&quot;&#92;n    EXTENSIONS: &#92;&quot;php&#92;&quot;&#92;n  script:&#92;n    ## Recursively checks for files of specified extensions in specified directories and completes php lint on them&#92;n    - cwd=&#92;&quot;$(pwd)&#92;&quot;&#92;n    - |&#92;n      for DIRECTORY in $DIRECTORIES &#92;n        do&#92;n          cd $DIRECTORY&#92;n          for EXT in $EXTENSIONS&#92;n            do&#92;n              files=&#92;&quot;$(find -name *.${EXT} -type f)&#92;&quot;&#92;n&#92;n              for file in ${files}&#92;n                do php -l ${file};&#92;n              done;&#92;n            done;&#92;n          cd $cwd;&#92;n        done;&#92;n```&#92;n&#92;nThis has variables for the directory to start testing from, as well as what extensions to test. The extension variable defaults to only php files, but it can be overridden to include other extensions, which is valuable with Drupal where other extensions get used for php code like .module and .theme.&#92;n&#92;n## The Project’s CI File&#92;n&#92;nPart two is the specific project that then references those generic templates. Using the full project reference, under the assumption that in a real situation this would be in a differernt GitLab project, that looks something like this in the project’s .gitlab-ci.yml file:&#92;n&#92;n```yml&#92;n# Includes general CI jobs to extend from&#92;ninclude:&#92;n &#92;n    - project: &#39;[path to the GitLab project with CI]&#39;&#92;n      ref: main&#92;n      file: test.yml&#92;n&#92;n## Stages ##&#92;nstages:&#92;n  - test&#92;n&#92;n## Test Jobs ##&#92;n&#92;n### Tests for PHP errors in custom code ###&#92;nphp:&#92;n  extends: .php_lint&#92;n  variables:&#92;n    DIRECTORIES: ./web/themes/custom ./web/modules/custom&#92;n    EXTENSIONS: php module theme inc&#92;n```&#92;n&#92;nThis example will run the PHP syntax test against all .php, .module, .theme, and .inc files located with the Drupal 8+ custom themes and custom modules directories.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/gitlab-devops-php-lint/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/gitlab-devops-php-lint/index.html&quot;}
 
 
 <p>Here’s another piece in a <a href="/tags/gitlab-devops/">GitLab DevOps</a> setting: when code is committed to GitLab, I want to run a PHP linter on the custom code folders of Drupal (modules and themes) to make sure there aren’t any glaring syntax bugs that snuck through. My personal favourite error is when a “:wq” gets inserted into a file trying to exit vim, after doing all the testing.</p>
@@ -130,19 +128,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -157,37 +185,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -249,6 +247,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-27T20:50:10.209Z -->
+		<!-- This page `/posts/2022/gitlab-devops-php-lint/` was built on 2024-09-27T20:52:22.465Z -->
 	</body>
 </html>

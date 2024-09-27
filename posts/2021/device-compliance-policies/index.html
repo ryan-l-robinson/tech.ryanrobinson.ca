@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2021/device-compliance-policies/device-compliance-policies.md&quot;,&quot;fileSlug&quot;:&quot;device-compliance-policies&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/device-compliance-policies/device-compliance-policies&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-05-31T15:16:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;n[Once you’ve got devices enrolled in Microsoft Endpoint Manager](/posts/2021/enrolling-devices-endpoint-manager/), one of the very useful things you can apply are compliance policies. These provide you a way to monitor and enforce restrictions on devices which are not following the proper practices that you want in your organization.These compliance policies can be set up for devices of multiple operating systems:&#92;n&#92;n- Android&#92;n- iOS&#92;n- macOS&#92;n- Windows 10 and later&#92;n- Windows 8.1 and later&#92;n&#92;nAs is the case elsewhere in Endpoint Manager, Chromebook is the noticeable omission.&#92;n&#92;nThe exact options from there will vary depending on the platform, but they break down into three decisions: how do you define non-compliance (compliance settings), what happens if it’s not compliant (actions for noncompliance), and who is bound by this compliance policy (assignments).&#92;n&#92;n## Compliance Settings&#92;n&#92;nThis tab defines what it takes to be considered compliant vs non-compliant. Windows 10 has the most options and I won’t list them all, but some that stand out include:&#92;n&#92;n- **Require Bitlocker**: encrypted hard drive&#92;n- **Minimum and maximum OS version**: this is a great way to make sure that updates are happening, e.g. you may want to make sure nobody is on a version older than a year&#92;n- **Firewall**&#92;n- **Antivirus**&#92;n- **Antispyware**&#92;n- **Microsoft Defender Antimalware**, including **Real-time protection**&#92;n- **Microsoft Defender for Endpoint**: require that the device is under a certain score if it is enrolled in Defender for Endpoint&#92;n&#92;nIn general, I suggest that you at least require Bitlocker, firewall, antivirus, antispyware, and Defender antimalware with real-time protection. There are a lot of variables, e.g. if you are using a different anti-virus solution instead, but I think that’s a good baseline.&#92;n&#92;n![&#92;&quot;Some of the device compliance settings, including requiring Bitlocker&#92;&quot;](./device-compliance-settings.png)&#92;n&#92;n## Actions for Noncompliance&#92;n&#92;nThe next question is what you want to happen if the device violates the compliance rules. There are a few options:&#92;n&#92;n- **Mark as noncompliant**: you’ll always want this, but you get an option of how long before that happens. That decision will depend largely on other settings. For example, if this is the only consequence, it can be a good way to monitor violations to mark noncompliant immediately. But if you’re pairing it with something like conditional access, you don’t want to end up immediately locking out a user from company resources because they were a little slow updating Windows. In that case, you’re likely better off sending an email warning right away and not marking noncompliant for a couple of weeks.&#92;n- **Send email to end user:** this is a helpful tool if the factor not in compliance is something that the end user can easily fix themselves. You can even define a message template to provide instructions on how to fix it.&#92;n- **Retire the noncompliant device:** this will remove company information from the device. This should be the last resort only if the user did not get the device back into compliance quickly enough.&#92;n&#92;n![&#92;&quot;Possible actions when device is not compliant&#92;&quot;](./device-compliance-actions.png)&#92;n&#92;n## Assignments&#92;n&#92;nFinally, there are options for who this compliance policy applies to: all users or specific groups. You may want to apply a more lenient policy to everybody, then have more strict policies for users like senior management who have access to the most sensitive information.&#92;n&#92;n![&#92;&quot;Options for who this policy is applied to&#92;&quot;](./device-compliance-assignments.png)&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/device-compliance-policies/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/device-compliance-policies/index.html&quot;}
 
 
 <p><a href="/posts/2021/enrolling-devices-endpoint-manager/">Once you’ve got devices enrolled in Microsoft Endpoint Manager</a>, one of the very useful things you can apply are compliance policies. These provide you a way to monitor and enforce restrictions on devices which are not following the proper practices that you want in your organization.These compliance policies can be set up for devices of multiple operating systems:</p>
@@ -98,19 +96,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -125,37 +153,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -217,6 +215,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/device-compliance-policies/` was built on 2024-09-27T20:50:10.254Z -->
+		<!-- This page `/posts/2021/device-compliance-policies/` was built on 2024-09-27T20:52:22.482Z -->
 	</body>
 </html>

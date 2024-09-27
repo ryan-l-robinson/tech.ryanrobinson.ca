@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -46,8 +46,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-docker-config-script.md&quot;,&quot;fileSlug&quot;:&quot;drupal-docker-config-script&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-docker-config-script&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-06-29T01:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).&#92;n&#92;nThis post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to [the GitPod.yml file](/posts/2022/drupal-gitpod-container-2-gitpod-yml/) of [the GitPod series](/tags/gitpod-drupal/).&#92;n&#92;nThis is a bash script that runs in the container once it is first built, so start by defining it as a bash script:&#92;n&#92;n```bash&#92;n#!/bin/bash&#92;n```&#92;n&#92;nEnforce permissions on the SSH keys, needed for the git SSH connection to work:&#92;n&#92;n```bash&#92;nsudo chown -R drupal:drupal /home/drupal/.ssh&#92;nchmod -R 700 ~/.ssh&#92;n```&#92;n&#92;nProvide ownership of entire web root to drupal user:&#92;n&#92;n```bash&#92;nsudo chown -R drupal:apache /var/www/html&#92;n```&#92;n&#92;nMove to codebase:&#92;n&#92;n```bash&#92;ncd /var/www/html/local.drupal.com&#92;n```&#92;n&#92;nAdd local domain to hosts file (useful for tools like pa11y being able to browse the site):&#92;n&#92;n```bash&#92;nif [ ! -z $(grep &#92;&quot;127.0.0.1 local.drupal.com&#92;&quot; /etc/hosts) ]; then&#92;n  echo &#92;&quot;127.0.0.1 local.drupal.com&#92;&quot; &gt;&gt; /etc/hosts&#92;nfi&#92;n```&#92;n&#92;nCreate database and grant all privileges to drupal user. In this case I&#39;m putting it in the script explicitly because I want to share an out-of-the-box functional system. If you&#39;re going to do this with a real site, make sure you aren&#39;t using the same password on servers that anybody else can access, unlike Docker on your computer. Also it should be a stronger password than &#92;&quot;root.&#92;&quot;&#92;n&#92;n```bash&#92;nmysql --host=&#92;&quot;db&#92;&quot; -e &#92;&quot;CREATE DATABASE IF NOT EXISTS drupal;&#92;&quot; -u root --password=&#92;&quot;root&#92;&quot;&#92;nmysql --host=&#92;&quot;db&#92;&quot; -e &#92;&quot;GRANT ALL PRIVILEGES ON drupal.* TO &#39;drupal&#39;@&#39;%&#39;;&#92;&quot; -u root --password=&#92;&quot;root&#92;&quot;&#92;n```&#92;n&#92;nInstall site&#39;s contributed code base from composer:&#92;n&#92;n```bash&#92;ncomposer install&#92;n```&#92;n&#92;nAdd drush alias to PATH for easier use:&#92;n&#92;n```bash&#92;necho &#92;&quot;alias drush=&#92;&#92;&#92;&quot;/var/www/html/local.drupal.com/vendor/drush/drush/drush&#92;&#92;&#92;&quot;&#92;&quot; &gt;&gt; ~/.bashrc&#92;n```&#92;n&#92;nCopy the Drupal configuration files:&#92;n&#92;n```bash&#92;nif [[ -f ./.devcontainer/conf/drupal.settings.php ]]&#92;nthen&#92;n  sudo cp .devcontainer/conf/drupal.settings.php web/sites/default/settings.php&#92;nfi&#92;nif [[ -f ./.devcontainer/conf/local.services.yml ]]&#92;nthen&#92;n  sudo cp .devcontainer/conf/local.services.yml web/sites/local.services.yml&#92;nfi&#92;nif [[ ! -d private ]]&#92;nthen&#92;n  mkdir private&#92;n  chmod 755 private&#92;nfi&#92;nif [[ ! -d sync/config ]]&#92;nthen&#92;n  mkdir -p sync/config&#92;nfi&#92;n```&#92;n&#92;nImport the existing configuration. Note that there is a drush command to build a new site from the existing configuration, but it did not work reliably in this context.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush site-install -y minimal&#92;nvendor/drush/drush/drush cset -y system.site uuid &#92;&quot;3d9878de-3355-4510-af4d-575deb24055f&#92;&quot;&#92;nvendor/drush/drush/drush config-import -y&#92;n```&#92;n&#92;nFlush generated images, which helps if configuration changes since last time including changes to the media formats. This isn&#39;t really necessary when you aren&#39;t also using [the content_sync module](https://drupal.org/project/content_sync), which I no longer am in this demo, since without that there are no images to regenerate. But I kept the image flush anyway to demonstrate how that works.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush image-flush --all&#92;n```&#92;n&#92;nSets admin password. The same note applies as with the MySQL passwords above.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush user:password admin &#92;&quot;ZNB*ufm1tyz4rwc@yzk&#92;&quot;&#92;n```&#92;n&#92;nRebuild the node access caches. This isn&#39;t a huge issue, but does save clearing a warning that appears in Drupal.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush php-eval &#39;node_access_rebuild();&#39;&#92;n```&#92;n&#92;nSet the [environment indicator](https://www.drupal.org/project/environment_indicator). This is a Drupal module that shows the site toolbar and favicon with different colours. It&#39;s very helpful to visually cue your brain when you&#39;re in Docker vs dev vs staging vs production. For this to work, you&#39;ll have to include the environment indicator module in your composer.json file.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush cset -y environment_indicator.indicator name &#92;&quot;Local Docker&#92;&quot;&#92;nvendor/drush/drush/drush cset -y environment_indicator.indicator fg_color &#92;&quot;#ffffff&#92;&quot;&#92;nvendor/drush/drush/drush cset -y environment_indicator.indicator bg_color &#92;&quot;#000000&#92;&quot;&#92;n```&#92;n&#92;nFinally, the all-important clearing of the caches:&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush cr&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-docker-config-script/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-docker-config-script/index.html&quot;}
 
 
 <p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
@@ -121,19 +119,49 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -148,37 +176,7 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -240,6 +238,6 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2024-09-27T20:50:10.201Z -->
+		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2024-09-27T20:52:22.459Z -->
 	</body>
 </html>

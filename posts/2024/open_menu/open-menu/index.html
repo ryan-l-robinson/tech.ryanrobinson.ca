@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2024/open_menu/open-menu.md&quot;,&quot;fileSlug&quot;:&quot;open-menu&quot;,&quot;filePathStem&quot;:&quot;/posts/2024/open_menu/open-menu&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2024-02-21T22:44:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;n[In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC](/posts/2024/idrc-presentation/). That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.&#92;n&#92;nAs mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.&#92;n&#92;nThere&#39;s [a GitPod demo version of my solution on my GitHub](https://github.com/ryan-l-robinson/Drupal-open-menu). That’s only the relevant customizations, not a full functioning site, and you&#39;d need to add a couple of menu items to really see it in action.&#92;n&#92;nHere&#39;s an example screenshot of the open menu structure:&#92;n&#92;n![&#92;&quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&#92;&quot;](./example.png)&#92;n&#92;n## Menu Entity Index&#92;n&#92;nIf you’re familiar with Drupal, you likely read the introduction and immediately thought of views. Views are the perfect solution whenever you are looking at a scenario involving one data source displayed in multiple ways. Drupal 9 does not expose everything I needed to views on its own, but there is a module that fills in the gap: [Menu Entity Index](https://www.drupal.org/project/menu_entity_index).&#92;n&#92;nOnce that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.&#92;n&#92;n![&#92;&quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&#92;&quot;](./menu-entity-index-settings.png)&#92;n&#92;nNotably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.&#92;n&#92;n## Configure the View&#92;n&#92;nThe configuration for the view itself won&#39;t be too much of a surprise for anybody who has configured views before. It has a grouped block for each second-level menu, where the header had a programmatically-set ID so that they can be used for links (both from that top block and from the top level of the main menu itself). There&#39;s a lot of mundane configuration here so I won&#39;t break it all down, but [here&#39;s the configuration file](https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/sync/config/views.view.open_menu.yml) if you want to import to your site, or you can check it out using the GitPod demo and going to Structure -&gt; Views -&gt; Open Menu.&#92;n&#92;n## Overriding the View Template&#92;n&#92;nI still had one more problem. The view involved used the grouping function to bunch together the results. I wanted the group label to be an h2 and have an id on it, so I did that using the rewrite the results functions. That worked with no issues.&#92;n&#92;nBut I noticed it was also supplying an empty h3 immediately before my h2. That doesn’t hurt sighted users, but it does complicate the experience for screen reader users. It took some time to realize the h3 was coming from a template file in the views core module: views-view-unformatted.&#92;n&#92;nOnce I knew the source of the original file, I could edit it directly, but that would be lost as soon as there was an update to the theme. The more permanent answer is a subtheme with an override of that file. That seems a little excessive in the case of this demo, but in a real site you&#39;ll probably want a custom subtheme for all your CSS and templates anyway.&#92;n&#92;n[That file is also in the GitHub](https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/web/themes/custom/demo/templates/views/views-view-unformatted.html.twig), but it was a pretty tiny change removing the h3 wrapper from the grouping.&#92;n&#92;n## Caveats&#92;n&#92;nThere are a few caveats to this system:&#92;n&#92;n- There&#39;s no handling for menu items more than 2 levels deep. That may well be possible, but we didn&#39;t need it, so I haven&#39;t included it in this demo.&#92;n- No views pages in the menu will show up in the open menu. But view blocks inserted into a page, where the page is in the menu, will show up.&#92;n- Be very careful changing the module settings. Perhaps this is fixed two years later, but at the time, attempting to index certain entity types would result in a white screen of death on the next cron run. We&#39;ve never had problems with indexing content.&#92;n&#92;nYou could add some built-in warnings to the admin interface, or even override admin forms, to try to suppress the possibility of those caveats causing a problem, but this blog post was long enough so I&#39;ll leave it here.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2024/open_menu/open-menu/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2024/open_menu/open-menu/index.html&quot;}
 
 
 <p><a href="/posts/2024/idrc-presentation/">In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC</a>. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.</p>
@@ -89,19 +87,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -116,37 +144,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -208,6 +206,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/open_menu/open-menu/` was built on 2024-09-27T20:50:10.264Z -->
+		<!-- This page `/posts/2024/open_menu/open-menu/` was built on 2024-09-27T20:52:22.498Z -->
 	</body>
 </html>

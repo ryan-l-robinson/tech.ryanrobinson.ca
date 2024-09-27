@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -44,8 +44,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-profile-block-hidden/drupal-profile-block-hidden.md&quot;,&quot;fileSlug&quot;:&quot;drupal-profile-block-hidden&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-profile-block-hidden/drupal-profile-block-hidden&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-07-12T20:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nRecently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.&#92;n&#92;nHere&#39;s the wrinkle in the default behaviour: it won&#39;t give you a contact link when you&#39;re viewing your own content, but it also isn&#39;t returning as nothing at all, so the title for the block appeared with nothing beneath it.&#92;n&#92;n![Screenshot of empty box only saying the title &#92;&quot;Email&#92;&quot;](./empty-email-sidebar.png)&#92;n&#92;nThe key to solve this is the &#92;&quot;exclude&#92;&quot; option on contextual filters. There&#39;s one contextual filter for the user ID associated to the profile that you&#39;re viewing.&#92;n&#92;n![Screenshot of the configuration page. Details below](./only-matching-user.png)&#92;n&#92;nTo add this:&#92;n&#92;n- Add a contextual filter searching for the User ID&#92;n- Set the default value to &#92;&quot;User ID from profile route match&#92;&quot;&#92;n&#92;nI needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.&#92;n&#92;n![Screenshot of the configuraton page. Details below.](./exclude-current-user.png)&#92;n&#92;nTo add this:&#92;n&#92;n- Add a contextual filter searching for the User ID&#92;n- Set the default value to &#92;&quot;User ID from logged in user&#92;&quot;&#92;n- Under the &#92;&quot;more&#92;&quot; section, check the &#92;&quot;exclude&#92;&quot; option&#92;n&#92;nFinally, change the option on the view in the Advanced -&gt; Other section for &#92;&quot;Hide block if the view output is empty&#92;&quot; to Yes. This will turn off the block entirely when there is no results, such as if you&#39;re viewing your own profile when that contextual filter is in place.&#92;n&#92;nThat did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you&#39;re viewing your own profile.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-profile-block-hidden/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-profile-block-hidden/index.html&quot;}
 
 
 <p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
@@ -83,19 +81,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -110,37 +138,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -202,6 +200,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-profile-block-hidden/` was built on 2024-09-27T20:50:10.250Z -->
+		<!-- This page `/posts/2022/drupal-profile-block-hidden/` was built on 2024-09-27T20:52:22.495Z -->
 	</body>
 </html>

@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-7-hide-label-node-display.md&quot;,&quot;fileSlug&quot;:&quot;drupal-7-hide-label-node-display&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-7-hide-label-node-display&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-01-05T00:02:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nI ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.&#92;n&#92;nIf I wanted to always hide the label for a field, that’s easy enough in the default Drupal display settings for the content type. But what about this scenario where we want to show the label when there is content and hide the label when there isn’t content?&#92;n&#92;nIn theory, the logic for this is simple. In the node template for that content type – in the node–content-type.tpl.php in the templates folder of your theme – we want to add some simple logic that says to not show the field at all if the value of the field is empty.&#92;n&#92;nIf you don’t already have a node–content-type.tpl.php, copy your default node.tpl.php file, rename it to node–content-type.tpl.php, and then the changes you’ll want to add are before the main content variable is rendered for the page.&#92;n&#92;nA couple wrinkles did make it a bit more complicated, though.&#92;n&#92;nFirst, you cannot check if the value of the field is set. It is always set. That’s entirely reasonable, but not obvious, so I still mention it.&#92;n&#92;nSecond and a lot less reasonable, I couldn’t even use a test for if the field is empty. This is where I spent the bulk of my time being confused. I would write the value of the field to a log or message to test and it should show nothing. I could inspect the code and there was nothing – not even a space or a hidden HTML tag. But if I tried to test for empty() or the string to equal ”, it still said no, it’s not empty. Eventually I checked the length of that string and discovered it was 2, not 0.&#92;n&#92;nI do not know if that is universal in Drupal 7 or if there was something weird with this one site. It’s possible you’ll be able to get away with a simple empty() test instead of the strlen() test.&#92;n&#92;nSo this was my final code addition to the node template file:&#92;n&#92;n```php&#92;n//hide some labels if the corresponding value is empty&#92;n&#92;n$field_value = $content[&#39;field_field_name&#39;][&#39;#object&#39;]-&gt;field_field_name[&#39;und&#39;][0][&#39;value&#39;];&#92;n&#92;nif ((strlen($field_value) &lt;= 2)) {&#92;n  unset($content[&#39;field_field_name&#39;]);&#92;n}&#92;n```&#92;n&#92;nYou could also do this in one line instead, depending on where you fall in the debate between easy readability vs minimal code. I left it as two different lines to be easier for somebody looking at it to understand what was happening.&#92;n&#92;n```php&#92;n//hide field label if the corresponding value is empty&#92;n&#92;nif ((strlen($content[&#39;field_field_name&#39;][&#39;#object&#39;]-&gt;field_field_name[&#39;und&#39;][0][&#39;value&#39;]) &lt;= 2)) {&#92;n  unset($content[&#39;field_field_name&#39;]);&#92;n}&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-7-hide-label-node-display/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-7-hide-label-node-display/index.html&quot;}
 
 
 <p>I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.</p>
@@ -86,19 +84,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -113,37 +141,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -205,6 +203,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-7-hide-label-node-display/` was built on 2024-09-27T20:50:10.198Z -->
+		<!-- This page `/posts/2022/drupal-7-hide-label-node-display/` was built on 2024-09-27T20:52:22.457Z -->
 	</body>
 </html>

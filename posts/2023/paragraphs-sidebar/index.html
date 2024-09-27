@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -44,8 +44,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2023/paragraphs-sidebar/paragraphs-sidebar.md&quot;,&quot;fileSlug&quot;:&quot;paragraphs-sidebar&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/paragraphs-sidebar/paragraphs-sidebar&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-03-29T22:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nSuppose you want to be able to specify a contact person for most nodes of content on a site, which will then show up in the sidebar with a label and some information about the contact person. Each node could have zero contacts, could have one contact, or could have several contacts.&#92;n&#92;nI solved this using a combination of [the Paragraph module](https://www.drupal.org/project/paragraphs), [the Profile module](https://www.drupal.org/project/profile), content type fields, and views. A demo of this is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-paragraphs-sidebar) that you can load up using [GitPod](https://www.gitpod.io/).&#92;n&#92;n## Create the paragraph and its fields&#92;n&#92;nFirst, create the paragraph and its corresponding fields. In my case, I wanted two fields: a label that will be displayed, and a user reference to connect to a staff user account.&#92;n&#92;nI created the paragraph type and called it “Contact.”&#92;n&#92;n![&#92;&quot;Creating a paragraph type called Contact&#92;&quot;](./create-paragraph.PNG)&#92;n&#92;nNext, add a field for the label, as a text select to choose from a few pre-defined options including &#92;&quot;Primary Contact,&#92;&quot; &#92;&quot;Secondary Contact,&#92;&quot; etc. Only allow one label per paragraph, which is different from where we&#39;ll later allow multiple paragraphs per node.&#92;n&#92;n![&#92;&quot;Creating a field called Contact Label, as a Text (List) type&#92;&quot;](./create-label-field.PNG)&#92;n&#92;n![&#92;&quot;Settings for the label field, including the valid options and to allow allow 1 value.&#92;&quot;](./label-settings.PNG)&#92;n&#92;nFinally, add a field for the user reference. Set this up to show up as an autocomplete, filtering to only show those who are of the Staff role.&#92;n&#92;n![&#92;&quot;Creating a user entity reference field called Contact User&#92;&quot;](./create-user-field.PNG)&#92;n&#92;n![&#92;&quot;The user entity reference settings, filtering to only show those of the role Staff&#92;&quot;](./user-filter.PNG)&#92;n&#92;n## Assign to a content type&#92;n&#92;nAdd a field on the content type that references this paragraph. The field type is going to be an entity reference revision.&#92;n&#92;n![&#92;&quot;Adding the paragraph reference to the Page content type&#92;&quot;](./add-field-content-type.PNG)&#92;n&#92;n![&#92;&quot;The settings for the entity field, filtering to be able to select paragraphs of type Contact&#92;&quot;](./entity-reference-paragraph-type.PNG)&#92;n&#92;nIn this case, since it&#39;s going to display it in the sidebar using a view, also remove it from the display for the content type. I won&#39;t get into details of designing the page on this post.&#92;n&#92;nThis step can be repeated to add the field to multiple content types, so that you can have the consistent design on all of them.&#92;n&#92;n## Create the profile&#92;n&#92;nFor the sake of this demo, I&#39;ll only add a couple of fields to the profile - a name, a phone number, and an email - and I won&#39;t do any of the design of the profile page, just creating the fields for the purpose of showing it in the sidebar of the content.&#92;n&#92;n![&#92;&quot;Created fields for the profile: name, phone, and email&#92;&quot;](./profile-fields.PNG)&#92;n&#92;n## Create sidebar view&#92;n&#92;nThat&#39;s all the underlying structure. We can now proceed to creating the view itself. This will be a view of content, because while it will be showing paragraphs, it will be showing those paragraphs based on the content being viewed. It will be a block, since we&#39;re going to want blocks that can be placed in theme block regions.&#92;n&#92;n![&#92;&quot;Settings for creating the view. The essential component is the view settings showing Content.&#92;&quot;](./start-view.PNG)&#92;n&#92;nNext, make a contextual filter so it will only show content related to the current content on display. This will be on the node ID of the page being viewed, so that only paragraphs related to the current node will come up as results. Create a filter for content ID and set the default to be &#92;&quot;Content ID from URL.&#92;&quot;&#92;n&#92;n![&#92;&quot;Settings for the contextual filter, the content ID set to default on the content ID in the URL.&#92;&quot;](./contextual-filter.jpg)&#92;n&#92;nNow we need to create the link between the page being viewed and its contact paragraphs. This can be done with the relationships functionality of views. Under Relationships, click on Add, then select &#92;&quot;Paragraph referenced from field_contact.&#92;&quot;&#92;n&#92;n![&#92;&quot;Adding a relationship to paragraph referenced from field_contact.&#92;&quot;](./relationship.jpg)&#92;n&#92;nWe then need two more relationships:&#92;n&#92;n1. From the contact field of the paragraph back to the user: &#92;&quot;User referenced from field_contact_user.&#92;&quot;&#92;n2. From the user to the profile, which will have the majority of the fields we want to display: &#92;&quot;Profile.&#92;&quot;&#92;n&#92;nThe last setting we&#39;ll change in the Advanced section is near the bottom: set &#92;&quot;Hide block if the view output is empty&#92;&quot; to Yes. We don&#39;t want it to show up at all if there isn&#39;t a contact for the current content.&#92;n&#92;nNow that we&#39;ve built the complexities of the query, we can return to the more common configuration in the left pane to determine what is shown. I set:&#92;n&#92;n- Display for the view to an unformatted list of fields.&#92;n- The fields are the contact name, the contact label, the phone number, and the email address, all from the associated profile. Each field is set to be hidden if there is no result, in case a profile is created with some information but not others, e.g. somebody offers their email but doesn&#39;t want to share their phone. You can also add more styling around how these get displayed (labels, links, etc).&#92;n- Filter on the paragraph type to be &#92;&quot;Contact,&#92;&quot; on the paragraph to be published, and for the user to be active. This helps avoid unexpected results when a user is later blocked, or somehow another paragraph type is associated to the content.&#92;n- Sort by the contact label and then by contact name, which will be more intuitive to users than sorting on something else like authored date.&#92;n&#92;nWe can go back to the settings on the Unformmated list to group results by the label, so that the label will show up as a header. If you want more precise control over what HTML tags are used for which elements, [semantic views](https://www.drupal.org/project/semanticviews) is another great module.&#92;n&#92;n## Place block view in sidebar&#92;n&#92;nFinally, add the block to show in that sidebar for all relevant content types. Of course this will depend on your theme having a sidebar region, but most have at least one.&#92;n&#92;n![&#92;&quot;Adding a block to appear in the sidebar of the Page content type&#92;&quot;](./block.jpg)&#92;n&#92;n## Final result&#92;n&#92;nHere&#39;s an example of what all of this looks like, at its most basic level without any extra CSS styles added:&#92;n&#92;n![&#92;&quot;Sidebar in place on a demo page, showing the Primary Contact label, name Ryan Robinson linked to the profile, email address, and phone number as a valid phone link.&#92;&quot;](./demo.jpg)&#92;n&quot;,&quot;url&quot;:&quot;/posts/2023/paragraphs-sidebar/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/paragraphs-sidebar/index.html&quot;}
 
 
 <p>Suppose you want to be able to specify a contact person for most nodes of content on a site, which will then show up in the sidebar with a label and some information about the contact person. Each node could have zero contacts, could have one contact, or could have several contacts.</p>
@@ -111,19 +109,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -138,37 +166,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -230,6 +228,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/paragraphs-sidebar/` was built on 2024-09-27T20:50:10.264Z -->
+		<!-- This page `/posts/2023/paragraphs-sidebar/` was built on 2024-09-27T20:52:22.498Z -->
 	</body>
 </html>

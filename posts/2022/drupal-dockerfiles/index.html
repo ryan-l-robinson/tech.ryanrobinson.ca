@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -46,8 +46,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-dockerfiles.md&quot;,&quot;fileSlug&quot;:&quot;drupal-dockerfiles&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-dockerfiles&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-06-24T01:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).&#92;n&#92;nThis post takes a look at the three Dockerfiles required:&#92;n&#92;n## MariaDB&#92;n&#92;nLet’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:&#92;n&#92;n```Dockerfile&#92;n# Use the default MariaDB image, not a specific Oracle Linux one&#92;nFROM mariadb:latest&#92;n&#92;n# Expose the MySQL port to be accessible to the web container.&#92;nEXPOSE 3306&#92;n```&#92;n&#92;n## PHP&#92;n&#92;nThis image starts from Oracle Linux, a requirement of this particular hosting environment:&#92;n&#92;n```Dockerfile&#92;nFROM oraclelinux:8&#92;nUSER root&#92;nSHELL [&#92;&quot;/bin/bash&#92;&quot;, &#92;&quot;-c&#92;&quot;]&#92;n```&#92;n&#92;nIt adds some other useful utilities, although they may not really be needed here since I won’t be accessing this container directly:&#92;n&#92;n```Dockerfile&#92;n# Install other useful packages&#92;nRUN dnf install -y curl wget zip&#92;n```&#92;n&#92;nIt creates a directory that is necessary for running PHP-FPM:&#92;n&#92;n```Dockerfile&#92;n# Create required directory&#92;nRUN mkdir -p /run/php-fpm&#92;n```&#92;n&#92;nIt installs PHP 8.0, which requires a different repository (at least so far):&#92;n&#92;n```Dockerfile&#92;n# Install PHP 8.0, which needs a different repository&#92;nRUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm&#92;nRUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm&#92;nRUN dnf -y module reset php&#92;nRUN dnf -y module enable php:remi-8.0&#92;nRUN dnf -y install php&#92;n```&#92;n&#92;nIt adds several PHP extensions, including a few that are recommended by not required by Drupal (apcu and uploadprogress):&#92;n&#92;n```Dockerfile&#92;n# Install PHP extensions, including PECL with APCU and UploadProgress extensions, recommended by Drupal&#92;nRUN dnf install -y php-gd php-pdo php-zip php-mysqlnd gcc make php-devel php-pear php-pecl-apcu php-pecl-uploadprogress&#92;n```&#92;n&#92;nIt installs XDebug, the PHP debugging tool:&#92;n&#92;n```Dockerfile&#92;n# Install XDebug&#92;nRUN dnf install -y php-pecl-xdebug&#92;nRUN touch /var/log/xdebug.log&#92;nCOPY /conf/xdebug.ini /etc/php.d/xdebug.ini&#92;n```&#92;n&#92;nIt makes several changes to php.ini to increase performance:&#92;n&#92;n```Dockerfile&#92;n# Increase resources for PHP&#92;nRUN sed -i &#92;&quot;s/max_execution_time = 30/max_execution_time = 300/g&#92;&quot; /etc/php.ini&#92;nRUN sed -i &#92;&quot;s/max_input_time = 60/max_input_time = 600/g&#92;&quot; /etc/php.ini&#92;nRUN sed -i &#92;&quot;s/memory_limit = 128M/memory_limit = 2048M/g&#92;&quot; /etc/php.ini&#92;nRUN sed -i &#92;&quot;s/upload_max_filesize = 2M/upload_max_filesize = 128M/g&#92;&quot; /etc/php.ini&#92;nRUN sed -i &#92;&quot;s/post_max_size = 8M/post_max_size = 0/g&#92;&quot; /etc/php.ini&#92;nRUN sed -i &#92;&quot;s/display_errors = Off/display_errors = On/g&#92;&quot; /etc/php.ini&#92;nRUN echo &#92;&quot;# Increase timeout&#92;&quot; &gt;&gt; /etc/httpd/conf.d/php.conf&#92;nRUN echo &#92;&quot;Timeout 1200&#92;&quot; &gt;&gt; /etc/httpd/conf.d/php.conf&#92;nRUN echo &#92;&quot;ProxyTimeout 1200&#92;&quot; &gt;&gt; /etc/httpd/conf.d/php.conf&#92;n```&#92;n&#92;nIt updates the php-fpm configuration to allow listeners from other clients (the web container):&#92;n&#92;n```Dockerfile&#92;n# Update PHP-FPM configuration including allowing listeners from other clients, defining the OPCache, and listening on port 9000&#92;nRUN sed -i &#92;&quot;s/listen.allowed_clients = 127.0.0.1/;listen.allowed_clients = 127.0.0.1/g&#92;&quot; /etc/php-fpm.d/www.conf&#92;nRUN sed -i &#92;&quot;s/;php_value[opcache.file_cache]  = &#92;&#92;/var&#92;&#92;/lib&#92;&#92;/php&#92;&#92;/opcache/php_value[opcache.file_cache]  = &#92;&#92;/var&#92;&#92;/lib&#92;&#92;/php&#92;&#92;/opcache/g&#92;&quot; /etc/php-fpm.d/www.conf&#92;nRUN sed -i &#92;&quot;s/listen = &#92;&#92;/run&#92;&#92;/php-fpm&#92;&#92;/www.sock/listen = 9000/g&#92;&quot; /etc/php-fpm.d/www.conf&#92;n```&#92;n&#92;nAnd finally, it starts php-fpm as the service running in the foreground for this container:&#92;n&#92;n```Dockerfile&#92;n# Start PHP-FPM&#92;nENTRYPOINT [&#92;&quot;php-fpm&#92;&quot;]&#92;nCMD [&#92;&quot;-F&#92;&quot;, &#92;&quot;-R&#92;&quot;]&#92;n```&#92;n&#92;n## Apache&#92;n&#92;nThe final container, web, is the main one that the devcontainer will connect to, running Apache as its main service. Much of this repeats the PHP container, so I won’t go through all that again. Here’s what’s different.&#92;n&#92;nIt includes a few more useful packages:&#92;n&#92;n```Dockerfile&#92;n# Install other needed packages&#92;nRUN dnf install -y curl wget git zip mod_ssl httpd php-gd openssl which mariadb sudo patch vim&#92;n```&#92;n&#92;nIt configures Apache, including creating a self-signed SSL certificate for https browsing:&#92;n&#92;n```Dockerfile&#92;n# Apache configuration, including SSL certificates and logs&#92;nRUN mkdir -p /etc/httpd/certs&#92;nCOPY /conf/openssl-config.txt /etc/httpd/certs/openssl-config.txt&#92;nRUN openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/httpd/certs/local.drupal.com.key -x509 -days 3650 -out /etc/httpd/certs/local.drupal.com.crt -config /etc/httpd/certs/openssl-config.txt&#92;nRUN openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/pki/tls/private/localhost.key -x509 -days 3650 -out /etc/pki/tls/certs/localhost.crt -config /etc/httpd/certs/openssl-config.txt&#92;nRUN mkdir -p /var/log/local.drupal.com&#92;nCOPY /conf/local.drupal.com.conf /etc/httpd/conf.d/local.drupal.com.conf&#92;n```&#92;n&#92;nIt adds the drupal user and alters some other permissions so it can edit the web folder directly without sudo, and can sudo when necessary:&#92;n&#92;n```Dockerfile&#92;n# Add drupal user within the apache group&#92;nRUN useradd drupal&#92;nRUN usermod -aG apache drupal&#92;n# Change default permissions to 775 instead of 755, so that the drupal user can write to the web root&#92;nRUN umask 0002&#92;n# Create sudo group, add drupal user to it, and allow those users to sudo without password&#92;nRUN groupadd sudo&#92;nRUN usermod -aG sudo drupal&#92;nRUN sed -i &#92;&quot;s/# %wheel&#92;tALL=(ALL)&#92;tNOPASSWD: ALL/%sudo&#92;tALL=(ALL)&#92;tNOPASSWD: ALL/g&#92;&quot; /etc/sudoers&#92;n```&#92;n&#92;nIt installs composer, an essential for Drupal management:&#92;n&#92;n```Dockerfile&#92;n# Install latest composer&#92;nRUN php -r &#92;&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#92;&quot;&#92;nRUN php composer-setup.php --install-dir /usr/bin --filename composer&#92;nRUN php -r &#92;&quot;unlink(&#39;composer-setup.php&#39;);&#92;&quot;&#92;nENV COMPOSER_PROCESS_TIMEOUT=9999&#92;n```&#92;n&#92;nIt installs pa11y for accessibility testing:&#92;n&#92;n```Dockerfile&#92;n# Install pa11y accessibility testing tool, including NodeJS&#92;nRUN dnf install -y nodejs pango.x86_64 libXcomposite.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc libxshmfence&#92;nRUN npm install pa11y -g --unsafe-perm=true --allow-root&#92;n```&#92;n&#92;nIt adds executable permissions to the postCreateCommand script which I will detail in a later post:&#92;n&#92;n```Dockerfile&#92;n# Scripts for further actions to take on creation and attachment&#92;nCOPY ./scripts/postCreateCommand.sh /postCreateCommand.sh&#92;nRUN [&#92;&quot;chmod&#92;&quot;, &#92;&quot;+x&#92;&quot;, &#92;&quot;/postCreateCommand.sh&#92;&quot;]&#92;n```&#92;n&#92;nAnd finally, it runs Apache as its primary foreground process:&#92;n&#92;n```Dockerfile&#92;n# Start Apache&#92;nENTRYPOINT [&#92;&quot;/usr/sbin/httpd&#92;&quot;]&#92;nCMD [&#92;&quot;-D&#92;&quot;, &#92;&quot;FOREGROUND&#92;&quot;]&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-dockerfiles/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-dockerfiles/index.html&quot;}
 
 
 <p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
@@ -161,19 +159,49 @@ CMD ["-D", "FOREGROUND"]</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -188,37 +216,7 @@ CMD ["-D", "FOREGROUND"]</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -280,6 +278,6 @@ CMD ["-D", "FOREGROUND"]</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-dockerfiles/` was built on 2024-09-27T20:50:10.202Z -->
+		<!-- This page `/posts/2022/drupal-dockerfiles/` was built on 2024-09-27T20:52:22.459Z -->
 	</body>
 </html>

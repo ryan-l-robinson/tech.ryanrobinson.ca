@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -46,8 +46,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/gitlab-devops-gitlab-runner.md&quot;,&quot;fileSlug&quot;:&quot;gitlab-devops-gitlab-runner&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/gitlab-devops-gitlab-runner&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-02-09T14:03:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis relates to [the GitLab DevOps process](/tags/gitlab-devops/). GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.&#92;n&#92;nBut there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.&#92;n&#92;nHere’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.&#92;n&#92;n## Install GitLab Runner Package&#92;n&#92;nFirst you need to install the GitLab Runner package on your server. GitLab will give you the instructions to do this, but here’s the general idea.&#92;n&#92;nFirst, copy the package to your server, in the /usr/local/bin folder:&#92;n&#92;n```bash&#92;nsudo curl -L --output /usr/local/bin/gitlab-runner &#92;&quot;https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64&#92;&quot;&#92;n```&#92;n&#92;nAdd permissions to execute that file. You’ll need to be able to run it.&#92;n&#92;n```bash&#92;nsudo chmod +x /usr/local/bin/gitlab-runner&#92;n```&#92;n&#92;nNavigate to that folder and install:&#92;n&#92;n```bash&#92;ncd /usr/local/bin&#92;nsudo ./gitlab-runner install --user=libgit --working-directory=/home/libgit&#92;n```&#92;n&#92;n## Register a Runner&#92;n&#92;nOnce the runner is installed, you’ll need to register at least one runner on the server.&#92;n&#92;n```bash&#92;nsudo ./gitlab-runner register --url https://gitlab.com/ --registration-token [token]&#92;n```&#92;n&#92;nThe script will prompt you with a few configuration options. Some are fairly obvious, but I’ll note a couple others.&#92;n&#92;nThe token can be found in the GitLab Project -&amp;gt; Settings -&amp;gt; CI/CD -&amp;gt; Runners.&#92;n&#92;nFor the tag, I recommend having a standard convention across all your servers, like &#92;&#92;[site shortcode&#92;&#92;]-&#92;&#92;[dev stage&#92;&#92;]. For example, site1 will have:&#92;n&#92;n- site1-dev&#92;n- site1-staging&#92;n- site1-prod1&#92;n- site1-prod2&#92;n&#92;nAnd site2 will have:&#92;n&#92;n- site2-dev&#92;n- site2-staging&#92;n- site2-prod&#92;n&#92;nFor what executor to use. Shell is the simplest, at least in a scenario like this of running it on a Linux server.&#92;n&#92;nThat’s it. It may take a bit to appear, but the runner will now be associated with the GitLab project.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/gitlab-devops-gitlab-runner/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/gitlab-devops-gitlab-runner/index.html&quot;}
 
 
 <p>This relates to <a href="/tags/gitlab-devops/">the GitLab DevOps process</a>. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.</p>
@@ -97,19 +95,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -124,37 +152,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -216,6 +214,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-gitlab-runner/` was built on 2024-09-27T20:50:10.209Z -->
+		<!-- This page `/posts/2022/gitlab-devops-gitlab-runner/` was built on 2024-09-27T20:52:22.465Z -->
 	</body>
 </html>

@@ -144,8 +144,10 @@ pre[class*="language-"] {
 /** Post description block **/
 .post-description {
     margin: 1em 3em;
-    background-color: var(--grey);
     border: 1px solid var(--black);
+    padding: 1em;
+    background-color: var(--grey);
+    color: var(--black);
 }
 
 /** Post footer **/

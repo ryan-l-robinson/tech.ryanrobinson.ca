@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2021/movie-directory-3-view-edit/movie-directory-3-view-edit.md&quot;,&quot;fileSlug&quot;:&quot;movie-directory-3-view-edit&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/movie-directory-3-view-edit/movie-directory-3-view-edit&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-06-29T11:05:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis continues a short series about [a movie directory personal project](/tags/movie-directory/) exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.&#92;n&#92;n## View Screen&#92;n&#92;nThe view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:&#92;n&#92;n![&#92;&quot;View movie screen of Alien3, with all the options selected&#92;&quot;](./view-movie.png)&#92;n&#92;nThe text fields are straightforward. The icons are a bit more complicated. There is one data field with choices for all the different platforms that we own a movie, but I wanted to show it differently, with one icon for everywhere we owned it while hiding the icons for platforms we don’t own it.&#92;n&#92;nThere are six icons for ownership plus a JustWatch link. I grouped the six into two rows, putting Blu-ray, DVD, and Movies Anywhere on one line and Google Play, Microsoft, and Vudu on the next. Whether each icon is visible or not is determined by this value in the Visible field:&#92;n&#92;n```powerfx&#92;nIf([@Owned].&#39;Blu-ray&#39; in BrowseGallery1.Selected.Owned, true, false)&#92;n```&#92;n&#92;nMaking that more complicated, though, is that it looks awkward if you have the third icon in a row without the first two, e.g. Movies Anywhere without Blu-ray or DVD. To solve this, I dynamically set the width of the icon to 0 if we don’t own in that format, then set the X value for placement of the next icon in the row to be a certain distance after the width of the previous one.&#92;n&#92;nHere’s the formula for the width of the Blu-ray icon:&#92;n&#92;n```powerfx&#92;nIf([@Owned].&#39;Blu-ray&#39; in BrowseGallery1.Selected.Owned,142,0)&#92;n```&#92;n&#92;nDVD then gets this for an X value:&#92;n&#92;n```powerfx&#92;nIf(BlurayLogo.Visible,50 + BlurayLogo.X + BlurayLogo.Width,BlurayLogo.X + BlurayLogo.Width)&#92;n```&#92;n&#92;nAnd finally the X value on the Movies Anywhere button:&#92;n&#92;n```powerfx&#92;nIf(DVDLogo.Visible,50 + DVDLogo.X + DVDLogo.Width,DVDLogo.X + DVDLogo.Width)&#92;n```&#92;n&#92;nThis does not handle dynamic placement on the Y axis. It can still be a little weird to look at to have one icon on the top row and then all three icons on the second row. Hypothetically a similar approach would work with some more complicated formulas to improve that, but I left it at this point.&#92;n&#92;nThe other unique part of this view that adds a lot to the attractiveness of it is the cover image taking up the background. This is a straightforward image component stretched across the background, with this value for Image:&#92;n&#92;n```powerfx&#92;nBrowseGallery1.Selected.Cover.Full&#92;n```&#92;n&#92;nand a Transparency of 0.6, to make sure the text above it is still readable.&#92;n&#92;n## Edit Screen&#92;n&#92;n![&#92;&quot;Edit screen for Alien3](./edit-screen.png)&#92;n&#92;nThe layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.&#92;n&#92;nI did add one more complicated piece, though. I was worried about having the delete icon so close to the save button, despite that being the default placement within Power Apps. So, I built a confirmation dialogue.&#92;n&#92;n![&#92;&quot;Delete dialogue&#92;&quot;](./delete-dialogue.png)&#92;n&#92;nThe OnSelect value for the delete button is this:&#92;n&#92;n```powerfx&#92;nUpdateContext({showPopup:true})&#92;n```&#92;n&#92;nThis initiates a change that displays a rectangle in the middle of the screen which has the Visible property set to:&#92;n&#92;n```powerfx&#92;nshowPopup&#92;n```&#92;n&#92;nThere is also another larger rectangle that is solely to darken the movie screen behind it, to increase focus on the delete dialogue. This rectangle has a Fill property of:&#92;n&#92;n```powerfx&#92;nRGBA(0, 0, 0, 0.6)&#92;n```&#92;n&#92;nand the same Visible property as the other delete dialogue boxes, showPopup.&#92;n&#92;nClicking on the Cancel button will reverse the action of the initial Delete press and take you back to editing the movie, thanks to this OnSelect property:&#92;n&#92;n```powerfx&#92;nUpdateContext({showPopup:false})&#92;n```&#92;n&#92;nPressing the Delete text will confirm the deletion, removing the movie and redirecting the user back to the gallery, with this OnSelect property:&#92;n&#92;n```powerfx&#92;nRemove(Movies,BrowseGallery1.Selected);&#92;nUpdateContext({showPopup:false});&#92;nNavigate(AllMovies)&#92;n```&#92;n&#92;n## What’s Left&#92;n&#92;nAt this point, I have a data structure and a fully functioning app. What I haven’t covered yet is how to most efficiently load in 300+ movies. A final post in this series will look at that problem, through a Power Automate Flow that I wrote to import all the movie information from our previous system and help collect cover images for all these movies quickly.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/movie-directory-3-view-edit/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/movie-directory-3-view-edit/index.html&quot;}
 
 
 <p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
@@ -102,19 +100,49 @@ Navigate(AllMovies)</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -129,37 +157,7 @@ Navigate(AllMovies)</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -221,6 +219,6 @@ Navigate(AllMovies)</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/movie-directory-3-view-edit/` was built on 2024-09-27T20:50:10.260Z -->
+		<!-- This page `/posts/2021/movie-directory-3-view-edit/` was built on 2024-09-27T20:52:22.490Z -->
 	</body>
 </html>

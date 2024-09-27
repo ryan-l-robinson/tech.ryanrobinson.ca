@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2021/civicrm-overview.md&quot;,&quot;fileSlug&quot;:&quot;civicrm-overview&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/civicrm-overview&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-03-31T15:37:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThe platform I worked with more than any other in my previous job was [CiviCRM](https://civicrm.org/). CiviCRM is an open-source CRM system aimed primarily at non-profits that builds on top of an existing WordPress, Joomla, or Drupal website. Drupal is the most powerful because Drupal has great permissions control already and CiviCRM can tie in to those, but the others are fine, too.&#92;n&#92;nAfter a few years, I have a pretty good sense of the strengths and weaknesses that CiviCRM offers and will do a quick breakdown here.&#92;n&#92;n## The Good&#92;n&#92;nCiviCRM does two non-profit functions really well:&#92;n&#92;n### Contributions&#92;n&#92;nCiviCRM is great with contribution pages. If you want to add a donation page to your website, it will do that and it works well. It ties in with third-party payment processors, the most reliable and cheapest being iATS and Stripe, so they securely handle transferring the money to your account while CiviCRM tracks data about the donor and the donation. It’s smooth enough and works well out of the box, with a good set of configuration options.&#92;n&#92;n### Events&#92;n&#92;nSimilarly, CiviCRM has some good functionality around public event signup forms. People can sign up online, including payment through a payment processor, and all the data about the event and the participants will be saved in CiviCRM. It even includes functions like a limit on attendees, a waitlist for any beyond that limit, the ability to require an approval for the registration, and more. All of that works pretty well out of the box as well.&#92;n&#92;n## The Cautions&#92;n&#92;n### Everything Else&#92;n&#92;nIf you look up CiviCRM you’ll see it offer several components which sound great, like bulk mailing, case management, and volunteer management. They aren’t lying, but they are really at varying degrees of a complete solution. A lot of the components end up a disappointment once you start putting them to heavy use and realize they don’t offer much beyond the minimum. For example, there is a bulk mail tool and some features of it work great, but with some major caveats:&#92;n&#92;n- It’s up to you to configure the server in the best way to avoid being marked as spam, which is hard to do.&#92;n- The mailing designer tool is quite limited.&#92;n- There is some handling for unsubscribing from lists or opting out entirely, but nothing out of the box that handles scenarios like making sure you comply with Canadian Anti-Spam Legislation.&#92;n&#92;n### Bugs&#92;n&#92;nAll software has bugs. The difference between a big corporate cloud service solution and an open-source self-hosted one is that bugs in the big corporate solution will usually be fixed by that big corporation within a day before most people notice.&#92;n&#92;nIf there’s a bug in CiviCRM, the best case is that the community has already issued a new release with a fix. In that case, you just need to apply the update. How long that takes depends on your experience and the speed of the server, but could be only around 10 minutes.&#92;n&#92;nThe rest of the time, you have to make a decision to either leave the bug alone and accept the consequences or try to fix the code yourself. The latter requires a completely different expertise and there’s always some risk in messing around with code that handles sensitive data.&#92;n&#92;nMost of these bugs are not security risks. Your data is generally safe. The consequences of the bugs are usually more like being unable to edit contributions of time, or issue tax receipts, or view a certain report. They may not be site breaking bugs or security risks, but it’s also hard to fully trust the system housing important data and processes.&#92;n&#92;n### It’s Not Really Free&#92;n&#92;nA common misconception is that open-source means that it is free forever. This is especially pointed out in contrast to the monthly costs of systems like Salesforce or Dynamics (both of which do offer charitable discounts).&#92;n&#92;nCiviCRM is not really free in practice. The code base is free, but that’s it. You still need to spend on:&#92;n&#92;n- A website host, with some heavier processing power and configuration requirements than your typical website&#92;n- Maintenance work to provide software updates regularly, either your staff’s time or your money going to a third-party provider&#92;n- A consultant to help you set it up properly&#92;n- Programmers who can code any changes you need and maintain that code to continue to work with updates&#92;n&#92;nThe big question is whether it will still be cheaper for your non-profit. The answer is that it depends. There are several factors to consider, particularly how many users you have and whether the solution can meet your needs out of the box or if you need to add more to it.&#92;n&#92;nFor example, a potential best-case scenario: if you’re a charity (not just a non-profit) with less than 10 users and Salesforce can do everything you need, you can get that completely for free. That’s a better much better deal than CiviCRM.&#92;n&#92;nBut if you have 50 users, or if Salesforce doesn’t do everything you need and you have to also buy licenses to several add-ons, that’s going to get much more expensive very fast.&#92;n&#92;n### No Email Integration&#92;n&#92;nOne of the most central concepts of a CRM system is that it is provides one system of record for everything you need to know about your constituents. Other CRMs like Salesforce and Dynamics provide tools built right into your email to track your email communications into the CRM, so there is no extra work needed to keep those records up to date.&#92;n&#92;nCiviCRM does not do that. The closest it offers is a tool that allows you to cc or bcc a separate email address, which CiviCRM then checks on a schedule (not immediately) and tries to match to a contact in the system. If there is no match, it doesn’t work. If there are multiple matches with the same email, it may put attach it to the wrong one. If you forget to bcc the special email – which in my experience everybody does quickly, no matter how much they liked the sound of the feature – then CiviCRM won’t record it. The result is that CiviCRM is missing most of your email communications, which takes away a huge amount of relevant information and leads to scenarios like trying to sell a client on the same thing that your colleague did last week.&#92;n&#92;n## Conclusion&#92;n&#92;nCiviCRM can be the right choice for your non-profit, but you shouldn’t assume that just because it is designed for non-profits it will be better. Some hints where it may be the best option:&#92;n&#92;n- You already have a Drupal, WordPress, or Joomla site that you want to integrate into, or you want to build a new website on one of those platforms anyway.&#92;n- You want a nice simple donation page and/or event management built into your website.&#92;n- You don’t need too many code customizations to add features that aren’t provided out of the box. This is particularly true if all you need are the contribution and event components.&#92;n- You don’t need to track email communication, i.e. you don’t have multiple people communicating with the client.&#92;n&#92;nIf those don’t describe your situation, maybe spend some more time researching and do a full needs analysis before you jump in.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/civicrm-overview/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/civicrm-overview/index.html&quot;}
 
 	<div class="post-description">
 		CiviCRM is a good tool for a non-profit CRM. Here&#39;s my summary of the good and the bad.
@@ -113,19 +111,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -140,37 +168,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -232,6 +230,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/civicrm-overview/` was built on 2024-09-27T20:50:10.218Z -->
+		<!-- This page `/posts/2021/civicrm-overview/` was built on 2024-09-27T20:52:22.440Z -->
 	</body>
 </html>

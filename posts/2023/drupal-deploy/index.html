@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -47,8 +47,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2023/drupal-deploy.md&quot;,&quot;fileSlug&quot;:&quot;drupal-deploy&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/drupal-deploy&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-01-02T15:47:05.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis continues where [the previous post](/posts/2023/drupal-deploy/) in [the GitLab DevOps series](/tags/gitlab-devops/) left off. We can now deploy code changes to the new server, and that&#39;s great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.&#92;n&#92;n## Dev vs Production&#92;n&#92;nThe biggest challenge with this topic is navigating that there should be some things different from dev and staging servers compared to production. Some of these are cases where the module or core configuration is on each server, but with different options (e.g. [environment indicator](https://drupal.org/project/environment_indicator)) and others are a case of modules that are only needed on dev and staging and therefore shouldn&#39;t be on production at all (e.g. [maillog](https://www.drupal.org/project/maillog) and [stage_file_proxy](https://www.drupal.org/project/stage_file_proxy)).&#92;n&#92;nComposer offers a good way to handle the code package building distinction. You can require a package, or require-dev a package. Then you can `composer install` or `composer install --no-dev` depending on the server. That part is straightforward.&#92;n&#92;nThe hard part is the distinctions in configuration. Much of this can be handled using the [config_ignore](https://www.drupal.org/project/config_ignore) module, which tells the configuration imports and exports to not include that configuration file, which means it doesn&#39;t get synced across the servers. You have to set those ignored configurations up separately on every server, which means if there&#39;s a change, you need to remember to do it on all environments where it would be relevant. But then there&#39;s other configurations like modules that shouldn&#39;t be active at all on production but is on dev and staging. You can&#39;t simply ignore syncing the installed modules configuration, or else you&#39;d have a mess every time you added or removed a module. Sometimes those modules create new configuration schemas, or require you to change another configuration schema to take advantage of it.&#92;n&#92;nMaillog is the best example of this. Maillog is a module that should install on dev/staging but not production, as it is a debugging tool for logging outgoing mail rather than sending it. It can be separated in composer as a dev module so that the code doesn&#39;t install on production. But then it also changes the modules configuration when it is installed, as well as the site&#39;s mail settings configuration. Ideally these servers are still managed through the configuration, with differences in dev/staging compared to production. That rules out using config_ignore.&#92;n&#92;nThe other imperfect option is changing those configurations as part of the CI/CD processes. It also has a couple of problems:&#92;n&#92;n1. There might be a few seconds where the configuration is wrong, e.g. if you import the synced configuration but then force it back to the desired value with a follow-up command. Often this doesn&#39;t matter, like a module being installed and then being promptly uninstalled again, but in other cases like sending email, it might be that the site tries to send an email in those few seconds, fails, and nobody notices that somebody should have gotten an email but didn&#39;t. So you&#39;d have to be very careful about this technique in production.&#92;n2. It relies on keeping the CI/CD up to date. If something changes with the site configuration, you better remember to account for how that configuration will be the same or different on all servers and if the CI/CD needs any changes to prepare for it. This makes it more prone to something breaking when you forget or can&#39;t adequately test production behaviour until it&#39;s too late, already on production.&#92;n&#92;nNote: I did try the [config_split](https://www.drupal.org/project/config_split) module, which sounds like it should help but did not work reliably. There is an update that came out since my last times, so maybe it will be worth trying it again.&#92;n&#92;nFor the simplicity of the rest of this blog post, I&#39;ve decided not to include my specific examples here. Hopefully my thoughts on how I&#39;ve negotiated the options for these kinds of scenarios is more valuable than any specific conclusions that we have in place right now.&#92;n&#92;n## The Jobs&#92;n&#92;nThese jobs are added to the general function deploy.yml, which in my real-world scenario is in a different project but could be in the same project.&#92;n&#92;nHere&#39;s what the extendable jobs look like:&#92;n&#92;n```yml&#92;n### Generic deploy to specified server ###&#92;n.deploy_template:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  before_script:&#92;n    - echo &#92;&quot;Deploying to server at $SERVER_URL&#92;&quot;&#92;n    - cd $WEB_ROOT&#92;n    - git fetch&#92;n    - git reset --hard&#92;n    - git stash&#92;n    - git pull&#92;n&#92;n### Drupal install jobs ###&#92;n.drupal_composer:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  script:&#92;n    - cd $WEB_ROOT&#92;n    - vendor/drush/drush/drush state:set system.maintenance_mode 1 --input-format=integer&#92;n    - composer install&#92;n&#92;n.drupal_composer_prod:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  script:&#92;n    - cd $WEB_ROOT&#92;n    - vendor/drush/drush/drush state:set system.maintenance_mode 1 --input-format=integer&#92;n    - composer install --no-dev&#92;n&#92;n.drupal_config:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  after_script:&#92;n    - cd $WEB_ROOT&#92;n    - vendor/drush/drush/drush state:set system.maintenance_mode 1 --input-format=integer&#92;n    - vendor/drush/drush/drush cr&#92;n    - vendor/drush/drush/drush config-import -y&#92;n    - vendor/drush/drush/drush cr&#92;n    - vendor/drush/drush/drush updb -y&#92;n    - vendor/drush/drush/drush state:set system.maintenance_mode 0 --input-format=integer&#92;n    - vendor/drush/drush/drush cr&#92;n&#92;n.drupal_cache:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  tags:&#92;n    - prod2&#92;n  after_script:&#92;n    - cd $WEB_ROOT&#92;n    - vendor/drush/drush/drush cr&#92;n```&#92;n&#92;nThe first job is the one detailed in [the previous post](/posts/2023/drupal-deploy/), except that it has now been moved from `script` to `before-script` to work better with the other pieces. &#92;n&#92;nThe next component is composer. Drupal is built using composer packages. Any action that updates the composer.lock file - adding a new module, deleting a module, updating packages - will require this step. `composer install` ensures that it installs the exact same versions of the exact same packages as on your other servers. It might be tempting to use `composer update` instead to get the latest versions, but then you might end up with trying to install something that you haven&#39;t tested elsewhere yet. There are two variants of this job, one for dev servers that installs dev packages and one for production that does not.&#92;n&#92;nSecondly, the configuration and databases need to be updated. `drush cr` rebuilds your caches. There&#39;s one to start this section because it is often necessary for scenarios like a new module. The Drupal cache needs to know when there&#39;s a new module with the code in place, before you get to the `config-import` that will try to install that module. Otherwise you&#39;ll get an error. With that settled, you can import all the configuration changes, then clear the caches again to ensure the site is now reflecting those changes. Finally, update the site&#39;s database using `drush updb`. This is sometimes needed with new modules or updated modules that need to change the database schema. If you don&#39;t do this, you can end up with errors about missing columns in tables.&#92;n&#92;nThe final job only clears the caches, without any of the other changes. The reason for these separations will become more clear in the site&#39;s jobs that extend from these.&#92;n&#92;n## Site Jobs&#92;n&#92;nThese are the jobs to execute each job on the relevant server, found in the .gitlab-ci.yml file for the project.&#92;n&#92;n```yml&#92;n## Deploy Jobs ##&#92;n&#92;n### Deploys to dev server only when changes are made to the dev branch ###&#92;ndeploy_dev:&#92;n  extends: &#92;n    - .deploy_template&#92;n    - .drupal_composer&#92;n    - .drupal_config&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Development&#92;n    SERVER_URL: dev.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - dev&#92;n  only:&#92;n    refs:&#92;n      - dev&#92;n&#92;n### Deploys to staging server only when changes are made to the main branch ###&#92;ndeploy_staging:&#92;n  extends:&#92;n    - .deploy_template&#92;n    - .drupal_composer&#92;n    - .drupal_config&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Staging&#92;n    SERVER_URL: staging.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - staging&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n&#92;n### Deploys code to production only when main branch and manually triggered ###&#92;ndeploy_prod_1:&#92;n  extends: &#92;n    - .deploy_template&#92;n    - .drupal_composer&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Prod 1&#92;n    SERVER_URL: prod1.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - prod1&#92;n  only:&#92;n    refs:&#92;n      - main  &#92;n  when: manual&#92;n&#92;ndeploy_prod_2:&#92;n  extends: &#92;n    - .deploy_template&#92;n    - .drupal_composer&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Prod 2&#92;n    SERVER_URL: prod2.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - prod2&#92;n  only:&#92;n    refs:&#92;n      - main  &#92;n  when: manual&#92;n&#92;n#### Deploys config updates to production. These need to wait for both servers to have the composer updated code. ####&#92;ndrupal_install_prod1:&#92;n  extends: .drupal_config&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Production 1&#92;n    SERVER_URL: prod1.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - prod1&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n  needs: [deploy_prod1, deploy_prod2]&#92;n&#92;ndrupal_install_prod2:&#92;n  extends: .drupal_cache&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Production 2&#92;n    SERVER_URL: prod2.demo.com&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - prod2&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n  needs: [deploy_prod1, deploy_prod2, drupal_install_prod1]&#92;n```&#92;n&#92;nDeploying to dev server can be done in a single job. The before_script deploys the code changes, the script installs from composer, and the after_script imports the configuration. It runs on any change to the dev branch. The idea is that we do work on separate issue branches, then when we need to test on dev, we merge it into the dev branch and it will deploy there.&#92;n&#92;nDeploying to staging server is the same, but with different variables for the server details and activating on merges to main instead of to dev. Merges to main should only happen when its a release candidate ready for final testing before deployment.&#92;n&#92;nDeploying to production adds a couple more layers to consider. There are two servers load balanced, with one database on a different dedicated server. Composer needs to install the updates on both servers. But the configuration only needs to be imported on one, since it&#39;s the same database - it wouldn&#39;t break anything to do the config on both, but would be an unnecessary extra few minutes of the site being in maintenance mode to run the same job all over again. The second server does still need caches cleared, though, or it might take some time for the changes to be reflected there, which could mean errors in the meantime.&#92;n&#92;nThe other factor to consider is that the configuration import should not run until the code update has been deployed on both servers. If the order of operations was to install code updates on prod 1, then run config import, it would be trying to make updates on the shared database when only one of the servers has the code ready for the updates. That&#39;s why production can&#39;t collapse to one job per environment like dev and staging do.&#92;n&#92;nThe resulting order of operation that you need is:&#92;n&#92;n1. Deploy code changes, with composer install, to production 1.&#92;n2. Deploy code changes, with composer install, to production 2.&#92;n3. Import configuration changes to production 1.&#92;n4. Clear the caches on production 2.&quot;,&quot;url&quot;:&quot;/posts/2023/drupal-deploy/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/drupal-deploy/index.html&quot;}
 
 
 <p>This continues where <a href="/posts/2023/drupal-deploy/">the previous post</a> in <a href="/tags/gitlab-devops/">the GitLab DevOps series</a> left off. We can now deploy code changes to the new server, and that's great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.</p>
@@ -250,19 +248,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -277,37 +305,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -369,6 +367,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/drupal-deploy/` was built on 2024-09-27T20:50:10.244Z -->
+		<!-- This page `/posts/2023/drupal-deploy/` was built on 2024-09-27T20:52:22.473Z -->
 	</body>
 </html>

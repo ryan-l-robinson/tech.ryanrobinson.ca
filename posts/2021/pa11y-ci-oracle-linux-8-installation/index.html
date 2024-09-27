@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2021/pa11y-ci-oracle-linux-8-installation.md&quot;,&quot;fileSlug&quot;:&quot;pa11y-ci-oracle-linux-8-installation&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/pa11y-ci-oracle-linux-8-installation&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-12-13T19:17:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nI’ve mentioned before that [pa11y](https://github.com/pa11y/pa11y-ci) is a great tool for accessibility testing, specifically in the context of [the koa11y desktop tool.](/posts/2021/koa11y-accessibility-testing-tool/) In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.&#92;n&#92;n## NodeJS&#92;n&#92;nPa11y requires [NodeJS](https://nodejs.org/en/). To add that to Oracle Linux 8, run this command:&#92;n&#92;n```bash&#92;nsudo yum install nodejs -y&#92;n```&#92;n&#92;nIf you want to add an efficiency check within a larger bash script, you can first check whether it is already installed:&#92;n&#92;n```bash&#92;n#Install NodeJS and NPM&#92;nif [[ &#92;&quot;$(yum list --installed | grep nodejs | wc -l)&#92;&quot; -eq 0 ]]; then&#92;n    sudo yum install nodejs -y&#92;nfi&#92;n```&#92;n&#92;n## Pa11y&#92;n&#92;nNow you can install Pa11y itself using npm:&#92;n&#92;n```bash&#92;nsudo npm install pa11y -g --unsafe-perm=true --allow-root&#92;n```&#92;n&#92;nNote the extra flags for unsafe-perms and allow-root, which don’t sound like good things. But without them, it will fail to have the permissions to write everything in all the directories it needs to be able to write.&#92;n&#92;nAs above, you can add an efficiency check if you’re doing this within a script:&#92;n&#92;n```bash&#92;n#Install pa11y&#92;nif [[ &#92;&quot;$(npm list nodejs | wc -l)&#92;&quot; -eq 0 ]]; then&#92;n    sudo npm install pa11y -g --unsafe-perm=true --allow-root&#92;nfi&#92;n```&#92;n&#92;n## Dependencies&#92;n&#92;nPa11y is now installed, but trying it out, it won’t actually work, citing other libraries that are missing. There are several of these. To install all of them:&#92;n&#92;n```bash&#92;n#Install libraries&#92;nsudo yum install -y pango.x86_64 libXcomposite.x86_64&#92;n libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm&#92;n&#92;n#Install fonts&#92;nsudo yum install -y xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc&#92;n```&#92;n&#92;nAs above, in a scripting context you might want to check if it is already installed, with something like this:&#92;n&#92;n```bash&#92;nif [[ &#92;&quot;$(yum list --installed | grep pango.x86_64 | wc -l)&#92;&quot; -eq 0 ]]; then&#92;n    sudo yum install pango.x86_64 -y&#92;nfi&#92;n```&#92;n&#92;n[The full script is available in my GitHub.](https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/blob/main/pa11y.sh)&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/pa11y-ci-oracle-linux-8-installation/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/pa11y-ci-oracle-linux-8-installation/index.html&quot;}
 
 
 <p>I’ve mentioned before that <a href="https://github.com/pa11y/pa11y-ci">pa11y</a> is a great tool for accessibility testing, specifically in the context of <a href="/posts/2021/koa11y-accessibility-testing-tool/">the koa11y desktop tool.</a> In this post, I’ll run through installing pa11y-ci on an Oracle Linux 8 server.</p>
@@ -95,19 +93,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -122,37 +150,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -214,6 +212,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/pa11y-ci-oracle-linux-8-installation/` was built on 2024-09-27T20:50:10.233Z -->
+		<!-- This page `/posts/2021/pa11y-ci-oracle-linux-8-installation/` was built on 2024-09-27T20:52:22.449Z -->
 	</body>
 </html>

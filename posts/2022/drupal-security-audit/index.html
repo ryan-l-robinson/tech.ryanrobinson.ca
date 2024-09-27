@@ -9,7 +9,7 @@
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/jipVJiSa9x.css">
+		<link rel="stylesheet" href="/dist/h6Dqqg8GQk.css">
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -45,8 +45,6 @@
 	
 </div>
 
-
-{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-security-audit.md&quot;,&quot;fileSlug&quot;:&quot;drupal-security-audit&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-security-audit&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-09-19T23:19:19.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nAbout a year ago, I (virtually) attended [the DrupalGovCon 2021 conference](https://www.drupalgovcon.org/). The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.&#92;n&#92;n&lt;iframe allow=&#92;&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#92;&quot; allowfullscreen=&#92;&quot;&#92;&quot; frameborder=&#92;&quot;0&#92;&quot; height=&#92;&quot;337&#92;&quot; loading=&#92;&quot;lazy&#92;&quot; src=&#92;&quot;https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6&#92;&quot; title=&#92;&quot;Tips for Securing Your Drupal Application&#92;&quot; width=&#92;&quot;600&#92;&quot;&gt;&lt;/iframe&gt;&#92;n&#92;n## Security Modules&#92;n&#92;nReview settings of security modules including:&#92;n&#92;n- [ ] jsonapi_extras&#92;n- [ ] flood_control&#92;n- [ ] login_security&#92;n- [ ] username_enumeration_prevention&#92;n- [ ] honeypot&#92;n- [ ] reCAPTCHA&#92;n- [ ] seckit&#92;n&#92;n## Dev Modules&#92;n&#92;nEnsure none of your development modules are on production:&#92;n&#92;n- field_ui&#92;n- views_ui&#92;n- devel&#92;n- anything migration related&#92;n- stage_file_proxy&#92;n&#92;nI don&#39;t have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.&#92;n&#92;n## Config Cleanup&#92;n&#92;n- [ ] Remove unused views&#92;n- [ ] Check that there is correct access control on all views&#92;n- [ ] Review permission roles, especially anonymous and authenticated&#92;n- [ ] Confirm that user registration is limited to admins&#92;n- [ ] Confirm that there are no test user accounts in production&#92;n- [ ] Confirm that file size upload limits are reasonable&#92;n- [ ] Confirm that private and public file directories are used properly&#92;n&#92;n## Custom Modules and Themes&#92;n&#92;n- [ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code&#92;n- [ ] Check code in an editor like VS Code that warns you of unsanitary code&#92;n- [ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it&#39;s still good practice.&#92;n- [ ] Review any TODO / FIXME etc in the code&#92;n&#92;n## Users&#92;n&#92;n- [ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn&#39;t? Does anybody have more permissions than they need?&#92;n- [ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-security-audit/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-security-audit/index.html&quot;}
 
 
 <p>About a year ago, I (virtually) attended <a href="https://www.drupalgovcon.org/">the DrupalGovCon 2021 conference</a>. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.</p>
@@ -109,19 +107,49 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
 		
-		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
-		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
 	
 		
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -136,37 +164,7 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -228,6 +226,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-security-audit/` was built on 2024-09-27T20:50:10.204Z -->
+		<!-- This page `/posts/2022/drupal-security-audit/` was built on 2024-09-27T20:52:22.463Z -->
 	</body>
 </html>
