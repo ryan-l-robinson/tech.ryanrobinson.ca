@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 33 }
+.postlist { counter-reset: start-from 10 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -43,13 +43,23 @@
 .pager {
 	display: flex;
 	justify-content: center;
-	gap: 1em;
-	padding-left: 0;
+	margin: 0;
+	padding: 1em;
 	list-style: none;
+}
+
+.pager li {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+}
+
+.pager li.active-page {
+	background-color: var(--red);
 }
 
 .pager li a[aria-current="page"] {
 	text-decoration: none;
+	color: var(--grey);
 }
 /* Message Box */
 .message-box {
