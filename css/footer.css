@@ -1,6 +1,6 @@
 footer {
     width: 100%;
-    padding: var(--main-gutter-y) var(--main-gutter-x);
+    padding: 1em var(--main-gutter-x);
     background-color: var(--red);
     font-size: 0.7em;
 }

@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 4 }
+.postlist { counter-reset: start-from 12 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -314,7 +314,7 @@ h2 + .header-anchor {
 }
 footer {
     width: 100%;
-    padding: var(--main-gutter-y) var(--main-gutter-x);
+    padding: 1em var(--main-gutter-x);
     background-color: var(--red);
     font-size: 0.7em;
 }
