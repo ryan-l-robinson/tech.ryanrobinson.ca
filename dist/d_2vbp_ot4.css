@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 33 }
+.postlist { counter-reset: start-from 50 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -48,11 +48,8 @@
 	list-style: none;
 }
 
-.pager li {
-	border: 1px solid var(--grey);
-}
-
 .pager li a {
+	border: 1px solid var(--grey);
 	padding: 0.5em;
 	background-color: var(--blue);
 	line-height: 1em;
@@ -61,6 +58,7 @@
 
 .pager li a:is(:hover,:focus) {
 	background-color: var(--red);
+	color: var(--white);
 }
 
 .pager li a[aria-current="page"] {
