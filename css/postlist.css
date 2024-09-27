@@ -41,7 +41,9 @@
 
 .pager {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
+	row-gap: 1em;
 	margin: 0;
 	padding: 1em;
 	list-style: none;
