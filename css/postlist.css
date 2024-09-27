@@ -53,10 +53,12 @@
 
 .pager li a {
 	padding: 0.5em;
+	background-color: var(--blue);
+	text-decoration: none;
 }
 
 .pager li a:is(:hover,:focus) {
-	background-color: var(--blue);
+	background-color: var(--red);
 }
 
 .pager li a[aria-current="page"] {
