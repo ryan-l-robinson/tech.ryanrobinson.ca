@@ -45,6 +45,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/power-automate-the-first-function.md&quot;,&quot;fileSlug&quot;:&quot;power-automate-the-first-function&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/power-automate-the-first-function&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-06-02T17:41:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nA scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.&#92;n&#92;nHow do you get around that? The Microsoft Tech Community recently answered that with the first() function. The full details are in the link below:&#92;n&#92;n[Avoid Unnecessary Looping (Apply to each) in Power Automate – Microsoft Tech Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/avoid-unnecessary-looping-apply-to-each-in-power-automate/ba-p/2190265?WT.mc_id=m365-24198-cxa&amp;utm_source=collab365&amp;utm_medium=collab365today&amp;utm_campaign=daily_digest)&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/power-automate-the-first-function/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/power-automate-the-first-function/index.html&quot;}
 
 
 <p>A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.</p>
@@ -65,49 +66,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -122,7 +93,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -184,6 +185,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2024-09-27T20:40:44.817Z -->
+		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2024-09-27T20:44:09.064Z -->
 	</body>
 </html>

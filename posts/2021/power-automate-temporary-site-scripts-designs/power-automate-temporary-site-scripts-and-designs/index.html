@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs.md&quot;,&quot;fileSlug&quot;:&quot;power-automate-temporary-site-scripts-and-designs&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-05-28T11:00:00.000Z&quot;,&quot;rawInput&quot;:&quot;This post continues a series on [SharePoint site provisioning](/tags/sharepoint-site-provisioning/), unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&#92;n&#92;n[In the last post in this series](/posts/2021/power-automate-create-site-with-sharepoint-rest-api/), I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.&#92;n&#92;n## Write the Temporary Script&#92;n&#92;nPrepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing &#92;&#92;]. Editing code directly in Power Automate can get messy.&#92;n&#92;nOnce your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:&#92;n&#92;n![&#92;&quot;Setting up the site script variable&#92;&quot;](./site-script.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Initialize Variable&#92;n- Name: siteScript&#92;n- Type: String&#92;n- Value:&#92;n&#92;n```json&#92;n{&#92;n    &#92;&quot;$schema&#92;&quot;: &#92;&quot;https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json&#92;&quot;,&#92;n    &#92;&quot;actions&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;verb&#92;&quot;: &#92;&quot;addNavLink&#92;&quot;,&#92;n        &#92;&quot;displayName&#92;&quot;: &#92;&quot;External Site&#92;&quot;,&#92;n        &#92;&quot;url&#92;&quot;: &#92;&quot;@{variables(&#39;linkURL&#39;)}&#92;&quot;,&#92;n&#92;&quot;isWebRelative&#92;&quot;: false&#92;n      }&#92;n    ],&#92;n    &#92;&quot;version&#92;&quot;: 1&#92;n  }&#92;n```&#92;n&#92;n## Register the Temporary Script&#92;n&#92;nNow that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.&#92;n&#92;n![&#92;&quot;Action to register site script&#92;&quot;](./register-site-script.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Send an HTTP Request to SharePoint&#92;n- Site Address: root site, or some other site on the tenant you know already exists&#92;n- Method: POST&#92;n- Uri: /&#92;&#92;_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteScript(Title=’Temporary script for adding link’)&#92;n- Header 1 key: accept&#92;n- Header 1 value: application/json;odata.metadata=minimal&#92;n- Header 2 key: Content-Type&#92;n- Header 2 value: application/json;charset=utf-8&#92;n- Header 3 key: odata-version&#92;n- Header 3 value: 4.0&#92;n&#92;nI also created a variable to capture the ID of the site script that was just created. You could do without this step, instead referencing back to the body of the response every time you need it, but it is easier to keep track of with a variable.&#92;n&#92;n![&#92;&quot;Setting the siteScriptID variable&#92;&quot;](./site-script-id.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Initialize Variable&#92;n- Name: siteScriptID&#92;n- Type: String&#92;n- Value: body(‘Create&#92;&#92;_temp&#92;&#92;_site&#92;&#92;_script’)?&#92;&#92;[‘Id’&#92;&#92;]&#92;n&#92;n## Create the Temporary Design&#92;n&#92;nOnce you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.&#92;n&#92;n![&#92;&quot;Registering the site design&#92;&quot;](./create-site-design.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Send an HTTP Request to SharePoint&#92;n- Site Address: root site, or another site on the tenant you know exists&#92;n- Uri: /&#92;&#92;_api/Microsoft.SharePoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteDesign&#92;n- Headers: &#92;&#92;[same as registering the site script above&#92;&#92;]&#92;n- Body:&#92;n&#92;n```json&#92;n{&#92;n&#92;&quot;info&#92;&quot;:{&#92;n&#92;&quot;Title&#92;&quot;:&#92;&quot;Temporary site design for @{variables(&#39;siteName&#39;)}&#92;&quot;,&#92;n&#92;&quot;Description&#92;&quot;:&#92;&quot;Applies navigation links&#92;&quot;,&#92;n&#92;&quot;SiteScriptIds&#92;&quot;:[&#92;&quot;@{variables(&#39;siteScriptID&#39;)}&#92;&quot;],&#92;n&#92;&quot;WebTemplate&#92;&quot;:&#92;&quot;68&#92;&quot;&#92;n}&#92;n}&#92;n```&#92;n&#92;nNote that WebTemplate 68 is a communication site. 64 would be a team site.&#92;n&#92;nAs with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.&#92;n&#92;n![&#92;&quot;Setting site design ID variable&#92;&quot;](./site-design-id.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Initialize Variable&#92;n- Name: siteDesignID&#92;n- Type: String&#92;n- Value: body(‘Create&#92;&#92;_temp&#92;&#92;_site&#92;&#92;_design’)?&#92;&#92;[‘Id’&#92;&#92;]&#92;n&#92;n## Delay&#92;n&#92;nYou may want a bit of a delay before applying the site design. This is to ensure that the site does already exist before you try to apply the design. Rather than guessing a specific amount of time for the site to be prepared (5 minutes has always been sufficient in my tests), you could also use a test to see if the site exists yet with a REST API call like the one above. In that case you could put that within a loop:&#92;n&#92;n1. Enter loop only if site does not exist.&#92;n2. In loop, delay one minute, then check if site exists yet.&#92;n&#92;nThat could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.&#92;n&#92;n![&#92;&quot;Job to delay for 5 minutes&#92;&quot;](./delay-5-minutes.png)&#92;n&#92;nYou also may need to delay much longer if your site scripts rely on [global content types](/posts/2021/sharepoint-content-types/). Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.&#92;n&#92;n## Apply the site design&#92;n&#92;nYet another REST API call will allow you to apply the site design that is now registered.&#92;n&#92;n![&#92;&quot;Applying the site design&#92;&quot;](./apply-site-design.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Send an HTTP Request to SharePoint&#92;n- Site Address: the new project site’s URL&#92;n- Uri: /&#92;&#92;_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.ApplySiteDesign&#92;n- Headers: &#92;&#92;[same as registering the site script above&#92;&#92;]&#92;n- Body:&#92;n&#92;n```json&#92;n{&#92;n&#92;&quot;siteDesignId&#92;&quot;:&#92;&quot;@{variables(&#39;siteDesignID&#39;)}&#92;&quot;,&#92;n&#92;&quot;webUrl&#92;&quot;:&#92;&quot;@{variables(&#39;siteURL&#39;)}&#92;&quot;&#92;n}&#92;n```&#92;n&#92;n## Clean Up&#92;n&#92;nYou don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.&#92;n&#92;n![&#92;&quot;Deleting the site design&#92;&quot;](./delete-site-design.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Send an HTTP Request to SharePoint&#92;n- Site Address: the root site, or another site on tenant you know exists&#92;n- Uri: /&#92;&#92;_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteDesign&#92;n- Headers: &#92;&#92;[same as registering the site script above&#92;&#92;]&#92;n- Body:&#92;n&#92;n```json&#92;n{&#92;&quot;id&#92;&quot;:&#92;&quot;@{variables(&#39;siteDesignID&#39;)}&#92;&quot;}&#92;n```&#92;n&#92;n![&#92;&quot;Deleting the site script&#92;&quot;](./delete-site-script.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action: Send an HTTP Request to SharePoint&#92;n- Site Address: the root site, or another site on tenant you know exists&#92;n- Uri: /&#92;&#92;_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteScript&#92;n- Headers: &#92;&#92;[same as registering the site script above&#92;&#92;]&#92;n- Body:&#92;n&#92;n```json&#92;n{&#92;&quot;id&#92;&quot;:&#92;&quot;@{variables(&#39;siteScriptID&#39;)}&#92;&quot;}&#92;n```&#92;n&#92;nThat’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/index.html&quot;}
 
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
@@ -189,49 +190,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -246,7 +217,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -308,6 +309,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/` was built on 2024-09-27T20:40:44.857Z -->
+		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/` was built on 2024-09-27T20:44:09.096Z -->
 	</body>
 </html>

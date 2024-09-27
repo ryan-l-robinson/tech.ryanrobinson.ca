@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/building-jekyll.md&quot;,&quot;fileSlug&quot;:&quot;building-jekyll&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/building-jekyll&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-05-05T11:39:18.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nI recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s [free as in cats](/posts/2022/free-as-in-cats/) and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.&#92;n&#92;nHere’s a high level look at how I did it, and the code [is available in my GitHub](https://github.com/ryan-l-robinson/ryan-l-robinson.github.io). The main branch is everything I control, then the GitHub Actions generate the site on the gh-pages branch.&#92;n&#92;n## Chirpy Theme&#92;n&#92;nI looked around for a bit and chose to start from [the Chirpy theme](http://jekyllthemes.org/themes/jekyll-theme-chirpy/). I like its simple design while still supporting the key blog features: categories, tags, archive timeline. And the biggest selling point was the switch between dark and light modes. That’s a nice feature to offer visitors.&#92;n&#92;nIt does have a few things I wish were better. The navigation sidebar is not in a nav element, so that&#39;s a bit less than ideal accessibility. It also leans heavily on using ID for every element instead of class, which means my [Visual Studio Code](/tags/visual-studio-code/) is constantly warning me that this is a fragile way to build a site. And the default colour contrasts are not strong enough in several places, but that can be overridden with CSS (see below).&#92;n&#92;nKnowing myself, I&#39;ll probably try to find a different theme in 1-2 years, but for now, this will do.&#92;n&#92;n## Config&#92;n&#92;nThe next step was to create the general config of the site and any pages outside of the blog posts like the About page. Config provided several options including where to find the profile photo, which social network links to show in the sidebar and as share buttons on posts, whether to default to light or dark mode. &#92;n&#92;nAbout is a simple markdown file with some front matter, and placed within the &#92;&#92;_tabs folder which will add it to the main navigation. Adding more pages to this &#92;&#92;_tabs folder will add them to the main navigation as well.&#92;n&#92;n## Assets&#92;n&#92;nThe largest piece of work was editing the assets, specifically the CSS stylesheet. The key idea for this is that anything I put in a folder called “assets” would add to and override the default assets folder on the site. This includes images and stylesheets. This stylesheet behaviour is similar to WordPress where you can have a child theme build on and override certain pieces of the stylesheet.&#92;n&#92;n## Posts&#92;n&#92;nI chose to use a WordPress plugin to export everything on my WordPress site into Jekyll format. It worked pretty well, but did leave a few pieces I wanted to clean up myself. Some of the front matter it included was not relevant to my theme, so I removed those. The image in the front matter was not the right syntax, so I had to adjust each of those. And it wrapped every image in a figure tag with a caption, while this theme supports a simpler syntax for images, so I also replaced those. Some of the code around images and YouTube video embeds were messier than they needed to be.&#92;n&#92;nI&#39;ll have more in a future post about how I write and publish posts.&#92;n&#92;n## Domain&#92;n&#92;nWhat I have not done yet is assigning a domain. I will move my ryanrobinson.techology domain to here, but haven&#39;t yet. [It seems like a pretty straightforward process](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).&quot;,&quot;url&quot;:&quot;/posts/2022/building-jekyll/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/building-jekyll/index.html&quot;}
 
 
 <p>I recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s <a href="/posts/2022/free-as-in-cats/">free as in cats</a> and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.</p>
@@ -79,49 +80,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -136,7 +107,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -198,6 +199,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/building-jekyll/` was built on 2024-09-27T20:40:44.828Z -->
+		<!-- This page `/posts/2022/building-jekyll/` was built on 2024-09-27T20:44:09.038Z -->
 	</body>
 </html>

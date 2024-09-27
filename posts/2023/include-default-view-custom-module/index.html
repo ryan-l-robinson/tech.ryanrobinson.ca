@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2023/include-default-view-custom-module.md&quot;,&quot;fileSlug&quot;:&quot;include-default-view-custom-module&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/include-default-view-custom-module&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-02-23T22:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nYou may be working on a Drupal module and want to include a default view.&#92;n&#92;n## Install&#92;n&#92;nThis is actually quite simple: put the configuration file in the config/install folder within the module, with the proper configuration name, and it will install.&#92;n&#92;nThis would be the full configuration file, the same as you would generate using the configuration sync tools.&#92;nYou can write this file from scratch, especially if they&#39;re hidden options. If it is something that has a user interface, you can do what I tend to do: determine all your preferred settings and test it out within the interface, then export the configuration from either the UI (/admin/config/development/configuration/single/export) or drush (`drush config-export` but that does all configuration, not only the specific one you want).&#92;n&#92;n## Uninstall&#92;n&#92;nWhat about uninstalling the configuration you&#39;ve installed with the module? This will depend on the context of your module, but you may want to also uninstall this configuration when the module is uninstalled. The configuration might no longer make sense without the module, or you might create conflicts if you installed it once, uninstalled the module but left the configuration, then tried to install it again.&#92;n&#92;nTo do that, add a few lines like this to the uninstall hook of the .module file, for example with a config file named webform.webform.event_registration:&#92;n&#92;n```php&#92;n/**&#92;n * Implements hook_uninstall&#92;n * */&#92;nfunction module_name_uninstall() {&#92;n  if (!empty(&#92;&#92;Drupal::configFactory()-&gt;getEditable(&#39;webform.webform.event_registration&#39;))) {&#92;n    &#92;&#92;Drupal::configFactory()-&gt;getEditable(&#39;webform.webform.event_registration&#39;)-&gt;delete();&#92;n  }&#92;n}&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2023/include-default-view-custom-module/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/include-default-view-custom-module/index.html&quot;}
 
 
 <p>You may be working on a Drupal module and want to include a default view.</p>
@@ -79,49 +80,19 @@ You can write this file from scratch, especially if they're hidden options. If i
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -136,7 +107,37 @@ You can write this file from scratch, especially if they're hidden options. If i
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -198,6 +199,6 @@ You can write this file from scratch, especially if they're hidden options. If i
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2024-09-27T20:40:44.845Z -->
+		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2024-09-27T20:44:09.078Z -->
 	</body>
 </html>

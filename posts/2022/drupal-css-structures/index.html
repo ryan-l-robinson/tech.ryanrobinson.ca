@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-css-structures.md&quot;,&quot;fileSlug&quot;:&quot;drupal-css-structures&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-css-structures&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-09-19T21:00:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nSpecificity rules for CSS priority in Drupal are determined on two axes:&#92;n&#92;n1. Active custom subthemes take priority over their parent theme.&#92;n2. [Stylesheets are split into priority groups as described here](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-9).&#92;n&#92;nMost of the times the descriptions for each category will hold accurate. However, you may encounter, for example, that a parent theme or a module put something in &#92;&quot;theme&#92;&quot; when it really is better categorized as a &#92;&quot;component.&#92;&quot; In the scenario that you need to override that style, you&#39;ll have to also put yours at the &#92;&quot;theme&#92;&quot; level or it will not take priority.&#92;n&#92;nThe end result may be something like this in the theme&#39;s *.libraries.yml file:&#92;n&#92;n```yml&#92;nglobal-styling:&#92;n  version: 1.x&#92;n  js:&#92;n    js/navigation.js: {}&#92;n    js/search.js: {}&#92;n  css:&#92;n    base:&#92;n      css/base/elements.css: {}&#92;n      css/base/variables.css: {}&#92;n    layout:&#92;n      css/layout/containers.css: {}&#92;n      css/layout/footer.css: {}&#92;n      css/layout/header.css: {}&#92;n      css/layout/sidebar.css: {}&#92;n    component:&#92;n      css/components/buttons.css: {}&#92;n      css/components/details.css: {}&#92;n      css/components/field.css: {}&#92;n      css/components/forms.css: {}&#92;n      css/components/images.css: {}&#92;n      css/components/lists.css: {}&#92;n      css/components/tables.css: {}&#92;n      css/components/tabs.css: {}&#92;n      css/components/views.css: {}&#92;n    theme:&#92;n      css/theme/admin.toolbar.css: {}&#92;n      css/theme/search-results.css: {}&#92;n      //use.fontawesome.com/releases/v6.1.2/css/all.css: { type: external }&#92;n```&#92;n&#92;nNote that theme in this example also includes an imported stylesheet from elsewhere, in this case fontawesome for the social media icons. This works great, but you may want to remember to periodically updated for new versions.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-css-structures/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-css-structures/index.html&quot;}
 
 
 <p>Specificity rules for CSS priority in Drupal are determined on two axes:</p>
@@ -99,49 +100,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -156,7 +127,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -218,6 +219,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-css-structures/` was built on 2024-09-27T20:40:44.831Z -->
+		<!-- This page `/posts/2022/drupal-css-structures/` was built on 2024-09-27T20:44:09.040Z -->
 	</body>
 </html>

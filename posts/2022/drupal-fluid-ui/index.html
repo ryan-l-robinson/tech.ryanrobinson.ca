@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-fluid-ui/drupal-fluid-ui.md&quot;,&quot;fileSlug&quot;:&quot;drupal-fluid-ui&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-fluid-ui/drupal-fluid-ui&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-02-14T01:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nIn doing research on accessibility tools that could be incorporated into a Drupal site, a co-worker recommended [Fluid UI](https://fluidproject.org/). This is not the same Fluid Framework used by Microsoft as the backbone of [the new Microsoft Loop tool](https://www.zdnet.com/article/microsoft-introduces-loop-a-new-collaboration-tool-built-on-fluid-framework/), or [the Fluent UI Microsoft design language](https://developer.microsoft.com/en-us/fluentui). There’s lots of use of Fluid and Fluent out there.&#92;n&#92;nThis one is an open source group out of Toronto focused on web accessibility, and they offer their tools in a few different formats. One is as [a convenient Drupal module](https://www.drupal.org/project/fluidui). I installed it on a dev site and took a look at what it offered.&#92;n&#92;n## The toolbar&#92;n&#92;nIt creates a toolbar across the top of the site, hidden by default behind a “+ Show Preferences” button. When expanded, there are a few options which can be valuable accessibility improvements.&#92;n&#92;n![Fluid UI toolbar: text size, text style, line spacing, contrast, table of contents](./components.png)&#92;n&#92;n- Change font size or spacing between lines&#92;n- Change to a high-contrast colour palette&#92;n- Emphasize links and buttons&#92;n- Display a table of contents&#92;n&#92;nThe only one I don’t quite understand the value of is the table of contents. It gives a bland unstyled list of links, programmatically generated based on the headers on the page. I’m not sure who this is for. Sighted users can see the headers. Blind or low-vision users can navigate in a screen reader by the header levels already, much more useful than a table of contents at the top. I assume there is a use case because these developers know a lot more about accessibility than I do, but I have failed to think of what it is. Feel free to comment if you know.&#92;n&#92;nIt’s also a bit odd visually, needing to scroll sideways to see all the options. I’d like to think there would be a better way to display them all.&#92;n&#92;n## Configuration&#92;n&#92;nIt has limited admin configuration options both around what pages the toolbox should appear on:&#92;n&#92;n![Fluid UI configuration options, described below](./configuration.png)&#92;n&#92;n- Display on admin pages (yes/no checkbox). By default this is off, meaning it only shows on the public pages, but if you’re aiming to improve accessibility of administration as well, you’ll want to turn this on.&#92;n- Hide the toolbox on these pages (text area to specify pages). There might be some unique pages where it doesn’t work very well, so you can name those as exceptions.&#92;n&#92;nI am a little tempted to come up with a basic settings page that can turn on or off each component, instead of it being an all-or-nothing, and maybe be able to change the order of the components, then offer that back to the developers. It’s not a big need, though; most are going to be happy with leaving everything on.&#92;n&#92;n## Conclusion&#92;n&#92;nOverall, it’s a good tool. It is a little rough, so I do hope they smooth it out some more, but it’s certainly much better than not offering these accessibility improvements at all.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-fluid-ui/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-fluid-ui/index.html&quot;}
 
 
 <p>In doing research on accessibility tools that could be incorporated into a Drupal site, a co-worker recommended <a href="https://fluidproject.org/">Fluid UI</a>. This is not the same Fluid Framework used by Microsoft as the backbone of <a href="https://www.zdnet.com/article/microsoft-introduces-loop-a-new-collaboration-tool-built-on-fluid-framework/">the new Microsoft Loop tool</a>, or <a href="https://developer.microsoft.com/en-us/fluentui">the Fluent UI Microsoft design language</a>. There’s lots of use of Fluid and Fluent out there.</p>
@@ -86,49 +87,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -143,7 +114,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -205,6 +206,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-fluid-ui/` was built on 2024-09-27T20:40:44.860Z -->
+		<!-- This page `/posts/2022/drupal-fluid-ui/` was built on 2024-09-27T20:44:09.082Z -->
 	</body>
 </html>

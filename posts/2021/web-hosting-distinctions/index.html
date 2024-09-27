@@ -41,6 +41,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/web-hosting-distinctions.md&quot;,&quot;fileSlug&quot;:&quot;web-hosting-distinctions&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/web-hosting-distinctions&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-07-08T18:15:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThere’s a confusing thing that has come up with several clients who don’t know all the intricacies of website work (completely understandably; that’s why they pay me). When we talk about hosting services around website work, there are a few different things we could be referring to: the domain, the DNS, the website content, and email. To make it more confusing, sometimes all of them are with the same provider and other times they’ve divided up in different combinations.&#92;n&#92;n## Domain&#92;n&#92;nThe first step in the chain is registering the domain. Once you’ve got the domain registered, you own it and can do whatever you want with it. For example, I own the domain alliterationapplications.com that I bought through a particular domain registrar that I like.&#92;n&#92;nThe important things to know about the domain registrar:&#92;n&#92;n- Keep it renewed. You’ll have to pay a recurring fee to keep it or you risk everything associated with it going offline and then potentially somebody else swooping in and stealing it. Depending on the registrar, you can often buy multiple years at a time. Usually there is an option to auto-renew when it is ready to expire, but even that does require some attention that your payment details stay valid (i.e. credit cards expire every few years).&#92;n- WHOIS privacy is a great idea, especially if you’re not a big company. This hides your contact details from the public.&#92;n- Set the nameservers to point to the DNS provider. This may be in the same place as the domain registrar or may be elsewhere, like where the website content is hosted.&#92;n&#92;n## DNS&#92;n&#92;nThe Domain Name Service specifies details about what services are associated with the domain. The big two of these are the next items for clarification: email and website content. But there could be other things as well, like the Microsoft Endpoint Manager service for device management.&#92;n&#92;nDNS related to email should have at least two components:&#92;n&#92;n- MX records: these specify where email sent to the domain should be directed. This could be Microsoft, Google, a web server, or something else.&#92;n- TXT record: a particular type of TXT record called an SPF record can be used to help differentiate legitimate email sent from the domain vs illegitimate. When somebody receives an email that says it from your domain, their email provider looks up the SPF on the domain. It compares what the SPF record says to where the email actually came from to determine if the sending server is allowed to send on behalf of that domain, and is likely to mark it as spam if there isn’t a match. It isn’t the only way to help make sure your emails don’t go into spam, but it’s the simplest action for the biggest impact.&#92;n&#92;nDNS related to website content is typically a simple A record pointing to the IP address of the web server. Some DNS providers also have a FWD record type which will forward all browser traffic to a different URL, e.g. my ryanrobinson.ca domain currently forwards to my LinkedIn (although I think I will merge it together with this site at some point).&#92;n&#92;nYou rarely need to change your DNS – only when you change those other services – and there typically is no recurring fee, with your DNS hosting most often combined with either your domain hosting or website content hosting.&#92;n&#92;n## Website Content&#92;n&#92;nThe content of your website, usually consisting of several files and at least one database, reside on a web server. I won’t dive into all the considerations choosing a web content host, but if you’re talking about a simple site like this one, you don’t need anything special.&#92;n&#92;nThere will always be some recurring fee for website hosting, although it may get combined into a package with domain or DNS. If the server is well-managed by a good support team, then you won’t need to worry about much other than keeping the account active. If it is a web server where you have to manage it yourself, you will need to pay attention to details like security updates and PHP versions.&#92;n&#92;n## Email&#92;n&#92;nFinally, you may or may not have email associated with your domain. This email might be hosted on a web server (the same as the website content) or could be somewhere else like Google or Microsoft.&#92;n&#92;nIf it’s on a web server with the website, it’s probably part of the package or a small fee extra. It is very low-quality email compared to Microsoft or Google: low storage limits, no sync of contacts/calendar, bad spam filters, etc.&#92;n&#92;nIf the email is hosted elsewhere like Google or Microsoft, you do have another recurring fee (unless you’re a non-profit getting it for free), but you get much higher quality email as well as a variety of other services like cloud storage which can provide huge productivity advantages.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/web-hosting-distinctions/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/web-hosting-distinctions/index.html&quot;}
 
 
 <p>There’s a confusing thing that has come up with several clients who don’t know all the intricacies of website work (completely understandably; that’s why they pay me). When we talk about hosting services around website work, there are a few different things we could be referring to: the domain, the DNS, the website content, and email. To make it more confusing, sometimes all of them are with the same provider and other times they’ve divided up in different combinations.</p>
@@ -83,49 +84,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -140,7 +111,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -202,6 +203,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/web-hosting-distinctions/` was built on 2024-09-27T20:40:44.825Z -->
+		<!-- This page `/posts/2021/web-hosting-distinctions/` was built on 2024-09-27T20:44:09.072Z -->
 	</body>
 </html>

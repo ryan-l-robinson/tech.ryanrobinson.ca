@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-assign-permissions-username-file.md&quot;,&quot;fileSlug&quot;:&quot;drupal-assign-permissions-username-file&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-assign-permissions-username-file&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-01-25T01:20:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nHere’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.&#92;n&#92;nI have pulled out a generic version of this code and [made it available on my GitHub](https://github.com/ryan-l-robinson/drupal-permissions-from-file).&#92;n&#92;n## Hook on Login&#92;n&#92;nFirst, we need to hook on login. When a user signs on, we want to find out if they should have the extra permission. This can be done with [the hook&#92;&#92;_user&#92;&#92;_login hook](https://api.drupal.org/api/drupal/modules%21user%21user.api.php/function/hook_user_login/7.x).&#92;n&#92;n```php&#92;n/**&#92;n * Implements hook_user_login&#92;n */&#92;nfunction permissions_from_file_user_login(&amp;$edit, $account) {&#92;n&#92;n  // assign the &#92;&quot;test role&#92;&quot; role, if necessary.&#92;n  _permissions_from_file_update_permissions($account);&#92;n&#92;n  // do not redirect password reset requests.&#92;n  if (!isset($_POST[&#39;form_id&#39;]) || $_POST[&#39;form_id&#39;] != &#39;user_pass_reset&#39;) {&#92;n    if (isset($_GET[&#39;target&#39;])) {&#92;n      drupal_goto($_GET[&#39;target&#39;]);&#92;n    }&#92;n  }&#92;n}&#92;n```&#92;n&#92;n## Read File&#92;n&#92;nNext we have another function that checks to see if the username is in the file or not:&#92;n&#92;n```php&#92;n/**&#92;n* Reads from file and determine whether the specified user is in the list&#92;n**/&#92;nfunction _permissions_from_file_is_role($account) {&#92;n  $contents = file_get_contents(&#39;/var/usernames/roleusernames.csv&#39;);&#92;n  return preg_match(&#92;&quot;/$account-&gt;name/&#92;&quot;,$contents); &#92;n  // returns if name is in the file.&#92;n}&#92;n```&#92;n&#92;n## Assign or Remove Role&#92;n&#92;nFinally, we can assign permissions based on whether or not their username is in the file.&#92;n&#92;n```php&#92;n/**&#92;n* Calls function that checks if permissions should be found&#92;n**/&#92;nfunction _permissions_from_file_update_permissions($account) {&#92;n  $is_role = _permissions_from_file_is_role($account);&#92;n  $role = user_role_load_by_name(&#39;test role&#39;);&#92;n  if ($is_role) {&#92;n    // add permissions to that user&#92;n    user_multiple_role_edit(array($account-&gt;uid), &#39;add_role&#39;, $role-&gt;rid);&#92;n  }&#92;n  else {&#92;n    // delete the role assignment, if it exists&#92;n    user_multiple_role_edit(array($account-&gt;uid), &#39;remove_role&#39;, $role-&gt;rid);&#92;n  }&#92;n}&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-assign-permissions-username-file/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-assign-permissions-username-file/index.html&quot;}
 
 
 <p>Here’s a recent scenario I encountered: a Drupal role needs to be assigned to certain users. The site is using a single sign on (SSO) system with a lot of users who could log in. But only some of those should be granted a certain permission. The list of those who can access the special permission role is automatically generated and put in place on the server on a daily basis, in a simple format with one line for each account name.</p>
@@ -109,49 +110,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -166,7 +137,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -228,6 +229,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-27T20:40:44.830Z -->
+		<!-- This page `/posts/2022/drupal-assign-permissions-username-file/` was built on 2024-09-27T20:44:09.039Z -->
 	</body>
 </html>

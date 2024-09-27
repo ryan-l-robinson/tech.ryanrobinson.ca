@@ -45,6 +45,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2023/drupal-recycle-bin/drupal-recycle-bin.md&quot;,&quot;fileSlug&quot;:&quot;drupal-recycle-bin&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/drupal-recycle-bin/drupal-recycle-bin&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-03-01T23:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nDrupal does not come with any kind of recycle bin / trash system out of the box, unlike the other technologies I have worked with most (WordPress, SharePoint). There were a few modules available at the time I looked into this (admittedly over a year ago now), but they were all rough, either old or barely developed. None were reliable enough to count on. In this post I’ll describe a simple halfway approach that did not require any extra code.&#92;n&#92;nThere is a demo of this [available on my GitHub](https://github.com/ryan-l-robinson/Drupal-recycle-bin), with a GitPod container to test it out.&#92;n&#92;n## Permissions: Only Admins Can Delete&#92;n&#92;nCheck permissions for each content type to confirm that only admins can delete anything. Everybody else will only be able to use the flag field we&#39;re about to create to request deletion, not directly delete anything.&#92;n&#92;nGo to the node permissions screen at /admin/people/permissions. Look for the permissions of each content type that are &#92;&quot;Delete own content&#92;&quot; or &#92;&quot;Delete any content.&#92;&quot; For the purposes of this demo, only the admin users should have these permissions. Your permission structure may be more complicated.&#92;n&#92;n![&#92;&quot;Screenshot of the permissions screen, with all permissions given to admins and no permissions given to others. The key for this example is that only admins have the Delete permissions&#92;&quot;](./permissions.png)&#92;n&#92;n## Field: Flag for Delete&#92;n&#92;nProceed to the Manage Fields page of the first content type that you want to have this feature on. For example, if my content type is recyclable_content_type, I would go to /admin/structure/types/manage/recyclable_content_type_/fields. Create a boolean field.&#92;n&#92;n![&#92;&quot;Screenshot of the form to create a new field. A new field of type Boolean is being created with the label of Flag for Delete.&#92;&quot;](./add-field.png)&#92;n&#92;nLimit the field to only allow one value at a time.&#92;n&#92;n![&#92;&quot;Screenshot of the form for setting storage on the field. This field allows only 1 value.&#92;&quot;](./field-storage.png)&#92;n&#92;nThe final screen for creating the field allows you to add more options that are mostly about helping your content creators understand what this is doing. I&#39;ll add some help text as well as change the On and Off labels to be more clear of what they mean.&#92;n&#92;n![&#92;&quot;Flag for Delete field settings. This includes setting the help text to explain to the users what it does, changing the On label to Delete and the Off label to Keep.&#92;&quot;](./field-help.png)&#92;n&#92;nYou now have the field on this content type ready to use. You may also want to go into &#92;&quot;Manage form display&#92;&quot; and &#92;&quot;Manage display&#92;&quot; to customize how this appears for your users. In my case, on the form I put it inside a Details sidebar paired with the published option. I then used a module like [condition_field](https://www.drupal.org/project/condition_field) to only show that option when the node is already marked as unpublished, so that somebody cannot accidentally mark something for deletion without unpublishing it first. Finally, on the display I hid it entirely because the public should never see that field - it is only for back-end processes.&#92;n&#92;nIf you have more than one content type you want to deploy this feature on, go to the next content type and add a field again. This time, select from the dropdown of existing fields instead of creating a new one. The final steps for help text, form display, and public display remain the same.&#92;n&#92;n## View: Ready for Deletion&#92;n&#92;nFinally, you&#39;re going to want a way that admins can review the nodes flagged for delete and go ahead with permanently deleting after the set amount of time. This is a great problem to be solved by views.&#92;n&#92;nYou can either create a new view or add a new display to an existing view. I&#39;m going to start by building on top of the default admin view named &#92;&quot;Content&#92;&quot; since I want something that is basically the same but with extra filters. This is at /admin/structure/views/view/content. Either add a new page from the Add button, or duplicate the existing page with the Duplicate Page option in the dropdown near the right side of the screen. If there was only one display which is also the default, the result would be essentially the same.&#92;n&#92;nI put it in the menu under Content of the Admin menu, and with the path /admin/content/delete.&#92;n&#92;n![&#92;&quot;First settings show the path set to /admin/content/delete. Second setting shows the Menu link as Normal and labelled Ready for Deletion.&#92;&quot;](./view-page-settings.png)&#92;n&#92;n### Flag for Delete filter&#92;n&#92;nAdd a filter to the view, overriding this page only, on the Flag for Delete field.&#92;n&#92;n![&#92;&quot;Screenshot of the views admin to add a filter. A filter on the field Flag for Delete is being added.&#92;&quot;](./add-flag-filter.png)&#92;n&#92;n![&#92;&quot;Screenshot of the views admin, setting the value of Flag for Delete is equal to True.&#92;&quot;](./view-configure-filter.png)&#92;n&#92;n### Published filter&#92;n&#92;nThe view I duplicated from already had a Published filter, but it was exposed to allow users to select. So I&#39;m going to edit that one to only show unpublished content. I only want unpublished content, because if somebody has flagged for delete but it is still published, that suggests they might have made a mistake.&#92;n&#92;n![&#92;&quot;Configuration for the Published filter on the view, set as is equal to Published status of No.&#92;&quot;](./view-published-filter.png)&#92;n&#92;n### Date Updated filter&#92;n&#92;nFinally, in my case, I also wanted to filter on the date updated, so that only content that hasn&#39;t been updated within the past 30 days would show up. Anything less than that suggests that the content creator may be having second thoughts and isn&#39;t really ready to delete it yet. In your context, you may not want this delay at all, or you may want a much longer delay.&#92;n&#92;n![&#92;&quot;Screenshot of adding the Updated date filter to the view&#92;&quot;](./add-updated-filter.png)&#92;n&#92;n![&#92;&quot;Screenshot of settings for the Updated filter, setting the operator to Is Less Than and the value as an offset of -30 days&#92;&quot;](./configure-updated-filter.png)&#92;n&#92;nNow admins can periodically check and bulk delete any content that is flagged for delete, unpublished, and last updated more than 30 days ago. You can also do any of the usual views changes from here as you desire, including adding views, changing text to show when there are no results, adding CSS classes, etc.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2023/drupal-recycle-bin/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/drupal-recycle-bin/index.html&quot;}
 
 
 <p>Drupal does not come with any kind of recycle bin / trash system out of the box, unlike the other technologies I have worked with most (WordPress, SharePoint). There were a few modules available at the time I looked into this (admittedly over a year ago now), but they were all rough, either old or barely developed. None were reliable enough to count on. In this post I’ll describe a simple halfway approach that did not require any extra code.</p>
@@ -94,49 +95,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -151,7 +122,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -213,6 +214,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/drupal-recycle-bin/` was built on 2024-09-27T20:40:44.862Z -->
+		<!-- This page `/posts/2023/drupal-recycle-bin/` was built on 2024-09-27T20:44:09.098Z -->
 	</body>
 </html>

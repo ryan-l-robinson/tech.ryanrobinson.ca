@@ -47,6 +47,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/drupal-pecl-uploadprogress.md&quot;,&quot;fileSlug&quot;:&quot;drupal-pecl-uploadprogress&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/drupal-pecl-uploadprogress&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-12-10T12:55:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nDrupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.&#92;n&#92;n## Add Required Packages&#92;n&#92;nThere are a few preliminary packages that you’ll need: gcc, make, php-devel, and php-pear. You can install in Oracle Linux 8 using this command:&#92;n&#92;n```bash&#92;nsudo yum -y install gcc make php-devel php-pear&#92;n```&#92;n&#92;nYou don’t have to provide the -y. That will pre-approve any other prompts that come up, including if it requires installing other dependent packages. If you want to be more careful, don’t use that, but it can come in handy in contexts like installing this through a script.&#92;n&#92;n## Install PECL&#92;n&#92;nNow that you’ve got the dependencies, you can install uploadprogress:&#92;n&#92;n```bash&#92;nsudo pecl -y install uploadprogress&#92;n```&#92;n&#92;n## Add to php.ini&#92;n&#92;nThe packages are now in place, but your PHP installation will not make use of it unless it is recognized as an extension in your php.ini file. In the default Oracle Linux 8 setup, this file is located at /etc/php.ini. You’ll need to add this line to your file:&#92;n&#92;n```text&#92;nextension=uploadprogress&#92;n```&#92;n&#92;nYou can edit that file directly using your preferred editor to add this line to the file, or if you are using this within a script, you can have the script write it to the end of the file like this:&#92;n&#92;n```bash&#92;nsudo echo &#92;&quot;extension=uploadprogress&#92;&quot; &gt;&gt; /etc/php.ini&#92;n```&#92;n&#92;nIf you first need to check whether that line is already in the file – so that you don’t end up writing it multiple times in a context where a script might add another line every time – you can use this in a bash script:&#92;n&#92;n```bash&#92;nif [ ! -z $(grep &#92;&quot;extension=uploadprogress&#92;&quot; /etc/php.ini) ]; then&#92;n    sudo echo &#92;&quot;extension=uploadprogress&#92;&quot; &gt;&gt; /etc/php.ini&#92;nfi&#92;n```&#92;n&#92;n## Restart&#92;n&#92;nFinally, you’ll need to restart Apache and PHP for this to go into effect:&#92;n&#92;n```bash&#92;nsudo systemctl restart php-fpm&#92;nsudo systemctl restart httpd&#92;n```&#92;n&#92;n[This script is available in my GitHub](https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/tree/main).&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/drupal-pecl-uploadprogress/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/drupal-pecl-uploadprogress/index.html&quot;}
 
 
 <p>Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.</p>
@@ -86,49 +87,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -143,7 +114,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -205,6 +206,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/drupal-pecl-uploadprogress/` was built on 2024-09-27T20:40:44.810Z -->
+		<!-- This page `/posts/2021/drupal-pecl-uploadprogress/` was built on 2024-09-27T20:44:09.055Z -->
 	</body>
 </html>

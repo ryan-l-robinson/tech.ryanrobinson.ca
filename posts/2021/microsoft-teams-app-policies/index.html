@@ -45,6 +45,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/microsoft-teams-app-policies/microsoft-teams-app-policies.md&quot;,&quot;fileSlug&quot;:&quot;microsoft-teams-app-policies&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/microsoft-teams-app-policies/microsoft-teams-app-policies&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-08-02T13:05:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nSuppose you want to lock the sidebar in Teams for some users to ensure that they don’t have different experiences, which can help with providing support and documentation as well as make sure nobody accidentally loses their easy access to the app they want to use. But you don’t want to lock all users; there are some like your IT department that might need some freedom to use their Teams differently.&#92;n&#92;nThis can be done with an app setup policy in the Microsoft Teams admin centre.&#92;n&#92;nFor this example, I’ll set the taskbar to contain:&#92;n&#92;n- Activity&#92;n- Chat&#92;n- Teams&#92;n- Calendar&#92;n- Files&#92;n&#92;nI’ve removed the Calls app from the default, since I don’t use Teams for a phone system and the Calls app is somewhat underwhelming without that.&#92;n&#92;nI’ll also default install Tasks by Planner and To Do, but not force it on the taskbar.&#92;n&#92;n## Edit the Global Policy&#92;n&#92;nStart out in the Teams Admin Centre, at &lt;https://admin.teams.microsoft.com&gt;.&#92;n&#92;nIn the navigation, go to Teams Apps -&amp;gt; Setup Policies.&#92;n&#92;nClick on the Global (Org-wide default) policy. Change a few settings here:&#92;n&#92;n- Flip the toggle for “Allow user pinning” off.&#92;n- Under “Installed apps,” click on “Add apps,” search for Tasks by Planner and To Do, and add&#92;n- Under “Pinned apps,” select beside Calls and then click the Remove button&#92;n&#92;nClick Save when done.&#92;n&#92;n![Policy editing screen with sections for general settings, installed apps, and pinned apps](./global-policy-changes.png)&#92;n&#92;nWhen a user signs in, they’ll now have this as their default app bar:&#92;n&#92;n![&#92;&quot;Sidebar, with no Calls app&#92;&quot;](./global-policy-with-no-calls-app.png)&#92;n&#92;nFurthermore, if they try to pin any other apps to their sidebar, they will not see the “pin” option anymore.&#92;n&#92;nWe now have a default locked sidebar for all users.&#92;n&#92;n## Create a Custom Policy&#92;n&#92;nThe next step is that we want there to be an exception for one user. Back on the setup policies screen in the Teams Admin Centre, I’ll add a new policy.&#92;n&#92;nOn the screen to edit the policy. This time I’ll:&#92;n&#92;n- Set the toggle for “allow user pinning” to On&#92;n- Leave everything else the same as the default&#92;n&#92;nClick Save when done.&#92;n&#92;n![Policy editing screen with general settings, installed apps, and pinned apps](./freedom-policy.png)&#92;n&#92;n## Apply the Custom Policy&#92;n&#92;nNow that the policy is created, you need to assign it to a user. Select the policy, then click the Manage user button. It will pop out a sidebar with a people search box to look up your users that you want to apply the policy to. Select Add for that user. Once you’ve added everybody, click Apply.&#92;n&#92;n![Manager users for the &#92;&quot;Freedom&#92;&quot; policy, adding the user &#92;&quot;Ryan Robinson&#92;&quot;](./add-user-teams-app-policy.png)&#92;n_Sidebar for adding users to a policy_&#92;n&#92;nThat’s it. You’ve successfully modified the default policy a bit more strict but then allowed an exception for a smaller group of users.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/microsoft-teams-app-policies/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/microsoft-teams-app-policies/index.html&quot;}
 
 
 <p>Suppose you want to lock the sidebar in Teams for some users to ensure that they don’t have different experiences, which can help with providing support and documentation as well as make sure nobody accidentally loses their easy access to the app they want to use. But you don’t want to lock all users; there are some like your IT department that might need some freedom to use their Teams differently.</p>
@@ -103,49 +104,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -160,7 +131,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -222,6 +223,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/microsoft-teams-app-policies/` was built on 2024-09-27T20:40:44.853Z -->
+		<!-- This page `/posts/2021/microsoft-teams-app-policies/` was built on 2024-09-27T20:44:09.092Z -->
 	</body>
 </html>

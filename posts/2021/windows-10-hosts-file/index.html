@@ -45,6 +45,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/windows-10-hosts-file.md&quot;,&quot;fileSlug&quot;:&quot;windows-10-hosts-file&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/windows-10-hosts-file&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-11-29T13:55:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nConfiguring a hosts file on your computer allows your browsing traffic to go to a different server than is listed by public DNS. This can be essential for a few scenarios, such as:&#92;n&#92;n1. migrating a site to a new server and needing to test it before changing the public DNS&#92;n2. development on dev/staging servers which do not have public DNS listings&#92;n&#92;n## Open the File&#92;n&#92;nThe hosts file in Windows is located at C:&#92;&#92;&#92;&#92;Windows&#92;&#92;&#92;&#92;System32&#92;&#92;&#92;&#92;drivers&#92;&#92;&#92;&#92;etc&#92;&#92;&#92;&#92;hosts. I find I routinely forget that, so I added a shortcut to my primary document folder so I can get back to it faster. To do that in Windows, browse to the folder where you want the shortcut. Right-click and select New Shortcut. In the prompt that opens, enter C:&#92;&#92;&#92;&#92;Windows&#92;&#92;&#92;&#92;System32&#92;&#92;&#92;&#92;drivers&#92;&#92;&#92;&#92;etc&#92;&#92;&#92;&#92;hosts for the location of the item. Click next, then provide it a shortcut name – that could stay simple as “hosts” or something else. Save it, and now you’re good to go.&#92;n&#92;nSide note: Linux has a similar system for overriding public DNS. The hosts file there is typically located at /etc/hosts and is structured the same way.&#92;n&#92;nYou will need to edit this file as an administrator in order to make changes. You can approach this either way:&#92;n&#92;n1. Open your text editor as an administrator initially by right-clicking on the icon to launch it and select “Run as administrator.”&#92;n2. Some editors such as Visual Studio Code will allow you to open the file first as a non-administrator, then when you try to save it will fail and prompt you if you want to save it as an administrator instead.&#92;n&#92;nSince I use VS Code for my main editor anyway, I tend to use option 2 as a bit faster most of the time.&#92;n&#92;n## File Contents&#92;n&#92;nThe contents of the file are straightforward. Each line has an IP address and at least one domain. When you view that domain in your browser, it will go to that IP address instead of checking public DNS. For example, if you want to browse your local VM at &lt;https://domain1.com&gt;, add this line:&#92;n&#92;n```text&#92;n127.0.0.1 domain1.com&#92;n```&#92;n&#92;nIf you want to have multiple domains on the same IP address, like a dev server that has a couple different test sites on it, you can structure it in one of two ways. The shorter version has one line per IP address, followed by all the domains:&#92;n&#92;n```text&#92;n127.0.0.1 domain1.com domain2.com domain3.com&#92;n```&#92;n&#92;nYou can also structure it with a new line for each domain, even if that means repeating the IP:&#92;n&#92;n```text&#92;n127.0.0.1 domain1.com&#92;n127.0.0.1 domain2.com&#92;n127.0.0.1 domain3.com&#92;n```&#92;n&#92;nIf you’re manually editing the file, you’re probably going to do the first one, since it is shorter. But the latter can be useful if you’re automating scripts that would benefit from adding a single domain as needed.&#92;n&#92;nThat’s it! It’s straightforward once you know how to do it, but it’s one of those things that is (understandably) hidden from the average user so you likely never hear about it without looking for it.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/windows-10-hosts-file/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/windows-10-hosts-file/index.html&quot;}
 
 
 <p>Configuring a hosts file on your computer allows your browsing traffic to go to a different server than is listed by public DNS. This can be essential for a few scenarios, such as:</p>
@@ -87,49 +88,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -144,7 +115,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -206,6 +207,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/windows-10-hosts-file/` was built on 2024-09-27T20:40:44.826Z -->
+		<!-- This page `/posts/2021/windows-10-hosts-file/` was built on 2024-09-27T20:44:09.072Z -->
 	</body>
 </html>

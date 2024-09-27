@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/accessibility-in-wordpress.md&quot;,&quot;fileSlug&quot;:&quot;accessibility-in-wordpress&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/accessibility-in-wordpress&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-04-16T12:59:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nAccessibility is an important part of designing a website. You want your site to be usable to as many people as possible, right? Here are some things to consider as you develop a WordPress site to make it as accessible as you can.&#92;n&#92;n## Testing with WAVE&#92;n&#92;nThe best tool for testing out a website is the WAVE evaluation tool, which is available as an extension for your browser. It will scan the code of the page and tell you any accessibility problems it finds, flagging them with different levels of seriousness. It also has a section for contrast issues when the foreground colour of text is too close to the background colour.&#92;n&#92;nNote that with WordPress WAVE will always pick up a few issues from the admin toolbar if you are logged in when you run it. That’s not great, but it’s out of the control of the site developer and it doesn’t impact regular visitors.&#92;n&#92;n## Pick a Theme&#92;n&#92;nThe theme decision will determine a lot of your site’s accessibility. Some themes have a lot of accessibility problems built right into them and it will be hard for you to change the code yourself to fix it. Take your time shopping for themes. Activate a theme and use the WAVE accessibility tool to see how well it scores. If there are little things like missing ALT text, you might be able to work around that without changing the theme, but be cautious if it has a lot of issues like inconsistent headers or a search bar without a label.&#92;n&#92;nYou may not find a theme that’s perfect, but if you put in the time, you’ll at least get pretty close.&#92;n&#92;n## Contrasting Colours&#92;n&#92;nPicking a colour scheme of a site goes beyond simply looking good. There needs to be strong enough contrast between the background colour and the foreground text colour to be sure that people with low vision can differentiate.&#92;n&#92;nThere are levels to this. Hitting the most strict AAA sometimes can be hard to do in light of other factors like brand consistency, but you want to make sure you at least hit the AA standard. The WAVE tool can help measure your contrast and even help you pick colours for stronger contrast.&#92;n&#92;n## The WP-Accessibility Plugin&#92;n&#92;nSometimes if your theme doesn’t do a great job hitting all the accessibility requirements, the WP-Accessibility plugin can help. It includes a few helpful tools like:&#92;n&#92;n- Adds the title of the blog post to the “read more” text. This helps for people with screenreaders. When all the links say “read more,” a screenreader jumping through links just says “read more” over and over again, which isn’t helpful. It’s a lot more helpful when it says “read more Accessibility in WordPress.”&#92;n- Adds an accessibility toolbar on the side of your site for adjusting font size and contrast.&#92;n- Attempts to add a label to the search bar, although I’ve had mixed success with that option.&#92;n&#92;n## Use the Right Headers&#92;n&#92;nThat covers the general site setup. Now we’re into features that anybody should consider when writing content like this blog post.&#92;n&#92;nMany people misuse header tags. They are not solely for formatting. They also help identify how content is related to each other. Your site should have an h1 tag, either for the site title or page title. Then everything below that should be an h2. Content that is a sub-category of an h2 should be identified with an h3. And so on. You shouldn’t skip tags from an h2 down to an h5, for example, or always use h2 no matter what without considering what should maybe be lower.&#92;n&#92;n## (Almost) Always Add ALT Text&#92;n&#92;nThis is the accessibility issue that most often gets discussed, but it’s still very easy to miss in WordPress. ALT text is a technique to describe what a screenreader says to a user that can’t see the picture. You should always set ALT text unless the photo is purely decorative like an icon.&#92;n&#92;nWordPress offers the option to set ALT text, but it doesn’t require it. It’s also not quite as in-your-face in the new Gutenberg block editor as it used to be in the classic WordPress editor, so it’s easy to add an image and forget to dig into the settings for the ALT text option.&#92;n&#92;nUpdate: in 2023 I wrote [another post discussing how descriptive ALT text should really be](/posts/2023/descriptive-alt/), and in some cases you may not want ALT text at all.&quot;,&quot;url&quot;:&quot;/posts/2021/accessibility-in-wordpress/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/accessibility-in-wordpress/index.html&quot;}
 
 
 <p>Accessibility is an important part of designing a website. You want your site to be usable to as many people as possible, right? Here are some things to consider as you develop a WordPress site to make it as accessible as you can.</p>
@@ -87,49 +88,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -144,7 +115,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -206,6 +207,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/accessibility-in-wordpress/` was built on 2024-09-27T20:40:44.805Z -->
+		<!-- This page `/posts/2021/accessibility-in-wordpress/` was built on 2024-09-27T20:44:09.050Z -->
 	</body>
 </html>

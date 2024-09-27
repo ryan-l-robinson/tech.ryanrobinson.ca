@@ -45,6 +45,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/sharepoint-content-types/sharepoint-content-types.md&quot;,&quot;fileSlug&quot;:&quot;sharepoint-content-types&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/sharepoint-content-types/sharepoint-content-types&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-05-24T20:22:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nContent types are one of those features of SharePoint where you can be using SharePoint for years and never notice is there. They often aren’t an absolute necessity. But they do make some things much easier. The average user may not need to be familiar with them, but administrators should be.&#92;n&#92;nThere are two major advantages to using content types: a standardized set of columns (metadata) and file templates.&#92;n&#92;n## Columns&#92;n&#92;nColumns in SharePoint are metadata about a file or about a list item. These can be of a variety of data types including yes/no fields, dropdown option lists, short text, long text, and more. The easy way to remember why they’re called columns is to imagine them in the most common view, with one row in a table for each item and a column in the table for each piece of data about that item. Once they’re all set up, columns can make a lot of things easier including seeing relevant data at a glance, searching for, sorting, and filtering the content.&#92;n&#92;nNow suppose you have 20 custom SharePoint lists that are fundamentally the same idea. Perhaps they had to be split to exist on different sites with different permissions, or perhaps they had to be split to keep each list under the 5000 limit threshold where viewing a list gets limited. They should all have the same 30 custom columns of data that needs to be tracked.&#92;n&#92;nWithout content types, the way to do this is to repeat the process creating a column on every list separately. That’s already annoying. It gets even more annoying if you have to make a change – perhaps you realize a certain column should be long text instead of short text – and go through all 20 lists again. What if you make a mistake and name the column differently on one of the 20 lists but there’s already data in it by the time you notice? That might throw off other pieces like Power Automate processes.&#92;n&#92;n![&#92;&quot;Custom columns for the Press Release content type&#92;&quot;](./custom-columns.png)&#92;n&#92;nWith content types, it gets much easier and much less error-prone. You define the columns on the content type in one place, either specific to one site or globally for all sites, and add the content types to the list/library. If globally, it can take a couple of hours to propagate to all of the lists, but that’s it. That’s the whole process.&#92;n&#92;nMost of the time the instinct with a new list or library is to add the columns directly to that list or library and completely ignore content types. That’s fine if you know if you’re never going to need the same column set on another list. But if there’s any chance you will need it again, save yourself a lot of hassle and make it a content type in the first place.&#92;n&#92;n## Templates&#92;n&#92;nThe other big selling point of content types is specific to file libraries (not lists). Suppose you have a company template that all of your press release statements start from (company letterhead, etc.).&#92;n&#92;nWithout content types with templates, your process may look something like this:&#92;n&#92;n- Keep the template starting point file in a SharePoint site where only those who need it can see it.&#92;n- Every time somebody needs it, they go find that file and make a copy of it into the new location where they need a new one.&#92;n- They are then free to edit the copied version.&#92;n&#92;nAt best this is slow, with time needed to copy the template every time. At worst, it introduces other problems: can you adequately control who can edit the template file? what if somebody accidentally starts editing the template instead of making a new copy, an easy mistake to make?&#92;n&#92;n![&#92;&quot;Advanced settings on a content type, including being able to upload a template&#92;&quot;](./advanced-settings.png)&#92;n&#92;nWith a content type, this gets much cleaner. Add the template file to the content type. Then when somebody tries to make a new item of that content type, it will start with the templated file instead of a blank document. They can edit the file from there. It’s fast and intuitive, access to editing the template is tightly controlled, and there’s no risk of somebody forgetting to copy before they dive in to edit.&#92;n&#92;n## SharePoint Syntex&#92;n&#92;nI’ll add a third point. [SharePoint Syntex](https://docs.microsoft.com/en-us/microsoft-365/contentunderstanding/#get-started) is a relatively new product offering that uses machine learning to read data from files and apply that to the columns. It’s a valuable way to help automate applying metadata to files, which is something that people tend to not enjoy doing manually. I have not extensively tested out SharePoint Syntex, but it is my understanding that the machine learning models are applied on specific content types. If you want to use this tool you’ll end up using content types whether you realize it or not.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/sharepoint-content-types/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/sharepoint-content-types/index.html&quot;}
 
 
 <p>Content types are one of those features of SharePoint where you can be using SharePoint for years and never notice is there. They often aren’t an absolute necessity. But they do make some things much easier. The average user may not need to be familiar with them, but administrators should be.</p>
@@ -84,49 +85,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -141,7 +112,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -203,6 +204,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/sharepoint-content-types/` was built on 2024-09-27T20:40:44.857Z -->
+		<!-- This page `/posts/2021/sharepoint-content-types/` was built on 2024-09-27T20:44:09.097Z -->
 	</body>
 </html>

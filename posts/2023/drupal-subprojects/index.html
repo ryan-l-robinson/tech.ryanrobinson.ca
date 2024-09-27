@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2023/drupal-subprojects.md&quot;,&quot;fileSlug&quot;:&quot;drupal-subprojects&quot;,&quot;filePathStem&quot;:&quot;/posts/2023/drupal-subprojects&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2023-07-09T19:12:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nSuppose you want to tie in another private git package, such as something that is not listed on the Drupal directory - as part of your standard build process. Here are two approaches to do that:&#92;n&#92;n## Composer&#92;n&#92;nDrupal packages are managed with a composer file. Composer files can pull from many sources. Most commonly in the case of a Drupal project, that means pulling in modules and themes from the Drupal directory. But it also includes the ability to pull in projects as zip files or a git project hosted elsewhere, even a private one.&#92;n&#92;nHere&#39;s how:&#92;n&#92;nCreate the module that you want to pull in and give it a composer.json file. Here&#39;s an example of that file:&#92;n&#92;n```json&#92;n{&#92;n  &#92;&quot;name&#92;&quot;: &#92;&quot;ryan-robinson/demo-module&#92;&quot;,&#92;n  &#92;&quot;type&#92;&quot;: &#92;&quot;drupal-module&#92;&quot;,&#92;n  &#92;&quot;description&#92;&quot;: &#92;&quot;Demo module&#92;&quot;,&#92;n  &#92;&quot;keywords&#92;&quot;: [&#92;n    &#92;&quot;Drupal&#92;&quot;,&#92;n    &#92;&quot;module&#92;&quot;&#92;n  ],&#92;n  &#92;&quot;license&#92;&quot;: &#92;&quot;GPL-2.0+&#92;&quot;,&#92;n  &#92;&quot;require&#92;&quot;: {&#92;n    &#92;&quot;drupal/core&#92;&quot;: &#92;&quot;^9.0 || ^10&#92;&quot;&#92;n  },&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;platform&#92;&quot;: {&#92;n      &#92;&quot;php&#92;&quot;: &#92;&quot;8.1&#92;&quot;&#92;n    }&#92;n  }&#92;n}&#92;n```&#92;n&#92;nAdd two things to the composer.json of your Drupal project:&#92;n&#92;nOne, you need to define the source for where to get the project:&#92;n&#92;n```json&#92;n    &#92;&quot;repositories&#92;&quot;: [&#92;n        {&#92;n            &#92;&quot;type&#92;&quot;: &#92;&quot;vcs&#92;&quot;,&#92;n            &#92;&quot;url&#92;&quot;: &#92;&quot;git@gitlab.com:ryan-robinson/demo-module.git&#92;&quot;,&#92;n            &#92;&quot;branch&#92;&quot;: &#92;&quot;main&#92;&quot;&#92;n        },&#92;n    ]&#92;n```&#92;n&#92;nSecond, you need to add it to the requirements list to pull in:&#92;n&#92;n```json&#92;n    &#92;&quot;require&#92;&quot;: {&#92;n      &#92;&quot;ryan-robinson/demo-module&#92;&quot;: &#92;&quot;dev-main&#92;&quot;&#92;n    }&#92;n```&#92;n&#92;nIf the repository is private, you&#39;ll also need an auth.json file with your personal access token. Here&#39;s an example that would work for a GitLab project:&#92;n&#92;n```json&#92;n{&#92;n    &#92;&quot;gitlab-token&#92;&quot;: {&#92;n        &#92;&quot;gitlab.com&#92;&quot;: &#92;&quot;token value&#92;&quot;&#92;n    }&#92;n}&#92;n```&#92;n&#92;n## Git Submodule&#92;n&#92;nThe other approach is to make it a git submodule.&#92;n&#92;nThe advantage of the submodule approach is if you want to be able to continue to contribute to that. You can work on the parent project and the submodule at the same time, committing them both separately. Of course that only matters I&#39;d you have permission to do so.&#92;n&#92;nThe context I&#39;ve found myself using this: when I&#39;m developing a custom Drupal module, I need a Docker devcontainer environment to work within for testing. That&#39;s one git repository. I also need a repository for the module itself, so that it will be ready to share with other Drupal projects (often using the composer technique above). This allows me to load the devcontainer, work on the module, and commit back to the module.&#92;n&#92;nThis can be done by running the `git submodule add` command, e.g.:&#92;n&#92;n```bash&#92;ngit submodule add [URL to module]&#92;n```&#92;n&#92;nThis generates a .gitmodules file at the project root that looks something like this:&#92;n&#92;n```&#92;n[submodule &#92;&quot;web/modules/custom/demo-module&#92;&quot;]&#92;n&#92;tpath = web/modules/custom/demo-module&#92;n&#92;turl = [URL to module]&#92;n```&#92;n&quot;,&quot;url&quot;:&quot;/posts/2023/drupal-subprojects/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2023/drupal-subprojects/index.html&quot;}
 
 
 <p>Suppose you want to tie in another private git package, such as something that is not listed on the Drupal directory - as part of your standard build process. Here are two approaches to do that:</p>
@@ -116,49 +117,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -173,7 +144,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -235,6 +236,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/drupal-subprojects/` was built on 2024-09-27T20:40:44.844Z -->
+		<!-- This page `/posts/2023/drupal-subprojects/` was built on 2024-09-27T20:44:09.078Z -->
 	</body>
 </html>

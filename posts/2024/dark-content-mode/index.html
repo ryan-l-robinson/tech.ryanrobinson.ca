@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2024/dark-content-mode.md&quot;,&quot;fileSlug&quot;:&quot;dark-content-mode&quot;,&quot;filePathStem&quot;:&quot;/posts/2024/dark-content-mode&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2024-02-21T21:46:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nIn case you haven&#39;t caught it yet, there&#39;s new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.&#92;n&#92;nIt&#39;s already become my default on Android Edge, inheriting that I have my device in dark mode. I haven&#39;t found it to be default on any other browser (including desktop Edge). Chrome has it as an experiment features flag in chrome://flags, so I did most of my testing by enabling that.&#92;n&#92;n## Issues Found&#92;n&#92;nThe biggest problem I found in my main work site was with images that were previously assuming white backgrounds. I found the nicest solution to that was using an SVG instead of a PNG file, which the dark content mode adapted to invert the colours quite nicely.&#92;n&#92;nThere were also some insufficient contrast I discovered, like grey borders around form text boxes, that were maybe a little weak in light mode but were barely visible in dark mode. Many of these were quickly solvable by making it a stronger contrast. For example, instead of a grey border against the white background, I made it into a black border. It content dark mode, it would flip to a white border on black background. Both modes came out looking better.&#92;n&#92;nI identified a few other contrast elements that were not quite ideal. But attempting a similar approach did not work. There were a few variations where I had black against the default light theme and trying it with the dark content mode turned it into a grey instead of a white - far from invisible, but not as strong of a contrast as I wanted. This is a new feature, not enabled by default other than that Android Edge that few people use, so I&#39;m hoping this gets cleaned up on the browser end and there isn&#39;t much else I need to do.&#92;n&#92;n## No Way to Target?&#92;n&#92;nI tried the media query for [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) but it doesn&#39;t help for this. That detects if the device prefers dark mode, not if the browser&#39;s dark content mode is on. It&#39;s nice if you want to specifically define what everything should look like in dark vs light modes. But as far as I could find, there&#39;s no way to specifically target content dark mode at this time.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2024/dark-content-mode/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2024/dark-content-mode/index.html&quot;}
 
 
 <p>In case you haven't caught it yet, there's new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.</p>
@@ -71,49 +72,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -128,7 +99,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -190,6 +191,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/dark-content-mode/` was built on 2024-09-27T20:40:44.846Z -->
+		<!-- This page `/posts/2024/dark-content-mode/` was built on 2024-09-27T20:44:09.079Z -->
 	</body>
 </html>

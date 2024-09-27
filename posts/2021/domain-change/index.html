@@ -41,6 +41,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/domain-change.md&quot;,&quot;fileSlug&quot;:&quot;domain-change&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/domain-change&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-09-19T19:46:56.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.&#92;n&#92;nWith that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.&#92;n&#92;n## Rearrange Content&#92;n&#92;nI won’t get into all the details, but I had to rearrange a bunch of the content to make sense with the new broader goal for the site: the title of the site, the content of the homepage, and so on.&#92;n&#92;n## Change Domain A Record&#92;n&#92;nTo tell the wider Internet what to do when they try to visit ryanrobinson.technology, I had to go into my DNS records for the domain. It was previously using a simple FWD record to redirect any traffic to it to alliterationapplications.com, but now I want essentially the opposite. ryanrobinson.technology needs to be hosted and alliterationapplications.com needs to redirect traffic away instead. So, I removed the FWD record and added an A record to my IP address instead.&#92;n&#92;n## Add Domain to Server Account&#92;n&#92;nI’m on a shared hosting service with a cPanel. Step one was to add the extra domain ryanrobinson.technology to the same account as alliterationapplications.com. I specified that I wanted it to be a different document root than the existing site.&#92;n&#92;nI also took advantage of the AutoSSL feature in cPanel to generate an SSL certificate for the new domain.&#92;n&#92;n## New Database&#92;n&#92;nI created a new database and new database user for the new site installation.&#92;n&#92;n## Duplicator&#92;n&#92;nI used [Duplicator](https://wordpress.org/plugins/duplicator/) to make a copy of the site and install it in a new folder.&#92;n&#92;nAt this point I had a functioning site at both domains.&#92;n&#92;n## .htaccess on Old Domain&#92;n&#92;nI then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.&#92;n&#92;nTo achieve that, I added this to the .htaccess of alliterationapplications.com&#92;n&#92;n```&#92;n&lt;pre class=&#92;&quot;wp-block-code&#92;&quot;&gt;```&#92;n&lt;IfModule mod_rewrite.c&gt;&#92;nRewriteEngine on&#92;nRewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]&#92;n&lt;/IfModule&gt;&#92;n```&#92;n&#92;n## Cleanup&#92;n&#92;nFinally, I cleaned up everything from alliterationapplications.com that I no longer needed: the database and all the files in the alliterationapplications.com document root other than the .htaccess file. That’s not truly necessary, but does keep my storage usage down.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/domain-change/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/domain-change/index.html&quot;}
 
 
 <p>This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.</p>
@@ -83,49 +84,19 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -140,7 +111,37 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -202,6 +203,6 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/domain-change/` was built on 2024-09-27T20:40:44.809Z -->
+		<!-- This page `/posts/2021/domain-change/` was built on 2024-09-27T20:44:09.054Z -->
 	</body>
 </html>

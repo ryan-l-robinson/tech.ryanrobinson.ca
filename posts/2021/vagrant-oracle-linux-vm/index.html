@@ -48,6 +48,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/vagrant-oracle-linux-vm.md&quot;,&quot;fileSlug&quot;:&quot;vagrant-oracle-linux-vm&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/vagrant-oracle-linux-vm&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-11-10T21:34:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis is the first in [a series setting up a basic DevOps pipeline](/tags/gitlab-devops/) through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.&#92;n&#92;n## Oracle Linux 8 LAMP Stack&#92;n&#92;nThe VM will be using [Vagrant ](https://www.vagrantup.com/)and [Oracle VirtualBox](https://www.virtualbox.org/). Every user will need to install both, as well as the VirtualBox extensions, for this to work.&#92;n&#92;nThe configuration for the Vagrant box can be found on [my GitHub](https://github.com/ryan-l-robinson). For the sake of this demonstration, it is a fairly simple Oracle Linux 8, using a build in the Vagrant repository.&#92;n&#92;nThe first script, provision.sh, sets up the basic VM with a LAMP stack:&#92;n&#92;n- Apache&#92;n- MySQL&#92;n- PHP 8.0&#92;n- Several PHP extensions&#92;n- [Composer](https://getcomposer.org/)&#92;n&#92;nThat’s a nice generic LAMP stack. If you want an Oracle Linux 8 LAMP stack for some other purpose, you can stop there.&#92;n&#92;n## Drupal 9 Local Dev&#92;n&#92;nIn my case, the purpose of this vagrant box is for the first stage of development on a Drupal 9 website. So I’m going to go a few steps further to get it ready for the specific Drupal 9 project. That includes:&#92;n&#92;n- Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that [it can be used to connect to GitLab](/posts/2021/web-development-workflow/)&#92;n- Configures git including pulling the latest version of the code from the GitLab&#92;n- Imports a MySQL database if one is provided&#92;n- Self-signed keys so that https browsing will be possible&#92;n&#92;nI may write up specific details of some of these later, but [the bottom line is the code in GitHub.](https://github.com/ryan-l-robinson/Oracle-Linux-LAMP) This part is in the provision script d9.sh, which also references a separate script specifically for the database import called importdb.sh.&#92;n&#92;n## The User Experience&#92;n&#92;nThe idea is that at the end of this, the person setting up their machine has very few steps:&#92;n&#92;n1. `Git clone` the repo for building the virtual machine on their PC&#92;n2. Put a copy of the database to import, if available, in the specified location&#92;n3. Put a copy of the SSH key into the specified location&#92;n4. Run `vagrant up` to build the virtual machine&#92;n5. SSH into the VM and then run the separate script for the Drupal 9 components&#92;n6. Optionally add the dev URL to the hosts file of their computer so that it is browsable at the URL and not just at localhost&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/vagrant-oracle-linux-vm/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/vagrant-oracle-linux-vm/index.html&quot;}
 
 
 <p>This is the first in <a href="/tags/gitlab-devops/">a series setting up a basic DevOps pipeline</a> through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.</p>
@@ -97,49 +98,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -154,7 +125,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -216,6 +217,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/vagrant-oracle-linux-vm/` was built on 2024-09-27T20:40:44.821Z -->
+		<!-- This page `/posts/2021/vagrant-oracle-linux-vm/` was built on 2024-09-27T20:44:09.068Z -->
 	</body>
 </html>

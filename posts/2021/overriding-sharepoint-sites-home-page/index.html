@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/overriding-sharepoint-sites-home-page/overriding-sharepoint-sites-home-page.md&quot;,&quot;fileSlug&quot;:&quot;overriding-sharepoint-sites-home-page&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/overriding-sharepoint-sites-home-page/overriding-sharepoint-sites-home-page&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-06-14T17:26:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis post continues a series on [SharePoint site provisioning](/tags/sharepoint-site-provisioning/), unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&#92;n&#92;nAt this point in the series, we’ve now created new SharePoint sites and applied temporary site scripts and site designs. There is one big feature missing from site scripts and site designs, though: templating the home page. You can’t simply say that a project site design should always contain a home page with these specific web parts. This may not be true forever – Microsoft is steadily improving site templating – but as of working on this project a few months ago, it required a bit of a workaround.&#92;n&#92;n## The Idea&#92;n&#92;nHere’s the basic idea that we’ll do to get around this:&#92;n&#92;n1. Design your homepage on some other SharePoint site, with permissions locked down so that nobody sees it or can edit it who shouldn’t.&#92;n2. Within the provisioning Flow, after the new site is created, copy the page from the template site to the new site, overriding the name of “Home” so that it takes over the homepage.&#92;n&#92;n## The Pro and Con&#92;n&#92;nThe nicest thing about this approach is that it makes it very easy to update the home page. Anybody with the permission to do so can go to that template site’s home page and edit it. That’s it. There is no PowerShell or JSON to update a site script or design.&#92;n&#92;nThe biggest negative is the other side of that coin: it requires that nobody delete or rename that homepage file on that template site and there’s no warning if somebody did try to do that. You can recover within 93 days if somebody does delete it and you notice by way of the Flow failing, but it’s still not ideal that it’s even possible for a user to do that without knowing the consequences.&#92;n&#92;n## The Copy Action&#92;n&#92;nIf you don’t already have a template site with some locked down permissions, create it and then design the homepage. This homepage can use relative web parts, like the documents library of that site.&#92;n&#92;nWhen that’s ready, it only takes a “Copy file” SharePoint action in the Flow to handle the copying. This can be a bit smoother than some previous actions which required the HTTP REST API calls. Those needed more flexibility using variables defined in the Flow. This one is copying from the same location every time, so it can stay simpler.&#92;n&#92;n![&#92;&quot;The copying task in Power Automate, described in the post.&#92;&quot;](./copy-homepage.png)&#92;n&#92;nDetails:&#92;n&#92;n- Current site address: select your template site&#92;n- File to copy: /SitePages/Home.aspx&#92;n- Destination site address: the SiteURL variable used previously, for the full URL of the new site&#92;n- Destination folder: /SitePages&#92;n- If another file is already there: Replace&#92;n&#92;nNote that this action depends on the new site already being fully created. [If you followed my previous post](/microsoft-365/power-automate/temporary-site-scripts-and-designs/), there was a delay there for the purpose of applying the site design. If you don’t already have a delay between the request to create the site and copying this file, you’ll need to add one.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/overriding-sharepoint-sites-home-page/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/overriding-sharepoint-sites-home-page/index.html&quot;}
 
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
@@ -87,49 +88,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -144,7 +115,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -206,6 +207,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/overriding-sharepoint-sites-home-page/` was built on 2024-09-27T20:40:44.856Z -->
+		<!-- This page `/posts/2021/overriding-sharepoint-sites-home-page/` was built on 2024-09-27T20:44:09.096Z -->
 	</body>
 </html>

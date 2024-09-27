@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api.md&quot;,&quot;fileSlug&quot;:&quot;power-automate-create-site-with-sharepoint-rest-api&quot;,&quot;filePathStem&quot;:&quot;/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2021-05-21T16:13:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis post continues a series on [SharePoint site provisioning](/tags/sharepoint-site-provisioning/), unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.&#92;n&#92;nThis post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.&#92;n&#92;n## Check if Site Already Exists&#92;n&#92;nThis can be done with [the SharePoint REST API](https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest) if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.&#92;n&#92;nYou will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.&#92;n&#92;nI’ll use the Get Site API call to see if the site already exists.&#92;n&#92;n![&#92;&quot;Settings for checking if site already exists&#92;&quot;](./check-site-exists.png)&#92;n&#92;nDetails:&#92;n&#92;n- Action type: Send an HTTP Request to SharePoint&#92;n- Site Address: the root site, or another site that you know already exists&#92;n- Method: GET&#92;n- URI: /&#92;&#92;_api/SPSiteManager/status?url=’https%3A%2F%2F@{variables(‘tenant’)}.sharepoint.com%2Fsites%2F@{variables(‘projectURL’)}’&#92;n- Header 1 key: accept&#92;n- Header 1 value: application/json;odata.metadata=none&#92;n- Header 2 key: odata-version&#92;n- Header 2 value: 4.0&#92;n&#92;nPart of what that returns is a SiteStatus value. A value of 0 means that it hasn’t been created yet. A value of 2 means it has. There are also two less common responses: 1 means it is currently being provisioned and 3 means there was an error provisioning the site.&#92;n&#92;nIn a more intensive real situation, I would also want to deal with those less common scenarios. But for this example, I’ll stay simple and just say that if it is 0, go ahead and make the site.&#92;n&#92;nHere’s the condition statement:&#92;n&#92;n![&#92;&quot;Condition for if site already exists&#92;&quot;](./if-site-exists.png)&#92;n&#92;nDetails:&#92;n&#92;n- First piece of equation: int(body(‘Check_if_site_already_exists’)?&#92;&#92;[‘SiteStatus’&#92;&#92;])&#92;n- Boolean test: is equal to&#92;n- Second piece of equation: 0&#92;n&#92;n## Create Site&#92;n&#92;nWe’re ready to create the site, which can also be done with REST API calls.&#92;n&#92;n![&#92;&quot;Creating a SharePoint site by REST API](./create-site.png)&#92;n&#92;nDetails:&#92;n&#92;n- Site address: root site, or some other site you already know exists&#92;n- Method: POST&#92;n- Uri: /&#92;&#92;_api/SPSiteManager/create&#92;n- Header 1 key: accept&#92;n- Header 1 value: application/json;odata.metadata=none&#92;n- Header 2 key: odata-version&#92;n- Header 2 value: 4.0&#92;n- Body:&#92;n&#92;n````json&#92;n&#92;&quot;request&#92;&quot;: {&#92;n&#92;&quot;Url&#92;&quot;:&#92;&quot;@{variables(&#39;siteURL&#39;)}&#92;&quot;,&#92;n&#92;&quot;Title&#92;&quot;:&#92;&quot;@{variables(&#39;projectName&#39;)}&#92;&quot;,&#92;n&#92;&quot;Description&#92;&quot;:&#92;&quot;Project site for: @{variables(&#39;projectName&#39;)}&#92;&quot;,&#92;n&#92;&quot;Lcid&#92;&quot;:1033,&#92;n&#92;&quot;WebTemplate&#92;&quot;:&#92;&quot;STS#3&#92;&quot;&#92;n}&#92;n````&#92;n&#92;nYou can customize details from here, like adding error checking for the other site statuses, added an owner to the site you create, changing the template of the site, and so on.&#92;n&#92;nThe next post in this series will work on adding temporary site scripts and designs for the new site.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/index.html&quot;}
 
 
 <p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
@@ -114,49 +115,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -171,7 +142,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -233,6 +234,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/` was built on 2024-09-27T20:40:44.856Z -->
+		<!-- This page `/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/` was built on 2024-09-27T20:44:09.096Z -->
 	</body>
 </html>

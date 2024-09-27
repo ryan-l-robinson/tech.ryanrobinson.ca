@@ -51,6 +51,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-gitpod-container-1-dockerfile.md&quot;,&quot;fileSlug&quot;:&quot;drupal-gitpod-container-1-dockerfile&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-gitpod-container-1-dockerfile&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-01-20T16:00:48.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;n[GitPod](https://gitpod.io) is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with [Visual Studio Code](/tags/visual-studio-code/) – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.&#92;n&#92;nIn this [mini-series](/tags/gitpod-drupal/) I describe how I created a generic Drupal-friendly container working with GitPod. [It is available in my GitHub](https://github.com/ryan-l-robinson/Drupal-GitPod). Note that since this is some code I may continue using over time, the code there may change beyond what is covered in this article.&#92;n&#92;n## The Dockerfile&#92;n&#92;nThis solution starts from [the GitPod-provided MySQL image](https://github.com/gitpod-io/workspace-images/blob/master/mysql/Dockerfile). That does not give everything you need for a functioning Drupal site, but it does meet the basics of a LAMP stack.&#92;n&#92;n```Dockerfile&#92;nFROM gitpod/workspace-mysql&#92;n```&#92;n&#92;nThe biggest catch with using this image is that you might end up with the latest PHP version, and there’s a good chance that your Drupal site doesn’t support that yet. So you probably want to add a section to change the PHP to one that you know currently works:&#92;n&#92;n```Dockerfile&#92;nRUN update-alternatives --set php /usr/bin/php8.0&#92;n```&#92;n&#92;nThat doesn’t cover everything, though. There are a few more things I want for every Drupal 9+ site.&#92;n&#92;n### PHP packages&#92;n&#92;nHere’s how to add PHP packages needed within an Ubuntu Dockerfile, as well as APCU and uploadprogress which are also recommended by Drupal. I wrote recently about [installing PECL UploadProgress for Oracle Linux](/posts/2021/drupal-pecl-uploadprogress/), which is similar but a bit different than these Ubuntu commands.&#92;n&#92;n```Dockerfile&#92;nUSER root&#92;n# Install other needed packages&#92;nRUN apt update&#92;nRUN apt install -y php-pear php-apcu php-json php-xdebug build-essential mysql-client sendmail&#92;nRUN pecl install apcu&#92;nRUN pecl install uploadprogress&#92;n```&#92;n&#92;n### Composer&#92;n&#92;nDrupal can work without composer, [but your life is going to be a lot easier with it](https://www.drupal.org/docs/develop/using-composer/using-composer-with-drupal). Here’s how I added that to my Dockerfile:&#92;n&#92;n```Dockerfile&#92;n# Install latest composer&#92;nRUN php -r &#92;&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#92;&quot;&#92;nRUN php -r &#92;&quot;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); } echo PHP_EOL;&#92;&quot;&#92;nRUN php composer-setup.php --install-dir /usr/bin --filename composer&#92;nRUN php -r &#92;&quot;unlink(&#39;composer-setup.php&#39;);&#92;&quot;&#92;n```&#92;n&#92;nAt this point, the server is ready to provide the core packages that run Drupal well.&#92;n&#92;n## Pa11y accessibility testing&#92;n&#92;n[I’ve also mentioned pa11y recently](/posts/2021/pa11y-ci-oracle-linux-8-installation/), the accessibility testing tool. I always want that available. Here’s how to do that in this Ubuntu-based Dockerfile:&#92;n&#92;n```Dockerfile&#92;n# Install pa11y accessibility testing tool, including NodeJS&#92;nRUN curl -sL https://deb.nodesource.com/setup_16.x -o # Install pa11y accessibility testing tool, including NodeJS and Chromium&#92;nRUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh&#92;nRUN bash nodesource_setup.sh&#92;nRUN apt-get install -y nodejs libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm-amdgpu1 libxkbcommon-x11-0 libxcomposite-dev libxdamage-dev libxrandr-dev libgbm-dev libgtk-3-common libxshmfence-dev software-properties-common&#92;nRUN apt-get install -y apparmor snapd apparmor-profiles-extra apparmor-utils kdialog chromium-browser libappindicator1 fonts-liberation&#92;nRUN npm install pa11y -g --unsafe-perm=true --allow-root&#92;n```&#92;n&#92;n### Ports&#92;n&#92;nFinally, I’m going to open the standard ports: 80 (HTTP), 443 (HTTPS), and 3306 (MySQL). This doesn’t seem to be actually necessary but it can help to remind yourself what ports you’re using.&#92;n&#92;n```Dockerfile&#92;nEXPOSE 80&#92;nEXPOSE 443&#92;nEXPOSE 3306&#92;n```&#92;n&#92;n## What’s Next&#92;n&#92;nIn an upcoming post, I’ll continue with the other large file to make this work: the .gitpod.yml. A third post will cover a few smaller changes I had to make to other configuration.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-gitpod-container-1-dockerfile/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-gitpod-container-1-dockerfile/index.html&quot;}
 
 
 <p><a href="https://gitpod.io">GitPod</a> is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with <a href="/tags/visual-studio-code/">Visual Studio Code</a> – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.</p>
@@ -108,49 +109,19 @@ EXPOSE 3306</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -165,7 +136,37 @@ EXPOSE 3306</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -227,6 +228,6 @@ EXPOSE 3306</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-27T20:40:44.833Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-1-dockerfile/` was built on 2024-09-27T20:44:09.042Z -->
 	</body>
 </html>

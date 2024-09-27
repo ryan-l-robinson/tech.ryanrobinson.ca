@@ -49,6 +49,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-gitpod-container-2-gitpod-yml.md&quot;,&quot;fileSlug&quot;:&quot;drupal-gitpod-container-2-gitpod-yml&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-gitpod-container-2-gitpod-yml&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-01-28T13:17:00.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis post picks up in a [mini-series](/tags/gitpod-drupal/) describing how I created a generic Drupal-friendly container working with [GitPod](https://gitpod.io). The [first covered the GitPod.Dockerfile](/posts/2022/drupal-gitpod-container-1-dockerfile/) to build the core LAMP stack image.&#92;n&#92;n[The entire project is available in my GitHub](https://github.com/ryan-l-robinson/Drupal-GitPod).&#92;n&#92;nMore of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.&#92;n&#92;n```yml&#92;nimage:&#92;n  file: .gitpod/GitPod.Dockerfile&#92;n```&#92;n&#92;n## Tasks&#92;n&#92;nIt then runs a handful of tasks, split into two sections. The tasks under “init” will run only when the container is created for the first time. The tasks under “command” will run every time the container is started, even if you’re re-opening an existing container.&#92;n&#92;n### Create the database&#92;n&#92;nCreating the database is straightforward and familiar enough to any who have used MySQL from a command line before:&#92;n&#92;n```bash&#92;nsudo mysql -e &#92;&quot;CREATE DATABASE IF NOT EXISTS drupal&#92;&quot;&#92;n```&#92;n&#92;n### Install codebase&#92;n&#92;nThe contributed codebase can be built using composer install:&#92;n&#92;n```bash&#92;ncomposer install&#92;n```&#92;n&#92;nI’m also going to copy the settings file into place:&#92;n&#92;n```bash&#92;nsudo cp .gitpod/drupal.settings.php web/sites/default/settings.php&#92;n```&#92;n&#92;nThat settings file includes several alterations including where to find the configuration and content sync directories, how to connect to the database, and which URL is allowed to login from. Most of it will be familiar to those who have used Drupal settings files before, but I will cover anything unique in my next post for this series.&#92;n&#92;n### Drupal Settings and Content&#92;n&#92;nThis is the hardest part of working with Drupal websites. All of the configuration and content is held in the database, not the codebase. Drupal (since 8) offers a configuration sync tool out of the box, and a content sync tool as a module. Broadly speaking, the configuration tool is usually pretty reliable, while the content tool has had some occasional glitches in my time using it.&#92;n&#92;nI install the site using [the drush site-install tool](https://www.drush.org/latest/commands/site_install/):&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush -y site-install minimal --existing-config&#92;n```&#92;n&#92;nThe key there is the –existing-config tag. This starts the installation using the configuration details you already have in the configuration sync folder. The main thing this accomplishes is keeping the UUID of the site in sync. Config sync and content sync will not work if the UUIDs don’t match.&#92;n&#92;nNow the content sync will also work:&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush -y content-sync:import --entity-types=block_content,file,node&#92;n```&#92;n&#92;nThe reason I added the –entity-types instead of simply importing all entity types was because of some experiences with [menu&#92;&#92;_entity&#92;&#92;_index](https://www.drupal.org/project/menu_entity_index). I won’t get into those details here, but that created another entity type for menu links, which tended to not synchronize very well mainly because the content sync does not sync the node ID of each content. That meant that a page might have a different ID on one installation from the content sync than on another. Menu items were then pointing to the node ID, which is now different content, and it created some nasty URL aliases.&#92;n&#92;nSimilarly related to the node ID sync is the homepage. The configuration is saved with specifying which piece of content is the homepage using the link to the node ID. But that might no longer be the content you want on the homepage. To solve this, I added a query to find my real homepage and set it again each time:&#92;n&#92;n```bash&#92;nhome_id=$(vendor/drush/drush/drush sql-query &#39;SELECT nid FROM node_field_data where type=&#92;&quot;home&#92;&quot; and status=&#92;&quot;1&#92;&quot; and title=&#92;&quot;Home&#92;&quot; limit 1;&#39;)&#92;nif [[ ! -z ${home_id} ]]&#92;nthen&#92;n    vendor/drush/drush/drush cset -y system.site page.front /node/$home_id&#92;nfi&#92;n```&#92;n&#92;nThe key for that structure to be maintained is that the homepage is of the content type “Home” and with the title of “Home.” If that isn’t met, this workaround will fail.&#92;n&#92;n### Admin Password&#92;n&#92;nBy default, the site install at this point created a default super-admin user with a random password. For the purpose of this demo, I wanted to control what that admin password was so I could put it in the GitHub README and keep it saved in my [password manager](https://ryanrobinson.technology/all/tools/security-essentials-password-manager/). So, I used drush to always reset the admin password back to what I wanted it to be:&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush user:password admin &#92;&quot;ZNB*ufm1tyz4rwc@yzk&#92;&quot;&#92;n```&#92;n&#92;n### Cleanup&#92;n&#92;nThere are two more small acts of clean up that I want, to minimize warning errors that would otherwise appear as soon as I sign in. One is to rebuild the content permissions and the other is to run cron.&#92;n&#92;n```bash&#92;nvendor/drush/drush/drush php-eval &#39;node_access_rebuild();&#39;&#92;nvendor/drush/drush/drush cron&#92;n```&#92;n&#92;n### Drush Alias&#92;n&#92;nI want to be able to use the command `drush` instead of always having to reference the full path to drush, as I did above. So I add an alias to my .bashrc. You can also do this by adding the location of drush to the PATH. Arguably that is more correct but this was simpler in a GitPod scenario where containers are constantly being built and destroyed and so don’t always have to be precisely the long-term ideal.&#92;n&#92;n```bash&#92;necho &#39;alias drush=&#92;&quot;/workspace/drupal-gitpod/vendor/drush/drush/drush&#92;&quot;&#39; &gt;&gt; ~/.bashrc&#92;n```&#92;n&#92;n### Command&#92;n&#92;nThe command tasks accomplish two simple things: start Apache, and source the bashrc to make sure it notices the drush alias.&#92;n&#92;n```bash&#92;nsource ~/.bashrc&#92;napachectl start&#92;n```&#92;n&#92;n## Ports&#92;n&#92;nThe GitPod.yml file optionally defines ports and what to do when they open. You don’t need to have this section. The ports will open either way. But it can be nice to specify in advance what you want to do when each port opens. In this case, I’m ignoring everything except for 8001, which I will open in the browser, since that is the port for the Apache access. If you don’t specify, it will give you a popup with each port opened asking what you want to do, so this saves some time.&#92;n&#92;n```gitpod&#92;nports:&#92;n  - port: 8001&#92;n    onOpen: open-browser&#92;n  - port: 8828&#92;n    onOpen: ignore&#92;n  - port: 8829&#92;n    onOpen: ignore&#92;n  - port: 3306&#92;n    onOpen: ignore&#92;n```&#92;n&#92;n## GitHub&#92;n&#92;nThis section starts with a somewhat misleading key “github.” These functions are not exclusive to GitHub – they can be used with any of the supported version control platforms with GitLab and Bitbucket as well. The main valuable thing here to me is defining prebuilds, which enables GitPod to start building the new image as soon as code changes are submitted to the repository. That saves time when you’re ready to start working and it’s already good to go, instead of waiting a few minutes.&#92;n&#92;n```gitpod&#92;ngithub:&#92;n  prebuilds:&#92;n    master: true&#92;n    branches: true&#92;n    pullRequests: true&#92;n    pullRequestsFromForks: true&#92;n    addCheck: true&#92;n    addComment: false&#92;n    addBadge: true&#92;n    addLabel: true&#92;n```&#92;n&#92;n## Extensions&#92;n&#92;nThe final section of this file is to install [VS Code](/tags/visual-studio-code/) extensions. There is one big qualifier here: it can only install extensions that are available in [the Open VSX registry](https://open-vsx.org/). This may not be everything available for VS Code, with the most notable exclusion for me being [GitHub Copilot](/websites/github-copilot/).&#92;n&#92;nHere’s my Drupal 9 friendly set of extensions:&#92;n&#92;n```gitpod&#92;nvscode:&#92;n  extensions:&#92;n    - eamodio.gitlens&#92;n    - skippednote.VS-code-drupal&#92;n    - cweijan.vscode-mysql-client2&#92;n    - esbenp.prettier-vscode&#92;n    - gruntfuggly.todo-tree&#92;n    - mblode.twig-language&#92;n    - vscode-icons-team.vscode-icons&#92;n```&#92;n&#92;n## Almost There…&#92;n&#92;nIn the last post of this series, I’ll look at a few other configuration changes I needed to make for this to work.&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-gitpod-container-2-gitpod-yml/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-gitpod-container-2-gitpod-yml/index.html&quot;}
 
 
 <p>This post picks up in a <a href="/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
@@ -148,49 +149,19 @@ apachectl start</code></pre>
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -205,7 +176,37 @@ apachectl start</code></pre>
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -267,6 +268,6 @@ apachectl start</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2024-09-27T20:40:44.833Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2024-09-27T20:44:09.043Z -->
 	</body>
 </html>

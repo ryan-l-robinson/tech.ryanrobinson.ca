@@ -46,6 +46,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/drupal-sync-content.md&quot;,&quot;fileSlug&quot;:&quot;drupal-sync-content&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/drupal-sync-content&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-05-26T19:31:19.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nI have [previously covered syncing configuration across Drupal](/posts/2022/drupal-sync-configuration/). But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc. &#92;n&#92;nThere is [an extra module available called content_sync](https://www.drupal.org/project/content_sync). Unfortunately, it is not a very reliable extra module, at least in my configuration. With that said, I will still share the main extra consideration to take into your plans.&#92;n&#92;nThe caveat for this is that it gets a bit more complicated in most regular usage than configuration, because content changes can happen in both directions.&#92;n&#92;nSome changes will happen in the same direction as code changes and most configuration changes, especially in the early stages of the project before production is launched: first it gets changed on the local development system, then pushed through the stages to get to production.&#92;n&#92;nAfter a site is launched, often the changes in content are being made by regular users on the production site. Maybe in your context the only content editors are also the website administrators, in which case this isn’t a concern, but often you’ll need to navigate how to make sure you don’t get conflicts.&#92;n&#92;nIn our case, in the early stage I did have content changes going the same direction as configuration:&#92;n&#92;n1. Add content on my local Docker container&#92;n2. Export the content&#92;n3. Push the content sync files through to GitLab, which continues the CI/CD processes to the next server&#92;n4. The CI/CD imports the content on the next server&#92;n&#92;nIt started to break down around the same time that we let beta testers onto the dev server. I did warn the beta testers that this is a playground server to try things and try to find bugs, not a server to finalize content, with it in mind that I would likely be overriding content with my usual daily changes. But content_sync completely stopped working around the same time, so I made the call that I would stop using it instead.&#92;n&#92;nI am still loosely keeping an eye on that module&#39;s development. I would like to have it for the occasional manual sync requirements between servers.&#92;n&quot;,&quot;url&quot;:&quot;/posts/2022/drupal-sync-content/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/drupal-sync-content/index.html&quot;}
 
 
 <p>I have <a href="/posts/2022/drupal-sync-configuration/">previously covered syncing configuration across Drupal</a>. But configuration is not everything in the database. The other half of the picture is the content: nodes, custom blocks, menu items, files, etc.</p>
@@ -77,49 +78,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -134,7 +105,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -196,6 +197,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-sync-content/` was built on 2024-09-27T20:40:44.836Z -->
+		<!-- This page `/posts/2022/drupal-sync-content/` was built on 2024-09-27T20:44:09.044Z -->
 	</body>
 </html>

@@ -48,6 +48,7 @@
 </div>
 
 
+{&quot;inputPath&quot;:&quot;./content/posts/2022/gitlab-devops-deploy-server.md&quot;,&quot;fileSlug&quot;:&quot;gitlab-devops-deploy-server&quot;,&quot;filePathStem&quot;:&quot;/posts/2022/gitlab-devops-deploy-server&quot;,&quot;outputFileExtension&quot;:&quot;html&quot;,&quot;templateSyntax&quot;:&quot;njk,md&quot;,&quot;date&quot;:&quot;2022-12-30T20:45:05.000Z&quot;,&quot;rawInput&quot;:&quot;&#92;nThis continues with [the long-stalled GitLab DevOps series](/tags/gitlab-devops/). An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.&#92;n&#92;nYou will first need [a GitLab runner](/posts/2022/gitlab-devops-gitlab-runner/) on the server you want to deploy to.&#92;n&#92;nAs with the earlier post on [PHP linting within GitLab CI/CD](/posts/2022/gitlab-devops-php-lint/), in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in [one project of my GitHub](https://github.com/ryan-l-robinson/GitLab-CI-CD).&#92;n&#92;n## Deploy.yml&#92;n&#92;nThe deploy file provides you a baseline template for deploying code changes, which is in the general CI/CD functionality project. Here&#39;s what that might look like:&#92;n&#92;n```yml&#92;n## Deploy Jobs ##&#92;nvariables:&#92;n  ENVIRONMENT_NAME: &#92;&quot;dev&#92;&quot;&#92;n  SERVER_URL: &#92;&quot;&#92;&quot;&#92;n  WEB_ROOT: &#92;&quot;/opt/www/html&#92;&quot;&#92;n&#92;n### Generic deploy to specified server ###&#92;n.deploy_template:&#92;n  stage: deploy&#92;n  environment:&#92;n    name: $ENVIRONMENT_NAME&#92;n    url: $SERVER_URL&#92;n  script:&#92;n    - echo &#92;&quot;Deploying to server at $SERVER_URL&#92;&quot;&#92;n    - cd $WEB_ROOT&#92;n    - git fetch&#92;n    - git reset --hard&#92;n    - git stash&#92;n    - git pull&#92;n```&#92;n&#92;n## Project .gitlab-ci.yml&#92;n&#92;nThe other key component is the project&#39;s file to extend this deploy job. &#92;n&#92;nStart the project&#39;s .gitlab-ci.yml file with including the deploy file from the other project. In a scenario where that is a different project but accessible to the same GitLab user, it would look like this, assuming the project is called gitlab-ci:&#92;n&#92;n```yml&#92;n# Includes general CI jobs&#92;ninclude:&#92;n  - project: &#92;&quot;[group path to project]/gitlab-ci&#92;&quot;&#92;n    ref: main&#92;n    file: deploy.yml&#92;n```&#92;n&#92;nThis will now give you the freedom to extend jobs found in the deploy.yml file of the main branch on the gitlab-ci project.&#92;n&#92;nAdd deploy as a stage for your project:&#92;n&#92;n```yml&#92;nstages:&#92;n  - test&#92;n  - deploy&#92;n```&#92;n&#92;nFinally, define the job(s) that use(s) the general deploy functionality, passing in the needed variables:&#92;n&#92;n```yml&#92;n## Deploy Jobs ##&#92;n&#92;n### Deploys to dev server only when changes are made to the dev branch ###&#92;ndeploy_dev:&#92;n  extends:&#92;n    - .deploy_template&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Development&#92;n    SERVER_URL: [dev url]&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - [dev GitLab runner tag]&#92;n  only:&#92;n    refs:&#92;n      - dev&#92;n&#92;n### Deploys to staging server only when changes are made to the main branch ###&#92;ndeploy_staging:&#92;n  extends:&#92;n    - .deploy_template&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Development&#92;n    SERVER_URL: [dev url]&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - [staging GitLab runner tag]&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n&#92;n### Deploys to production only when main branch and manually triggered ###&#92;ndeploy_prod1:&#92;n  extends:&#92;n    - .deploy_template&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Production 1&#92;n    SERVER_URL: [production 1 URL]&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - [prod 1 GitLab runner tag]&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n  when: manual&#92;n&#92;ndeploy_prod2:&#92;n  extends:&#92;n    - .deploy_template&#92;n  variables:&#92;n    ENVIRONMENT_NAME: Production 2&#92;n    SERVER_URL: [production 2 URL]&#92;n    WEB_ROOT: /opt/www/html&#92;n  tags:&#92;n    - [prod 2 GitLab runner tag]&#92;n  only:&#92;n    refs:&#92;n      - main&#92;n  when: manual&#92;n```&#92;n&#92;nYou will need one of these types of jobs for each server to deploy to, with each&#39;s corresponding variables. This demo includes a dev server, a staging server, and two production servers.&#92;n&#92;n## Project Access Token&#92;n&#92;nFor this to work smoothly, you can use a project access token. This is a unique token that can be set up on a project – essentially a service account – rather than the connection being tied to a particular user. This is helpful to avoid problem scenarios like a sudden change of staff when the deploy was set up using the former staff&#39;s account that no longer exists.&#92;n&#92;nCreate a project token by going to the project -&amp;gt; Settings -&amp;gt; Project Access Tokens. Name the token something descriptive for the server that will be using it, e.g. Dev Server. Specify the permissions for that token. Within this workflow I&#39;ve been walking through here, that is only read access so it can pull within the deployment job. It does not need to be able to write back to the GitLab project, since code changes will always start at local and push through, never the other way around.&#92;n&#92;nNow when you clone the project or add remote for the new server, add it using a variation on the https format rather than the SSH format:&#92;n&#92;n```&#92;nhttps://oauth2:[token]@[GitLab project address]&#92;n```&#92;n&#92;n## Next: Drupal Configuration&#92;n&#92;nThis deploys code changes to the servers. You quite possibly need more actions to take place, like database updates, depending on what platform you&#39;re using. In my context of developing this for Drupal, there are several more steps needed. Those will be covered in the next post in this series.&quot;,&quot;url&quot;:&quot;/posts/2022/gitlab-devops-deploy-server/&quot;,&quot;outputPath&quot;:&quot;./_site/posts/2022/gitlab-devops-deploy-server/index.html&quot;}
 
 
 <p>This continues with <a href="/tags/gitlab-devops/">the long-stalled GitLab DevOps series</a>. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.</p>
@@ -170,49 +171,19 @@
 	<ul class="tags-list">
 	
 		
-		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
-	
-		
-		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
-	
-		
-		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
-	
-		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
-	
-		
-		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
-	
-		
-		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
-	
-		
 		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (32)</li>
-	
-		
-		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
-	
-		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
 	
 		
 		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
 	
 		
-		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
-	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
-	
-		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (14)</li>
 	
 		
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
@@ -227,7 +198,37 @@
 		<li><a href="/tags/gitpod-drupal/" class="post-tag">GitPod Drupal</a> (3)</li>
 	
 		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
+	
+		
+		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (6)</li>
+	
+		
+		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (5)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (9)</li>
+	
+		
+		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (7)</li>
 	
 		
 		<li><a href="/tags/movie-directory/" class="post-tag">Movie Directory</a> (4)</li>
@@ -289,6 +290,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/gitlab-devops-deploy-server/` was built on 2024-09-27T20:40:44.838Z -->
+		<!-- This page `/posts/2022/gitlab-devops-deploy-server/` was built on 2024-09-27T20:44:09.045Z -->
 	</body>
 </html>
