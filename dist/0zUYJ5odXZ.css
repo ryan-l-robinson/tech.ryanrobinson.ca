@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 20 }
+.postlist { counter-reset: start-from 6 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -61,7 +61,7 @@
 	color: var(--white);
 }
 
-.pager li a[aria-current="page"] {
+.pager .current-page {
 	text-decoration: none;
 	background-color: var(--grey);
 	color: var(--black);
