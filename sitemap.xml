@@ -697,47 +697,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/wordpress/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/drupal/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
 		<lastmod>2024-09-27</lastmod>
 	</url>
 	
@@ -747,27 +707,17 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-700/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/gitlab-devops/</loc>
-		<lastmod>2024-09-27</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/static-sites/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/accessibility/</loc>
 		<lastmod>2024-09-27</lastmod>
 	</url>
 	
@@ -792,7 +742,57 @@
 	</url>
 	
 	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/security/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/tech-and-society/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/gitlab-devops/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/wordpress/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
+		<lastmod>2024-09-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/ms-700/</loc>
 		<lastmod>2024-09-27</lastmod>
 	</url>
 	
