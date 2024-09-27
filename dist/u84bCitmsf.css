@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 20 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -52,7 +52,6 @@
 	height: fit-content;
 }
 
-.pager li.current-page,
 .pager li a {
 	border: 1px solid var(--grey);
 	padding: 0.5em;
@@ -69,7 +68,7 @@
 	color: var(--white);
 }
 
-.pager .current-page {
+.pager li a[aria-current="page"] {
 	background-color: var(--grey);
 	color: var(--black);
 }
