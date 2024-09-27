@@ -54,6 +54,7 @@
 .pager li a {
 	padding: 0.5em;
 	background-color: var(--blue);
+	line-height: 1em;
 	text-decoration: none;
 }
 

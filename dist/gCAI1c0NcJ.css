@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 12 }
+.postlist { counter-reset: start-from 4 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -55,6 +55,7 @@
 .pager li a {
 	padding: 0.5em;
 	background-color: var(--blue);
+	line-height: 1em;
 	text-decoration: none;
 }
 
