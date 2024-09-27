@@ -1,3 +1,7 @@
+.main-wrapper {
+	background-color: var(--grey);
+}
+
 main {
     display: flex;
     flex-direction: row-reverse;
