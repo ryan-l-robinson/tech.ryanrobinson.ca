@@ -47,12 +47,16 @@
 	list-style: none;
 }
 
+.pager li.current-page,
 .pager li a {
 	border: 1px solid var(--grey);
 	padding: 0.5em;
-	background-color: var(--blue);
-	line-height: 1em;
 	text-decoration: none;
+	line-height: 1em;
+}
+
+.pager li a {
+	background-color: var(--blue);
 }
 
 .pager li a:is(:hover,:focus) {
@@ -61,7 +65,6 @@
 }
 
 .pager .current-page {
-	text-decoration: none;
 	background-color: var(--grey);
 	color: var(--black);
 }
