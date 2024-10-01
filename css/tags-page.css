@@ -1,0 +1,17 @@
+/** Aligns with the tags.njk page **/
+.tags-list {
+	columns: 3;
+}
+
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 60em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
+}
