@@ -805,11 +805,6 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/gitlab-devops/</loc>
-		<lastmod>2024-10-01</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/</loc>
 		<lastmod>2024-10-01</lastmod>
 	</url>
@@ -875,9 +870,6 @@
 		
 		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (5)</li>
 	
-		
-		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (2)</li>
-	
 	</ul>
 </aside>
 				</div>
@@ -935,6 +927,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/sitemap.xml` was built on 2024-10-01T18:28:32.071Z -->
+		<!-- This page `/sitemap.xml` was built on 2024-10-01T18:30:27.296Z -->
 	</body>
 </html>
