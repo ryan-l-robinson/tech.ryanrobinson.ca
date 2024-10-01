@@ -1,42 +1,9 @@
+/** Styles common to main, whether it has a sidebar or not **/
 .main-wrapper {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 	background-color: var(--grey);
-}
-
-main {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    flex-wrap: wrap;
-	width: 100%;
-	max-width: var(--max-width);
-	padding: var(--main-gutter-y) var(--main-gutter-x);
-    background-color: var(--background-color);
-}
-
-/** Sidebar **/
-.sidebar {
-	width: 30%;
-	padding: 1em 1em 0 0;
-}
-
-.sidebar-block {
-	border: 1px dashed var(--red);
-	padding: 0.5em;
-}
-
-/** Main content **/
-.main-content {
-    width: 70%;
-}
-
-@media(max-width: 60em) {
-    .sidebar,
-    .main-content {
-        width: 100%;
-    }
 }
 
 main :first-child {
