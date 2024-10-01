@@ -1,3 +1,97 @@
+.postlist { counter-reset: start-from 11 }
+/** Styles only needed for the views summarizing multiple posts */
+
+.postlist {
+	list-style: none;
+	padding: 0;
+}
+.postlist-item {
+	display: block;
+	margin: 1em 0;
+	border-bottom: 1px dashed var(--red);
+	padding: 0 0 1em 0;
+}
+
+.postlist-item-title {
+	margin-bottom: 0;
+	padding-bottom: 0.25em;
+	line-height: 1.4em;
+}
+
+.postlist-metadata {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+	gap: .5em 3em;
+	padding: 0;
+	margin: 0.5em 0;
+}
+.postlist-metadata p {
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+.postlist-tag {
+	text-transform: capitalize;
+}
+
+.postlist-item :last-child {
+	margin-bottom: 0;
+}
+
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1em;
+	margin: 0;
+	padding: 1em;
+	list-style: none;
+}
+
+.pager li {
+	height: fit-content;
+}
+
+.pager li a {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+	text-decoration: none;
+	line-height: 1em;
+}
+
+.pager li a {
+	background-color: var(--blue);
+}
+
+.pager li a:is(:hover,:focus) {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.pager li a[aria-current="page"] {
+	background-color: var(--grey);
+	color: var(--black);
+}
+/* Message Box */
+.message-box {
+	--color-message-box: #ffc;
+
+	display: block;
+	background-color: var(--color-message-box);
+	color: var(--color-gray-90);
+	padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.message-box ol {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.message-box {
+		--color-message-box: #082840;
+	}
+}
 /* Variables and general site-wide styles */
 :root {
     --white: #ffffff;
@@ -146,6 +240,13 @@ header .top-nav .top-nav-list .nav-item a:not([aria-current="page"]):is(:focus,:
 	background-color: var(--grey);
 }
 
+main {
+    width: 100%;
+	max-width: var(--max-width);
+	padding: var(--main-gutter-y) var(--main-gutter-x);
+    background-color: var(--background-color);
+}
+
 main :first-child {
 	margin-top: 0;
 }
@@ -185,7 +286,36 @@ a[href].header-anchor:focus,
 h2 + .header-anchor {
 	font-size: 1.5em;
 }
-/** Styles used on main section for pages that don't have a sidebar **/
+/** Styles for main with a sidebar (most pages) **/
+main.main-sidebar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/** Sidebar **/
+.sidebar {
+	width: 30%;
+	padding: 1em 1em 0 0;
+}
+
+.sidebar-block {
+	border: 1px dashed var(--red);
+	padding: 0.5em;
+}
+
+/** Main content **/
+.main-content {
+    width: 70%;
+}
+
+@media(max-width: 60em) {
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
+}
 footer {
     width: 100%;
     padding: 1em var(--main-gutter-x);
@@ -205,6 +335,25 @@ footer p a {
 footer p a:is(:hover,:focus) {
     background-color: var(--white);
     color: var(--blue);
+}
+/** Aligns with the tagslist.njk include **/
+.tags-list {
+	margin-bottom: 0;
+	padding-left: 1em;
+	columns: 1;
+}
+
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 60em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
 }
 /** Aligns with the sociallinks.njk include file **/
 .social-links {

@@ -4,10 +4,6 @@ main.main-sidebar {
     flex-direction: row-reverse;
     justify-content: space-between;
     flex-wrap: wrap;
-	width: 100%;
-	max-width: var(--max-width);
-	padding: var(--main-gutter-y) var(--main-gutter-x);
-    background-color: var(--background-color);
 }
 
 /** Sidebar **/

@@ -6,6 +6,13 @@
 	background-color: var(--grey);
 }
 
+main {
+    width: 100%;
+	max-width: var(--max-width);
+	padding: var(--main-gutter-y) var(--main-gutter-x);
+    background-color: var(--background-color);
+}
+
 main :first-child {
 	margin-top: 0;
 }
