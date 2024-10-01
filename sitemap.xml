@@ -785,16 +785,6 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-101/</loc>
-		<lastmod>2024-10-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/ms-700/</loc>
-		<lastmod>2024-10-01</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
 		<lastmod>2024-10-01</lastmod>
 	</url>
@@ -816,11 +806,6 @@
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/gitlab-devops/</loc>
-		<lastmod>2024-10-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/sharepoint-site-provisioning/</loc>
 		<lastmod>2024-10-01</lastmod>
 	</url>
 	
@@ -879,12 +864,6 @@
 		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
 	
 		
-		<li><a href="/tags/ms-101/" class="post-tag">MS-101</a> (2)</li>
-	
-		
-		<li><a href="/tags/ms-700/" class="post-tag">MS-700</a> (3)</li>
-	
-		
 		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (12)</li>
 	
 		
@@ -898,9 +877,6 @@
 	
 		
 		<li><a href="/tags/gitlab-devops/" class="post-tag">GitLab DevOps</a> (2)</li>
-	
-		
-		<li><a href="/tags/sharepoint-site-provisioning/" class="post-tag">SharePoint Site Provisioning</a> (1)</li>
 	
 	</ul>
 </aside>
@@ -959,6 +935,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/sitemap.xml` was built on 2024-10-01T18:25:40.062Z -->
+		<!-- This page `/sitemap.xml` was built on 2024-10-01T18:28:32.071Z -->
 	</body>
 </html>
