@@ -736,22 +736,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/drupal/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-github/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/static-sites/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/wordpress/</loc>
 		<lastmod>2024-10-20</lastmod>
 	</url>
 	
@@ -761,22 +746,7 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
 		<lastmod>2024-10-20</lastmod>
 	</url>
 	
@@ -786,22 +756,52 @@
 	</url>
 	
 	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/microsoft-365/</loc>
+		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/php/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/drupal/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/linux/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/git-gitlab-and-github/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/visual-studio-code/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/devops/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/static-sites/</loc>
+		<lastmod>2024-10-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://tech.ryanrobinson.ca/tags/css/</loc>
 		<lastmod>2024-10-20</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://tech.ryanrobinson.ca/tags/tech-and-society/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/wordpress/</loc>
-		<lastmod>2024-10-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://tech.ryanrobinson.ca/tags/crm/</loc>
 		<lastmod>2024-10-20</lastmod>
 	</url>
 	
@@ -936,6 +936,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/sitemap.xml` was built on 2024-10-20T18:30:19.067Z -->
+		<!-- This page `/sitemap.xml` was built on 2024-10-20T18:34:17.672Z -->
 	</body>
 </html>
