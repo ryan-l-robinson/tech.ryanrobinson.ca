@@ -12,3 +12,12 @@
     z-index: 9;
     opacity: 0.7;
 }
+
+.pagefind-ui__drawer {
+    padding: 1em;
+    background-color: var(--background-color);
+}
+
+.pagefind-ui__result-title {
+    color: var(--text-color-link);
+}
