@@ -13,7 +13,8 @@
     opacity: 0.7;
 }
 
-.pagefind-ui__search-clear {
+.pagefind-ui__search-clear,
+.pagefind-ui__button {
     padding: 0.5em;
     background-color: var(--blue);
     color: var(--white);
