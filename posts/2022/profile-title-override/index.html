@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Drupal: Override Title Tag of Profiles</title>
-		<meta name="description" content="">
+		<meta name="description" content="How to adjust the HTML header title, page title, and path alias for a profile.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
@@ -50,6 +50,10 @@
 	
 </div>
 
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to adjust the HTML header title, page title, and path alias for a profile.
+	</p>
 
 
 <p>The profile module is a nice tool to have on a Drupal site if you're looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page's title which shows up as [Profile Name] #[id], e.g. &quot;Staff Profile #1&quot;. That's not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you'll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.</p>
@@ -110,7 +114,7 @@
   <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">messenger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">addWarning</span><span class="token punctuation">(</span><span class="token variable">$message</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker Desktop, and GitPod</a></p><p>Next: <a href="/posts/2022/drupal-profile-block-hidden/">Drupal: Hide Block on Own Profile</a></p>
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker, and GitPod</a></p><p>Next: <a href="/posts/2022/drupal-profile-block-hidden/">Drupal: Hide Block on Own Profile</a></p>
 </div>
 </article>
 				</div>
@@ -132,7 +136,7 @@
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (4)</li>
+		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (5)</li>
 	
 		
 		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (14)</li>
@@ -153,13 +157,13 @@
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (16)</li>
 	
 		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (2)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (1)</li>
 	
 		
 		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
@@ -224,6 +228,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/profile-title-override/` was built on 2024-11-12T21:44:06.314Z -->
+		<!-- This page `/posts/2022/profile-title-override/` was built on 2024-11-16T21:34:09.686Z -->
 	</body>
 </html>

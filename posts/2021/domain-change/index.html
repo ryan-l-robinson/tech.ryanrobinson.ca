@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Domain Change</title>
-		<meta name="description" content="">
+		<meta name="description" content="I&#39;ve changed the name for this site as I move away from Alliteration Applications branding.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
@@ -46,6 +46,10 @@
 </div>
 
 
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> I&#39;ve changed the name for this site as I move away from Alliteration Applications branding.
+	</p>
+
 
 <p>This site is now ryanrobinson.technology instead of alliterationapplications.com. I felt that it was more representative of what this site has evolved to become. It is a repository of my technology knowledge and experience. It isn’t just about the rare freelance work that I do under the Alliteration Applications banner. Many of the blog posts came from personal study, personal projects, and (generalized versions of) work done within a full-time job – not from Alliteration Applications at all.</p>
 <p>With that rationale out of the way, I thought I’d break down how I changed the URL. I believe I could have done this a bit simpler by changing the URL on the same site, rather than making a copy first, but I decided to err on the side of caution where I would always have the old version if anything went wrong.</p>
@@ -64,12 +68,11 @@
 <h2 id="htaccess-on-old-domain">.htaccess on Old Domain</h2>
 <p>I then wanted to redirect traffic from alliterationapplications.com to ryanrobinson.technology, and I didn’t want to simply redirect everything to the homepage. I wanted specific URLs to go to the matching URL.</p>
 <p>To achieve that, I added this to the .htaccess of alliterationapplications.com</p>
-<pre><code>&lt;pre class=&quot;wp-block-code&quot;&gt;```
-&lt;IfModule mod_rewrite.c&gt;
+<pre class="language-apache" tabindex="0"><code class="language-apache"><pre class="wp-block-code">```
+<IfModule mod_rewrite.c="">
 RewriteEngine on
 RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
-&lt;/IfModule&gt;
-</code></pre>
+</IfModule></pre></code></pre>
 <h2 id="cleanup">Cleanup</h2>
 <p>Finally, I cleaned up everything from alliterationapplications.com that I no longer needed: the database and all the files in the alliterationapplications.com document root other than the .htaccess file. That’s not truly necessary, but does keep my storage usage down.</p>
 
@@ -95,7 +98,7 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (4)</li>
+		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (5)</li>
 	
 		
 		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (14)</li>
@@ -116,13 +119,13 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (16)</li>
 	
 		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (2)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (1)</li>
 	
 		
 		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
@@ -187,6 +190,6 @@ RewriteRule ^(.*)$ https://ryanrobinson.technology/$1 [R=301,L]
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/domain-change/` was built on 2024-11-12T21:44:06.260Z -->
+		<!-- This page `/posts/2021/domain-change/` was built on 2024-11-16T21:34:09.628Z -->
 	</body>
 </html>

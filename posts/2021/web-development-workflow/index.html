@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>My (Freelance) Web Development Workflow</title>
-		<meta name="description" content="">
+		<meta name="description" content="Breaking down some of the tools I use for freelance web development.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
   		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
@@ -52,6 +52,10 @@
 	
 </div>
 
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Breaking down some of the tools I use for freelance web development.
+	</p>
 
 
 <p>When I work on a freelance website (I have more advanced tools in my day job), especially once I need to deploy some custom code, I have several tools at my disposal I want to set up. Here’s what those tools and that setup process looks like. For the purpose of this post, I’m assuming I already have the SFTP and SSH credentials from the website host.</p>
@@ -124,12 +128,11 @@ ssh-add ~/.ssh/id_rsa</code></pre>
 <li>It should pop up offering different locations of SSH config files on your computer. Select the relevant one.</li>
 <li>Add a new section to the file using the format below. I like to organize them alphabetically and use the URL of the site for the host name.</li>
 </ol>
-<pre><code>Host [URL]
+<pre class="language-plain" tabindex="0"><code class="language-plain">Host [URL]
   HostName [URL]
   User [SSH username]
   IdentityFile [Path to id_rsa file]
-  ForwardAgent yes
-</code></pre>
+  ForwardAgent yes</code></pre>
 <p>Refresh the list of SSH targets in the remote explorer so the new URL will appear. Click on the “Connect to Host in New Window” icon beside the new URL. Enter the SSH key passphrase to connect. Click on the file browser icon in the left menu and select “Open Folder.” Browse to the root location of the site that you want to work from. Once you’ve opened a specific folder, you can jump straight to that folder from the SSH Targets list.</p>
 <h2 id="filezilla">FileZilla</h2>
 <p><a href="https://filezilla-project.org/">FileZilla</a> is a great tool for SFTP access to a website. I don’t need this too often, but it can come in handy if I have to transfer files from my computer to the web server or vice versa. This is all done in the interface.</p>
@@ -163,7 +166,7 @@ ssh-add ~/.ssh/id_rsa</code></pre>
 		<li><a href="/tags/css/" class="post-tag">CSS</a> (3)</li>
 	
 		
-		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (4)</li>
+		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (5)</li>
 	
 		
 		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (14)</li>
@@ -184,13 +187,13 @@ ssh-add ~/.ssh/id_rsa</code></pre>
 		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
 	
 		
-		<li><a href="/tags/security/" class="post-tag">Security</a> (17)</li>
+		<li><a href="/tags/security/" class="post-tag">Security</a> (16)</li>
 	
 		
 		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (3)</li>
 	
 		
-		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (2)</li>
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (1)</li>
 	
 		
 		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
@@ -255,6 +258,6 @@ ssh-add ~/.ssh/id_rsa</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/web-development-workflow/` was built on 2024-11-12T21:44:06.312Z -->
+		<!-- This page `/posts/2021/web-development-workflow/` was built on 2024-11-16T21:34:09.684Z -->
 	</body>
 </html>
