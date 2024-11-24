@@ -5,11 +5,49 @@
   <subtitle>Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2024-04-08T17:10:28Z</updated>
+  <updated>2024-11-24T19:04:42Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Site Rebuilt in Eleventy</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2024/switch-to-eleventy/" />
+    <updated>2024-11-24T19:04:42Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2024/switch-to-eleventy/</id>
+    <content type="html">&lt;p&gt;I have rebuilt this site in &lt;a href=&quot;https://www.11ty.dev/&quot;&gt;Eleventy&lt;/a&gt;, replacing the previous Jekyll version. Here are some of my thoughts on the experience:&lt;/p&gt;
+&lt;h2 id=&quot;advantages&quot;&gt;Advantages&lt;/h2&gt;
+&lt;p&gt;It&#39;s got a couple advantages over my Jekyll experience.&lt;/p&gt;
+&lt;p&gt;One that eleventy tends to brag about is that it builds very fast. This doesn&#39;t matter that much to me in the context of a simple site mostly hosting blogs on GitHub Pages, but it is nice to at least know when I commit something that it will be visible for testing quickly.&lt;/p&gt;
+&lt;p&gt;The bigger one for me has been that I understand it more. I got the hang of the templating system pretty quickly, as its nunjucks is not far off from the twig I use for Drupal. With the old Jekyll site, it mostly felt like a black box that I didn&#39;t have enough control over. There probably was a way, but it wasn&#39;t obvious. Here I know what files are contributing to the markup, what files are contributing to the styles, and what extra JavaScript is running.&lt;/p&gt;
+&lt;h2 id=&quot;search&quot;&gt;Search&lt;/h2&gt;
+&lt;p&gt;Search is one of the more significant disadvantages. There is no default search module. I implemented &lt;a href=&quot;https://pagefind.app/&quot;&gt;PageFind&lt;/a&gt;. This mostly works well enough, and wasn&#39;t that hard to figure out, but unlike the big advantage noted above with eleventy templates, there isn&#39;t a huge amount of control over the UI of the end result. The largest problem I have with that is I am unsure it is the most accessible possible, e.g. it does not create &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live&quot;&gt;an aria-live region&lt;/a&gt; when the content visible on the page has been changed, so screen reader users may not even know the new content is being displayed.&lt;/p&gt;
+&lt;h2 id=&quot;taxonomy-pages&quot;&gt;Taxonomy Pages&lt;/h2&gt;
+&lt;p&gt;The other big-ish technical piece that I have not solved yet is having pagination on the term pages like &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/accessibility/&quot;&gt;the one for accessibility&lt;/a&gt;. This is because pagination is itself used to create those taxonomy pages programmatically, rather than needing to set up each tag&#39;s page manually, and there is no support for another level of pagination within those.&lt;/p&gt;
+&lt;p&gt;This isn&#39;t a huge problem for me at the moment, since my most-populated tag is at 49 posts and that isn&#39;t unreasonable to show on one page. But it could become a more serious problem eventually.&lt;/p&gt;
+&lt;h2 id=&quot;post-tl-dr&quot;&gt;Post tl;dr&lt;/h2&gt;
+&lt;p&gt;Because there is relatively easy flexibility of what metadata you track for posts and how those appear in templates, I could do things like add a post tl;dr that shows as the summary on the posts lists, as well as the top of the individual post display. This is intended to be a quick summary when you visit a page, to understand if this is going to answer your question or whether you should look somewhere else. That came out of some consultation with a screen reader user, who expressed how it can be hard to get to a page and have to listen to the whole thing only to realize that she is on the wrong page.&lt;/p&gt;
+&lt;h2 id=&quot;series&quot;&gt;Series&lt;/h2&gt;
+&lt;p&gt;I created another taxonomy for the series of a post. Now, if a post is part of a series, that whole series will appear in the sidebar of that post, making it easier to jump to other posts that you might need to read first or want to read next.&lt;/p&gt;
+&lt;h2 id=&quot;post-changes&quot;&gt;Post Changes&lt;/h2&gt;
+&lt;p&gt;A lot of the metadata in my posts needed to change to support this new structure instead of Jekyll&#39;s, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a description for each post to serve as the tldr.&lt;/li&gt;
+&lt;li&gt;Remove the category field which is no longer relevant.&lt;/li&gt;
+&lt;li&gt;Change the filename to what I want the permalink to be, and remove the permalink from the front matter. It is possible to set the permalink through front matter to override the file name, but at least for now I&#39;ve gone with simplicity.&lt;/li&gt;
+&lt;li&gt;Update any links and image references, since those are all in new locations now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;domain&quot;&gt;Domain&lt;/h2&gt;
+&lt;p&gt;I have also changed the domain. Instead of ryanrobinson.technology, I&#39;m using a subdomain, tech.ryanrobinson.ca. This is primarily an effort to simplify my web presence around the one main domain that hosts a broad landing page about me. Now that I have a better idea of how to build a site with eleventy, and have a theme I&#39;m mostly happy with (some improvements noted below notwithstanding), I will likely make more subdomains off of ryanrobinson.ca for other types of blog content.&lt;/p&gt;
+&lt;h2 id=&quot;still-to-do&quot;&gt;Still To Do&lt;/h2&gt;
+&lt;p&gt;While I am declaring this good enough to phase out the old site and get back to some writing, there are a few things I hope to still do as of writing this post:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As mentioned above, I don&#39;t think the search functionality is as accessible as it can be. I may have to make a copy of the PageFind JavaScript UI in order to rework some of it, while keeping PageFind&#39;s handling of other aspects like building the index.&lt;/li&gt;
+&lt;li&gt;The styles are not all great. I think they&#39;re readable, but there are things like the black of the dark mode probably still being too black.&lt;/li&gt;
+&lt;li&gt;I have done some passes to review the posts, but it might not all be there yet. I need to review all the descriptions, tags, and series.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>VS Code: University Colour Palettes</title>
     <link href="https://tech.ryanrobinson.ca/posts/2024/vs-code-university-colour-palettes/" />
@@ -727,16 +765,6 @@ Still no app seems to allow reverse order timeline (oldest posts first), which w
 &lt;p&gt;This is the newest discovery for me. It is not heavily featured - a little more than the official Mastodon app, less than the others - but it looks fantastic, probably my favourite design of the bunch.&lt;/p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;For now, I&#39;m sticking with Fedilab. I really like some of those features it does better than the rest, enough that I&#39;m willing to sacrifice some annoyance at the design style. But I am going to keep the others around and check in on them occasionally. It&#39;s early enough in the life of most of these that they may catch up in the features while maintaining a nicer design.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>A11yTalks: Cognitive Ease</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2023/cognitive-ease/" />
-    <updated>2023-01-14T18:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2023/cognitive-ease/</id>
-    <content type="html">&lt;p&gt;A11yTalks had a great presentation this week about designing for cognitive load. It has a lot of valuable insights about ways that we can do much better with website design that goes beyond simply meeting the WCAG checklists. Check it out below:&lt;/p&gt;
-&lt;iframe allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;337&quot; loading=&quot;lazy&quot; src=&quot;https://www.youtube.com/embed/BXeixHLjZwM&quot; title=&quot;A11yTalks video: Designing for Cognitive Ease&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;As a tangent, I know this site has a lot of weaknesses in its semantic design and I&#39;ve largely ignored them because this is mostly my little blog to myself that few if any will see, but I know I should look into forking from this theme to create a more accessible version.&lt;/p&gt;
 </content>
   </entry>
 </feed>
