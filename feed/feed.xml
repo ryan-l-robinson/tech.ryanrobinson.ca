@@ -47,6 +47,42 @@
 </content>
   </entry>
   <entry>
+    <title>Accessible Fonts</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2024/accessible-fonts/" />
+    <updated>2024-12-04T17:50:37Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2024/accessible-fonts/</id>
+    <content type="html">&lt;p&gt;I recently did some research on the accessibility of a variety of fonts. It&#39;s an interesting area, and it is one of those areas of accessibility where there is no one solution that is absolutely perfect for everybody. A font that is great for one particular reading disability may be a big problem for others. In other words, there are two big things to keep in mind, as always in accessibility:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Know your audience. If you&#39;re specifically targeting people with dyslexia, your decision will be different than for the general public.&lt;/li&gt;
+&lt;li&gt;Pursue an additive approach where possible. If one font can&#39;t help everyone, set a default to be something that is best for as many as possible, then have something like the &lt;a href=&quot;https://www.drupal.org/project/fluidui&quot;&gt;Fluid UI framework for Drupal&lt;/a&gt; which can allow users to select something else that might be better for them.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With that said, here are some of the things I learned to consider when looking at fonts:&lt;/p&gt;
+&lt;h2 id=&quot;testing&quot;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;How did I test these? With most fonts, I could generate samples using &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt; and/or &lt;a href=&quot;https://fonts.adobe.com/&quot;&gt;Adobe Fonts&lt;/a&gt;. I typed in the scenario I was trying to test and took notes on how well they do in each of the categories below, slowly cutting down which fonts were serious contenders. As I got down to only a few options, I also tried putting them into the site I was considering fonts for so I could see it within our specific context.&lt;/p&gt;
+&lt;h2 id=&quot;doubles&quot;&gt;Doubles&lt;/h2&gt;
+&lt;p&gt;Doubles are pairs of characters that look too similar to be able to tell about, at least without other context. In some fonts with really bad doubles, this doesn&#39;t even require any extra reading disability - it applies to all of us.&lt;/p&gt;
+&lt;p&gt;One cluster of these are the characters that are mostly straight lines in some fonts. This site won&#39;t demonstrate the problem, but in a lot of fonts, try l (lowercase letter L), the number 1, uppercase letter I, and the pipe |. There have been a handful of times in the past couple of years that I&#39;ve seen so many people talking about AI, then somebody mentions a guy named Al and I am very confused because in the font of wherever I saw it, I could not tell them apart. When I did the testing, I often found that most fonts were good at distinguishing two or three of those four from each other, but not that many of them were obvious enough for all four characters.&lt;/p&gt;
+&lt;p&gt;Another very common double is the uppercase O with the number 0. In a lot of fonts, the letter is wider, but otherwise they look very similar. If it&#39;s not in the middle of a different number, you can&#39;t tell it apart. How many times you have seen an alphanumeric code like a password printed on something and not been able to tell whether it was a 0 or an O? Other than being a little skinnier for the number, the most obvious way to differentiate is to put a line through the 0, as this site&#39;s font does. Depending on the context, that might be more annoying to read than it is helpful to differentiate, but it should be something you consider.&lt;/p&gt;
+&lt;h2 id=&quot;mirrors&quot;&gt;Mirrors&lt;/h2&gt;
+&lt;p&gt;Mirrors are a little different, the pairs of letters that are distinct from each other but very similar if you flip one of them, which can be a problem for dyslexia. The two common examples are:&lt;/p&gt;
+&lt;p&gt;pq&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;db&lt;/p&gt;
+&lt;p&gt;Look at them side-by-side. Can you see what&#39;s different, maybe an extra serif on one that&#39;s not on the other to tell them apart?&lt;/p&gt;
+&lt;h2 id=&quot;spacing&quot;&gt;Spacing&lt;/h2&gt;
+&lt;p&gt;This one isn&#39;t quite as easy to say pass or fail, but I tried to judge how readable the spacing was between letters. I found when fonts were too skinny they became hard to read, with the letters blurring together. But too far apart might also be hard to read, and also increases the pages size which results in more scrolling and that&#39;s a cognitive load in a different way. There is some sweet spot, which might be different for all of us.&lt;/p&gt;
+&lt;h2 id=&quot;monospace&quot;&gt;Monospace&lt;/h2&gt;
+&lt;p&gt;Most fonts allow different letters to have different widths, which is another way to help them stand out from each other. There&#39;s a reason why an &amp;quot;em&amp;quot; is a unit of measurement in HTML/CSS: because the letter m is the widest letter, so it is a way of saying &amp;quot;I want to fit at least this many letters here.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The exception where monospace fonts - those with the same width for all letters - are often preferred is for coding. Knowing that each letter is the same width is very helpful for keeping the code blocks lined and being able to judge how many characters are there. So if you&#39;re including code snippets on your site, you might want a monospace font for those, but otherwise you probably don&#39;t.&lt;/p&gt;
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;So what did I land on?&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://www.brailleinstitute.org/freefont/&quot;&gt;Braille Institute&#39;s Atkinson Hyperlegible&lt;/a&gt; was the best across all those tests, which makes sense given that it was very intentionally designed for accessibility. I&#39;m using it for this site for that reason. The 0 with the strike through is a bit jarring for some, as I mentioned above, but I am starting to really like it. I&#39;ve even started using it in other apps that offer it (e.g. &lt;a href=&quot;https://pachli.app/download/&quot;&gt;Pachli&lt;/a&gt;, the Mastodon app for Android).&lt;/p&gt;
+&lt;p&gt;Tahoma scored well on most fronts, other than the 0 and O mirror. Of the major fonts by default available on most systems already, this came out as my winner. It is the most friendly to the most number of people, maybe scoring a little lowr than Atkinson Hyperlegible on some of the mirrors and doubles, but quite well on everything else, and without the line through the 0 that is a distraction to a fair number of people. In a professional context with a general audience, there&#39;s a good case to take this over Atkinson Hyperlegible.&lt;/p&gt;
+&lt;p&gt;Comic Sans, mocked by much of the Internet, is considered one of the best fonts for dyslexia, because it doesn&#39;t have mirrors. Every letter is easy to differentiate. But I think it is valid to point out that it can cause readability problems for most others, so if your site is general purpose rather than targeting the dyslexic community specifically, it might not be a great choice. There is also an Open Dyslexic that is similar, which is particularly targeted for dyslexic users.&lt;/p&gt;
+&lt;p&gt;Some others that scored generally ok: Aptos, the new Microsoft 365 default font; Arial; and Verdana (much like Tahoma but a bit wider).&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>Site Rebuilt in Eleventy</title>
     <link href="https://tech.ryanrobinson.ca/posts/2024/switch-to-eleventy/" />
     <updated>2024-11-24T19:04:42Z</updated>
@@ -721,29 +757,6 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That&#39;s a small example. It doesn&#39;t require big machine learning algorithms monitoring your every move on the Internet, but it does still require personalization. Maybe that&#39;s the distinction instead: allow personalized results based on information explicitly given by the user, but don&#39;t allow engagement data mining. But who defines what is engagement data mining and what is essential information to provide the service, or engagement data mining for telemetry, for the developers to know what improvements they need to maks? My example may have a clearer line, but that certainly won&#39;t always be the case.&lt;/p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;There are a lot of complicated factors here and I&#39;m thankful for channels like Legal Eagle that are helping to unpack the potential consequences. Let&#39;s hope SCOTUS thinks this through carefully and rules in the best interests of a healthy role for the Internet in society.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Drupal: Include Default View in Module</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2023/include-default-view-custom-module/" />
-    <updated>2023-02-23T22:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2023/include-default-view-custom-module/</id>
-    <content type="html">&lt;p&gt;You may be working on a Drupal module and want to include a default view.&lt;/p&gt;
-&lt;h2 id=&quot;install&quot;&gt;Install&lt;/h2&gt;
-&lt;p&gt;This is actually quite simple: put the configuration file in the config/install folder within the module, with the proper configuration name, and it will install.&lt;/p&gt;
-&lt;p&gt;This would be the full configuration file, the same as you would generate using the configuration sync tools.
-You can write this file from scratch, especially if they&#39;re hidden options. If it is something that has a user interface, you can do what I tend to do: determine all your preferred settings and test it out within the interface, then export the configuration from either the UI (/admin/config/development/configuration/single/export) or drush (&lt;code&gt;drush config-export&lt;/code&gt; but that does all configuration, not only the specific one you want).&lt;/p&gt;
-&lt;h2 id=&quot;uninstall&quot;&gt;Uninstall&lt;/h2&gt;
-&lt;p&gt;What about uninstalling the configuration you&#39;ve installed with the module? This will depend on the context of your module, but you may want to also uninstall this configuration when the module is uninstalled. The configuration might no longer make sense without the module, or you might create conflicts if you installed it once, uninstalled the module but left the configuration, then tried to install it again.&lt;/p&gt;
-&lt;p&gt;To do that, add a few lines like this to the uninstall hook of the .module file, for example with a config file named webform.webform.event_registration:&lt;/p&gt;
-&lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
- * Implements hook_uninstall
- * */&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;module_name_uninstall&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name class-name-fully-qualified static-context&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Drupal&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;configFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getEditable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;webform.webform.event_registration&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token class-name class-name-fully-qualified static-context&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Drupal&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;configFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getEditable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;webform.webform.event_registration&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>
