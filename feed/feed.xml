@@ -90,6 +90,42 @@
 </content>
   </entry>
   <entry>
+    <title>A Brief Experiment in a Mastodon Self-Managed Instance</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2024/managed-mastodon/" />
+    <updated>2024-03-25T00:16:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2024/managed-mastodon/</id>
+    <content type="html">&lt;p&gt;I took advantage of a Black Friday deal from &lt;a href=&quot;https://fedihost.co/&quot;&gt;fedihost.co&lt;/a&gt; to try out using a managed host for a Mastodon account, as compared to the large Canadian instance &lt;a href=&quot;https://mstdn.ca&quot;&gt;mstdn.ca&lt;/a&gt; that I have been using since my early days of joining Mastodon. It was $1/month for the lowest plan for a year, which is pretty solidly in impulse purchase territory, so it was a worthwhile idea.&lt;/p&gt;
+&lt;p&gt;To clarify, this is not an experiment in self-hosting in the strictest sense. I&#39;m not doing any of the server or software maintenance myself. It&#39;s more like self-administering. Some professionals I&#39;m paying did all the server and software work. I just administered users, which in this case was just me, and general settings.&lt;/p&gt;
+&lt;p&gt;Anyway, here&#39;s how that experiment went. You might already have some ideas from words I&#39;ve used like &amp;quot;brief&amp;quot; and how a Black Friday deal experiment is now all past tense.&lt;/p&gt;
+&lt;h2 id=&quot;signup&quot;&gt;Signup&lt;/h2&gt;
+&lt;p&gt;The process with fedihost was easy. It gave me the DNS record to create first, then I came back the next day to confirm it propagated, and signed up including a payment method. Soon after, I got an email that everything was ready, with a link to the dashboard. That dashboard is minimal but had a few options for managing services like how many days of cache to keep, which would quickly become an essential option (see under Storage below). It also showed me a randomly generated admin password I could use to sign in.&lt;/p&gt;
+&lt;h2 id=&quot;domain&quot;&gt;Domain&lt;/h2&gt;
+&lt;p&gt;The biggest benefit of this option may be that I could use a subdomain of my main domain, creating mstdn.ryanrobinson.ca. If you really care about your branding, that&#39;s a big selling point, plus as Bluesky has demonstrated, it&#39;s a form of verification that you are the same person who owns that website. Mastodon does have a more subtle version already, where you can put a link on your site coded in the correct way, then put that website URL in your profile and it will show with a check mark. But that&#39;s fairly hidden on a user profile, not directly in a handle or anywhere close to the now-infamous blue check on Twitter.&lt;/p&gt;
+&lt;p&gt;The downside of this, at least in my case, was that now my handle became much more unwieldy. I have a pretty great handle at mstdn.ca, simply @Ryan@mstdn.ca. That&#39;s rare with my very common name to get that good of a handle. It&#39;s clean, easy, not taking up much space. With the managed hosting, I got @Ryan@mstdn.ryanrobinson.ca, which gets to use my domain but looks much clunkier.&lt;/p&gt;
+&lt;h2 id=&quot;trending&quot;&gt;Trending&lt;/h2&gt;
+&lt;p&gt;If I had thought it through, I would have predicted that trending would be less useful. With less wide range of federation, less tags and links will come in.&lt;/p&gt;
+&lt;p&gt;What I never would have thought of was that I would need to approve each tag and each link before it can even show up within the typical user app. I get why that&#39;s an admin moderation function, to not let hate speech or whatever else you don&#39;t want to be visible for other users. But when you&#39;re the only user, it means you can&#39;t see anything trending in the app until you&#39;ve first already seen it in the admin panel, for which I get a few emails a day to review. Those emails will decrease quickly because once I&#39;ve approved it once, I don&#39;t need to again, but that is an annoying extra step with zero benefit when it&#39;s a single-user instance.&lt;/p&gt;
+&lt;h2 id=&quot;search&quot;&gt;Search&lt;/h2&gt;
+&lt;p&gt;Search is also less powerful with less federation, although that was less of a problem in my few days of testing. It&#39;s not that often that I really want to search for a topic. At this point I mostly follow who I follow, not going looking for what strangers are saying about something.&lt;/p&gt;
+&lt;h2 id=&quot;moderation&quot;&gt;Moderation&lt;/h2&gt;
+&lt;p&gt;Moderation is the area I can probably say with least confidence because I was doing it for such a short period of time. I didn&#39;t have a lot of connections, and I did not end up doing any of my own moderation. That&#39;s the upside of the limited federation. This was the thing that I was worried would be the biggest extra piece of work, because I really have no desire to squash a bunch of crypto scammers or hate speech on my own. Maybe it would have become more of a problem on a longer scale.&lt;/p&gt;
+&lt;h2 id=&quot;markdown&quot;&gt;Markdown&lt;/h2&gt;
+&lt;p&gt;This managed hosting instance did not support markdown as mstdn.ca does. This isn&#39;t a huge deal, but I do appreciate having it, especially for links since there isn&#39;t a guarantee that every app has link previews so I want to at least give it readable link text.&lt;/p&gt;
+&lt;h2 id=&quot;local-feed&quot;&gt;Local Feed&lt;/h2&gt;
+&lt;p&gt;I rarely use the one on mstdn.ca, but the entire concept of a local feed is meaningless on a single-user instance. It&#39;s just me. I may as well look at my profile.&lt;/p&gt;
+&lt;h2 id=&quot;storage&quot;&gt;Storage&lt;/h2&gt;
+&lt;p&gt;The cheap plan, the one that was so cheap on Black Friday as to spark an impulse purchase, comes with 10GB. That feels like it should be a lot for one social media account with auto-deleting posts.&lt;/p&gt;
+&lt;p&gt;After initial install I was using about 2.5GB.&lt;/p&gt;
+&lt;p&gt;By the second day, I had a warning email letting me know that I was over 80% and if I fill it up, I will be automatically upgraded to the next plan which does not have the Black Friday bargain prices. So I went in to the dashboard and cut the caching option from keeping 10 days down to only 1. The next morning I saw I was back down to about 65% used.&lt;/p&gt;
+&lt;p&gt;I still got another warning email the next day.&lt;/p&gt;
+&lt;p&gt;Today I decided that there was nothing left to learn in this experiment and decided to delete. I was at 97% of my storage even though I had barely logged in today and had the 1 day cache.&lt;/p&gt;
+&lt;p&gt;It was inevitable I would have been paying more for it soon, which takes it not only past the $1/month bargain but also past the $6/month regular price for that plan that is roughly equivalent to what I am donating to mstdn.ca.&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall, it&#39;s a fine option. It&#39;s reliable, affordable, not a lot of extra work, and has some benefits if you really want to be able to shape it to be exactly what you want from moderation decisions to the domain.&lt;/p&gt;
+&lt;p&gt;But I think it&#39;s a step backward in my case. It&#39;s still some more time required, a clunky handle, and almost certainly would have ended up paying a fair bit more to support more storage than I am donating to mstdn.ca. The storage challenge helped rush the decision, but really, it was already becoming clear that there was nothing else left I might learn to convince me it would be better off than what I&#39;m using now. I&#39;m going back to mstdn.ca full time.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>Drupal Dev Environment Updated: The Dockerfiles</title>
     <link href="https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-dockerfiles/" />
     <updated>2024-03-25T00:16:00Z</updated>
@@ -708,63 +744,6 @@ You can write this file from scratch, especially if they&#39;re hidden options. 
     &lt;span class=&quot;token class-name class-name-fully-qualified static-context&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Drupal&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;configFactory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getEditable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;webform.webform.event_registration&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Mastodon Apps on Android</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2023/mastodon-apps-android/" />
-    <updated>2023-02-21T13:18:09Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2023/mastodon-apps-android/</id>
-    <content type="html">&lt;p&gt;I&#39;ve been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I&#39;m far from the only one to make this migration, and that includes a lot of developers, so we&#39;re starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I&#39;ve mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2021/android-email-apps/&quot;&gt;I spent some time testing out alternative email apps&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Before writing this post, I put the question out on my Mastodon to see what factors others have considered in picking their preferred Android app. I&#39;ll incorporate a couple of those answers here, but first, one shared &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1De5KRwqMIdwEryfoeBLARgxF7QgKkeOQBCilKuIdAXE/edit?usp=drivesdk&quot;&gt;a very helpful spreadsheet breaking down all the options&lt;/a&gt; (not only Android). This is great if you need a high level overview of features available.&lt;/p&gt;
-&lt;p&gt;This post will try to narrow down some of what matters most to me and to others when I put the question out for feedback.&lt;/p&gt;
-&lt;h2 id=&quot;mastodon-official-app&quot;&gt;Mastodon (official app)&lt;/h2&gt;
-&lt;p&gt;As I&#39;m sure with most people, I first tried the official app simply called Mastodon. This was the time of the great migration and a significant portion of posts I saw were advice about Mastodon, including a lot of posts saying not to use the official app. But it&#39;s not as bad as that makes it sound.&lt;/p&gt;
-&lt;p&gt;It has Trending topics. It has home and local feeds. It&#39;s a fairly clean and friendly design.&lt;/p&gt;
-&lt;p&gt;But yes, as many point out, it is missing several other features that you might want. Check the spreadsheet linked above for the full list, but here are a few that that matter to me:&lt;/p&gt;
-&lt;p&gt;You can&#39;t read threads in continuity, which makes it prone to reading posts without recognizing there&#39;s context.&lt;/p&gt;
-&lt;p&gt;There&#39;s no federated timeline.&lt;/p&gt;
-&lt;p&gt;You can&#39;t manage lists at all.&lt;/p&gt;
-&lt;p&gt;You can&#39;t see ALT text, which does matter even for those of us who are sighted because descriptions can still help us identify things, and it might help us identify that maybe we don&#39;t want to boost a post that is missing ALT text.&lt;/p&gt;
-&lt;p&gt;It doesn&#39;t support unlisted posts, or scheduled posts, or the delete and redraft option, or simultaneous posting of a thread, or multiple choice selection polls.&lt;/p&gt;
-&lt;p&gt;It&#39;s fair to say that none of those are core features, but there&#39;s enough of them that there&#39;s probably at least one you&#39;d be disappointed to be missing.&lt;/p&gt;
-&lt;h2 id=&quot;tusky&quot;&gt;Tusky&lt;/h2&gt;
-&lt;p&gt;When I was seeing posts about not using the official Mastodon app, it was usually tied with the recommendation to use Tusky instead (sometimes Fedilab). I tried that and kept it as my main app for a couple of months.&lt;/p&gt;
-&lt;p&gt;It does a few things very well:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Very clean design that feels at home on Android, especially with the truly black theme and options for the main navigation to be either at the top or bottom&lt;/li&gt;
-&lt;li&gt;A good array of options including being able to do most of the things that the official Mastodon app cannot.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My question on Mastodon also got this negative response about some of Tusky&#39;s design choices:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I’ve been a mobile developer for 15 years (mostly android) and used Tusky before I got my iPhone. It wasn’t my favorite tbh. my gripes with Tusky are all around data and state handling.
-For instance the UI has very few “in progress” states, so for instance boosting a toot can  momentarily show the button in the wrong state if the request is slow.
-Also the caching for viewed toots is very rudimentary, so lots of toots (in conversations esp.) are needlessly reloaded while I stare at a blank screen.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href=&quot;https://tech.lgbt/@em_ad/109855207946318853&quot;&gt;https://tech.lgbt/@em_ad/109855207946318853&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;fedilab&quot;&gt;Fedilab&lt;/h2&gt;
-&lt;p&gt;I then tried Fedilab, the next I saw recommended a lot. It has a small one time cost for the app, but if you&#39;re already settled on using Mastodon, it will probably be worth it to you to try it out.&lt;/p&gt;
-&lt;h3 id=&quot;positives&quot;&gt;Positives&lt;/h3&gt;
-&lt;p&gt;As the spreadsheet backs up, it is the most featured app by a significant margin. I&#39;ll highlight a couple big selling points that the others don&#39;t have:&lt;/p&gt;
-&lt;p&gt;It allows following other instances, which is a great way to monitor niche topic communities even if you&#39;re not in them. For example, there is an instance for Drupal developers at drupal.community. I don&#39;t really want that to be my primary home, since Drupal is a relatively small portion of what I post. But I do want to easily keep an eye on conversations happening there since they will have a high rate of being relevant to me.&lt;/p&gt;
-&lt;p&gt;It allows following Twitter accounts via Nitter, although there are some drawbacks to how it is implemented. You can&#39;t edit the list of who you are following easily. There&#39;s no follow/unfollow buttons. There isn&#39;t even a way to view the list of everyone you currently follow. So you need to maintain a list somewhere else, in the right format (separated by a space, not a new line) so that you can copy and paste it in each time you want to add or delete one. It also may have a limit on how many total it can follow? I&#39;m not sure about that, but I found that when I tried to add more, it broke, with a generic error that didn&#39;t explain anything. And finally, a lot of the time the links it shows for a quote tweet simply don&#39;t work. I often try clicking the link several times in a row to see what is being quoted.&lt;/p&gt;
-&lt;p&gt;It allows creating simultaneous posts in a thread, which none of the others do. I always appreciate this feature as I don&#39;t like getting caught having written up half a thread. This is even more true on Mastodon than on Twitter because it is best practice to keep all posts in a thread after the first as unlisted. But when there are long gaps between the start and end of the thread, I might end up with nobody even seeing that you have added more to it. Being able to dump the whole thread at once optimizes that best practice.&lt;/p&gt;
-&lt;p&gt;It is one of the few apps that is built for all Fediverse services, not only Mastodon. That means if I get a Pixelfed account some day, I could do it from the same app.&lt;/p&gt;
-&lt;p&gt;A Mastodon user highlighted another feature that isn&#39;t a big deal to me but might be to you:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I read the posts from oldest to newest. At the moment Fedilab seems to work best for this reading order, as it can continuously update the timeline so there are no breaks.
-Tusky is second best, you can set the &amp;quot;load more&amp;quot; button to fill the timeline above the break, not below.
-Still no app seems to allow reverse order timeline (oldest posts first), which was a deal breaker for me when selecting my Twitter app.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href=&quot;https://mastodonsweden.se/@kallekn/109856154392108362&quot;&gt;https://mastodonsweden.se/@kallekn/109856154392108362&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;negatives&quot;&gt;Negatives&lt;/h3&gt;
-&lt;p&gt;Most of my negatives have to do with the user interface and I&#39;ll focus on two:&lt;/p&gt;
-&lt;p&gt;I don&#39;t like the pill button design. It feels out of place on Android. It feels dated, like a few years ago when there was a lot less consistency in app design on Android, while now most comply with the recommended design language.&lt;/p&gt;
-&lt;p&gt;I don&#39;t like the fragmented placement of timelines. In the bottom toolbar you can have the home, local, federated, notifications. That&#39;s great. Then in the top go any other instances you follow, lists, and Nitter, in this weird ticker style interface. Then in the sidebar under the profile photo mostly makes sense but also has Trending in there. I&#39;d love to have these consolidated to one navigation area, in the bottom, where I can pick the four that are highest priority to stay with easy access, then the rest in an easy to access overflow menu. There is an option to combine the top and bottom, but only to put them all in that weird top ticker style, not in the bottom as I would want. And there&#39;s no option to add Trending there.&lt;/p&gt;
-&lt;h2 id=&quot;megalodon&quot;&gt;Megalodon&lt;/h2&gt;
-&lt;p&gt;This is the newest discovery for me. It is not heavily featured - a little more than the official Mastodon app, less than the others - but it looks fantastic, probably my favourite design of the bunch.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;For now, I&#39;m sticking with Fedilab. I really like some of those features it does better than the rest, enough that I&#39;m willing to sacrifice some annoyance at the design style. But I am going to keep the others around and check in on them occasionally. It&#39;s early enough in the life of most of these that they may catch up in the features while maintaining a nicer design.&lt;/p&gt;
 </content>
   </entry>
 </feed>
