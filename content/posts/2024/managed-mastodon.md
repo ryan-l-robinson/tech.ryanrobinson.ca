@@ -1,6 +1,6 @@
 ---
 title: "A Brief Experiment in a Mastodon Self-Managed Instance"
-date: 2024-03-25T00:16:00.000Z
+date: 2024-12-04T22:27:04.355Z
 author: Ryan Robinson
 description: "I did a cheap trial of managing my own solo Mastodon instance. I learned a few things about its signup, limited federation, domains, markdown, and storage."
 tags:
