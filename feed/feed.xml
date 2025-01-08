@@ -5,11 +5,84 @@
   <subtitle>Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2024-12-04T22:27:04Z</updated>
+  <updated>2025-01-08T18:32:16Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>The State of Podcasts 2025</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2024/podcasts/" />
+    <updated>2025-01-08T18:32:16Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2024/podcasts/</id>
+    <content type="html">&lt;p&gt;It&#39;s a new year (happy 2025) and a good chance to review the state of my podcast feeds. I&#39;m a major podcast listener, with something running in the background a lot of the time that I&#39;m working or playing Xbox or cleaning or on a bus or a lot of other times.&lt;/p&gt;
+&lt;p&gt;So here are a few scattered thoughts about podcasts:&lt;/p&gt;
+&lt;h2 id=&quot;is-this-healthy&quot;&gt;Is This Healthy?&lt;/h2&gt;
+&lt;p&gt;First it is fair to ask whether it is good for me that I listen to podcasts for large portions of the day. We also have a YouTube Music subscription. I could be listening to ad-free music instead, and I often think I should be doing that more, or even &lt;em&gt;gasp&lt;/em&gt; allow myself some occasional silence.&lt;/p&gt;
+&lt;p&gt;This is a subset of the general problem of &amp;quot;there&#39;s too much content&amp;quot; which also applies to other types of media. There just isn&#39;t nearly enough time in a day to listen to all the good podcasts and watch all the good shows and read the good books and listen to all the good audiobooks and play the good games. And I think I&#39;m starting to lean toward wanting to have less podcast content (and maybe less TV) but be more picky about it being the best, freeing up the other time for books or music or silence.&lt;/p&gt;
+&lt;h2 id=&quot;pricing-models&quot;&gt;Pricing Models&lt;/h2&gt;
+&lt;p&gt;That leads into revenue models, because I don&#39;t really want to be paying for a lot of stuff that I can&#39;t even keep up with anyway. So with that in mind, it got me thinking about the state of podcast pricing models, because there is some wild variety.&lt;/p&gt;
+&lt;p&gt;There are three general ways to make money off podcasts that I have encountered, and they may be combined in various ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ads, in a couple of varieties: in the more user-friendly case, these are host-read ads. Those are context sensitive (e.g. if it&#39;s a tech podcast, it has ads that are relevant to tech professionals, in the same way that it is impossible to watch sports without getting sports gambling ads). I don&#39;t mind those most of the time, but they are getting less and less common. In the worse case, they are targeted surveillance ads, based on tracking you all over the Internet and inserted as you download/listen. They also tend to be precorded and inserted, which is more jarring than hearing the hosts read it. I really have a limit on how many surveillance ads I&#39;ll put up with.&lt;/li&gt;
+&lt;li&gt;Paid subscription tiers: it&#39;s pretty common to have some content be free and then more bonus content be behind a subscription paywall. There&#39;s a spectrum here between how much they try to sell you on additional content vs how much it is treated more like a donation appeal. This is where some of the comparisons I&#39;ll make below get really interesting.&lt;/li&gt;
+&lt;li&gt;Loss leader for something else: the podcast itself could essentially be an ad for a larger product that the podcast is associated with, like a newspaper&#39;s podcasts that are consistently if subtly pushing toward getting a newspaper subscription, or a university&#39;s podcasts that might subtly convince you to take classes there or donate.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Of course there are also a handful of podcasts that are purely a labour of love and don&#39;t make any money, but that&#39;s tough to maintain because they can&#39;t even buy things like quality equipment. I don&#39;t think I have any of those anymore.&lt;/p&gt;
+&lt;p&gt;So here&#39;s the breakdown of the pricing models of the podcasts I currently have in my queue.&lt;/p&gt;
+&lt;h3 id=&quot;this-week-in-tech&quot;&gt;This Week in Tech&lt;/h3&gt;
+&lt;p&gt;I&#39;ll start with my tech podcasts since this a tech blog.&lt;/p&gt;
+&lt;p&gt;The TWiT (This Week in Tech) network is a great bargain compared to anything else in my feeds, with their &lt;a href=&quot;https://twit.tv/clubtwit&quot;&gt;Club TWiT&lt;/a&gt; offering. It&#39;s only $7 (all prices USD) a month for a lot of good shows. Even before I joined the paid level, a couple of their shows - Windows Weekly and the flagship This Week in Tech - were the only tech shows I was still listening to. Everything else died for some reason or another; at least some were because they did not have sustainable revenue models. Before subscribing I only listened to those two. Now subscribed I&#39;m trying out at least a few more: This Week in Google (great host chemistry and not really that focused on Google), Tech News Weekly (very interesting so far), Security Now (great topics but a bit harder to listen to with only one speaker for the most part), Home Theatre Geeks (some episodes are really interesting to me, but not others). The subscription unlocks a few things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ad-free episodes. That opts out of both host read ads and surveillance ads, although they do interestingly provide an extra feed for the host read ads for those who do still want them, since they are actually relevant and screened by their experts.&lt;/li&gt;
+&lt;li&gt;A Discord community with a channel for each show that allows things like submitting questions, as well as live chats while the shows are airing live. I usually listen after the fact via podcast, not live, so that isn&#39;t a huge selling point for me, but I did sign up.&lt;/li&gt;
+&lt;li&gt;Some odds and ends of bonus content, like a book club and Ask Me Anything interviews. Some of these are interesting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In other words, that&#39;s a pretty good balance of carrot (some bonus content and community) and stick (ads you have to listen to if not).&lt;/p&gt;
+&lt;h2 id=&quot;nebula&quot;&gt;Nebula&lt;/h2&gt;
+&lt;p&gt;I&#39;ll reference Nebula in its own category. I follow three of their podcasts, using the Nebula exclusive feed. This means no ads. Nebula is an excellent deal at $30/year. For that, you get:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ad-free videos from some of the best educational content creators out there.&lt;/li&gt;
+&lt;li&gt;Extended versions of those videos.&lt;/li&gt;
+&lt;li&gt;Exclusive content from those creators, including some short movies they have produced.&lt;/li&gt;
+&lt;li&gt;Ad-free on any of the podcasts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&#39;s a pretty great deal, compared to YouTube Premium to avoid ads there, which is $14/month for an individual or $23/month for a family. Nebula is barely more for a year than YouTube Premium Family is for a month, and they have almost all of my favourite YouTube creators (we still have YouTube Premium as well, primarily for music).&lt;/p&gt;
+&lt;h3 id=&quot;movies-and-comedy&quot;&gt;Movies and Comedy&lt;/h3&gt;
+&lt;p&gt;I listen to all five shows from &lt;a href=&quot;https://www.fromsuperheroes.com/&quot;&gt;the From Superheroes network&lt;/a&gt;. There is no network bundle price. Each show has their own Patreon, with different tiers. The tier to avoid ads and get bonus content, on the ones that offer that, are up around $10/month. Per show. They do have some other small perks as well, like being able to vote on audience choice episodes. I really like their shows, but they are the worst value for the money from my feed, and it feels even more ridiculous if you start comparing it to things like video streaming platforms. That&#39;s a high barrier of entry, so they have a lot less paid subscribers.&lt;/p&gt;
+&lt;h3 id=&quot;the-you-re-wrong-about-family&quot;&gt;The &amp;quot;You&#39;re Wrong About&amp;quot; Family&lt;/h3&gt;
+&lt;p&gt;You&#39;re Wrong About was the first podcast with Sarah Marshall and Michael Hobbes. Michael is no longer on that one, but hosts If Books Could Kill that I also listen to. Sarah also hosts You Are Good. All three of these follow the same model. They&#39;re ad-free for anybody. Then they have a Patreon that is mostly pitched as a way to support them, only $2-4 a month (depending on the podcast) to get bonus episodes. If Books Could Kill also has a couple higher tiers to join a Discord and vote on books. So they&#39;re leaning heavily toward the carrot, with no real penalty to listening for free, but a low cost to get bonus episodes, meaning they probably get by mostly on a massive number of subscribers at a small price per person.&lt;/p&gt;
+&lt;h3 id=&quot;christian&quot;&gt;Christian&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.homebrewedchristianty.com/podcasts/&quot;&gt;Homebrewed Christianity&lt;/a&gt; and &lt;a href=&quot;https://thebiblefornormalpeople.com/&quot;&gt;The Bible for Normal People&lt;/a&gt; have a similar model: the main podcast feed has ads - both host-read and surveillance - and there is also a paid subscription option. In both cases, you get a lot for the paid subscription:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ad-free podcasts&lt;/li&gt;
+&lt;li&gt;extensive classes taught by experts in theology/biblical studies&lt;/li&gt;
+&lt;li&gt;online community&lt;/li&gt;
+&lt;li&gt;extra written content (Homebrewed Christianity)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TB4P is cheaper, at $12 USD per month, or $11 if you commit to a year up front, while Homebrewed is $25/month if you commit to a year. Homebrewed does also have a cheaper tier for just ad-free podcasts but not the classes. It&#39;s a little pricey but not so much when you compare to auditing a seminary course, which is basically what the classes are offering.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.reclaimingmytheology.org/&quot;&gt;Reclaiming My Theology&lt;/a&gt; and &lt;a href=&quot;https://jarrodmckenna.com/inverse-podcast/&quot;&gt;Inverse&lt;/a&gt; have a model similar to the &amp;quot;You&#39;re Wrong About&amp;quot; group, or somewhere between those and the two above. There are no ads for the general public feed, then they have Patreon options that include things like extra content and more direct connection to community.&lt;/p&gt;
+&lt;p&gt;Then there are a few I listen to in the third category I mentioned above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://whchurch.org/&quot;&gt;Woodland Hills Church&lt;/a&gt; is a podcast sermon feed, so no ads there but they would take donations to the church from the virtual congregation.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://reknew.org/&quot;&gt;ReKnew&lt;/a&gt;&#39;s Apologies and Explanations come from roughly the same group of people, also ad-free but does accept donations.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://divinity.yale.edu/news/yds-podcasts&quot;&gt;Yale Divinity School&lt;/a&gt; has an occasional podcast that is ad-free but definitely helps build good will to their seminary.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;sports&quot;&gt;Sports&lt;/h3&gt;
+&lt;p&gt;Sports skews the most heavily towards ads, mostly surveillance, being the only option. That is a big part of why I&#39;ve cut down my sports podcasts, along with there simply being so many, even though other than the ads they do tend to make great white noise while working.&lt;/p&gt;
+&lt;p&gt;I have two from The Athletic: No Dunks primarily focused on men&#39;s basketball and The Athletic Women&#39;s Basketball Show as the name suggests primarily focused on women. They both have ads, both surveillance and host-read. When The Athletic was independent, you could subscribe and get the writing and the podcasts ad-free, but you had to use their app - there was no way to put the podcast into your regular feed - which meant other limitations like not being able to cast to a speaker or put in a queue with other episodes. I haven&#39;t tried subscribing again, but from what I have been able to read online, a subscription is now twice as expensive and doesn&#39;t avoid ads and I don&#39;t know if they solved the feed problem.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://thesonarnetwork.com/the-pick-up/&quot;&gt;The Pickup&lt;/a&gt; is a WNBA comedy podcast. That&#39;s all surveillance ads. &lt;a href=&quot;https://www.sportsnet.ca/590/raptors-show/&quot;&gt;The Raptors Show&lt;/a&gt; is some surveillance and some host ads. &lt;a href=&quot;https://www.raptorsrepublic.com/&quot;&gt;Raptors Republic&lt;/a&gt; was all surveillance ads. I might drop all of those from my rotation.&lt;/p&gt;
+&lt;p&gt;Newly added to check out: &lt;a href=&quot;https://www.siriusxm.com/blog/katie-nolan-casuals-podcast&quot;&gt;Katie Nolan has a new podcast&lt;/a&gt;. I loved her old podcast with ESPN. I can guarantee that will be ad-based, some combination of host-read (she&#39;s a great comedic ad reader) and surveillance.&lt;/p&gt;
+&lt;p&gt;Bringing Home the W is a very specific show about the start of the Toronto Tempo WNBA team, giving a look behind the scenes. This has no ads, because the entire thing is essentially an ad to be excited for the upcoming team (and I am).&lt;/p&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;So we&#39;ve got a wide range of pricing models. Some only give you options for ads, especially the sports ones, maybe because they know that they&#39;re more often white noise, unlike some of these other categories where you&#39;re more likely to be listening and taking notes. When you are listening and taking notes, the ads are more jarring and you&#39;re more invested so more willing to pay to get rid of them and/or to get bonus content. Some other are all-in with the bonus content paid model and no ads, which I love to see. Some combine the two, with a large difference in price between the two networks I have doing that, TWiT and From Superheroes.&lt;/p&gt;
+&lt;h2 id=&quot;what-now&quot;&gt;What Now&lt;/h2&gt;
+&lt;p&gt;I already added Club TWiT recently. That&#39;s a good deal for a lot of good podcasts.&lt;/p&gt;
+&lt;p&gt;I&#39;m tempted by the &amp;quot;You&#39;re Wrong About&amp;quot; family, because they are so cheap to get the bonuses, and I do kind of want to encourage that model.&lt;/p&gt;
+&lt;p&gt;I&#39;m likely going to subscribe for the extra classes from either Homebrewed Christianity or Bible for Normal People. But it&#39;s probably a bit too much (both in money and in time to keep up) to do both of them at the same time, so maybe I go for a year of B4NP and then a year of Homebrewed.&lt;/p&gt;
+&lt;p&gt;I&#39;m likely going the other way on sports, cutting back significantly because there are just too many of them with too many surveillance ads, and if I have to cut something to make some time, those are the most obvious to go.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>A Brief Experiment in a Mastodon Self-Managed Instance</title>
     <link href="https://tech.ryanrobinson.ca/posts/2024/managed-mastodon/" />
@@ -710,53 +783,6 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.avif 1385w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.webp 1385w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.png&quot; alt=&quot;&amp;quot;Screenshot of adding the Updated date filter to the view&amp;quot;&quot; width=&quot;1385&quot; height=&quot;437&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.avif 1396w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.webp 1396w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.png&quot; alt=&quot;&amp;quot;Screenshot of settings for the Updated filter, setting the operator to Is Less Than and the value as an offset of -30 days&amp;quot;&quot; width=&quot;1396&quot; height=&quot;751&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Now admins can periodically check and bulk delete any content that is flagged for delete, unpublished, and last updated more than 30 days ago. You can also do any of the usual views changes from here as you desire, including adding views, changing text to show when there are no results, adding CSS classes, etc.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>On Algorithms and Section 230</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2023/algorithms/" />
-    <updated>2023-02-26T13:18:09Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2023/algorithms/</id>
-    <content type="html">&lt;p&gt;For those paying attention, there are a couple big cases in front of the US Supreme Court that could shape the Internet as we know it. I&#39;m Canadian, but the (English) Internet is largely determined by what is allowed in the U.S., so yes, I&#39;m still talking about it.&lt;/p&gt;
-&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
-&lt;p&gt;Essentially, the plaintiffs want to hold Google legally responsible that its recommendation algorithm sometimes promotes ISIS recruitment videos. The concept could apply to other harmful content as well.&lt;/p&gt;
-&lt;p&gt;There is no question that Google is protected in the harmful videos existing on YouTube. It would be impossible for the modern Internet to exist if every piece of content had to be moderated and considered by a team of lawyers before it could go online. That is clearly covered by section 230.&lt;/p&gt;
-&lt;p&gt;It&#39;s the recommendation algorithm that complicates things, because that gives an impression of an endorsement from Google. Google claims they are protected under section 230, which says they are not responsible for content posted by users and the algorithm&#39;s results is effecctively user-generated. The plaintiffs say that Google is not protected because the algorithm for recommendations means Google is acting as a publisher.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://nebula.tv/videos/legaleagle-this-supreme-court-case-will-destroy-the-internet&quot;&gt;Legal Eagle provides a good breakdown on Nebula&lt;/a&gt; or (appropriately) &lt;a href=&quot;https://www.youtube.com/watch?v=hzNo5lZCq5M&quot;&gt;YouTube&lt;/a&gt;.&lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/hzNo5lZCq5M&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;He does a great job explaining why it would be terrible to remove section 230 entirely. The Internet would divide into either no moderation or extremely strict and expensive moderation. So let&#39;s rule out that extreme immediately.&lt;/p&gt;
-&lt;p&gt;But here&#39;s where it gets really interesting to me. If not the status quo, and not the opposite extreme, what else is possible in between?&lt;/p&gt;
-&lt;p&gt;Another distinction he mentions that SCOTUS may try to make is that between recommendation engines and search results, allowing the latter but making the platform provider responsible for the former. He says this would be less of a disaster, but there isn&#39;t that big of a philosophical difference between the two, so it might be hard to hold up.&lt;/p&gt;
-&lt;h2 id=&quot;personalization&quot;&gt;Personalization&lt;/h2&gt;
-&lt;p&gt;Another distinction even more interesting to me, that he doesn&#39;t mention, is &lt;em&gt;personalized&lt;/em&gt; recommendations and search result algorithms.&lt;/p&gt;
-&lt;h3 id=&quot;the-impact-on-the-business-model&quot;&gt;The Impact on the Business Model&lt;/h3&gt;
-&lt;p&gt;This might seem like a smaller change but it hits at the heart of big tech.&lt;/p&gt;
-&lt;p&gt;The basic business of most big tech is this:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;They make most of their money by selling ads&lt;/li&gt;
-&lt;li&gt;Ads are more effective if they are personalized&lt;/li&gt;
-&lt;li&gt;In order to personalize, they need you to give them lots of data about yourself&lt;/li&gt;
-&lt;li&gt;The best way for them to get you to give up lots of data is for them to keep feeding you things that you want to engage with&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;If the recommendations and/or search results were not personalized, you probably spend less time on their service and give them less data. They can still sell ads, but they won&#39;t be as effective and they make less money. The big established platforms could still make a profit, I&#39;m sure, but it would be a radical shake up of the entire business model.&lt;/p&gt;
-&lt;h3 id=&quot;the-impact-on-privacy&quot;&gt;The Impact on Privacy&lt;/h3&gt;
-&lt;p&gt;In terms of privacy, this would be good for users. There would be a lot less incentive for big tech to know everything about us, which could result in unintended consequences like security breaches.&lt;/p&gt;
-&lt;h3 id=&quot;the-impact-on-ai-research&quot;&gt;The Impact on AI Research&lt;/h3&gt;
-&lt;p&gt;In terms of AI, it would significantly slow down development. AI needs lots of data, which big tech already has. If we stop giving as much data, there&#39;s a lot less training material. Maybe at this point it wouldn&#39;t matter much, since they&#39;re already collecting all the data.&lt;/p&gt;
-&lt;h2 id=&quot;hate-and-progress-movements&quot;&gt;Hate and Progress Movements&lt;/h2&gt;
-&lt;p&gt;What does it mean in terms of social consequences, which is an important question not only because that&#39;s related to the cause of the lawsuit in the first place, but also because isn&#39;t it really always the big question?&lt;/p&gt;
-&lt;p&gt;If recommendations and search results were not personalized, they could still be weighted in other ways, like prioritizing content that already has lots of interaction or newer content. It just wouldn&#39;t be able to prioritize and give different results based on what the algorithm has determined that you individually will engage with.&lt;/p&gt;
-&lt;p&gt;That means that everyone sees the same results from the same input. We would lose a lot of the &amp;quot;echo chambers&amp;quot; where you only see things that you want to see, at least not without consciously entering that echo chamber (searching a hashtag, deciding who to follow, etc.)&lt;/p&gt;
-&lt;p&gt;There wouldn&#39;t be an algorithmic push to extremes. This applies to all extremes, not just social/political ones. We&#39;d see a lot of content that is broadly palatable to almost everyone. Think of what network TV was like 20 years ago, when each household had one TV so if you wanted viewership you wanted a show that the entire family could watch together. If you watch some of that content now, it will mostly seem boring, because you&#39;re used to media that is much more niche targeted to your interests.&lt;/p&gt;
-&lt;p&gt;The core argument in favour of this kind of approach is that algorithms stop promoting hatred. It would break the very successful business model of right wing grifters who make lots of money by generating lots of engagement spewing hatred and fear. That certainly sounds good.&lt;/p&gt;
-&lt;p&gt;But that&#39;s not the only group that would be impacted. It would also break the reach of anybody else who doesn&#39;t already have a critical mass of followers, like activists. You wouldn&#39;t hear from those profiting from spreading transphobic lies, but you also wouldn&#39;t hear a lot of important work from trans people telling their stories. You&#39;d see less of the crafted manipulation of authoritarians but you&#39;d also see a lot less of those fighting back. Algorithmic social media is often step one in organizing resistance and a big part of that is because in order to keep you there, they give you something that&#39;s a little more of what they think you want. So if you express a little interest in anti-racism work, it&#39;s going to help you find more anti-racism, which is great.&lt;/p&gt;
-&lt;p&gt;This is the area that is the most complicated. Do you consider that a fair trade, even if it were practically possible? And it is also ideological, not only practical: is that a level of regulation that you want your governments to be able to exert - not stifling free speech, but stifling reach?&lt;/p&gt;
-&lt;h3 id=&quot;smaller-sites&quot;&gt;Smaller Sites&lt;/h3&gt;
-&lt;p&gt;These kinds of proposals will have 95% of the conversation focused on big tech, but if the rule is established for YouTube, it would apply for everybody else, too.&lt;/p&gt;
-&lt;p&gt;My day job is for a university library, primarily the website. There is currently no recommendation interface. There are search results, which are not at all personalized, but I&#39;ve had the serious thought that maybe they should be in a very minimal way. There&#39;s a lot of content on the site and a lot of it using similar keywords around databases and resources and citations, so if you use keywords like that, you get a bunch of different pages spanning all of the subjects, likely burying the results most relevant to you. Even one piece of personalized information would really improve search results: what subjects are you studying? Wouldn&#39;t the search be better if we knew that and prioritized responses accordingly, giving computer science results first if you&#39;re a computer science student?&lt;/p&gt;
-&lt;p&gt;That&#39;s a small example. It doesn&#39;t require big machine learning algorithms monitoring your every move on the Internet, but it does still require personalization. Maybe that&#39;s the distinction instead: allow personalized results based on information explicitly given by the user, but don&#39;t allow engagement data mining. But who defines what is engagement data mining and what is essential information to provide the service, or engagement data mining for telemetry, for the developers to know what improvements they need to maks? My example may have a clearer line, but that certainly won&#39;t always be the case.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;There are a lot of complicated factors here and I&#39;m thankful for channels like Legal Eagle that are helping to unpack the potential consequences. Let&#39;s hope SCOTUS thinks this through carefully and rules in the best interests of a healthy role for the Internet in society.&lt;/p&gt;
 </content>
   </entry>
 </feed>
