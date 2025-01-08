@@ -1,6 +1,6 @@
 ---
 title: The State of Podcasts 2025
-date: 2025-01-08T22:54:16.700Z
+date: 2025-01-08T18:32:16.700Z
 author: Ryan Robinson
 description: The state of my podcast feeds to start 2025, including the problem of too much and pricing models.
 tags:
@@ -103,6 +103,6 @@ I already added Club TWiT recently. That's a good deal for a lot of good podcast
 
 I'm tempted by the "You're Wrong About" family, because they are so cheap to get the bonuses, and I do kind of want to encourage that model.
 
-I'm likely going to subscribe for the extra classes from either Homebrewed Christianity or Bible for Normal People. But it's probably a bit too much to try to do both of them at the same time, so maybe I go for a year of B4NP and then a year of Homebrewed.
+I'm likely going to subscribe for the extra classes from either Homebrewed Christianity or Bible for Normal People. But it's probably a bit too much (both in money and in time to keep up) to do both of them at the same time, so maybe I go for a year of B4NP and then a year of Homebrewed.
 
 I'm likely going the other way on sports, cutting back significantly because there are just too many of them with too many surveillance ads, and if I have to cut something to make some time, those are the most obvious to go.
