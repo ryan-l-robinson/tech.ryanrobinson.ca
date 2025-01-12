@@ -24,7 +24,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-        --background-color: var(--black);
+        --background-color: #1E1E1E;
         --text-color: var(--white);
 		--text-color-link: var(--white);
         --text-color-link-hover: var(--red);
