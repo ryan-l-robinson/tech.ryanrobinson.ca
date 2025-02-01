@@ -1,3 +1,3 @@
 export default {
-  layout: "layouts/sidebar.njk",
+  layout: "layouts/main.njk",
 };
