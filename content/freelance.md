@@ -1,5 +1,4 @@
 ---
-layout: layouts/sidebar.njk
 title: Freelance Work
 eleventyNavigation:
   key: Freelance Work

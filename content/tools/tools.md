@@ -1,5 +1,4 @@
 ---
-layout: layouts/sidebar.njk
 title: Favourite Technical Tools
 eleventyNavigation:
   key: Favourite Technical Tools

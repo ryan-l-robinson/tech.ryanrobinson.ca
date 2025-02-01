@@ -1,5 +1,4 @@
 ---
-layout: layouts/sidebar.njk
 title: Education and Certifications
 eleventyNavigation:
   key: Certifications
