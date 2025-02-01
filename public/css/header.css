@@ -19,7 +19,7 @@ header a {
     color: var(--white);
 }
 
-header .top-nav .top-nav-list .nav-item a:is(:focus,:hover) {
+header a:is(:focus,:hover) {
     background-color: var(--white);
     color: var(--red);
 }
