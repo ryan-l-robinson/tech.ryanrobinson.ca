@@ -25,4 +25,3 @@ I have also obtained some Microsoft 365 certifications:
 ## Microsoft Certified: Information Protection Administrator Associate
 
 ![Microsoft Information Protection Administrator Associate badge](./microsoft-certified-information-protection-administrator-associate.png)
-
