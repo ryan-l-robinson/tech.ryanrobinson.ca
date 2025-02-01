@@ -1,8 +1,8 @@
 ---
 layout: layouts/sidebar.njk
-title: Main Technical Tools
+title: Favourite Technical Tools
 eleventyNavigation:
-  key: Tools
+  key: Favourite Technical Tools
   order: 3
 ---
 
