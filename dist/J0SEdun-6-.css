@@ -248,7 +248,36 @@ a[href].header-anchor:focus,
 h2 + .header-anchor {
 	font-size: 1.5em;
 }
-/** Styles used on main section for pages that don't have a sidebar **/
+/** Styles for main with a sidebar (most pages) **/
+main.main-sidebar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/** Sidebar **/
+.sidebar {
+	width: 30%;
+	padding: 1em 1em 0 0;
+}
+
+.sidebar-block {
+	border: 1px dashed var(--red);
+	padding: 0.5em;
+}
+
+/** Main content **/
+.main-content {
+    width: 70%;
+}
+
+@media(max-width: 60em) {
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
+}
 footer {
     width: 100%;
     padding: 1em var(--main-gutter-x);
@@ -268,6 +297,25 @@ footer p a {
 footer p a:is(:hover,:focus) {
     background-color: var(--white);
     color: var(--blue);
+}
+/** Aligns with the tagslist.njk include **/
+.tags-list {
+	margin-bottom: 0;
+	padding-left: 1em;
+	columns: 1;
+}
+
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 60em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 30em) {
+	.tags-list {
+		columns: 1;
+	}
 }
 /** Aligns with the sociallinks.njk include file **/
 .social-links {
