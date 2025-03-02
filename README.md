@@ -6,6 +6,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 
 - Split theme to a git submodule that allows me to update it for both sites in one place?
 - Fix font not loading.
+- Fix tag pages not generating properly anymore.
 - Update links in dev.to to point to the new addresses.
 - Search functionality works but I don't think is very accessible. It auto-updates as text is entered, no button for a user to know that's going to happen, with no aria-live region. The Clear button also doesn't specify that it is a reset button. It also shows an excerpt from the body, not the specific tl;dr field I use elsewhere.
 - Posts: add descriptions to all posts (must be in quotes to appear), review tags and series, remove categories that aren't doing anything, update image paths, update link paths.
