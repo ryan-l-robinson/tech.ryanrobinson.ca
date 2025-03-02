@@ -19,6 +19,8 @@
         --text-color-link-hover: var(--white);
         --text-color-link-hover-background: var(--blue);
 		--text-color-link-active: var(--black);
+        --pager-link-background: var(--blue);
+        --pager-link-color: var(--white);
 	}
 }
 
@@ -30,6 +32,8 @@
         --text-color-link-hover: var(--red);
         --text-color-link-hover-background: var(--white);
 		--text-color-link-active: var(--white);
+        --pager-link-background: var(--blue);
+        --pager-link-color: var(--white);
 	}
 }
 

@@ -61,7 +61,8 @@
 }
 
 .pager li a {
-	background-color: var(--blue);
+	background-color: var(--pager-link-background);
+	color: var(--pager-link-color);
 }
 
 .pager li a:is(:hover,:focus) {
