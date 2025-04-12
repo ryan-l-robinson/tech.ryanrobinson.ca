@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -62,8 +62,7 @@
 }
 
 .pager li a {
-	background-color: var(--pager-link-background);
-	color: var(--pager-link-color);
+	background-color: var(--blue);
 }
 
 .pager li a:is(:hover,:focus) {
@@ -96,8 +95,6 @@
         --text-color-link-hover: var(--white);
         --text-color-link-hover-background: var(--blue);
 		--text-color-link-active: var(--black);
-        --pager-link-background: var(--blue);
-        --pager-link-color: var(--white);
 	}
 }
 
@@ -109,14 +106,12 @@
         --text-color-link-hover: var(--red);
         --text-color-link-hover-background: var(--white);
 		--text-color-link-active: var(--white);
-        --pager-link-background: var(--blue);
-        --pager-link-color: var(--white);
 	}
 }
 
 @font-face {
     font-family: "Atkinson Hyperlegible";
-    src: url('/Atkinson-Hyperlegible-Regular-102.ttf')  format('truetype');
+    src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
 }
 
 /* Global stylesheet */
@@ -180,7 +175,7 @@ header {
     width: 100%;
     background-color: var(--red);
     color: var(--white);
-    padding: 0 1em 1em;
+    padding: 0 1em;
 }
 
 .header-container {
