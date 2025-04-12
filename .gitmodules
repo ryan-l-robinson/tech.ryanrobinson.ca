@@ -1,0 +1,3 @@
+[submodule "11ty-theme"]
+	path = 11ty-theme
+	url = git@github.com:ryan-l-robinson/11ty-theme.git
