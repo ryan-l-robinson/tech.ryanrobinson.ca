@@ -4,7 +4,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 
 ## TODO
 
-- Split theme to a git submodule that allows me to update it for both sites in one place?
+- Recover showing sidebar on both sites, different for each site so can't be in the shared theme files
 - Fix font not loading.
 - Fix tag pages not generating properly anymore.
 - Update links in dev.to to point to the new addresses.
