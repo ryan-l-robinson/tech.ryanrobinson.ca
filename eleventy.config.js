@@ -5,7 +5,7 @@ import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import {execSync} from 'child_process';
 
-import pluginFilters from "./_config/filters.js";
+import pluginFilters from "./11ty-theme/_config/filters.js";
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default function (eleventyConfig) {
