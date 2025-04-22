@@ -3,6 +3,7 @@ title: Freelance Work
 eleventyNavigation:
   key: Freelance Work
   order: 2
+show_sidebar: true
 ---
 ## Freelance Work
 
