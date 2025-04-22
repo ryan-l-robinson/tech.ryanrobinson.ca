@@ -72,6 +72,57 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-05-05">May 5, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/static-sites/" class="post-tag">Static Sites</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An overview of building a Jekyll site hosted on GitHub Pages.
+	</p>
+
+
+<p>I recently decided that I wanted to try out hosting this site on GitHub Pages instead of WordPress that I had been using for over a decade. The reason why is simple: it’s <a href="/posts/2022/free-as-in-cats/">free as in cats</a> and it’s easier to maintain after the initial work of setting it up, with no regular maintenance required.</p>
+<p>Here’s a high level look at how I did it, and the code <a href="https://github.com/ryan-l-robinson/ryan-l-robinson.github.io">is available in my GitHub</a>. The main branch is everything I control, then the GitHub Actions generate the site on the gh-pages branch.</p>
+<h2 id="chirpy-theme-2">Chirpy Theme</h2>
+<p>I looked around for a bit and chose to start from <a href="http://jekyllthemes.org/themes/jekyll-theme-chirpy/">the Chirpy theme</a>. I like its simple design while still supporting the key blog features: categories, tags, archive timeline. And the biggest selling point was the switch between dark and light modes. That’s a nice feature to offer visitors.</p>
+<p>It does have a few things I wish were better. The navigation sidebar is not in a nav element, so that's a bit less than ideal accessibility. It also leans heavily on using ID for every element instead of class, which means my <a href="/tags/visual-studio-code/">Visual Studio Code</a> is constantly warning me that this is a fragile way to build a site. And the default colour contrasts are not strong enough in several places, but that can be overridden with CSS (see below).</p>
+<p>Knowing myself, I'll probably try to find a different theme in 1-2 years, but for now, this will do.</p>
+<h2 id="config-2">Config</h2>
+<p>The next step was to create the general config of the site and any pages outside of the blog posts like the About page. Config provided several options including where to find the profile photo, which social network links to show in the sidebar and as share buttons on posts, whether to default to light or dark mode.</p>
+<p>About is a simple markdown file with some front matter, and placed within the _tabs folder which will add it to the main navigation. Adding more pages to this _tabs folder will add them to the main navigation as well.</p>
+<h2 id="assets-2">Assets</h2>
+<p>The largest piece of work was editing the assets, specifically the CSS stylesheet. The key idea for this is that anything I put in a folder called “assets” would add to and override the default assets folder on the site. This includes images and stylesheets. This stylesheet behaviour is similar to WordPress where you can have a child theme build on and override certain pieces of the stylesheet.</p>
+<h2 id="posts-2">Posts</h2>
+<p>I chose to use a WordPress plugin to export everything on my WordPress site into Jekyll format. It worked pretty well, but did leave a few pieces I wanted to clean up myself. Some of the front matter it included was not relevant to my theme, so I removed those. The image in the front matter was not the right syntax, so I had to adjust each of those. And it wrapped every image in a figure tag with a caption, while this theme supports a simpler syntax for images, so I also replaced those. Some of the code around images and YouTube video embeds were messier than they needed to be.</p>
+<p>I'll have more in a future post about how I write and publish posts.</p>
+<h2 id="domain-2">Domain</h2>
+<p>What I have not done yet is assigning a domain. I will move my ryanrobinson.techology domain to here, but haven't yet. <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">It seems like a pretty straightforward process</a>.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/tel-links/">Tel Links</a></p><p>Next: <a href="/posts/2022/wordpress-jekyll/">WordPress vs Jekyll</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -178,6 +229,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/building-jekyll/` was built on 2025-04-22T19:16:05.777Z -->
+		<!-- This page `/posts/2022/building-jekyll/` was built on 2025-04-22T19:19:26.163Z -->
 	</body>
 </html>

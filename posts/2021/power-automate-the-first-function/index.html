@@ -54,6 +54,39 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-06-02">June 2, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		</p>
+	
+</div>
+
+
+
+<p>A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.</p>
+<p>How do you get around that? The Microsoft Tech Community recently answered that with the first() function. The full details are in the link below:</p>
+<p><a href="https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/avoid-unnecessary-looping-apply-to-each-in-power-automate/ba-p/2190265?WT.mc_id=m365-24198-cxa&amp;utm_source=collab365&amp;utm_medium=collab365today&amp;utm_campaign=daily_digest">Avoid Unnecessary Looping (Apply to each) in Power Automate – Microsoft Tech Community</a></p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p><p>Next: <a href="/posts/2021/htwoo-sharepoint-framework/">HTwoO in SharePoint Framework</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -160,6 +193,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2025-04-22T19:16:05.771Z -->
+		<!-- This page `/posts/2021/power-automate-the-first-function/` was built on 2025-04-22T19:19:26.158Z -->
 	</body>
 </html>

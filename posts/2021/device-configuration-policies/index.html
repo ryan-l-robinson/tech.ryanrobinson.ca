@@ -76,6 +76,61 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: MS-101</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-05-26">May 26, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>, 
+		<a href="/tags/security/" class="post-tag">Security</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An introduction to device configuration policies.
+	</p>
+
+
+<p><a href="/posts/2021/enrolling-devices-endpoint-manager/">You’ve got your devices enrolled in Endpoint Manager</a>. Now what? This opens up lots of tools including configuration policies.</p>
+<p>Configuration policies allow for quickly rolling out the desired configuration to the device, without the user having to manually set it up. This can include a lot of different settings and vary by the operating system of the device. Some of the more interesting tools for Windows 10 includes:</p>
+<ul>
+<li>Email, contacts, calendar, and tasks (add the account corresponding to the user logged in)</li>
+<li>Restrict apps to only those from the Store</li>
+<li>Block access to system settings</li>
+<li>Password requirements</li>
+<li>Start menu</li>
+<li>Battery saver settings</li>
+<li>Edition upgrade (from Pro to Enterprise)</li>
+<li>Domain join</li>
+<li>VPN</li>
+<li>Wi-Fi</li>
+<li>Windows Hello for Business</li>
+</ul>
+<p><picture><source type="image/avif" srcset="/posts/2021/device-configuration-policies/Y5hRZ7Eqhi-802.avif 802w"><source type="image/webp" srcset="/posts/2021/device-configuration-policies/Y5hRZ7Eqhi-802.webp 802w"><img loading="lazy" decoding="async" src="/posts/2021/device-configuration-policies/Y5hRZ7Eqhi-802.png" alt="&quot;Options for configuring a VPN on Windows 10&quot;" width="802" height="1018"></picture></p>
+<p>VPN particularly stands out to me in the age of COVID-19 and lots of people working from home. Setting up a VPN is not something that is intuitive to most users. With a device configuration profile, they don’t have to figure that out themselves or lose time letting an IT staff member remote access to set it up.</p>
+<p>That’s not a comprehensive list. Ultimately, you can do a lot which helps save the user time configuring themselves and/or helps enforce some security blocking them from features they don’t need.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/sharepoint-content-types/">SharePoint: Content Types</a></p><p>Next: <a href="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/">Power Automate: Temporary Site Scripts and Designs</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -207,6 +262,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/device-configuration-policies/` was built on 2025-04-22T19:16:05.799Z -->
+		<!-- This page `/posts/2021/device-configuration-policies/` was built on 2025-04-22T19:19:26.185Z -->
 	</body>
 </html>

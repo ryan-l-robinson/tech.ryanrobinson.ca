@@ -79,6 +79,64 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-02-14">February 14, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Fluid UI, available as a Drupal module, can help with site accessibility.
+	</p>
+
+
+<p>In doing research on accessibility tools that could be incorporated into a Drupal site, a co-worker recommended <a href="https://fluidproject.org/">Fluid UI</a>. This is not the same Fluid Framework used by Microsoft as the backbone of <a href="https://www.zdnet.com/article/microsoft-introduces-loop-a-new-collaboration-tool-built-on-fluid-framework/">the new Microsoft Loop tool</a>, or <a href="https://developer.microsoft.com/en-us/fluentui">the Fluent UI Microsoft design language</a>. There’s lots of use of Fluid and Fluent out there.</p>
+<p>This one is an open source group out of Toronto focused on web accessibility, and they offer their tools in a few different formats. One is as <a href="https://www.drupal.org/project/fluidui">a convenient Drupal module</a>. I installed it on a dev site and took a look at what it offered.</p>
+<h2 id="the-toolbar-2">The toolbar</h2>
+<p>It creates a toolbar across the top of the site, hidden by default behind a “+ Show Preferences” button. When expanded, there are a few options which can be valuable accessibility improvements.</p>
+<p><picture><source type="image/avif" srcset="/posts/2022/drupal-fluid-ui/8paaRoRw5s-1857.avif 1857w"><source type="image/webp" srcset="/posts/2022/drupal-fluid-ui/8paaRoRw5s-1857.webp 1857w"><img loading="lazy" decoding="async" src="/posts/2022/drupal-fluid-ui/8paaRoRw5s-1857.png" alt="Fluid UI toolbar: text size, text style, line spacing, contrast, table of contents" width="1857" height="195"></picture></p>
+<ul>
+<li>Change font size or spacing between lines</li>
+<li>Change to a high-contrast colour palette</li>
+<li>Emphasize links and buttons</li>
+<li>Display a table of contents</li>
+</ul>
+<p>The only one I don’t quite understand the value of is the table of contents. It gives a bland unstyled list of links, programmatically generated based on the headers on the page. I’m not sure who this is for. Sighted users can see the headers. Blind or low-vision users can navigate in a screen reader by the header levels already, much more useful than a table of contents at the top. I assume there is a use case because these developers know a lot more about accessibility than I do, but I have failed to think of what it is. Feel free to comment if you know.</p>
+<p>It’s also a bit odd visually, needing to scroll sideways to see all the options. I’d like to think there would be a better way to display them all.</p>
+<h2 id="configuration-2">Configuration</h2>
+<p>It has limited admin configuration options both around what pages the toolbox should appear on:</p>
+<p><picture><source type="image/avif" srcset="/posts/2022/drupal-fluid-ui/V23qMlKPg2-750.avif 750w"><source type="image/webp" srcset="/posts/2022/drupal-fluid-ui/V23qMlKPg2-750.webp 750w"><img loading="lazy" decoding="async" src="/posts/2022/drupal-fluid-ui/V23qMlKPg2-750.png" alt="Fluid UI configuration options, described below" width="750" height="531"></picture></p>
+<ul>
+<li>Display on admin pages (yes/no checkbox). By default this is off, meaning it only shows on the public pages, but if you’re aiming to improve accessibility of administration as well, you’ll want to turn this on.</li>
+<li>Hide the toolbox on these pages (text area to specify pages). There might be some unique pages where it doesn’t work very well, so you can name those as exceptions.</li>
+</ul>
+<p>I am a little tempted to come up with a basic settings page that can turn on or off each component, instead of it being an all-or-nothing, and maybe be able to change the order of the components, then offer that back to the developers. It’s not a big need, though; most are going to be happy with leaving everything on.</p>
+<h2 id="conclusion-2">Conclusion</h2>
+<p>Overall, it’s a good tool. It is a little rough, so I do hope they smooth it out some more, but it’s certainly much better than not offering these accessibility improvements at all.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gitlab-devops-gitlab-runner/">GitLab DevOps: GitLab Runner</a></p><p>Next: <a href="/posts/2022/drupal-sync-configuration/">Drupal: Sync Configuration</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -185,6 +243,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-fluid-ui/` was built on 2025-04-22T19:16:05.805Z -->
+		<!-- This page `/posts/2022/drupal-fluid-ui/` was built on 2025-04-22T19:19:26.191Z -->
 	</body>
 </html>

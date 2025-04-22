@@ -87,6 +87,72 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2023-03-01">March 1, 2023</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to devise your own recycle bin system in Drupal
+	</p>
+
+
+<p>Drupal does not come with any kind of recycle bin / trash system out of the box, unlike the other technologies I have worked with most (WordPress, SharePoint). There were a few modules available at the time I looked into this (admittedly over a year ago now), but they were all rough, either old or barely developed. None were reliable enough to count on. In this post I’ll describe a simple halfway approach that did not require any extra code.</p>
+<p>There is a demo of this <a href="https://github.com/ryan-l-robinson/Drupal-recycle-bin">available on my GitHub</a>, with a GitPod container to test it out.</p>
+<h2 id="permissions-only-admins-can-delete-2">Permissions: Only Admins Can Delete</h2>
+<p>Check permissions for each content type to confirm that only admins can delete anything. Everybody else will only be able to use the flag field we're about to create to request deletion, not directly delete anything.</p>
+<p>Go to the node permissions screen at /admin/people/permissions. Look for the permissions of each content type that are &quot;Delete own content&quot; or &quot;Delete any content.&quot; For the purposes of this demo, only the admin users should have these permissions. Your permission structure may be more complicated.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/R1lkMdjnoj-1779.avif 1779w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/R1lkMdjnoj-1779.webp 1779w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/R1lkMdjnoj-1779.png" alt="&quot;Screenshot of the permissions screen, with all permissions given to admins and no permissions given to others. The key for this example is that only admins have the Delete permissions&quot;" width="1779" height="641"></picture></p>
+<h2 id="field-flag-for-delete-2">Field: Flag for Delete</h2>
+<p>Proceed to the Manage Fields page of the first content type that you want to have this feature on. For example, if my content type is recyclable_content_type, I would go to /admin/structure/types/manage/recyclable_content_type_/fields. Create a boolean field.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/lpoXQPTaox-712.avif 712w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/lpoXQPTaox-712.webp 712w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/lpoXQPTaox-712.png" alt="&quot;Screenshot of the form to create a new field. A new field of type Boolean is being created with the label of Flag for Delete.&quot;" width="712" height="452"></picture></p>
+<p>Limit the field to only allow one value at a time.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/nXgzbGIm16-1333.avif 1333w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/nXgzbGIm16-1333.webp 1333w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/nXgzbGIm16-1333.png" alt="&quot;Screenshot of the form for setting storage on the field. This field allows only 1 value.&quot;" width="1333" height="403"></picture></p>
+<p>The final screen for creating the field allows you to add more options that are mostly about helping your content creators understand what this is doing. I'll add some help text as well as change the On and Off labels to be more clear of what they mean.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/SKrM8PlZtV-1424.avif 1424w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/SKrM8PlZtV-1424.webp 1424w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/SKrM8PlZtV-1424.png" alt="&quot;Flag for Delete field settings. This includes setting the help text to explain to the users what it does, changing the On label to Delete and the Off label to Keep.&quot;" width="1424" height="840"></picture></p>
+<p>You now have the field on this content type ready to use. You may also want to go into &quot;Manage form display&quot; and &quot;Manage display&quot; to customize how this appears for your users. In my case, on the form I put it inside a Details sidebar paired with the published option. I then used a module like <a href="https://www.drupal.org/project/condition_field">condition_field</a> to only show that option when the node is already marked as unpublished, so that somebody cannot accidentally mark something for deletion without unpublishing it first. Finally, on the display I hid it entirely because the public should never see that field - it is only for back-end processes.</p>
+<p>If you have more than one content type you want to deploy this feature on, go to the next content type and add a field again. This time, select from the dropdown of existing fields instead of creating a new one. The final steps for help text, form display, and public display remain the same.</p>
+<h2 id="view-ready-for-deletion-2">View: Ready for Deletion</h2>
+<p>Finally, you're going to want a way that admins can review the nodes flagged for delete and go ahead with permanently deleting after the set amount of time. This is a great problem to be solved by views.</p>
+<p>You can either create a new view or add a new display to an existing view. I'm going to start by building on top of the default admin view named &quot;Content&quot; since I want something that is basically the same but with extra filters. This is at /admin/structure/views/view/content. Either add a new page from the Add button, or duplicate the existing page with the Duplicate Page option in the dropdown near the right side of the screen. If there was only one display which is also the default, the result would be essentially the same.</p>
+<p>I put it in the menu under Content of the Admin menu, and with the path /admin/content/delete.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/cLcTDbyGq4-540.avif 540w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/cLcTDbyGq4-540.webp 540w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/cLcTDbyGq4-540.png" alt="&quot;First settings show the path set to /admin/content/delete. Second setting shows the Menu link as Normal and labelled Ready for Deletion.&quot;" width="540" height="181"></picture></p>
+<h3 id="flag-for-delete-filter-2">Flag for Delete filter</h3>
+<p>Add a filter to the view, overriding this page only, on the Flag for Delete field.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/1FdVVB4wrE-1386.avif 1386w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/1FdVVB4wrE-1386.webp 1386w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/1FdVVB4wrE-1386.png" alt="&quot;Screenshot of the views admin to add a filter. A filter on the field Flag for Delete is being added.&quot;" width="1386" height="445"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.avif 1396w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.webp 1396w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.png" alt="&quot;Screenshot of the views admin, setting the value of Flag for Delete is equal to True.&quot;" width="1396" height="751"></picture></p>
+<h3 id="published-filter-2">Published filter</h3>
+<p>The view I duplicated from already had a Published filter, but it was exposed to allow users to select. So I'm going to edit that one to only show unpublished content. I only want unpublished content, because if somebody has flagged for delete but it is still published, that suggests they might have made a mistake.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/j5VYBHfOLd-1383.avif 1383w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/j5VYBHfOLd-1383.webp 1383w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/j5VYBHfOLd-1383.png" alt="&quot;Configuration for the Published filter on the view, set as is equal to Published status of No.&quot;" width="1383" height="587"></picture></p>
+<h3 id="date-updated-filter-2">Date Updated filter</h3>
+<p>Finally, in my case, I also wanted to filter on the date updated, so that only content that hasn't been updated within the past 30 days would show up. Anything less than that suggests that the content creator may be having second thoughts and isn't really ready to delete it yet. In your context, you may not want this delay at all, or you may want a much longer delay.</p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.avif 1385w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.webp 1385w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/Q54VDgmhzE-1385.png" alt="&quot;Screenshot of adding the Updated date filter to the view&quot;" width="1385" height="437"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.avif 1396w"><source type="image/webp" srcset="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.webp 1396w"><img loading="lazy" decoding="async" src="/posts/2023/drupal-recycle-bin/1DwkRy6sST-1396.png" alt="&quot;Screenshot of settings for the Updated filter, setting the operator to Is Less Than and the value as an offset of -30 days&quot;" width="1396" height="751"></picture></p>
+<p>Now admins can periodically check and bulk delete any content that is flagged for delete, unpublished, and last updated more than 30 days ago. You can also do any of the usual views changes from here as you desire, including adding views, changing text to show when there are no results, adding CSS classes, etc.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/algorithms/">On Algorithms and Section 230</a></p><p>Next: <a href="/posts/2023/paragraphs-sidebar/">Drupal: Paragraphs Sidebar</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -193,6 +259,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/drupal-recycle-bin/` was built on 2025-04-22T19:16:05.806Z -->
+		<!-- This page `/posts/2023/drupal-recycle-bin/` was built on 2025-04-22T19:19:26.194Z -->
 	</body>
 </html>

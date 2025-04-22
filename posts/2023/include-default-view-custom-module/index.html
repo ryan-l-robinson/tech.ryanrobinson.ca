@@ -72,6 +72,57 @@ You can write this file from scratch, especially if they're hidden options. If i
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2023-02-23">February 23, 2023</time></p>
+	
+		<p>Tags:
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to include a view configuration as part of installing a module.
+	</p>
+
+
+<p>You may be working on a Drupal module and want to include a default view.</p>
+<h2 id="install-2">Install</h2>
+<p>This is actually quite simple: put the configuration file in the config/install folder within the module, with the proper configuration name, and it will install.</p>
+<p>This would be the full configuration file, the same as you would generate using the configuration sync tools.
+You can write this file from scratch, especially if they're hidden options. If it is something that has a user interface, you can do what I tend to do: determine all your preferred settings and test it out within the interface, then export the configuration from either the UI (/admin/config/development/configuration/single/export) or drush (<code>drush config-export</code> but that does all configuration, not only the specific one you want).</p>
+<h2 id="uninstall-2">Uninstall</h2>
+<p>What about uninstalling the configuration you've installed with the module? This will depend on the context of your module, but you may want to also uninstall this configuration when the module is uninstalled. The configuration might no longer make sense without the module, or you might create conflicts if you installed it once, uninstalled the module but left the configuration, then tried to install it again.</p>
+<p>To do that, add a few lines like this to the uninstall hook of the .module file, for example with a config file named webform.webform.event_registration:</p>
+<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
+ * Implements hook_uninstall
+ * */</span>
+<span class="token keyword">function</span> <span class="token function-definition function">module_name_uninstall</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">configFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getEditable</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'webform.webform.event_registration'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/mastodon-apps-android/">Mastodon Apps on Android</a></p><p>Next: <a href="/posts/2023/algorithms/">On Algorithms and Section 230</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -178,6 +229,6 @@ You can write this file from scratch, especially if they're hidden options. If i
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2025-04-22T19:16:05.795Z -->
+		<!-- This page `/posts/2023/include-default-view-custom-module/` was built on 2025-04-22T19:19:26.181Z -->
 	</body>
 </html>

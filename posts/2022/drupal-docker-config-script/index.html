@@ -114,6 +114,99 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: Drupal Docker</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-06-29">June 29, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> A first-run script for a Drupal Docker image.
+	</p>
+
+
+<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
+<p>This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to <a href="/posts/2022/drupal-gitpod-container-2-gitpod-yml/">the GitPod.yml file</a> of <a href="/tags/gitpod-drupal/">the GitPod series</a>.</p>
+<p>This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span></code></pre>
+<p>Enforce permissions on the SSH keys, needed for the git SSH connection to work:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> drupal:drupal /home/drupal/.ssh
+<span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">700</span> ~/.ssh</code></pre>
+<p>Provide ownership of entire web root to drupal user:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> drupal:apache /var/www/html</code></pre>
+<p>Move to codebase:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">cd</span> /var/www/html/local.drupal.com</code></pre>
+<p>Add local domain to hosts file (useful for tools like pa11y being able to browse the site):</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-z</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token string">"127.0.0.1 local.drupal.com"</span> /etc/hosts<span class="token variable">)</span></span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"127.0.0.1 local.drupal.com"</span> <span class="token operator">>></span> /etc/hosts
+<span class="token keyword">fi</span></code></pre>
+<p>Create database and grant all privileges to drupal user. In this case I'm putting it in the script explicitly because I want to share an out-of-the-box functional system. If you're going to do this with a real site, make sure you aren't using the same password on servers that anybody else can access, unlike Docker on your computer. Also it should be a stronger password than &quot;root.&quot;</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">mysql <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token string">"db"</span> <span class="token parameter variable">-e</span> <span class="token string">"CREATE DATABASE IF NOT EXISTS drupal;"</span> <span class="token parameter variable">-u</span> root <span class="token parameter variable">--password</span><span class="token operator">=</span><span class="token string">"root"</span>
+mysql <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token string">"db"</span> <span class="token parameter variable">-e</span> <span class="token string">"GRANT ALL PRIVILEGES ON drupal.* TO 'drupal'@'%';"</span> <span class="token parameter variable">-u</span> root <span class="token parameter variable">--password</span><span class="token operator">=</span><span class="token string">"root"</span></code></pre>
+<p>Install site's contributed code base from composer:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">composer</span> <span class="token function">install</span></code></pre>
+<p>Add drush alias to PATH for easier use:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"alias drush=<span class="token entity" title="\&quot;">\"</span>/var/www/html/local.drupal.com/vendor/drush/drush/drush<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token operator">>></span> ~/.bashrc</code></pre>
+<p>Copy the Drupal configuration files:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-f</span> ./.devcontainer/conf/drupal.settings.php <span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+  <span class="token function">sudo</span> <span class="token function">cp</span> .devcontainer/conf/drupal.settings.php web/sites/default/settings.php
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-f</span> ./.devcontainer/conf/local.services.yml <span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+  <span class="token function">sudo</span> <span class="token function">cp</span> .devcontainer/conf/local.services.yml web/sites/local.services.yml
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> private <span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+  <span class="token function">mkdir</span> private
+  <span class="token function">chmod</span> <span class="token number">755</span> private
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> sync/config <span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+  <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> sync/config
+<span class="token keyword">fi</span></code></pre>
+<p>Import the existing configuration. Note that there is a drush command to build a new site from the existing configuration, but it did not work reliably in this context.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush site-install <span class="token parameter variable">-y</span> minimal
+vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> system.site uuid <span class="token string">"3d9878de-3355-4510-af4d-575deb24055f"</span>
+vendor/drush/drush/drush config-import <span class="token parameter variable">-y</span></code></pre>
+<p>Flush generated images, which helps if configuration changes since last time including changes to the media formats. This isn't really necessary when you aren't also using <a href="https://drupal.org/project/content_sync">the content_sync module</a>, which I no longer am in this demo, since without that there are no images to regenerate. But I kept the image flush anyway to demonstrate how that works.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush image-flush <span class="token parameter variable">--all</span></code></pre>
+<p>Sets admin password. The same note applies as with the MySQL passwords above.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush user:password admin <span class="token string">"ZNB*ufm1tyz4rwc@yzk"</span></code></pre>
+<p>Rebuild the node access caches. This isn't a huge issue, but does save clearing a warning that appears in Drupal.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush php-eval <span class="token string">'node_access_rebuild();'</span></code></pre>
+<p>Set the <a href="https://www.drupal.org/project/environment_indicator">environment indicator</a>. This is a Drupal module that shows the site toolbar and favicon with different colours. It's very helpful to visually cue your brain when you're in Docker vs dev vs staging vs production. For this to work, you'll have to include the environment indicator module in your composer.json file.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator name <span class="token string">"Local Docker"</span>
+vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator fg_color <span class="token string">"#ffffff"</span>
+vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator bg_color <span class="token string">"#000000"</span></code></pre>
+<p>Finally, the all-important clearing of the caches:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush cr</code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></p><p>Next: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker, and GitPod</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -237,6 +330,6 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2025-04-22T19:16:05.779Z -->
+		<!-- This page `/posts/2022/drupal-docker-config-script/` was built on 2025-04-22T19:19:26.164Z -->
 	</body>
 </html>

@@ -119,6 +119,104 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-11-12">November 12, 2021</time></p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Analyzing some email apps on Android.
+	</p>
+
+
+<p>I recently got a Pixel 6. It’s great. For the previous 3 and a bit years I had been using a BlackBerry Key2. There was lots I liked about the Key2, but 3 years later I had never received an Android version update. I was still getting security updates, but I decided with the Pixel 6 launch it was time for an update.</p>
+<p>That context to say that I was using the BlackBerry apps for email, contacts, tasks, and calendar. The exception was my work email, which doesn’t allow app passwords and the BlackBerry app incredibly did not support modern authentication with multi-factor.</p>
+<p>So, I decided with the new phone that it was a good chance to evaluate Android email apps again. My qualifier is that I use Microsoft email – personal and business – not Gmail. So I immediately ruled out the Gmail app.</p>
+<p>Here’s a quick review of the ones I checked out:</p>
+<h2 id="bluemail-2">BlueMail</h2>
+<p>Some positives:</p>
+<ul>
+<li>Calendar and contacts integrated nicely</li>
+<li>Unified inbox with all accounts combined to one list, or view them separately</li>
+<li>Good notification options including LED colour</li>
+</ul>
+<p>Some negatives:</p>
+<ul>
+<li>Stalled out when I added the second account. Maybe a fluke bug, but not a great start. I closed the app, came back in, and it was fine.</li>
+<li>I didn’t love the design, although I couldn’t nail down exactly why. The dark mode is not that dark. The colour combinations are a bit odd.</li>
+</ul>
+<p>Conclusion: on paper it hits my biggest requirements, but there’s just something about the design that led me to move on quickly.</p>
+<h2 id="newton-2">Newton</h2>
+<p>Not free after the first 14 days. Nevermind.</p>
+<h2 id="edison-2">Edison</h2>
+<p>First, it appears in the app screen as simply “email.” That was confusing when I had all of these apps installed at once, but I see the value in that decision normally. In normal contexts where you only have one email app, having that app called “email” is nicer than remembering it’s called Edison.</p>
+<p>Some positives:</p>
+<ul>
+<li>Asked me up-front if I wanted Focused Inbox, which I do not, rather than turning it on and forcing me to find the switch to turn it off like the others with a similar feature.</li>
+<li>Some smart assistant features like identifying your travel itinerary and subscription review to help you unsubscribe from emails you don’t need anymore</li>
+<li>Unified inbox, or view accounts one at a time</li>
+<li>Good configuration options like notification quick actions and colour-coded accounts</li>
+</ul>
+<p>Some negatives:</p>
+<ul>
+<li>No calendar or contacts view</li>
+<li>Lots of little prompts trying to sell me on the premium subscription</li>
+</ul>
+<p>Conclusion: definitely does some good things, but it doesn’t solve the calendar/contact piece and I know I would regularly get annoyed at the ads for premium.</p>
+<h2 id="spark-2">Spark</h2>
+<p>There’s a lot I like about Spark, including a lot that overlaps with what I liked about BlackBerry Hub:</p>
+<ul>
+<li>It had the simplest login. Most of the others required first selecting the email provider (Gmail, Outlook, Exchange, etc). A lot of people would know this, but not everyone. Even if you do, it’s a few extra clicks. Spark will look it up for you – you just have to know the address and it will redirect you to the appropriate login.</li>
+<li>Attractive, easy-to-use, and a good dark mode.</li>
+<li>A reasonable amount of customizing the app like being able to set the quick actions on a notification, the LED colour of a notification, and whether to notify on all or only on known contacts.</li>
+<li>Multiple accounts and unified inbox to see them all together or split them out to view one at a time.</li>
+<li>Email signatures, including different ones default for different accounts.</li>
+</ul>
+<p>It had one big hole:</p>
+<ul>
+<li>Does not include calendar or contacts at all. I’m really hoping for one app that does everything.</li>
+</ul>
+<p>Finally, a neutral for me is that it uses a smart inbox to predict what you consider most important and prioritize them in your inbox. I know some people like this idea. I do not. I also turn off the equivalent feature in desktop Outlook. I am an aggressive manager of my inbox already and having something “smart” hiding things from me just confuses my own system. It can be turned off, so this isn’t a big deal.</p>
+<p>Conclusion: other than the lack of calendar and tasks, it did feel like it hit on a lot of the things I liked about the BlackBerry app.</p>
+<h2 id="nine-2">Nine</h2>
+<p>I didn’t get too far with Nine before encountering a couple things that worried me. First, it says it won’t limit any basic features for 14 days. In other words, it won’t be free after 14 days. It doesn’t give any hint within the app of what it will cost. I had to jump through a few websites before I found a price, and even that wasn’t entirely clear if that price was a one-time price, a yearly price, or a monthly price. If it clearly said “$15 one-time fee” I would be a lot more interested than having no idea what it will cost.</p>
+<p>I got over that and decided to start trying to set up an account. It didn’t ask me what type of email it was. I was prepared to list that as a positive as I have for a couple others. I entered my email address. The next screen told me to enter the password to my IMAP email, not taking me to a Microsoft sign-in screen. My email is a Microsoft email, but with a custom domain, from the days of Windows Live Domains. So that’s not great that it didn’t figure that out. Fortunately, there was an option to manually specify, so I went back and chose instead to specify that it was indeed a Microsoft account.</p>
+<p>After that, this email app is all positives for me. It has all the positives I listed above for Spark, but also integration of calendar, contacts, tasks, and notes. There are widgets to easily pin those different components to the home screen, even though it’s one app. After those first couple bad impressions, Nine is fantastic.</p>
+<h2 id="outlook-2">Outlook</h2>
+<p>This is the one I had already tried. Some good things:</p>
+<ul>
+<li>Includes calendar and contacts management.</li>
+<li>Dark mode; generally attractive and easy to use.</li>
+<li>Voice dictation and voice reading my emails</li>
+<li>From Microsoft so I can pretty confidently say that it will steadily get better for years to come</li>
+</ul>
+<p>Some negatives:</p>
+<ul>
+<li>Slower getting emails for some reason</li>
+<li>Not quite as many configuration options as some of the others (like LED notification colours, quick actions on notifications)</li>
+</ul>
+<h2 id="conclusion-2">Conclusion</h2>
+<p>Nine is my winner. I will gladly pay $15 USD one-time for such a good app. I’m happy that I found an app that checked all my boxes and without a subscription fee.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/vagrant-oracle-linux-vm/">Vagrant: Oracle Linux VM</a></p><p>Next: <a href="/posts/2021/microsoft-enterprise-administrator-expert/">Microsoft Enterprise Administrator Expert</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -225,6 +323,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/android-email-apps/` was built on 2025-04-22T19:16:05.764Z -->
+		<!-- This page `/posts/2021/android-email-apps/` was built on 2025-04-22T19:19:26.150Z -->
 	</body>
 </html>

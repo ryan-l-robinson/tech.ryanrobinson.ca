@@ -61,6 +61,46 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: MS-700</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-08-16">August 16, 2021</time></p>
+	
+</div>
+
+
+
+<p>What if you need to partition your organization so that some members of your tenant cannot communicate with others in Teams? For example, maybe you have interns who you do want to have Teams access but not to any sensitive information.</p>
+<p>Information barriers are the solution you need. You can block interaction across the barriers so that the interns cannot see any content from anybody else or vice versa.</p>
+<p>Creating the barriers is done by PowerShell. There is not currently a web admin interface to do it.</p>
+<p>Create one organization segment for interns:</p>
+<pre class="language-powershell" tabindex="0"><code class="language-powershell"><span class="token function">New-OrganizationSegment</span> <span class="token operator">-</span>Name <span class="token string">"Interns"</span> <span class="token operator">-</span>UserGroupFilter <span class="token string">"Title -contains 'Intern'"</span></code></pre>
+<p>Repeat for another segment called staff:</p>
+<pre class="language-powershell" tabindex="0"><code class="language-powershell"><span class="token function">New-OrganizationSegment</span> <span class="token operator">-</span>Name <span class="token string">"Staff"</span> <span class="token operator">-</span>UserGroupFilter <span class="token string">"Title -not (-contains 'Intern')"</span></code></pre>
+<p>Now that you have the two segments, create the barrier between them:</p>
+<pre class="language-powershell" tabindex="0"><code class="language-powershell"><span class="token function">New-InformationBarrierPolicy</span> <span class="token operator">-</span>Name <span class="token string">"Interns"</span> <span class="token operator">-</span>AssignedSegment <span class="token string">"Interns"</span> <span class="token operator">-</span>SegmentsBlocked <span class="token string">"Staff"</span> <span class="token operator">-</span>State Inactive</code></pre>
+<p>Finally, apply the information barriers:</p>
+<pre class="language-powershell" tabindex="0"><code class="language-powershell"><span class="token function">Start-InformationBarrierPoliciesApplication</span></code></pre>
+<p>It could take several hours to go into effect.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/guest-access-teams/">Microsoft Teams: Guest Access</a></p><p>Next: <a href="/posts/2021/microsoft-teams-phone-numbers/">Microsoft Teams: Phone Numbers</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -186,6 +226,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/microsoft-teams-information-barriers/` was built on 2025-04-22T19:16:05.769Z -->
+		<!-- This page `/posts/2021/microsoft-teams-information-barriers/` was built on 2025-04-22T19:19:26.156Z -->
 	</body>
 </html>

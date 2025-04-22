@@ -77,6 +77,62 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: Movie Directory</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-06-18">June 18, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The data structures for the movie directory project.
+	</p>
+
+
+<p>I recently decided to do more experimentation with Dataverse (formerly Common Data Service) in the Power Platform. I did this by making myself an app to solve a need I have myself: a movie directory app. I wanted to be able to:</p>
+<ul>
+<li>Track in what formats I own a movie (Blu-ray, DVD, digital)</li>
+<li>Link to JustWatch to find where I could stream a movie</li>
+<li>Assign a movie to different lists</li>
+<li>Streamline a process for grabbing the movie cover image</li>
+</ul>
+<p>There are good apps out there that do these things, but I never found something to do them all in one place. More than intending to use it, though, it was mostly an excuse to try out some things in Dataverse and Power Apps. In this post I’ll describe my data structure in Dataverse. In the next post I’ll walk through a couple complicated features of the Power App itself. Then I’ll detail the Power Automate Flow that I used to help streamline grabbing movie cover images, with some limitations on how much I could do without a premium license.</p>
+<p>Here’s the table that I created, appropriately named “Movie.”</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-1-data/1sXZ3GITU4-1578.avif 1578w"><source type="image/webp" srcset="/posts/2021/movie-directory-1-data/1sXZ3GITU4-1578.webp 1578w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-1-data/1sXZ3GITU4-1578.png" alt="&quot;Table summarizing my Movie DataVerse structure&quot;" width="1578" height="962"></picture></p>
+<p>Many of these fields are the defaults that come with any new table, but this is what I added:</p>
+<ul>
+<li><strong>Cover</strong>: data type Image and the flag set for Primary Image.</li>
+<li><strong>JustWatch</strong>: data type URL.</li>
+<li><strong>Last Watched</strong>: data type Date Only. This is used to track when we last watched something, particularly something we owned, to help us easily identify when we completely forgot about a movie we own.</li>
+<li><strong>Owned:</strong> data type Choice, where the choice options are Blu-ray, DVD, Movies Anywhere, Google Play, Microsoft, Vudu.</li>
+<li><strong>Watchlist:</strong> data type Choice, where the choice options are whether this movie is for just me, just my wife, together, or not on any list at the moment. This is to help prevent “Netflix cheating:” watching something independently that the other was expecting to be together.</li>
+<li><strong>Year:</strong> data type Whole Number. This is to help distinguish when multiple movies over different years have the same title.</li>
+</ul>
+<p>That’s it. It’s a pretty simple data structure. I did at times toy with more like a Streaming choice that allowed for specifying the services the movie is currently on, but cut that out and replaced it with the JustWatch link because it would be much more hassle than it’s worth to keep those up-to-date.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/considerations-migrating-imap-to-m365/">Considerations Migrating IMAP to M365</a></p><p>Next: <a href="/posts/2021/civicrm-personal-campaign-pages/">CiviCRM: Personal Campaign Pages</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -198,6 +254,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/movie-directory-1-data/` was built on 2025-04-22T19:16:05.802Z -->
+		<!-- This page `/posts/2021/movie-directory-1-data/` was built on 2025-04-22T19:19:26.188Z -->
 	</body>
 </html>

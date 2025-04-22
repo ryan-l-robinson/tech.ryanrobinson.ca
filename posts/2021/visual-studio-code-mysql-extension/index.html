@@ -65,6 +65,50 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-09-29">September 29, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		</p>
+	
+</div>
+
+
+
+<p>In a recent post I talked about <a href="/posts/2021/mysql-workbench/">how great MySQL Workbench is</a>. A few days later, I discovered a Visual Studio Code extension simply called MySQL. It is not as robust in some ways as Workbench (e.g. bulk importing and exporting).</p>
+<p>However, it does meet all the same core functionality such as:</p>
+<ul>
+<li>browse the tables and databases available to the user, with all the data kept in nice clear and easy-to-read lines</li>
+<li>write your own queries a table and get results in a nice table where you can do things like click sort by different headers</li>
+<li>edit entries directly in the table (no form editor mode like Workbench)</li>
+</ul>
+<p>It does not do all the more intensive functionality that Workbench does, like importing and exporting with CSV files, but that’s the kind of thing that you likely don’t have to do regularly.</p>
+<p>The big advantage that it has over Workbench is being a part of Visual Studio Code which you are already using. That means a few little things can go faster and more lightweight on your computer’s resources. The two little things that I can imagine make a meaningful difference over time are:</p>
+<ul>
+<li>less steps to login, since you are already SSHed to the host</li>
+<li>the ability to have a database open as a tab right beside the code, rather than jumping back and forth between Code in one window and Workbench in another</li>
+</ul>
+<p>Of course it’s great to also have Workbench available in your toolbox if you need more intensive functionality, but speaking for myself, I think I might start relying on this extension more often for the majority of my lightweight work.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-365-tools-recognizing-sensitive-data/">Microsoft 365: Tools for Recognizing Sensitive Data</a></p><p>Next: <a href="/posts/2021/visual-studio-code-grep/">Visual Studio Code: Grep</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -171,6 +215,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/visual-studio-code-mysql-extension/` was built on 2025-04-22T19:16:05.774Z -->
+		<!-- This page `/posts/2021/visual-studio-code-mysql-extension/` was built on 2025-04-22T19:19:26.160Z -->
 	</body>
 </html>

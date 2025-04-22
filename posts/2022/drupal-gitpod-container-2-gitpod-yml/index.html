@@ -142,6 +142,127 @@ apachectl start</code></pre>
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: Drupal GitPod</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-01-28">January 28, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The GitPod yml file in a Drupal GitPod setup.
+	</p>
+
+
+<p>This post picks up in a <a href="/tags/gitpod-drupal/">mini-series</a> describing how I created a generic Drupal-friendly container working with <a href="https://gitpod.io">GitPod</a>. The <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">first covered the GitPod.Dockerfile</a> to build the core LAMP stack image.</p>
+<p><a href="https://github.com/ryan-l-robinson/Drupal-GitPod">The entire project is available in my GitHub</a>.</p>
+<p>More of the remaining work is done by the .gitpod.yml file, including referencing the Dockerfile image described in the previous part, as the starting point.</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">image</span><span class="token punctuation">:</span>
+  <span class="token key atrule">file</span><span class="token punctuation">:</span> .gitpod/GitPod.Dockerfile</code></pre>
+<h2 id="tasks-2">Tasks</h2>
+<p>It then runs a handful of tasks, split into two sections. The tasks under “init” will run only when the container is created for the first time. The tasks under “command” will run every time the container is started, even if you’re re-opening an existing container.</p>
+<h3 id="create-the-database-2">Create the database</h3>
+<p>Creating the database is straightforward and familiar enough to any who have used MySQL from a command line before:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> mysql <span class="token parameter variable">-e</span> <span class="token string">"CREATE DATABASE IF NOT EXISTS drupal"</span></code></pre>
+<h3 id="install-codebase-2">Install codebase</h3>
+<p>The contributed codebase can be built using composer install:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">composer</span> <span class="token function">install</span></code></pre>
+<p>I’m also going to copy the settings file into place:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> .gitpod/drupal.settings.php web/sites/default/settings.php</code></pre>
+<p>That settings file includes several alterations including where to find the configuration and content sync directories, how to connect to the database, and which URL is allowed to login from. Most of it will be familiar to those who have used Drupal settings files before, but I will cover anything unique in my next post for this series.</p>
+<h3 id="drupal-settings-and-content-2">Drupal Settings and Content</h3>
+<p>This is the hardest part of working with Drupal websites. All of the configuration and content is held in the database, not the codebase. Drupal (since 8) offers a configuration sync tool out of the box, and a content sync tool as a module. Broadly speaking, the configuration tool is usually pretty reliable, while the content tool has had some occasional glitches in my time using it.</p>
+<p>I install the site using <a href="https://www.drush.org/latest/commands/site_install/">the drush site-install tool</a>:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush <span class="token parameter variable">-y</span> site-install minimal --existing-config</code></pre>
+<p>The key there is the –existing-config tag. This starts the installation using the configuration details you already have in the configuration sync folder. The main thing this accomplishes is keeping the UUID of the site in sync. Config sync and content sync will not work if the UUIDs don’t match.</p>
+<p>Now the content sync will also work:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush <span class="token parameter variable">-y</span> content-sync:import --entity-types<span class="token operator">=</span>block_content,file,node</code></pre>
+<p>The reason I added the –entity-types instead of simply importing all entity types was because of some experiences with <a href="https://www.drupal.org/project/menu_entity_index">menu_entity_index</a>. I won’t get into those details here, but that created another entity type for menu links, which tended to not synchronize very well mainly because the content sync does not sync the node ID of each content. That meant that a page might have a different ID on one installation from the content sync than on another. Menu items were then pointing to the node ID, which is now different content, and it created some nasty URL aliases.</p>
+<p>Similarly related to the node ID sync is the homepage. The configuration is saved with specifying which piece of content is the homepage using the link to the node ID. But that might no longer be the content you want on the homepage. To solve this, I added a query to find my real homepage and set it again each time:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token assign-left variable">home_id</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>vendor/drush/drush/drush sql-query <span class="token string">'SELECT nid FROM node_field_data where type="home" and status="1" and title="Home" limit 1;'</span><span class="token variable">)</span></span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-z</span> <span class="token variable">${home_id}</span> <span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+    vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> system.site page.front /node/<span class="token variable">$home_id</span>
+<span class="token keyword">fi</span></code></pre>
+<p>The key for that structure to be maintained is that the homepage is of the content type “Home” and with the title of “Home.” If that isn’t met, this workaround will fail.</p>
+<h3 id="admin-password-2">Admin Password</h3>
+<p>By default, the site install at this point created a default super-admin user with a random password. For the purpose of this demo, I wanted to control what that admin password was so I could put it in the GitHub README and keep it saved in my <a href="https://ryanrobinson.technology/all/tools/security-essentials-password-manager/">password manager</a>. So, I used drush to always reset the admin password back to what I wanted it to be:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush user:password admin <span class="token string">"ZNB*ufm1tyz4rwc@yzk"</span></code></pre>
+<h3 id="cleanup-2">Cleanup</h3>
+<p>There are two more small acts of clean up that I want, to minimize warning errors that would otherwise appear as soon as I sign in. One is to rebuild the content permissions and the other is to run cron.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush php-eval <span class="token string">'node_access_rebuild();'</span>
+vendor/drush/drush/drush <span class="token function">cron</span></code></pre>
+<h3 id="drush-alias-2">Drush Alias</h3>
+<p>I want to be able to use the command <code>drush</code> instead of always having to reference the full path to drush, as I did above. So I add an alias to my .bashrc. You can also do this by adding the location of drush to the PATH. Arguably that is more correct but this was simpler in a GitPod scenario where containers are constantly being built and destroyed and so don’t always have to be precisely the long-term ideal.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'alias drush="/workspace/drupal-gitpod/vendor/drush/drush/drush"'</span> <span class="token operator">>></span> ~/.bashrc</code></pre>
+<h3 id="command-2">Command</h3>
+<p>The command tasks accomplish two simple things: start Apache, and source the bashrc to make sure it notices the drush alias.</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.bashrc
+apachectl start</code></pre>
+<h2 id="ports-2">Ports</h2>
+<p>The GitPod.yml file optionally defines ports and what to do when they open. You don’t need to have this section. The ports will open either way. But it can be nice to specify in advance what you want to do when each port opens. In this case, I’m ignoring everything except for 8001, which I will open in the browser, since that is the port for the Apache access. If you don’t specify, it will give you a popup with each port opened asking what you want to do, so this saves some time.</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8001</span>
+    <span class="token key atrule">onOpen</span><span class="token punctuation">:</span> open<span class="token punctuation">-</span>browser
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8828</span>
+    <span class="token key atrule">onOpen</span><span class="token punctuation">:</span> ignore
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8829</span>
+    <span class="token key atrule">onOpen</span><span class="token punctuation">:</span> ignore
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">3306</span>
+    <span class="token key atrule">onOpen</span><span class="token punctuation">:</span> ignore</code></pre>
+<h2 id="github-2">GitHub</h2>
+<p>This section starts with a somewhat misleading key “github.” These functions are not exclusive to GitHub – they can be used with any of the supported version control platforms with GitLab and Bitbucket as well. The main valuable thing here to me is defining prebuilds, which enables GitPod to start building the new image as soon as code changes are submitted to the repository. That saves time when you’re ready to start working and it’s already good to go, instead of waiting a few minutes.</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">github</span><span class="token punctuation">:</span>
+  <span class="token key atrule">prebuilds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">master</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">pullRequests</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">pullRequestsFromForks</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">addCheck</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">addComment</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token key atrule">addBadge</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">addLabel</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<h2 id="extensions-2">Extensions</h2>
+<p>The final section of this file is to install <a href="/tags/visual-studio-code/">VS Code</a> extensions. There is one big qualifier here: it can only install extensions that are available in <a href="https://open-vsx.org/">the Open VSX registry</a>. This may not be everything available for VS Code, with the most notable exclusion for me being <a href="/websites/github-copilot/">GitHub Copilot</a>.</p>
+<p>Here’s my Drupal 9 friendly set of extensions:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">vscode</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extensions</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> eamodio.gitlens
+    <span class="token punctuation">-</span> skippednote.VS<span class="token punctuation">-</span>code<span class="token punctuation">-</span>drupal
+    <span class="token punctuation">-</span> cweijan.vscode<span class="token punctuation">-</span>mysql<span class="token punctuation">-</span>client2
+    <span class="token punctuation">-</span> esbenp.prettier<span class="token punctuation">-</span>vscode
+    <span class="token punctuation">-</span> gruntfuggly.todo<span class="token punctuation">-</span>tree
+    <span class="token punctuation">-</span> mblode.twig<span class="token punctuation">-</span>language
+    <span class="token punctuation">-</span> vscode<span class="token punctuation">-</span>icons<span class="token punctuation">-</span>team.vscode<span class="token punctuation">-</span>icons</code></pre>
+<h2 id="almost-there-2">Almost There…</h2>
+<p>In the last post of this series, I’ll look at a few other configuration changes I needed to make for this to work.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-assign-permissions-username-file/">Drupal: Assign Permissions Based on Username File</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-3-settings-config/">Drupal GitPod Container 3: Settings and Config</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -261,6 +382,6 @@ apachectl start</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2025-04-22T19:16:05.781Z -->
+		<!-- This page `/posts/2022/drupal-gitpod-container-2-gitpod-yml/` was built on 2025-04-22T19:19:26.165Z -->
 	</body>
 </html>

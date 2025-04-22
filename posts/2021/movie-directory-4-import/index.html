@@ -103,6 +103,88 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: Movie Directory</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-07-01">July 1, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Using Power Automate to populate the data for the movie directory app.
+	</p>
+
+
+<p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first three posts, I’ve laid out the data structure in Dataverse and the app itself. This post will tackle how I was able to quickly fill in the 300+ movies in our collection converting from our previous system, files on a computer arranged for use on a Plex server. This will all be done in Power Automate.</p>
+<h2 id="the-old-structure-2">The Old Structure</h2>
+<p>Here’s how the old structure was, to work nicely with a <a href="https://www.plex.tv/">Plex</a> server:</p>
+<ul>
+<li>There was a folder in my OneDrive differentiating where we owned each movie. Some movies were only on disc. Others were in one or more digital stores as well. As I tried to get more and more digital copies of movies we already owned, I would move a file from the general Movies folder into the correct digital store folder. This wasn’t a complete system, though. For example, it didn’t differentiate Blu-ray vs DVD, and if I had something in both Google and Microsoft it would only be in the Google folder.</li>
+<li>Every file was named in the format “Movie Title (Year).” The year is valuable in Plex to help differentiate if there are multiple movies with the same title.</li>
+</ul>
+<h2 id="the-variables-2">The Variables</h2>
+<p>To start the Flow, I declared several variables:</p>
+<ul>
+<li>ownedPlatform: will come from what folder it was in</li>
+<li>fileName</li>
+<li>movieName: parsed from the file name</li>
+<li>movieYear: parsed from the file name</li>
+<li>yearStartIndex: to help with the parsing</li>
+<li>imdbAPIkey: my API key for IMDB, which I will use for grabbing cover images</li>
+</ul>
+<h2 id="get-the-movies-2">Get the Movies</h2>
+<p>First I’ll get all the movies. This is straightforward with a OneDrive “get files” action. I did find that I could only do a certain number of files at once, so I did it in chunks by having a separate “To Copy” folder, in which I put the next batch as I needed to copy them.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.avif 600w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/iZHO-G0leE-600.png" alt="&quot;Getting movies from OneDrive&quot;" width="600" height="101"></picture></p>
+<p>I’ll then enter a loop of all the results, handling one movie at a time. This is a simple Apply to Each loop using the “value” from the previous step’s results.</p>
+<h2 id="parse-name-and-year-2">Parse Name and Year</h2>
+<p>Start by grabbing the file name and putting it into the variable:</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/yubqNv41nG-597.avif 597w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/yubqNv41nG-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/yubqNv41nG-597.png" alt="&quot;Set variable to “Name without extension”" width="597" height="135"></picture></p>
+<p>To parse the fileName, I needed to find where the movie name ends and the year begins. The easy way to do that is to look for the last instance of a closing parenthesis.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.avif 599w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.webp 599w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/2LwOD0WbYe-599.png" alt="&quot;Set variable to: add(indexOf(variables(‘fileName’),'(‘),1)&quot;" width="599" height="139"></picture></p>
+<p>That will make it easy to get the movie name and year.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.avif 600w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/mQiBvHhnPL-600.png" alt="&quot;Set variable to: replace(substring(variables(‘fileName’),0,sub(variables(‘yearStartIndex’),2)),””,”)&quot;" width="600" height="137"></picture></p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.avif 599w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.webp 599w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/IcAYUv9lAR-599.png" alt="&quot;Set variable to: int(substring(variables(‘fileName’),variables(‘yearStartIndex’),4)&quot;" width="599" height="138"></picture></p>
+<h2 id="add-to-excel-2">Add to Excel</h2>
+<p>I’ll now add details for the movie into Dataverse. I also had some checking to confirm that the movie wasn’t already in the Dataverse table, but I’ll skip those details.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/DVEBmYf3yy-601.png" alt="&quot;Create a new record in Dataverse&quot;" width="601" height="681"></picture></p>
+<p>Of note here:</p>
+<ul>
+<li>The Name and Year are filled by the variables we parsed from the file name earlier.</li>
+<li>The Owned dropdown is determined by the folder the file was in. In my case I just changed this manually between running it against each folder.</li>
+</ul>
+<h2 id="imdb-api-2">IMDB API</h2>
+<p>I’ll now use the IMDB API to get the cover image for the movie, which I’ll upload to my OneDrive to make it easier to attach them to the right Dataverse object. I likely could have gotten as far as it automatically uploading the image directly into Dataverse with a premium subscription, but I didn’t have that and didn’t find a way around it in a reasonable amount of time.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/aKRi6b3IkE-601.png" alt="&quot;Get IMDB details. See the IMDB API for details.&quot;" width="601" height="356"></picture></p>
+<p>Part of what that returns is a URL to the cover image for the movie. I’ll now upload that file into a designated folder in OneDrive.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.avif 601w"><source type="image/webp" srcset="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.webp 601w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-4-import/O2qWH9YESu-601.png" alt="&quot;Source URL: body(‘GetIMDB’)?‘results’0‘Image’&quot;" width="601" height="179"></picture></p>
+<h2 id="conclusion-2">Conclusion</h2>
+<p>There were still some pieces I had to do manually, like attach the image to each movie, but even that was a much quicker process.</p>
+<p>In a different Flow, I also added some logic that guessed whether a movie was Blu-ray, DVD, or digital only based on the size of the file. That wasn’t very complicated, but I left it out of this version as I found I often needed to clean up the owned column anyway because of the number of other exceptions (a movie in both Google and Microsoft).</p>
+<p>Ultimately, I ended up not actually using this movie directory database app. The main reason was that it was too slow. It is not equivalent in performance to a native Android app. But it was a great test, achieving all the features I wanted to do, and I definitely learned a lot more about Dataverse, Power Apps, and Power Automate along the way.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-3-view-edit/">Movie Directory Part 3: View and Edit</a></p><p>Next: <a href="/posts/2021/google-microsoft-personal-business-accounts/">Google vs Microsoft Personal and Business Accounts</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -224,6 +306,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/movie-directory-4-import/` was built on 2025-04-22T19:16:05.803Z -->
+		<!-- This page `/posts/2021/movie-directory-4-import/` was built on 2025-04-22T19:19:26.189Z -->
 	</body>
 </html>

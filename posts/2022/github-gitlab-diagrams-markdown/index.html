@@ -64,6 +64,49 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-03-10">March 10, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Using Mermaid for creating diagrams in markdown.
+	</p>
+
+
+<p>GitHub recently announced <a href="https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/">a great new feature that allows for generating diagrams within markdown</a>. I tested this out and it also works in GitLab.</p>
+<p>If you’re writing a lot of documentation in markdown, as you probably are if you’re using GitHub or GitLab, this can be really nice when you need diagrams, like mapping out your CI/CD system or server maps. You can build diagrams much faster than putting something together in Photoshop or some other diagramming tool that exports an image which you then need to upload.</p>
+<p>This is all it takes, building off the standard code markdown “` markers and using arrows to indicate links between objects.</p>
+<pre class="language-markdown" tabindex="0"><code class="language-markdown">mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;</code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-ckeditor-abbreviation/">Drupal: Ckeditor Abbreviation</a></p><p>Next: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -170,6 +213,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/github-gitlab-diagrams-markdown/` was built on 2025-04-22T19:16:05.784Z -->
+		<!-- This page `/posts/2022/github-gitlab-diagrams-markdown/` was built on 2025-04-22T19:19:26.168Z -->
 	</body>
 </html>

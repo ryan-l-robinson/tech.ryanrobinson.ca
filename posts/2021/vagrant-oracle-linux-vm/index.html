@@ -88,6 +88,73 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: GitLab DevOps</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-11-10">November 10, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+		<a href="/tags/linux/" class="post-tag">Linux</a>, 
+		<a href="/tags/php/" class="post-tag">PHP</a>
+		</p>
+	
+</div>
+
+
+
+<p>This is the first in <a href="/tags/gitlab-devops/">a series setting up a basic DevOps pipeline</a> through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.</p>
+<h2 id="oracle-linux-8-lamp-stack-2">Oracle Linux 8 LAMP Stack</h2>
+<p>The VM will be using <a href="https://www.vagrantup.com/">Vagrant</a> and <a href="https://www.virtualbox.org/">Oracle VirtualBox</a>. Every user will need to install both, as well as the VirtualBox extensions, for this to work.</p>
+<p>The configuration for the Vagrant box can be found on <a href="https://github.com/ryan-l-robinson">my GitHub</a>. For the sake of this demonstration, it is a fairly simple Oracle Linux 8, using a build in the Vagrant repository.</p>
+<p>The first script, provision.sh, sets up the basic VM with a LAMP stack:</p>
+<ul>
+<li>Apache</li>
+<li>MySQL</li>
+<li>PHP 8.0</li>
+<li>Several PHP extensions</li>
+<li><a href="https://getcomposer.org/">Composer</a></li>
+</ul>
+<p>That’s a nice generic LAMP stack. If you want an Oracle Linux 8 LAMP stack for some other purpose, you can stop there.</p>
+<h2 id="drupal-9-local-dev-2">Drupal 9 Local Dev</h2>
+<p>In my case, the purpose of this vagrant box is for the first stage of development on a Drupal 9 website. So I’m going to go a few steps further to get it ready for the specific Drupal 9 project. That includes:</p>
+<ul>
+<li>Sync the user’s SSH key from their computer’s folder to the vagrant user’s home folder, so that <a href="/posts/2021/web-development-workflow/">it can be used to connect to GitLab</a></li>
+<li>Configures git including pulling the latest version of the code from the GitLab</li>
+<li>Imports a MySQL database if one is provided</li>
+<li>Self-signed keys so that https browsing will be possible</li>
+</ul>
+<p>I may write up specific details of some of these later, but <a href="https://github.com/ryan-l-robinson/Oracle-Linux-LAMP">the bottom line is the code in GitHub.</a> This part is in the provision script d9.sh, which also references a separate script specifically for the database import called importdb.sh.</p>
+<h2 id="the-user-experience-2">The User Experience</h2>
+<p>The idea is that at the end of this, the person setting up their machine has very few steps:</p>
+<ol>
+<li><code>Git clone</code> the repo for building the virtual machine on their PC</li>
+<li>Put a copy of the database to import, if available, in the specified location</li>
+<li>Put a copy of the SSH key into the specified location</li>
+<li>Run <code>vagrant up</code> to build the virtual machine</li>
+<li>SSH into the VM and then run the separate script for the Drupal 9 components</li>
+<li>Optionally add the dev URL to the hosts file of their computer so that it is browsable at the URL and not just at localhost</li>
+</ol>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/yubikey-early-impressions/">Yubikey: Early Impressions</a></p><p>Next: <a href="/posts/2021/android-email-apps/">Android: Email Apps</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -213,6 +280,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/vagrant-oracle-linux-vm/` was built on 2025-04-22T19:16:05.773Z -->
+		<!-- This page `/posts/2021/vagrant-oracle-linux-vm/` was built on 2025-04-22T19:19:26.159Z -->
 	</body>
 </html>

@@ -84,6 +84,69 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2022-03-15">March 15, 2022</time></p>
+	
+		<p>Tags:
+		<a href="/tags/php/" class="post-tag">PHP</a>, 
+		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to use XDebug within VS Code for step debugging.
+	</p>
+
+
+<p><a href="https://xdebug.org/">XDebug</a> is a helpful tool when debugging PHP code. XDebug is a step debugging tools that helps you inspect functionality of PHP code in a cleaner way than regularly writing dump/log statements.</p>
+<p>I will not get into details here about setting up XDebug on a server, but you can find that with some Internet searching. Instead, this post is about how to use XDebug within Visual Studio Code.</p>
+<h2 id="install-the-extension-2">Install the Extension</h2>
+<p>First, install <a href="https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug">the extension PHP Debug (xdebug.php-debug) from the Visual Studio Code extension directory</a>.</p>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.avif 505w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.webp 505w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/5ib2uaCCDF-505.png" alt="&quot;Visual Studio Code extension page&quot;" width="505" height="218"></picture></p>
+<h3 id="start-the-listener-2">Start the Listener</h3>
+<p>To start the XDebug listener:</p>
+<ol>
+<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
+<li>Click the play button beside the XDebug listener. Depending on your developer environment, you may have other listeners as well.</li>
+</ol>
+<p>A small window will be added to your workspace with a few buttons. While everything is running smoothly, it will be a pause, a stop, and a restart button. While stopped because of a breakpoint, it will provide other options to continue, step over, step into, and step out.</p>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.avif 170w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.webp 170w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/EtBqB-Ew0O-170.png" alt="&quot;XDebug in VS Code debug panel&quot;" width="170" height="25"></picture></p>
+<h3 id="monitor-notices-warnings-etc-2">Monitor Notices, Warnings, etc</h3>
+<p>You can monitor for any notices, warnings, errors, or exceptions that occur while the listener is running.</p>
+<ol>
+<li>Go to the “Run and Debug” tab (Ctrl + Shift + D) in the main app sidebar.</li>
+<li>If it is collapsed, expand the “Breakpoints” accordion section.</li>
+<li>Select under what conditions you want to break and show you results, e.g. Notices, Warnings.</li>
+</ol>
+<h3 id="add-a-breakpoint-2">Add a Breakpoint</h3>
+<p>You can add a breakpoint at a line in the code and have XDebug report the value of variables as of the start of that line.</p>
+<ol>
+<li>In the VS Code editor for the code you want to check, scroll to the left of the line of code you want to break. This will cause a little red dot to appear. Click on that red dot to create the breakpoint.</li>
+<li>Carry out your test scenario (e.g. load the page that calls that PHP in your browser).</li>
+<li>See the results with the values of each variable at the breakpoint, within the Run and Debug window in VS Code.</li>
+</ol>
+<p><picture><source type="image/avif" srcset="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.avif 392w"><source type="image/webp" srcset="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.webp 392w"><img loading="lazy" decoding="async" src="/posts/2022/php-xdebug-vs-code/tHOr2IXxnM-392.png" alt="&quot;Visual Studio Code with an XDebug breakpoint set&quot;" width="392" height="53"></picture></p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2022/free-as-in-cats/">Free as in Cats</a></p><p>Next: <a href="/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -190,6 +253,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/php-xdebug-vs-code/` was built on 2025-04-22T19:16:05.806Z -->
+		<!-- This page `/posts/2022/php-xdebug-vs-code/` was built on 2025-04-22T19:19:26.193Z -->
 	</body>
 </html>

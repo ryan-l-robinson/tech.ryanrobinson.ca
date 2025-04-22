@@ -183,6 +183,168 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+	<p>Series: SharePoint Site Provisioning</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2021-05-28">May 28, 2021</time></p>
+	
+		<p>Tags:
+		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Applying site scripts and designs through Power Automate.
+	</p>
+
+
+<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+<p><a href="/posts/2021/power-automate-create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
+<h2 id="write-the-temporary-script-2">Write the Temporary Script</h2>
+<p>Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.</p>
+<p>Once your script is ready, add that to a new Initialize Variable action in Power Automate, setting up a new string variable for the entire script. Within that script, you can insert any other variables you need to. Here’s my simple script:</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/GzOMMJXPMW-598.avif 598w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/GzOMMJXPMW-598.webp 598w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/GzOMMJXPMW-598.png" alt="&quot;Setting up the site script variable&quot;" width="598" height="462"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteScript</li>
+<li>Type: String</li>
+<li>Value:</li>
+</ul>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"$schema"</span><span class="token operator">:</span> <span class="token string">"https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json"</span><span class="token punctuation">,</span>
+    <span class="token property">"actions"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"verb"</span><span class="token operator">:</span> <span class="token string">"addNavLink"</span><span class="token punctuation">,</span>
+        <span class="token property">"displayName"</span><span class="token operator">:</span> <span class="token string">"External Site"</span><span class="token punctuation">,</span>
+        <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"@{variables('linkURL')}"</span><span class="token punctuation">,</span>
+<span class="token property">"isWebRelative"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span></code></pre>
+<h2 id="register-the-temporary-script-2">Register the Temporary Script</h2>
+<p>Now that you’ve got the script written, complete with variable, you can use the SharePoint REST API action to register that site script on your SharePoint instance.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/BfLQd2IcZR-600.avif 600w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/BfLQd2IcZR-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/BfLQd2IcZR-600.png" alt="&quot;Action to register site script&quot;" width="600" height="380"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: root site, or some other site on the tenant you know already exists</li>
+<li>Method: POST</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteScript(Title=’Temporary script for adding link’)</li>
+<li>Header 1 key: accept</li>
+<li>Header 1 value: application/json;odata.metadata=minimal</li>
+<li>Header 2 key: Content-Type</li>
+<li>Header 2 value: application/json;charset=utf-8</li>
+<li>Header 3 key: odata-version</li>
+<li>Header 3 value: 4.0</li>
+</ul>
+<p>I also created a variable to capture the ID of the site script that was just created. You could do without this step, instead referencing back to the body of the response every time you need it, but it is easier to keep track of with a variable.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/wvywMzeXLO-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/wvywMzeXLO-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/wvywMzeXLO-597.png" alt="&quot;Setting the siteScriptID variable&quot;" width="597" height="176"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteScriptID</li>
+<li>Type: String</li>
+<li>Value: body(‘Create_temp_site_script’)?[‘Id’]</li>
+</ul>
+<h2 id="create-the-temporary-design-2">Create the Temporary Design</h2>
+<p>Once you have a site script, you can now do essentially the same thing with registering a temporary site design that uses that script.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/62sMsOHEL2-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/62sMsOHEL2-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/62sMsOHEL2-597.png" alt="&quot;Registering the site design&quot;" width="597" height="572"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: root site, or another site on the tenant you know exists</li>
+<li>Uri: /_api/Microsoft.SharePoint.Utilities.WebTemplateExtensions.SiteScriptUtility.CreateSiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token property">"info"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+<span class="token property">"Title"</span><span class="token operator">:</span><span class="token string">"Temporary site design for @{variables('siteName')}"</span><span class="token punctuation">,</span>
+<span class="token property">"Description"</span><span class="token operator">:</span><span class="token string">"Applies navigation links"</span><span class="token punctuation">,</span>
+<span class="token property">"SiteScriptIds"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"@{variables('siteScriptID')}"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token property">"WebTemplate"</span><span class="token operator">:</span><span class="token string">"68"</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Note that WebTemplate 68 is a communication site. 64 would be a team site.</p>
+<p>As with site scripts, I want to grab the ID into a variable to make it a bit easier to reference in future actions.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/1SRkLOlNuR-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/1SRkLOlNuR-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/1SRkLOlNuR-597.png" alt="&quot;Setting site design ID variable&quot;" width="597" height="177"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Initialize Variable</li>
+<li>Name: siteDesignID</li>
+<li>Type: String</li>
+<li>Value: body(‘Create_temp_site_design’)?[‘Id’]</li>
+</ul>
+<h2 id="delay-2">Delay</h2>
+<p>You may want a bit of a delay before applying the site design. This is to ensure that the site does already exist before you try to apply the design. Rather than guessing a specific amount of time for the site to be prepared (5 minutes has always been sufficient in my tests), you could also use a test to see if the site exists yet with a REST API call like the one above. In that case you could put that within a loop:</p>
+<ol>
+<li>Enter loop only if site does not exist.</li>
+<li>In loop, delay one minute, then check if site exists yet.</li>
+</ol>
+<p>That could result in small gains on average compared to always delaying 5 minutes. For this demo I stuck with simply delaying 5 minutes.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/nOKDrPIYL9-605.avif 605w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/nOKDrPIYL9-605.webp 605w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/nOKDrPIYL9-605.png" alt="&quot;Job to delay for 5 minutes&quot;" width="605" height="143"></picture></p>
+<p>You also may need to delay much longer if your site scripts rely on <a href="/posts/2021/sharepoint-content-types/">global content types</a>. Those content types won’t be available on the site immediately. They could be up to 90 minutes in my tests. If you are using content types, you may want to do only a 3 or 5 minute delay now, apply one design that does most of what you want, then delay another 90 minutes before applying another design that handles those components. That way the site is at least partially usable in that 90 minute wait.</p>
+<h2 id="apply-the-site-design-2">Apply the site design</h2>
+<p>Yet another REST API call will allow you to apply the site design that is now registered.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/ECxXsk0DJc-598.avif 598w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/ECxXsk0DJc-598.webp 598w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/ECxXsk0DJc-598.png" alt="&quot;Applying the site design&quot;" width="598" height="457"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the new project site’s URL</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.ApplySiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+<span class="token property">"siteDesignId"</span><span class="token operator">:</span><span class="token string">"@{variables('siteDesignID')}"</span><span class="token punctuation">,</span>
+<span class="token property">"webUrl"</span><span class="token operator">:</span><span class="token string">"@{variables('siteURL')}"</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="clean-up-2">Clean Up</h2>
+<p>You don’t want to leave a script and design every time this runs, so you’ll want the Flow to delete those temporary scripts. This can also be done with SharePoint REST calls. First remove the design, then the script, since the design depends on the script.</p>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/T0sT0CEftN-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/T0sT0CEftN-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/T0sT0CEftN-597.png" alt="&quot;Deleting the site design&quot;" width="597" height="382"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the root site, or another site on tenant you know exists</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteDesign</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token string">"@{variables('siteDesignID')}"</span><span class="token punctuation">}</span></code></pre>
+<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/_BSGjbDCIv-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/_BSGjbDCIv-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/_BSGjbDCIv-597.png" alt="&quot;Deleting the site script&quot;" width="597" height="382"></picture></p>
+<p>Details:</p>
+<ul>
+<li>Action: Send an HTTP Request to SharePoint</li>
+<li>Site Address: the root site, or another site on tenant you know exists</li>
+<li>Uri: /_api/Microsoft.Sharepoint.Utilities.WebTemplateExtensions.SiteScriptUtility.DeleteSiteScript</li>
+<li>Headers: [same as registering the site script above]</li>
+<li>Body:</li>
+</ul>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token string">"@{variables('siteScriptID')}"</span><span class="token punctuation">}</span></code></pre>
+<p>That’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p><p>Next: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 	<aside class="sidebar-block" aria-label="Posts in this series">
@@ -306,6 +468,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/` was built on 2025-04-22T19:16:05.804Z -->
+		<!-- This page `/posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/` was built on 2025-04-22T19:19:26.190Z -->
 	</body>
 </html>

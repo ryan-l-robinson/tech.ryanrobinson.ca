@@ -60,6 +60,45 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2024-02-21">February 21, 2024</time></p>
+	
+		<p>Tags:
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
+		<a href="/tags/css/" class="post-tag">CSS</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Use text-underline-position under for improved readability of underlined links.
+	</p>
+
+
+<p>This one is a quick accessibility CSS tip. I have long been a proponent of the old standard of underlining links, and never underlining anything else. It helps make it clear that it is a link. Add a hover and focus effect to make it more obvious when they are selecting it, too.</p>
+<p>But it can introduce a problem: for certain reading disabilities, the line being close up against the text can make it hard to read. Even for myself without one of those disabilities, once it was flagged for me I immediately saw it every time I looked at a link.</p>
+<p>So here's a quick CSS solution that significantly helps.</p>
+<p>Use <code>text-underline-position: under</code> to make links with underlines easier to read. It moves the underline down to the bottom of the hanging letters (g, y, j) rather than right up tight against the bottom of other letters and cutting right through the middle of the hanging letters. It may not quite be perfect - even better might be a few pixels below the hanging letters to get space there as well - but it solves the majority of the problem with one quick CSS change.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2023/church-site-content/">Church Website Content</a></p><p>Next: <a href="/posts/2024/vs-code-extensions-workflows/">VS Code Extensions: My Workflows</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -166,6 +205,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/text-position-underline/` was built on 2025-04-22T19:16:05.797Z -->
+		<!-- This page `/posts/2024/text-position-underline/` was built on 2025-04-22T19:19:26.183Z -->
 	</body>
 </html>

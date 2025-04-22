@@ -76,6 +76,61 @@
 				</div>
 				<div class="sidebar">
 					
+						---
+eleventyImport:
+  collections: ["sidebar"]
+---
+<aside class="sidebar-block" aria-label="About Ryan">
+	<h2></h2>
+  
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2025-02-23">February 23, 2025</time></p>
+	
+		<p>Tags:
+		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Links can be coded to open in new tabs/windows. Here&#39;s why to usually not do that, what the exceptions are, and how to do that accessibly.
+	</p>
+
+
+<p>Links can be set to open in new windows/tabs or (by default) not. You mostly shouldn't do that, but there are a few exceptions and a few ways to carry out those exceptions.</p>
+<h2 id="accessibility-when-to-do-it-2">Accessibility: When to Do It</h2>
+<p>The decision for whether to open links in a new tab is not a simple matter of personal preference. You need to think about the experience for all users, including those relying on assistive technology such as screen readers. Most of the time, don't open in a new tab. This is because it can be confusing in a screen reader to be directed into a new tab without noticing, then being unable to use features they're used to like a back button. That's bad, so mostly don't do it.</p>
+<p>There is one exception category, however: if the user needs to reference the new tab while still doing something in the original tab. The most common scenario is a form that has a link to more information about something that might change you fill out the form. If you go to the extra information in the same tab, you lose all the work filling out the form so far, and there's no potential to go back and forth. In that case, a new tab is worthwhile.</p>
+<h2 id="accessibility-how-to-do-it-2">Accessibility: How to Do It</h2>
+<p>With that said, if you do need to do it, it needs to be as clear as possible (without being unnecessarily annoying) to all of the users.</p>
+<h3 id="verbal-indicator-2">Verbal Indicator</h3>
+<p>It needs to be especially clear to those who cannot see that the new tab has been opened. To do this, make sure one way or another that it will be announced to the screen reader before they click. The easiest way to do that is to set the aria-label. For example, if the link's visible text said &quot;privacy policy&quot; then the aria-label would be &quot;privacy policy, opens in new window.&quot; That might not be the most obvious to do within a content management system context, but often there is a way; if you're a developer and not just a content creator, it's your job to figure out how to offer that.</p>
+<h3 id="visual-indicator-2">Visual Indicator</h3>
+<p>While maybe not quite as urgent, similar to the point above, you do also want to notify sighted users that a new window is about to open. Sure, they can tell afterward because they can see the extra tab open, but it can still be an extra nuisance if it catches them off guard. So for that, I decided on a fairly common approach of adding an icon after any link that opens in new tabs.</p>
+<p>Here's a quick bit of CSS to help show an icon for any link set to open in a new tab/window. I grabbed an icon from Font Awesome that is a pretty standard one for this purpose.</p>
+<p>First, if you don't use it already, make sure the source of the icon is loaded in your site. In my case, I used <a href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">the all CSS path</a>. This link is for the current version 6.7.2. You may need to look up the latest version. You also might be happy with a smaller version for a subset of the icons; in my case I was using enough other ones in other contexts that it made sense to take it all.</p>
+<p>Now you can add a style like this to the appropriate place in your stylesheet:</p>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">a[target="_blank"]::after</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-flex<span class="token punctuation">;</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">"\f08e"</span><span class="token punctuation">;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"FontAwesome"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>The display value of inline-flex has a minor advantage in my case compared to the default. My links are normally underlined. Without that inline-flex distinction, the icon would also be underlined, but that margin in between the text and icon would not be, which looks awkward. By switching the display value, it removed the underline from the icon, looking cleaner.</p>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2025/podcasts/">The State of Podcasts 2025</a></p><p>Next: <a href="/posts/2025/ecosia/">Ecosia Browser and Search</a></p>
+</div>
+</article>
+
+</aside>
+
 					
 					
 					
@@ -182,6 +237,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2025/link-new-window/` was built on 2025-04-22T19:16:05.798Z -->
+		<!-- This page `/posts/2025/link-new-window/` was built on 2025-04-22T19:19:26.181Z -->
 	</body>
 </html>
