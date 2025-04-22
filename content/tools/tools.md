@@ -3,6 +3,7 @@ title: Favourite Technical Tools
 eleventyNavigation:
   key: Favourite Technical Tools
   order: 3
+layout: layouts/main.njk
 ---
 
 Here are some of my favourite tools I make use of in my tech work. Some of these do have more posts about their usage.
