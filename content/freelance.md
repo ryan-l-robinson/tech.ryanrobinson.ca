@@ -5,7 +5,6 @@ eleventyNavigation:
   order: 2
 show_sidebar: true
 ---
-## Freelance Work
 
 I have previously completed freelance work under the name of Alliteration Applications. This started with some BlackBerry mobile applications but progressed to websites (mostly WordPress), email migrations, Microsoft 365 support, and occasional other bits and pieces of IT support.
 
