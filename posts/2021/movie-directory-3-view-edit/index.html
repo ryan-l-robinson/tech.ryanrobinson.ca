@@ -95,76 +95,9 @@ Navigate(AllMovies)</code></pre>
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-	<p>Series: Movie Directory</p>
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2021-06-29">June 29, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The view and edit screens in a movie directory Power App.
-	</p>
-
-
-<p>This continues a short series about <a href="/tags/movie-directory/">a movie directory personal project</a> exploring Power Apps and Dataverse. In the first two posts, I’ve laid out the data structure in Dataverse and the gallery and filters screens in the Power App. This post will tackle viewing and editing a single movie record in the app.</p>
-<h2 id="view-screen-2">View Screen</h2>
-<p>The view screen started out as a pretty bland list of fields, but rapidly evolved into something more attractive and more functional:</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.avif 314w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.webp 314w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/GVidGtocDC-314.png" alt="&quot;View movie screen of Alien3, with all the options selected&quot;" width="314" height="567"></picture></p>
-<p>The text fields are straightforward. The icons are a bit more complicated. There is one data field with choices for all the different platforms that we own a movie, but I wanted to show it differently, with one icon for everywhere we owned it while hiding the icons for platforms we don’t own it.</p>
-<p>There are six icons for ownership plus a JustWatch link. I grouped the six into two rows, putting Blu-ray, DVD, and Movies Anywhere on one line and Google Play, Microsoft, and Vudu on the next. Whether each icon is visible or not is determined by this value in the Visible field:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">If([@Owned].'Blu-ray' in BrowseGallery1.Selected.Owned, true, false)</code></pre>
-<p>Making that more complicated, though, is that it looks awkward if you have the third icon in a row without the first two, e.g. Movies Anywhere without Blu-ray or DVD. To solve this, I dynamically set the width of the icon to 0 if we don’t own in that format, then set the X value for placement of the next icon in the row to be a certain distance after the width of the previous one.</p>
-<p>Here’s the formula for the width of the Blu-ray icon:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">If([@Owned].'Blu-ray' in BrowseGallery1.Selected.Owned,142,0)</code></pre>
-<p>DVD then gets this for an X value:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">If(BlurayLogo.Visible,50 + BlurayLogo.X + BlurayLogo.Width,BlurayLogo.X + BlurayLogo.Width)</code></pre>
-<p>And finally the X value on the Movies Anywhere button:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">If(DVDLogo.Visible,50 + DVDLogo.X + DVDLogo.Width,DVDLogo.X + DVDLogo.Width)</code></pre>
-<p>This does not handle dynamic placement on the Y axis. It can still be a little weird to look at to have one icon on the top row and then all three icons on the second row. Hypothetically a similar approach would work with some more complicated formulas to improve that, but I left it at this point.</p>
-<p>The other unique part of this view that adds a lot to the attractiveness of it is the cover image taking up the background. This is a straightforward image component stretched across the background, with this value for Image:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">BrowseGallery1.Selected.Cover.Full</code></pre>
-<p>and a Transparency of 0.6, to make sure the text above it is still readable.</p>
-<h2 id="edit-screen-2">Edit Screen</h2>
-<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.avif 609w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.webp 609w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/NG0H15226w-609.png" alt="&quot;Edit screen for Alien3" width="609" height="1078"></picture></p>
-<p>The layout of the edit screen is quite a bit simpler. The fields are standard editable fields tied to the Dataverse column.</p>
-<p>I did add one more complicated piece, though. I was worried about having the delete icon so close to the save button, despite that being the default placement within Power Apps. So, I built a confirmation dialogue.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.avif 606w"><source type="image/webp" srcset="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.webp 606w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-3-view-edit/aSH8FXLr2v-606.png" alt="&quot;Delete dialogue&quot;" width="606" height="1069"></picture></p>
-<p>The OnSelect value for the delete button is this:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">UpdateContext({showPopup:true})</code></pre>
-<p>This initiates a change that displays a rectangle in the middle of the screen which has the Visible property set to:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">showPopup</code></pre>
-<p>There is also another larger rectangle that is solely to darken the movie screen behind it, to increase focus on the delete dialogue. This rectangle has a Fill property of:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">RGBA(0, 0, 0, 0.6)</code></pre>
-<p>and the same Visible property as the other delete dialogue boxes, showPopup.</p>
-<p>Clicking on the Cancel button will reverse the action of the initial Delete press and take you back to editing the movie, thanks to this OnSelect property:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">UpdateContext({showPopup:false})</code></pre>
-<p>Pressing the Delete text will confirm the deletion, removing the movie and redirecting the user back to the gallery, with this OnSelect property:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Remove(Movies,BrowseGallery1.Selected);
-UpdateContext({showPopup:false});
-Navigate(AllMovies)</code></pre>
-<h2 id="what-s-left-2">What’s Left</h2>
-<p>At this point, I have a data structure and a fully functioning app. What I haven’t covered yet is how to most efficiently load in 300+ movies. A final post in this series will look at that problem, through a Power Automate Flow that I wrote to import all the movie information from our previous system and help collect cover images for all these movies quickly.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/movie-directory-2-gallery-filters/">Movie Directory Part 2: Gallery and Filters</a></p><p>Next: <a href="/posts/2021/movie-directory-4-import/">Movie Directory Part 4: Import</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -236,6 +169,9 @@ Navigate(AllMovies)</code></pre>
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -287,6 +223,6 @@ Navigate(AllMovies)</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/movie-directory-3-view-edit/` was built on 2025-04-22T19:23:19.085Z -->
+		<!-- This page `/posts/2021/movie-directory-3-view-edit/` was built on 2025-04-22T19:28:56.676Z -->
 	</body>
 </html>

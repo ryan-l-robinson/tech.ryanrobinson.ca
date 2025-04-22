@@ -80,61 +80,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-	<p>Series: Drupal Docker</p>
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2024-04-08">April 8, 2024</time></p>
-	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An updated version of the devcontainer for a Drupal dev environment.
-	</p>
-
-
-<p>This continues from <a href="/posts/2024/dev-env-updated-dockerfiles/">a previous post</a> about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on <a href="/tags/drupal-docker/">the Drupal Docker tag</a>. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">The whole project's code can be found on my GitHub</a>.</p>
-<h2 id="devcontainer-2">Devcontainer</h2>
-<p>What changed in devcontainer from the previous setup? A few things:</p>
-<ul>
-<li>I reviewed several of the extensions and made some changes. The most significant are adding Playwright testing (maybe I'll be able to write more about that later), the PHP tools extension, and the Drupal extension. Between them I now have much stronger error detection, deprecation warnings, testing, and formatting to meet the Drupal standards. Some more notes about useful extensions are in <a href="/websites/vs-code/extensions-2024/">my recent post about what extensions I use</a>.</li>
-<li>The postAttachCommand has to set the permissions again with each new time attaching to it, so the files that are set up as volumes don't revert to root.</li>
-</ul>
-<h2 id="postcreatecommand-2">postCreateCommand</h2>
-<p>This is mostly the same, at least for now: it installs all composer packages and sets up the database on the first time creating these images. A few things were able to be removed to simplify this script, functions like creating the database that are handled more easily in other ways.</p>
-<p>What it still does:</p>
-<ul>
-<li>Installs composer packages.</li>
-<li>Puts the Drupal settings and local services files in place. This comes after the composer install so that the basic Drupal file structure is there already.</li>
-<li>Import the site's configuration using drush.</li>
-<li>Set the admin password.</li>
-<li>Rebuild the node access cache. There aren't any nodes yet, but there is a warning on the site status for a bit if this function isn't included, so it's one extra command to save some confusion.</li>
-<li>Sets the environment indicator theme.</li>
-<li>Clears the site's caches to reflect all changes.</li>
-</ul>
-<h2 id="next-gitlab-github-ci-cd-updates-2">Next: GitLab/GitHub CI/CD Updates</h2>
-<p>I'm going to continue with this by now improving it a step farther: instead of building the images each time on local, have it build in GitHub or GitLab programmatically, and then saving it alongside the repository in those platforms' respective container registries. Then when it is time to start a new local development environment, it only needs to pull the latest image, not build it again. That saves time, especially if you have to switch between branches and especially if you have multiple team members who would otherwise all be spending time building it individually. This will include moving most of the postCreateCommand functionality into the GitLab CI / GitHub Actions, for both the web and database containers.</p>
-<p>I already have this working in my real context using GitLab. I have less experience with GitHub Actions but am working on doing the same idea there for a more shareable version.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2024/dev-env-updated-dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></p><p>Next: <a href="/posts/2024/vs-code-university-colour-palettes/">VS Code: University Colour Palettes</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -208,6 +156,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -259,6 +210,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/dev-env-updated-devcontainer/` was built on 2025-04-22T19:23:19.077Z -->
+		<!-- This page `/posts/2024/dev-env-updated-devcontainer/` was built on 2025-04-22T19:28:56.667Z -->
 	</body>
 </html>

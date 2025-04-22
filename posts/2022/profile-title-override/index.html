@@ -113,94 +113,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2022-07-11">July 11, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to adjust the HTML header title, page title, and path alias for a profile.
-	</p>
-
-
-<p>The profile module is a nice tool to have on a Drupal site if you're looking to create public-facing profiles about your users (e.g. staff). But it has a few weak spots including being unable to change the URL alias - it can only be /profile/id - or the page's title which shows up as [Profile Name] #[id], e.g. &quot;Staff Profile #1&quot;. That's not very helpful. There are two places that the profile title needs to be overridden: what appears in the main body of the page and the title tag for the page which you'll see in your browser address bar. In my case I wanted to show the first name and last name instead, so I started by creating those fields on the profile as standard text fields.</p>
-<p>With the fields in place, this post, and <a href="https://github.com/ryan-l-robinson/Drupal-profile-title-override">accompanying GitHub code and configuration</a>, is how I worked around those issues.</p>
-<h2 id="the-url-alias-2">The URL Alias</h2>
-<p>Like other nodes, the URL can be changed using <a href="https://drupal.org/project/pathauto">the pathauto module</a> to generate based on a pattern. Note that this takes a change in the pathauto configuration, which might not be obvious if like me you did the initial round of pathauto configuration long before adding profiles.</p>
-<p>Here's a screenshot of the settings page, which can be found at /admin/config/search/path/settings:</p>
-<p><picture><source type="image/avif" srcset="/posts/2022/profile-title-override/VftFP4MAhW-932.avif 932w"><source type="image/webp" srcset="/posts/2022/profile-title-override/VftFP4MAhW-932.webp 932w"><img loading="lazy" decoding="async" src="/posts/2022/profile-title-override/VftFP4MAhW-932.png" alt="Screenshot of entities settings screen with options to select Custom Block, Media, Custom Menu Link, Content, Profile, Taxonomy Term, and User" width="932" height="451"></picture></p>
-<p>Once the ability to set paths for profiles is turned on, you can switch over to the Patterns tab and create the pattern. I made mine <code>/staff/[profile:field_first_name]-[profile:field_last_name]</code>.</p>
-<h2 id="the-page-title-2">The Page Title</h2>
-<p>I fixed the page title displayed within the body with a view. I also altered the display of a profile to not show the default title and not show the first name and last name otherwise.</p>
-<p>I won't break down every setting, but here's a screenshot of the view configuration:</p>
-<p><picture><source type="image/avif" srcset="/posts/2022/profile-title-override/4Fyp0prE-F-1749.avif 1749w"><source type="image/webp" srcset="/posts/2022/profile-title-override/4Fyp0prE-F-1749.webp 1749w"><img loading="lazy" decoding="async" src="/posts/2022/profile-title-override/4Fyp0prE-F-1749.png" alt="Screenshot of the view configuration including the fields First Name, Last Name, and Custom Text combining them" width="1749" height="845"></picture></p>
-<p>You can also see this in configuration YML form in the GitHub project's /sync/config/views.view.profile.yml file. Once the view is ready, add the block to the correct place in your theme, and turn off the standard Page Title block for those pages (based on the URL).</p>
-<h2 id="the-browser-title-2">The Browser Title</h2>
-<p>The second one required a custom module, albeit a relatively simple one. This is the key part:</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
- * Implements hook_preprocess_html
- * 
- * Overrides the "Public Profile #[ID]" title with the first name and last name of the profiled staff member instead
- */</span>
-<span class="token keyword">function</span> <span class="token function-definition function">profile_title_preprocess_html</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$variables</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">stripos</span><span class="token punctuation">(</span><span class="token variable">$variables</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'head_title'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"Staff Profile"</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">//Get the ID from the original title to be replaced</span>
-    <span class="token variable">$profile_id</span> <span class="token operator">=</span> <span class="token function">substr</span><span class="token punctuation">(</span><span class="token variable">$variables</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'head_title'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token function">stripos</span><span class="token punctuation">(</span><span class="token variable">$variables</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'head_title'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"#"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$profile_id</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">//Load the profile</span>
-      <span class="token variable">$profile</span> <span class="token operator">=</span> <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">entityTypeManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getStorage</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'profile'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">load</span><span class="token punctuation">(</span><span class="token variable">$profile_id</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$profile</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token variable">$first_name</span> <span class="token operator">=</span> <span class="token variable">$profile</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_first_name'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$last_name</span> <span class="token operator">=</span> <span class="token variable">$profile</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'field_last_name'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$first_name</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$last_name</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token comment">//Change the title to first name and last name</span>
-          <span class="token variable">$variables</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'head_title'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'title'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"<span class="token interpolation"><span class="token variable">$first_name</span></span> <span class="token interpolation"><span class="token variable">$last_name</span></span>"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>Note: with PHP 8+ I used str_starts_with instead of stripos, but this works just as well for this purpose.</p>
-<p>Along with overriding the title, it also provides a warning to users. Because it is relying on overriding only when the current title follows a certain pattern, it is a little bit fragile in that changing the display title of the profile will result in the code no longer being activated. It won't break the site or anything, but will return to showing the default unhelpful title.</p>
-<p>Here's that code. It's fairly simple, firing on the hook for a profile edit form and then displaying a standard warning.</p>
-<pre class="language-php" tabindex="0"><code class="language-php"><span class="token comment">/**
- * Implements hook_form_FORM_ID_alter
- * 
- * Adds a warning to the admin page for the profile, to advise against changing the title
- */</span>
-<span class="token keyword">function</span> <span class="token function-definition function">profile_title_form_profile_type_edit_form_alter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$form</span><span class="token punctuation">,</span> <span class="token class-name class-name-fully-qualified type-declaration"><span class="token punctuation">\</span>Drupal<span class="token punctuation">\</span>Core<span class="token punctuation">\</span>Form<span class="token punctuation">\</span>FormStateInterface</span> <span class="token variable">$form_state</span><span class="token punctuation">,</span> <span class="token variable">$form_id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token variable">$message</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-              <span class="token string single-quoted-string">'#type'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'container'</span><span class="token punctuation">,</span>
-              <span class="token string single-quoted-string">'#markup'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'&lt;p>Warning: Do not change the display label of the staff public profile without altering the corresponding code in the custom module profile_title.&lt;/p>
-              &lt;p>Failing to do so will result in the title of the profile page reverting back to showing the generic profile name instead of the staff member name.&lt;/p>
-              '</span><span class="token punctuation">,</span>
-            <span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Drupal</span><span class="token operator">::</span><span class="token function">messenger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">addWarning</span><span class="token punctuation">(</span><span class="token variable">$message</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker, and GitPod</a></p><p>Next: <a href="/posts/2022/drupal-profile-block-hidden/">Drupal: Hide Block on Own Profile</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -257,6 +172,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -308,6 +226,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/profile-title-override/` was built on 2025-04-22T19:23:19.089Z -->
+		<!-- This page `/posts/2022/profile-title-override/` was built on 2025-04-22T19:28:56.681Z -->
 	</body>
 </html>

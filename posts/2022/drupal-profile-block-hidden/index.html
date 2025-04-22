@@ -75,56 +75,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2022-07-12">July 12, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to hide blocks only when on your own profile page.
-	</p>
-
-
-<p>Recently I was building a Drupal 9 site that included staff profiles as well as contact forms for those staff members. I wanted to add a block on the profile pages that included a button to link to the contact form for this contact.</p>
-<p>Here's the wrinkle in the default behaviour: it won't give you a contact link when you're viewing your own content, but it also isn't returning as nothing at all, so the title for the block appeared with nothing beneath it.</p>
-<p><picture><source type="image/avif" srcset="/posts/2022/drupal-profile-block-hidden/VV1beKheHS-356.avif 356w"><source type="image/webp" srcset="/posts/2022/drupal-profile-block-hidden/VV1beKheHS-356.webp 356w"><img loading="lazy" decoding="async" src="/posts/2022/drupal-profile-block-hidden/VV1beKheHS-356.png" alt="Screenshot of empty box only saying the title &quot;Email&quot;" width="356" height="189"></picture></p>
-<p>The key to solve this is the &quot;exclude&quot; option on contextual filters. There's one contextual filter for the user ID associated to the profile that you're viewing.</p>
-<p><picture><source type="image/avif" srcset="/posts/2022/drupal-profile-block-hidden/cfm8wxsQ3u-1388.avif 1388w"><source type="image/webp" srcset="/posts/2022/drupal-profile-block-hidden/cfm8wxsQ3u-1388.webp 1388w"><img loading="lazy" decoding="async" src="/posts/2022/drupal-profile-block-hidden/cfm8wxsQ3u-1388.png" alt="Screenshot of the configuration page. Details below" width="1388" height="954"></picture></p>
-<p>To add this:</p>
-<ul>
-<li>Add a contextual filter searching for the User ID</li>
-<li>Set the default value to &quot;User ID from profile route match&quot;</li>
-</ul>
-<p>I needed another contextual filter for the user ID of the currently logged in user, and mark that one as excluded.</p>
-<p><picture><source type="image/avif" srcset="/posts/2022/drupal-profile-block-hidden/Pmp2pE6c6k-1383.avif 1383w"><source type="image/webp" srcset="/posts/2022/drupal-profile-block-hidden/Pmp2pE6c6k-1383.webp 1383w"><img loading="lazy" decoding="async" src="/posts/2022/drupal-profile-block-hidden/Pmp2pE6c6k-1383.png" alt="Screenshot of the configuraton page. Details below." width="1383" height="962"></picture></p>
-<p>To add this:</p>
-<ul>
-<li>Add a contextual filter searching for the User ID</li>
-<li>Set the default value to &quot;User ID from logged in user&quot;</li>
-<li>Under the &quot;more&quot; section, check the &quot;exclude&quot; option</li>
-</ul>
-<p>Finally, change the option on the view in the Advanced -&gt; Other section for &quot;Hide block if the view output is empty&quot; to Yes. This will turn off the block entirely when there is no results, such as if you're viewing your own profile when that contextual filter is in place.</p>
-<p>That did the trick! The block will now appear on any profile where the associated contact has a personal contact form, unless you're viewing your own profile.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/profile-title-override/">Drupal: Override Title Tag of Profiles</a></p><p>Next: <a href="/posts/2022/drupal-css-structures/">Drupal: CSS Structure</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -181,6 +134,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -232,6 +188,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-profile-block-hidden/` was built on 2025-04-22T19:23:19.087Z -->
+		<!-- This page `/posts/2022/drupal-profile-block-hidden/` was built on 2025-04-22T19:28:56.680Z -->
 	</body>
 </html>

@@ -101,82 +101,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2022-09-19">September 19, 2022</time></p>
-	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/security/" class="post-tag">Security</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Suggestions for a regular security audit of a Drupal site.
-	</p>
-
-
-<p>About a year ago, I (virtually) attended <a href="https://www.drupalgovcon.org/">the DrupalGovCon 2021 conference</a>. The highlight for me was the session on improving security of your Drupal website. I’ve embedded the video below and summarized some of the major points.</p>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="337" loading="lazy" src="https://www.youtube.com/embed/ghoFlwrC3SM?list=PLsGrHy_lmfhT5cl0P_I737mo6952uIkt6" title="Tips for Securing Your Drupal Application" width="600"></iframe>
-<h2 id="security-modules-2">Security Modules</h2>
-<p>Review settings of security modules including:</p>
-<ul>
-<li>[ ] jsonapi_extras</li>
-<li>[ ] flood_control</li>
-<li>[ ] login_security</li>
-<li>[ ] username_enumeration_prevention</li>
-<li>[ ] honeypot</li>
-<li>[ ] reCAPTCHA</li>
-<li>[ ] seckit</li>
-</ul>
-<h2 id="dev-modules-2">Dev Modules</h2>
-<p>Ensure none of your development modules are on production:</p>
-<ul>
-<li>field_ui</li>
-<li>views_ui</li>
-<li>devel</li>
-<li>anything migration related</li>
-<li>stage_file_proxy</li>
-</ul>
-<p>I don't have a perfect solution in place for this yet. I did try the config_split module for a time, allowing me to have separation with some development-related modules on our local development containers but not on production. Unfortunately it was becoming buggy.</p>
-<h2 id="config-cleanup-2">Config Cleanup</h2>
-<ul>
-<li>[ ] Remove unused views</li>
-<li>[ ] Check that there is correct access control on all views</li>
-<li>[ ] Review permission roles, especially anonymous and authenticated</li>
-<li>[ ] Confirm that user registration is limited to admins</li>
-<li>[ ] Confirm that there are no test user accounts in production</li>
-<li>[ ] Confirm that file size upload limits are reasonable</li>
-<li>[ ] Confirm that private and public file directories are used properly</li>
-</ul>
-<h2 id="custom-modules-and-themes-2">Custom Modules and Themes</h2>
-<ul>
-<li>[ ] Grep for any standard debugging phrases like var_dump which may still be left in your custom code</li>
-<li>[ ] Check code in an editor like VS Code that warns you of unsanitary code</li>
-<li>[ ] Look for any cases where you missed using the t function to make text translatable. Even if your site is entirely in one language, it's still good practice.</li>
-<li>[ ] Review any TODO / FIXME etc in the code</li>
-</ul>
-<h2 id="users-2">Users</h2>
-<ul>
-<li>[ ] Review users. Anybody, e.g. former staff, still have active accounts that they shouldn't? Does anybody have more permissions than they need?</li>
-<li>[ ] Confirm that the superuser account is blocked and that nobody else has the superuser role in production.</li>
-</ul>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2022/word-inclusive-writing/">Microsoft Word: Inclusive Writing Options</a></p><p>Next: <a href="/posts/2022/twitter-mastodon-coso/">Twitter, Mastodon, and CounterSocial</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -233,6 +160,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -284,6 +214,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2022/drupal-security-audit/` was built on 2025-04-22T19:23:19.062Z -->
+		<!-- This page `/posts/2022/drupal-security-audit/` was built on 2025-04-22T19:28:56.662Z -->
 	</body>
 </html>

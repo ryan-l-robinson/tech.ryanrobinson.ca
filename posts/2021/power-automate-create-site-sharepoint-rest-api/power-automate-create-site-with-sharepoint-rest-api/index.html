@@ -108,89 +108,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-	<p>Series: SharePoint Site Provisioning</p>
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2021-05-21">May 21, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> In Power Automate, create a site using the SharePoint REST API.
-	</p>
-
-
-<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
-<p>This post will look at dynamically creating SharePoint sites using Power Automate. An advantage of doing it this way is to automate different settings that can incorporate variables, as opposed to the standard interface tools for users to create new sites.</p>
-<h2 id="check-if-site-already-exists-2">Check if Site Already Exists</h2>
-<p>This can be done with <a href="https://docs.microsoft.com/en-us/sharepoint/dev/apis/site-creation-rest">the SharePoint REST API</a> if you want just a SharePoint site, or a new Group if you want all of the Group functionality (Teams, Planner, etc.). For this example, I’ll use the former.</p>
-<p>You will likely want some error checking, specifically to see if the site already exists at the requested URL. There could be a few ways to handle what to do if there is a conflict, depending on your context. Maybe you want to stop and send an email to notify the user of the issue. Maybe you want to assign a different URL and create a new site. Or you could allow it to update the existing site. For this demo, I’ll go with the last one. That makes my logic pretty simple: if site doesn’t exist, make it.</p>
-<p>I’ll use the Get Site API call to see if the site already exists.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/OjCToRTjaz-597.avif 597w"><source type="image/webp" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/OjCToRTjaz-597.webp 597w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/OjCToRTjaz-597.png" alt="&quot;Settings for checking if site already exists&quot;" width="597" height="360"></picture></p>
-<p>Details:</p>
-<ul>
-<li>Action type: Send an HTTP Request to SharePoint</li>
-<li>Site Address: the root site, or another site that you know already exists</li>
-<li>Method: GET</li>
-<li>URI: /_api/SPSiteManager/status?url=’https%3A%2F%2F@{variables(‘tenant’)}.sharepoint.com%2Fsites%2F@{variables(‘projectURL’)}’</li>
-<li>Header 1 key: accept</li>
-<li>Header 1 value: application/json;odata.metadata=none</li>
-<li>Header 2 key: odata-version</li>
-<li>Header 2 value: 4.0</li>
-</ul>
-<p>Part of what that returns is a SiteStatus value. A value of 0 means that it hasn’t been created yet. A value of 2 means it has. There are also two less common responses: 1 means it is currently being provisioned and 3 means there was an error provisioning the site.</p>
-<p>In a more intensive real situation, I would also want to deal with those less common scenarios. But for this example, I’ll stay simple and just say that if it is 0, go ahead and make the site.</p>
-<p>Here’s the condition statement:</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/3uWy4THSDd-600.avif 600w"><source type="image/webp" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/3uWy4THSDd-600.webp 600w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/3uWy4THSDd-600.png" alt="&quot;Condition for if site already exists&quot;" width="600" height="161"></picture></p>
-<p>Details:</p>
-<ul>
-<li>First piece of equation: int(body(‘Check_if_site_already_exists’)?[‘SiteStatus’])</li>
-<li>Boolean test: is equal to</li>
-<li>Second piece of equation: 0</li>
-</ul>
-<h2 id="create-site-2">Create Site</h2>
-<p>We’re ready to create the site, which can also be done with REST API calls.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/37YVG8-Yay-635.avif 635w"><source type="image/webp" srcset="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/37YVG8-Yay-635.webp 635w"><img loading="lazy" decoding="async" src="/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/37YVG8-Yay-635.png" alt="&quot;Creating a SharePoint site by REST API" width="635" height="717"></picture></p>
-<p>Details:</p>
-<ul>
-<li>Site address: root site, or some other site you already know exists</li>
-<li>Method: POST</li>
-<li>Uri: /_api/SPSiteManager/create</li>
-<li>Header 1 key: accept</li>
-<li>Header 1 value: application/json;odata.metadata=none</li>
-<li>Header 2 key: odata-version</li>
-<li>Header 2 value: 4.0</li>
-<li>Body:</li>
-</ul>
-<pre class="language-json" tabindex="0"><code class="language-json"><span class="token property">"request"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-<span class="token property">"Url"</span><span class="token operator">:</span><span class="token string">"@{variables('siteURL')}"</span><span class="token punctuation">,</span>
-<span class="token property">"Title"</span><span class="token operator">:</span><span class="token string">"@{variables('projectName')}"</span><span class="token punctuation">,</span>
-<span class="token property">"Description"</span><span class="token operator">:</span><span class="token string">"Project site for: @{variables('projectName')}"</span><span class="token punctuation">,</span>
-<span class="token property">"Lcid"</span><span class="token operator">:</span><span class="token number">1033</span><span class="token punctuation">,</span>
-<span class="token property">"WebTemplate"</span><span class="token operator">:</span><span class="token string">"STS#3"</span>
-<span class="token punctuation">}</span></code></pre>
-<p>You can customize details from here, like adding error checking for the other site statuses, added an owner to the site you create, changing the template of the site, and so on.</p>
-<p>The next post in this series will work on adding temporary site scripts and designs for the new site.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/windows-autopilot/">Microsoft Endpoint Manager: Windows Autopilot</a></p><p>Next: <a href="/posts/2021/sharepoint-content-types/">SharePoint: Content Types</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -264,6 +184,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -315,6 +238,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/` was built on 2025-04-22T19:23:19.086Z -->
+		<!-- This page `/posts/2021/power-automate-create-site-sharepoint-rest-api/power-automate-create-site-with-sharepoint-rest-api/` was built on 2025-04-22T19:28:56.677Z -->
 	</body>
 </html>

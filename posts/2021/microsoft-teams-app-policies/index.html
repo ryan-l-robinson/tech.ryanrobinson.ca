@@ -94,75 +94,9 @@
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-	<p>Series: MS-700</p>
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2021-08-02">August 2, 2021</time></p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> App policies can help control what apps users can access in Teams.
-	</p>
-
-
-<p>Suppose you want to lock the sidebar in Teams for some users to ensure that they don’t have different experiences, which can help with providing support and documentation as well as make sure nobody accidentally loses their easy access to the app they want to use. But you don’t want to lock all users; there are some like your IT department that might need some freedom to use their Teams differently.</p>
-<p>This can be done with an app setup policy in the Microsoft Teams admin centre.</p>
-<p>For this example, I’ll set the taskbar to contain:</p>
-<ul>
-<li>Activity</li>
-<li>Chat</li>
-<li>Teams</li>
-<li>Calendar</li>
-<li>Files</li>
-</ul>
-<p>I’ve removed the Calls app from the default, since I don’t use Teams for a phone system and the Calls app is somewhat underwhelming without that.</p>
-<p>I’ll also default install Tasks by Planner and To Do, but not force it on the taskbar.</p>
-<h2 id="edit-the-global-policy-2">Edit the Global Policy</h2>
-<p>Start out in the Teams Admin Centre, at <a href="https://admin.teams.microsoft.com">https://admin.teams.microsoft.com</a>.</p>
-<p>In the navigation, go to Teams Apps -&gt; Setup Policies.</p>
-<p>Click on the Global (Org-wide default) policy. Change a few settings here:</p>
-<ul>
-<li>Flip the toggle for “Allow user pinning” off.</li>
-<li>Under “Installed apps,” click on “Add apps,” search for Tasks by Planner and To Do, and add</li>
-<li>Under “Pinned apps,” select beside Calls and then click the Remove button</li>
-</ul>
-<p>Click Save when done.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/microsoft-teams-app-policies/wFO9J5PWgg-869.avif 869w"><source type="image/webp" srcset="/posts/2021/microsoft-teams-app-policies/wFO9J5PWgg-869.webp 869w"><img loading="lazy" decoding="async" src="/posts/2021/microsoft-teams-app-policies/wFO9J5PWgg-869.png" alt="Policy editing screen with sections for general settings, installed apps, and pinned apps" width="869" height="837"></picture></p>
-<p>When a user signs in, they’ll now have this as their default app bar:</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/microsoft-teams-app-policies/i7q9_evi1p-68.avif 68w"><source type="image/webp" srcset="/posts/2021/microsoft-teams-app-policies/i7q9_evi1p-68.webp 68w"><img loading="lazy" decoding="async" src="/posts/2021/microsoft-teams-app-policies/i7q9_evi1p-68.png" alt="&quot;Sidebar, with no Calls app&quot;" width="68" height="327"></picture></p>
-<p>Furthermore, if they try to pin any other apps to their sidebar, they will not see the “pin” option anymore.</p>
-<p>We now have a default locked sidebar for all users.</p>
-<h2 id="create-a-custom-policy-2">Create a Custom Policy</h2>
-<p>The next step is that we want there to be an exception for one user. Back on the setup policies screen in the Teams Admin Centre, I’ll add a new policy.</p>
-<p>On the screen to edit the policy. This time I’ll:</p>
-<ul>
-<li>Set the toggle for “allow user pinning” to On</li>
-<li>Leave everything else the same as the default</li>
-</ul>
-<p>Click Save when done.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/microsoft-teams-app-policies/ARcdeNcRq1-932.avif 932w"><source type="image/webp" srcset="/posts/2021/microsoft-teams-app-policies/ARcdeNcRq1-932.webp 932w"><img loading="lazy" decoding="async" src="/posts/2021/microsoft-teams-app-policies/ARcdeNcRq1-932.png" alt="Policy editing screen with general settings, installed apps, and pinned apps" width="932" height="806"></picture></p>
-<h2 id="apply-the-custom-policy-2">Apply the Custom Policy</h2>
-<p>Now that the policy is created, you need to assign it to a user. Select the policy, then click the Manage user button. It will pop out a sidebar with a people search box to look up your users that you want to apply the policy to. Select Add for that user. Once you’ve added everybody, click Apply.</p>
-<p><picture><source type="image/avif" srcset="/posts/2021/microsoft-teams-app-policies/hW1LkIkgjH-370.avif 370w"><source type="image/webp" srcset="/posts/2021/microsoft-teams-app-policies/hW1LkIkgjH-370.webp 370w"><img loading="lazy" decoding="async" src="/posts/2021/microsoft-teams-app-policies/hW1LkIkgjH-370.png" alt="Manager users for the &quot;Freedom&quot; policy, adding the user &quot;Ryan Robinson&quot;" width="370" height="425"></picture>
-<em>Sidebar for adding users to a policy</em></p>
-<p>That’s it. You’ve successfully modified the default policy a bit more strict but then allowed an exception for a smaller group of users.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-teams-hidden-features/">Microsoft Teams: Favourite Hidden Features</a></p><p>Next: <a href="/posts/2021/microsoft-teams-network-tests/">Microsoft Teams: Network Tests</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -238,6 +172,9 @@
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -289,6 +226,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/microsoft-teams-app-policies/` was built on 2025-04-22T19:23:19.083Z -->
+		<!-- This page `/posts/2021/microsoft-teams-app-policies/` was built on 2025-04-22T19:28:56.674Z -->
 	</body>
 </html>

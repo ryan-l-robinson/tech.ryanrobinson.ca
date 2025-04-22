@@ -99,80 +99,9 @@ Navigate(AllMovies)</code></pre>
 				</div>
 				<div class="sidebar">
 					
+						
 						---
-<aside class="sidebar-block" aria-label="About Ryan">
-	<h2></h2>
-  
-<article data-pagefind-body="">
 
-
-	<p>Series: Movie Directory</p>
-
-
-<div class="post-metadata">
-
-	<p><time datetime="2021-06-25">June 25, 2021</time></p>
-	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
-		</p>
-	
-</div>
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The gallery and filters for a movie directory Power App.
-	</p>
-
-
-<p>In <a href="/posts/2021/movie-directory-1-data/">Movie Directory Part 1</a>, I described what I was aiming to achieve with this personal project, as well as the Dataverse structure.</p>
-<p>In this post, I’ll describe at a high level the design of the Power App and the gallery view and filters. Most of it I’ll keep at a high-level, not step-by-step, as I used a lot of the out-of-the-box functionality.</p>
-<h2 id="screens-2">Screens</h2>
-<p>There are four screens involved in the app:</p>
-<ul>
-<li>Gallery view that shows all of the movies, with the cover art behind the title, year, and last time we watched it</li>
-<li>Filters screen that allows you to specify filters that apply on the gallery view</li>
-<li>View details screen of a single movie</li>
-<li>Edit details screen of a single movie, including a new movie</li>
-</ul>
-<h2 id="all-movies-2">All Movies</h2>
-<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-2-gallery-filters/uHkCGtrSX2-526.avif 526w"><source type="image/webp" srcset="/posts/2021/movie-directory-2-gallery-filters/uHkCGtrSX2-526.webp 526w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-2-gallery-filters/uHkCGtrSX2-526.png" alt="&quot;Gallery view. We own all the Alien movies&quot;" width="526" height="926"></picture></p>
-<p>The majority of this screen is a Gallery component, with some minor changes to show exact details I wanted to show. The biggest change is incorporating the filters from the filters screen, which required this in the OnVisible field to handle whether there are filters set or not:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Set(MoviesFilter1,If(!IsBlank(varWatchlist)&&varWatchlist<>"None",Filter(Movies,Text(Watchlist)=varWatchlist),Movies));
-Set(MoviesFilter2,If(!IsBlank(varOwned),Filter(MoviesFilter1,varOwned in Owned),MoviesFilter1));
-Set(MoviesFilter3,If(!IsBlank(varLastWatched),Filter(MoviesFilter2,'Last Watched'>=varLastWatched||IsBlank('Last Watched')),MoviesFilter2));</code></pre>
-<p>And this in the Items field to only show those with the right filters:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">SortByColumns(
-    If(IsBlank(TextSearchBox1.Text),MoviesFilter3, Filter(Movies,TextSearchBox1.Text in Text(Name))),
-        "crfa4_name", 
-        If(SortDescending1, SortOrder.Descending, SortOrder.Ascending)
-    )</code></pre>
-<p>The OnSelect field of the Overlay on the gallery has this, to navigate to viewing that specific movie:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Navigate(ViewMovieDetails,ScreenTransition.Fade)</code></pre>
-<p>Setting the background image was a bit simpler, putting this into the Image field of the Image component in the Gallery:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">ThisItem.Cover.Full</code></pre>
-<p>Another minor tweak included adding the Filters icon, which navigates to the filters screen with this formula in the OnSelect:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Navigate(MovieFilters)</code></pre>
-<h2 id="filters-2">Filters</h2>
-<p><picture><source type="image/avif" srcset="/posts/2021/movie-directory-2-gallery-filters/24axqS4cVz-523.avif 523w"><source type="image/webp" srcset="/posts/2021/movie-directory-2-gallery-filters/24axqS4cVz-523.webp 523w"><img loading="lazy" decoding="async" src="/posts/2021/movie-directory-2-gallery-filters/24axqS4cVz-523.png" alt="&quot;Filters screen&quot;" width="523" height="919"></picture></p>
-<p>The filters screen is nothing flashy, but functional. The watchlist field is a simple dropdown, where the items field comes from the Dataverse tables:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Choices(Movies.Watchlist)</code></pre>
-<p>Similar for the Owned Platform field:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Choices(Movies.Owned)</code></pre>
-<p>Hide Movies Watched Since is a standard date picker field, but those are hard to blank out if you had that set and then wanted to turn it off, so I had to add an accompanying button with this OnSelect value:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Reset(LastWatchedFilter)</code></pre>
-<p>The hardest part is the Save button, which needed to update the filter variables and navigate back to the gallery view, so this goes into the OnSelect for that button:</p>
-<pre class="language-powerfx" tabindex="0"><code class="language-powerfx">Set(varWatchlist,WatchlistFilter.SelectedText.Value);
-Set(varOwned,OwnedFilter.Selected.Value);
-Set(varLastWatched,LastWatchedFilter.SelectedDate);
-Navigate(AllMovies)</code></pre>
-<p>That’s it for the gallery view and filtering. The next post in this series will describe viewing and editing of a single movie.</p>
-
-<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-excel-sharepoint-lists/">Microsoft Excel vs SharePoint Lists</a></p><p>Next: <a href="/posts/2021/movie-directory-3-view-edit/">Movie Directory Part 3: View and Edit</a></p>
-</div>
-</article>
-
-</aside>
 
 					
 					
@@ -244,6 +173,9 @@ Navigate(AllMovies)</code></pre>
 		
 		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
 	
+		
+		<li><a href="/tags/sidebars/" class="post-tag">sidebars</a> (0)</li>
+	
 	</ul>
 </aside>
 				</div>
@@ -295,6 +227,6 @@ Navigate(AllMovies)</code></pre>
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2021/movie-directory-2-gallery-filters/` was built on 2025-04-22T19:23:19.084Z -->
+		<!-- This page `/posts/2021/movie-directory-2-gallery-filters/` was built on 2025-04-22T19:28:56.675Z -->
 	</body>
 </html>
