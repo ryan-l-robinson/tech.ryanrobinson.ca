@@ -4,7 +4,6 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 
 ## TODO
 
-- Fix font not loading.
 - Fix tag pages not generating properly anymore.
 - Update links in dev.to to point to the new addresses.
 - Search functionality works but I don't think is very accessible. It auto-updates as text is entered, no button for a user to know that's going to happen, with no aria-live region. The Clear button also doesn't specify that it is a reset button. It also shows an excerpt from the body, not the specific tl;dr field I use elsewhere.
