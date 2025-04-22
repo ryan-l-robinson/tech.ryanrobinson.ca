@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 2 }
+.postlist { counter-reset: start-from 17 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -107,11 +107,6 @@
     --text-color-link-hover-background: var(--white);
 		--text-color-link-active: var(--white);
 	}
-}
-
-@font-face {
-    font-family: "Atkinson Hyperlegible";
-    src: url('/Atkinson-Hyperlegible-Regular-102.ttf');
 }
 
 /* Global stylesheet */
