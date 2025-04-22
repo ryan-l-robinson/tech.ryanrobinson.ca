@@ -4,7 +4,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 
 ## TODO
 
-- Recover showing sidebar on both sites, different for each site so can't be in the shared theme files
+- Recover showing sidebar on both sites, different for each site so can't be in the shared theme files. Current problem: I can generate the sidebar, but it will also generate a page which I do not need, and more importantly that will contain duplicate IDs because that page will show both the sidebar and the full page version, which is an error.
 - Fix font not loading.
 - Fix tag pages not generating properly anymore.
 - Update links in dev.to to point to the new addresses.
