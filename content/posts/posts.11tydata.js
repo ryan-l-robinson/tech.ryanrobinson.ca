@@ -6,6 +6,7 @@ export default {
 		"posts"
 	],
 	"layout": "layouts/post.njk",
+	"show_sidebar": true,
 
 	// Draft blog posts, validate `draft` front matter
 	eleventyDataSchema: function (data) {
