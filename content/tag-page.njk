@@ -17,4 +17,5 @@ const eleventyComputed = {
 };
 ---
 {% set postslist = collections[ tag ] %}
+{% set show_pagination = false %}
 {% include "postslist.njk" %}
