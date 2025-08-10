@@ -5,11 +5,42 @@
   <subtitle>Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-03-12T17:54:16Z</updated>
+  <updated>2025-08-10T14:46:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Computer Science Degrees in the Age of LLMs</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2025/comp-sci-ai/" />
+    <updated>2025-08-10T14:46:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2025/comp-sci-ai/</id>
+    <content type="html">&lt;p&gt;I recently was asked by a family member about the future of developer work in the age of large language models, more commonly referred to as &amp;quot;AI&amp;quot; but I dislike that label for misleading people into thinking it can do much more than it can. Her daughter is good at it and is interested, but they&#39;ve heard a lot of the hype that those jobs won&#39;t exist soon because an LLM can do it all. So, can it? Is the hype real? Are developer jobs in danger?&lt;/p&gt;
+&lt;h2 id=&quot;llms-are-language-models-not-thought-models&quot;&gt;LLMs Are Language Models, Not Thought Models&lt;/h2&gt;
+&lt;p&gt;Here&#39;s my general thinking on the matter: being a good developer takes a lot more than just writing semantically correct code. It means being able to think through questions like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are we trying to accomplish? Often the proposed solution by somebody less informed about the technology and big picture is not really the best solution to the actual problem. Good developers will know to zoom out when they hear a request to make sure they know the real problem that they&#39;re trying to solve, not just writing code because somebody else said to.&lt;/li&gt;
+&lt;li&gt;How does it fit in the context of everything else we&#39;re doing, technical systems or otherwise?&lt;/li&gt;
+&lt;li&gt;What&#39;s the best user experience workflow?&lt;/li&gt;
+&lt;li&gt;What are design principles we care about? What looks good?&lt;/li&gt;
+&lt;li&gt;Who is excluded by doing it this way? Who is included by doing it more accessibly?&lt;/li&gt;
+&lt;li&gt;Are there security risks to consider?&lt;/li&gt;
+&lt;li&gt;Will anybody misuse this to harm others?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An LLM is not designed to answer any of those. They may be able to answer some of it by accident, because there were enough similar situations in the training data. But ultimately, a language model is for modeling language, not for any of those questions, so you can&#39;t put too much stock in it. An LLM may be a good tool for those who are able to deal with those bigger questions, since they can essentially give you a first draft of code for a problem if you&#39;re able to describe it well enough and then continue with refining it from there. Being able to generate that first draft of code is valuable. I&#39;ve started using that more often. But generating that first draft from a well-defined requirement is not the majority of the job. It simply cannot do the majority of my job in any meaningful way.&lt;/p&gt;
+&lt;p&gt;Of course, Cory Doctorow has said something to this effect: an LLM can&#39;t do your job, but a big tech salesperson might convince your boss that it can. In that case you are still out of a job, at least in the short term until those bosses learn the hard way and then have to return to trying to hire humans again. That sucks, obviously. That&#39;s not really a problem inherent to LLMs, though; that&#39;s just the nature of short-sighted employers always trying to save a little extra money on payroll.&lt;/p&gt;
+&lt;h2 id=&quot;what-about-junior-jobs&quot;&gt;What About Junior Jobs?&lt;/h2&gt;
+&lt;p&gt;The more common and more nuanced take is to acknowledge my point above, that LLMs may be good at drafting some code but it isn&#39;t good at any other part of the job. But then they will still be concerned that LLMs could effectively take over junior dev jobs. If those junior devs don&#39;t have a chance to put in their time then they won&#39;t have the opportunity to be ready for those other questions.&lt;/p&gt;
+&lt;p&gt;I&#39;m somewhat conflicted on how true this is. If a junior job &lt;em&gt;really&lt;/em&gt; is only about regurgitating semantically accurate code without ever thinking about what it means, yeah, maybe it&#39;s true that an LLM can do it instead and that new wannabe developer never gets the skills necessary to get to the more senior jobs.&lt;/p&gt;
+&lt;p&gt;That&#39;s never been my experience. My experience has always been that those junior jobs still want you to be thinking through those other questions. The difference from the senior jobs is simply that there&#39;s more acknowledging that you aren&#39;t as good at them yet so maybe there should be some more experienced voices in the conversation as well to guide you on the way (and those more experienced voices will get paid more). In case, an LLM still can&#39;t do your job.&lt;/p&gt;
+&lt;p&gt;Maybe that&#39;s not the experience for every junior job. Maybe there really are some that only want you to spit out code to a specification defined by somebody else. Maybe they view the junior devs thinking too much about it beyond that as to be a waste of time. That ultimately has the same problem, though: there&#39;s no opportunity to learn thinking through those other questions. If those versions of junior dev jobs do exist, maybe they&#39;re more replaceable by an LLM, but the part about never having an opportunity to learn the bigger ways of thinking is the same either way.&lt;/p&gt;
+&lt;h2 id=&quot;conclusion-degree-or-no&quot;&gt;Conclusion: Degree or No?&lt;/h2&gt;
+&lt;p&gt;That&#39;s where I come back to the university degree question. My alma mater, Queen&#39;s University, explicitly told us in our orientation week that they were not trying to teach us to memorize syntax of a bunch of languages. They explained that a big part of that was because you would immediately hvae to learn a new language on the job anyway, since there are too many languages to learn them all just in case. They were instead trying to teach us how to think about the problems at that more abstract level which could applied to a lot of different contexts and different languages.&lt;/p&gt;
+&lt;p&gt;The advent of LLMs have really underscored that point. If you don&#39;t learn how to deal with those questions, then yes, that&#39;s when you are in some level of danger that you aren&#39;t doing much more than an LLM. But if you can think at that level about what you&#39;re doing, the kinds of things that university degrees give you, you&#39;re not at risk anytime soon of an LLM replacing you.&lt;/p&gt;
+&lt;p&gt;Maybe a university degree isn&#39;t necessary. I am not claiming any inherent superiority here because I got a degree. You certainly can develop those ways of thinking on the job as well. Certainly many employers would have the patience to help you learn that. Some others won&#39;t.&lt;/p&gt;
+&lt;p&gt;If you want the fast-tracked version, when you have the time and money to devote to being as good as you can, without relying on a future employer giving you that time? The university degree can help a lot with that.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Ecosia Browser and Search</title>
     <link href="https://tech.ryanrobinson.ca/posts/2025/ecosia/" />
@@ -724,24 +755,6 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Side note: I once heard about efforts to aid screen reader users encountering a graph to get the point better than a list of numbers, that relies on sounds. If the data is going up, it makes a higher pitch sound. If the data is going down, it makes a lower pitch sound. It will be interesting to see if something like that ever becomes standardized enough to work.&lt;/p&gt;
 &lt;p&gt;This exact same distinction can also apply to other context like menu items: do you want to add extensive aria-labels to force verbose experiences on blind users? The title attribute is a nice balance in that example. At least in Jaws, there is a user setting for whether to read out title text. This allows developers to empower the blind users to decide for themselves whether they want the verbose description or not. And it&#39;s always better to empower users to have control over their own experience whenever possible. Provide title attributes and if they want it, they&#39;ll have it; if they don&#39;t want it, it won&#39;t slow them down.&lt;/p&gt;
 &lt;p&gt;In any case, the main point is that ALT text and accessibility in general is not always an obvious formula. Sometimes there are tensions to navigate. The most important part is that you are thinking about it, and when possible listening to the real experiences of users to steadily improve how to navigate those tensions.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Drupal: OpenAI Module</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2023/drupal-openai/" />
-    <updated>2023-05-03T23:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2023/drupal-openai/</id>
-    <content type="html">&lt;p&gt;AI, or more specifically large language models (LMMs) are all the rage these days, so it shouldn&#39;t come as too much of a surprise that there is now &lt;a href=&quot;https://www.drupal.org/project/openai&quot;&gt;a Drupal module that integrates OpenAI&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It is only an alpha release but includes several submodules to leverage OpenAI tools within a Drupal site in various ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Generate content for you in any content type&lt;/li&gt;
-&lt;li&gt;Speech to text&lt;/li&gt;
-&lt;li&gt;Interaction with the ChatGPT prompt endpoint&lt;/li&gt;
-&lt;li&gt;A button in CKEditor to send a prompt to OpenAI and get text back&lt;/li&gt;
-&lt;li&gt;Assistance in the content editing process, such as adjusting your tone and summarizing body text&lt;/li&gt;
-&lt;li&gt;Analyzes logs to summarize likely problems&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I haven&#39;t given it a try yet, mainly because I do not have a paid OpenAI API key and I assume I cannot use this without one, but it definitely could be worthwhile in certain Drupal site contexts.&lt;/p&gt;
 </content>
   </entry>
 </feed>
