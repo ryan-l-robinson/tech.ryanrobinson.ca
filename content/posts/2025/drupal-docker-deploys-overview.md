@@ -56,74 +56,7 @@ There are some tasks that you want to be able to run on a manual basis on the co
 
 This is the CI/CD job that gets extended for those single-use scripts:
 
-```yml
-## This is for single-use services, to run a specific script one time, before or after deployment. ##
-.docker_single_use:
-  variables:
-    STACK_NAME: ""
-    SERVICE_NAME: ""
-    SERVICE_UP_WAIT_REPEAT: 12
-    SERVICE_UP_WAIT_TIME: 5
-    SERVICE_CREATE_WAIT_REPEAT: 60
-    SERVICE_CREATE_WAIT_TIME: 5
-  script:
-    - echo "$CI_DEPLOY_PASSWORD" | docker login -u $CI_DEPLOY_USER --password-stdin $CI_REGISTRY
-    - DATE="$(date --iso-8601=seconds)"
-    - docker service update --with-registry-auth --replicas 1 --force ${STACK_NAME}_${SERVICE_NAME} --update-monitor 1s
-    - |
-      EXIT_VALUE=0
-      SERVICE_UP_WAIT_CHECK=0
-      while [ -z "$(docker service ps --format 'json' ${STACK_NAME}_${SERVICE_NAME})" ]; do
-        SERVICE_UP_WAIT_CHECK=$((SERVICE_UP_WAIT_CHECK+1))
-        if [ "${SERVICE_UP_WAIT_CHECK}" -eq "${SERVICE_UP_WAIT_REPEAT}"]; then
-          exit 1
-        else
-          echo Service ${STACK_NAME}_${SERVICE_NAME} has not been created yet. Attempt ${SERVICE_UP_WAIT_CHECK}/${SERVICE_UP_WAIT_REPEAT}
-          sleep ${SERVICE_UP_WAIT_TIME}
-        fi
-      done
-      SERVICE_CREATE_WAIT_CHECK=0
-
-      for task in $(docker service ps -q ${STACK_NAME}_${SERVICE_NAME}); do
-        # Get the CreatedAt of the current task for comparison
-        created_at=$(docker inspect --format '{{.CreatedAt}}' $task)
-
-        # Check if this task is more recent than the current most recent task
-        if [[ -z "$most_recent_created_at" || "$created_at" > "$most_recent_created_at" ]]; then
-          LATEST_TASK=$(docker inspect --format '{{.ID}}' $task)
-          most_recent_created_at="$created_at"
-        fi
-      done
-
-      while true; do
-        NEW_DATE="$(date --iso-8601=seconds)"
-        docker service logs --since="${DATE}" ${STACK_NAME}_${SERVICE_NAME}
-        DATE="${NEW_DATE}"
-        DOCKER_STATUS=$(docker inspect --format '{{.Status.State}}' $LATEST_TASK)
-        echo "Latest task status is ${DOCKER_STATUS}"
-        if [ "${DOCKER_STATUS}" = "failed" ]; then
-          EXIT_VALUE=1
-          break
-        elif [ "${DOCKER_STATUS}" = "complete" ]; then
-          break
-        elif [ "${DOCKER_STATUS}" = "running" ]; then
-          sleep ${SERVICE_CREATE_WAIT_TIME}
-        else
-          SERVICE_CREATE_WAIT_CHECK=$((SERVICE_CREATE_WAIT_CHECK+1))
-          if [ "${SERVICE_CREATE_WAIT_CHECK}" -eq "${SERVICE_CREATE_WAIT_REPEAT}" ]; then
-            echo Service failed to start within $((SERVICE_CREATE_WAIT_REPEAT * SERVICE_CREATE_WAIT_TIME)) seconds.
-            EXIT_VALUE=1
-            break
-          fi
-          sleep ${SERVICE_CREATE_WAIT_TIME}
-        fi
-      done
-      docker service logs --since="${DATE}" ${STACK_NAME}_${SERVICE_NAME}
-    - docker logout
-    - exit $EXIT_VALUE
-```
-
-That looks complicated mainly because of everything needed to show logs back to the GitLab CI/CD interface, but the core part is really just this: `docker service update --with-registry-auth --replicas 1 --force ${STACK_NAME}_${SERVICE_NAME}`, running the specified service which contains the script we want to run.
+The full version looks complicated mainly because of everything needed to show logs back to the GitLab CI/CD interface, but the core part is really just this: `docker service update --with-registry-auth --replicas 1 --force ${STACK_NAME}_${SERVICE_NAME}`, running the specified service which contains the script we want to run.
 
 ### Dockerfile Branching
 
