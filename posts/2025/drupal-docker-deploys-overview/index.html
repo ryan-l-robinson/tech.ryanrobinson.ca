@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en-ca">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ryan Robinson Technology | Drupal Docker Deploys - An Overview</title>
+		<meta name="description" content="This begins a series on the latest incarnation of my Drupal development setup, including Docker containerized deploys.">
+		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/rrNiz8uiW4.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+		<header>
+			<div class="container header-container">
+				<p><a href="/">Ryan Robinson Technology</a></p>
+				<div id="search" class="search">
+					<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
+				</div>
+			</div>
+		</header>
+
+		<div class="main-wrapper">
+			<main id="skip" class="main-sidebar">
+				<div class="main-content">
+					<h1 id="drupal-docker-deploys-an-overview">Drupal Docker Deploys - An Overview</h1>
+					
+<article data-pagefind-body="">
+
+
+	<p>Series: Drupal Docker</p>
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2025-08-24">August 24, 2025</time></p>
+	
+		<p>Tags:
+		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> This begins a series on the latest incarnation of my Drupal development setup, including Docker containerized deploys.
+	</p>
+
+
+<p>My Drupal development environment has gone through a few iterations over the past 4 years, some of which is chronicled here and on <a href="https://gitlab.com/ryan-l-robinson/drupal-dev-environment">my GitLab</a>. Since I last wrote about it, it went through another big update that includes now fully deploying the web service to a Docker swarm, not just pushing out code updates to each server.</p>
+<p>In this post I'll provide an overview of some of what changed, then I'll try to break down more details over some following posts.</p>
+<h2 id="the-environments">The Environments</h2>
+<h3 id="local-environment">Local Environment</h3>
+<p>Conceptually this first stage is similar to previous ideas, but it did need a lot of tweaks to get it to work in a way that also worked for the later plans. I'll get into those in a future post. In the meantime for those who haven't followed the previous incarnations, here is the overview of the key features:</p>
+<ul>
+<li>The VS Code devcontainer functionality handles everything. All I need to do is open the folder in VS Code with the devcontainer extensions enabled, then select the option to open in container.</li>
+<li>One Docker container for web (Apache and PHP, the main one we connect to), and one for the database.</li>
+<li>Volumes include the database as well as some key files that you might want to be able to edit from either within the container or directly on the host, mainly the files that help build the devcontainer like the docker-compose files.</li>
+<li>VS Code extensions are defined in the devcontainer.json so that every developer has the same tools installed and we don't have to remember what to set up each time.</li>
+<li>Web container is pulled from the GitLab container registry, saving time on rebuilding.</li>
+<li>DB container is not pulled from the GitLab container registry. This was considered, and a previous version before we got to Docker deploys was doing it. Now we have a better approach, where the script that starts when web is first loaded has an opportunity to load from an old database dump.</li>
+</ul>
+<h3 id="dev-and-staging">Dev and Staging</h3>
+<p>In our setup, we have two middle environments: dev and staging. Dev could also be called &quot;proof of concept.&quot; That is where we put code when we want to collect feedback from others about an idea before finishing it, or in rare cases when we need to test something that can't be as easily done on the local developer environment, like sending emails. Staging is the last stop before production; it only gets deployed there when we think it is ready for production. After that, it should only need bug fixes or other small and safe tweaks.</p>
+<p>They are both set up as Docker Swarms, but only one server ode, and only getting 1 replica of the web container as well as 1 replica of the db container deployed. This is because they are not public and don't get a huge amount of traffic. We do not need redundancy there.</p>
+<p>They have volumes for Drupal's public and private folders, on the same server. So dev and staging have almost everything on that one specific server: web containers, db containers, and volumes. The only exception is a volume for database backups, which goes in a network file share that is accessible by all of dev, staging, and production. I'll try to unpack why that is some more later.</p>
+<p>There are some differences in dev vs staging in terms of what gets built, e.g. dev has more developer tools enabled, while staging almost exactly replicates the production environment in its settings. For the purposes of this series of posts, they'll be largely treated as the same thing.</p>
+<h3 id="production">Production</h3>
+<p>Unlike dev and staging, production is 3 server nodes in a Docker swarm.</p>
+<p>The web container is deployed with 3 replicas, which does not necessarily mean one per node, but will overall balance along with any other services that are included.</p>
+<p>Public and private files are put in network file shares. This allows that no matter which swarm node happened to get the file uploaded to it, the other nodes will immediately have access to it. There's no risk that somebody uploads a file on server01 and somebody on server02 can't see it. In our previous setup, we had two servers, but a script had to run every 5 minutes on cron to keep them in sync.</p>
+<p>The database is on a different dedicated server. This is primarily for performance reasons. While having a database container running alongside on dev and staging is fine, it would likely not be able to keep up with heavy production loads.</p>
+<h2 id="the-techniques">The Techniques</h2>
+<p>There were a few general techniques that we had to use to get this fully working, which I'll overview here.</p>
+<h3 id="one-time-scripts">One-Time Scripts</h3>
+<p>There are some tasks that you want to be able to run on a manual basis on the containers. To set these up, we added extra services that default to 0 replicas deployed, but then a GitLab CI/CD job can launch it. Some of those will be demonstrated in more detail later.</p>
+<p>This is the CI/CD job that gets extended for those single-use scripts:</p>
+<p>The full version looks complicated mainly because of everything needed to show logs back to the GitLab CI/CD interface, but the core part is really just this: <code>docker service update --with-registry-auth --replicas 1 --force ${STACK_NAME}_${SERVICE_NAME}</code>, running the specified service which contains the script we want to run.</p>
+<h3 id="dockerfile-branching">Dockerfile Branching</h3>
+<p>Dockerfiles can have logic built-in to build a little bit differently depending on the environment. For example, we don't need npm to support Playwright accessibility testing tools on production. That is only needed on local, where we do the building and the testing.</p>
+<p>This is done by passing in a variable for environment as part the build:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">build</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .build_dockerfile
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">IMAGE_TAG</span><span class="token punctuation">:</span> web
+    <span class="token key atrule">DOCKERFILE_PATH</span><span class="token punctuation">:</span> ./Dockerfile.Drupal
+    <span class="token key atrule">BUILD_ARGS</span><span class="token punctuation">:</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>build<span class="token punctuation">-</span>arg BRANCH=$CI_COMMIT_BRANCH <span class="token punctuation">-</span><span class="token punctuation">-</span>build<span class="token punctuation">-</span>arg BASE_URL=$BASE_URL <span class="token punctuation">-</span><span class="token punctuation">-</span>build<span class="token punctuation">-</span>arg TIMESTAMP=$CI_COMMIT_TIMESTAMP</code></pre>
+<p>That is extending the build_dockerfile job defined elsewhere. That job looks like this:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">## General job for building from a Dockerfile. ##</span>
+<span class="token key atrule">.build_dockerfile</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> docker<span class="token punctuation">:</span>dind
+  <span class="token key atrule">services</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> docker<span class="token punctuation">:</span>dind
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">DOCKER_BUILDKIT</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">IMAGE_TAG</span><span class="token punctuation">:</span> web
+    <span class="token comment"># Defines image tag to go into the project's container registry, with a tag of the branch name. #</span>
+    <span class="token key atrule">FULL_CONTAINER_PATH</span><span class="token punctuation">:</span> $CI_REGISTRY_IMAGE/$IMAGE_TAG<span class="token punctuation">:</span>$CI_COMMIT_REF_SLUG
+    <span class="token comment"># Include copying git submodules. #</span>
+    <span class="token key atrule">GIT_STRATEGY</span><span class="token punctuation">:</span> clone
+    <span class="token key atrule">GIT_SUBMODULE_STRATEGY</span><span class="token punctuation">:</span> recursive
+    <span class="token key atrule">GIT_SUBMODULE_UPDATE_FLAGS</span><span class="token punctuation">:</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>init
+    <span class="token key atrule">GIT_SUBMODULE_FORCE_HTTPS</span><span class="token punctuation">:</span> <span class="token string">"true"</span>
+    <span class="token comment"># Point to the Dockerfile that should be built. #</span>
+    <span class="token key atrule">DOCKERFILE_PATH</span><span class="token punctuation">:</span> ./.devcontainer/web.Dockerfile
+    <span class="token key atrule">BUILD_ARGS</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token comment"># Login to the GitLab registry using the private unique password provided by GitLab. #</span>
+    <span class="token punctuation">-</span> echo $CI_REGISTRY_PASSWORD <span class="token punctuation">|</span> docker login <span class="token punctuation">-</span>u $CI_REGISTRY_USER <span class="token punctuation">-</span><span class="token punctuation">-</span>password<span class="token punctuation">-</span>stdin  $CI_REGISTRY
+    <span class="token comment"># Build the Docker image. #</span>
+    <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span><span class="token punctuation">-</span>pull <span class="token punctuation">-</span>t $FULL_CONTAINER_PATH <span class="token punctuation">-</span>f $DOCKERFILE_PATH . $BUILD_ARGS
+    <span class="token comment"># Push the Docker image to the project's container registry. #</span>
+    <span class="token punctuation">-</span> docker push <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet $FULL_CONTAINER_PATH
+    <span class="token punctuation">-</span> docker logout</code></pre>
+<p>The relevant sections in the Dockerfile look like:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">ARG BRANCH
+
+RUN if [ "$BRANCH" != "main" ]; then \
+apt-get -y --no-install-recommends install \
+nodejs \
+npm \
+;fi</code></pre>
+<h3 id="multiple-docker-compose">Multiple Docker-Compose</h3>
+<p>We also found we needed multiple docker-compose files for a couple of unique scenarios, including the distinction of the production network file share volumes as compared to the host machine volumes on dev and staging. These can be merged together in a GitLab CI/CD job.</p>
+<p>For example, here's the dev deploy job, with multiple docker-compose:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">dev_deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .deploy_template_swarm
+  <span class="token key atrule">allow_failure</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Development
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">STACK_NAME</span><span class="token punctuation">:</span> library
+    <span class="token key atrule">COMPOSE_FILES</span><span class="token punctuation">:</span> docker<span class="token punctuation">-</span>compose.yml<span class="token punctuation">:</span>docker<span class="token punctuation">-</span>compose.local.storage.yml
+    <span class="token key atrule">LIBWEB_REPLICA_COUNT</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">LIBDB_REPLICA_COUNT</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> dev
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> dev</code></pre>
+<p>In addition to the general docker-compose, there's another one for the local storage, telling it save the Drupal public and private files.</p>
+<p>The deploy job which that extends looks like this, able to handle parsing the multiple compose files:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">.deploy_template_swarm</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">retry</span><span class="token punctuation">:</span>
+    <span class="token key atrule">max</span><span class="token punctuation">:</span> <span class="token number">2</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> script_failure
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">STACK_NAME</span><span class="token punctuation">:</span> <span class="token string">""</span>
+    <span class="token key atrule">COMPOSE_FILES</span><span class="token punctuation">:</span> docker<span class="token punctuation">-</span>compose.yml
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> echo "$CI_REGISTRY_PASSWORD" <span class="token punctuation">|</span> docker login $CI_REGISTRY <span class="token punctuation">-</span>u $CI_REGISTRY_USER <span class="token punctuation">-</span><span class="token punctuation">-</span>password<span class="token punctuation">-</span>stdin
+    <span class="token punctuation">-</span> if <span class="token punctuation">[</span> <span class="token punctuation">-</span>z $COMPOSE_FILES <span class="token punctuation">]</span>; then export COMPOSE_FILES=docker<span class="token punctuation">-</span>compose.yml; fi
+    <span class="token punctuation">-</span> <span class="token punctuation">></span><span class="token punctuation">-</span>
+      docker <span class="token punctuation">-</span><span class="token punctuation">-</span>log<span class="token punctuation">-</span>level fatal
+      compose
+      $(printf ' <span class="token punctuation">-</span>f %s ' $(echo $COMPOSE_FILES <span class="token punctuation">|</span> sed 's/<span class="token punctuation">:</span>/ /g'))
+      <span class="token punctuation">-</span>p $STACK_NAME
+      config
+      <span class="token punctuation">-</span>o docker<span class="token punctuation">-</span>compose.rendered.yml
+    <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i '/^name<span class="token punctuation">:</span>.<span class="token important">*$/d'</span> docker<span class="token punctuation">-</span>compose.rendered.yml
+    <span class="token punctuation">-</span> docker stack deploy
+      <span class="token punctuation">-</span>c docker<span class="token punctuation">-</span>compose.rendered.yml
+      <span class="token punctuation">-</span><span class="token punctuation">-</span>with<span class="token punctuation">-</span>registry<span class="token punctuation">-</span>auth
+      <span class="token punctuation">-</span><span class="token punctuation">-</span>detach=false $STACK_NAME
+    <span class="token punctuation">-</span> docker logout
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> docker<span class="token punctuation">-</span>compose.rendered.yml</code></pre>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2025/comp-sci-ai/">Computer Science Degrees in the Age of LLMs</a></p>
+</div>
+</article>
+
+				</div>
+				<div class="sidebar">
+					
+						
+						
+	<aside class="sidebar-block" aria-label="About Ryan">
+		<h2 id="about">About</h2>
+		<p>I'm Ryan Robinson. I've been working in technology for my adult life, especially websites, Microsoft 365, and CRM systems. I am now primarily focused on website development, particularly in Drupal. On this site I document some of the work I've done, whether within a full-time job, freelance work, volunteering, or as a personal side project. I hope you find it useful.</p>
+<p>More information:
+	</p><nav class="side-nav" aria-describedby="about-sidebar-label">
+		<h2 class="visually-hidden" id="about-sidebar-label">Top level navigation menu</h2>
+		<ul class="top-nav-list">
+			<li class="nav-item"><a href="/certifications/">Certifications</a></li>
+			<li class="nav-item"><a href="/freelance/">Freelance Work</a></li>
+			<li class="nav-item"><a href="/tools/">Favourite Technical Tools</a></li>
+		</ul>
+	</nav>
+<p>If you're interested in more from me beyond tech, see <a href="https://ryanrobinson.ca">ryanrobinson.ca</a>.</p>
+
+	</aside>
+
+
+					
+					
+	<aside class="sidebar-block" aria-label="Posts in this series">
+		<h2 id="posts-in-drupal-docker-series">Posts in Drupal Docker Series</h2>
+		<ol class="series-list">
+			
+    			<li><a href="/posts/2022/drupal-docker-devcontainer/">Drupal Docker: devcontainer</a></li>
+			
+    			<li><a href="/posts/2022/drupal-dockerfiles/">Drupal Docker: The Dockerfiles</a></li>
+			
+    			<li><a href="/posts/2022/drupal-docker-config-script/">Drupal Docker: The First-Run Script</a></li>
+			
+    			<li><a href="/posts/2024/dev-env-updated-dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></li>
+			
+    			<li><a href="/posts/2024/dev-env-updated-devcontainer/">Drupal Dev Environment Updated: The DevContainer</a></li>
+			
+    			<li><a href="/posts/2025/drupal-docker-deploys-overview/">Drupal Docker Deploys - An Overview</a></li>
+			
+		</ol>
+	</aside>
+
+					
+<aside class="sidebar-block" aria-label="Tags for posts">
+	<h2 id="posts-by-tag">Posts by Tag</h2>
+	<ul class="tags-list">
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (5)</li>
+	
+		
+		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (6)</li>
+	
+		
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (15)</li>
+	
+		
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (36)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (16)</li>
+	
+		
+		<li><a href="/tags/social-media/" class="post-tag">Social Media</a> (1)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (4)</li>
+	
+		
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (1)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+	</ul>
+</aside>
+				</div>
+			</main>
+		</div>
+
+		<footer>
+			<div class="container">
+				
+<ul class="social-links">
+	<li>
+		<a rel="me" href="https://ryanrobinson.ca">
+    		<span class="visually-hidden">Ryan Robinson Homepage</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
+			<span class="visually-hidden">LinkedIn</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
+		</a>
+	</li>
+		<li>
+		<a rel="me" href="https://gitlab.com/ryan-l-robinson">
+			<span class="visually-hidden">GitLab</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M568 268.6L567.3 266.8L497.6 85C496.2 81.4 493.7 78.4 490.4 76.4C488 74.8 485.3 73.9 482.4 73.6C479.5 73.3 476.7 73.7 474 74.7C471.3 75.7 468.9 77.4 466.9 79.5C465 81.6 463.6 84.2 462.8 86.9L415.8 230.9L225.3 230.9L178.2 86.9C177.4 84.1 176 81.6 174.1 79.5C172.1 77.4 169.7 75.8 167 74.7C164.4 73.7 161.5 73.3 158.6 73.6C155.7 73.9 153 74.8 150.6 76.4C147.4 78.4 144.8 81.5 143.4 85L73.8 266.8L73 268.6C63 294.8 61.7 323.6 69.5 350.6C77.2 377.5 93.5 401.3 115.9 418.2L116.2 418.4L116.8 418.8L222.8 498.3C261.3 527.4 289.5 548.6 307.4 562.2C311.1 564.1 315.7 566.5 320.4 566.5C325.1 566.5 329.7 564.1 333.4 562.2C351.3 548.7 379.5 527.3 418 498.3L524.7 418.4L525 418.1C547.4 401.2 563.7 377.5 570.6 350.6C579.2 323.6 578 294.8 568 268.6z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://github.com/ryan-l-robinson">
+			<span class="visually-hidden">GitHub</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://mstdn.ca/@Ryan">
+	    	<span class="visually-hidden">Mastodon</span>
+    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
+			<span class="visually-hidden">Bluesky</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
+			<span class="visually-hidden">RSS Feed</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
+		</a>
+	</li>
+</ul>
+
+				<p>&copy; 2025 Ryan Robinson. Powered by <a href="https://www.11ty.dev/">Eleventy</a> on <a href="https://pages.github.com/">GitHub Pages</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
+			</div>
+		</footer>
+
+		<!-- This page `/posts/2025/drupal-docker-deploys-overview/` was built on 2025-08-24T22:39:24.071Z -->
+	</body>
+</html>
