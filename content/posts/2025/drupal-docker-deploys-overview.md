@@ -76,7 +76,6 @@ This is the CI/CD job that gets extended for those single-use scripts:
       while [ -z "$(docker service ps --format 'json' ${STACK_NAME}_${SERVICE_NAME})" ]; do
         SERVICE_UP_WAIT_CHECK=$((SERVICE_UP_WAIT_CHECK+1))
         if [ "${SERVICE_UP_WAIT_CHECK}" -eq "${SERVICE_UP_WAIT_REPEAT}"]; then
-          echo Service failed to be created within $((SERVICE_UP_WAIT_REPEAT * SERVICE_UP_WAIT_TIME)) seconds.
           exit 1
         else
           echo Service ${STACK_NAME}_${SERVICE_NAME} has not been created yet. Attempt ${SERVICE_UP_WAIT_CHECK}/${SERVICE_UP_WAIT_REPEAT}
