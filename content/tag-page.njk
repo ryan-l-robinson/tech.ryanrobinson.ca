@@ -7,8 +7,7 @@ permalink: /tags/{{ tagPage.tagName | slugify }}/{% if tagPage.pageNumber > 0 %}
 eleventyComputed:
     title: Tagged “{{ tagPage.tagName }}”
 ---
-<h1>Tagged “{{ tagPage.tagName }}”</h1>
-
 {% set postslist = tagPage.posts %}
 {% set show_pagination = true %}
+{% set pagination = tagPage.pagination %}
 {% include "postslist.njk" %}

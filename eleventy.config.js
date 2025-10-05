@@ -100,6 +100,7 @@ export default function (eleventyConfig) {
 		const tagMap = new Map();
 		const pageSize = 10;
 		const tagPages = [];
+		const slugify = eleventyConfig.getFilter("slugify");
 
 		// Exclude utility tags
 		const filterTagList = tags => (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
@@ -118,16 +119,40 @@ export default function (eleventyConfig) {
 		// Create paginated pages for each tag
 		for (const [tag, posts] of tagMap.entries()) {
 			const pageCount = Math.ceil(posts.length / pageSize);
+			const tagSlug = slugify(tag);
+			const pages = [];
+
 			for (let i = 0; i < pageCount; i++) {
 				const start = i * pageSize;
 				const end = start + pageSize;
-				tagPages.push({
+				pages.push({
 					tagName: tag,
 					pageNumber: i,
 					totalPages: pageCount,
 					posts: posts.slice(start, end)
 				});
 			}
+
+			// Add pagination data to each page
+			for (let i = 0; i < pageCount; i++) {
+				const hrefs = [];
+				for (let j = 0; j < pageCount; j++) {
+					hrefs.push(j === 0 ? `/tags/${tagSlug}/` : `/tags/${tagSlug}/${j + 1}/`);
+				}
+
+				pages[i].pagination = {
+					hrefs: hrefs,
+					href: {
+						first: hrefs[0],
+						last: hrefs[hrefs.length - 1]
+					},
+					pages: pages.map((p, j) => ({ url: hrefs[j] })), // Simplified for template compatibility
+					pageNumber: i,
+					totalPages: pageCount
+				};
+			}
+
+			tagPages.push(...pages);
 		}
 
 		return tagPages;
