@@ -5,7 +5,7 @@
   <subtitle>Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-09-24T14:46:00Z</updated>
+  <updated>2025-10-05T14:46:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
@@ -13,7 +13,7 @@
   <entry>
     <title>Experiments in Coding Assistants in VS Code</title>
     <link href="https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/" />
-    <updated>2025-09-24T14:46:00Z</updated>
+    <updated>2025-10-05T14:46:00Z</updated>
     <id>https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/</id>
     <content type="html">&lt;p&gt;I have little interest in using Large Language Models for much other than coding, and that only &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2025/principles-ai/&quot;&gt;as long as you are still validating that the result is correct and learning from it&lt;/a&gt;, not using it to offload all your cognitive processing, but I did decide it was time to give that specific situation a more serious try.&lt;/p&gt;
 &lt;p&gt;I work mostly within &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;VS Code&lt;/a&gt;, so whatever I&#39;m going to use I want to be fully integrated to that. This does get complicated, because there are a few overlapping factors:&lt;/p&gt;
