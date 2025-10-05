@@ -1,6 +1,6 @@
 ---
 title: "Experiments in Coding Assistants in VS Code"
-date: 2025-09-24T14:46:00.000Z
+date: 2025-10-05T14:46:00.000Z
 author: Ryan Robinson
 description: "Notes on my experiences with coding assistants using different models, pricing, and VS Code extensions."
 tags:
