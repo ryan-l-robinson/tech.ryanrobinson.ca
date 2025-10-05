@@ -95,6 +95,44 @@ export default function (eleventyConfig) {
 	  execSync(`npx pagefind --site _site`, { encoding: 'utf-8' })
 	})
 
+	eleventyConfig.addCollection("tagPages", function(collectionApi) {
+		const posts = collectionApi.getFilteredByTag("posts").reverse();
+		const tagMap = new Map();
+		const pageSize = 10;
+		const tagPages = [];
+
+		// Exclude utility tags
+		const filterTagList = tags => (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
+
+		// Group posts by tag
+		for (const post of posts) {
+			const tags = filterTagList(post.data.tags);
+			for (const tag of tags) {
+				if (!tagMap.has(tag)) {
+					tagMap.set(tag, []);
+				}
+				tagMap.get(tag).push(post);
+			}
+		}
+
+		// Create paginated pages for each tag
+		for (const [tag, posts] of tagMap.entries()) {
+			const pageCount = Math.ceil(posts.length / pageSize);
+			for (let i = 0; i < pageCount; i++) {
+				const start = i * pageSize;
+				const end = start + pageSize;
+				tagPages.push({
+					tagName: tag,
+					pageNumber: i,
+					totalPages: pageCount,
+					posts: posts.slice(start, end)
+				});
+			}
+		}
+
+		return tagPages;
+	});
+
 	return {
 		// Control which files Eleventy will process
 		// e.g.: *.md, *.njk, *.html, *.liquid

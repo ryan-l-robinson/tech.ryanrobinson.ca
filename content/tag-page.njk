@@ -1,21 +1,14 @@
----js
-// <script>
-const pagination = {
-	data: "collections",
-	size: 1,
-	alias: "tag",
-	filter: ["all", "posts"],
-};
-
-const eleventyExcludeFromCollections = true;
-
-const eleventyComputed = {
-	title: "Tagged '{{ tag }}'",
-	permalink: function(data) {
-		return `/tags/${this.slugify(data.tag)}/`;
-	}
-};
 ---
-{% set postslist = collections[ tag ] | reverse %}
-{% set show_pagination = false %}
+pagination:
+    data: collections.tagPages
+    size: 1
+    alias: tagPage
+permalink: /tags/{{ tagPage.tagName | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
+eleventyComputed:
+    title: Tagged “{{ tagPage.tagName }}”
+---
+<h1>Tagged “{{ tagPage.tagName }}”</h1>
+
+{% set postslist = tagPage.posts %}
+{% set show_pagination = true %}
 {% include "postslist.njk" %}
