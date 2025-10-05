@@ -4,7 +4,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 
 ## TODO
 
-- Posts by tag page: solve nested pagination. [Possible lead on doing that](https://desmondrivet.com/2022/03/23/eleventy-pagination) or [another](https://chriskirknielsen.com/blog/double-pagination-in-eleventy/). I have pagination working on the homepage (albeit with not entirely intutive URLs - that's partially fixed, now generating better URLs but in addition to the worse ones, not replacing them). I have tag pages working. I do not have pagination working on the tag pages.
+- Fix pagination. Everything that should have a pager, including tag pages, does now, but it is inconsistent which buttons show up where.
 - Update links in dev.to to point to the new addresses.
 - Search functionality works but I don't think is very accessible. It auto-updates as text is entered, no button for a user to know that's going to happen, with no aria-live region. The Clear button also doesn't specify that it is a reset button. It also shows an excerpt from the body, not the specific tl;dr field I use elsewhere.
 - Posts: add descriptions to all posts (must be in quotes to appear), review tags and series, remove categories that aren't doing anything, update image paths, update link paths.
