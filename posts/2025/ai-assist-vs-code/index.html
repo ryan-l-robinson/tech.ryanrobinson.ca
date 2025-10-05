@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en-ca">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ryan Robinson Technology | Experiments in Coding Assistants in VS Code</title>
+		<meta name="description" content="Notes on my experiences with coding assistants using different models, pricing, and VS Code extensions.">
+		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
+  		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
+		<link rel="stylesheet" href="/dist/rrNiz8uiW4.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+		<header>
+			<div class="container header-container">
+				<p><a href="/">Ryan Robinson Technology</a></p>
+				<div id="search" class="search">
+					<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
+				</div>
+			</div>
+		</header>
+
+		<div class="main-wrapper">
+			<main id="skip" class="main-sidebar">
+				<div class="main-content">
+					<h1 id="experiments-in-coding-assistants-in-vs-code">Experiments in Coding Assistants in VS Code</h1>
+					
+<article data-pagefind-body="">
+
+
+
+<div class="post-metadata">
+
+	<p><time datetime="2025-09-24">September 24, 2025</time></p>
+	
+		<p>Tags:
+		<a href="/tags/ai/" class="post-tag">AI</a>, 
+		<a href="/tags/vs-code/" class="post-tag">VS Code</a>
+		</p>
+	
+</div>
+
+
+	<p class="post-description" data-pagefind-weight="3">
+		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Notes on my experiences with coding assistants using different models, pricing, and VS Code extensions.
+	</p>
+
+
+<p>I have little interest in using Large Language Models for much other than coding, and that only <a href="/posts/2025/principles-ai/">as long as you are still validating that the result is correct and learning from it</a>, not using it to offload all your cognitive processing, but I did decide it was time to give that specific situation a more serious try.</p>
+<p>I work mostly within <a href="/tags/visual-studio-code/">VS Code</a>, so whatever I'm going to use I want to be fully integrated to that. This does get complicated, because there are a few overlapping factors:</p>
+<ul>
+<li>Which underlying model is best for which kinds of problem?</li>
+<li>What does each model cost, and does it make more sense to pay per-token or monthly?</li>
+<li>What VS Code extensions combined with what models provide what kind of integration with VS Code? Can it read multiple files to keep in context, offer suggestions within files, run scripts, etc.? How user-friendly are all those things? How secure are those things?</li>
+</ul>
+<p>Because there are too many overlapping variables, I'm not really going to try to give definitive answers to those. I'm only going to provide some notes on what I have tried and what I thought about it.</p>
+<h2 id="copilot">Copilot</h2>
+<p>Copilot was the first of these coding assistants, before anybody was even calling these kinds of tool &quot;AI&quot;, and at least in theory is the most deeply integrated to VS Code.</p>
+<p>In terms of modes, it offers a chat mode, an edit mode, and an agent mode. Chat is fairly self-explanatory and if you've used an LLM elsewhere, that's what it is: no touching the files, just a simulated conversation. I assumed edit mode meant that it would suggest edits to my files. The description of that mode sounded that it would. Maybe the task I gave it - writing unit tests for a custom Drupal entity - was deemed too complicated to be allowed to run in that mode, but it didn't make it clear; it just gave me a response in chat. So I switched to agent mode for the rest of the testing and that's where the real power seems to come in, able to suggest changes to files and suggest non-destructive terminal commands.</p>
+<p>It was not very friendly in switching from Chat to Agent. If you start out thinking you just need a chat, then realize it would actually help to see the suggestion being applied to the code, you can't do that without starting the conversation again.</p>
+<p>Copilot also can suggest code as an autocomplete function right within your main code editor as you work. I can see why some people like that better. It is maybe faster once you get used to it. I tend to feel like it's in my way, breaking my own concentration too much, and I'd rather restrict it to acting when I tell it to.</p>
+<p>It does require logging in with a GitHub account, even for free usage, which might be a nuisance if you don't want to have a GitHub account, but realistically a large portion of the kinds of developers who would use it have a GitHub account anyway.</p>
+<p>I could not figure out adding context files to my chats. When I clicked on the button to add context, it gave me a file browser, but if I tried to browse down to the file I wanted, it just made the whole folder the context instead. I did not know how to browse down to more specific context.</p>
+<p>It does seem to read the entire codebase without the human user specifying what to read or asking for permissions, which means it would be using up more tokens but if you're paying monthly it doesn't matter as much. More significantly, you better make sure there's nothing sensitive in that codebase that it could be reading and feeding back into a free model.</p>
+<p>It gives access to a few models even in the free tier, including Gemini Flash 2.5, Claude Sonnet 3.5, and GPT 4o, which are the three that I tried to get to write unit tests for a custom entity in a Drupal 10 module. Perhaps this is the best thing to say about Copilot, in that it allows trying all the models without setting up accounts and API keys for all of them, especially since most of them do not have a certain amount available for free. All of those tests would have cost me (a little) money and the hassle of creating accounts otherwise.</p>
+<p>With those general notes out of the way, how did the different free models do at a task writing Drupal unit tests?</p>
+<h3 id="with-gemini-flash">With Gemini Flash</h3>
+<p>I first tried to solve the problem with Gemini Flash 2.5 as the model. It did not do well.</p>
+<p>It made a couple truly nonsensical mistakes, like removing the php declaration at the start of the file or sticking a newline character in the middle of a use statement, both of which obviously become a fatal error right away. These are the kinds of mistake that a basic linter would detect, so it was very strange to see them made here.</p>
+<p>A couple of times it said it made a change in the file, but didn't actually do it. That was also confusing.</p>
+<p>Ultimately, it got stuck pretty quickly, not able to figure out what else to do and not having made any significant progress on the problem.</p>
+<p>Maybe there was something about my use case where I missed an important step, but based on those tests, it definitely was not helpful.</p>
+<h3 id="with-claude-sonnet-3-5">With Claude Sonnet 3.5</h3>
+<p>I then tried Claude Sonnet 3.5, still in Copilot. That seemed promising at first: fixing issues and applying style standards that I did not even explicitly ask it to do.</p>
+<p>It then asked for terminal permission to run the tests, then kept improving on its own based on the errors it read from the test output. That was nice, not needing to run the test command myself every time but still confirming permission so I could stop it if it tried to do anything dangerous.</p>
+<p>It then got stuck, though not nearly as fast as the Gemini model did. It was actually changing things reliably, and the errors were different (whether that was better or worse different I can't say). But it did eventually also give up, aware that it wasn't working but having tried everything it could &quot;think&quot; of and stuck in a loop of the same few ideas repeatedly.</p>
+<h3 id="with-gpt-4o">With GPT 4o</h3>
+<p>With GPT 4o and Copilot the results were similar to Claude Sonnet.</p>
+<p>One minor difference was that it asked in the chat first if it could run the tests, and I had to type yes, then it gave the prompt asking to run the command line Claude had done and I clicked approve on that. So it made running the tests each time slightly easier than Gemini but less easy than Claude on that point. Then it did read the results and kept iterating from there.</p>
+<p>It eventually stopped, thinking it got it working, and I ran the tests again myself. It had a couple fatal errors, so I fed those back into Copilot and it ran again for a while. Then it got stuck in a loop, much like Claude's loop except that it declared itself done without even running the tests and I had to run them myself.</p>
+<h2 id="gemini-code-assist">Gemini Code Assist</h2>
+<p>I briefly tried <a href="https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist">the official Gemini Code Assist extension from Google</a>. It's a very friendly and straightforward interface. It says it has an Agent mode in preview. I tried in once and it couldn't even find the file that I was asking it to review.</p>
+<p>I also noticed immediately it did not have a couple of nice features which I had already learned that the extension I'll get into next offers. It's just a user-friendly chat integration that's easy to use if you already have a Google account as most people do and not much more than that.</p>
+<h2 id="cline">Cline</h2>
+<p>That gets me to the extension that I have now tried out the most and like the most so far: <a href="https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev">Cline</a>.</p>
+<p>Cline allows connecting to a wide variety of models, using your own API keys. Unlike Copilot, there's no middle man where you could instead pay them and get a lot more access to a bunch of models. I grabbed an API key for Gemini and put it in. I had hoped that I had unlimited use of it for a year, because with my new Pixel 10 Pro I have Gemini Pro for a year, but that free trial does not include API access for coding, which is really the only thing that I wanted it for. Anyway, the extension makes it as easy as possible to add an API key for the model of your choice.</p>
+<p>It offers two modes: Plan and Act. Plan won't write any code for you, just be a chat agent similar to having a chat in the browser, except that it can work with more valuable context of whatever in your codebase you decide to provide as context.</p>
+<p>Act is the Agent mode, which like Copilot is where it gets really interesting. It will tell you what it is going to do in response to your request, then it will propose the changes. Those proposed changes will show up in the main code window like any other diff viewer that you are probably used to in Code. This gives you an easy way to track exactly what it is changing, one file at a time.</p>
+<p><picture><source type="image/avif" srcset="/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.avif 1323w"><source type="image/webp" srcset="/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.webp 1323w"><img loading="lazy" decoding="async" src="/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.png" alt="&quot;Screenshot of a Cline suggestion for editing a file in this site's eleventy project, which looks like a diff screen with the old and new version highlighted in different colours.&quot;" width="1323" height="717"></picture></p>
+<p>There is an option to auto-approve whatever it wants to change, but to me, that violates the rule that I only want to learn from this, not offload my thinking onto it. I want to make sure I am going slow enough to understand exactly what it is doing and why, so I am not going to auto-approve.</p>
+<p>There are a couple other features of Cline that I really like:</p>
+<ol>
+<li>You can define a rules file which gives it extra standard instructions. These can be set up per project, but then the front matter in each rule can differentiate even more by file type. For example, I can tell it to always use Drupal style and best practice if I'm editing a PHP file within a Drupal project, and that rules file can be committed as part of the project so everybody working on the project gets the same guiding rules.</li>
+<li>It shows you the amount of tokens and the cost so far of this query, which is a great way to keep track of how much this is costing you and encourages you to not use it any more than you really need to.</li>
+</ol>
+<p>Like Copilot, it can also run script commands, like clearing caches or executing the phpunit tests it tried to write. It was a more clear interface about those terminal suggestions, prompting you first to save the changes and then to run the test instead of showing you both buttons at once.</p>
+<p>It was a really positive experience at first, better in every way than Copilot, other than Copilot giving access to a couple more models for free.</p>
+<p>Then Cline started failing on me, frequently saying that &quot;the model is overloaded&quot; even though when I tried the same model from the other extensions they were fine. Because I had to keep querying repeatedly when it failed, it used up my daily free quota on Gemini Pro a lot faster. I hope this is a temporary short-term bug, because it wasn't a problem at first.</p>
+<p><picture><source type="image/avif" srcset="/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.avif 846w"><source type="image/webp" srcset="/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.webp 846w"><img loading="lazy" decoding="async" src="/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.png" alt="&quot;Screenshot of Cline error, code 503 and the message The model is overloaded. Please try again later.&quot;" width="846" height="342"></picture></p>
+<h2 id="a-note-on-pricing">A Note on Pricing</h2>
+<p>Thanks to the Cline details on what the price would be if I was past the quota for free usage has given me some rough estimates of costs when paying by token or by subscription. Here's basically what I found, using Gemini Pro as the model.</p>
+<p>Just loading in the context of all of a moderately-complicated Drupal module cost me about $0.09. As I worked through a moderately-complicated problem that needed a few tweaks, I got up to a total of about $0.40. I gave it a few more problems of similar size that ended up with similar price. I assume that's USD, but maybe one minor complaint about Cline is that it does not specify that at all; maybe it is CAD knowing it is tied to my Canadian Google account. That's for it reading my code context, making code changes, then tweaking a little more as I followed up with a few pieces that weren't quite ideal yet.</p>
+<p><picture><source type="image/avif" srcset="/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.avif 843w"><source type="image/webp" srcset="/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.webp 843w"><img loading="lazy" decoding="async" src="/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.png" alt="Cline's token summary window, showing the query, a button to copy, a button to delete, the price and token use so far." width="843" height="447"></picture></p>
+<p>By comparison, it's $19 USD a month for the Copilot Business subscription. So assuming about 22 work days in a full month (no vacations or anything), that's roughly equivalent to 2 of those kinds of problems per day before the subscription starts being cheaper than by token. If you're handing off all your work to it, a subscription would pay off, but as I already said, I do not recommend that approach. If you're more like what I am somewhat interested in, using it only occasionally when you're stuck - the way I also use search engines - and maybe some general code review, then the per-token price is likely to be a better deal.</p>
+<p>Of course, that's just using Gemini Pro's pricing, and with a small sample size of the problems. Other models would be different. How much contextual code you provide might change it dramatically. How big of the problem it is solving would certainly change it dramatically. I offer this only as a rough estimate to give a sense, but I think the general conclusion is likely true: per-token makes sense as long as you're using it to help you do work, not to do your work for you.</p>
+<h2 id="conclusions">Conclusions?</h2>
+<p>As I said in the introduction, I don't have a lot of strong conclusions to make because there are too many interconnected variables and these tools are all evolving fast enough that any conclusions may be not be valid for that long anyway. What I can say at this point:</p>
+<ul>
+<li>Google Gemini Code Assist is bad and I see no good reason to use it.</li>
+<li>Copilot is great for experimenting with models, and might also be a better choice if you are going to use it enough as to justify the monthly subscription.</li>
+<li>Cline is my favourite to interact with, but those &quot;overloaded models&quot; disconnections got pretty frustrating pretty fast.</li>
+</ul>
+
+<div class="links-nextprev"><p>Previous: <a href="/posts/2025/principles-ai/">Principles of AI Use</a></p>
+</div>
+</article>
+
+				</div>
+				<div class="sidebar">
+					
+						
+						
+	<aside class="sidebar-block" aria-label="About Ryan">
+		<h2 id="about">About</h2>
+		<p>I'm Ryan Robinson. I've been working in technology for my adult life, especially websites, Microsoft 365, and CRM systems. I am now primarily focused on website development, particularly in Drupal. On this site I document some of the work I've done, whether within a full-time job, freelance work, volunteering, or as a personal side project. I hope you find it useful.</p>
+<p>More information:
+	</p><nav class="side-nav" aria-describedby="about-sidebar-label">
+		<h2 class="visually-hidden" id="about-sidebar-label">Top level navigation menu</h2>
+		<ul class="top-nav-list">
+			<li class="nav-item"><a href="/certifications/">Certifications</a></li>
+			<li class="nav-item"><a href="/freelance/">Freelance Work</a></li>
+			<li class="nav-item"><a href="/tools/">Favourite Technical Tools</a></li>
+		</ul>
+	</nav>
+<p>If you're interested in more from me beyond tech, see <a href="https://ryanrobinson.ca">ryanrobinson.ca</a>.</p>
+
+	</aside>
+
+
+					
+					
+					
+<aside class="sidebar-block" aria-label="Tags for posts">
+	<h2 id="posts-by-tag">Posts by Tag</h2>
+	<ul class="tags-list">
+	
+		
+		<li><a href="/tags/ai/" class="post-tag">AI</a> (2)</li>
+	
+		
+		<li><a href="/tags/accessibility/" class="post-tag">Accessibility</a> (17)</li>
+	
+		
+		<li><a href="/tags/crm/" class="post-tag">CRM</a> (4)</li>
+	
+		
+		<li><a href="/tags/css/" class="post-tag">CSS</a> (5)</li>
+	
+		
+		<li><a href="/tags/commentary/" class="post-tag">Commentary</a> (6)</li>
+	
+		
+		<li><a href="/tags/devops/" class="post-tag">DevOps</a> (15)</li>
+	
+		
+		<li><a href="/tags/drupal/" class="post-tag">Drupal</a> (36)</li>
+	
+		
+		<li><a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a> (19)</li>
+	
+		
+		<li><a href="/tags/linux/" class="post-tag">Linux</a> (5)</li>
+	
+		
+		<li><a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a> (49)</li>
+	
+		
+		<li><a href="/tags/php/" class="post-tag">PHP</a> (15)</li>
+	
+		
+		<li><a href="/tags/security/" class="post-tag">Security</a> (16)</li>
+	
+		
+		<li><a href="/tags/social-media/" class="post-tag">Social Media</a> (1)</li>
+	
+		
+		<li><a href="/tags/static-sites/" class="post-tag">Static Sites</a> (4)</li>
+	
+		
+		<li><a href="/tags/tech-and-society/" class="post-tag">Tech and Society</a> (1)</li>
+	
+		
+		<li><a href="/tags/vs-code/" class="post-tag">VS Code</a> (1)</li>
+	
+		
+		<li><a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a> (17)</li>
+	
+		
+		<li><a href="/tags/wordpress/" class="post-tag">WordPress</a> (6)</li>
+	
+	</ul>
+</aside>
+				</div>
+			</main>
+		</div>
+
+		<footer>
+			<div class="container">
+				
+<ul class="social-links">
+	<li>
+		<a rel="me" href="https://ryanrobinson.ca">
+    		<span class="visually-hidden">Ryan Robinson Homepage</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6l116.7 0z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://www.linkedin.com/in/ryanlewisrobinson">
+			<span class="visually-hidden">LinkedIn</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
+		</a>
+	</li>
+		<li>
+		<a rel="me" href="https://gitlab.com/ryan-l-robinson">
+			<span class="visually-hidden">GitLab</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M568 268.6L567.3 266.8L497.6 85C496.2 81.4 493.7 78.4 490.4 76.4C488 74.8 485.3 73.9 482.4 73.6C479.5 73.3 476.7 73.7 474 74.7C471.3 75.7 468.9 77.4 466.9 79.5C465 81.6 463.6 84.2 462.8 86.9L415.8 230.9L225.3 230.9L178.2 86.9C177.4 84.1 176 81.6 174.1 79.5C172.1 77.4 169.7 75.8 167 74.7C164.4 73.7 161.5 73.3 158.6 73.6C155.7 73.9 153 74.8 150.6 76.4C147.4 78.4 144.8 81.5 143.4 85L73.8 266.8L73 268.6C63 294.8 61.7 323.6 69.5 350.6C77.2 377.5 93.5 401.3 115.9 418.2L116.2 418.4L116.8 418.8L222.8 498.3C261.3 527.4 289.5 548.6 307.4 562.2C311.1 564.1 315.7 566.5 320.4 566.5C325.1 566.5 329.7 564.1 333.4 562.2C351.3 548.7 379.5 527.3 418 498.3L524.7 418.4L525 418.1C547.4 401.2 563.7 377.5 570.6 350.6C579.2 323.6 578 294.8 568 268.6z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://github.com/ryan-l-robinson">
+			<span class="visually-hidden">GitHub</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM265.8 407.7c0-1.8 0-6 .1-11.6c.1-11.4 .1-28.8 .1-43.7c0-15.6-5.2-25.5-11.3-30.7c37-4.1 76-9.2 76-73.1c0-18.2-6.5-27.3-17.1-39c1.7-4.3 7.4-22-1.7-45c-13.9-4.3-45.7 17.9-45.7 17.9c-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9c-9.1 22.9-3.5 40.6-1.7 45c-10.6 11.7-15.6 20.8-15.6 39c0 63.6 37.3 69 74.3 73.1c-4.8 4.3-9.1 11.7-10.6 22.3c-9.5 4.3-33.8 11.7-48.3-13.9c-9.1-15.8-25.5-17.1-25.5-17.1c-16.2-.2-1.1 10.2-1.1 10.2c10.8 5 18.4 24.2 18.4 24.2c9.7 29.7 56.1 19.7 56.1 19.7c0 9 .1 21.7 .1 30.6c0 4.8 .1 8.6 .1 10c0 4.3-3 9.5-11.5 8C106 393.6 59.8 330.8 59.8 257.4c0-91.8 70.2-161.5 162-161.5s166.2 69.7 166.2 161.5c.1 73.4-44.7 136.3-110.7 158.3c-8.4 1.5-11.5-3.7-11.5-8zm-90.5-54.8c-.2-1.5 1.1-2.8 3-3.2c1.9-.2 3.7 .6 3.9 1.9c.3 1.3-1 2.6-3 3c-1.9 .4-3.7-.4-3.9-1.7zm-9.1 3.2c-2.2 .2-3.7-.9-3.7-2.4c0-1.3 1.5-2.4 3.5-2.4c1.9-.2 3.7 .9 3.7 2.4c0 1.3-1.5 2.4-3.5 2.4zm-14.3-2.2c-1.9-.4-3.2-1.9-2.8-3.2s2.4-1.9 4.1-1.5c2 .6 3.3 2.1 2.8 3.4c-.4 1.3-2.4 1.9-4.1 1.3zm-12.5-7.3c-1.5-1.3-1.9-3.2-.9-4.1c.9-1.1 2.8-.9 4.3 .6c1.3 1.3 1.8 3.3 .9 4.1c-.9 1.1-2.8 .9-4.3-.6zm-8.5-10c-1.1-1.5-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3c1.1 1.5 1.1 3.3 0 4.1c-.9 .6-2.6 0-3.7-1.5zm-6.3-8.8c-1.1-1.3-1.3-2.8-.4-3.5c.9-.9 2.4-.4 3.5 .6c1.1 1.3 1.3 2.8 .4 3.5c-.9 .9-2.4 .4-3.5-.6zm-6-6.4c-1.3-.6-1.9-1.7-1.5-2.6c.4-.6 1.5-.9 2.8-.4c1.3 .7 1.9 1.8 1.5 2.6c-.4 .9-1.7 1.1-2.8 .4z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://mstdn.ca/@Ryan">
+	    	<span class="visually-hidden">Mastodon</span>
+    		<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="https://bsky.app/profile/ryanrobinson.ca">
+			<span class="visually-hidden">Bluesky</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"></path></svg>
+		</a>
+	</li>
+	<li>
+		<a rel="me" href="/feed/feed.xml" aria-label="rss">
+			<span class="visually-hidden">RSS Feed</span>
+			<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg>
+		</a>
+	</li>
+</ul>
+
+				<p>&copy; 2025 Ryan Robinson. Powered by <a href="https://www.11ty.dev/">Eleventy</a> on <a href="https://pages.github.com/">GitHub Pages</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
+			</div>
+		</footer>
+
+		<!-- This page `/posts/2025/ai-assist-vs-code/` was built on 2025-10-05T19:11:28.436Z -->
+	</body>
+</html>
