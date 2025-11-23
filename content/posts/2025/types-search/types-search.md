@@ -21,7 +21,7 @@ This is the most "traditional" search engine: you put in some keywords looking f
 
 For this category, Kagi is the winner. In the free version, there's no AI answer in the way at all; my understanding is on the paid tiers it is there but out of the way. There are no ads. There's no tracking to sell all your data. There are simply the results, and by all accounts they are at least comparable to if not better than the big search engines.
 
-!["An example of the Kagi search results, from their site with results for postgresql query analysis."](/content/posts/drafts/types-search/kagi-search.png)
+!["An example of the Kagi search results, from their site with results for postgresql query analysis."](./kagi-search.png)
 
 There's also some freedom to tweak your own search algorithm in some small ways, like if you are searching for programming results you can filter to certain sites. You can also customize your own CSS styles to make it look however you want. Those kinds of customizations are cool and maybe worth it if you are going to be using it a lot to justify the overhead of configuring it. As I realized, though, a lot of my searches really fall in either of the other two categories below, so even if I do end up paying for a Kagi subscription, I might not ever bother with too much extra customizing.
 
