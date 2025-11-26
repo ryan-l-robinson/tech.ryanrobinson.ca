@@ -160,7 +160,7 @@ Now that you have that heading_level variable that you can use in a twig templat
 
 ```twig
     {% if label %}
-      {% set tag = (heading_level ?? 'h2')|lower %}
+      {% set tag = heading_level|default('h2')|lower %}
       {# Avoid aria-level conflicts injected elsewhere. #}
       {% set title_attributes = title_attributes.removeAttribute('aria-level') %}
       <{{ tag }}{{ title_attributes.setAttribute('id', heading_id) }}>{{ label }}</{{ tag }}>
