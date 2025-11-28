@@ -5,11 +5,149 @@
   <subtitle>Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-11-26T16:19:16Z</updated>
+  <updated>2025-11-28T17:36:16Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Expanding and Collapsing Details Elements</title>
+    <link href="https://tech.ryanrobinson.ca/posts/2025/expand-collapse-details/" />
+    <updated>2025-11-28T17:36:16Z</updated>
+    <id>https://tech.ryanrobinson.ca/posts/2025/expand-collapse-details/</id>
+    <content type="html">&lt;h2 id=&quot;the-problem-with-collapsed-details&quot;&gt;The Problem with Collapsed Details&lt;/h2&gt;
+&lt;p&gt;Details elements, commonly referred to as accordions, are a very valuable tool for tucking away some content into sections when not always needed, especially on pages that would be very long with lots of content that would take a while to scroll down if they were all expanded at once. However, they do have some problems as well, namely that it&#39;s easy to miss things that are hidden inside details elements. You can&#39;t use Ctrl+F, or other utilities that search everything on the page, to find them.&lt;/p&gt;
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
+&lt;p&gt;A solution is to include buttons on the page, before the details elements, that when pressed will expand all the details elements. One click, and now you can use Ctrl+F or get a better overview of how much content you&#39;re dealing with again!&lt;/p&gt;
+&lt;p&gt;I have a &lt;a href=&quot;https://github.com/ryan-l-robinson/drupal-module-expand-collapse-details&quot;&gt;Drupal module for this available in my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here are some of the key components of that code:&lt;/p&gt;
+&lt;h3 id=&quot;the-block&quot;&gt;The Block&lt;/h3&gt;
+&lt;p&gt;The block itself looks like this, as a class in the src/Plugin/Block folder:&lt;/p&gt;
+&lt;pre class=&quot;language-php&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token php language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Drupal&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;expand_details&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Plugin&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Block&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Drupal&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Core&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Block&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;BlockBase&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Drupal&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Core&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Cache&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Cache&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Drupal&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Core&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Render&lt;span class=&quot;token punctuation&quot;&gt;&#92;&lt;/span&gt;Markup&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;/**
+ * Displays button for expanding or collapsing accordions.
+ *
+ * @Block(
+ *   id = &quot;expand_details_block&quot;,
+ *   admin_label = @Translation(&quot;Expand and Collapse Details Buttons&quot;),
+ *   category = @Translation(&quot;Expand Details Module&quot;),
+ * )
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name-definition class-name&quot;&gt;ExpandDetailsBlock&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BlockBase&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * {@inheritdoc}
+   */&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword return-type&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;#markup&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token class-name static-context&quot;&gt;Markup&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;
+        &amp;lt;button type=&quot;button&quot; name=&quot;Expand&quot; aria-label=&quot;Expand all content on page&quot; class=&quot;expand-details-button expand-details-button-expand&quot;&gt;
+          Expand All +
+        &amp;lt;/button&gt;
+        &amp;lt;button type=&quot;button&quot; name=&quot;Collapse&quot; aria-label=&quot;Collapse all content on page&quot; class=&quot;expand-details-button expand-details-button-collapse&quot;&gt;
+          Collapse All -
+        &amp;lt;/button&gt;
+      &#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;#attached&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;library&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+          &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;expand_details/expand_details&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;#cache&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;contexts&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;theme&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;tags&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string single-quoted-string&quot;&gt;&#39;max-age&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token class-name static-context&quot;&gt;Cache&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PERMANENT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you haven&#39;t built a custom block before, a couple pieces of this are essential:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;That location in the file structure, src/Plugin/Block and a filename that matches the class name, so it can be properly recognized as a block plugin.&lt;/li&gt;
+&lt;li&gt;The comment block with those keys, which specify a machine name and how it will show up in the Block Layout interface.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Otherwise, the build function determines the markup of that block. Along with the markup itself, it also declares:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;There is an attached library, which will connect to the next important file. This is how JavaScript and CSS are added to the block.&lt;/li&gt;
+&lt;li&gt;The cache is straightforward, only altering by theme and never clearing automatically. This is because there is nothing here that would change by page or by user or any other contextual variation so it can stay cached and be highly efficient.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;the-library&quot;&gt;The Library&lt;/h3&gt;
+&lt;p&gt;The module&#39;s .libraries.yml file declares any libraries for the module, which in this context mean a bundle of CSS and/or JavaScript that can be applied to only certain contexts. In this module, there is just one library and we already saw that it would only be added to the context of that block, so this CSS and this JavaScript doesn&#39;t need to be loaded on any other page.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;expand_details&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.1&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;js/expand_details.js&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;css/expand_details.css&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One more note here is the version number. When you are working with JavaScript, increment the version number after changes. If you don&#39;t, you might not see your changes reflected and you&#39;ll think it isn&#39;t working. Clearing the site&#39;s caches will not resolve this. You need to update the library number so your browser knows it is different JavaScript. That&#39;s not a problem with CSS, where clearing the site&#39;s caches will reflect the update immediately whether or not the version number was increased.&lt;/p&gt;
+&lt;h3 id=&quot;the-javascript&quot;&gt;The JavaScript&lt;/h3&gt;
+&lt;p&gt;This is the core functional part, the JavaScript:&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Get details elements, excluding some special cases.&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; detailsElements &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;details:not(.building-hours):not(.captcha):not(.bef--secondary&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Get blocks, which could be more than once.&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; expandDetailsBlocks &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;.block-expand-details-block&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;detailsElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; expandDetailsBlocks&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        expandDetailsBlocks&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;expandDetailsBlock&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// Display change is set at the block level.&lt;/span&gt;
+            expandDetailsBlock&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;style&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;display &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;flex&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Assuming that there will only ever be one of each per block.&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; expandDetailsButton &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; expandDetailsBlock&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;.expand-details-button-expand&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; collapseDetailsButton &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; expandDetailsBlock&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;.expand-details-button-collapse&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Add click actions for each block.&lt;/span&gt;
+            expandDetailsButton&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;click&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                detailsElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    details&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;open &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            collapseDetailsButton&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;click&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                detailsElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    details&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;open &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are three exclusions added in this example: building hours which is a little details dropdown to show open hours in the header, any appearance of the captcha from the captcha module, and &lt;a href=&quot;https://www.drupal.org/project/better_exposed_filters&quot;&gt;the Better Exposed Filters advanced filter&lt;/a&gt;. You may have more or less things that you want to exclude. A potential bit of improvement for this module would be to get those options into configuration so they can be more easily adjusted, but I have not done that here.&lt;/p&gt;
+&lt;h2 id=&quot;the-styles&quot;&gt;The Styles&lt;/h2&gt;
+&lt;p&gt;Finally, the style sheet:&lt;/p&gt;
+&lt;pre class=&quot;language-css&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-css&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/** Hidden by default, it will only appear when there are details on the page **/&lt;/span&gt;
+&lt;span class=&quot;token selector&quot;&gt;.block-expand-details-block&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; none&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;flex-direction&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; row&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; flex-end&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;margin-bottom&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 0.5em&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token selector&quot;&gt;.expand-details-button&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 2px solid black&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 5px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; gold&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; black&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token selector&quot;&gt;.expand-details-button:is(:hover, :focus)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; purple&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; white&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first part is the most important here: by default, it does not display. It only appears once the JavaScript detects that there are details elements (other than the exclusions). It would be confusing if it showed up even when there are no details elements on the page.&lt;/p&gt;
+&lt;p&gt;The other rules are just giving it some style.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Drupal Block Heading Level</title>
     <link href="https://tech.ryanrobinson.ca/posts/2025/drupal-block-heading-level/" />
@@ -976,17 +1114,6 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=whatwedo.twig&quot;&gt;Twig&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode&quot;&gt;PHPTools&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Text Underline Position</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/text-position-underline/" />
-    <updated>2024-02-21T15:22:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/text-position-underline/</id>
-    <content type="html">&lt;p&gt;This one is a quick accessibility CSS tip. I have long been a proponent of the old standard of underlining links, and never underlining anything else. It helps make it clear that it is a link. Add a hover and focus effect to make it more obvious when they are selecting it, too.&lt;/p&gt;
-&lt;p&gt;But it can introduce a problem: for certain reading disabilities, the line being close up against the text can make it hard to read. Even for myself without one of those disabilities, once it was flagged for me I immediately saw it every time I looked at a link.&lt;/p&gt;
-&lt;p&gt;So here&#39;s a quick CSS solution that significantly helps.&lt;/p&gt;
-&lt;p&gt;Use &lt;code&gt;text-underline-position: under&lt;/code&gt; to make links with underlines easier to read. It moves the underline down to the bottom of the hanging letters (g, y, j) rather than right up tight against the bottom of other letters and cutting right through the middle of the hanging letters. It may not quite be perfect - even better might be a few pixels below the hanging letters to get space there as well - but it solves the majority of the problem with one quick CSS change.&lt;/p&gt;
 </content>
   </entry>
 </feed>
