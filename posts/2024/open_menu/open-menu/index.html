@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Ryan Robinson Technology | Drupal: Open Menu</title>
+		<title>Drupal: Open Menu | Ryan Robinson Technology</title>
 		<meta name="description" content="How we built a more accessible menu alternative">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
@@ -53,7 +53,6 @@
 
 <p><a href="/posts/2024/idrc-presentation/">In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC</a>. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.</p>
 <p>As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.</p>
-<p>There's <a href="https://github.com/ryan-l-robinson/Drupal-open-menu">a GitPod demo version of my solution on my GitHub</a>. That’s only the relevant customizations, not a full functioning site, and you'd need to add a couple of menu items to really see it in action.</p>
 <p>Here's an example screenshot of the open menu structure:</p>
 <p><picture><source type="image/avif" srcset="/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.avif 941w"><source type="image/webp" srcset="/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.webp 941w"><img loading="lazy" decoding="async" src="/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.png" alt="&quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&quot;" width="941" height="590"></picture></p>
 <h2 id="menu-entity-index">Menu Entity Index</h2>
@@ -222,6 +221,6 @@
 			</div>
 		</footer>
 
-		<!-- This page `/posts/2024/open_menu/open-menu/` was built on 2025-11-26T21:30:28.781Z -->
+		<!-- This page `/posts/2024/open_menu/open-menu/` was built on 2025-11-28T22:16:45.104Z -->
 	</body>
 </html>
