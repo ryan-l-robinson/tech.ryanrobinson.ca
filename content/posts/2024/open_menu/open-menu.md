@@ -12,8 +12,6 @@ tags:
 
 As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.
 
-There's [a GitPod demo version of my solution on my GitHub](https://github.com/ryan-l-robinson/Drupal-open-menu). That’s only the relevant customizations, not a full functioning site, and you'd need to add a couple of menu items to really see it in action.
-
 Here's an example screenshot of the open menu structure:
 
 !["Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3."](./example.png)
