@@ -4,7 +4,7 @@ date: 2025-01-08T18:32:16.700Z
 author: Ryan Robinson
 description: The state of my podcast feeds to start 2025, including the problem of too much and pricing models.
 tags:
-    - Commentary
+  - Tech and Society
 ---
 
 It's a new year (happy 2025) and a good chance to review the state of my podcast feeds. I'm a major podcast listener, with something running in the background a lot of the time that I'm working or playing Xbox or cleaning or on a bus or a lot of other times.
@@ -13,7 +13,7 @@ So here are a few scattered thoughts about podcasts:
 
 ## Is This Healthy?
 
-First it is fair to ask whether it is good for me that I listen to podcasts for large portions of the day. We also have a YouTube Music subscription. I could be listening to ad-free music instead, and I often think I should be doing that more, or even *gasp* allow myself some occasional silence.
+First it is fair to ask whether it is good for me that I listen to podcasts for large portions of the day. We also have a YouTube Music subscription. I could be listening to ad-free music instead, and I often think I should be doing that more, or even _gasp_ allow myself some occasional silence.
 
 This is a subset of the general problem of "there's too much content" which also applies to other types of media. There just isn't nearly enough time in a day to listen to all the good podcasts and watch all the good shows and read the good books and listen to all the good audiobooks and play the good games. And I think I'm starting to lean toward wanting to have less podcast content (and maybe less TV) but be more picky about it being the best, freeing up the other time for books or music or silence.
 
