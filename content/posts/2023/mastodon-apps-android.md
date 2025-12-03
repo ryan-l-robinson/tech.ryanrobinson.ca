@@ -2,7 +2,7 @@
 title: Mastodon Apps on Android
 date: 2023-02-21T08:18:09-05:00
 author: Ryan Robinson
-description: "A breakup of some of the biggest Mastodon apps on Android."
+description: "Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon."
 tags:
   - Consumer Tech
 ---
