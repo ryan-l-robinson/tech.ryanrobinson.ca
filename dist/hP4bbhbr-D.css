@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -318,24 +318,24 @@ main.main-sidebar {
     }
 }
 footer {
-    width: 100%;
-    padding: 1em var(--main-gutter-x);
-    background-color: var(--red);
-    font-size: 0.7em;
+	width: 100%;
+	padding: 0 var(--main-gutter-x);
+	background-color: var(--red);
+	font-size: 0.7em;
 }
 
 footer p {
-    text-align: center;
-    color: var(--white);
+	text-align: center;
+	color: var(--white);
 }
 
 footer p a {
-    color: var(--white);
+	color: var(--white);
 }
 
-footer p a:is(:hover,:focus) {
-    background-color: var(--white);
-    color: var(--blue);
+footer p a:is(:hover, :focus) {
+	background-color: var(--white);
+	color: var(--blue);
 }
 /** Aligns with the tagslist.njk include **/
 .tags-list {
