@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -180,6 +180,15 @@ header {
     flex-wrap: wrap;
     gap: 0 3em;
     padding: 0 var(--main-gutter-x);
+}
+
+.header-nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1em;
+		padding-bottom: 0.25em;
+		background-color: var(--blue);
+		color: var(--white);
 }
 
 header a {
