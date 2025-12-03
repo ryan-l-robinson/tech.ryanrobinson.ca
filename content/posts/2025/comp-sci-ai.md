@@ -3,6 +3,9 @@ title: "Computer Science Degrees in the Age of LLMs"
 date: 2025-08-10T14:46:00.000Z
 author: Ryan Robinson
 description: "A breakdown of why I still think LLMs won't take every programming job and Computer Science degrees are still valuable."
+tags:
+  - AI
+  - Tech and Society
 ---
 
 I recently was asked by a family member about the future of developer work in the age of large language models, more commonly referred to as "AI" but I dislike that label for misleading people into thinking it can do much more than it can. Her daughter is good at it and is interested, but they've heard a lot of the hype that those jobs won't exist soon because an LLM can do it all. So, can it? Is the hype real? Are developer jobs in danger?
@@ -27,7 +30,7 @@ Of course, Cory Doctorow has said something to this effect: an LLM can't do your
 
 The more common and more nuanced take is to acknowledge my point above, that LLMs may be good at drafting some code but it isn't good at any other part of the job. But then they will still be concerned that LLMs could effectively take over junior dev jobs. If those junior devs don't have a chance to put in their time then they won't have the opportunity to be ready for those other questions.
 
-I'm somewhat conflicted on how true this is. If a junior job *really* is only about regurgitating semantically accurate code without ever thinking about what it means, yeah, maybe it's true that an LLM can do it instead and that new wannabe developer never gets the skills necessary to get to the more senior jobs.
+I'm somewhat conflicted on how true this is. If a junior job _really_ is only about regurgitating semantically accurate code without ever thinking about what it means, yeah, maybe it's true that an LLM can do it instead and that new wannabe developer never gets the skills necessary to get to the more senior jobs.
 
 That's never been my experience. My experience has always been that those junior jobs still want you to be thinking through those other questions. The difference from the senior jobs is simply that there's more acknowledging that you aren't as good at them yet so maybe there should be some more experienced voices in the conversation as well to guide you on the way (and those more experienced voices will get paid more). In case, an LLM still can't do your job.
 

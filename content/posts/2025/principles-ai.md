@@ -4,7 +4,8 @@ date: 2025-09-14T15:16:00.000Z
 author: Ryan Robinson
 description: "'AI' might be useful in some contexts, if the result is validatable and you understand what you are modelling."
 tags:
-    - AI
+  - AI
+  - Tech and Society
 ---
 
 Let's set aside a lot of the other ethical questions about "AI" - by which I mean large language models - for a minute. I never really recommend setting aside ethical questions, but I do want to write about something else right now. Are these "AIs" useful? What for? What are they counterproductive for?

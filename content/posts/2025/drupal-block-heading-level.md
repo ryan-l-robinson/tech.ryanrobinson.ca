@@ -4,8 +4,10 @@ date: 2025-11-26T16:19:16.700Z
 author: Ryan Robinson
 description: I made a module to make it easier to change the heading level on the label for blocks.
 tags:
-    - Drupal
+  - Drupal
+  - PHP
 ---
+
 ## The Problem
 
 Heading levels are important, for accessibility as well for site style consistency. However, it's not always easy to select the correct heading level in all aspects of Drupal. Specifically, it's not the easiest to change the heading level on blocks, which could vary depending on where in the site theme the block is going to be placed.

@@ -4,7 +4,9 @@ date: 2025-11-28T17:36:16.700Z
 author: Ryan Robinson
 description: Details elements help organize content in a page, but some users need to expand them all at once to skim the page. Here's a Drupal module to do that.
 tags:
-    - Drupal
+  - Drupal
+  - PHP
+  - JavaScript
 ---
 
 ## The Problem with Collapsed Details
@@ -104,34 +106,41 @@ This is the core functional part, the JavaScript:
 
 ```js
 (function () {
-    // Get details elements, excluding some special cases.
-    var detailsElements = document.querySelectorAll('details:not(.building-hours):not(.captcha):not(.bef--secondary');
-    // Get blocks, which could be more than once.
-    var expandDetailsBlocks = document.querySelectorAll('.block-expand-details-block');
+	// Get details elements, excluding some special cases.
+	var detailsElements = document.querySelectorAll(
+		"details:not(.building-hours):not(.captcha):not(.bef--secondary",
+	);
+	// Get blocks, which could be more than once.
+	var expandDetailsBlocks = document.querySelectorAll(
+		".block-expand-details-block",
+	);
 
-    if (detailsElements.length > 0 && expandDetailsBlocks.length > 0) {
-        expandDetailsBlocks.forEach((expandDetailsBlock) => {
-            // Display change is set at the block level.
-            expandDetailsBlock.style.display = 'flex';
+	if (detailsElements.length > 0 && expandDetailsBlocks.length > 0) {
+		expandDetailsBlocks.forEach((expandDetailsBlock) => {
+			// Display change is set at the block level.
+			expandDetailsBlock.style.display = "flex";
 
-            // Assuming that there will only ever be one of each per block.
-            var expandDetailsButton = expandDetailsBlock.querySelector('.expand-details-button-expand');
-            var collapseDetailsButton = expandDetailsBlock.querySelector('.expand-details-button-collapse');
+			// Assuming that there will only ever be one of each per block.
+			var expandDetailsButton = expandDetailsBlock.querySelector(
+				".expand-details-button-expand",
+			);
+			var collapseDetailsButton = expandDetailsBlock.querySelector(
+				".expand-details-button-collapse",
+			);
 
-            // Add click actions for each block.
-            expandDetailsButton.addEventListener("click", () => {
-                detailsElements.forEach((details) => {
-                    details.open = true;
-                })
-            });
-            collapseDetailsButton.addEventListener("click", () => {
-                detailsElements.forEach((details) => {
-                    details.open = false;
-                })
-            });
-        });
-    }
-
+			// Add click actions for each block.
+			expandDetailsButton.addEventListener("click", () => {
+				detailsElements.forEach((details) => {
+					details.open = true;
+				});
+			});
+			collapseDetailsButton.addEventListener("click", () => {
+				detailsElements.forEach((details) => {
+					details.open = false;
+				});
+			});
+		});
+	}
 })();
 ```
 
@@ -144,22 +153,22 @@ Finally, the style sheet:
 ```css
 /** Hidden by default, it will only appear when there are details on the page **/
 .block-expand-details-block {
-  display: none;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 0.5em;
+	display: none;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-bottom: 0.5em;
 }
 
 .expand-details-button {
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: gold;
-  color: black;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: gold;
+	color: black;
 }
 
 .expand-details-button:is(:hover, :focus) {
-  background-color: purple;
-  color: white;
+	background-color: purple;
+	color: white;
 }
 ```
 

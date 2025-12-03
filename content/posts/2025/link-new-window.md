@@ -4,8 +4,8 @@ date: 2025-02-23T17:50:16.700Z
 author: Ryan Robinson
 description: Links can be coded to open in new tabs/windows. Here's why to usually not do that, what the exceptions are, and how to do that accessibly.
 tags:
-    - Drupal
-    - Accessibility
+  - Drupal
+  - Accessibility
 ---
 
 Links can be set to open in new windows/tabs or (by default) not. You mostly shouldn't do that, but there are a few exceptions and a few ways to carry out those exceptions.
@@ -36,10 +36,10 @@ Now you can add a style like this to the appropriate place in your stylesheet:
 
 ```css
 a[target="_blank"]::after {
-  display: inline-flex;
-  margin-left: 5px;
-  content: "\f08e";
-  font-family: "FontAwesome";
+	display: inline-flex;
+	margin-left: 5px;
+	content: "\f08e";
+	font-family: "FontAwesome";
 }
 ```
 

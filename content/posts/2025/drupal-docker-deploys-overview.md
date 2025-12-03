@@ -5,8 +5,8 @@ author: Ryan Robinson
 description: This begins a series on the latest incarnation of my Drupal development setup, including Docker containerized deploys.
 series: Drupal Docker
 tags:
-    - Drupal
-    - DevOps
+  - Drupal
+  - DevOps
 ---
 
 My Drupal development environment has gone through a few iterations over the past 4 years, some of which is chronicled here and on [my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Since I last wrote about it, it went through another big update that includes now fully deploying the web service to a Docker swarm, not just pushing out code updates to each server.
@@ -81,7 +81,7 @@ That is extending the build_dockerfile job defined elsewhere. That job looks lik
   stage: build
   image: docker:dind
   services:
-   - docker:dind
+    - docker:dind
   variables:
     DOCKER_BUILDKIT: 1
     IMAGE_TAG: web
