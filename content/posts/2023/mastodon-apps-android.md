@@ -4,7 +4,7 @@ date: 2023-02-21T08:18:09-05:00
 author: Ryan Robinson
 description: "A breakup of some of the biggest Mastodon apps on Android."
 tags:
-    - Commentary
+  - Consumer Tech
 ---
 
 I've been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I'm far from the only one to make this migration, and that includes a lot of developers, so we're starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I've mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when [I spent some time testing out alternative email apps](/posts/2021/android-email-apps/).
@@ -42,15 +42,13 @@ It does a few things very well:
 - Very clean design that feels at home on Android, especially with the truly black theme and options for the main navigation to be either at the top or bottom
 - A good array of options including being able to do most of the things that the official Mastodon app cannot.
 
-
 My question on Mastodon also got this negative response about some of Tusky's design choices:
 
 > I’ve been a mobile developer for 15 years (mostly android) and used Tusky before I got my iPhone. It wasn’t my favorite tbh. my gripes with Tusky are all around data and state handling.
->For instance the UI has very few “in progress” states, so for instance boosting a toot can  momentarily show the button in the wrong state if the request is slow.
->Also the caching for viewed toots is very rudimentary, so lots of toots (in conversations esp.) are needlessly reloaded while I stare at a blank screen.
+> For instance the UI has very few “in progress” states, so for instance boosting a toot can momentarily show the button in the wrong state if the request is slow.
+> Also the caching for viewed toots is very rudimentary, so lots of toots (in conversations esp.) are needlessly reloaded while I stare at a blank screen.
 >
 > Source: [https://tech.lgbt/@em_ad/109855207946318853](https://tech.lgbt/@em_ad/109855207946318853)
-
 
 ## Fedilab
 
@@ -71,8 +69,8 @@ It is one of the few apps that is built for all Fediverse services, not only Mas
 A Mastodon user highlighted another feature that isn't a big deal to me but might be to you:
 
 > I read the posts from oldest to newest. At the moment Fedilab seems to work best for this reading order, as it can continuously update the timeline so there are no breaks.
-Tusky is second best, you can set the "load more" button to fill the timeline above the break, not below.
-Still no app seems to allow reverse order timeline (oldest posts first), which was a deal breaker for me when selecting my Twitter app.
+> Tusky is second best, you can set the "load more" button to fill the timeline above the break, not below.
+> Still no app seems to allow reverse order timeline (oldest posts first), which was a deal breaker for me when selecting my Twitter app.
 >
 > Source: [https://mastodonsweden.se/@kallekn/109856154392108362](https://mastodonsweden.se/@kallekn/109856154392108362)
 

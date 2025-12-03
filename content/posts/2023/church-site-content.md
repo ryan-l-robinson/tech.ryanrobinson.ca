@@ -4,7 +4,8 @@ date: 2023-08-07T18:46:00.000Z
 author: Ryan Robinson
 description: "Notes on some common questions a church website should answer."
 tags:
-    - Commentary
+  - Tech and Society
+  - WordPress
 ---
 
 This is not my usual type of content for this site, but I was reminded of it from a Mastodon conversation and wanted to put it somewhere more or less permanent. Before building the latest iteration of my church's website several years ago, I put out the question on Twitter for what information people want before they would consider visiting. I sent those to the church leadership and still had the document, so I looked it up to summarize those questions again below:
@@ -67,9 +68,9 @@ What does it cost? Is there any discount (or free) for indigenous groups whose l
 
 ## Theology
 
-Most did not want a full statement of faith on every possible question, but they wanted to know key values of the community that shape how the church tackles all those other questions. 
+Most did not want a full statement of faith on every possible question, but they wanted to know key values of the community that shape how the church tackles all those other questions.
 
-Are you starting from the love of God or from an inerrant Bible or something else? 
+Are you starting from the love of God or from an inerrant Bible or something else?
 
 Is there a denominational affiliation?
 

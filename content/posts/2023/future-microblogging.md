@@ -4,7 +4,7 @@ date: 2023-07-14T08:18:09-05:00
 author: Ryan Robinson
 description: "Musing about what's next in the world of microblogging social media."
 tags:
-    - Commentary
+  - Tech and Society
 ---
 
 Twitter, Mastodon, Calckey, Bluesky, Threads... And a whole bunch more that aren't even worth mentioning in my opinion ([I did try a couple of them](/posts/2022/twitter-mastodon-coso/)). It's an interesting time for social media, especially the microblogging format.

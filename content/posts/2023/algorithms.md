@@ -4,9 +4,8 @@ date: 2023-02-26T08:18:09-05:00
 author: Ryan Robinson
 description: "Musings about the U.S.'s section 230 and moderation requirements."
 tags:
-    - Commentary
+  - Tech and Society
 ---
-
 
 For those paying attention, there are a couple big cases in front of the US Supreme Court that could shape the Internet as we know it. I'm Canadian, but the (English) Internet is largely determined by what is allowed in the U.S., so yes, I'm still talking about it.
 
@@ -14,11 +13,11 @@ For those paying attention, there are a couple big cases in front of the US Supr
 
 Essentially, the plaintiffs want to hold Google legally responsible that its recommendation algorithm sometimes promotes ISIS recruitment videos. The concept could apply to other harmful content as well.
 
-There is no question that Google is protected in the harmful videos existing on YouTube. It would be impossible for the modern Internet to exist if every piece of content had to be moderated and considered by a team of lawyers before it could go online. That is clearly covered by section 230. 
+There is no question that Google is protected in the harmful videos existing on YouTube. It would be impossible for the modern Internet to exist if every piece of content had to be moderated and considered by a team of lawyers before it could go online. That is clearly covered by section 230.
 
 It's the recommendation algorithm that complicates things, because that gives an impression of an endorsement from Google. Google claims they are protected under section 230, which says they are not responsible for content posted by users and the algorithm's results is effecctively user-generated. The plaintiffs say that Google is not protected because the algorithm for recommendations means Google is acting as a publisher.
 
-[Legal Eagle provides a good breakdown on Nebula](https://nebula.tv/videos/legaleagle-this-supreme-court-case-will-destroy-the-internet) or (appropriately) [YouTube](https://www.youtube.com/watch?v=hzNo5lZCq5M). 
+[Legal Eagle provides a good breakdown on Nebula](https://nebula.tv/videos/legaleagle-this-supreme-court-case-will-destroy-the-internet) or (appropriately) [YouTube](https://www.youtube.com/watch?v=hzNo5lZCq5M).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hzNo5lZCq5M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -30,7 +29,7 @@ Another distinction he mentions that SCOTUS may try to make is that between reco
 
 ## Personalization
 
-Another distinction even more interesting to me, that he doesn't mention, is *personalized* recommendations and search result algorithms.
+Another distinction even more interesting to me, that he doesn't mention, is _personalized_ recommendations and search result algorithms.
 
 ### The Impact on the Business Model
 

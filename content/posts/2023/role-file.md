@@ -5,6 +5,7 @@ author: Ryan Robinson
 description: "An update to a Drupal module that grants permission based on a file."
 tags:
   - Drupal
+  - PHP
 ---
 
 A while ago I wrote about, and shared sample code for, adding a role to a user when they log in if their name appears in a file on the server. That was a Drupal 7 sample.

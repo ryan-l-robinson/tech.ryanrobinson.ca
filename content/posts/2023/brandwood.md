@@ -4,7 +4,7 @@ date: 2023-01-09T08:18:09-05:00
 author: Ryan Robinson
 description: "An accessibility tool for testing contrast of text on an image."
 tags:
-    - Accessibility
+  - Accessibility
 ---
 
 Today I learned about an interesting tool: the [Brandwood Accessibility Checker](http://brandwood.com/a11y/). There are lots of tools out there for testing colour contrast and whether it meets the necessary levels to meet accessibility requirements. But in most of those, you enter one colour for the foreground and one for the background and it gives you the contrast ratio and whether that passes.
