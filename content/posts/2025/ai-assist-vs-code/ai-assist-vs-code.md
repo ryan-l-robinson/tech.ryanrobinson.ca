@@ -4,9 +4,10 @@ date: 2025-10-05T14:46:00.000Z
 author: Ryan Robinson
 description: "Notes on my experiences with coding assistants using different models, pricing, and VS Code extensions."
 tags:
-    - AI
-    - VS Code
+  - AI
+  - Visual Studio Code
 ---
+
 I have little interest in using Large Language Models for much other than coding, and that only [as long as you are still validating that the result is correct and learning from it](/posts/2025/principles-ai/), not using it to offload all your cognitive processing, but I did decide it was time to give that specific situation a more serious try.
 
 I work mostly within [VS Code](/tags/visual-studio-code/), so whatever I'm going to use I want to be fully integrated to that. This does get complicated, because there are a few overlapping factors:
