@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -129,7 +129,7 @@ body {
 	justify-content: center;
 	margin: 0;
 	background-color: var(--background-color);
-	color: var(--text-color);
+	color: var(--color);
 	font-family: "Atkinson Hyperlegible", sans-serif;
 	font-size: 16pt;
 }
