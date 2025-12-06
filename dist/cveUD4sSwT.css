@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 11 }
+.postlist { counter-reset: start-from 9 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -103,7 +103,7 @@
 
 @media (prefers-color-scheme: light) {
 	:root {
-		--background-color: var(--grey);
+		--background-color: var(--white);
 		--border-color: var(--blue);
 		--button-border: var(--black);
 		--color: var(--black);
@@ -136,6 +136,7 @@ body {
 
 .wrapper {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	background-color: var(--grey);
 }

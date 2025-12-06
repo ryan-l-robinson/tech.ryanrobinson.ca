@@ -1,3 +1,24 @@
+/** Aligns with the tags.njk page **/
+.tags-list {
+	columns: 3;
+}
+
+.tags-list li {
+    margin-left: 1em;
+}
+
+/** Needs to line up with the breakpoint in base.css for when the sidebar moves to the bottom **/
+@media(max-width: 65em) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media(max-width: 35em) {
+	.tags-list {
+		columns: 1;
+	}
+}
 /* Variables and general site-wide styles */
 :root {
 	--white: #ffffff;
@@ -27,7 +48,7 @@
 
 @media (prefers-color-scheme: light) {
 	:root {
-		--background-color: var(--grey);
+		--background-color: var(--white);
 		--border-color: var(--blue);
 		--button-border: var(--black);
 		--color: var(--black);
@@ -60,6 +81,7 @@ body {
 
 .wrapper {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	background-color: var(--grey);
 }
