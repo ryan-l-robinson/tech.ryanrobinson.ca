@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 11 }
+.postlist { counter-reset: start-from 8 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -138,6 +138,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	width: 100%;
 	background-color: var(--grey);
 }
 
