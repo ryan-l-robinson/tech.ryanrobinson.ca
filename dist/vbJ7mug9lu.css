@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 21 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -188,7 +188,7 @@ li {
 }
 header {
 	width: 100%;
-	background-color: var(--blue);
+	background-color: var(--background-color);
 	color: var(--white);
 }
 
@@ -206,6 +206,7 @@ header a:is(:focus, :hover) {
 	justify-content: flex-end;
 	gap: 1em;
 	padding: 0 var(--main-gutter-x) 0.25em var(--main-gutter-x);
+	background-color: var(--blue);
 	color: var(--white);
 }
 
