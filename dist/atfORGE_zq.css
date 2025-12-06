@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -132,14 +132,9 @@ body {
 
 .container {
 	display: block;
+	width: 100%;
 	margin: 0 auto;
 	padding: 1em;
-}
-
-@media (max-width: 1360px) {
-	.container {
-		width: 100%;
-	}
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
