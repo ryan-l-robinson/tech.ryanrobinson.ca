@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 2 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -221,6 +221,8 @@ header a:is(:focus, :hover) {
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 0 3em;
+	border-top: 1px solid var(--white);
+	border-bottom: 1px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
 }
