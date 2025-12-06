@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 9 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -187,7 +187,7 @@ li {
 	line-height: 1.5;
 }
 header {
-	width: 100%;
+	max-width: var(--max-width);
 	background-color: var(--grey);
 	color: var(--white);
 }
@@ -263,7 +263,6 @@ header a:is(:focus, :hover) {
 }
 
 main {
-	width: 100%;
 	max-width: var(--max-width);
 	padding: var(--main-gutter-y) var(--main-gutter-x);
 	background-color: var(--background-color);
@@ -313,7 +312,7 @@ main.main-sidebar {
 	}
 }
 .site-footer {
-	width: 100%;
+	max-width: var(--max-width);
 	border-top: 3px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
