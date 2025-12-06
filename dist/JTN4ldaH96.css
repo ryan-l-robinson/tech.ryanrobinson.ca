@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 5 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -132,7 +132,6 @@ body {
 
 .container {
 	display: block;
-	width: calc(var(--max-width) - 2rem);
 	margin: 0 auto;
 	padding: 1em;
 }
@@ -311,7 +310,7 @@ main.main-sidebar {
 		width: 100%;
 	}
 }
-.site-footer {
+footer {
 	max-width: var(--max-width);
 	border-top: 3px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
