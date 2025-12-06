@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 8 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -312,11 +312,12 @@ main.main-sidebar {
 		width: 100%;
 	}
 }
-footer {
+.site-footer {
 	width: 100%;
+	border-top: 3px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
-	font-size: 0.7em;
+	font-size: 14px;
 }
 
 footer p {
@@ -352,14 +353,6 @@ footer p a:is(:hover, :focus) {
 	}
 }
 /** Aligns with the sociallinks.njk include file **/
-.site-footer-inner {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	border-top: 3px solid var(--border-color);
-	padding: 16px 0;
-}
-
 .social-links {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
@@ -367,7 +360,7 @@ footer p a:is(:hover, :focus) {
 	gap: 0.5em;
 	width: 100%;
 	margin: 0;
-	padding: 0;
+	padding: 16px 0;
 	list-style: none;
 }
 
