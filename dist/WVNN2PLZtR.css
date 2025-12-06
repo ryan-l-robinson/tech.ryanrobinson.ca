@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -164,12 +164,48 @@ a {
 	text-underline-position: under;
 }
 
+a.with-icon::before {
+	display: inline-flex;
+	margin-right: 5px;
+	vertical-align: bottom;
+	font-family: "FontAwesome";
+}
+
+a.home-page::before {
+	content: "\e1b0";
+}
+
+a.tech-blog::before {
+	content: "\f5fc";
+}
+
+a.theology-blog::before {
+	content: "\f4ba";
+}
+
 li {
 	line-height: 1.5;
 }
 header {
 	width: 100%;
 	background-color: var(--blue);
+	color: var(--white);
+}
+
+header a {
+	color: var(--white);
+}
+
+header a:is(:focus, :hover) {
+	background-color: var(--white);
+	color: var(--red);
+}
+
+.header-nav {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1em;
+	padding: 0 var(--main-gutter-x) 0.25em var(--main-gutter-x);
 	color: var(--white);
 }
 
@@ -181,23 +217,6 @@ header {
 	gap: 0 3em;
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
-}
-
-.header-nav {
-	display: flex;
-	justify-content: flex-end;
-	gap: 1em;
-	padding: 0 var(--main-gutter-x) 0.25em var(--main-gutter-x);
-	color: var(--white);
-}
-
-header a {
-	color: var(--white);
-}
-
-header a:is(:focus, :hover) {
-	background-color: var(--white);
-	color: var(--red);
 }
 /** Pagefind styles for search **/
 .pagefind-ui__search-input {
