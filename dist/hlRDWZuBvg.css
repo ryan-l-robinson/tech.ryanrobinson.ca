@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 9 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -227,6 +227,10 @@ header a:is(:focus, :hover) {
 	border-bottom: 1px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
+}
+
+.search {
+	padding-bottom: 0.5em;
 }
 /** Pagefind styles for search **/
 .pagefind-ui__search-input {
