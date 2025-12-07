@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -304,6 +304,10 @@ main.main-sidebar {
 .sidebar-block {
 	border: 1px dashed var(--red);
 	padding: 0.5em;
+}
+
+.sidebar-block:last-child {
+	margin-bottom: 1em;
 }
 
 /** Main content **/
