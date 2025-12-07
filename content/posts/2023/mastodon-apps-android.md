@@ -4,7 +4,7 @@ date: 2023-02-21T08:18:09-05:00
 author: Ryan Robinson
 description: "Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon."
 tags:
-  - Consumer Tech
+  - Tech and Society
 ---
 
 I've been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I'm far from the only one to make this migration, and that includes a lot of developers, so we're starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I've mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when [I spent some time testing out alternative email apps](/posts/2021/android-email-apps/).

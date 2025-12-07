@@ -4,7 +4,7 @@ date: 2024-12-04T22:27:04.355Z
 author: Ryan Robinson
 description: "I did a cheap trial of managing my own solo Mastodon instance. I learned a few things about its signup, limited federation, domains, markdown, and storage."
 tags:
-  - Social Media
+  - Tech and Society
 ---
 
 I took advantage of a Black Friday deal from [fedihost.co](https://fedihost.co/) to try out using a managed host for a Mastodon account, as compared to the large Canadian instance [mstdn.ca](https://mstdn.ca) that I have been using since my early days of joining Mastodon. It was $1/month for the lowest plan for a year, which is pretty solidly in impulse purchase territory, so it was a worthwhile idea.
