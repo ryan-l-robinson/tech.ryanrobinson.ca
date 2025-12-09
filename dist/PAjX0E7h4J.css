@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 9 }
+.postlist { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -230,7 +230,7 @@ header a:is(:focus, :hover) {
 }
 
 .search {
-	padding-bottom: 0.5em;
+	padding-bottom: 0.5em 0;
 }
 /** Pagefind styles for search **/
 .pagefind-ui__search-input {
