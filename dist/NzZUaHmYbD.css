@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 10 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -200,6 +200,8 @@ header {
 }
 
 header a {
+	display: flex;
+	align-items: center;
 	color: var(--white);
 }
 
@@ -227,6 +229,11 @@ header a:is(:focus, :hover) {
 	border-bottom: 1px solid var(--border-color);
 	padding: 0 var(--main-gutter-x);
 	background-color: var(--red);
+}
+
+.site-title {
+	font-size: 1.5em;
+	text-decoration: none;
 }
 
 .search {
