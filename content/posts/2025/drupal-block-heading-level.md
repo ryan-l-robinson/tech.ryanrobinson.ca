@@ -160,6 +160,8 @@ The last step cannot be done by the module, as it is to change the theme impleme
 
 Now that you have that heading_level variable that you can use in a twig template, the label portion of your block template file may look something like this:
 
+{% raw %}
+
 ```twig
 {% if label %}
   {% set tag = heading_level|default('h2')|lower %}
@@ -168,3 +170,5 @@ Now that you have that heading_level variable that you can use in a twig templat
   <{{ tag }}{{ title_attributes.setAttribute('id', heading_id) }}>{{ label }}</{{ tag }}>
 {% endif %}
 ```
+
+{% endraw %}
