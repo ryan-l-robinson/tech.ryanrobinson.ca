@@ -5,8 +5,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy. It is now mo
 ## TODO
 
 - Header: larger font for site title?
-- Styles on sidebar: it doesn't need that much space for the headings.
-- Styles on sidebar: I don't really like the dashed border. 
+- Styles on sidebar: I don't really like the dashed border.
 - Posts: Review tags on existing posts for consistency
 - Posts: add descriptions to all posts (must be in quotes to appear), review tags and series, remove categories that aren't doing anything, update image paths, update link paths.
 - Can I block directly viewing the "pages" that are really just there to be able to put in the sidebar blocks? About and Posts By Tag? If I can't block Posts by Tag as a page, I need to at least stop showing the sidebar alongside the main page which is redundant.
