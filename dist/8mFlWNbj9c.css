@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 21 }
+.postlist { counter-reset: start-from 2 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -193,6 +193,10 @@ a.theology-blog::before {
 li {
 	line-height: 1.5;
 }
+
+h1.page-title {
+	margin: 0;
+}
 header {
 	width: 100%;
 	max-width: var(--max-width);
@@ -203,6 +207,7 @@ header a {
 	display: flex;
 	align-items: center;
 	color: var(--white);
+	text-decoration: none;
 }
 
 header a:is(:focus, :hover) {
@@ -233,7 +238,6 @@ header a:is(:focus, :hover) {
 
 .site-title {
 	font-size: 1.5em;
-	text-decoration: none;
 }
 
 .search {
@@ -324,6 +328,7 @@ main.main-sidebar {
 /** Main content **/
 .main-content {
 	width: 70%;
+	padding: 1em 0 0 0;
 }
 
 @media (max-width: 60em) {
