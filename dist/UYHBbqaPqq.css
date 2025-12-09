@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 9 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist {
@@ -80,7 +80,7 @@
 	--blue: #1b2c58;
 	--red: #663333;
 	--black: #000000;
-	--near-black: #1e1e1e;
+	--near-black: #2E2C2C;
 	--grey: #d1d9e2;
 	--max-width: 1400px;
 	--main-gutter-x: 1em;
