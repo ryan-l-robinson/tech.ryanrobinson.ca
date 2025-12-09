@@ -1,12 +1,10 @@
-# Ryan Robinson Technology
+## Overview
 
 This is the technology blog of Ryan Robinson, built using Eleventy. It is now mostly functional but has some room for improvement as noted below.
 
 ## TODO
 
 - Header: larger font for site title?
-- Dark mode background colour: maybe not that black? It's not quite fully black as it is, but it is still a bit too black.
-- Styles on an individual post: add some spacing below the links to Previous and Next.
 - Styles on sidebar: it doesn't need that much space for the headings.
 - Styles on sidebar: I don't really like the dashed border. 
 - Posts: Review tags on existing posts for consistency
