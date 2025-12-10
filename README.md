@@ -1,8 +1,10 @@
 ## Overview
 
-This is the technology blog of Ryan Robinson, built using Eleventy. It is now mostly functional but has some room for improvement as noted below.
+This is the technology blog of Ryan Robinson, built using Eleventy.
 
 ## TODO
+
+It is now mostly functional but has some room for improvement as noted below.
 
 - Some style change for the sidebar, but not sure exactly what yet.
 - Restore pagination on the homepage, without breaking it on tag pages.
