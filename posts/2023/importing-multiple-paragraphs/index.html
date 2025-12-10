@@ -46,6 +46,12 @@
 
 <div class="post-metadata border-bottom-section">
 
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to bulk export and then import multiple paragraphs in Drupal.
+		</p>
+	
+
 	<p><time datetime="2023-01-04">January 4, 2023</time></p>
 	
 		<p>Tags:
@@ -55,10 +61,6 @@
 	
 </div>
 
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to bulk export and then import multiple paragraphs in Drupal.
-	</p>
 
 
 <p>A few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer <a href="https://www.drupal.org/project/paragraphs">paragraphs</a> module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.</p>
