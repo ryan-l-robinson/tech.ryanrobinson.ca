@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 10 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist-item-title {
@@ -185,7 +185,7 @@ li {
 
 h1 {
 	margin: 0;
-	font-size: 2.5em;
+	font-size: 2em;
 }
 
 h2, h3, h4, h5, h6 {
@@ -193,15 +193,15 @@ h2, h3, h4, h5, h6 {
 }
 
 h2 {
-	font-size: 2em;
+	font-size: 1.8em;
 }
 
 h3 {
-	font-size: 1.6em;
+	font-size: 1.5em;
 }
 
 h4 {
-	font-size: 1.3em;
+	font-size: 1.25em;
 }
 
 h5 {

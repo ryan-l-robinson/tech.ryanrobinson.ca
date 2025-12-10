@@ -1,3 +1,68 @@
+.postlist { counter-reset: start-from 11 }
+/** Styles only needed for the views summarizing multiple posts */
+
+.postlist-item-title {
+	margin-bottom: 0;
+	padding-bottom: 0.25em;
+	line-height: 1.4em;
+}
+
+.postlist-metadata {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+	gap: .5em 3em;
+	padding: 0;
+	margin: 0.5em 0;
+}
+.postlist-metadata p {
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+.postlist-tag {
+	text-transform: capitalize;
+}
+
+.postlist-item :last-child {
+	margin-bottom: 0;
+}
+
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1em;
+	margin: 0;
+	padding: 1em;
+	list-style: none;
+}
+
+.pager li {
+	height: fit-content;
+}
+
+.pager li a {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+	text-decoration: none;
+	line-height: 1em;
+}
+
+.pager li a {
+	background-color: var(--blue);
+}
+
+.pager li a:is(:hover,:focus) {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.pager li a[aria-current="page"] {
+	background-color: var(--grey);
+	color: var(--black);
+}
 /* Variables and general site-wide styles */
 :root {
 	--white: #ffffff;
@@ -120,7 +185,7 @@ li {
 
 h1 {
 	margin: 0;
-	font-size: 2.5em;
+	font-size: 2em;
 }
 
 h2, h3, h4, h5, h6 {
@@ -128,15 +193,15 @@ h2, h3, h4, h5, h6 {
 }
 
 h2 {
-	font-size: 2em;
+	font-size: 1.8em;
 }
 
 h3 {
-	font-size: 1.6em;
+	font-size: 1.5em;
 }
 
 h4 {
-	font-size: 1.3em;
+	font-size: 1.25em;
 }
 
 h5 {
