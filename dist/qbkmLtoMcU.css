@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 10 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist-item-title {
@@ -369,7 +369,8 @@ main.main-sidebar {
 	margin-bottom: 1em;
 }
 
-.sidebar-block h2 {
+.sidebar-block h2,
+.sidebar-block .sidebar-container {
 	padding: 1rem;
 }
 
