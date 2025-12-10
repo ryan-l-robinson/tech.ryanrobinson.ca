@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 8 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist-item-title {
@@ -388,7 +388,7 @@ main.main-sidebar {
 	padding: 1em 0 0 0;
 }
 
-@media (max-width: 70em) {
+@media (max-width: 1200px) {
 	.sidebar,
 	.main-content {
 		width: 100%;
