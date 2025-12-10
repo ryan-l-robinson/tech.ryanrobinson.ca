@@ -14,7 +14,7 @@
   		<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/2LpPbV4Sej.css">
+		<link rel="stylesheet" href="/dist/fOKuAjc6Tj.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -60,8 +60,6 @@
 		</p>
 	
 </div>
-
-
 
 <p>A few months ago I was part of migrating content from an old Drupal 7 website to a new Drupal 9 website. Much about the data structures were similar, but some components were not. The biggest one was a field on the old site using field collections while the new site needed the newer <a href="https://www.drupal.org/project/paragraphs">paragraphs</a> module instead. Each field collection/paragraph contains two fields, one for a title and one for a longer description. That already gives us one complication in a migration strategy, because those (collection or paragraph) are separate entities which are linked to the main node, so it is a bit harder to create those and link them in one smooth import.</p>
 <p>A second complication comes from it being possible to have multiple field collections on the old site and also multiple paragraphs on the new site, so we'll need to navigate collapsing multiple entities with two fields each alongside the related node into one export, then import that to again have multiple paragraphs with two fields each connected to the correct node.</p>
