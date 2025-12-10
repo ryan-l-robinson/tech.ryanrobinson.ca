@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist-item-title {
@@ -360,15 +360,21 @@ main.main-sidebar {
 
 .sidebar-block {
 	border: 1px dashed var(--red);
-	padding: 0.5em;
 }
 
 .sidebar-block:last-child {
 	margin-bottom: 1em;
 }
 
+.sidebar-block h2,
+.sidebar-block p {
+	padding: 0.25em;
+}
+
 .sidebar-block h2 {
 	margin: 0;
+	background-color: var(--blue);
+	color: var(--white);
 }
 
 /** Main content **/
@@ -407,7 +413,7 @@ footer p a:is(:hover, :focus) {
 /** Aligns with the tagslist.njk include **/
 .tags-list {
 	margin-bottom: 0;
-	padding-left: 1em;
+	padding-left: 1.5em;
 	columns: 1;
 }
 
