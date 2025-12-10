@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 21 }
 /** Styles only needed for the views summarizing multiple posts */
 
 .postlist-item-title {
@@ -73,7 +73,7 @@
 	--grey: #d1d9e2;
 	--max-width: 1400px;
 	--main-gutter-x: 1em;
-	--main-gutter-y: 0;
+	--main-gutter-y: 1em;
 	--rounded-border-radius: 15px;
 	--syntax-tab-size: 2;
 }
@@ -351,12 +351,12 @@ main.main-sidebar {
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	gap: var(--main-gutter-x);
 }
 
 /** Sidebar **/
 .sidebar {
-	width: 25%;
-	padding: 1em 1em 0 0;
+	width: calc(25% - var(--main-gutter-x));
 }
 
 .sidebar-block {
@@ -384,7 +384,6 @@ main.main-sidebar {
 /** Main content **/
 .main-content {
 	width: 75%;
-	padding: 1em 0 0 0;
 }
 
 @media (max-width: 1200px) {
