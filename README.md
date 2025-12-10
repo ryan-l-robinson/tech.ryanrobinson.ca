@@ -6,6 +6,8 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but has some room for improvement as noted below.
 
+- Add a quote style to the theme. Quotes right now are only indented, with no further way to tell they're a quote.
+- Sort out styles for the lists in the sidebar. Theology site has two lists and they indent differently. They also indent differently than viewing the tags page directly.
 - Restore pagination on the homepage, without breaking it on tag pages.
 - Posts: Review tags on existing posts for consistency
 - Posts: add descriptions to all posts (must be in quotes to appear), review tags and series, remove categories that aren't doing anything, update image paths, update link paths.
