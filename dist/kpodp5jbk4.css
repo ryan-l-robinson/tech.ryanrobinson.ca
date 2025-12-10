@@ -359,7 +359,7 @@ main.main-sidebar {
 }
 
 .sidebar-block {
-	border: 1px dashed var(--red);
+	border: 1px solid var(--border-color);
 }
 
 .sidebar-block:last-child {
@@ -373,6 +373,7 @@ main.main-sidebar {
 
 .sidebar-block h2 {
 	margin: 0;
+	border-bottom: 1px solid var(--border-color);
 	background-color: var(--blue);
 	color: var(--white);
 }
@@ -413,7 +414,7 @@ footer p a:is(:hover, :focus) {
 /** Aligns with the tagslist.njk include **/
 .tags-list {
 	margin-bottom: 0;
-	padding-left: 1.5em;
+	padding-left: 1em;
 	columns: 1;
 }
 
