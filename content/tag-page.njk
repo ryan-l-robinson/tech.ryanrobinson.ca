@@ -5,7 +5,7 @@ pagination:
     alias: tagPage
 permalink: /tags/{{ tagPage.tagName | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
 eleventyComputed:
-    title: Tagged “{{ tagPage.tagName }}”
+    title: Tagged "{{ tagPage.tagName }}"
 ---
 {% set postslist = tagPage.posts %}
 {% set show_pagination = true %}
