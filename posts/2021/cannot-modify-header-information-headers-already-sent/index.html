@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2021/cannot-modify-header-information-headers-already-sent/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,24 +56,24 @@
 					
 <article data-pagefind-body="">
 
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Extra whitespace caused a fatal error when trying to visit admin for a WordPress site.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2021-05-14">May 14, 2021</time></p>
 	
-		<p>Tags:
-		<a href="/tags/wordpress/" class="post-tag">WordPress</a>
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Extra whitespace caused a fatal error when trying to visit admin for a WordPress site.
 		</p>
 	
-</div>
 
-<p>Recently I loaded up a client website to do some standard WordPress. The public site was fine, but when I tried to login to the admin, I got the dreaded White Screen of Death. For those unfamiliar, this is a blank white screen, with no error visible to help diagnose the problem.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2021-05-14">May 14, 2021</time></p>
+		
+			<p>Tags:
+			<a href="/tags/wordpress/" class="post-tag">WordPress</a>
+			</p>
+		
+	</div>
+
+	<p>Recently I loaded up a client website to do some standard WordPress. The public site was fine, but when I tried to login to the admin, I got the dreaded White Screen of Death. For those unfamiliar, this is a blank white screen, with no error visible to help diagnose the problem.</p>
 <p>I began doing some general research on the White Screen of Death and trying the different common solutions: disable plugins (by renaming the plugins folder via FTP), update themes, update WordPress core. Nothing worked.</p>
 <p>Then I checked out the Apache error log and got a big hint:</p>
 <blockquote>
@@ -82,10 +82,10 @@
 <p>So I did some more research on that error and found this: <a href="https://blog.templatetoaster.com/cannot-modify-header-information/">How to fix PHP/WordPress Warning: Cannot Modify Header Information (templatetoaster.com)</a>. The bottom line: look at the first file cited. That’s where the problem is.</p>
 <p>In my case, the error was in my wp-config file. It was as simple as having extra whitespace at the end of the file. That’s enough to take down the entire admin section of the site. Ultimately it was an easy fix, but hard to find, so hopefully this helps you if you have a similar problem.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2021/enrolling-devices-endpoint-manager/">Microsoft Endpoint Manager: Enrolling Devices</a></p><p>Next: <a href="/posts/2021/google-maps-error/">This Page Can&#39;t Load Google Maps Correctly</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2021/enrolling-devices-endpoint-manager/">Microsoft Endpoint Manager: Enrolling Devices</a></p><p>Next: <a href="/posts/2021/google-maps-error/">This Page Can&#39;t Load Google Maps Correctly</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

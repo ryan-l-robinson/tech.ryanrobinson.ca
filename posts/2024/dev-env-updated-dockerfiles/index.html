@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2024/dev-env-updated-dockerfiles/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: Drupal Docker</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An updated version of the Dockerfiles for a Drupal dev environment.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2024-03-25">March 25, 2024</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		<p>Series: Drupal Docker</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An updated version of the Dockerfiles for a Drupal dev environment.
 		</p>
 	
-</div>
 
-<p>A while ago I wrote about building a <a href="/tags/drupal-docker/">Docker Desktop dev environment for Drupal</a>. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">It can be seen on my GitHub</a>.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2024-03-25">March 25, 2024</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>
+			</p>
+		
+	</div>
+
+	<p>A while ago I wrote about building a <a href="/tags/drupal-docker/">Docker Desktop dev environment for Drupal</a>. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">It can be seen on my GitHub</a>.</p>
 <h2 id="the-web-image">The Web Image</h2>
 <p>This new setup has both Apache and PHP in the same container, is about 40% of the total image size compared to the previous one, and runs much faster, probably because Apache and PHP are in the same container instead of having to communicate across the network. Let's start with the basic start to the image and its shell.</p>
 <pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">FROM drupal:php8.2-apache
@@ -211,10 +211,10 @@ EXPOSE 3306</code></pre>
 <h2 id="next-post">Next Post</h2>
 <p>In the next post, I'll mention some of the changes to the devcontainer.json file and to the postCreateCommand script, although there's nothing too drastic there.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2024/idrc-presentation/">IDRC Presentation on Open Menu</a></p><p>Next: <a href="/posts/2024/dev-env-updated-devcontainer/">Drupal Dev Environment Updated: The DevContainer</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2024/idrc-presentation/">IDRC Presentation on Open Menu</a></p><p>Next: <a href="/posts/2024/dev-env-updated-devcontainer/">Drupal Dev Environment Updated: The DevContainer</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

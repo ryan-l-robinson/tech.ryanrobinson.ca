@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/gitlab-devops-gitlab-runner/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: GitLab DevOps</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to set up a GitLab Runner on a private network server.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-02-09">February 9, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
+		<p>Series: GitLab DevOps</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to set up a GitLab Runner on a private network server.
 		</p>
 	
-</div>
 
-<p>This relates to <a href="/tags/gitlab-devops/">the GitLab DevOps process</a>. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-02-09">February 9, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>
+			</p>
+		
+	</div>
+
+	<p>This relates to <a href="/tags/gitlab-devops/">the GitLab DevOps process</a>. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.</p>
 <p>But there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.</p>
 <p>Here’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.</p>
 <h2 id="install-gitlab-runner-package">Install GitLab Runner Package</h2>
@@ -109,10 +109,10 @@
 <p>For what executor to use. Shell is the simplest, at least in a scenario like this of running it on a Linux server.</p>
 <p>That’s it. It may take a bit to appear, but the runner will now be associated with the GitLab project.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gitlab-devops-php-lint/">GitLab DevOps: PHP Lint</a></p><p>Next: <a href="/posts/2022/drupal-fluid-ui/">Drupal: Fluid UI</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gitlab-devops-php-lint/">GitLab DevOps: PHP Lint</a></p><p>Next: <a href="/posts/2022/drupal-fluid-ui/">Drupal: Fluid UI</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

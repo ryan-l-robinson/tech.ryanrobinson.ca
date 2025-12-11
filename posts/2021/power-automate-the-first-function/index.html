@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2021/power-automate-the-first-function/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2021-06-02">June 2, 2021</time></p>
 	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
-		</p>
-	
-</div>
 
-<p>A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.</p>
+	
+
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2021-06-02">June 2, 2021</time></p>
+		
+			<p>Tags:
+			<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+			</p>
+		
+	</div>
+
+	<p>A scenario I’ve encountered several times in Power Automate is needing to get just one item from a data source, such as a SharePoint list, based on a specific column such as Title matching what I am looking for. Power Automate only has a function to get all the SharePoint items that match the criteria, unless you already know the specific ID you are looking for. So you end up with an array returned, even if there’s only one item in it. That then creates a bit of nuisance when you want to access that one item, since Power Automate will go ahead and put that within a for each loop structure. Knowing there’s only one item, it is a negligible difference in Flow speed, but it is suboptimal code looking at a for each loop that isn’t really looping.</p>
 <p>How do you get around that? The Microsoft Tech Community recently answered that with the first() function. The full details are in the link below:</p>
 <p><a href="https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/avoid-unnecessary-looping-apply-to-each-in-power-automate/ba-p/2190265?WT.mc_id=m365-24198-cxa&amp;utm_source=collab365&amp;utm_medium=collab365today&amp;utm_campaign=daily_digest">Avoid Unnecessary Looping (Apply to each) in Power Automate – Microsoft Tech Community</a></p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p><p>Next: <a href="/posts/2021/htwoo-sharepoint-framework/">HTwoO in SharePoint Framework</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p><p>Next: <a href="/posts/2021/htwoo-sharepoint-framework/">HTwoO in SharePoint Framework</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

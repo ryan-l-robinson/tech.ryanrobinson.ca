@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2023/drupal-deploy/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,28 +56,28 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: GitLab DevOps</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to deploy a Drupal site to servers using GitLab CI/CD.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2023-01-02">January 2, 2023</time></p>
 	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
+		<p>Series: GitLab DevOps</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to deploy a Drupal site to servers using GitLab CI/CD.
 		</p>
 	
-</div>
 
-<p>This continues where <a href="/posts/2023/drupal-deploy/">the previous post</a> in the GitLab DevOps series left off. We can now deploy code changes to the new server, and that's great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2023-01-02">January 2, 2023</time></p>
+		
+			<p>Tags:
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+			<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+			<a href="/tags/php/" class="post-tag">PHP</a>
+			</p>
+		
+	</div>
+
+	<p>This continues where <a href="/posts/2023/drupal-deploy/">the previous post</a> in the GitLab DevOps series left off. We can now deploy code changes to the new server, and that's great for generic deployments. Drupal adds a few extra components when it comes to configuration sync and the database.</p>
 <h2 id="dev-vs-production">Dev vs Production</h2>
 <p>The biggest challenge with this topic is navigating that there should be some things different from dev and staging servers compared to production. Some of these are cases where the module or core configuration is on each server, but with different options (e.g. <a href="https://drupal.org/project/environment_indicator">environment indicator</a>) and others are a case of modules that are only needed on dev and staging and therefore shouldn't be on production at all (e.g. <a href="https://www.drupal.org/project/maillog">maillog</a> and <a href="https://www.drupal.org/project/stage_file_proxy">stage_file_proxy</a>).</p>
 <p>Composer offers a good way to handle the code package building distinction. You can require a package, or require-dev a package. Then you can <code>composer install</code> or <code>composer install --no-dev</code> depending on the server. That part is straightforward.</p>
@@ -262,10 +262,10 @@
 <li>Clear the caches on production 2.</li>
 </ol>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gitlab-devops-deploy-server/">GitLab DevOps: Deploy to Server</a></p><p>Next: <a href="/posts/2023/gitlab-ide/">GitLab&#39;s New Web IDE</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/gitlab-devops-deploy-server/">GitLab DevOps: Deploy to Server</a></p><p>Next: <a href="/posts/2023/gitlab-ide/">GitLab&#39;s New Web IDE</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

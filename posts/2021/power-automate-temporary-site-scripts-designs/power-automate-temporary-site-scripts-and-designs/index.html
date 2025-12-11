@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2021/power-automate-temporary-site-scripts-designs/power-automate-temporary-site-scripts-and-designs/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,26 +56,26 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: SharePoint Site Provisioning</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Applying site scripts and designs through Power Automate.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2021-05-28">May 28, 2021</time></p>
 	
-		<p>Tags:
-		<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+		<p>Series: SharePoint Site Provisioning</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Applying site scripts and designs through Power Automate.
 		</p>
 	
-</div>
 
-<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2021-05-28">May 28, 2021</time></p>
+		
+			<p>Tags:
+			<a href="/tags/microsoft-365/" class="post-tag">Microsoft 365</a>
+			</p>
+		
+	</div>
+
+	<p>This post continues a series on <a href="/tags/sharepoint-site-provisioning/">SharePoint site provisioning</a>, unpacking some of the problems I’ve faced and overcome in building SharePoint site provisioning solutions.</p>
 <p><a href="/posts/2021/power-automate-create-site-with-sharepoint-rest-api/">In the last post in this series</a>, I created a SharePoint site programmatically. Suppose you want to update site scripts or site designs onto that new site. The advantage of doing this is that it can be fully automated based on another causal event setting it off, like filling out a Power App or creating an item in a SharePoint list, and incorporate variables. My simple example will use a variable of a link that will be added to the navigation of this new site.</p>
 <h2 id="write-the-temporary-script">Write the Temporary Script</h2>
 <p>Prepare your SharePoint site script, but leave a gap for the part where you need to put the variable. I recommend doing this in a separate code editor and saving the file. That makes it easier to roll back any changes and to detect syntax errors like a missing ]. Editing code directly in Power Automate can get messy.</p>
@@ -202,10 +202,10 @@
 <pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token string">"@{variables('siteScriptID')}"</span><span class="token punctuation">}</span></code></pre>
 <p>That’s it: you now have a Flow that generates temporary site scripts and designs, applies them, and then cleans up afterward.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p><p>Next: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2021/device-configuration-policies/">Microsoft Endpoint Manager: Device Configuration Policies</a></p><p>Next: <a href="/posts/2021/device-compliance-policies/">Microsoft Endpoint Manager: Device Compliance Policies</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

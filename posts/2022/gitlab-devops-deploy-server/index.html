@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/gitlab-devops-deploy-server/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,28 +56,28 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: GitLab DevOps</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Deploying to servers as part of a GitLab DevOps workflow.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-12-30">December 30, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
+		<p>Series: GitLab DevOps</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Deploying to servers as part of a GitLab DevOps workflow.
 		</p>
 	
-</div>
 
-<p>This continues with <a href="/tags/gitlab-devops/">the long-stalled GitLab DevOps series</a>. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-12-30">December 30, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+			<a href="/tags/php/" class="post-tag">PHP</a>
+			</p>
+		
+	</div>
+
+	<p>This continues with <a href="/tags/gitlab-devops/">the long-stalled GitLab DevOps series</a>. An essential piece of any CI/CD system is deploying to another server. You do not want to have to sign in to each server separately and carry out 15 deployment steps to take backups, pull the updated code, import new configuration, update database schemas, clear caches, etc. You want to hit a button and it rolls out everywhere. You also want to have the ability to easily roll back if you realize a mistake was made.</p>
 <p>You will first need <a href="/posts/2022/gitlab-devops-gitlab-runner/">a GitLab runner</a> on the server you want to deploy to.</p>
 <p>As with the earlier post on <a href="/posts/2022/gitlab-devops-php-lint/">PHP linting within GitLab CI/CD</a>, in a real scenario this would be split into two projects. In my real usage, I have one project with the general CI/CD functionality, then the specific website project can extend from those functions to push out to the server. In this demo scenario, it is all in <a href="https://github.com/ryan-l-robinson/GitLab-CI-CD">one project of my GitHub</a>.</p>
 <h2 id="deploy-yml">Deploy.yml</h2>
@@ -181,10 +181,10 @@
 <h2 id="next-drupal-configuration">Next: Drupal Configuration</h2>
 <p>This deploys code changes to the servers. You quite possibly need more actions to take place, like database updates, depending on what platform you're using. In my context of developing this for Drupal, there are several more steps needed. Those will be covered in the next post in this series.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/active-links-views/">Drupal: Active Links in Views</a></p><p>Next: <a href="/posts/2023/drupal-deploy/">GitLab DevOps: Drupal Deployment</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/active-links-views/">Drupal: Active Links in Views</a></p><p>Next: <a href="/posts/2023/drupal-deploy/">GitLab DevOps: Drupal Deployment</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

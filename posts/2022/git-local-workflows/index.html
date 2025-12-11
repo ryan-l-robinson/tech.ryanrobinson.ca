@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/git-local-workflows/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,28 +56,28 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: GitLab DevOps</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An overview of some git branching strategies and local processes.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-06-27">June 27, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
-		<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+		<p>Series: GitLab DevOps</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An overview of some git branching strategies and local processes.
 		</p>
 	
-</div>
 
-<p>This continues a series setting up a <a href="/tags/gitlab-devops/">GitLab DevOps pipeline</a> through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-06-27">June 27, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/git-gitlab-and-github/" class="post-tag">Git, GitLab, and GitHub</a>, 
+			<a href="/tags/visual-studio-code/" class="post-tag">Visual Studio Code</a>
+			</p>
+		
+	</div>
+
+	<p>This continues a series setting up a <a href="/tags/gitlab-devops/">GitLab DevOps pipeline</a> through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.</p>
 <h2 id="branch-diagram">Branch Diagram</h2>
 <p>This diagram is meant to help explain the flow of code in this system. The development happens in your local branch. When you want to deploy to the dev server, request merging into the dev branch. When you want to deploy to the staging server, request merging into the main branch. There is a CI/CD job for deploying to production as well, but that’s a manual process – not automatic on a branch merge like the other two. The CI files for the deploying will be covered in a later post.</p>
 <p><picture><source type="image/avif" srcset="/posts/2022/git-local-workflows/Nt7Jsc_amM-1800.avif 1800w"><source type="image/webp" srcset="/posts/2022/git-local-workflows/Nt7Jsc_amM-1800.webp 1800w"><img loading="lazy" decoding="async" src="/posts/2022/git-local-workflows/Nt7Jsc_amM-1800.png" alt="Diagrams the flow of branches. Your branch stays on your dev environment. Merge to dev to push to dev server. Merge to main to push to staging server." width="1800" height="1260"></picture></p>
@@ -101,10 +101,10 @@
 <p>When I think it’s ready to be merged into the main branch, I go into the GitLab interface and put in a merge request from my ryan branch into whatever other branch I’m trying to merge it into (either dev or main in this scenario). There are a handful of good options available including who the merge is assigned to, who should do an extra code review first, and what project milestone it should be associated with.</p>
 <p><a href="https://docs.gitlab.com/ee/user/project/merge_requests/">GitLab has good documentation on merge requests</a>, so I will not detail them any further here.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-dockerfiles/">Drupal Docker: The Dockerfiles</a></p><p>Next: <a href="/posts/2022/drupal-docker-config-script/">Drupal Docker: The First-Run Script</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-dockerfiles/">Drupal Docker: The Dockerfiles</a></p><p>Next: <a href="/posts/2022/drupal-docker-config-script/">Drupal Docker: The First-Run Script</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

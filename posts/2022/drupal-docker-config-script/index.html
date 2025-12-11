@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/drupal-docker-config-script/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: Drupal Docker</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> A first-run script for a Drupal Docker image.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-06-29">June 29, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		<p>Series: Drupal Docker</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> A first-run script for a Drupal Docker image.
 		</p>
 	
-</div>
 
-<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-06-29">June 29, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>
+			</p>
+		
+	</div>
+
+	<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
 <p>This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to <a href="/posts/2022/drupal-gitpod-container-2-gitpod-yml/">the GitPod.yml file</a> of <a href="/tags/gitpod-drupal/">the GitPod series</a>.</p>
 <p>This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span></code></pre>
@@ -133,10 +133,10 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 <p>Finally, the all-important clearing of the caches:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush cr</code></pre>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></p><p>Next: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker, and GitPod</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></p><p>Next: <a href="/posts/2022/local-development-options/">Local Development: Vagrant, Docker, and GitPod</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

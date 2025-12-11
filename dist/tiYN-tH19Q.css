@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 7 }
+.postlist { counter-reset: start-from 9 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -171,6 +171,14 @@ a.tech-blog::before {
 
 a.theology-blog::before {
 	content: "\f4ba";
+}
+
+a.pager-first::before {
+	content: "\f100";
+}
+
+a.pager-last::before {
+	content: "\f101";
 }
 
 .visually-hidden {

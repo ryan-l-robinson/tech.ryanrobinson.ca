@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2024/dark-content-mode/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,25 +56,25 @@
 					
 <article data-pagefind-body="">
 
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Get ready for browsers converting your site to dark content mode.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2024-02-21">February 21, 2024</time></p>
 	
-		<p>Tags:
-		<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
-		<a href="/tags/css/" class="post-tag">CSS</a>
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Get ready for browsers converting your site to dark content mode.
 		</p>
 	
-</div>
 
-<p>In case you haven't caught it yet, there's new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2024-02-21">February 21, 2024</time></p>
+		
+			<p>Tags:
+			<a href="/tags/accessibility/" class="post-tag">Accessibility</a>, 
+			<a href="/tags/css/" class="post-tag">CSS</a>
+			</p>
+		
+	</div>
+
+	<p>In case you haven't caught it yet, there's new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.</p>
 <p>It's already become my default on Android Edge, inheriting that I have my device in dark mode. I haven't found it to be default on any other browser (including desktop Edge). Chrome has it as an experiment features flag in chrome://flags, so I did most of my testing by enabling that.</p>
 <h2 id="issues-found">Issues Found</h2>
 <p>The biggest problem I found in my main work site was with images that were previously assuming white backgrounds. I found the nicest solution to that was using an SVG instead of a PNG file, which the dark content mode adapted to invert the colours quite nicely.</p>
@@ -83,10 +83,10 @@
 <h2 id="no-way-to-target">No Way to Target?</h2>
 <p>I tried the media query for <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> but it doesn't help for this. That detects if the device prefers dark mode, not if the browser's dark content mode is on. It's nice if you want to specifically define what everything should look like in dark vs light modes. But as far as I could find, there's no way to specifically target content dark mode at this time.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2024/vs-code-extensions-workflows/">VS Code Extensions: My Workflows</a></p><p>Next: <a href="/posts/2024/open_menu/open-menu/">Drupal: Open Menu</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2024/vs-code-extensions-workflows/">VS Code Extensions: My Workflows</a></p><p>Next: <a href="/posts/2024/open_menu/open-menu/">Drupal: Open Menu</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

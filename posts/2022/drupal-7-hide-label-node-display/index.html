@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/drupal-7-hide-label-node-display/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,25 +56,25 @@
 					
 <article data-pagefind-body="">
 
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to hide an empty field&#39;s label in a Drupal 7 page template.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-01-05">January 5, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to hide an empty field&#39;s label in a Drupal 7 page template.
 		</p>
 	
-</div>
 
-<p>I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-01-05">January 5, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+			<a href="/tags/php/" class="post-tag">PHP</a>
+			</p>
+		
+	</div>
+
+	<p>I ran into a problem on an old Drupal 7 site where labels for a custom field were displaying, even when there was no content associated with that field, creating a page that was simply a series of headers in a row. That’s not very user-friendly.</p>
 <p>If I wanted to always hide the label for a field, that’s easy enough in the default Drupal display settings for the content type. But what about this scenario where we want to show the label when there is content and hide the label when there isn’t content?</p>
 <p>In theory, the logic for this is simple. In the node template for that content type – in the node–content-type.tpl.php in the templates folder of your theme – we want to add some simple logic that says to not show the field at all if the value of the field is empty.</p>
 <p>If you don’t already have a node–content-type.tpl.php, copy your default node.tpl.php file, rename it to node–content-type.tpl.php, and then the changes you’ll want to add are before the main content variable is rendered for the page.</p>
@@ -97,10 +97,10 @@
   <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'field_field_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2021/sharepoint-hub-association/">SharePoint: Hub to Hub Association</a></p><p>Next: <a href="/posts/2022/drupal-gitpod-container-1-dockerfile/">Drupal GitPod Container 1: .Dockerfile</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

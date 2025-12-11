@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2024/dev-env-updated-devcontainer/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: Drupal Docker</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An updated version of the devcontainer for a Drupal dev environment.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2024-04-08">April 8, 2024</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		<p>Series: Drupal Docker</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> An updated version of the devcontainer for a Drupal dev environment.
 		</p>
 	
-</div>
 
-<p>This continues from <a href="/posts/2024/dev-env-updated-dockerfiles/">a previous post</a> about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on <a href="/tags/drupal-docker/">the Drupal Docker tag</a>. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">The whole project's code can be found on my GitHub</a>.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2024-04-08">April 8, 2024</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>
+			</p>
+		
+	</div>
+
+	<p>This continues from <a href="/posts/2024/dev-env-updated-dockerfiles/">a previous post</a> about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on <a href="/tags/drupal-docker/">the Drupal Docker tag</a>. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">The whole project's code can be found on my GitHub</a>.</p>
 <h2 id="devcontainer">Devcontainer</h2>
 <p>What changed in devcontainer from the previous setup? A few things:</p>
 <ul>
@@ -99,10 +99,10 @@
 <p>I'm going to continue with this by now improving it a step farther: instead of building the images each time on local, have it build in GitHub or GitLab programmatically, and then saving it alongside the repository in those platforms' respective container registries. Then when it is time to start a new local development environment, it only needs to pull the latest image, not build it again. That saves time, especially if you have to switch between branches and especially if you have multiple team members who would otherwise all be spending time building it individually. This will include moving most of the postCreateCommand functionality into the GitLab CI / GitHub Actions, for both the web and database containers.</p>
 <p>I already have this working in my real context using GitLab. I have less experience with GitHub Actions but am working on doing the same idea there for a more shareable version.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2024/dev-env-updated-dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></p><p>Next: <a href="/posts/2024/vs-code-university-colour-palettes/">VS Code: University Colour Palettes</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2024/dev-env-updated-dockerfiles/">Drupal Dev Environment Updated: The Dockerfiles</a></p><p>Next: <a href="/posts/2024/vs-code-university-colour-palettes/">VS Code: University Colour Palettes</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

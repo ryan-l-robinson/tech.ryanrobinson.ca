@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2022/drupal-dockerfiles/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,27 +56,27 @@
 					
 <article data-pagefind-body="">
 
-
-	<p>Series: Drupal Docker</p>
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The Dockerfile for a Drupal Docker setup.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2022-06-24">June 24, 2022</time></p>
 	
-		<p>Tags:
-		<a href="/tags/devops/" class="post-tag">DevOps</a>, 
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>
+		<p>Series: Drupal Docker</p>
+	
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> The Dockerfile for a Drupal Docker setup.
 		</p>
 	
-</div>
 
-<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2022-06-24">June 24, 2022</time></p>
+		
+			<p>Tags:
+			<a href="/tags/devops/" class="post-tag">DevOps</a>, 
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>
+			</p>
+		
+	</div>
+
+	<p>This continues a mini-series describing how I set up a Drupal development environment using <a href="/tags/drupal-docker/">Docker Desktop and the VS Code devcontainer functionality</a>. The full code is available in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer">my GitHub</a>.</p>
 <p>This post takes a look at the three Dockerfiles required:</p>
 <h2 id="mariadb">MariaDB</h2>
 <p>Let’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:</p>
@@ -173,10 +173,10 @@ RUN ["chmod", "+x", "/postCreateCommand.sh"]</code></pre>
 ENTRYPOINT ["/usr/sbin/httpd"]
 CMD ["-D", "FOREGROUND"]</code></pre>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-sync-content/">Drupal: Sync Content</a></p><p>Next: <a href="/posts/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2022/drupal-sync-content/">Drupal: Sync Content</a></p><p>Next: <a href="/posts/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>

@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//posts/2021/drupal-pecl-uploadprogress/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/CmmcfksNE3.css">
+		<link rel="stylesheet" href="/dist/EM-V8XtewE.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -56,26 +56,26 @@
 					
 <article data-pagefind-body="">
 
-
-
-
-	<p class="post-description" data-pagefind-weight="3">
-		<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Drupal needs PECL UploadProgress. This post will help you install it.
-	</p>
-
-
-<div class="post-metadata border-bottom-section">
-	<p><time datetime="2021-12-10">December 10, 2021</time></p>
 	
-		<p>Tags:
-		<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
-		<a href="/tags/linux/" class="post-tag">Linux</a>, 
-		<a href="/tags/php/" class="post-tag">PHP</a>
+
+	
+		<p class="post-description" data-pagefind-weight="3">
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Drupal needs PECL UploadProgress. This post will help you install it.
 		</p>
 	
-</div>
 
-<p>Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.</p>
+	<div class="post-metadata border-bottom-section">
+		<p><time datetime="2021-12-10">December 10, 2021</time></p>
+		
+			<p>Tags:
+			<a href="/tags/drupal/" class="post-tag">Drupal</a>, 
+			<a href="/tags/linux/" class="post-tag">Linux</a>, 
+			<a href="/tags/php/" class="post-tag">PHP</a>
+			</p>
+		
+	</div>
+
+	<p>Drupal often recommends that you install and enable PECL UploadProgress to show better feedback when uploading files, but it doesn’t make it obvious how to do that. This quick post will run through what it took for me to get PECL UploadProgress on an Oracle Linux 8 server.</p>
 <h2 id="add-required-packages">Add Required Packages</h2>
 <p>There are a few preliminary packages that you’ll need: gcc, make, php-devel, and php-pear. You can install in Oracle Linux 8 using this command:</p>
 <pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> yum <span class="token parameter variable">-y</span> <span class="token function">install</span> gcc <span class="token function">make</span> php-devel php-pear</code></pre>
@@ -98,10 +98,10 @@
 <span class="token function">sudo</span> systemctl restart httpd</code></pre>
 <p><a href="https://github.com/ryan-l-robinson/Drupal-Oracle-Linux-scripts/tree/main">This script is available in my GitHub</a>.</p>
 
-<div class="border-top-section">
-	<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-teams-search-filters/">Microsoft Teams: Search Filters</a></p><p>Next: <a href="/posts/2021/pa11y-ci-oracle-linux-8-installation/">pa11y CI: Oracle Linux 8 Installation</a></p>
-	</div>
-</div>
+			<div class="border-top-section">
+				<div class="links-nextprev"><p>Previous: <a href="/posts/2021/microsoft-teams-search-filters/">Microsoft Teams: Search Filters</a></p><p>Next: <a href="/posts/2021/pa11y-ci-oracle-linux-8-installation/">pa11y CI: Oracle Linux 8 Installation</a></p>
+				</div>
+			</div>
 </article>
 
 				</div>
