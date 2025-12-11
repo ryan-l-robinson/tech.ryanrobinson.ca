@@ -1,5 +1,5 @@
 ---
-layout: layouts/main.njk
+layout: layouts/home.njk
 title: Latest Posts
 eleventyImport:
   collections: ["posts"]
@@ -8,8 +8,5 @@ pagination:
   reverse: true
   size: 20
 ---
-{% set postslist = pagination.items %}
-{% set show_pagination = true %}
-{% include "postslist.njk" %}
 
-{{ content | safe }}
+The newest blog posts are available below. You can also use the tag list in the sidebar to jump to posts about a specific topic.
