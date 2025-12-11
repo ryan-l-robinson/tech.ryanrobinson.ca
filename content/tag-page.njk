@@ -8,6 +8,5 @@ eleventyComputed:
     title: Tagged "{{ tagPage.tagName }}"
 ---
 {% set postslist = tagPage.posts %}
-{% set show_pagination = true %}
 {% set pagination = tagPage.pagination %}
 {% include "postslist.njk" %}
