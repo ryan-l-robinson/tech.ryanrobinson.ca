@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 6 }
+.postlist { counter-reset: start-from 21 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -349,8 +349,15 @@ header a:is(:focus, :hover) {
 .pagefind-ui__result-title {
 	color: var(--text-color-link);
 }
-/** Styles common to main, whether it has a sidebar or not **/
+/** Styles for main section **/
+
 main {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--main-gutter-x);
+	width: 100%;
 	max-width: var(--max-width);
 	padding: var(--main-gutter-y) var(--main-gutter-x);
 	background-color: var(--background-color);
@@ -369,16 +376,8 @@ main a[href]:active {
 	color: var(--color-link-active);
 }
 
-/** Styles for main with a sidebar (most pages) **/
-main.main-sidebar {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: var(--main-gutter-x);
-}
-
 /** Sidebar **/
+
 .sidebar {
 	width: calc(25% - var(--main-gutter-x));
 }
@@ -407,6 +406,7 @@ main.main-sidebar {
 }
 
 /** Main content **/
+
 .main-content {
 	width: 75%;
 }
