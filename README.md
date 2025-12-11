@@ -6,7 +6,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but has some room for improvement as noted below.
 
-- Tag pages: can I put an introductory description in somehow? Those tag summaries would need to get defined somewhere. If not that, something else need to happen with the page title and then the first post immediately below it.
+- Tag pages: add support for tag descriptions that show up on the tag's page. A first draft is in the theology site. It can be cleaned up to have less repetition combined with how the home page does an introduction, and then I'll need to add descriptions for all the tags.
 - Design a 404 page instead of just text.
 - Restore pagination on the homepage, without breaking it on tag pages.
 - Posts: Review tags on existing posts for consistency
