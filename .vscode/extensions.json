@@ -1,8 +1,10 @@
 {
 	"recommendations": [
-		"dbaeumer.jshint",
+		"DavidAnson.vscode-markdownlint",
 		"editorconfig.editorconfig",
+		"eliostruyf.vscode-front-matter",
+		"prettier.prettier-vscode",
 		"ronnidc.nunjucks",
-		"stylelint.vscode-stylelint"
+		"yzhang.markdown-all-in-one"
 	]
 }
