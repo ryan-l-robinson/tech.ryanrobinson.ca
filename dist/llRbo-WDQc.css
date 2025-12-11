@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 11 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -154,6 +154,11 @@ a {
 	text-underline-position: under;
 }
 
+a.with-icon {
+	display: flex;
+	align-items: center;
+}
+
 a.with-icon::before {
 	display: inline-flex;
 	margin-right: 5px;
@@ -177,7 +182,7 @@ a.pager-first::before {
 	content: "\f100";
 }
 
-a.pager-last::before {
+a.pager-last::after {
 	content: "\f101";
 }
 
@@ -283,8 +288,6 @@ header {
 }
 
 header a {
-	display: flex;
-	align-items: center;
 	color: var(--white);
 	text-decoration: none;
 }
