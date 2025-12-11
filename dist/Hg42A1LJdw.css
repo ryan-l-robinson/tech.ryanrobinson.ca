@@ -46,6 +46,7 @@
 }
 
 .pager li {
+	display: flex;
 	height: fit-content;
 }
 
