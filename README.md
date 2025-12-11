@@ -6,7 +6,6 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but has some room for improvement as noted below.
 
-- Sort out styles for the lists in the sidebar. Theology site has two lists and they indent differently. They also indent differently than viewing the tags page directly.
 - Tag pages: can I put an introductory description in somehow? Those tag summaries would need to get defined somewhere. If not that, something else need to happen with the page title and then the first post immediately below it.
 - Design a 404 page instead of just text.
 - Restore pagination on the homepage, without breaking it on tag pages.
