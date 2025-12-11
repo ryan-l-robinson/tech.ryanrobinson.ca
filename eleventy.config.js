@@ -3,12 +3,13 @@ import themePlugin from "./11ty-theme/config.js";
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default function (eleventyConfig) {
 	// 1. Add the Theme Plugin
+	// Values passed here impact the Atom feed.
 	eleventyConfig.addPlugin(themePlugin, {
 		feedMetadata: {
-			language: "en",
+			language: "en-ca",
 			title: "Ryan Robinson Technology",
 			subtitle:
-				"Ryan Robinson writes about technology: Drupal and other web development, Microsoft 365, and more.",
+				"Technologist writing about web development, Microsoft 365, and more.",
 			base: "https://tech.ryanrobinson.ca/",
 			author: {
 				name: "Ryan Robinson",
