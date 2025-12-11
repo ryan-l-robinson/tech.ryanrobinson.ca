@@ -1,4 +1,14 @@
 {
 	"css.validate": true,
-	"scss.validate": true,
+	"[markdown]": {
+		"editor.fontSize": 16,
+		"editor.lineHeight": 24,
+		"editor.lineNumbers": "off",
+		"editor.quickSuggestions": {
+			"comments": "off",
+			"strings": "off",
+			"other": "off"
+		},
+		"editor.minimap.enabled": false
+	}
 }
