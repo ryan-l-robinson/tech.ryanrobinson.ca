@@ -1,4 +1,4 @@
-.postlist { counter-reset: start-from 5 }
+.postlist { counter-reset: start-from 8 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -70,12 +70,13 @@
 	color: var(--black);
 }
 /* Variables and general site-wide styles */
+
 :root {
 	--white: #ffffff;
 	--blue: #1b2c58;
 	--red: #663333;
 	--black: #000000;
-	--near-black: #2E2C2C;
+	--near-black: #2e2c2c;
 	--grey: #d1d9e2;
 	--max-width: 1400px;
 	--main-gutter-x: 1em;
@@ -110,7 +111,95 @@
 	}
 }
 
-/* Global stylesheet */
+h1 {
+	margin: 0;
+	font-size: 2em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0.75em 0;
+}
+
+h2 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1.25em;
+}
+
+h5 {
+	font-size: 1.15em;
+}
+
+h6 {
+	font-size: 1.05em;
+}
+
+p {
+	line-height: 1.5;
+	margin: 0.5em 0;
+}
+
+a {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+a.with-icon::before {
+	display: inline-flex;
+	margin-right: 5px;
+	vertical-align: bottom;
+	font-family: "FontAwesome";
+}
+
+a.home-page::before {
+	content: "\e1b0";
+}
+
+a.tech-blog::before {
+	content: "\f5fc";
+}
+
+a.theology-blog::before {
+	content: "\f4ba";
+}
+
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+li {
+	line-height: 1.5;
+}
+
+blockquote:before {
+	content: "“";
+	left: -5rem;
+	top: -2rem;
+}
+
+blockquote:after {
+	content: "”";
+	right: -5rem;
+	bottom: 1rem;
+}
+/* Containers for layout */
+
 * {
 	box-sizing: border-box;
 }
@@ -146,109 +235,34 @@ body {
 	padding: 1em;
 }
 
-/* https://www.a11yproject.com/posts/how-to-hide-content/ */
-.visually-hidden {
-	clip: rect(0 0 0 0);
-	clip-path: inset(50%);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
-}
-
-p {
-	line-height: 1.5;
-	margin: 0.5em 0;
-}
-
-a {
-	text-decoration: underline;
-	text-underline-position: under;
-}
-
-a.with-icon::before {
-	display: inline-flex;
-	margin-right: 5px;
-	vertical-align: bottom;
-	font-family: "FontAwesome";
-}
-
-a.home-page::before {
-	content: "\e1b0";
-}
-
-a.tech-blog::before {
-	content: "\f5fc";
-}
-
-a.theology-blog::before {
-	content: "\f4ba";
-}
-
-li {
-	line-height: 1.5;
-}
-
-h1 {
-	margin: 0;
-	font-size: 2em;
-}
-
-h2, h3, h4, h5, h6 {
-	margin: 0.75em 0;
-}
-
-h2 {
-	font-size: 1.8em;
-}
-
-h3 {
-	font-size: 1.5em;
-}
-
-h4 {
-	font-size: 1.25em;
-}
-
-h5 {
-	font-size: 1.15em;
-}
-
-h6 {
-	font-size: 1.05em;
-}
-
 /** Border blocks, top (header) and bottom (footer) variations **/
+
 .border-bottom-section:not(:last-child) {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
-.border-bottom-section:not(:last-child):after{
-  content: "";
-  display: block;
-  margin: 0 auto;
-  width: 70%;
+.border-bottom-section:not(:last-child):after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
 }
 
 .border-bottom-section:after {
-  border-bottom: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
 }
 
 .border-top-section {
-  padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .border-top-section:before {
-  content: "";
-  display: block;
-  margin: 0 auto;
-  width: 70%;
-  padding-top: 1rem;
-}
-
-.border-top-section:before {
-  border-top: 1px solid var(--border-color);
+	content: "";
+	display: block;
+	margin: 0 auto;
+	width: 70%;
+	border-top: 1px solid var(--border-color);
+	padding-top: 1rem;
 }
 header {
 	width: 100%;
