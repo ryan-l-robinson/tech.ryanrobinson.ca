@@ -1,3 +1,73 @@
+.postlist { counter-reset: start-from 11 }
+/** Styles only needed for the views summarizing multiple posts */
+
+/** Lists of posts **/
+
+.postlist-item-title {
+	margin: 0;
+	padding-bottom: 0.25em;
+	line-height: 1.4em;
+}
+
+.postlist-metadata {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5em 3em;
+	padding: 0;
+	margin: 0.5em 0;
+}
+
+.postlist-metadata p {
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+
+.postlist-tag {
+	text-transform: capitalize;
+}
+
+.postlist-item :last-child {
+	margin-bottom: 0;
+}
+
+/** Pagination **/
+
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1em;
+	margin: 0;
+	padding: 1em;
+	list-style: none;
+}
+
+.pager li {
+	display: flex;
+	height: fit-content;
+}
+
+.pager li a {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+	text-decoration: none;
+	line-height: 1em;
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.pager li a:is(:hover, :focus) {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.pager li a[aria-current="page"] {
+	background-color: var(--grey);
+	color: var(--black);
+}
 /* Variables and general site-wide styles */
 
 :root {
@@ -83,14 +153,22 @@ a {
 	text-underline-position: under;
 }
 
-a.with-icon {
+a.icon-before,
+a.icon-after {
 	display: flex;
 	align-items: center;
 }
 
-a.with-icon::before {
+a.icon-before::before {
 	display: inline-flex;
 	margin-right: 5px;
+	vertical-align: bottom;
+	font-family: "FontAwesome";
+}
+
+a.icon-after::after {
+	display: inline-flex;
+	margin-left: 5px;
 	vertical-align: bottom;
 	font-family: "FontAwesome";
 }
