@@ -3,14 +3,23 @@ pagination:
   data: collections.tagPages
   size: 1
   alias: tagPage
-permalink: /tags/{{ tagPage.tagName | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
+permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 1 %}{{ tagPage.pageNumber }}/{% endif %}
 eleventyComputed:
-  title: Tagged "{{ tagPage.tagName }}"
+  title: 'Tagged "{{ tagPage.key }}"'
 ---
-{% if tagDescriptions[tagPage.tagName | slugify] %}
-  <p class="tag-description">{{ tagDescriptions[tagPage.tagName | slugify] }}</p>
+{% if tagDescriptions[tagPage.key | slugify] %}
+  <p class="tag-description">{{ tagDescriptions[tagPage.key | slugify] }}</p>
 {% endif %}
 
 {% set postList = tagPage.posts %}
-{% set pagination = tagPage.pagination %}
+
+{# The pager.njk template uses 0-based page numbers, so we subtract 1 #}
+{% set pagination = {
+    "hrefs": tagPage.hrefs,
+    "pageNumber": tagPage.pageNumber - 1,
+    "totalPages": tagPage.totalPages,
+		"pages": tagPage.pages
+} %}
+
 {% include "post-list.njk" %}
+{% include "pager.njk" %}
