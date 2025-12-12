@@ -1,5 +1,15 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "11ty",
+  "frontMatter.preview.host": "http://localhost:8080",
+  "frontMatter.git.enabled": true,
+  "frontMatter.taxonomy.disableCategories": true,
+  "frontMatter.taxonomy.customTaxonomy": [
+    {
+      "id": "series",
+      "options": []
+    }
+  ],
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
@@ -46,13 +56,11 @@
         {
           "title": "series",
           "name": "series",
-          "type": "string"
+          "type": "tags"
         }
       ]
     }
   ],
-  "frontMatter.framework.id": "11ty",
-  "frontMatter.preview.host": "http://localhost:8080",
   "frontMatter.content.pageFolders": [
     {
       "title": "Posts",
@@ -63,36 +71,84 @@
       "path": "[[workspace]]/content/sidebar-blocks"
     }
   ],
-  "frontMatter.git.enabled": true,
-	"frontMatter.data.files": [{
-    "id": "metadata",
-    "title": "Metadata",
-    "file": "[[workspace]]/_data/metadata.json",
-    "labelField": "name",
-    "singleEntry": false,
-    "schema": {
-      "title": "Authors",
-      "type": "object",
-      "required": [
-        "name",
-        "url"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name"
-        },
-        "url": {
-          "type": "string",
-          "title": "URL"
-        },
-        "description": {
-          "type": "string",
-          "title": "Description"
-        }
-      }
+  "frontMatter.media.folders": [
+    {
+      "path": "[[workspace]]/public",
+      "title": "Public"
+    },
+    {
+      "path": "[[workspace]]/content",
+      "title": "Content"
     }
-  }],
+  ],
+	"frontMatter.data.files": [{
+    "id": "general",
+    "title": "Used Generally Throughout Site",
+    "file": "[[workspace]]/_data/general.js",
+    "labelField": "title",
+    "singleEntry": true,
+		"schema": {
+			"title": "General",
+			"type": "object",
+			"required": [
+				"title",
+				"url"
+			],
+			"properties": {
+				"title": {
+					"type": "string",
+					"title": "Title"
+				},
+				"url": {
+					"type": "string",
+					"title": "URL"
+				},
+				"link_icon": {
+					"type": "string",
+					"title": "Link Icon"
+				},
+				"description": {
+					"type": "string",
+					"title": "Description"
+				},
+				"author": {
+					"type": "object",
+					"title": "Author",
+					"properties": {
+						"name": {
+							"type": "string",
+							"title": "Name"
+						},
+						"url": {
+							"type": "string",
+							"title": "URL"
+						}
+					}
+				}
+			}
+		}
+  },
+	{
+	  "id": "meta",
+    "title": "Used For Meta Tags",
+    "file": "[[workspace]]/_data/meta.js",
+    "labelField": "region",
+    "singleEntry": true,
+		"schema": {
+			"title": "Meta",
+			"type": "object",
+			"properties": {
+				"region": {
+					"type": "string",
+					"title": "Region"
+				},
+				"fediverse": {
+					"type": "string",
+					"title": "Fediverse"
+				}
+			}
+		}
+	}],
   "frontMatter.content.snippets": {
     "Drupal Post Template": {
       "description": "Front matter for a post about Drupal",

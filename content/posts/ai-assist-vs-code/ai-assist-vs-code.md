@@ -72,6 +72,8 @@ I briefly tried [the official Gemini Code Assist extension from Google](https://
 
 I also noticed immediately it did not have a couple of nice features which I had already learned that the extension I'll get into next offers. It's just a user-friendly chat integration that's easy to use if you already have a Google account as most people do and not much more than that.
 
+Later update (December 12, 2025): mainly because cline has been somewhat unreliable, I've tried Gemini Code Assist again. It has improved a little, but is also still frequently buggy, failing to connect to the model occasionally with no helpful error. The even bigger discovery, though, is that unlike the others, if you use this with a Google account that has a Google AI Pro subscription (including the free trial I got with my Pixel 10 Pro), you get much higher usage limits. I'm not going to use it nearly enough to justify paying $270 CAD/year to keep it after my free trial, but it is definitely worth trying to make full use of it in the few months I have left.
+
 ## Cline
 
 That gets me to the extension that I have now tried out the most and like the most so far: [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev).
@@ -115,6 +117,6 @@ Of course, that's just using Gemini Pro's pricing, and with a small sample size 
 
 As I said in the introduction, I don't have a lot of strong conclusions to make because there are too many interconnected variables and these tools are all evolving fast enough that any conclusions may be not be valid for that long anyway. What I can say at this point:
 
-- Google Gemini Code Assist is bad and I see no good reason to use it.
+- Google Gemini Code Assist is bad and I see no good reason to use it unless you have a Google AI Pro membership anyway, in which case the worse experience might be an acceptable cost for saving money.
 - Copilot is great for experimenting with models, and might also be a better choice if you are going to use it enough as to justify the monthly subscription.
 - Cline is my favourite to interact with, but those "overloaded models" disconnections got pretty frustrating pretty fast.

@@ -5,6 +5,7 @@
 		"eliostruyf.vscode-front-matter",
 		"prettier.prettier-vscode",
 		"ronnidc.nunjucks",
-		"yzhang.markdown-all-in-one"
+		"yzhang.markdown-all-in-one",
+		"streetsidesoftware.code-spell-checker"
 	]
 }

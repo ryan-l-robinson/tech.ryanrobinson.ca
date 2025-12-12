@@ -14,5 +14,15 @@
 	},
 	"markdownlint.config": {
 		"MD041": false,
-	}
+	},
+	"cSpell.words": [
+		"colours",
+		"favourite",
+		"phpunit"
+	],
+	"cSpell.dictionaries": [
+		"en-gb",
+  	"php",
+  	"css"
+	]
 }
