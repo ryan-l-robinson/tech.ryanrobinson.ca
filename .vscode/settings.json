@@ -19,11 +19,14 @@
 		"colours",
 		"favourite",
 		"phpunit",
-		"fediverse"
+		"fediverse",
+		"eleventy"
 	],
 	"cSpell.dictionaries": [
 		"en-gb",
   	"php",
-  	"css"
+  	"css",
+		"js",
+		"html"
 	]
 }
