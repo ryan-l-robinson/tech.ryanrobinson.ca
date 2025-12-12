@@ -4,8 +4,8 @@ date: 2024-12-04T17:50:37.792Z
 author: Ryan Robinson
 description: "I did some research on accessibility of fonts, learning about doubles, mirrors, spacing, and what are considered some of the best."
 tags:
-    - CSS
-    - Accessibility
+  - CSS
+  - Accessibility
 ---
 
 I recently did some research on the accessibility of a variety of fonts. It's an interesting area, and it is one of those areas of accessibility where there is no one solution that is absolutely perfect for everybody. A font that is great for one particular reading disability may be a big problem for others. In other words, there are two big things to keep in mind, as always in accessibility:
@@ -55,8 +55,8 @@ So what did I land on?
 
 The [Braille Institute's Atkinson Hyperlegible](https://www.brailleinstitute.org/freefont/) was the best across all those tests, which makes sense given that it was very intentionally designed for accessibility. I'm using it for this site for that reason. The 0 with the strike through is a bit jarring for some, as I mentioned above, but I am starting to really like it. I've even started using it in other apps that offer it (e.g. [Pachli](https://pachli.app/download/), the Mastodon app for Android).
 
-Tahoma scored well on most fronts, other than the 0 and O mirror. Of the major fonts by default available on most systems already, this came out as my winner. It is the most friendly to the most number of people, maybe scoring a little lowr than Atkinson Hyperlegible on some of the mirrors and doubles, but quite well on everything else, and without the line through the 0 that is a distraction to a fair number of people. In a professional context with a general audience, there's a good case to take this over Atkinson Hyperlegible.
+Tahoma scored well on most fronts, other than the 0 and O mirror. Of the major fonts by default available on most systems already, this came out as my winner. It is the most friendly to the most number of people, maybe scoring a little lower than Atkinson Hyperlegible on some of the mirrors and doubles, but quite well on everything else, and without the line through the 0 that is a distraction to a fair number of people. In a professional context with a general audience, there's a good case to take this over Atkinson Hyperlegible.
 
-Comic Sans, mocked by much of the Internet, is considered one of the best fonts for dyslexia, because it doesn't have mirrors. Every letter is easy to differentiate. But I think it is valid to point out that it can cause readability problems for most others, so if your site is general purpose rather than targeting the dyslexic community specifically, it might not be a great choice. There is also an Open Dyslexic that is similar, which is particularly targeted for dyslexic users.
+Comic Sans, mocked by much of the Internet, is considered one of the best fonts for dyslexia, because it doesn't have mirrors. Every letter is easy to differentiate. But I think it is valid to point out that it can cause readability problems for most others, so if your site is general purpose rather than targeting the dyslexic community specifically, it might not be a great choice. There is also an Open Dyslexic that is similar and particularly targeted for dyslexic users.
 
-Some others that scored generally ok: Aptos, the new Microsoft 365 default font; Arial; and Verdana (much like Tahoma but a bit wider).
+I'll note some others that scored generally ok: Aptos, the new Microsoft 365 default font; Arial; and Verdana (much like Tahoma but a bit wider).
