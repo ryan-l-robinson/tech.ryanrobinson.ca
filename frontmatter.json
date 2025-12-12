@@ -55,21 +55,13 @@
   "frontMatter.preview.host": "http://localhost:8080",
   "frontMatter.content.pageFolders": [
     {
-      "title": "2024",
-      "path": "[[workspace]]/content/posts/2024"
+      "title": "Posts",
+      "path": "[[workspace]]/content/posts"
     },
-    {
-      "title": "2023",
-      "path": "[[workspace]]/content/posts/2023"
-    },
-    {
-      "title": "2022",
-      "path": "[[workspace]]/content/posts/2022"
-    },
-    {
-      "title": "2021",
-      "path": "[[workspace]]/content/posts/2021"
-    }
+		{
+			"title": "Sidebar Blocks",
+			"path": "[[workspace]]/content/sidebar-blocks"
+		}
   ],
   "frontMatter.git.enabled": true
 }
