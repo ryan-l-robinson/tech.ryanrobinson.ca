@@ -4,8 +4,8 @@
 		"editorconfig.editorconfig",
 		"eliostruyf.vscode-front-matter",
 		"prettier.prettier-vscode",
+		"streetsidesoftware.code-spell-checker",
 		"ronnidc.nunjucks",
-		"yzhang.markdown-all-in-one",
-		"streetsidesoftware.code-spell-checker"
+		"yzhang.markdown-all-in-one"
 	]
 }
