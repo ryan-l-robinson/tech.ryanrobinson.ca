@@ -58,10 +58,60 @@
       "title": "Posts",
       "path": "[[workspace]]/content/posts"
     },
-		{
-			"title": "Sidebar Blocks",
-			"path": "[[workspace]]/content/sidebar-blocks"
-		}
+    {
+      "title": "Sidebar Blocks",
+      "path": "[[workspace]]/content/sidebar-blocks"
+    }
   ],
-  "frontMatter.git.enabled": true
+  "frontMatter.git.enabled": true,
+	"frontMatter.data.files": [{
+    "id": "metadata",
+    "title": "Metadata",
+    "file": "[[workspace]]/_data/metadata.json",
+    "labelField": "name",
+    "singleEntry": false,
+    "schema": {
+      "title": "Authors",
+      "type": "object",
+      "required": [
+        "name",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "url": {
+          "type": "string",
+          "title": "URL"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        }
+      }
+    }
+  }],
+  "frontMatter.content.snippets": {
+    "Drupal Post Template": {
+      "description": "Front matter for a post about Drupal",
+      "body": [
+        "---",
+        "title:",
+        "  \"{ fromTitle }\": null",
+        "date:",
+        "  \"{ date }\": null",
+        "author: Ryan Robinson",
+        "description: Replace this with a one-sentence description to summarize the post, which will appear in lists as well as in the tl;dr box on individual posts.",
+        "series: Drupal Docker",
+        "tags:",
+        "  - CSS",
+        "  - Accessibility",
+        "draft: true",
+        "---"
+      ],
+      "fields": []
+    }
+  }
 }
