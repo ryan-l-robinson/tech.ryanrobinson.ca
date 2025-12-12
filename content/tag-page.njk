@@ -11,6 +11,6 @@ eleventyComputed:
   <p class="tag-description">{{ tagDescriptions[tagPage.tagName | slugify] }}</p>
 {% endif %}
 
-{% set posts = tagPage.posts %}
+{% set postList = tagPage.posts %}
 {% set pagination = tagPage.pagination %}
 {% include "post-list.njk" %}
