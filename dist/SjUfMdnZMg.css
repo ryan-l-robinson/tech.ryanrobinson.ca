@@ -1,72 +1,27 @@
-.postlist { counter-reset: start-from 6 }
-/** Styles only needed for the views summarizing multiple posts */
-
-/** Lists of posts **/
-
-.postlist-item-title {
-	margin: 0;
-	padding-bottom: 0.25em;
-	line-height: 1.4em;
+/** Aligns with the tagslist.njk and tags.njk include **/
+@media (min-width: 1201px) {
+	.sidebar-block .tags-list {
+		columns: 1;
+	}
 }
 
-.postlist-metadata {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	gap: 0.5em 3em;
-	padding: 0;
-	margin: 0.5em 0;
+@media (min-width: 1201px) {
+	.tags-list {
+		columns: 3;
+	}
 }
 
-.postlist-metadata p {
-	margin: 0;
-	line-height: 1.5em;
-	font-size: 0.8em;
+/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
+@media (min-width: 801px) and (max-width: 1200px) {
+	.tags-list {
+		columns: 2;
+	}
 }
 
-.postlist-tag {
-	text-transform: capitalize;
-}
-
-.postlist-item :last-child {
-	margin-bottom: 0;
-}
-
-/** Pagination **/
-
-.pager {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	row-gap: 1em;
-	margin: 0;
-	padding: 1em;
-	list-style: none;
-}
-
-.pager li {
-	display: flex;
-	height: fit-content;
-}
-
-.pager li a {
-	border: 1px solid var(--grey);
-	padding: 0.5em;
-	text-decoration: none;
-	line-height: 1em;
-	background-color: var(--blue);
-	color: var(--white);
-}
-
-.pager li a:is(:hover, :focus) {
-	background-color: var(--red);
-	color: var(--white);
-}
-
-.pager li a[aria-current="page"] {
-	background-color: var(--grey);
-	color: var(--black);
+@media (max-width: 800px) {
+	.tags-list {
+		columns: 1;
+	}
 }
 /* Variables and general site-wide styles */
 
@@ -468,32 +423,7 @@ footer p a:is(:hover, :focus) {
 	background-color: var(--white);
 	color: var(--blue);
 }
-/** Aligns with the tagslist.njk and tags.njk include **/
-@media (min-width: 1201px) {
-	.sidebar-block .tags-list {
-		columns: 1;
-	}
-}
-
-@media (min-width: 1201px) {
-	.tags-list {
-		columns: 3;
-	}
-}
-
-/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
-@media (min-width: 801px) and (max-width: 1200px) {
-	.tags-list {
-		columns: 2;
-	}
-}
-
-@media (max-width: 800px) {
-	.tags-list {
-		columns: 1;
-	}
-}
-/** Aligns with the sociallinks.njk include file **/
+/** Aligns with the social-links.njk include file **/
 .social-links {
 	display: grid;
 	grid-template-columns: repeat(5, auto);

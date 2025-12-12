@@ -1,15 +1,15 @@
-.postlist { counter-reset: start-from 2 }
+.post-list { counter-reset: start-from 21 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
 
-.postlist-item-title {
+.post-list-item-title {
 	margin: 0;
 	padding-bottom: 0.25em;
 	line-height: 1.4em;
 }
 
-.postlist-metadata {
+.post-list-metadata {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -19,17 +19,17 @@
 	margin: 0.5em 0;
 }
 
-.postlist-metadata p {
+.post-list-metadata p {
 	margin: 0;
 	line-height: 1.5em;
 	font-size: 0.8em;
 }
 
-.postlist-tag {
+.post-list-tag {
 	text-transform: capitalize;
 }
 
-.postlist-item :last-child {
+.post-list-item :last-child {
 	margin-bottom: 0;
 }
 
@@ -493,7 +493,7 @@ footer p a:is(:hover, :focus) {
 		columns: 1;
 	}
 }
-/** Aligns with the sociallinks.njk include file **/
+/** Aligns with the social-links.njk include file **/
 .social-links {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
