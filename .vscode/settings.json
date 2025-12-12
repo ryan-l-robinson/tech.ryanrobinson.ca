@@ -9,6 +9,10 @@
 			"strings": "off",
 			"other": "off"
 		},
-		"editor.minimap.enabled": false
+		"editor.minimap.enabled": false,
+
+	},
+	"markdownlint.config": {
+		"MD041": false,
 	}
 }

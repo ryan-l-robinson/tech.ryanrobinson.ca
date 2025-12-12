@@ -26,7 +26,7 @@ export default {
 				return false;
 			}
 
-			return data.permalink;
+			return `/${data.page.date.getFullYear()}/${data.page.fileSlug}/index.html`;
 		},
 		eleventyExcludeFromCollections: (data) => {
 			// Always exclude from non-watch/serve builds
