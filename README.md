@@ -6,7 +6,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but has some room for improvement as noted below.
 
-- Restore pagination on the homepage, without breaking it on tag pages.
+- Finish solving and testing pagination. I think the majority of it works now, but maybe not all situations.
 - Tag pages: add support for tag descriptions that show up on the tag's page. A first draft is in the theology site. It can be cleaned up to have less repetition combined with how the home page does an introduction, and then I'll need to add descriptions for all the tags.
 - Add similar to the tag pages, but by year, so that every year has a page of all posts that year, with pagination.
 - Add a sidebar block similar to the tags-list sidebar block, showing links to each posts by year page.
