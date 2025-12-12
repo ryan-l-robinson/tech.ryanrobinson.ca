@@ -12,9 +12,9 @@
   </author>
   <entry>
     <title>Expanding and Collapsing Details Elements</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/expand-collapse-details/" />
+    <link href="https://tech.ryanrobinson.ca/2025/expand-collapse-details/" />
     <updated>2025-11-28T17:36:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/expand-collapse-details/</id>
+    <id>https://tech.ryanrobinson.ca/2025/expand-collapse-details/</id>
     <content type="html">&lt;h2 id=&quot;the-problem-with-collapsed-details&quot;&gt;The Problem with Collapsed Details&lt;/h2&gt;
 &lt;p&gt;Details elements, commonly referred to as accordions, are a very valuable tool for tucking away some content into sections when not always needed, especially on pages that would be very long with lots of content that would take a while to scroll down if they were all expanded at once. However, they do have some problems as well, namely that it&#39;s easy to miss things that are hidden inside details elements. You can&#39;t use Ctrl+F, or other utilities that search everything on the page, to find them.&lt;/p&gt;
 &lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
@@ -157,9 +157,9 @@
   </entry>
   <entry>
     <title>Drupal Block Heading Level</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/drupal-block-heading-level/" />
+    <link href="https://tech.ryanrobinson.ca/2025/drupal-block-heading-level/" />
     <updated>2025-11-26T16:19:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/drupal-block-heading-level/</id>
+    <id>https://tech.ryanrobinson.ca/2025/drupal-block-heading-level/</id>
     <content type="html">&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;Heading levels are important, for accessibility as well for site style consistency. However, it&#39;s not always easy to select the correct heading level in all aspects of Drupal. Specifically, it&#39;s not the easiest to change the heading level on blocks, which could vary depending on where in the site theme the block is going to be placed.&lt;/p&gt;
 &lt;p&gt;There is the twig template system and the heading level is usually hardcoded in there. If you only have one block template file and you want the heading level to always be the same, that&#39;s pretty easy to set it in one template file. Once you lose those two assumptions, though, that gets more tricky. It&#39;s still possible, but if you&#39;re changing a lot of blocks, you could end up with a mess of files that are harder to keep track of and to implement any future changes to blocks because some of the changes need to go to all the template files, some of them to one template file, some of them to some other subset in between.&lt;/p&gt;
@@ -289,9 +289,9 @@
   </entry>
   <entry>
     <title>Types of Search and the Best Tool for Them</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/types-search/" />
+    <link href="https://tech.ryanrobinson.ca/2025/types-search/" />
     <updated>2025-11-23T14:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/types-search/</id>
+    <id>https://tech.ryanrobinson.ca/2025/types-search/</id>
     <content type="html">&lt;p&gt;I&#39;ve been thinking a lot recently about which tools are best for answering what kinds of questions, largely prompted by two things:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The rise of large language models (LLMs).&lt;/li&gt;
@@ -302,12 +302,12 @@
 &lt;h2 id=&quot;searching-for-a-site&quot;&gt;Searching for a Site&lt;/h2&gt;
 &lt;p&gt;This is the most &amp;quot;traditional&amp;quot; search engine: you put in some keywords looking for a site, then you click on the site, and you&#39;re happy. This is great if you know a keyword or two that will get you to those one or few sites that get you what you want. I do this kind of search regularly for searching by a person or business&#39; name with the expectation that I am going to visit their website. I also use it when looking for documentation of specific programming functions or tools, where I want to load up the authoritative page and dive deep into it.&lt;/p&gt;
 &lt;p&gt;For this category, Kagi is the winner. In the free version, there&#39;s no AI answer in the way at all; my understanding is on the paid tiers it is there but out of the way. There are no ads. There&#39;s no tracking to sell all your data. There are simply the results, and by all accounts they are at least comparable to if not better than the big search engines.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/dUu7Ozr79X-1560.avif 1560w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/dUu7Ozr79X-1560.webp 1560w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/dUu7Ozr79X-1560.png&quot; alt=&quot;&amp;quot;An example of the Kagi search results, from their site with results for postgresql query analysis.&amp;quot;&quot; width=&quot;1560&quot; height=&quot;1716&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/types-search/dUu7Ozr79X-1560.avif 1560w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/types-search/dUu7Ozr79X-1560.webp 1560w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/types-search/dUu7Ozr79X-1560.png&quot; alt=&quot;&amp;quot;An example of the Kagi search results, from their site with results for postgresql query analysis.&amp;quot;&quot; width=&quot;1560&quot; height=&quot;1716&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;There&#39;s also some freedom to tweak your own search algorithm in some small ways, like if you are searching for programming results you can filter to certain sites. You can also customize your own CSS styles to make it look however you want. Those kinds of customizations are cool and maybe worth it if you are going to be using it a lot to justify the overhead of configuring it. As I realized, though, a lot of my searches really fall in either of the other two categories below, so even if I do end up paying for a Kagi subscription, I might not ever bother with too much extra customizing.&lt;/p&gt;
 &lt;h2 id=&quot;searching-for-common-quick-answers&quot;&gt;Searching for Common Quick Answers&lt;/h2&gt;
 &lt;p&gt;The kinds of searches I realized I do a lot are those when I quickly want the status or summary of something. My most common is sports scores or schedule. I type in that I want WNBA scores, and I see WNBA scores. If the games are live, they will update in place. For this kind of search, I don&#39;t need to go into another site; it surfaces everything I need quickly and in a user-friendly way.&lt;/p&gt;
 &lt;p&gt;I tried a couple of these in Kagi and it was not great. Bing, on the other hand, I&#39;ve been happily using to do this for years. The scores even update live in place so I can loosely follow a game while doing something else.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/i6D48nT6yM-641.avif 641w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/i6D48nT6yM-641.webp 641w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2025/types-search/i6D48nT6yM-641.png&quot; alt=&quot;&amp;quot;NBA scores for November 23, 2025, seen in Bing.&amp;quot;&quot; width=&quot;641&quot; height=&quot;527&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/types-search/i6D48nT6yM-641.avif 641w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/types-search/i6D48nT6yM-641.webp 641w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/types-search/i6D48nT6yM-641.png&quot; alt=&quot;&amp;quot;NBA scores for November 23, 2025, seen in Bing.&amp;quot;&quot; width=&quot;641&quot; height=&quot;527&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Some other examples might include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Definition of a word&lt;/li&gt;
@@ -327,9 +327,9 @@
   </entry>
   <entry>
     <title>Experiments in Coding Assistants in VS Code</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/" />
+    <link href="https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/" />
     <updated>2025-10-05T14:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/</id>
+    <id>https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/</id>
     <content type="html">&lt;p&gt;I have little interest in using Large Language Models for much other than coding, and that only &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2025/principles-ai/&quot;&gt;as long as you are still validating that the result is correct and learning from it&lt;/a&gt;, not using it to offload all your cognitive processing, but I did decide it was time to give that specific situation a more serious try.&lt;/p&gt;
 &lt;p&gt;I work mostly within &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;VS Code&lt;/a&gt;, so whatever I&#39;m going to use I want to be fully integrated to that. This does get complicated, because there are a few overlapping factors:&lt;/p&gt;
 &lt;ul&gt;
@@ -370,7 +370,7 @@
 &lt;p&gt;Cline allows connecting to a wide variety of models, using your own API keys. Unlike Copilot, there&#39;s no middle man where you could instead pay them and get a lot more access to a bunch of models. I grabbed an API key for Gemini and put it in. I had hoped that I had unlimited use of it for a year, because with my new Pixel 10 Pro I have Gemini Pro for a year, but that free trial does not include API access for coding, which is really the only thing that I wanted it for. Anyway, the extension makes it as easy as possible to add an API key for the model of your choice.&lt;/p&gt;
 &lt;p&gt;It offers two modes: Plan and Act. Plan won&#39;t write any code for you, just be a chat agent similar to having a chat in the browser, except that it can work with more valuable context of whatever in your codebase you decide to provide as context.&lt;/p&gt;
 &lt;p&gt;Act is the Agent mode, which like Copilot is where it gets really interesting. It will tell you what it is going to do in response to your request, then it will propose the changes. Those proposed changes will show up in the main code window like any other diff viewer that you are probably used to in Code. This gives you an easy way to track exactly what it is changing, one file at a time.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.avif 1323w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.webp 1323w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/MpoWEB3SOj-1323.png&quot; alt=&quot;&amp;quot;Screenshot of a Cline suggestion for editing a file in this site&#39;s eleventy project, which looks like a diff screen with the old and new version highlighted in different colours.&amp;quot;&quot; width=&quot;1323&quot; height=&quot;717&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.avif 1323w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.webp 1323w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.png&quot; alt=&quot;&amp;quot;Screenshot of a Cline suggestion for editing a file in this site&#39;s eleventy project, which looks like a diff screen with the old and new version highlighted in different colours.&amp;quot;&quot; width=&quot;1323&quot; height=&quot;717&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;There is an option to auto-approve whatever it wants to change, but to me, that violates the rule that I only want to learn from this, not offload my thinking onto it. I want to make sure I am going slow enough to understand exactly what it is doing and why, so I am not going to auto-approve.&lt;/p&gt;
 &lt;p&gt;There are a couple other features of Cline that I really like:&lt;/p&gt;
 &lt;ol&gt;
@@ -380,11 +380,11 @@
 &lt;p&gt;Like Copilot, it can also run script commands, like clearing caches or executing the phpunit tests it tried to write. It was a more clear interface about those terminal suggestions, prompting you first to save the changes and then to run the test instead of showing you both buttons at once.&lt;/p&gt;
 &lt;p&gt;It was a really positive experience at first, better in every way than Copilot, other than Copilot giving access to a couple more models for free.&lt;/p&gt;
 &lt;p&gt;Then Cline started failing on me, frequently saying that &amp;quot;the model is overloaded&amp;quot; even though when I tried the same model from the other extensions they were fine. Because I had to keep querying repeatedly when it failed, it used up my daily free quota on Gemini Pro a lot faster. I hope this is a temporary short-term bug, because it wasn&#39;t a problem at first.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.avif 846w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.webp 846w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/foBuT4AV0T-846.png&quot; alt=&quot;&amp;quot;Screenshot of Cline error, code 503 and the message The model is overloaded. Please try again later.&amp;quot;&quot; width=&quot;846&quot; height=&quot;342&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.avif 846w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.webp 846w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.png&quot; alt=&quot;&amp;quot;Screenshot of Cline error, code 503 and the message The model is overloaded. Please try again later.&amp;quot;&quot; width=&quot;846&quot; height=&quot;342&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;h2 id=&quot;a-note-on-pricing&quot;&gt;A Note on Pricing&lt;/h2&gt;
 &lt;p&gt;Thanks to the Cline details on what the price would be if I was past the quota for free usage has given me some rough estimates of costs when paying by token or by subscription. Here&#39;s basically what I found, using Gemini Pro as the model.&lt;/p&gt;
 &lt;p&gt;Just loading in the context of all of a moderately-complicated Drupal module cost me about $0.09. As I worked through a moderately-complicated problem that needed a few tweaks, I got up to a total of about $0.40. I gave it a few more problems of similar size that ended up with similar price. I assume that&#39;s USD, but maybe one minor complaint about Cline is that it does not specify that at all; maybe it is CAD knowing it is tied to my Canadian Google account. That&#39;s for it reading my code context, making code changes, then tweaking a little more as I followed up with a few pieces that weren&#39;t quite ideal yet.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.avif 843w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.webp 843w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2025/ai-assist-vs-code/B46oKjMsE6-843.png&quot; alt=&quot;Cline&#39;s token summary window, showing the query, a button to copy, a button to delete, the price and token use so far.&quot; width=&quot;843&quot; height=&quot;447&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.avif 843w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.webp 843w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.png&quot; alt=&quot;Cline&#39;s token summary window, showing the query, a button to copy, a button to delete, the price and token use so far.&quot; width=&quot;843&quot; height=&quot;447&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;By comparison, it&#39;s $19 USD a month for the Copilot Business subscription. So assuming about 22 work days in a full month (no vacations or anything), that&#39;s roughly equivalent to 2 of those kinds of problems per day before the subscription starts being cheaper than by token. If you&#39;re handing off all your work to it, a subscription would pay off, but as I already said, I do not recommend that approach. If you&#39;re more like what I am somewhat interested in, using it only occasionally when you&#39;re stuck - the way I also use search engines - and maybe some general code review, then the per-token price is likely to be a better deal.&lt;/p&gt;
 &lt;p&gt;Of course, that&#39;s just using Gemini Pro&#39;s pricing, and with a small sample size of the problems. Other models would be different. How much contextual code you provide might change it dramatically. How big of the problem it is solving would certainly change it dramatically. I offer this only as a rough estimate to give a sense, but I think the general conclusion is likely true: per-token makes sense as long as you&#39;re using it to help you do work, not to do your work for you.&lt;/p&gt;
 &lt;h2 id=&quot;conclusions&quot;&gt;Conclusions?&lt;/h2&gt;
@@ -398,9 +398,9 @@
   </entry>
   <entry>
     <title>Principles of AI Use</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/principles-ai/" />
+    <link href="https://tech.ryanrobinson.ca/2025/principles-ai/" />
     <updated>2025-09-14T15:16:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/principles-ai/</id>
+    <id>https://tech.ryanrobinson.ca/2025/principles-ai/</id>
     <content type="html">&lt;p&gt;Let&#39;s set aside a lot of the other ethical questions about &amp;quot;AI&amp;quot; - by which I mean large language models - for a minute. I never really recommend setting aside ethical questions, but I do want to write about something else right now. Are these &amp;quot;AIs&amp;quot; useful? What for? What are they counterproductive for?&lt;/p&gt;
 &lt;p&gt;As I&#39;ve thought about this, I have so far settled on two main principles for the types of tasks that I think are a suitable fit for large language models, commonly referred to as &amp;quot;AI&amp;quot;:&lt;/p&gt;
 &lt;h2 id=&quot;validatable&quot;&gt;Validatable&lt;/h2&gt;
@@ -438,9 +438,9 @@
   </entry>
   <entry>
     <title>Drupal Docker Deploys - An Overview</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/drupal-docker-deploys-overview/" />
+    <link href="https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/" />
     <updated>2025-08-24T16:54:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/drupal-docker-deploys-overview/</id>
+    <id>https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/</id>
     <content type="html">&lt;p&gt;My Drupal development environment has gone through a few iterations over the past 4 years, some of which is chronicled here and on &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;my GitLab&lt;/a&gt;. Since I last wrote about it, it went through another big update that includes now fully deploying the web service to a Docker swarm, not just pushing out code updates to each server.&lt;/p&gt;
 &lt;p&gt;In this post I&#39;ll provide an overview of some of what changed, then I&#39;ll try to break down more details over some following posts.&lt;/p&gt;
 &lt;h2 id=&quot;the-environments&quot;&gt;The Environments&lt;/h2&gt;
@@ -568,9 +568,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Computer Science Degrees in the Age of LLMs</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/comp-sci-ai/" />
+    <link href="https://tech.ryanrobinson.ca/2025/comp-sci-ai/" />
     <updated>2025-08-10T14:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/comp-sci-ai/</id>
+    <id>https://tech.ryanrobinson.ca/2025/comp-sci-ai/</id>
     <content type="html">&lt;p&gt;I recently was asked by a family member about the future of developer work in the age of large language models, more commonly referred to as &amp;quot;AI&amp;quot; but I dislike that label for misleading people into thinking it can do much more than it can. Her daughter is good at it and is interested, but they&#39;ve heard a lot of the hype that those jobs won&#39;t exist soon because an LLM can do it all. So, can it? Is the hype real? Are developer jobs in danger?&lt;/p&gt;
 &lt;h2 id=&quot;llms-are-language-models-not-thought-models&quot;&gt;LLMs Are Language Models, Not Thought Models&lt;/h2&gt;
 &lt;p&gt;Here&#39;s my general thinking on the matter: being a good developer takes a lot more than just writing semantically correct code. It means being able to think through questions like:&lt;/p&gt;
@@ -599,9 +599,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Ecosia Browser and Search</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/ecosia/" />
+    <link href="https://tech.ryanrobinson.ca/2025/ecosia/" />
     <updated>2025-03-12T17:54:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/ecosia/</id>
+    <id>https://tech.ryanrobinson.ca/2025/ecosia/</id>
     <content type="html">&lt;p&gt;I recently stumbled my way into hearing about &lt;a href=&quot;https://www.ecosia.org/&quot;&gt;Ecosia&lt;/a&gt;. They&#39;re a search engine and browser backed by a non-profit where they turn any excess revenue into planting trees. That sounds much nicer than the usual, excess revenue turning into the constantly-ballooning demand for more shareholder value. I decided to do some rough tests of each.&lt;/p&gt;
 &lt;h2 id=&quot;browser&quot;&gt;Browser&lt;/h2&gt;
 &lt;p&gt;The browser is about as close to a barebones Chromium as you can get.&lt;/p&gt;
@@ -625,9 +625,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Opening Links in New Tabs</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/link-new-window/" />
+    <link href="https://tech.ryanrobinson.ca/2025/link-new-window/" />
     <updated>2025-02-23T17:50:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/link-new-window/</id>
+    <id>https://tech.ryanrobinson.ca/2025/link-new-window/</id>
     <content type="html">&lt;p&gt;Links can be set to open in new windows/tabs or (by default) not. You mostly shouldn&#39;t do that, but there are a few exceptions and a few ways to carry out those exceptions.&lt;/p&gt;
 &lt;h2 id=&quot;accessibility-when-to-do-it&quot;&gt;Accessibility: When to Do It&lt;/h2&gt;
 &lt;p&gt;The decision for whether to open links in a new tab is not a simple matter of personal preference. You need to think about the experience for all users, including those relying on assistive technology such as screen readers. Most of the time, don&#39;t open in a new tab. This is because it can be confusing in a screen reader to be directed into a new tab without noticing, then being unable to use features they&#39;re used to like a back button. That&#39;s bad, so mostly don&#39;t do it.&lt;/p&gt;
@@ -652,9 +652,9 @@ npm &#92;
   </entry>
   <entry>
     <title>The State of Podcasts 2025</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2025/podcasts/" />
+    <link href="https://tech.ryanrobinson.ca/2025/podcasts/" />
     <updated>2025-01-08T18:32:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2025/podcasts/</id>
+    <id>https://tech.ryanrobinson.ca/2025/podcasts/</id>
     <content type="html">&lt;p&gt;It&#39;s a new year (happy 2025) and a good chance to review the state of my podcast feeds. I&#39;m a major podcast listener, with something running in the background a lot of the time that I&#39;m working or playing Xbox or cleaning or on a bus or a lot of other times.&lt;/p&gt;
 &lt;p&gt;So here are a few scattered thoughts about podcasts:&lt;/p&gt;
 &lt;h2 id=&quot;is-this-healthy&quot;&gt;Is This Healthy?&lt;/h2&gt;
@@ -725,9 +725,9 @@ npm &#92;
   </entry>
   <entry>
     <title>A Brief Experiment in a Mastodon Self-Managed Instance</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/managed-mastodon/" />
+    <link href="https://tech.ryanrobinson.ca/2024/managed-mastodon/" />
     <updated>2024-12-04T22:27:04Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/managed-mastodon/</id>
+    <id>https://tech.ryanrobinson.ca/2024/managed-mastodon/</id>
     <content type="html">&lt;p&gt;I took advantage of a Black Friday deal from &lt;a href=&quot;https://fedihost.co/&quot;&gt;fedihost.co&lt;/a&gt; to try out using a managed host for a Mastodon account, as compared to the large Canadian instance &lt;a href=&quot;https://mstdn.ca&quot;&gt;mstdn.ca&lt;/a&gt; that I have been using since my early days of joining Mastodon. It was $1/month for the lowest plan for a year, which is pretty solidly in impulse purchase territory, so it was a worthwhile idea.&lt;/p&gt;
 &lt;p&gt;To clarify, this is not an experiment in self-hosting in the strictest sense. I&#39;m not doing any of the server or software maintenance myself. It&#39;s more like self-administering. Some professionals I&#39;m paying did all the server and software work. I just administered users, which in this case was just me, and general settings.&lt;/p&gt;
 &lt;p&gt;Anyway, here&#39;s how that experiment went. You might already have some ideas from words I&#39;ve used like &amp;quot;brief&amp;quot; and how a Black Friday deal experiment is now all past tense.&lt;/p&gt;
@@ -761,9 +761,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Accessible Fonts</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/accessible-fonts/" />
+    <link href="https://tech.ryanrobinson.ca/2024/accessible-fonts/" />
     <updated>2024-12-04T17:50:37Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/accessible-fonts/</id>
+    <id>https://tech.ryanrobinson.ca/2024/accessible-fonts/</id>
     <content type="html">&lt;p&gt;I recently did some research on the accessibility of a variety of fonts. It&#39;s an interesting area, and it is one of those areas of accessibility where there is no one solution that is absolutely perfect for everybody. A font that is great for one particular reading disability may be a big problem for others. In other words, there are two big things to keep in mind, as always in accessibility:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Know your audience. If you&#39;re specifically targeting people with dyslexia, your decision will be different than for the general public.&lt;/li&gt;
@@ -797,9 +797,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Site Rebuilt in Eleventy</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/switch-to-eleventy/" />
+    <link href="https://tech.ryanrobinson.ca/2024/switch-to-eleventy/" />
     <updated>2024-11-24T19:04:42Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/switch-to-eleventy/</id>
+    <id>https://tech.ryanrobinson.ca/2024/switch-to-eleventy/</id>
     <content type="html">&lt;p&gt;I have rebuilt this site in &lt;a href=&quot;https://www.11ty.dev/&quot;&gt;Eleventy&lt;/a&gt;, replacing the previous Jekyll version. Here are some of my thoughts on the experience:&lt;/p&gt;
 &lt;h2 id=&quot;advantages&quot;&gt;Advantages&lt;/h2&gt;
 &lt;p&gt;It&#39;s got a couple advantages over my Jekyll experience.&lt;/p&gt;
@@ -835,9 +835,9 @@ npm &#92;
   </entry>
   <entry>
     <title>VS Code: University Colour Palettes</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/vs-code-university-colour-palettes/" />
+    <link href="https://tech.ryanrobinson.ca/2024/vs-code-university-colour-palettes/" />
     <updated>2024-04-08T17:10:28Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/vs-code-university-colour-palettes/</id>
+    <id>https://tech.ryanrobinson.ca/2024/vs-code-university-colour-palettes/</id>
     <content type="html">&lt;p&gt;I like changing colour palettes on my various workspaces. It’s especially nice when in situations like jumping between personal and work spaces of the same app, or multiple clients, or dev vs staging vs production servers. It&#39;s a great way to quickly adjust what I&#39;m thinking about, e.g. if I&#39;m seeing yellow or purple or red, it immediately slows me down to be a lot more careful about what I&#39;m changing.&lt;/p&gt;
 &lt;p&gt;So, one of the things I’ve done is have different colour palettes in Visual Studio Code for different servers.&lt;/p&gt;
 &lt;p&gt;One set of colours are for Wilfrid Laurier University, where I work. I personally use the green one for my primary development container, yellow for dev, purple for staging, and red for production (red because I shouldn’t ever actually be editing directly on production). I also use the pure black one with the brand colours as accents for when I am editing something local to my Windows host machine, not in any docker or remote SSH.&lt;/p&gt;
@@ -847,9 +847,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Drupal Dev Environment Updated: The DevContainer</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-devcontainer/" />
+    <link href="https://tech.ryanrobinson.ca/2024/dev-env-updated-devcontainer/" />
     <updated>2024-04-08T15:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-devcontainer/</id>
+    <id>https://tech.ryanrobinson.ca/2024/dev-env-updated-devcontainer/</id>
     <content type="html">&lt;p&gt;This continues from &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-dockerfiles/&quot;&gt;a previous post&lt;/a&gt; about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;the Drupal Docker tag&lt;/a&gt;. That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;The whole project&#39;s code can be found on my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;devcontainer&quot;&gt;Devcontainer&lt;/h2&gt;
 &lt;p&gt;What changed in devcontainer from the previous setup? A few things:&lt;/p&gt;
@@ -876,9 +876,9 @@ npm &#92;
   </entry>
   <entry>
     <title>Drupal Dev Environment Updated: The Dockerfiles</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-dockerfiles/" />
+    <link href="https://tech.ryanrobinson.ca/2024/dev-env-updated-dockerfiles/" />
     <updated>2024-03-25T00:16:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/dev-env-updated-dockerfiles/</id>
+    <id>https://tech.ryanrobinson.ca/2024/dev-env-updated-dockerfiles/</id>
     <content type="html">&lt;p&gt;A while ago I wrote about building a &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/drupal-docker/&quot;&gt;Docker Desktop dev environment for Drupal&lt;/a&gt;. It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-Devcontainer&quot;&gt;It can be seen on my GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;the-web-image&quot;&gt;The Web Image&lt;/h2&gt;
 &lt;p&gt;This new setup has both Apache and PHP in the same container, is about 40% of the total image size compared to the previous one, and runs much faster, probably because Apache and PHP are in the same container instead of having to communicate across the network. Let&#39;s start with the basic start to the image and its shell.&lt;/p&gt;
@@ -1017,9 +1017,9 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
   </entry>
   <entry>
     <title>IDRC Presentation on Open Menu</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/idrc-presentation/" />
+    <link href="https://tech.ryanrobinson.ca/2024/idrc-presentation/" />
     <updated>2024-02-21T23:22:36Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/idrc-presentation/</id>
+    <id>https://tech.ryanrobinson.ca/2024/idrc-presentation/</id>
     <content type="html">&lt;p&gt;I recently joined the Inclusive Design Research Centre to present along with a couple of colleagues how we designed an &amp;quot;open menu&amp;quot;, a header-focused main menu navigation that works much better for screen reader users and also provides some other benefits like a Ctrl+F find.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://fluidproject.atlassian.net/wiki/spaces/fluid/pages/11513504/Community+workshops+and+design+crits&quot;&gt;The video is available on the IDRC wiki.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I don&#39;t have a transcription of the entire presentation, but here are some of my key notes from the perspective of the Drupal developer.&lt;/p&gt;
@@ -1046,17 +1046,17 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
   </entry>
   <entry>
     <title>Drupal: Open Menu</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/" />
+    <link href="https://tech.ryanrobinson.ca/2024/open-menu/" />
     <updated>2024-02-21T22:44:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/</id>
+    <id>https://tech.ryanrobinson.ca/2024/open-menu/</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2024/idrc-presentation/&quot;&gt;In a previous related post, I wrote about some lessons in a co-design project of an open menu, with a video where we presented about it to the IDRC&lt;/a&gt;. That was mostly about the process and this is about the result: a header navigation page on a Drupal 9 site. The goal was to provide an overview of the same information that’s in the main navigation, but in a more accessible way for screen readers and with descriptions that provide more information about the page without having to load the page. It was not a complete index of every page on the site; it was only an alternate format for the menu.&lt;/p&gt;
 &lt;p&gt;As mentioned in that previous post, an important requirement is that it must update programmatically; we cannot leave it as a separate manually-updated page, because realistically it would only be a matter of time before somebody updated the menu but not the header navigation page.&lt;/p&gt;
 &lt;p&gt;Here&#39;s an example screenshot of the open menu structure:&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.avif 941w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.webp 941w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/lRNJlLJJy_-941.png&quot; alt=&quot;&amp;quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&amp;quot;&quot; width=&quot;941&quot; height=&quot;590&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2024/open-menu/lRNJlLJJy_-941.avif 941w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2024/open-menu/lRNJlLJJy_-941.webp 941w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2024/open-menu/lRNJlLJJy_-941.png&quot; alt=&quot;&amp;quot;Open Menu page. After an introductory description, there is a sample page at the top level that is an h2 and a sample page below that at an h3.&amp;quot;&quot; width=&quot;941&quot; height=&quot;590&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;h2 id=&quot;menu-entity-index&quot;&gt;Menu Entity Index&lt;/h2&gt;
 &lt;p&gt;If you’re familiar with Drupal, you likely read the introduction and immediately thought of views. Views are the perfect solution whenever you are looking at a scenario involving one data source displayed in multiple ways. Drupal 9 does not expose everything I needed to views on its own, but there is a module that fills in the gap: &lt;a href=&quot;https://www.drupal.org/project/menu_entity_index&quot;&gt;Menu Entity Index&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Once that is installed, you’ll need to configure it. I did not find the settings page intuitive at all, but the first block of settings is which menus need to be indexed and the second block is which types of target to index. In my case, I only want to index content in the main navigation.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/b-lZNiuVuQ-434.avif 434w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/b-lZNiuVuQ-434.webp 434w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/posts/2024/open_menu/open-menu/b-lZNiuVuQ-434.png&quot; alt=&quot;&amp;quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&amp;quot;&quot; width=&quot;434&quot; height=&quot;619&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2024/open-menu/b-lZNiuVuQ-434.avif 434w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2024/open-menu/b-lZNiuVuQ-434.webp 434w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2024/open-menu/b-lZNiuVuQ-434.png&quot; alt=&quot;&amp;quot;Settings for menu entity index. The first block is tracked menus and the second is tracked entity types.&amp;quot;&quot; width=&quot;434&quot; height=&quot;619&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Notably, it cannot index views pages, so for this scheme to work, you can’t use views pages in the menu. Fortunately you can still make a views block, put that on a page, and put that page in the menu.&lt;/p&gt;
 &lt;h2 id=&quot;configure-the-view&quot;&gt;Configure the View&lt;/h2&gt;
 &lt;p&gt;The configuration for the view itself won&#39;t be too much of a surprise for anybody who has configured views before. It has a grouped block for each second-level menu, where the header had a programmatically-set ID so that they can be used for links (both from that top block and from the top level of the main menu itself). There&#39;s a lot of mundane configuration here so I won&#39;t break it all down, but &lt;a href=&quot;https://github.com/ryan-l-robinson/Drupal-open-menu/blob/main/sync/config/views.view.open_menu.yml&quot;&gt;here&#39;s the configuration file&lt;/a&gt; if you want to import to your site, or you can check it out using the GitPod demo and going to Structure -&amp;gt; Views -&amp;gt; Open Menu.&lt;/p&gt;
@@ -1077,9 +1077,9 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
   </entry>
   <entry>
     <title>Dark Content Mode</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/dark-content-mode/" />
+    <link href="https://tech.ryanrobinson.ca/2024/dark-content-mode/" />
     <updated>2024-02-21T21:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/dark-content-mode/</id>
+    <id>https://tech.ryanrobinson.ca/2024/dark-content-mode/</id>
     <content type="html">&lt;p&gt;In case you haven&#39;t caught it yet, there&#39;s new functionality coming to browsers for dark mode applied to content. This could come as a surprise to web developers who did not plan for dark mode in their design, but is overall a win for those of us who prefer dark mode on all the things all the time.&lt;/p&gt;
 &lt;p&gt;It&#39;s already become my default on Android Edge, inheriting that I have my device in dark mode. I haven&#39;t found it to be default on any other browser (including desktop Edge). Chrome has it as an experiment features flag in chrome://flags, so I did most of my testing by enabling that.&lt;/p&gt;
 &lt;h2 id=&quot;issues-found&quot;&gt;Issues Found&lt;/h2&gt;
@@ -1092,9 +1092,9 @@ EXPOSE 3306&lt;/code&gt;&lt;/pre&gt;
   </entry>
   <entry>
     <title>VS Code Extensions: My Workflows</title>
-    <link href="https://tech.ryanrobinson.ca/posts/2024/vs-code-extensions-workflows/" />
+    <link href="https://tech.ryanrobinson.ca/2024/vs-code-extensions-workflows/" />
     <updated>2024-02-21T18:31:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/posts/2024/vs-code-extensions-workflows/</id>
+    <id>https://tech.ryanrobinson.ca/2024/vs-code-extensions-workflows/</id>
     <content type="html">&lt;p&gt;When it comes to my VS Code extensions, I have mine set up a few different ways depending on what kind of project I&#39;m working on:&lt;/p&gt;
 &lt;h2 id=&quot;default&quot;&gt;Default&lt;/h2&gt;
 &lt;p&gt;These are the default plugins I have locally installed, for every profile and every project container.&lt;/p&gt;
