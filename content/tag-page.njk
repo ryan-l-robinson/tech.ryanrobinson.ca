@@ -3,7 +3,7 @@ pagination:
   data: collections.tagPages
   size: 1
   alias: tagPage
-permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber }}/{% endif %}
+permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
 eleventyComputed:
   title: 'Tagged "{{ tagPage.key }}"'
 ---
