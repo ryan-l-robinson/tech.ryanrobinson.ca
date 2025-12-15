@@ -1,9 +1,9 @@
 ---
 pagination:
-  data: collections.postsByYear
+  data: collections.postsByYear.pages
   size: 1
   alias: yearPage
-permalink: /year/{{ yearPage.key }}/{% if yearPage.pageNumber > 0 %}{{ yearPage.pageNumber + 1 }}/{% endif %}
+permalink: /{{ yearPage.key }}/{% if yearPage.pageNumber > 0 %}{{ yearPage.pageNumber + 1 }}/{% endif %}
 eleventyComputed:
   title: 'Posts from {{ yearPage.key }}'
 ---

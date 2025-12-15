@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: collections.tagPages
+  data: collections.tagPages.pages
   size: 1
   alias: tagPage
 permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
