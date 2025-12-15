@@ -1,0 +1,12 @@
+---
+pagination:
+  data: collections.postsByYear
+  size: 1
+  alias: postsByYear
+permalink: /year/{{ postsByYear.key }}/{% if postsByYear.pageNumber > 0 %}{{ postsByYear.pageNumber + 1 }}/{% endif %}
+eleventyComputed:
+  title: 'Tagged "{{ postsByYear.key }}"'
+---
+{% set postList = postsByYear.posts %}
+{% set pagination = postsByYear %}
+{% include "post-list-pager.njk" %}
