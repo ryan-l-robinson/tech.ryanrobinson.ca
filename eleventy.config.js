@@ -18,6 +18,10 @@ export default function (eleventyConfig) {
 	});
 
 	// 2. Site-Specific Passthroughs
+	eleventyConfig.addPassthroughCopy({
+		"node_modules/lunr/lunr.min.js": "11ty-theme/js/lunr.min.js",
+	});
+	eleventyConfig.addPassthroughCopy("11ty-theme/js/");
 	eleventyConfig.addPassthroughCopy({ "public/": "/" });
 	eleventyConfig.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
 	eleventyConfig.addPassthroughCopy("./CNAME");
