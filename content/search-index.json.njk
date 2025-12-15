@@ -6,7 +6,7 @@ permalink: /search-index.json
     {
       "url": {{ post.url | dump }},
       "title": {{ post.data.title | dump }},
-      "content": {{ post.templateContent | striptags | dump }}
+      "content": {{ post.templateContent | dump }}
     }
     {%- if not loop.last -%},{%- endif -%}
   {%- endfor -%}
