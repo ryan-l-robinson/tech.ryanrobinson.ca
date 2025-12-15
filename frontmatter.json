@@ -61,7 +61,12 @@
       ]
     }
   ],
-  "frontMatter.content.pageFolders": [],
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "posts",
+      "path": "[[workspace]]/content/posts"
+    }
+  ],
   "frontMatter.media.folders": [
     {
       "path": "[[workspace]]/public",
