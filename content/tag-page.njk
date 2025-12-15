@@ -5,7 +5,7 @@ pagination:
   alias: tagPage
 permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 0 %}{{ tagPage.pageNumber + 1 }}/{% endif %}
 eleventyComputed:
-  title: 'Tagged "{{ tagPage.key }}"'
+  title: 'Tagged "{{ tagPage.key }}"{% if tagPage.pageNumber > 0 %} (Page {{ tagPage.pageNumber + 1 }})/{% endif %}'
 ---
 {% if tagDescriptions[tagPage.key] %}
   <p class="tag-description">{{ tagDescriptions[tagPage.key] }}</p>
