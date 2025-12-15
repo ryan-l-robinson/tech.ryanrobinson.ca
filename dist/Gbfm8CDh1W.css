@@ -1,186 +1,71 @@
-/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
- */
+.post-list { counter-reset: start-from 2 }
+/** Styles only needed for the views summarizing multiple posts */
 
-code[class*="language-"],
-pre[class*="language-"] {
-	color: #f8f8f2;
-	background: none;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	line-height: 1.5;
+/** Lists of posts **/
 
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
-
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
+.post-list-item-title {
+	margin: 0;
+	padding-bottom: 0.25em;
+	line-height: 1.4em;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-	padding: 1em;
-	margin: .5em 0;
-	overflow: auto;
-	border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #272822;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-	padding: .1em;
-	border-radius: .3em;
-	white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-	color: #8292a2;
-}
-
-.token.punctuation {
-	color: #f8f8f2;
-}
-
-.token.namespace {
-	opacity: .7;
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #f92672;
-}
-
-.token.boolean,
-.token.number {
-	color: #ae81ff;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-	color: #a6e22e;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-	color: #f8f8f2;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function,
-.token.class-name {
-	color: #e6db74;
-}
-
-.token.keyword {
-	color: #66d9ef;
-}
-
-.token.regex,
-.token.important {
-	color: #fd971f;
-}
-
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
-.token.italic {
-	font-style: italic;
-}
-
-.token.entity {
-	cursor: help;
-}
-/** Styles for individual posts **/
-
-/* Post metadata */
-
-.post-metadata {
+.post-list-metadata {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	gap: 0.75em 3em;
+	gap: 0.5em 3em;
+	padding: 0;
+	margin: 0.5em 0;
 }
 
-.post-metadata p {
+.post-list-metadata p {
 	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.8em;
 }
 
-.post-tag {
+.post-list-tag {
 	text-transform: capitalize;
 }
 
-/** Post description block **/
+.post-list-item :last-child {
+	margin-bottom: 0;
+}
+/** Pagination **/
 
-.post-description {
-	margin: 1em 3em;
-	border: 1px solid var(--black);
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1em;
+	margin: 0;
 	padding: 1em;
+	list-style: none;
+}
+
+.pager li {
+	display: flex;
+	height: fit-content;
+}
+
+.pager li a {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+	text-decoration: none;
+	line-height: 1em;
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.pager li a:is(:hover, :focus) {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.pager li a[aria-current="page"] {
 	background-color: var(--grey);
 	color: var(--black);
-}
-
-/** Post content **/
-
-article img {
-	max-width: 100%;
-	height: auto;
-}
-
-code[class*="language-"],
-pre[class*="language-"] {
-	white-space: pre-wrap;
-}
-
-/** Post footer **/
-
-.links-nextprev {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 1em 3em;
-	padding: 0 0 1em 0;
-}
-
-.links-nextprev p {
-	margin: 0;
-}
-
-.links-nextprev a.icon-before,
-.links-nextprev a.icon-after {
-	display: block;
 }
 /* Variables and general site-wide styles */
 
@@ -492,6 +377,27 @@ header a:is(:focus, :hover) {
 
 .pagefind-ui__result-title {
 	color: var(--text-color-link);
+}
+/** Styles for elasticlunr search **/
+.search-input {
+	border: 1px solid var(--black);
+	border-radius: 5px;
+	padding: 10px;
+	background-color: var(--white);
+	font-weight: 700;
+}
+
+.search-input::before {
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+	mask-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+	z-index: 9;
+	opacity: 0.7;
+}
+
+.search-button {
+	padding: 0.5em;
+	background-color: var(--blue);
+	color: var(--white);
 }
 /** Styles for main section **/
 
