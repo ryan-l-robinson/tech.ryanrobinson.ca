@@ -6,7 +6,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but has some room for improvement as noted below.
 
-- Tag pages: add tag descriptions in the data file.
+- Tag pages: tag descriptions work, except that the slugify'd tag from the tagPages collection is not always the same as the tag actually entered.
 - Add similar to the tag pages, but by year, so that every year has a page of all posts that year, with pagination.
 - Add a sidebar block similar to the tags-list sidebar block, showing links to each posts by year page.
 - Design a 404 page instead of just text. That might be different between sites, or might be the same.
