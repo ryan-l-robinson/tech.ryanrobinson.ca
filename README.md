@@ -20,5 +20,5 @@ Existing Content:
 
 Theme Room for Improvement:
 
-- Search functionality works but I don't think is very accessible. It auto-updates as text is entered, no button for a user to know that's going to happen, with no aria-live region. The Clear button also doesn't specify that it is a reset button. It also shows an excerpt from the body, not the specific tl;dr field I use elsewhere.
+- Search functionality with Pagefind worked but was not very accessible. I've started a transition to elasticlunr, which seems to be much better and offer more control to fix issues. But this still has lots to do: add the excerpt, make sure the full content is indexed at a lower weight than other metadata, and a lot of styling for how it should show up on the site.
 - This won't be a problem for a while but the paths for years and the paths for pages of all posts could conflict, once there is 2021 pages of posts. It probably won't ever be an issue for me because I'm not writing that much, but in principle it should still have some way to handle it.
