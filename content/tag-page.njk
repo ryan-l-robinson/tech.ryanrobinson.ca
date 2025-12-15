@@ -7,8 +7,8 @@ permalink: /tags/{{ tagPage.key | slugify }}/{% if tagPage.pageNumber > 0 %}{{ t
 eleventyComputed:
   title: 'Tagged "{{ tagPage.key }}"'
 ---
-{% if tagDescriptions[tagPage.key | slugify] %}
-  <p class="tag-description">{{ tagDescriptions[tagPage.key | slugify] }}</p>
+{% if tagDescriptions[tagPage.key] %}
+  <p class="tag-description">{{ tagDescriptions[tagPage.key] }}</p>
 {% endif %}
 
 {% set postList = tagPage.posts %}
