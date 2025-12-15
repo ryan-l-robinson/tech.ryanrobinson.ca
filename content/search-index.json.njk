@@ -1,12 +1,13 @@
 ---
 permalink: /search-index.json
+layout: false
 ---
 [
   {%- for post in collections.posts -%}
     {
       "url": {{ post.url | dump }},
       "title": {{ post.data.title | dump }},
-      "content": {{ post.templateContent | dump }}
+      "content": {{ post.templateContent | striptags | dump }}
     }
     {%- if not loop.last -%},{%- endif -%}
   {%- endfor -%}
