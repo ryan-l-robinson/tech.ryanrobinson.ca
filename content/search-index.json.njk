@@ -1,14 +1,5 @@
 ---
-permalink: /search-index.json
 layout: false
+permalink: /search-index.json
 ---
-[
-  {%- for post in collections.posts -%}
-    {
-      "url": {{ post.url | dump }},
-      "title": {{ post.data.title | dump }},
-      "content": {{ post.templateContent | striptags | dump }}
-    }
-    {%- if not loop.last -%},{%- endif -%}
-  {%- endfor -%}
-]
+{{ collections.posts | search | dump | safe }}
