@@ -2,10 +2,4 @@
 layout: layouts/main.njk
 title: "Tags"
 ---
-{%- css %}{% include "11ty-theme/css/tags-list.css" %}{% endcss %}
-<ul class="tags-list">
-{% for tag in collections | getKeys | filterTagList %}
-	{% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-	<li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a> ({{ collections[tag].length }})</li>
-{% endfor %}
-</ul>
+{% include "tags-list.njk" %}
