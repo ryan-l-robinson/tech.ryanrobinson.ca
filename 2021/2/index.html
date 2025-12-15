@@ -8,27 +8,27 @@
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2E2C2C">
 		<meta name="geo.region" content="CA-ON">
 		<meta name="author" content="Ryan Robinson">
-		<meta name="description" content="How to set up a GitLab Runner on a private network server.">
+		<meta name="description" content="Technologist writing about web development, Microsoft 365, and more.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
 		<meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-		<meta property="og:title" content="GitLab DevOps: GitLab Runner">
-		<meta property="og:description" content="How to set up a GitLab Runner on a private network server.">
-		<meta property="og:url" content="https://tech.ryanrobinson.ca//2022/gitlab-devops-gitlab-runner/">
+		<meta property="og:title" content="Posts from 2021">
+		<meta property="og:description" content="Technologist writing about web development, Microsoft 365, and more.">
+		<meta property="og:url" content="https://tech.ryanrobinson.ca//2021/2/">
 		<meta property="og:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 		<meta property="og:type" content="website">
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="GitLab DevOps: GitLab Runner">
-		<meta name="twitter:description" content="How to set up a GitLab Runner on a private network server.">
+		<meta name="twitter:title" content="Posts from 2021">
+		<meta name="twitter:description" content="Technologist writing about web development, Microsoft 365, and more.">
 		<meta name="twitter:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 
-		<title>GitLab DevOps: GitLab Runner | Ryan Robinson Technology</title>
+		<title>Posts from 2021 | Ryan Robinson Technology</title>
 
-		<link rel="canonical" href="https://tech.ryanrobinson.ca//2022/gitlab-devops-gitlab-runner/">
+		<link rel="canonical" href="https://tech.ryanrobinson.ca//2021/2/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/tb9VvCKSvQ.css">
+		<link rel="stylesheet" href="/dist/9YIa-RXM4N.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -52,67 +52,298 @@
 			</header>
 			<main id="main">
 				<div class="main-content">
-					<h1 id="gitlab-devops-gitlab-runner">GitLab DevOps: GitLab Runner</h1>
+					<h1 id="posts-from-2021">Posts from 2021</h1>
 					
-<article data-pagefind-body="">
 
-	
-		<p>Series: GitLab DevOps</p>
-	
 
+<div class="border-bottom-section">
 	
-		<p class="post-description" data-pagefind-weight="3">
-			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> How to set up a GitLab Runner on a private network server.
-		</p>
-	
+</div>
 
-	<div class="post-metadata border-bottom-section">
-		<p><time datetime="2022-02-09">February 9, 2022</time></p>
+
+
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="simplytest-me-drupal-project-test"><a href="/2021/simplytest-me-drupal-project-test/" class="post-list-item-link">SimplyTest.Me: Drupal Project Test</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-09-10">September 10, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/drupal/" class="post-list-tag">Drupal</a>
+				</p>
+			
+		</div>
 		
-			<p>Tags:
-			<a href="/tags/devops/" class="post-tag">DevOps</a>
-			</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="visual-studio-code-favourite-extensions"><a href="/2021/favourite-visual-studio-code-extensions/" class="post-list-item-link">Visual Studio Code: Favourite Extensions</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-09-07">September 7, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/devops/" class="post-list-tag">DevOps</a>, 
+					<a href="/tags/drupal/" class="post-list-tag">Drupal</a>, 
+					<a href="/tags/visual-studio-code/" class="post-list-tag">Visual Studio Code</a>, 
+					<a href="/tags/wordpress/" class="post-list-tag">WordPress</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">These are some of my favourite VS Code extensions.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-phone-numbers"><a href="/2021/microsoft-teams-phone-numbers/" class="post-list-item-link">Microsoft Teams: Phone Numbers</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-19">August 19, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
 		
-	</div>
+	</article>
 
-	<p>This relates to <a href="/tags/gitlab-devops/">the GitLab DevOps process</a>. GitLab can automate deployment to a server, meaning that you do not have to log in to that server separately to pull the changes and carry out any other needed steps for the installation.</p>
-<p>But there’s a catch: if your server is not publicly-accessible, such as behind a VPN, which is pretty common for development and staging servers, you’ll need to install a runner. This is because GitLab cannot initialize a connection to a hidden server, so the server will have to start the connection instead.</p>
-<p>Here’s how I installed a GitLab runner on a server. This was specifically for Oracle Linux 8, but it will be pretty close for other distributions.</p>
-<h2 id="install-gitlab-runner-package">Install GitLab Runner Package</h2>
-<p>First you need to install the GitLab Runner package on your server. GitLab will give you the instructions to do this, but here’s the general idea.</p>
-<p>First, copy the package to your server, in the /usr/local/bin folder:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">curl</span> <span class="token parameter variable">-L</span> <span class="token parameter variable">--output</span> /usr/local/bin/gitlab-runner <span class="token string">"https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64"</span></code></pre>
-<p>Add permissions to execute that file. You’ll need to be able to run it.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/gitlab-runner</code></pre>
-<p>Navigate to that folder and install:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/bin
-<span class="token function">sudo</span> ./gitlab-runner <span class="token function">install</span> <span class="token parameter variable">--user</span><span class="token operator">=</span>libgit --working-directory<span class="token operator">=</span>/home/libgit</code></pre>
-<h2 id="register-a-runner">Register a Runner</h2>
-<p>Once the runner is installed, you’ll need to register at least one runner on the server.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> ./gitlab-runner register <span class="token parameter variable">--url</span> https://gitlab.com/ --registration-token <span class="token punctuation">[</span>token<span class="token punctuation">]</span></code></pre>
-<p>The script will prompt you with a few configuration options. Some are fairly obvious, but I’ll note a couple others.</p>
-<p>The token can be found in the GitLab Project -&gt; Settings -&gt; CI/CD -&gt; Runners.</p>
-<p>For the tag, I recommend having a standard convention across all your servers, like [site shortcode]-[dev stage]. For example, site1 will have:</p>
-<ul>
-<li>site1-dev</li>
-<li>site1-staging</li>
-<li>site1-prod1</li>
-<li>site1-prod2</li>
-</ul>
-<p>And site2 will have:</p>
-<ul>
-<li>site2-dev</li>
-<li>site2-staging</li>
-<li>site2-prod</li>
-</ul>
-<p>For what executor to use. Shell is the simplest, at least in a scenario like this of running it on a Linux server.</p>
-<p>That’s it. It may take a bit to appear, but the runner will now be associated with the GitLab project.</p>
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-information-barriers"><a href="/2021/microsoft-teams-information-barriers/" class="post-list-item-link">Microsoft Teams: Information Barriers</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-16">August 16, 2021</time></p>
+			
+		</div>
+		
+	</article>
 
-			<div class="border-top-section">
-				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2022/gitlab-devops-php-lint/" class="icon-before pager-prev">GitLab DevOps: PHP Lint</a></p><p><span class="visually-hidden">Next: </span><a href="/2022/drupal-fluid-ui/" class="icon-after pager-next">Drupal: Fluid UI</a></p>
-				</div>
-			</div>
-</article>
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-guest-access"><a href="/2021/guest-access-teams/" class="post-list-item-link">Microsoft Teams: Guest Access</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-13">August 13, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">An overview of guest access in Teams.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-lifecycle"><a href="/2021/microsoft-teams-lifecycle/" class="post-list-item-link">Microsoft Teams: Lifecycle</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-10">August 10, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>, 
+					<a href="/tags/security/" class="post-list-tag">Security</a>
+				</p>
+			
+		</div>
+		
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-network-tests"><a href="/2021/microsoft-teams-network-tests/" class="post-list-item-link">Microsoft Teams: Network Tests</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-05">August 5, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">Using the network tests in Teams admin.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-app-policies"><a href="/2021/microsoft-teams-app-policies/" class="post-list-item-link">Microsoft Teams: App Policies</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-08-02">August 2, 2021</time></p>
+			
+		</div>
+		<p class="post-list-item-description">App policies can help control what apps users can access in Teams.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-teams-favourite-hidden-features"><a href="/2021/microsoft-teams-hidden-features/" class="post-list-item-link">Microsoft Teams: Favourite Hidden Features</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-07-21">July 21, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">Here are some of my favourite less-obvious features in Teams.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="web-hosting-distinctions"><a href="/2021/web-hosting-distinctions/" class="post-list-item-link">Web Hosting Distinctions</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-07-08">July 8, 2021</time></p>
+			
+		</div>
+		
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="google-vs-microsoft-personal-and-business-accounts"><a href="/2021/google-microsoft-personal-business-accounts/" class="post-list-item-link">Google vs Microsoft Personal and Business Accounts</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-07-05">July 5, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">Google and Microsoft handle things differently if you have both a personal and business account, each of which have some pro&#39;s and con&#39;s.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="movie-directory-part-4-import"><a href="/2021/movie-directory-4-import/" class="post-list-item-link">Movie Directory Part 4: Import</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-07-01">July 1, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">Using Power Automate to populate the data for the movie directory app.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="movie-directory-part-3-view-and-edit"><a href="/2021/movie-directory-3-view-edit/" class="post-list-item-link">Movie Directory Part 3: View and Edit</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-29">June 29, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">The view and edit screens in a movie directory Power App.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="movie-directory-part-2-gallery-and-filters"><a href="/2021/movie-directory-2-gallery-filters/" class="post-list-item-link">Movie Directory Part 2: Gallery and Filters</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-25">June 25, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">The gallery and filters for a movie directory Power App.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-excel-vs-sharepoint-lists"><a href="/2021/microsoft-excel-sharepoint-lists/" class="post-list-item-link">Microsoft Excel vs SharePoint Lists</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-23">June 23, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">A breakdown of when to use Excel and when to use SharePoint Lists.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="civicrm-personal-campaign-pages"><a href="/2021/civicrm-personal-campaign-pages/" class="post-list-item-link">CiviCRM: Personal Campaign Pages</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-21">June 21, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/crm/" class="post-list-tag">CRM</a>, 
+					<a href="/tags/php/" class="post-list-tag">PHP</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">CiviCRM&#39;s personal campaign pages are useful but limited.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="movie-directory-part-1-the-data"><a href="/2021/movie-directory-1-data/" class="post-list-item-link">Movie Directory Part 1: The Data</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-18">June 18, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">The data structures for the movie directory project.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="considerations-migrating-imap-to-m365"><a href="/2021/considerations-migrating-imap-to-m365/" class="post-list-item-link">Considerations Migrating IMAP to M365</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-16">June 16, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">Some things to consider when migrating from IMAP to Microsoft 365.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="sharepoint-overriding-a-sites-home-page"><a href="/2021/overriding-sharepoint-sites-home-page/" class="post-list-item-link">SharePoint: Overriding a Site&#39;s Home Page</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-14">June 14, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>
+				</p>
+			
+		</div>
+		<p class="post-list-item-description">As part of a SharePoint site provisioning Flow, here&#39;s how to override the site home page.</p>
+	</article>
+
+	<article class="border-bottom-section">
+		<h2 class="post-list-item-title" id="microsoft-cloud-app-security"><a href="/2021/microsoft-cloud-app-security/" class="post-list-item-link">Microsoft Cloud App Security</a></h2>
+		<div class="post-list-metadata">
+			<p class="post-list-item-time-container"><time class="post-list-item-time" datetime="2021-06-10">June 10, 2021</time></p>
+			
+				<p>Tags:
+					<a href="/tags/microsoft-365/" class="post-list-tag">Microsoft 365</a>, 
+					<a href="/tags/security/" class="post-list-tag">Security</a>
+				</p>
+			
+		</div>
+		
+	</article>
+
+
+
+
+
+	<nav aria-labelledby="posts-pagination">
+		<h2 class="posts-pagination visually-hidden" id="pagination-links-to-more-posts">Pagination Links to More Posts</h2>
+		<ul class="pager">
+				<li><a href="/2021/" class="icon-before pager-first">First</a></li>
+			
+					<li>
+						<a href="/2021/">1</a>
+					</li>
+					<li>
+						<a href="/2021/2/" aria-current="page">2</a>
+					</li>
+					<li>
+						<a href="/2021/3/">3</a>
+					</li>
+					<li>
+						<a href="/2021/4/">4</a>
+					</li>
+				<li><a href="/2021/4/" class="icon-after pager-last">Last (4)</a></li>
+			
+		</ul>
+	</nav>
+
+
 
 				</div>
 				<div class="sidebar">
@@ -129,25 +360,6 @@
 
 
 					
-
-	<aside class="sidebar-block" aria-label="Posts in this series">
-		<h2 id="posts-in-gitlab-devops-series">Posts in GitLab DevOps Series</h2>
-		<ol class="series-list">
-			
-    			<li><a href="/2021/vagrant-oracle-linux-vm/">Vagrant: Oracle Linux VM</a></li>
-			
-    			<li><a href="/2022/gitlab-devops-gitlab-runner/">GitLab DevOps: GitLab Runner</a></li>
-			
-    			<li><a href="/2022/drupal-sync-configuration/">Drupal: Sync Configuration</a></li>
-			
-    			<li><a href="/2022/git-local-workflows/">GitLab DevOps: Local Workflows</a></li>
-			
-    			<li><a href="/2022/gitlab-devops-deploy-server/">GitLab DevOps: Deploy to Server</a></li>
-			
-    			<li><a href="/2023/drupal-deploy/">GitLab DevOps: Drupal Deployment</a></li>
-			
-		</ol>
-	</aside>
 
 
 					
