@@ -21,7 +21,9 @@
 		"phpunit",
 		"fediverse",
 		"eleventy",
-		"DevOps"
+		"DevOps",
+		"elasticlunr",
+		"hrefs"
 	],
 	"cSpell.dictionaries": [
 		"en-gb",
