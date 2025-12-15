@@ -2,10 +2,10 @@
 title: GitLab's New Web IDE
 date: 2023-01-03T15:22:00.000Z
 author: Ryan Robinson
-description: "Check out GitLab's new and improved web IDE."
+description: Check out GitLab's new and improved web IDE.
 tags:
+  - DevOps
   - Visual Studio Code
-  - Git, GitLab, and GitHub
 ---
 
 I discovered a few days ago that GitLab has a new web IDE that is based on Visual Studio Code. [The blog about this new editor](https://about.gitlab.com/blog/2022/12/15/get-ready-for-new-gitlab-web-ide/) highlights a few advantages this gives compared to their previous editor, including:

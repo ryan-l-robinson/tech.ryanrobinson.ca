@@ -2,11 +2,11 @@
 title: GitHub Copilot
 date: 2021-10-23T01:37:15.000Z
 author: Ryan Robinson
-description: "Some thoughts about GitHub Copilot."
+description: Some thoughts about GitHub Copilot.
 tags:
-    - Git, GitLab, and GitHub
-    - PHP
-    - Visual Studio Code
+  - DevOps
+  - PHP
+  - Visual Studio Code
 ---
 
 A few months ago it was big news in the programming world when [GitHub Copilot](https://copilot.github.com/) was announced. This week, I was accepted into the preview, so now I have a chance to try it out and share my thoughts.

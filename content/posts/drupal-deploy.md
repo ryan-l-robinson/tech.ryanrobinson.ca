@@ -2,11 +2,11 @@
 title: "GitLab DevOps: Drupal Deployment"
 date: 2023-01-02T15:47:05.000Z
 author: Ryan Robinson
-description: "How to deploy a Drupal site to servers using GitLab CI/CD."
+description: How to deploy a Drupal site to servers using GitLab CI/CD.
 series: GitLab DevOps
 tags:
+  - DevOps
   - Drupal
-  - Git, GitLab, and GitHub
   - PHP
 ---
 

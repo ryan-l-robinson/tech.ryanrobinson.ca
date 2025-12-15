@@ -2,12 +2,11 @@
 title: "GitLab DevOps: Local Workflows"
 date: 2022-06-27T01:54:15.000Z
 author: Ryan Robinson
-description: "An overview of some git branching strategies and local processes."
+description: An overview of some git branching strategies and local processes.
 series: GitLab DevOps
 tags:
-    - Git, GitLab, and GitHub
-    - DevOps
-    - Visual Studio Code
+  - DevOps
+  - Visual Studio Code
 ---
 
 This continues a series setting up a [GitLab DevOps pipeline](/tags/gitlab-devops/) through local virtual machine / container, GitLab, a dev server, a staging server, and a production server. This post assumes you already have a local VM or container, whether that’s through vagrant, Docker Desktop, GitPod, or something else.

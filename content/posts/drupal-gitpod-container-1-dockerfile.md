@@ -2,15 +2,14 @@
 title: "Drupal GitPod Container 1: .Dockerfile"
 date: 2022-01-20T16:00:48.000Z
 author: Ryan Robinson
-description: "Dockerfile for a Drupal GitPod setup."
+description: Dockerfile for a Drupal GitPod setup.
 series: Drupal GitPod
 tags:
-    - Drupal
-    - Git, GitLab, and GitHub
-    - DevOps
-    - PHP
-    - Visual Studio Code
-    - Linux
+  - DevOps
+  - Drupal
+  - Linux
+  - PHP
+  - Visual Studio Code
 ---
 
 [GitPod](https://gitpod.io) is a great tool for cloud-based containers when developing. If you’re developing and want a safe and efficient cloud container to try things out, it’s a pretty good way to go. You even get 50 hours per month for free, which is pretty great if you only need occasional side project and not full-time work. It also works with [Visual Studio Code](/tags/visual-studio-code/) – although that has not been working for me lately – so you can use it in the browser or in your desktop editor. When you browse to a GitHub or GitLab repository with the extension installed, there’s a simple button that will launch the container with that repository’s code, making it quick and easy to see how it works as well as make changes.

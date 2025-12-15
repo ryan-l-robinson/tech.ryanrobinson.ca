@@ -1,13 +1,13 @@
 ---
-title: 'Visual Studio Code: Favourite Extensions'
-date: '2021-09-06T21:13:00-04:00'
-author: 'Ryan Robinson'
-description: "These are some of my favourite VS Code extensions."
+title: "Visual Studio Code: Favourite Extensions"
+date: 2021-09-06T21:13:00-04:00
+author: Ryan Robinson
+description: These are some of my favourite VS Code extensions.
 tags:
-    - WordPress
-    - Drupal
-    - Git, GitLab, and GitHub
-    - 'Visual Studio Code'
+  - DevOps
+  - Drupal
+  - Visual Studio Code
+  - WordPress
 ---
 
 I’ve written before about [Visual Studio Code](/tags/visual-studio-code/), my preferred text editor. One of the great things about VS Code is the large number of extensions that are available, while continuing to be a lightweight and efficient program even with lots of extensions installed.

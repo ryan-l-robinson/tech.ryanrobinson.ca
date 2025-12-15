@@ -1,13 +1,13 @@
 ---
-title: "My (Freelance) Web Development Workflow"
-date: "2021-05-04T09:11:00-04:00"
-author: "Ryan Robinson"
-description: 'Breaking down some of the tools I use for freelance web development.'
+title: My (Freelance) Web Development Workflow
+date: 2021-05-04T09:11:00-04:00
+author: Ryan Robinson
+description: Breaking down some of the tools I use for freelance web development.
 tags:
-  - WordPress
-  - Git, GitLab, and GitHub
+  - DevOps
   - Security
-  - "Visual Studio Code"
+  - Visual Studio Code
+  - WordPress
 ---
 
 When I work on a freelance website (I have more advanced tools in my day job), especially once I need to deploy some custom code, I have several tools at my disposal I want to set up. Here’s what those tools and that setup process looks like. For the purpose of this post, I’m assuming I already have the SFTP and SSH credentials from the website host.
