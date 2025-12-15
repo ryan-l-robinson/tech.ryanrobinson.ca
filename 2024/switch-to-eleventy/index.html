@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//2024/switch-to-eleventy/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/tb9VvCKSvQ.css">
+		<link rel="stylesheet" href="/dist/Th5wuxmj_B.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -45,8 +45,13 @@
 				</nav>
 				<div class="container title-search">
 					<p class="site-title"><a href="/" class="icon-before tech-blog">Ryan Robinson Technology</a></p>
-					<div id="search" class="search">
-						<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
+					<div class="search">
+						<form id="search-form" role="search">
+							<label for="search-input" class="visually-hidden">Search posts</label>
+							<input type="search" id="search-input" placeholder="Search posts..." aria-label="Search posts">
+							<button type="submit" class="visually-hidden">Search</button>
+						</form>
+						<div id="search-results" class="search-results" aria-live="polite"></div>
 					</div>
 				</div>
 			</header>
@@ -80,7 +85,7 @@
 <p>It's got a couple advantages over my Jekyll experience.</p>
 <p>One that eleventy tends to brag about is that it builds very fast. This doesn't matter that much to me in the context of a simple site mostly hosting blogs on GitHub Pages, but it is nice to at least know when I commit something that it will be visible for testing quickly.</p>
 <p>The bigger one for me has been that I understand it more. I got the hang of the templating system pretty quickly, as its nunjucks is not far off from the twig I use for Drupal. With the old Jekyll site, it mostly felt like a black box that I didn't have enough control over. There probably was a way, but it wasn't obvious. Here I know what files are contributing to the markup, what files are contributing to the styles, and what extra JavaScript is running.</p>
-<h2 id="search-2">Search</h2>
+<h2 id="search">Search</h2>
 <p>Search is one of the more significant disadvantages. There is no default search module. I implemented <a href="https://pagefind.app/">PageFind</a>. This mostly works well enough, and wasn't that hard to figure out, but unlike the big advantage noted above with eleventy templates, there isn't a huge amount of control over the UI of the end result. The largest problem I have with that is I am unsure it is the most accessible possible, e.g. it does not create <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live">an aria-live region</a> when the content visible on the page has been changed, so screen reader users may not even know the new content is being displayed.</p>
 <h2 id="taxonomy-pages">Taxonomy Pages</h2>
 <p>The other big-ish technical piece that I have not solved yet is having pagination on the term pages like <a href="/tags/accessibility/">the one for accessibility</a>. This is because pagination is itself used to create those taxonomy pages programmatically, rather than needing to set up each tag's page manually, and there is no support for another level of pagination within those.</p>
@@ -289,5 +294,7 @@
 					<p>&copy; 2025 <a href="https://ryanrobinson.ca">Ryan Robinson</a>. Powered by <a href="https://www.11ty.dev/">Eleventy</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
 			</footer>
 		</div>
+		<script src="/js/lunr.min.js"></script>
+		<script src="/js/search.js"></script>
 	</body>
 </html>

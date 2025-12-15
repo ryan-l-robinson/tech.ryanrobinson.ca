@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//2024/managed-mastodon/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/tb9VvCKSvQ.css">
+		<link rel="stylesheet" href="/dist/Th5wuxmj_B.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -45,8 +45,13 @@
 				</nav>
 				<div class="container title-search">
 					<p class="site-title"><a href="/" class="icon-before tech-blog">Ryan Robinson Technology</a></p>
-					<div id="search" class="search">
-						<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
+					<div class="search">
+						<form id="search-form" role="search">
+							<label for="search-input" class="visually-hidden">Search posts</label>
+							<input type="search" id="search-input" placeholder="Search posts..." aria-label="Search posts">
+							<button type="submit" class="visually-hidden">Search</button>
+						</form>
+						<div id="search-results" class="search-results" aria-live="polite"></div>
 					</div>
 				</div>
 			</header>
@@ -84,7 +89,7 @@
 <h2 id="trending">Trending</h2>
 <p>If I had thought it through, I would have predicted that trending would be less useful. With less wide range of federation, less tags and links will come in.</p>
 <p>What I never would have thought of was that I would need to approve each tag and each link before it can even show up within the typical user app. I get why that's an admin moderation function, to not let hate speech or whatever else you don't want to be visible for other users. But when you're the only user, it means you can't see anything trending in the app until you've first already seen it in the admin panel, for which I get a few emails a day to review. Those emails will decrease quickly because once I've approved it once, I don't need to again, but that is an annoying extra step with zero benefit when it's a single-user instance.</p>
-<h2 id="search-2">Search</h2>
+<h2 id="search">Search</h2>
 <p>Search is also less powerful with less federation, although that was less of a problem in my few days of testing. It's not that often that I really want to search for a topic. At this point I mostly follow who I follow, not going looking for what strangers are saying about something.</p>
 <h2 id="moderation">Moderation</h2>
 <p>Moderation is the area I can probably say with least confidence because I was doing it for such a short period of time. I didn't have a lot of connections, and I did not end up doing any of my own moderation. That's the upside of the limited federation. This was the thing that I was worried would be the biggest extra piece of work, because I really have no desire to squash a bunch of crypto scammers or hate speech on my own. Maybe it would have become more of a problem on a longer scale.</p>
@@ -285,5 +290,7 @@
 					<p>&copy; 2025 <a href="https://ryanrobinson.ca">Ryan Robinson</a>. Powered by <a href="https://www.11ty.dev/">Eleventy</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
 			</footer>
 		</div>
+		<script src="/js/lunr.min.js"></script>
+		<script src="/js/search.js"></script>
 	</body>
 </html>

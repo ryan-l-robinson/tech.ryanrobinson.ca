@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//2021/2/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/EIpvtaQwQd.css">
+		<link rel="stylesheet" href="/dist/7AQ6UKIxb7.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -45,8 +45,13 @@
 				</nav>
 				<div class="container title-search">
 					<p class="site-title"><a href="/" class="icon-before tech-blog">Ryan Robinson Technology</a></p>
-					<div id="search" class="search">
-						<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
+					<div class="search">
+						<form id="search-form" role="search">
+							<label for="search-input" class="visually-hidden">Search posts</label>
+							<input type="search" id="search-input" placeholder="Search posts..." aria-label="Search posts">
+							<button type="submit" class="visually-hidden">Search</button>
+						</form>
+						<div id="search-results" class="search-results" aria-live="polite"></div>
 					</div>
 				</div>
 			</header>
@@ -395,5 +400,7 @@
 					<p>&copy; 2025 <a href="https://ryanrobinson.ca">Ryan Robinson</a>. Powered by <a href="https://www.11ty.dev/">Eleventy</a>. The site's font is <a href="https://brailleinstitute.org/freefont">Atkinson Hyperlegible from the Braille Institute</a>.</p>
 			</footer>
 		</div>
+		<script src="/js/lunr.min.js"></script>
+		<script src="/js/search.js"></script>
 	</body>
 </html>
