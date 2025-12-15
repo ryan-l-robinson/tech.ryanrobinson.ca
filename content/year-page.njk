@@ -7,7 +7,7 @@ permalink: /{{ yearPage.key }}/{% if yearPage.pageNumber > 0 %}{{ yearPage.pageN
 eleventyComputed:
   title: 'Posts from {{ yearPage.key }}'
 ---
-<p>This page includes all posts published in the year {{ yearPage.key }}</p>
+<p>Looking for all posts published in {{ yearPage.key }}? You've come to the right place.</p>
 {% set postList = yearPage.posts %}
 {% set pagination = yearPage %}
 {% include "post-list-pager.njk" %}
