@@ -12,7 +12,5 @@ eleventyComputed:
 {% endif %}
 
 {% set postList = tagPage.posts %}
-{% include "post-list.njk" %}
-
 {% set pagination = tagPage %}
-{% include "pager.njk" %}
+{% include "post-list-pager.njk" %}
