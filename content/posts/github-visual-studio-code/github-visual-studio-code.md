@@ -1,11 +1,11 @@
 ---
 title: "Visual Studio Code: Using GitHub"
-date: "2021-04-09T07:39:00-04:00"
-author: "Ryan Robinson"
-description: "An overview of working with GitHub from VS Code"
+date: 2021-04-09T07:39:00-04:00
+author: Ryan Robinson
+description: An overview of working with GitHub from VS Code
 tags:
-  - Git, GitLab, and GitHub
-  - "Visual Studio Code"
+  - DevOps
+  - Visual Studio Code
 ---
 
 Working in Visual Studio Code but need that connected to your GitHub repository? No problem. Getting connected to GitHub from Visual Studio Code is straightforward. It’s also possible to connect to other Git servers, but the authentication process is a bit more complicated, so I’ll stick to [GitHub which is now my primary code repository](https://github.com/ryan-l-robinson). I’m also sticking with Windows, but the general idea is the same for other platforms with Code.

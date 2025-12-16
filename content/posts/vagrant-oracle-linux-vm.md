@@ -4,10 +4,9 @@ date: 2021-11-10T21:34:00.000Z
 author: Ryan Robinson
 series: GitLab DevOps
 tags:
-    - Git, GitLab, and GitHub
-    - DevOps
-    - PHP
-    - Linux
+  - DevOps
+  - Linux
+  - PHP
 ---
 
 This is the first in [a series setting up a basic DevOps pipeline](/tags/gitlab-devops/) through local virtual machines, GitLab, a dev server, a staging server, and a production server. This first post will look at the local VM setup. The next step will move on to using this local VM in connection with GitLab for version control and CI/CD.

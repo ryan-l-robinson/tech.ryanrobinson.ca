@@ -2,10 +2,10 @@
 title: "GitHub Pages: Mobile Authoring"
 date: 2022-05-16T02:47:58.000Z
 author: Ryan Robinson
-description: "How I've set up authoring on mobile to support a GitHub Pages and Jekyll site."
+description: How I've set up authoring on mobile to support a GitHub Pages and Jekyll site.
 tags:
-    - Static Sites
-    - Git, GitLab, and GitHub
+  - DevOps
+  - Static Sites
 ---
 
 [I’ve recently switched from hosting these tech posts on a WordPress site running on a shared host I pay a small fee for, over to GitHub Pages for free](/posts/2022/building-jekyll/). It’s a great system and might be all you need if you’re a developer wanting to write and publish some content quickly.

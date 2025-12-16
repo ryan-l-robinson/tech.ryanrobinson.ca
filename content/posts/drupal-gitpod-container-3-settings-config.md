@@ -2,12 +2,11 @@
 title: "Drupal GitPod Container 3: Settings and Config"
 date: 2022-02-01T20:02:00.000Z
 author: Ryan Robinson
-description: "Settings and configuration for a Drupal developer environment in GitPod."
+description: Settings and configuration for a Drupal developer environment in GitPod.
 series: Drupal GitPod
 tags:
-  - Drupal
-  - Git, GitLab, and GitHub
   - DevOps
+  - Drupal
   - Visual Studio Code
 ---
 

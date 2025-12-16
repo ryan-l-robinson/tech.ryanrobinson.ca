@@ -1,0 +1,13 @@
+---
+pagination:
+  data: collections.postsByYear.pages
+  size: 1
+  alias: yearPage
+permalink: /{{ yearPage.key }}/{% if yearPage.pageNumber > 0 %}{{ yearPage.pageNumber + 1 }}/{% endif %}
+eleventyComputed:
+  title: 'Posts from {{ yearPage.key }}{% if yearPage.pageNumber > 0 %} (Page {{ yearPage.pageNumber + 1 }}){% endif %}'
+---
+<p>Looking for all posts published in {{ yearPage.key }}? You've come to the right place.</p>
+{% set postList = yearPage.posts %}
+{% set pagination = yearPage %}
+{% include "post-list-pager.njk" %}

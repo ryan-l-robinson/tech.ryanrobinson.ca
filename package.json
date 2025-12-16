@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"@zachleat/heading-anchors": "^1.0.1",
+		"elasticlunr": "^0.9.5",
 		"lodash": "^4.17.21"
 	}
 }

@@ -2,9 +2,9 @@
 title: "GitHub and GitLab: Diagrams in Markdown"
 date: 2022-03-10T01:00:00.000Z
 author: Ryan Robinson
-description: "Using Mermaid for creating diagrams in markdown."
+description: Using Mermaid for creating diagrams in markdown.
 tags:
-  - Git, GitLab, and GitHub
+  - DevOps
 ---
 
 GitHub recently announced [a great new feature that allows for generating diagrams within markdown](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/). I tested this out and it also works in GitLab.

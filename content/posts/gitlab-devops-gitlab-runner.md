@@ -2,10 +2,9 @@
 title: "GitLab DevOps: GitLab Runner"
 date: 2022-02-09T14:03:00.000Z
 author: Ryan Robinson
-description: "How to set up a GitLab Runner on a private network server."
+description: How to set up a GitLab Runner on a private network server.
 series: GitLab DevOps
 tags:
-  - Git, GitLab, and GitHub
   - DevOps
 ---
 

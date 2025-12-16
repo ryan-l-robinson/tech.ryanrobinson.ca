@@ -20,7 +20,10 @@
 		"favourite",
 		"phpunit",
 		"fediverse",
-		"eleventy"
+		"eleventy",
+		"DevOps",
+		"elasticlunr",
+		"hrefs"
 	],
 	"cSpell.dictionaries": [
 		"en-gb",

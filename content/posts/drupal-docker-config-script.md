@@ -2,11 +2,12 @@
 title: "Drupal Docker: The First-Run Script"
 date: 2022-06-29T01:46:00.000Z
 author: Ryan Robinson
-description: "A first-run script for a Drupal Docker image."
+description: A first-run script for a Drupal Docker image.
 series: Drupal Docker
 tags:
   - Drupal
   - DevOps
+draft: false
 ---
 
 This continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
