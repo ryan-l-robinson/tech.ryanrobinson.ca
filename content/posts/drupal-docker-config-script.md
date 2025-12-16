@@ -7,6 +7,7 @@ series: Drupal Docker
 tags:
   - Drupal
   - DevOps
+draft: false
 ---
 
 This continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
