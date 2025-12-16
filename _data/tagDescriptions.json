@@ -1,4 +1,4 @@
-module.exports = {
+{
 	"ai":
 		"These posts discuss machine learning tools: what are they good for, what are they not, and what are some of the social consequences.",
 	"accessibility":
@@ -27,4 +27,4 @@ module.exports = {
 		"These posts share notes on using VS Code, my primary development environment.",
 	"WordPress":
 		"These posts address developing on WordPress. I used to do this much more often, so I probably won't be adding too much more to this one."
-};
+}

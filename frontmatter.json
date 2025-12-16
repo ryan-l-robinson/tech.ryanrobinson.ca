@@ -56,7 +56,7 @@
         {
           "title": "series",
           "name": "series",
-          "type": "tags"
+          "type": "string"
         }
       ]
     }
@@ -81,7 +81,7 @@
     {
       "id": "general",
       "title": "Used Generally Throughout Site",
-      "file": "[[workspace]]/_data/general.js",
+      "file": "[[workspace]]/_data/general.json",
       "labelField": "title",
       "singleEntry": true,
       "schema": {
@@ -128,7 +128,7 @@
     {
       "id": "meta",
       "title": "Used For Meta Tags",
-      "file": "[[workspace]]/_data/meta.js",
+      "file": "[[workspace]]/_data/meta.json",
       "labelField": "region",
       "singleEntry": true,
       "schema": {
@@ -145,6 +145,30 @@
           }
         }
       }
+    },
+    {
+      "id": "tagDescriptions",
+      "title": "Tag Descriptions",
+      "file": "[[workspace]]/_data/tagDescriptions.json",
+      "singleEntry": true,
+      "schema": {
+        "title": "Tag Descriptions",
+        "type": "object",
+				"properties": {
+					"ai": {
+						"type": "string",
+						"title": "AI"
+					},
+					"accessibility": {
+						"type": "string",
+						"title": "Accessibility"
+					}
+				},
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+
     }
   ],
   "frontMatter.content.snippets": {

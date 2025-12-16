@@ -2,7 +2,7 @@
 title: "Drupal Docker: The First-Run Script"
 date: 2022-06-29T01:46:00.000Z
 author: Ryan Robinson
-description: "A first-run script for a Drupal Docker image."
+description: A first-run script for a Drupal Docker image.
 series: Drupal Docker
 tags:
   - Drupal
