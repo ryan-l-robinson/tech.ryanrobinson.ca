@@ -28,7 +28,7 @@
 		<link rel="canonical" href="https://tech.ryanrobinson.ca//2024/2/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
-		<link rel="stylesheet" href="/dist/JMPcFinMoY.css">
+		<link rel="stylesheet" href="/dist/DsRf6chyNZ.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -46,22 +46,18 @@
 				<div class="container title-search">
 					<p class="site-title"><a href="/" class="icon-before tech-blog">Ryan Robinson Technology</a></p>
 					<div id="search" class="search">
-						<!-- Remove pagefind once elasticlunr is working -->
-						<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false, pageSize: 10 });"></script>
-						<!-- Elasticlunr Search temporarily commented out until I have more time to finish it.
 						<div class="elastic-search">
-							<form id="search-form" role="search">
+							<form id="search-form" class="search-form" role="search">
 								<label for="search-input" class="visually-hidden">Search this site</label>
-								<input type="search" id="search-input" placeholder="Search this site (elasticlunr)...">
+								<input type="search" id="search-input" class="search-input" placeholder="Search this site" aria-controls="search-results" aria-autocomplete="list">
 								<button type="submit" class="search-button">Search</button>
 							</form>
-							<div id="search-results"></div>
 						</div>
-						 -->
 					</div>
 				</div>
 			</header>
 			<main id="main">
+				<nav id="search-results" class="search-results" aria-label="Search results navigation" hidden=""></nav>
 				<div class="main-content">
 					<h1 id="posts-from-2024-page-2">Posts from 2024 (Page 2)</h1>
 					<p>Looking for all posts published in 2024? You've come to the right place.</p>
@@ -93,8 +89,8 @@
 
 
 
-	<nav aria-labelledby="posts-pagination">
-		<h2 class="posts-pagination visually-hidden" id="pagination-links-to-more-posts">Pagination Links to More Posts</h2>
+	<nav aria-labelledby="posts-pagination-heading">
+		<h2 id="posts-pagination-heading" class="posts-pagination visually-hidden">Pagination Links to More Posts</h2>
 		<ul class="pager">
 				<li><a href="/2024/" class="icon-before pager-first">First</a></li>
 			

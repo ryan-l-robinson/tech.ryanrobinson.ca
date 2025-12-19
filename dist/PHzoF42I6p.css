@@ -1,71 +1,27 @@
-.post-list { counter-reset: start-from 8 }
-/** Styles only needed for the views summarizing multiple posts */
-
-/** Lists of posts **/
-
-.post-list-item-title {
-	margin: 0;
-	padding-bottom: 0.25em;
-	line-height: 1.4em;
+/** Aligns with the tagslist.njk and tags.njk include **/
+@media (min-width: 1201px) {
+	.sidebar-block .tags-list {
+		columns: 1;
+	}
 }
 
-.post-list-metadata {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	gap: 0.5em 3em;
-	padding: 0;
-	margin: 0.5em 0;
+@media (min-width: 1201px) {
+	.tags-list {
+		columns: 3;
+	}
 }
 
-.post-list-metadata p {
-	margin: 0;
-	line-height: 1.5em;
-	font-size: 0.8em;
+/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
+@media (min-width: 801px) and (max-width: 1200px) {
+	.tags-list {
+		columns: 2;
+	}
 }
 
-.post-list-tag {
-	text-transform: capitalize;
-}
-
-.post-list-item :last-child {
-	margin-bottom: 0;
-}
-/** Pagination **/
-
-.pager {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	row-gap: 1em;
-	margin: 0;
-	padding: 1em;
-	list-style: none;
-}
-
-.pager li {
-	display: flex;
-	height: fit-content;
-}
-
-.pager li a {
-	border: 1px solid var(--grey);
-	padding: 0.5em;
-	text-decoration: none;
-	line-height: 1em;
-	background-color: var(--blue);
-	color: var(--white);
-}
-
-.pager li a:is(:hover, :focus) {
-	background-color: var(--red);
-	color: var(--white);
-}
-
-.pager li a[aria-current="page"] {
-	background-color: var(--grey);
-	color: var(--black);
+@media (max-width: 800px) {
+	.tags-list {
+		columns: 1;
+	}
 }
 /* Variables and general site-wide styles */
 
@@ -329,19 +285,16 @@ header a:is(:focus, :hover) {
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 0 3em;
+	gap: 0.5rem 2rem;
 	border-top: 1px solid var(--white);
 	border-bottom: 1px solid var(--border-color);
-	padding: 0 var(--main-gutter-x);
+	padding: var(--main-gutter-y) var(--main-gutter-x);
 	background-color: var(--red);
 }
 
 .site-title {
+	margin: 0;
 	font-size: 1.5em;
-}
-
-.search {
-	padding-bottom: 0.5em 0;
 }
 /** Pagefind styles for search **/
 .pagefind-ui__search-input {
@@ -381,24 +334,52 @@ header a:is(:focus, :hover) {
 /** Styles for elasticlunr search **/
 .search-form {
 	display: inline-flex;
-	border: 1px solid var(--black);
-	border-radius: 5px;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 
 .search-input {
-	border: 0;
-	border-radius: 5px 0 0 5px;
+	border: 1px solid var(--blue);
+	border-radius: 5px;
 	padding: 10px;
 	background-color: var(--white);
-	font-weight: 700;
+}
+
+.search-input:is(:focus,:hover) {
+	outline: 5px solid var(--blue);
 }
 
 .search-button {
-	padding: 0.5em;
+	padding: 10px;
 	background-color: var(--blue);
 	color: var(--white);
-	border: 0;
-	border-radius: 0 5px 5px 0;
+	border: 1px solid var(--white);
+	border-radius: 5px;
+}
+
+.search-button:is(:focus,:hover) {
+	outline: 5px solid var(--white);
+}
+
+.search-results {
+	width: 100%;
+}
+
+.search-results-wrapper {
+	border: 1px solid var(--border-color);
+	padding: 1rem;
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.search-results-heading {
+	margin: 0;
+}
+
+.search-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 /** Styles for main section **/
 
@@ -488,31 +469,6 @@ footer p a {
 footer p a:is(:hover, :focus) {
 	background-color: var(--white);
 	color: var(--blue);
-}
-/** Aligns with the tagslist.njk and tags.njk include **/
-@media (min-width: 1201px) {
-	.sidebar-block .tags-list {
-		columns: 1;
-	}
-}
-
-@media (min-width: 1201px) {
-	.tags-list {
-		columns: 3;
-	}
-}
-
-/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
-@media (min-width: 801px) and (max-width: 1200px) {
-	.tags-list {
-		columns: 2;
-	}
-}
-
-@media (max-width: 800px) {
-	.tags-list {
-		columns: 1;
-	}
 }
 /** Aligns with the social-links.njk include file **/
 .social-links {
