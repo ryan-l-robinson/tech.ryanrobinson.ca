@@ -1,5 +1,6 @@
 ---
 title: "Shrinking Pagination with JavaScript"
+description: "A JavaScript solution for pagination having less options on smaller screens."
 date: 2025-12-19T21:34:00.000Z
 author: Ryan Robinson
 tags:
