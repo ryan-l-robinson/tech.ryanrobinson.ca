@@ -21,5 +21,4 @@ Existing Content:
 
 Theme Room for Improvement:
 
-- I now have tag descriptions that show up on those tag pages. This should also show up as hover title text over links to the tag in various places they appear.
 - This won't be a problem for a while but the paths for years and the paths for pages of all posts could conflict, once there is 2021 pages of posts. It probably won't ever be an issue for me because I'm not writing that much, but in principle it should still have some way to handle it.
