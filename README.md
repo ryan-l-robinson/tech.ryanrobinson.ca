@@ -10,7 +10,6 @@ My workflow:
 
 - FrontMatter dashboard: sort out how to add media so they are more easily browseable. Get rid of Categories showing as a taxonomy, but add Series.
 - FrontMatter sidebar: can Series select from previous terms used, with the ability to add a new one? What about Content Preview images?
-- There is functionality for excluding drafts. Should I be putting those in posts right away and commit to the repository, instead of moving the file from a different folder when it's ready? The downside is that there is more public record of older drafts (in the repo, not on the site) which could expose something that isn't quite ready yet. Or I could do some combination of both, where it gets into the posts folder once I know it has nothing sensitive in it, even if there is more to finish otherwise.
 - Set up snippets as some general templates that can be used with Front Matter in VS Code, rather than the templates file that I often didn't use anyway.
 
 Existing Content:
