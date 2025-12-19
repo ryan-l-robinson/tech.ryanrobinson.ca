@@ -1,4 +1,10 @@
 ---
+title: "Shrinking Pagination with JavaScript"
+date: 2025-12-19T21:34:00.000Z
+author: Ryan Robinson
+tags:
+  - Drupal
+  - JavaScript
 draft: true
 ---
 
