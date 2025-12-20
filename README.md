@@ -6,6 +6,10 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 It is now mostly functional but I haven't finished cleaning up all the content yet.
 
+Theme:
+
+- Pagination is too big for small screens. I either need less items showing always, or I need to implement JavaScript to show less only on smaller screens.
+
 Existing Content:
 
 - Posts: Review tags on existing posts for consistency
