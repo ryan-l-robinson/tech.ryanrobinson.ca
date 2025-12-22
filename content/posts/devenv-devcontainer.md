@@ -1,8 +1,8 @@
 ---
-title: "Drupal Dev Environment Updated: The DevContainer"
+title: "Drupal Dev Environment DevContainer"
 date: 2024-04-08T15:46:00.000Z
 author: Ryan Robinson
-description: "An updated version of the devcontainer for a Drupal dev environment."
+description: "The devcontainer file specifies how VS Code will run this environment, including extensions, settings, and scripts."
 series: Drupal Docker
 tags:
     - Drupal
@@ -10,31 +10,117 @@ tags:
 draft: true
 ---
 
-This continues from [a previous post](/posts/2024/dev-env-updated-dockerfiles/) about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on [the Drupal Docker tag](/tags/drupal-docker/). That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. [The whole project's code can be found on my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
+This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
 
-## Devcontainer
+We now have a robust Dockerfile for the main web image and two layers of docker-compose files. Now we can tell VS Code how to use those files to build the environment we need. To do this, create a file named devcontainer.json inside a .devcontainer folder in the project.
 
-What changed in devcontainer from the previous setup? A few things:
+## The Essentials
 
-- I reviewed several of the extensions and made some changes. The most significant are adding Playwright testing (maybe I'll be able to write more about that later), the PHP tools extension, and the Drupal extension. Between them I now have much stronger error detection, deprecation warnings, testing, and formatting to meet the Drupal standards. Some more notes about useful extensions are in [my recent post about what extensions I use](/websites/vs-code/extensions-2024/).
-- The postAttachCommand has to set the permissions again with each new time attaching to it, so the files that are set up as volumes don't revert to root.
+The most essential part is at the beginning, where it tells VS Code what services it needs to run, based on what docker-compose files, and running as what user.
 
-## postCreateCommand
+```json
+  "name": "drupal.devenv",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
+  "remoteUser": "root",
+  "service": "web",
+  "runServices": ["web", "db"],
+  "workspaceFolder": "/opt/drupal",
+```
 
-This is mostly the same, at least for now: it installs all composer packages and sets up the database on the first time creating these images. A few things were able to be removed to simplify this script, functions like creating the database that are handled more easily in other ways.
+In this case, I'm naming it drupal.devenv, opening the two docker-compose files together, logging in with the root user on the web service at /opt/drupal, but also running the database service.
 
-What it still does:
+## Extensions
 
-- Installs composer packages.
-- Puts the Drupal settings and local services files in place. This comes after the composer install so that the basic Drupal file structure is there already.
-- Import the site's configuration using drush.
-- Set the admin password.
-- Rebuild the node access cache. There aren't any nodes yet, but there is a warning on the site status for a bit if this function isn't included, so it's one extra command to save some confusion.
-- Sets the environment indicator theme.
-- Clears the site's caches to reflect all changes.
+These extensions help lock in a variety of extensions that make sense for this project. These could instead be done by each user on their machine, but then it doesn't share the settings with others just starting up using the project; they would have to figure out all the settings themselves. They also could be put into .vscode/extensions.json and committed to the project that way; that works but the extensions are only recommended instead of automatically installed and will also apply when opening the repository locally even when some of them only make sense when within a functioning container environment. This way shares with all users but only within the built environment.
 
-## Next: GitLab/GitHub CI/CD Updates
+```json
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "gitlab.gitlab-workflow",
+        "gruntfuggly.todo-tree",
+        "eamodio.gitlens",
+        "gitkraken.gitkraken-authentication",
+        "cweijan.vscode-mysql-client2",
+        "esbenp.prettier-vscode",
+        "Stanislav.vscode-drupal",
+        "SanderRonde.phpstan-vscode",
+        "whatwedo.twig",
+        "vscode-icons-team.vscode-icons",
+        "DEVSENSE.phptools-vscode",
+        "bmuskalla.vscode-tldr",
+        "ms-playwright.playwright",
+        "saoudrizwan.claude-dev",
+        "recca0120.vscode-phpunit"
+      ]
+    }
+  }
+```
 
-I'm going to continue with this by now improving it a step farther: instead of building the images each time on local, have it build in GitHub or GitLab programmatically, and then saving it alongside the repository in those platforms' respective container registries. Then when it is time to start a new local development environment, it only needs to pull the latest image, not build it again. That saves time, especially if you have to switch between branches and especially if you have multiple team members who would otherwise all be spending time building it individually. This will include moving most of the postCreateCommand functionality into the GitLab CI / GitHub Actions, for both the web and database containers.
+## Settings
 
-I already have this working in my real context using GitLab. I have less experience with GitHub Actions but am working on doing the same idea there for a more shareable version.
+This has a similar dynamic as extensions, where they could be done other ways, but for ease of being shared and setup for all users, it makes the most sense here.
+
+```json
+    "vscode": {
+      "settings": {
+        "php": {
+          "executablePath": "/usr/local/bin/php",
+          "suggest.basic": true,
+          "inlayHints.parameters.enabled": false
+        },
+        "[php]": {
+          "editor.defaultFormatter": "stanislav.vscode-drupal"
+        },
+        "phpcs": {
+          "standard": "Drupal,DrupalPractice",
+          "executablePath": "/opt/drupal/vendor/bin/phpcs"
+        },
+        "phpunit.php": "/opt/drupal/scripts/phpunit-wrapper.sh",
+        "terminal": {
+          "external.linuxExec": "/usr/bin/bash",
+          "integrated.defaultProfile.linux": "bash"
+        },
+        "workbench": {
+          "editor.highlightModifiedTabs": true,
+          "colorCustomizations": {
+            "activityBar.activeBackground": "#000000",
+            "activityBar.activeBorder": "#fabd0f",
+            "activityBar.background": "#000000",
+            "activityBar.foreground": "#ffffff",
+            "activityBar.inactiveForeground": "#ffffff",
+            "activityBarBadge.background": "#fabd0f",
+            "activityBarBadge.foreground": "#002452",
+            "debugIcon.breakpointForeground": "#b90e31",
+            "editorGroup.border": "#fabd0f",
+            "panel.border": "#fabd0f",
+            "sideBar.border": "#fabd0f",
+            "titleBar.activeBackground": "#000000",
+            "titleBar.activeForeground": "#ffffff",
+            "titleBar.inactiveBackground": "#000000",
+            "titleBar.inactiveForeground": "#ffffff",
+            "sash.hoverBorder": "#b90e31",
+            "statusBar.background": "#000000",
+            "statusBar.foreground": "#ffffff",
+            "statusBar.debuggingBackground": "#002452",
+            "statusBar.debuggingForeground": "#ffffff",
+            "statusBarItem.hoverBackground": "#b90e31",
+            "statusBarItem.remoteBackground": "#002452",
+            "statusBarItem.remoteForeground": "#ffffff"
+          }
+        }
+      }
+    }
+```
+
+I am routinely tinkering with these settings, so what I wrote here may not be the same forever as what's in the GitLab project.
+
+## Scripts
+
+Finally, the devcontainer can specify scripts at various stages of the process. There is a separate file to run on first creation of a new developer environment. When attaching to the environment each time, reset the permissions, as they sometimes get lost as a volume. The last line simply tells it that when the VS Code environment closes, it should also stop the services spun up with the docker-compose files.
+
+```json
+  "postCreateCommand": "/bin/bash -c /opt/drupal/scripts/postCreateCommand.sh",
+  "postAttachCommand": "/bin/bash -c \"chown -R www-data:www-data /opt/drupal\"",
+  "shutdownAction": "stopCompose"
+```

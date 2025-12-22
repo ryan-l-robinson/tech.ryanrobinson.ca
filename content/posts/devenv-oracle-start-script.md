@@ -1,18 +1,18 @@
 ---
-title: "Drupal Docker: The First-Run Script"
+title: "Drupal Docker Oracle: The Start Script"
 date: 2022-06-29T01:46:00.000Z
 author: Ryan Robinson
 description: A first-run script for a Drupal Docker image.
-series: Drupal Docker
+series: Drupal Docker Oracle
 tags:
   - Drupal
   - DevOps
-draft: true
+  - Linux
 ---
 
-This continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
+Updated introduction: This was an old version of a setup for supporting a Drupal image based on Oracle Linux, which was a requirement at the time. There is an archived version of this in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer/tree/oracle-linux). There is a newer version, not depending on Oracle Linux and improved in many ways, starting with [Drupal Docker Deploys - An Overview](/2025/drupal-docker-deploys-overview/).
 
-This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to [the GitPod.yml file](/posts/2022/drupal-gitpod-container-2-gitpod-yml/) of [the GitPod series](/tags/gitpod-drupal/).
+This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to [the GitPod.yml file](/2022/drupal-gitpod-container-2-gitpod-yml/) of the GitPod series.
 
 This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:
 

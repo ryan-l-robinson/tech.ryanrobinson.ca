@@ -1,6 +1,6 @@
 ---
 title: "Drupal Dev Environment Dockerfiles"
-date: 2024-03-25T00:16:00.000Z
+date: 2025-12-25T00:16:00.000Z
 author: Ryan Robinson
 description: "A Dockerfile for a Drupal dev environment including Apache, PHP, and XDebug, with some variation by environment."
 series: Drupal Docker
@@ -216,7 +216,13 @@ CMD ["/opt/drupal/scripts/start.sh"]
 There are some more pieces that I will need to get to in unpacking how this developer environment is set up, including:
 
 - The docker-compose, which is actually a two-file setup with one for all environments plus one that is only for local.
-- The start script.
-- The postCreateCommand script only for local.
+- Devcontainer for VS Code configuration.
+- The start script and some other related scripts for how it gets started up.
+- The postCreateCommand script only for local to add Playwright and other tweaks.
 - CI/CD build job: to build the image.
-- CI/CD test jobs: phplint, phpcs, phpunit, accessibility with Playwright and Pa11y.
+- CI/CD prune job: to clean up the build runner.
+- CI/CD test jobs: phplint and phpcs.
+- phpunit tests, local and in CI/CD.
+- Playwright tests, local and in CI/CD.
+- Pa11y tests, local and in CI/CD.
+- Database lifecycle to occasionally bring production database content back to other environments.
