@@ -9,6 +9,7 @@ It is now functional but I haven't finished cleaning up all the content yet.
 Theme:
 
 - Pagination is too big for small screens. I either need less items showing always, or I need to implement JavaScript to show less only on smaller screens.
+- Should images in posts always be centered?
 
 Existing Content:
 

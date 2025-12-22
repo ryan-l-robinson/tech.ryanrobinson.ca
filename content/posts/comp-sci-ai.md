@@ -2,7 +2,7 @@
 title: "Computer Science Degrees in the Age of LLMs"
 date: 2025-08-10T14:46:00.000Z
 author: Ryan Robinson
-description: "A breakdown of why I still think LLMs won't take every programming job and Computer Science degrees are still valuable."
+description: "I don't believe LLMs will take every programming job and I do believe that Computer Science degrees are still valuable."
 tags:
   - AI
   - Tech and Society
@@ -38,7 +38,7 @@ Maybe that's not the experience for every junior job. Maybe there really are som
 
 ## Conclusion: Degree or No?
 
-That's where I come back to the university degree question. My alma mater, Queen's University, explicitly told us in our orientation week that they were not trying to teach us to memorize syntax of a bunch of languages. They explained that a big part of that was because you would immediately hvae to learn a new language on the job anyway, since there are too many languages to learn them all just in case. They were instead trying to teach us how to think about the problems at that more abstract level which could applied to a lot of different contexts and different languages.
+That's where I come back to the university degree question. My alma mater, Queen's University, explicitly told us in our orientation week that they were not trying to teach us to memorize syntax of a bunch of languages. They explained that a big part of that was because you would immediately have to learn a new language on the job anyway, since there are too many languages to learn them all just in case. They were instead trying to teach us how to think about the problems at that more abstract level which could applied to a lot of different contexts and different languages.
 
 The advent of LLMs have really underscored that point. If you don't learn how to deal with those questions, then yes, that's when you are in some level of danger that you aren't doing much more than an LLM. But if you can think at that level about what you're doing, the kinds of things that university degrees give you, you're not at risk anytime soon of an LLM replacing you.
 

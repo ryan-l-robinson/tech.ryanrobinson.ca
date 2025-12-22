@@ -23,7 +23,8 @@
 		"eleventy",
 		"DevOps",
 		"elasticlunr",
-		"hrefs"
+		"hrefs",
+		"linkit"
 	],
 	"cSpell.dictionaries": [
 		"en-gb",
