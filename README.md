@@ -11,6 +11,7 @@ Theme:
 - Add the title attribute to tags in the sidebar block as well.
 - Pagination is too big for small screens. I either need less items showing always, or I need to implement JavaScript to show less only on smaller screens.
 - Should images in posts always be centered?
+- When I add an image using FrontMatter, it adds to a bad path, not relative to the post. Is that avoidable?
 - This won't be a problem for a while but the paths for years and the paths for pages of all posts could conflict, once there is 2021 pages of posts. It probably won't ever be an issue for me because I'm not writing that much, but in principle it should still have some way to handle it.
 
 Existing Content:
