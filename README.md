@@ -4,7 +4,7 @@ This is the technology blog of Ryan Robinson, built using Eleventy.
 
 ## TODO
 
-It is now mostly functional but I haven't finished cleaning up all the content yet.
+It is now functional but I haven't finished cleaning up all the content yet.
 
 Theme:
 
