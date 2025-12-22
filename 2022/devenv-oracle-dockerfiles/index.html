@@ -8,24 +8,24 @@
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2E2C2C">
 		<meta name="geo.region" content="CA-ON">
 		<meta name="author" content="Ryan Robinson">
-		<meta name="description" content="A first-run script for a Drupal Docker image.">
+		<meta name="description" content="Detailing Dockerfile requirements for a Drupal Docker setup based on Oracle Linux.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
 		<meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-		<meta property="og:title" content="Drupal Docker: The Start Script">
-		<meta property="og:description" content="A first-run script for a Drupal Docker image.">
-		<meta property="og:url" content="https://tech.ryanrobinson.ca//2022/devenv-start-script/">
+		<meta property="og:title" content="Dockerfile for Oracle Linux Running Drupal">
+		<meta property="og:description" content="Detailing Dockerfile requirements for a Drupal Docker setup based on Oracle Linux.">
+		<meta property="og:url" content="https://tech.ryanrobinson.ca//2022/devenv-oracle-dockerfiles/">
 		<meta property="og:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 		<meta property="og:type" content="website">
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Drupal Docker: The Start Script">
-		<meta name="twitter:description" content="A first-run script for a Drupal Docker image.">
+		<meta name="twitter:title" content="Dockerfile for Oracle Linux Running Drupal">
+		<meta name="twitter:description" content="Detailing Dockerfile requirements for a Drupal Docker setup based on Oracle Linux.">
 		<meta name="twitter:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 
-		<title>Drupal Docker: The Start Script | Ryan Robinson Technology</title>
+		<title>Dockerfile for Oracle Linux Running Drupal | Ryan Robinson Technology</title>
 
-		<link rel="canonical" href="https://tech.ryanrobinson.ca//2022/devenv-start-script/">
+		<link rel="canonical" href="https://tech.ryanrobinson.ca//2022/devenv-oracle-dockerfiles/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="stylesheet" href="/dist/HMlXMiDsGn.css">
@@ -59,7 +59,7 @@
 			<main id="main">
 				<nav id="search-results" class="search-results" aria-label="Search results navigation" hidden=""></nav>
 				<div class="main-content">
-					<h1 id="drupal-docker-the-start-script">Drupal Docker: The Start Script</h1>
+					<h1 id="dockerfile-for-oracle-linux-running-drupal">Dockerfile for Oracle Linux Running Drupal</h1>
 					
 <article data-pagefind-body="">
 
@@ -69,12 +69,12 @@
 
 	
 		<p class="post-description" data-pagefind-weight="3">
-			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> A first-run script for a Drupal Docker image.
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Detailing Dockerfile requirements for a Drupal Docker setup based on Oracle Linux.
 		</p>
 	
 
 	<div class="post-metadata border-bottom-section">
-		<p><time datetime="2022-06-29">June 29, 2022</time></p>
+		<p><time datetime="2022-06-24">June 24, 2022</time></p>
 		
 			<p>Tags:
 			<a href="/tags/devops/" class="post-tag" title="These posts address development tools, Continuous Integration and Continuous Delivery/Deployment (CI/CD), and more generally the processes that streamline development operations.">DevOps</a>, 
@@ -84,65 +84,105 @@
 		
 	</div>
 
-	<p>Updated introduction: This was an old version of a setup for supporting a Drupal image based on Oracle Linux, which was a requirement at the time. There is an archived version of this in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer/tree/oracle-linux">my GitHub</a>. There is a newer version, not depending on Oracle Linux and improved in many ways, starting with <a href="/2025/drupal-docker-deploys-overview/">Drupal Docker Deploys - An Overview</a>.</p>
-<p>This post will look at the configuration script that runs on the initial creation of the containers. It will handle the majority of the Drupal-specific functionality, roughly equivalent to <a href="/2022/drupal-gitpod-container-2-gitpod-yml/">the GitPod.yml file</a> of the GitPod series.</p>
-<p>This is a bash script that runs in the container once it is first built, so start by defining it as a bash script:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span></code></pre>
-<p>Enforce permissions on the SSH keys, needed for the git SSH connection to work:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> drupal:drupal /home/drupal/.ssh
-<span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">700</span> ~/.ssh</code></pre>
-<p>Provide ownership of entire web root to drupal user:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> drupal:apache /var/www/html</code></pre>
-<p>Move to codebase:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">cd</span> /var/www/html/local.drupal.com</code></pre>
-<p>Add local domain to hosts file (useful for tools like pa11y being able to browse the site):</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-z</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> <span class="token string">"127.0.0.1 local.drupal.com"</span> /etc/hosts<span class="token variable">)</span></span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-  <span class="token builtin class-name">echo</span> <span class="token string">"127.0.0.1 local.drupal.com"</span> <span class="token operator">>></span> /etc/hosts
-<span class="token keyword">fi</span></code></pre>
-<p>Create database and grant all privileges to drupal user. In this case I'm putting it in the script explicitly because I want to share an out-of-the-box functional system. If you're going to do this with a real site, make sure you aren't using the same password on servers that anybody else can access, unlike Docker on your computer. Also it should be a stronger password than &quot;root.&quot;</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">mysql <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token string">"db"</span> <span class="token parameter variable">-e</span> <span class="token string">"CREATE DATABASE IF NOT EXISTS drupal;"</span> <span class="token parameter variable">-u</span> root <span class="token parameter variable">--password</span><span class="token operator">=</span><span class="token string">"root"</span>
-mysql <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token string">"db"</span> <span class="token parameter variable">-e</span> <span class="token string">"GRANT ALL PRIVILEGES ON drupal.* TO 'drupal'@'%';"</span> <span class="token parameter variable">-u</span> root <span class="token parameter variable">--password</span><span class="token operator">=</span><span class="token string">"root"</span></code></pre>
-<p>Install site's contributed code base from composer:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token function">composer</span> <span class="token function">install</span></code></pre>
-<p>Add drush alias to PATH for easier use:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"alias drush=<span class="token entity" title="\&quot;">\"</span>/var/www/html/local.drupal.com/vendor/drush/drush/drush<span class="token entity" title="\&quot;">\"</span>"</span> <span class="token operator">>></span> ~/.bashrc</code></pre>
-<p>Copy the Drupal configuration files:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-f</span> ./.devcontainer/conf/drupal.settings.php <span class="token punctuation">]</span><span class="token punctuation">]</span>
-<span class="token keyword">then</span>
-  <span class="token function">sudo</span> <span class="token function">cp</span> .devcontainer/conf/drupal.settings.php web/sites/default/settings.php
-<span class="token keyword">fi</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-f</span> ./.devcontainer/conf/local.services.yml <span class="token punctuation">]</span><span class="token punctuation">]</span>
-<span class="token keyword">then</span>
-  <span class="token function">sudo</span> <span class="token function">cp</span> .devcontainer/conf/local.services.yml web/sites/local.services.yml
-<span class="token keyword">fi</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> private <span class="token punctuation">]</span><span class="token punctuation">]</span>
-<span class="token keyword">then</span>
-  <span class="token function">mkdir</span> private
-  <span class="token function">chmod</span> <span class="token number">755</span> private
-<span class="token keyword">fi</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-d</span> sync/config <span class="token punctuation">]</span><span class="token punctuation">]</span>
-<span class="token keyword">then</span>
-  <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> sync/config
-<span class="token keyword">fi</span></code></pre>
-<p>Import the existing configuration. Note that there is a drush command to build a new site from the existing configuration, but it did not work reliably in this context.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush site-install <span class="token parameter variable">-y</span> minimal
-vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> system.site uuid <span class="token string">"3d9878de-3355-4510-af4d-575deb24055f"</span>
-vendor/drush/drush/drush config-import <span class="token parameter variable">-y</span></code></pre>
-<p>Flush generated images, which helps if configuration changes since last time including changes to the media formats. This isn't really necessary when you aren't also using <a href="https://drupal.org/project/content_sync">the content_sync module</a>, which I no longer am in this demo, since without that there are no images to regenerate. But I kept the image flush anyway to demonstrate how that works.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush image-flush <span class="token parameter variable">--all</span></code></pre>
-<p>Sets admin password. The same note applies as with the MySQL passwords above.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush user:password admin <span class="token string">"ZNB*ufm1tyz4rwc@yzk"</span></code></pre>
-<p>Rebuild the node access caches. This isn't a huge issue, but does save clearing a warning that appears in Drupal.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush php-eval <span class="token string">'node_access_rebuild();'</span></code></pre>
-<p>Set the <a href="https://www.drupal.org/project/environment_indicator">environment indicator</a>. This is a Drupal module that shows the site toolbar and favicon with different colours. It's very helpful to visually cue your brain when you're in Docker vs dev vs staging vs production. For this to work, you'll have to include the environment indicator module in your composer.json file.</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator name <span class="token string">"Local Docker"</span>
-vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator fg_color <span class="token string">"#ffffff"</span>
-vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> environment_indicator.indicator bg_color <span class="token string">"#000000"</span></code></pre>
-<p>Finally, the all-important clearing of the caches:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">vendor/drush/drush/drush cr</code></pre>
+	<p>Updated introduction: This was an old version of a Dockerfile for supporting a Drupal image based on Oracle Linux, which was a requirement at the time. There is an archived version of this in <a href="https://github.com/ryan-l-robinson/Drupal-Devcontainer/tree/oracle-linux">my GitHub</a>. There is a newer version, not depending on Oracle Linux and improved in many ways, starting with <a href="/2025/drupal-docker-deploys-overview/">Drupal Docker Deploys - An Overview</a>.</p>
+<p>The rest of the original post is below, taking a look at the three Dockerfiles required for that old setup:</p>
+<h2 id="mariadb">MariaDB</h2>
+<p>Let’s do the simple one first: the MariaDB container for the database. This is using a general official MariaDB image and I’m not even being picky about version. This is the entire file:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Use the default MariaDB image, not a specific Oracle Linux one
+FROM mariadb:latest
+
+# Expose the MySQL port to be accessible to the web container.
+EXPOSE 3306</code></pre>
+<h2 id="php">PHP</h2>
+<p>This image starts from Oracle Linux, a requirement of this particular hosting environment:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">FROM oraclelinux:8
+USER root
+SHELL ["/bin/bash", "-c"]</code></pre>
+<p>It adds some other useful utilities, although they may not really be needed here since I won’t be accessing this container directly:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install other useful packages
+RUN dnf install -y curl wget zip</code></pre>
+<p>It creates a directory that is necessary for running PHP-FPM:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Create required directory
+RUN mkdir -p /run/php-fpm</code></pre>
+<p>It installs PHP 8.0, which requires a different repository (at least so far):</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install PHP 8.0, which needs a different repository
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+RUN dnf -y module reset php
+RUN dnf -y module enable php:remi-8.0
+RUN dnf -y install php</code></pre>
+<p>It adds several PHP extensions, including a few that are recommended by not required by Drupal (apcu and uploadprogress):</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install PHP extensions, including PECL with APCU and UploadProgress extensions, recommended by Drupal
+RUN dnf install -y php-gd php-pdo php-zip php-mysqlnd gcc make php-devel php-pear php-pecl-apcu php-pecl-uploadprogress</code></pre>
+<p>It installs XDebug, the PHP debugging tool:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install XDebug
+RUN dnf install -y php-pecl-xdebug
+RUN touch /var/log/xdebug.log
+COPY /conf/xdebug.ini /etc/php.d/xdebug.ini</code></pre>
+<p>It makes several changes to php.ini to increase performance:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Increase resources for PHP
+RUN sed -i "s/max_execution_time = 30/max_execution_time = 300/g" /etc/php.ini
+RUN sed -i "s/max_input_time = 60/max_input_time = 600/g" /etc/php.ini
+RUN sed -i "s/memory_limit = 128M/memory_limit = 2048M/g" /etc/php.ini
+RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 128M/g" /etc/php.ini
+RUN sed -i "s/post_max_size = 8M/post_max_size = 0/g" /etc/php.ini
+RUN sed -i "s/display_errors = Off/display_errors = On/g" /etc/php.ini
+RUN echo "# Increase timeout" >> /etc/httpd/conf.d/php.conf
+RUN echo "Timeout 1200" >> /etc/httpd/conf.d/php.conf
+RUN echo "ProxyTimeout 1200" >> /etc/httpd/conf.d/php.conf</code></pre>
+<p>It updates the php-fpm configuration to allow listeners from other clients (the web container):</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Update PHP-FPM configuration including allowing listeners from other clients, defining the OPCache, and listening on port 9000
+RUN sed -i "s/listen.allowed_clients = 127.0.0.1/;listen.allowed_clients = 127.0.0.1/g" /etc/php-fpm.d/www.conf
+RUN sed -i "s/;php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/php_value[opcache.file_cache]  = \/var\/lib\/php\/opcache/g" /etc/php-fpm.d/www.conf
+RUN sed -i "s/listen = \/run\/php-fpm\/www.sock/listen = 9000/g" /etc/php-fpm.d/www.conf</code></pre>
+<p>And finally, it starts php-fpm as the service running in the foreground for this container:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Start PHP-FPM
+ENTRYPOINT ["php-fpm"]
+CMD ["-F", "-R"]</code></pre>
+<h2 id="apache">Apache</h2>
+<p>The final container, web, is the main one that the devcontainer will connect to, running Apache as its main service. Much of this repeats the PHP container, so I won’t go through all that again. Here’s what’s different.</p>
+<p>It includes a few more useful packages:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install other needed packages
+RUN dnf install -y curl wget git zip mod_ssl httpd php-gd openssl which mariadb sudo patch vim</code></pre>
+<p>It configures Apache, including creating a self-signed SSL certificate for https browsing:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Apache configuration, including SSL certificates and logs
+RUN mkdir -p /etc/httpd/certs
+COPY /conf/openssl-config.txt /etc/httpd/certs/openssl-config.txt
+RUN openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/httpd/certs/local.drupal.com.key -x509 -days 3650 -out /etc/httpd/certs/local.drupal.com.crt -config /etc/httpd/certs/openssl-config.txt
+RUN openssl req -batch -newkey rsa:4096 -nodes -sha256 -keyout /etc/pki/tls/private/localhost.key -x509 -days 3650 -out /etc/pki/tls/certs/localhost.crt -config /etc/httpd/certs/openssl-config.txt
+RUN mkdir -p /var/log/local.drupal.com
+COPY /conf/local.drupal.com.conf /etc/httpd/conf.d/local.drupal.com.conf</code></pre>
+<p>It adds the drupal user and alters some other permissions so it can edit the web folder directly without sudo, and can sudo when necessary:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Add drupal user within the apache group
+RUN useradd drupal
+RUN usermod -aG apache drupal
+# Change default permissions to 775 instead of 755, so that the drupal user can write to the web root
+RUN umask 0002
+# Create sudo group, add drupal user to it, and allow those users to sudo without password
+RUN groupadd sudo
+RUN usermod -aG sudo drupal
+RUN sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%sudo ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers</code></pre>
+<p>It installs composer, an essential for Drupal management:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install latest composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir /usr/bin --filename composer
+RUN php -r "unlink('composer-setup.php');"
+ENV COMPOSER_PROCESS_TIMEOUT=9999</code></pre>
+<p>It installs pa11y for accessibility testing:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Install pa11y accessibility testing tool, including NodeJS
+RUN dnf install -y nodejs pango.x86_64 libXcomposite.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 nss libdrm libgbm xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc libxshmfence
+RUN npm install pa11y -g --unsafe-perm=true --allow-root</code></pre>
+<p>It adds executable permissions to the postCreateCommand script which I will detail in a later post:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Scripts for further actions to take on creation and attachment
+COPY ./scripts/postCreateCommand.sh /postCreateCommand.sh
+RUN ["chmod", "+x", "/postCreateCommand.sh"]</code></pre>
+<p>And finally, it runs Apache as its primary foreground process:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile"># Start Apache
+ENTRYPOINT ["/usr/sbin/httpd"]
+CMD ["-D", "FOREGROUND"]</code></pre>
 
 			<div class="border-top-section">
-				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2022/git-local-workflows/" class="icon-before pager-prev">GitLab DevOps: Local Workflows</a></p><p><span class="visually-hidden">Next: </span><a href="/2022/local-development-options/" class="icon-after pager-next">Local Development: Vagrant, Docker, and GitPod</a></p>
+				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2022/drupal-sync-content/" class="icon-before pager-prev">Drupal: Sync Content</a></p><p><span class="visually-hidden">Next: </span><a href="/2022/git-local-workflows/" class="icon-after pager-next">GitLab DevOps: Local Workflows</a></p>
 				</div>
 			</div>
 </article>
@@ -167,9 +207,9 @@ vendor/drush/drush/drush cset <span class="token parameter variable">-y</span> e
 		<h2 id="posts-in-series-label">Posts in Drupal Docker Oracle Series</h2>
 		<ol class="series-list">
 			
-    			<li><a href="/2022/drupal-dockerfiles-oracle/">Dockerfile for Oracle Linux Running Drupal</a></li>
+    			<li><a href="/2022/devenv-oracle-dockerfiles/">Dockerfile for Oracle Linux Running Drupal</a></li>
 			
-    			<li><a href="/2022/devenv-start-script/">Drupal Docker: The Start Script</a></li>
+    			<li><a href="/2022/devenv-oracle-start-script/">Drupal Docker Oracle: The Start Script</a></li>
 			
 		</ol>
 	</aside>
