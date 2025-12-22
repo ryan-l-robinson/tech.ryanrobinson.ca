@@ -1,18 +1,18 @@
 ---
-title: "Drupal Docker: The Dockerfiles"
+title: "Dockerfile for Oracle Linux Running Drupal"
 date: 2022-06-24T01:46:00.000Z
 author: Ryan Robinson
-description: "The Dockerfile for a Drupal Docker setup."
-series: Drupal Docker
+description: "Detailing Dockerfile requirements for a Drupal Docker setup based on Oracle Linux."
+series: Drupal Docker Oracle
 tags:
   - Drupal
   - DevOps
-draft: true
+  - Linux
 ---
 
-This continues a mini-series describing how I set up a Drupal development environment using [Docker Desktop and the VS Code devcontainer functionality](/tags/drupal-docker/). The full code is available in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
+Updated introduction: This was an old version of a Dockerfile for supporting a Drupal image based on Oracle Linux, which was a requirement at the time. There is an archived version of this in [my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer/tree/oracle-linux). There is a newer version, not depending on Oracle Linux and improved in many ways, starting with [Drupal Docker Deploys - An Overview](/2025/drupal-docker-deploys-overview/).
 
-This post takes a look at the three Dockerfiles required:
+The rest of the original post is below, taking a look at the three Dockerfiles required for that old setup:
 
 ## MariaDB
 

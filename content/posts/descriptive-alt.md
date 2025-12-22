@@ -21,7 +21,7 @@ Another way to think about it is in terms of cognitive processing time. When an 
 
 On the other hand, adding more text description that needs to be spoken out loud is a linear function. If you have twice as much descriptive content, that's twice as much time to listen to it. Maybe you structure it in such a way that they can get the basics out of the way and then have the longer description in a different spot that they can easily skip over, giving them a choice, but that's not always going to be easy.
 
-So what's the answer? How much description should be added for screenreader users? Like many things in life, I think the answer is "it depends."
+So what's the answer? How much description should be added for screen reader users? Like many things in life, I think the answer is "it depends."
 
 Here's one scenario: you're posting on Mastodon about how cute your cat is. In that kind of scenario, the point is the details. You probably should have a description of the cat and what makes it cute. If somebody is choosing to listen to the description of the image attached to a post about how cute your cat is, it's probably fair to assume that they want the details even if that takes a minute or two.
 
