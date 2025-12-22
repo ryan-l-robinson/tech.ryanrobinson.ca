@@ -5,6 +5,7 @@ author: Ryan Robinson
 description: "You might want to change meta tags for SEO purposes. Here's how to do that with Drupal theme preprocessors."
 tags:
   - Drupal
+  - PHP
 ---
 
 ## The Meta Tags
