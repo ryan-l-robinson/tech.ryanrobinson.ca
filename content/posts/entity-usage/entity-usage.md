@@ -74,6 +74,6 @@ I do wish this was a view that was more easy to edit, like removing Language if 
 
 Now that it has the tracked reference data, it can help remind you of it in relevant contexts. If you try to edit or delete a page when there was another page linking to it, you now have a way to know that.
 
-!["Warning message: There are recorded usages of this entity. The recorded usages text is linked to go to the Usage page."](/content/posts/entity-usage/deletion-warning.png)
+!["Warning message: There are recorded usages of this entity. The recorded usages text is linked to go to the Usage page."](./deletion-warning.png)
 
 This gives the editor some essential information. Maybe they decide to go change that other page first so that it isn't still referencing the page to be deleted, avoiding a dead link. Maybe they realize that they actually need to keep the page that you were about to delete because of the other page's reliance on it.
