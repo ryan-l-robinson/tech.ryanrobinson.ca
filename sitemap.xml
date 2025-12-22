@@ -640,13 +640,6 @@
 		
 			
 			<url>
-				<loc>https://tech.ryanrobinson.ca/2022/drupal-docker-devcontainer/</loc>
-				<lastmod>2022-03-18</lastmod>
-			</url>
-		
-		
-			
-			<url>
 				<loc>https://tech.ryanrobinson.ca/2022/people-lookup/</loc>
 				<lastmod>2022-05-02</lastmod>
 			</url>
@@ -696,22 +689,8 @@
 		
 			
 			<url>
-				<loc>https://tech.ryanrobinson.ca/2022/drupal-dockerfiles/</loc>
-				<lastmod>2022-06-24</lastmod>
-			</url>
-		
-		
-			
-			<url>
 				<loc>https://tech.ryanrobinson.ca/2022/git-local-workflows/</loc>
 				<lastmod>2022-06-27</lastmod>
-			</url>
-		
-		
-			
-			<url>
-				<loc>https://tech.ryanrobinson.ca/2022/drupal-docker-config-script/</loc>
-				<lastmod>2022-06-29</lastmod>
 			</url>
 		
 		
@@ -936,20 +915,6 @@
 			<url>
 				<loc>https://tech.ryanrobinson.ca/2024/idrc-presentation/</loc>
 				<lastmod>2024-02-21</lastmod>
-			</url>
-		
-		
-			
-			<url>
-				<loc>https://tech.ryanrobinson.ca/2024/dev-env-updated-dockerfiles/</loc>
-				<lastmod>2024-03-25</lastmod>
-			</url>
-		
-		
-			
-			<url>
-				<loc>https://tech.ryanrobinson.ca/2024/dev-env-updated-devcontainer/</loc>
-				<lastmod>2024-04-08</lastmod>
 			</url>
 		
 		
