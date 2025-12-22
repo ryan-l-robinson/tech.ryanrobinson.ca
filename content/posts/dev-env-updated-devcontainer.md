@@ -7,6 +7,7 @@ series: Drupal Docker
 tags:
     - Drupal
     - DevOps
+draft: true
 ---
 
 This continues from [a previous post](/posts/2024/dev-env-updated-dockerfiles/) about a new Drupal dev environment, a significant upgrade from some previous posts that you can find on [the Drupal Docker tag](/tags/drupal-docker/). That covered the Dockerfiles, while this will cover changes to the Devcontainer.json and the postCreateCommand script. [The whole project's code can be found on my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
@@ -20,7 +21,7 @@ What changed in devcontainer from the previous setup? A few things:
 
 ## postCreateCommand
 
-This is mostly the same, at least for now: it installs all composer packages and sets up the database on the first time creating these images. A few things were able to be removed to simplify this script, functions like creating the database that are handled more easily in other ways. 
+This is mostly the same, at least for now: it installs all composer packages and sets up the database on the first time creating these images. A few things were able to be removed to simplify this script, functions like creating the database that are handled more easily in other ways.
 
 What it still does:
 

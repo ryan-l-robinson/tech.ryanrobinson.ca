@@ -7,6 +7,7 @@ series: Drupal Docker
 tags:
   - Drupal
   - DevOps
+draft: true
 ---
 
 A while ago I wrote about building a [Docker Desktop dev environment for Drupal](/tags/drupal-docker/). It was built on Oracle Linux, a requirement in that context, with three images for Apache, PHP, and MySQL. But there were some significant problems with it, first and foremost that it was very slow. So, this is another version, now based on one of the official Drupal images instead of the Oracle Linux ones. [It can be seen on my GitHub](https://github.com/ryan-l-robinson/Drupal-Devcontainer).
