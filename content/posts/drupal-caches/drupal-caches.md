@@ -1,12 +1,11 @@
 ---
 title: Introduction to Drupal Caching
-date: 2025-12-22T14:54:16.700Z
+date: 2025-12-22T14:26:16.700Z
 author: Ryan Robinson
 description: "Caches are an important tool in Drupal to keep page loads as efficient as possible, without risking showing old inaccurate information."
 tags:
   - Drupal
   - PHP
-draft: true
 ---
 
 Proper caching in Drupal development can be easily missed. This can result in problems in a few ways:
