@@ -159,7 +159,7 @@ After installing and enabling that module, the Views UI will give a new option i
 
 !["Settings page labelled as Events Home: Caching. Options in a list are Custom Tag based, None, Tag based, and Time based."](./custom-tag-views.png)
 
-!["Settings page labelled Events Home: Caching options. It has one field, a long text with Custom tag list. The help text underneath specifies that you can put one tag per line. In this example, it uses node_list:event."](/content/posts/drupal-caches/custom-tags-list.png)
+!["Settings page labelled Events Home: Caching options. It has one field, a long text with Custom tag list. The help text underneath specifies that you can put one tag per line. In this example, it uses node_list:event."](./custom-tags-list.png)
 
 That helps with narrowing down the frequency of caches to only those changes that matter. In this case, I can have a tag only for changes to events, not to changes of all nodes as would be default ,using node_list:event. There are a lot less events than there are total nodes, so this is a big performance improvement with the caches only being cleared a fraction as often.
 

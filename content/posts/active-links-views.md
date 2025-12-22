@@ -2,9 +2,10 @@
 title: "Drupal: Active Links in Views"
 date: 2022-12-30T01:46:00.000Z
 author: Ryan Robinson
-description: "Drupal doesn't add a class for active links by default in views, but that can be added with JavaScript."
+description: Drupal doesn't add a class for active links by default in views, but that can be added with JavaScript.
 tags:
   - Drupal
+  - JavaScript
 ---
 
 Drupal 9 provides a different style for active links - i.e. a link that goes to the same page that you're already on - in most contexts. This helps identify for users when it would be redundant to select it again. There's one exception where it doesn't do this out of the box, however: within views.
