@@ -1,8 +1,8 @@
 ---
-title: "The postCreateCommand"
-date: 2025-12-27T00:16:00.000Z
+title: "postCreateCommand for Dev Tools"
+date: 2025-12-23T14:16:00.000Z
 author: Ryan Robinson
-description: "A script to run on the local dev environment including Playwright, pa11y, and phpunit."
+description: "A script to run on the local dev environment including supporting Playwright, pa11y, and phpunit."
 series: Drupal Docker
 tags:
   - Drupal
@@ -11,7 +11,9 @@ tags:
   - Accessibility
 draft: true
 ---
-When a new VS Code dev environment is created and running for the first time, it can run a script that was specified in the devcontainer. In this case, I want to add three tools that help with testing.
+This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
+
+In [the last post](/2025/devenv-devcontainer/), I detailed the devcontainer file. Among other things, it defines a script that runs the first time the environment is built. This post will look at that script.
 
 ## Playwright with Axe-Core
 

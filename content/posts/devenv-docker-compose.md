@@ -1,6 +1,6 @@
 ---
 title: "The Docker Compose Setup"
-date: 2025-12-23T14:16:00.000Z
+date: 2025-12-23T13:16:00.000Z
 author: Ryan Robinson
 description: "Docker Compose for the Drupal setup, including a two-tiered approach for differentiating local."
 series: Drupal Docker
