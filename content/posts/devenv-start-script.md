@@ -1,5 +1,5 @@
 ---
-title: "Drupal Docker: Start Scripts"
+title: "Start Scripts"
 date: 2025-12-23T14:46:00.000Z
 author: Ryan Robinson
 description: "The start script for a Drupal Docker setup includes connecting to the database, setting up key files with variables, and running Apache."

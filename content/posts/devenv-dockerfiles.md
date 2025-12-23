@@ -1,6 +1,6 @@
 ---
 title: "The Primary Web Dockerfile"
-date: 2025-12-23T13:16:00.000Z
+date: 2025-12-23T11:00:00.000Z
 author: Ryan Robinson
 description: "A Dockerfile for a Drupal dev environment including Apache, PHP, and XDebug, with some variation by environment."
 series: Drupal Docker
@@ -8,14 +8,15 @@ tags:
   - Drupal
   - DevOps
   - Linux
-draft: true
 ---
 
-This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
+This post is one of several in a series detailing my development environment and CI/CD deployment pipeline for a Drupal site. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
+
+This post will dive into the Dockerfile that defines how the primary web (PHP and Apache) image will be built.
 
 ## The Web Image
 
-The image is based on [the official Drupal image](https://hub.docker.com/_/drupal/), because that will provide a good amount of what is necessary without needing to repeat it.
+First, The image is based on [the official Drupal image](https://hub.docker.com/_/drupal/), because that will provide a good amount of what is necessary without needing to repeat it.
 
 ```Dockerfile
 FROM drupal:php8.3-apache
@@ -23,7 +24,7 @@ FROM drupal:php8.3-apache
 
 ### Variables
 
-Next are some arguments which are going to be passed through from the GitLab CI/CD job. BASE_URL is needed for some accessibility tests. BRANCH is needed to distinguish what to build since that isn't all the same in each environment. TIMESTAMP is used as a deployment identifier, which I then have in use for the environment indicator in Drupal as a way to display when it was last rebuilt. All three will get passed through again as environment variables.
+Next are some arguments which are going to be passed through from the GitLab CI/CD job. BASE_URL is needed for some accessibility tests. BRANCH is needed to distinguish what to build since that isn't all the same in each environment. TIMESTAMP is used as a deployment identifier, which I then have in use for the environment indicator in Drupal as a way to display when it was last rebuilt. All three will get passed through into the built image as environment variables.
 
 ```Dockerfile
 ARG BASE_URL
@@ -49,10 +50,9 @@ ENV LANGUAGE=en_CA.UTF-8
 
 ### General Packages
 
-Install the extra packages - some of the most essential ones are already included in the Drupal image - and PHP development settings. In this first block, the only variance by environment is that main does not get nodejs or npm, which is needed for some things like playwright accessibility testing but that is not going to be running from production.
+In the next section, install the extra packages that were not already included in the base Drupal image. In this first block, the only variance by environment is that main does not get nodejs or npm, which is needed for some things like playwright accessibility testing but that is not going to be running from production.
 
 ```Dockerfile
-# Install needed repositories and general packages
 RUN apt-get -y update && \
     apt-get -y --no-install-recommends install \
     default-mysql-client \
@@ -74,7 +74,7 @@ RUN apt-get clean && \
 
 ### PHP
 
-Next up is PHP. There is a version of PHP already installed - that's the 8.3 specified in the image name at the start - but there are a few more things we need to improve.
+The next section covers PHP adjustments. There is a version of PHP already installed - that's the 8.3 specified in the image name at the start - but there are a few more things we need to improve.
 
 ```Dockerfile
 # PHP.ini file varies by environment
@@ -91,6 +91,7 @@ RUN pecl channel-update pecl.php.net \
     && docker-php-ext-enable apcu \
     && docker-php-ext-enable uploadprogress
 
+# Copy settings for APCU, primarily to increase memory
 COPY php/docker-php-ext-apcu.ini /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
 
 # PHP.ini file varies by environment
@@ -116,7 +117,7 @@ RUN if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "staging" ]; then \
     && touch /var/log/xdebug.log \
     && chown www-data:www-data /var/log/xdebug.log \
     && cp /opt/drupal/php/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d \
-    ; fi
+  ; fi
 ```
 
 Note the COPY of a file for the APCU configuration. That's a simple file, not worth its own post, and is really just necessary to get a higher memory limit than the default.
@@ -127,7 +128,7 @@ apc.enable_cli=1
 apc.shm_size=64M
 ```
 
-There's also a similar xdebug configuration file being copied, which is similarly relatively straightforward. XDebug is a great tool for debugging with PHP.
+There's also a similar xdebug configuration file being copied, which is also relatively straightforward. XDebug is a great tool for debugging with PHP. [I wrote about using it in VS Code a while ago](/2022/php-xdebug-vs-code/).
 
 ```ini
 zend_extension=xdebug.so
@@ -140,7 +141,7 @@ xdebug.log = /var/log/xdebug.log
 
 ### Apache
 
-The other major component is Apache. As with PHP, the basics are already installed from the inherited base image, but it doesn't have any SSL certificate so you can't browse it as https. This section, then, will add a self-signed certificate for the Apache configuration, so that we'll be able to browse the site locally with HTTPS.
+Next is the other major component: Apache. As with PHP, the basics are already installed from the inherited base image, but it doesn't have any SSL certificate so you can't browse it as HTTPS. This section, then, will add a self-signed certificate for the Apache configuration, so that we'll be able to browse the site locally with HTTPS.
 
 ```Dockerfile
 # Apache configuration, including SSL certificates and logs
@@ -186,7 +187,7 @@ RUN chown -R www-data:www-data /var/www /opt
 RUN chmod -R 770 /opt/drupal/scripts
 ```
 
-Those scripts will get more attention in a future post.
+Those scripts will get more attention in future posts.
 
 ### Build the Composer Packages
 
@@ -210,19 +211,3 @@ Finally, designate the script that runs when container starts up. Again, I'll co
 ```Dockerfile
 CMD ["/opt/drupal/scripts/start.sh"]
 ```
-
-## More to Come
-
-There are some more pieces that I will need to get to in unpacking how this developer environment is set up, including:
-
-- The docker-compose, which is actually a two-file setup with one for all environments plus one that is only for local.
-- Devcontainer for VS Code configuration.
-- The start script and some other related scripts for how it gets started up.
-- The postCreateCommand script only for local to add Playwright and other tweaks.
-- CI/CD build job: to build the image.
-- CI/CD prune job: to clean up the build runner.
-- CI/CD test jobs: phplint and phpcs.
-- phpunit tests, local and in CI/CD.
-- Playwright tests, local and in CI/CD.
-- Pa11y tests, local and in CI/CD.
-- Database lifecycle to occasionally bring production database content back to other environments.
