@@ -5,11 +5,215 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-12-23T14:30:16Z</updated>
+  <updated>2025-12-23T15:27:16Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Deploying Containers</title>
+    <link href="https://tech.ryanrobinson.ca/2025/devenv-deploy-update-jobs/" />
+    <updated>2025-12-23T15:27:16Z</updated>
+    <id>https://tech.ryanrobinson.ca/2025/devenv-deploy-update-jobs/</id>
+    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this post, I will look at the core of the process for deploying updates to a Docker swarm server.&lt;/p&gt;
+&lt;p&gt;We&#39;re starting to reach some of the parts of this series that I cannot give full code that I know works in other environments, because I do not have personally have my own Docker swarm servers to test things with. This component is based on what works with some of my work infrastructure. On a related note, I have structured the demo project so that jobs I don&#39;t actually have the environment to run are in the swarm.gitlab-ci.yml, as opposed to the main .gitlab-ci.yml which will actually run when I make new changes.&lt;/p&gt;
+&lt;h2 id=&quot;deploy-job&quot;&gt;Deploy Job&lt;/h2&gt;
+&lt;p&gt;First up, we need to deploy the updated service to the swarm.&lt;/p&gt;
+&lt;h3 id=&quot;general-deployment-template&quot;&gt;General Deployment Template&lt;/h3&gt;
+&lt;p&gt;The core function to be able to deploy a stack to a Drupal swarm is &lt;code&gt;docker stack deploy&lt;/code&gt; but this gets more complicated because of another requirement: sometimes there is another docker-compose required to define differences for the other environments. I don&#39;t have those in my example, but they might be things like designating where to find the volumes, since the file structure on all environments is not always going to be the same. Because of that, it needs to first merge together more than one docker-compose file, before it deploys the stack of that combined file. It also will provide that combined file as an artifact, in case it&#39;s helpful for debugging issues.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;.deploy_template_swarm&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy
+  &lt;span class=&quot;token key atrule&quot;&gt;retry&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; script_failure
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;STACK_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;COMPOSE_FILES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.yml
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; echo &quot;$CI_REGISTRY_PASSWORD&quot; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; docker login $CI_REGISTRY &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;u $CI_REGISTRY_USER &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;stdin
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; if &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;z $COMPOSE_FILES &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then export COMPOSE_FILES=docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.yml; fi
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;
+      docker &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;log&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;level fatal
+      compose
+      $(printf &#39; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;f %s &#39; $(echo $COMPOSE_FILES &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; sed &#39;s/&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/ /g&#39;))
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;p $STACK_NAME
+      config
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;o docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.rendered.yml
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; sed &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;i &#39;/^name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;.&lt;span class=&quot;token important&quot;&gt;*$/d&#39;&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.rendered.yml
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker stack deploy
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;c docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.rendered.yml
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;with&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;registry&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;auth
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;detach=false $STACK_NAME
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker logout
+  &lt;span class=&quot;token key atrule&quot;&gt;artifacts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
+    &lt;span class=&quot;token key atrule&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.rendered.yml&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;project-implementation-for-deployment&quot;&gt;Project Implementation for Deployment&lt;/h3&gt;
+&lt;p&gt;To implement that in a particular project, it would look something like:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;prod_deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .deploy_template_swarm
+  &lt;span class=&quot;token key atrule&quot;&gt;allow_failure&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;STACK_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; library
+    &lt;span class=&quot;token key atrule&quot;&gt;COMPOSE_FILES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.yml&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;compose.local.storage.yml
+    &lt;span class=&quot;token key atrule&quot;&gt;WEB_REPLICA_COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;DB_REPLICA_COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; prod
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This extends the template job. It requires combining two docker-compose files. It also passes through a couple of variables that we saw back in &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-docker-compose/&quot;&gt;the docker-compose file&lt;/a&gt; to declare how many of each service we want to deploy to the swarm. This one runs on the prod server&#39;s tag, and only when merges are made into the main branch.&lt;/p&gt;
+&lt;h2 id=&quot;database-update-job&quot;&gt;Database Update Job&lt;/h2&gt;
+&lt;p&gt;Next, with Drupal specifically, we need to update the database to be in line with the new code. Clearing caches is also an essential step in Drupal deployments.&lt;/p&gt;
+&lt;h3 id=&quot;general-single-use-template&quot;&gt;General Single-Use Template&lt;/h3&gt;
+&lt;p&gt;To do this, I have a general &amp;quot;single use&amp;quot; job. At its simplest, it runs a script. Like the deployment, though, it gets more complicated, in this case because I wanted to be able to see the logs of that script running so that we know if there are any problems. That is what makes this a much longer script.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;
+&lt;span class=&quot;token comment&quot;&gt;## This is for single-use services, to run a specific script one time, before or after deployment. ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;.docker_single_use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;STACK_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_UP_WAIT_REPEAT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_UP_WAIT_TIME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_CREATE_WAIT_REPEAT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;60&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_CREATE_WAIT_TIME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; echo &quot;$CI_DEPLOY_PASSWORD&quot; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; docker login &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;u $CI_DEPLOY_USER &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;stdin $CI_REGISTRY
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; DATE=&quot;$(date &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;iso&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;8601=seconds)&quot;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker service update &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;with&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;registry&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;auth &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;replicas 1 &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;force $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;STACK_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;_$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;update&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;monitor 1s
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+      EXIT_VALUE=0
+      SERVICE_UP_WAIT_CHECK=0
+      while [ -z &quot;$(docker service ps --format &#39;json&#39; ${STACK_NAME}_${SERVICE_NAME})&quot; ]; do
+        SERVICE_UP_WAIT_CHECK=$((SERVICE_UP_WAIT_CHECK+1))
+        if [ &quot;${SERVICE_UP_WAIT_CHECK}&quot; -eq &quot;${SERVICE_UP_WAIT_REPEAT}&quot;]; then
+          echo Service failed to be created within $((SERVICE_UP_WAIT_REPEAT * SERVICE_UP_WAIT_TIME)) seconds.
+          exit 1
+        else
+          echo Service ${STACK_NAME}_${SERVICE_NAME} has not been created yet. Attempt ${SERVICE_UP_WAIT_CHECK}/${SERVICE_UP_WAIT_REPEAT}
+          sleep ${SERVICE_UP_WAIT_TIME}
+        fi
+      done
+      SERVICE_CREATE_WAIT_CHECK=0&lt;/span&gt;
+
+      for task in $(docker service ps &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;q $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;STACK_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;_$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;); do
+        &lt;span class=&quot;token comment&quot;&gt;# Get the CreatedAt of the current task for comparison&lt;/span&gt;
+        created_at=$(docker inspect &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;format &#39;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;.CreatedAt&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&#39; $task)
+
+        &lt;span class=&quot;token comment&quot;&gt;# Check if this task is more recent than the current most recent task&lt;/span&gt;
+        if &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;z &quot;$most_recent_created_at&quot; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; &quot;$created_at&quot; &lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt; &quot;$most_recent_created_at&quot; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then
+          LATEST_TASK=$(docker inspect &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;format &#39;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;.ID&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&#39; $task)
+          most_recent_created_at=&quot;$created_at&quot;
+        fi
+      done
+
+      while true; do
+        NEW_DATE=&quot;$(date &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;iso&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;8601=seconds)&quot;
+        docker service logs &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;since=&quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DATE&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;STACK_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;_$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        DATE=&quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;NEW_DATE&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot;
+        DOCKER_STATUS=$(docker inspect &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;format &#39;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;.Status.State&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&#39; $LATEST_TASK)
+        echo &quot;Latest task status is $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DOCKER_STATUS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot;
+        if &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DOCKER_STATUS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; = &quot;failed&quot; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then
+          EXIT_VALUE=1
+          break
+        elif &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DOCKER_STATUS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; = &quot;complete&quot; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then
+          break
+        elif &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DOCKER_STATUS&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; = &quot;running&quot; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then
+          sleep $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_CREATE_WAIT_TIME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        else
+          SERVICE_CREATE_WAIT_CHECK=$((SERVICE_CREATE_WAIT_CHECK+1))
+          if &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_CREATE_WAIT_CHECK&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;eq &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_CREATE_WAIT_REPEAT&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;; then
+            echo Service failed to start within $((SERVICE_CREATE_WAIT_REPEAT * SERVICE_CREATE_WAIT_TIME)) seconds.
+            EXIT_VALUE=1
+            break
+          fi
+          sleep $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_CREATE_WAIT_TIME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        fi
+      done
+      docker service logs &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;since=&quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DATE&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;STACK_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;_$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SERVICE_NAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker logout
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; exit $EXIT_VALUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This allows it to loop on the service, returning its status and any logs that have been added since the last check.&lt;/p&gt;
+&lt;h3 id=&quot;project-implementation-for-database-update&quot;&gt;Project Implementation for Database Update&lt;/h3&gt;
+&lt;p&gt;To run this now on a specific project, you need a few things.&lt;/p&gt;
+&lt;p&gt;First is the script that it is going to run, in a separate file under the scripts folder. As with &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-start-script/&quot;&gt;the start script&lt;/a&gt;, it will first wait to confirm that it is able to connect to the database, returning an error if it didn&#39;t work after enough tries. Then it will use drush commands to import the latest configuration - twice, because if config_split is involved it might only apply the split in the first run and then change the split configurations on the second - then run any updates needed to the database and clear the caches.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token function-name function&quot;&gt;wait_for_db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;db_retries&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;db_wait_time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;db_attempt&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/settings-file.sh
+
+  &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$db_attempt&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-le&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$db_retries&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; drush sqlq &lt;span class=&quot;token string&quot;&gt;&quot;SELECT 1&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;&amp;amp;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+      &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Database is not ready yet. Attempt &lt;span class=&quot;token variable&quot;&gt;$db_attempt&lt;/span&gt;/&lt;span class=&quot;token variable&quot;&gt;$db_retries&lt;/span&gt;. Waiting for &lt;span class=&quot;token variable&quot;&gt;$db_wait_time&lt;/span&gt; seconds...&quot;&lt;/span&gt;
+      &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$db_wait_time&lt;/span&gt;
+      &lt;span class=&quot;token assign-left variable&quot;&gt;db_attempt&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$((&lt;/span&gt;db_attempt &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;))&lt;/span&gt;&lt;/span&gt;
+      &lt;span class=&quot;token assign-left variable&quot;&gt;db_wait_time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$((&lt;/span&gt;db_wait_time &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;))&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; wait_for_db&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-e&lt;/span&gt;
+  drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# Run again to catch extra configuration in the config_split&lt;/span&gt;
+  drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+
+  drush updb &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+  drush cr
+
+&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Database never came up.&quot;&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next is the service declared in the docker-compose. This runs the main web image, but replacing the command with the update script we just wrote. It will normally not replicate at all in a general deploy, because we do not want this to be able to run until after we know the new web service is fully in place.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;db_update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_REGISTRY_IMAGE&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;registry.gitlab.com/ryan&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;l&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;robinson/drupal&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;dev&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;environment/web&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_COMMIT_REF_NAME&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;main&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /opt/drupal/scripts/update.sh
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token important&quot;&gt;*mysql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*config-split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*deploy-env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; private&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/private
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; public&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/web/sites/default/files
+    &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; replicated
+      &lt;span class=&quot;token key atrule&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;restart_policy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; on&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;failure
+        &lt;span class=&quot;token key atrule&quot;&gt;max_attempts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally is the GitLab CI/CD job that will extend the single-use template and specify which service (running which script) it needs to run. This will start up that service just once, after we know the other deployment job is done, run its script and then shut down again.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;prod_update&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .docker_single_use
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;STACK_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; library
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; db_update
+  &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; prod
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; dev
+  &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;dev_deploy&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I know that seems like it is much more complicated than &amp;quot;run a script&amp;quot; sounds like it should be, but it&#39;s designed to be flexible for other services running any scripts as well as user-friendly with the logs visible.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Pruning Old Docker Objects in CI/CD</title>
     <link href="https://tech.ryanrobinson.ca/2025/devenv-prune-ci/" />
@@ -913,60 +1117,6 @@ RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&qu
 &lt;p&gt;Now that it has the tracked reference data, it can help remind you of it in relevant contexts. If you try to edit or delete a page when there was another page linking to it, you now have a way to know that.&lt;/p&gt;
 &lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.avif 495w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.webp 495w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.png&quot; alt=&quot;&amp;quot;Warning message: There are recorded usages of this entity. The recorded usages text is linked to go to the Usage page.&amp;quot;&quot; width=&quot;495&quot; height=&quot;148&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;This gives the editor some essential information. Maybe they decide to go change that other page first so that it isn&#39;t still referencing the page to be deleted, avoiding a dead link. Maybe they realize that they actually need to keep the page that you were about to delete because of the other page&#39;s reliance on it.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Embedding Content in Other Content</title>
-    <link href="https://tech.ryanrobinson.ca/2025/embed-node/" />
-    <updated>2025-12-22T11:14:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/embed-node/</id>
-    <content type="html">&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;In my work, I&#39;ve encountered a couple of scenarios where I wanted to embed some version of one node of content into another node of content.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/H5T8EljwoK-666.avif 666w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/H5T8EljwoK-666.webp 666w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/embed-node/H5T8EljwoK-666.jpeg&quot; alt=&quot;&amp;quot;Xhibit meme: yo dawg, we heard you like content, so I put content in your content.&amp;quot;&quot; width=&quot;666&quot; height=&quot;375&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;This has at least a couple significant benefits over copying the same block multiple times into multiple pages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If something needs updated on the source node, you don&#39;t have to update every other page referencing it separately. Update it once and trust that it is ready everywhere.&lt;/li&gt;
-&lt;li&gt;The same style can be enforced consistently so it always looks identical across multiple pages, instead of relying on different content authors to always use the same formatting, or even for the same content author to remember to do the same formatting every time.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
-&lt;p&gt;I was prepared for this to be a custom code project. Then I did some quick research and found the &lt;a href=&quot;https://www.drupal.org/project/entity_embed&quot;&gt;entity_embed&lt;/a&gt; module that is almost exactly what I wanted (I&#39;ll touch on a couple minor UI things later). This module allows putting a button in the CKEditor for any text format which will then embed that content.&lt;/p&gt;
-&lt;p&gt;This module is documented and generally works as advertised, but I&#39;ll walk through the experience:&lt;/p&gt;
-&lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
-&lt;p&gt;After the usual steps for a new module of installing and enabling it, go to the configuration screen, which is added to the menu under Administration -&amp;gt; Configuration -&amp;gt; Content authoring -&amp;gt; Embed buttons. There are a few settings under the Settings tab, but those are minimal about where the icons for the buttons get saved.&lt;/p&gt;
-&lt;p&gt;The &amp;quot;List&amp;quot; tab is where you add your buttons and configure them.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/K6k7r9pHGo-1522.avif 1522w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/K6k7r9pHGo-1522.webp 1522w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/embed-node/K6k7r9pHGo-1522.png&quot; alt=&quot;&amp;quot;Overview of buttons added, in this case with one for Insert Database and one for Insert Reusable Content. Each row specifies the embed type, an icon, and has operations links.&amp;quot;&quot; width=&quot;1522&quot; height=&quot;415&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;For each button, you get some good options out of the box:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Admin label&lt;/li&gt;
-&lt;li&gt;Embed type&lt;/li&gt;
-&lt;li&gt;Entity type (if the embed type was an entity)&lt;/li&gt;
-&lt;li&gt;Content type (if the entity type was Content)&lt;/li&gt;
-&lt;li&gt;Allowed display plugins&lt;/li&gt;
-&lt;li&gt;Allowed alignments&lt;/li&gt;
-&lt;li&gt;Whether to display a caption&lt;/li&gt;
-&lt;li&gt;Button icon, and an option to reset it&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The most interesting one to me is the allowed display plugins. This makes it possible to enforce that you always want those databases, for example, to always appear in the exact same way when embedded on other sites. This meets one of the goals noted above, with a more strongly encouraged consistent formatting.&lt;/p&gt;
-&lt;h3 id=&quot;add-to-text-format&quot;&gt;Add to Text Format&lt;/h3&gt;
-&lt;p&gt;This is the typical process if you&#39;ve edited a text format before. Under Configuration -&amp;gt; Content authoring -&amp;gt; Text formats and editors, pick the text format you want to add the button to the toolbar.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/nvVztQQqU5-1777.avif 1777w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/nvVztQQqU5-1777.webp 1777w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/embed-node/nvVztQQqU5-1777.png&quot; alt=&quot;&amp;quot;In the toolbar configuration for a text format, several buttons are shown. A red box is drawn around the two embed content buttons to show they match the icons set in the configuration above.&amp;quot;&quot; width=&quot;1777&quot; height=&quot;425&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;Below that, make sure the &amp;quot;Display embedded entities&amp;quot; filter is enabled and save it.&lt;/p&gt;
-&lt;h3 id=&quot;content-editor-experience&quot;&gt;Content Editor Experience&lt;/h3&gt;
-&lt;p&gt;This is where there is a little bit less than ideal of a user experience.&lt;/p&gt;
-&lt;p&gt;When a user presses the button you&#39;ve added, the first screen of the form looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/fzLxLf3j0V-1181.avif 1181w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/fzLxLf3j0V-1181.webp 1181w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/embed-node/fzLxLf3j0V-1181.png&quot; alt=&quot;&amp;quot;Popup form with title &#39;Select content item to embed&#39; a search field labelled as &#39;Title&#39; and a Next button.&amp;quot;&quot; width=&quot;1181&quot; height=&quot;321&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;My minor gripes about the user experience here:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Nothing indicates which specific embed content button they clicked on. If they accidentally click on the Reusable Content one instead of the Database one, there&#39;s nothing here to help them notice that mistake until they start searching and get confused why what they want isn&#39;t there. The pages are identical regardless of which button they click on, if you have more than one button.&lt;/li&gt;
-&lt;li&gt;You can only search by the title of the entity you want. If there are two pages with the same title, you can&#39;t tell which one you&#39;re selecting - the only other indicator it gives you is the ID number and that usually means nothing to regular editors.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The next screen by default lets you pick alignment and caption. These options are there, even if you set up your button to not allow alignment or captions. That&#39;s definitely confusing to users.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/ktH78Z46gN-548.avif 548w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/embed-node/ktH78Z46gN-548.webp 548w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/embed-node/ktH78Z46gN-548.png&quot; alt=&quot;&amp;quot;Buttons to choose from alignment options and a text field for caption, before the button to Embed.&amp;quot;&quot; width=&quot;548&quot; height=&quot;315&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;There is &lt;a href=&quot;https://www.drupal.org/project/entity_embed/issues/3443587&quot;&gt;an issue logged for this and it has a patch that removes it&lt;/a&gt;. It&#39;s not incorporated into a release for some reason. If you apply the patch, it does as advertised, removing those options, but then it leaves the second page as nothing except a link to the entity that you just chose on the first page. It gives you no new information or settings, so it is just an extra button to press.&lt;/p&gt;
-&lt;p&gt;I wish they would collapse this into one screen with all the options, but only show the ones that are actually going to do anything.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Those small complaints about the user experience aside, this module does solve the problem very well.&lt;/p&gt;
-&lt;p&gt;In a future post, I will expand on this because it introduced another question for us: how do we make sure the editors know which other pages they are impacting by making an edit on a page that might be embedded elsewhere?&lt;/p&gt;
 </content>
   </entry>
 </feed>
