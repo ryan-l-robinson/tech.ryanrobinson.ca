@@ -1,6 +1,6 @@
 ---
 title: "VS Code DevContainer"
-date: 2025-12-26T15:46:00.000Z
+date: 2025-12-23T14:16:00.000Z
 author: Ryan Robinson
 description: "The devcontainer file specifies how VS Code will run this environment, including extensions, settings, and scripts."
 series: Drupal Docker
@@ -8,16 +8,16 @@ tags:
   - Drupal
   - DevOps
   - Linux
-draft: true
+  - Visual Studio Code
 ---
 
 This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
 
-We now have a robust Dockerfile for the main web image and two layers of docker-compose files. Now we can tell VS Code how to use those files to build the environment we need. To do this, create a file named devcontainer.json inside a .devcontainer folder in the project.
+In [the last post](/2025/devenv-docker-compose/), I walked through setting up the docker-compose files to define which services are needed, with some variables by environment and slit into two files so that some is only for local development. Now, we can move on to defining how VS Code knows to use those docker-compose files as well as some other features configuring the environment. This is done using a file named devcontainer.json inside a .devcontainer folder in the project.
 
 ## The Essentials
 
-The most essential part is at the beginning, where it tells VS Code what services it needs to run, based on what docker-compose files, and running as what user.
+The most essential part is at the beginning, where it tells VS Code what services it needs to run, based on what docker-compose file(s), and running as what user.
 
 ```json
   "name": "drupal.devenv",
@@ -28,11 +28,15 @@ The most essential part is at the beginning, where it tells VS Code what service
   "workspaceFolder": "/opt/drupal",
 ```
 
-In this case, I'm naming it drupal.devenv, opening the two docker-compose files together, logging in with the root user on the web service at /opt/drupal, but also running the database service.
+In this case, I'm naming it drupal.devenv, opening the two docker-compose files together (that's what makes it different than a deployment to other servers), logging in with the root user on the web service at /opt/drupal, but also running the database service.
+
+Logging in with the root user is the most hassle here. Some things don't work easily as root. Other things don't work at all as anything other than root. I'd still like to change this in theory to logging in with www-data, the Apache user, and simplify some other things, but at least at the time it was determined to not be possible.
 
 ## Extensions
 
-These extensions help lock in a variety of extensions that make sense for this project. These could instead be done by each user on their machine, but then it doesn't share the settings with others just starting up using the project; they would have to figure out all the settings themselves. They also could be put into .vscode/extensions.json and committed to the project that way; that works but the extensions are only recommended instead of automatically installed and will also apply when opening the repository locally even when some of them only make sense when within a functioning container environment. This way shares with all users but only within the built environment.
+The extensions section help lock in a variety of VS Code extensions that make sense for this project.
+
+These could instead be done by each user on their machine, but then it doesn't share the settings with others just starting up using the project; they would have to figure out all the settings themselves. The extensions also could be put into .vscode/extensions.json and committed to the project that way; that works but the extensions are only recommended instead of automatically installed and will also apply when opening the repository on the host machine even when some of them only make sense within a functioning container environment. This way shares with all users but only within the built environment, which is what we want for this kind of project.
 
 ```json
   "customizations": {
@@ -60,7 +64,17 @@ These extensions help lock in a variety of extensions that make sense for this p
 
 ## Settings
 
-This has a similar dynamic as extensions, where they could be done other ways, but for ease of being shared and setup for all users, it makes the most sense here.
+This has a similar dynamic as extensions, where they could be added by each user separately or could be added in the project, but for ease of being shared and setup for all users, it makes the most sense here as part of the devcontainer configuration.
+
+Some of the settings a change here, which range from personal preference to allowing a useful function:
+
+- Tells it where to find php to run.
+- Disables the inlay hints of parameters, which I found distracting.
+- Enforced Drupal standard formatting using an extension.
+- Encourages Drupal best practice style with PHP CodeSniffer.
+- Defined that phpunit tests run in the Tests Explorer need to use a different wrapper script. That is used to force tests to run as www-data instead of as root, one of the problems I mentioned above from needing to run as root otherwise.
+- Sets bash as the default terminal.
+- Sets a colour palette.
 
 ```json
     "vscode": {
@@ -118,7 +132,13 @@ I am routinely tinkering with these settings, so what I wrote here may not be th
 
 ## Scripts
 
-Finally, the devcontainer can specify scripts at various stages of the process. There is a separate file to run on first creation of a new developer environment. When attaching to the environment each time, reset the permissions, as they sometimes get lost as a volume. The last line simply tells it that when the VS Code environment closes, it should also stop the services spun up with the docker-compose files.
+Finally, the devcontainer can specify scripts to run at various stages of the process.
+
+There is a separate file to run on first creation of a new developer environment, which I will get to as the next post in this series.
+
+When attaching to the environment each time, I have it reset the permissions as they sometimes get lost as a volume.
+
+The last line simply tells it that when the VS Code environment closes, it should also stop the services spun up with the docker-compose files.
 
 ```json
   "postCreateCommand": "/bin/bash -c /opt/drupal/scripts/postCreateCommand.sh",
