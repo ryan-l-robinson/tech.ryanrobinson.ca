@@ -8,7 +8,6 @@ It is now functional but I haven't finished cleaning up all the content yet.
 
 Theme:
 
-- Add the title attribute to tags in the sidebar block as well.
 - Pagination is too big for small screens. I either need less items showing always, or I need to implement JavaScript to show less only on smaller screens.
 - Should images in posts always be centered?
 - When I add an image using FrontMatter, it adds to a bad path, not relative to the post. Is that avoidable?
