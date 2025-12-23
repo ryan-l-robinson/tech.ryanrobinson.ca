@@ -66,6 +66,7 @@ Rules define under what circumstances this build should happen. This is largely 
 - If the branch is dev, staging, or main. Those are going to deploy to other environments, so always need built.
 - If a change was made to certain files that impact the building itself, like the Dockerfile or the docker-compose. If I am changing those, it probably means that I am trying to test a change in the build process so I will want to now test the building.
 - If a change was made to included packages or to the custom code directories, because I will need that updated image to be accurate for automated regression tests to be able to run. I'll get into regression tests more in a later post.
+- The tag is a GitLab Runner that is designed for building Docker images.
 
 ```yml
 include:
@@ -96,6 +97,8 @@ build:
         - scripts/*
         - web/modules/custom/**/*
         - web/themes/custom/**/*
+  tags:
+    - build-docker
 ```
 
 That's it!
