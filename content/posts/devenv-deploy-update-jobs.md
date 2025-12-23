@@ -89,6 +89,7 @@ Next, with Drupal specifically, we need to update the database to be in line wit
 To do this, I have a general "single use" job. At its simplest, it runs a script. Like the deployment, though, it gets more complicated, in this case because I wanted to be able to see the logs of that script running so that we know if there are any problems. That is what makes this a much longer script.
 
 ```yml
+{% raw %}
 ## This is for single-use services, to run a specific script one time, before or after deployment. ##
 .docker_single_use:
   variables:
@@ -154,6 +155,7 @@ To do this, I have a general "single use" job. At its simplest, it runs a script
       docker service logs --since="${DATE}" ${STACK_NAME}_${SERVICE_NAME}
     - docker logout
     - exit $EXIT_VALUE
+{% endraw %}
 ```
 
 This allows it to loop on the service, returning its status and any logs that have been added since the last check.
