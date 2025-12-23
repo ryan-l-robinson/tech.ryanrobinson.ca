@@ -1,71 +1,3 @@
-.post-list { counter-reset: start-from 5 }
-/** Styles only needed for the views summarizing multiple posts */
-
-/** Lists of posts **/
-
-.post-list-item-title {
-	margin: 0;
-	line-height: 1.4em;
-}
-
-.post-list-metadata {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	gap: 0.5em 3em;
-	padding: 0;
-	margin: 0.5em 0;
-}
-
-.post-list-metadata p {
-	margin: 0;
-	line-height: 1.5em;
-	font-size: 0.8em;
-}
-
-.post-list-tag {
-	text-transform: capitalize;
-}
-
-.post-list-item :last-child {
-	margin-bottom: 0;
-}
-/** Pagination **/
-
-.pager {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	row-gap: 1em;
-	margin: 0;
-	padding: 1em;
-	list-style: none;
-}
-
-.pager li {
-	display: flex;
-	height: fit-content;
-}
-
-.pager li a {
-	border: 1px solid var(--grey);
-	padding: 0.5em;
-	text-decoration: none;
-	line-height: 1em;
-	background-color: var(--blue);
-	color: var(--white);
-}
-
-.pager li a:is(:hover, :focus) {
-	background-color: var(--red);
-	color: var(--white);
-}
-
-.pager li a[aria-current="page"] {
-	background-color: var(--grey);
-	color: var(--black);
-}
 /* Variables and general site-wide styles */
 
 :root {
@@ -231,6 +163,11 @@ blockquote p:first-child {
 
 blockquote p:last-child {
 	margin-bottom: 0;
+}
+
+picture {
+	display: flex;
+	justify-content: center;
 }
 /* Containers for layout */
 

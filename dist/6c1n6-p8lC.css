@@ -1,4 +1,4 @@
-.post-list { counter-reset: start-from 4 }
+.post-list { counter-reset: start-from 10 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -196,6 +196,11 @@ blockquote p:first-child {
 
 blockquote p:last-child {
 	margin-bottom: 0;
+}
+
+picture {
+	display: flex;
+	justify-content: center;
 }
 /* Containers for layout */
 

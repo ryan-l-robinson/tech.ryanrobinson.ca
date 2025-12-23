@@ -1,27 +1,35 @@
-/** Aligns with the tagslist.njk and tags.njk include **/
-@media (min-width: 1201px) {
-	.sidebar-block .tags-list {
-		columns: 1;
-	}
+.post-list { counter-reset: start-from 6 }
+/** Styles only needed for the views summarizing multiple posts */
+
+/** Lists of posts **/
+
+.post-list-item-title {
+	margin: 0;
+	line-height: 1.4em;
 }
 
-@media (min-width: 1201px) {
-	.tags-list {
-		columns: 3;
-	}
+.post-list-metadata {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5em 3em;
+	padding: 0;
+	margin: 0.5em 0;
 }
 
-/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
-@media (min-width: 801px) and (max-width: 1200px) {
-	.tags-list {
-		columns: 2;
-	}
+.post-list-metadata p {
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.8em;
 }
 
-@media (max-width: 800px) {
-	.tags-list {
-		columns: 1;
-	}
+.post-list-tag {
+	text-transform: capitalize;
+}
+
+.post-list-item :last-child {
+	margin-bottom: 0;
 }
 /* Variables and general site-wide styles */
 
@@ -188,6 +196,11 @@ blockquote p:first-child {
 
 blockquote p:last-child {
 	margin-bottom: 0;
+}
+
+picture {
+	display: flex;
+	justify-content: center;
 }
 /* Containers for layout */
 
@@ -469,6 +482,31 @@ footer p a {
 footer p a:is(:hover, :focus) {
 	background-color: var(--white);
 	color: var(--blue);
+}
+/** Aligns with the tagslist.njk and tags.njk include **/
+@media (min-width: 1201px) {
+	.sidebar-block .tags-list {
+		columns: 1;
+	}
+}
+
+@media (min-width: 1201px) {
+	.tags-list {
+		columns: 3;
+	}
+}
+
+/** Needs to line up with the breakpoint in main.css for when the sidebar moves to the bottom **/
+@media (min-width: 801px) and (max-width: 1200px) {
+	.tags-list {
+		columns: 2;
+	}
+}
+
+@media (max-width: 800px) {
+	.tags-list {
+		columns: 1;
+	}
 }
 /** Aligns with the social-links.njk include file **/
 .social-links {

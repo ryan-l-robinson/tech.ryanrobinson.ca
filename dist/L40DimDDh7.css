@@ -232,6 +232,11 @@ blockquote p:first-child {
 blockquote p:last-child {
 	margin-bottom: 0;
 }
+
+picture {
+	display: flex;
+	justify-content: center;
+}
 /* Containers for layout */
 
 * {
