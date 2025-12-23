@@ -5,11 +5,146 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-12-23T11:00:00Z</updated>
+  <updated>2025-12-23T11:22:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Start Scripts</title>
+    <link href="https://tech.ryanrobinson.ca/2025/devenv-start-script/" />
+    <updated>2025-12-23T11:22:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/2025/devenv-start-script/</id>
+    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline for a Drupal site. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided an overview in &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;the first post of the series&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/&quot;&gt;the last post&lt;/a&gt;, I created the web Dockerfile. At the end of that file it specifies what script to run when it starts up. This is simply called start.sh in my setup, and it&#39;s that script that I will now pick up from for this post.&lt;/p&gt;
+&lt;h2 id=&quot;start-sh&quot;&gt;Start.sh&lt;/h2&gt;
+&lt;p&gt;The start script itself is relatively simple, but it is calling on a few other scripts. The idea here is that it will wait for the database container to be available. Once it is, it will check if the database is already installed. If it&#39;s not, the database can be rebuilt. Finally, prepare the phpunit.xml file and then start up Apache.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Wait for the database to come up&lt;/span&gt;
+&lt;span class=&quot;token function-name function&quot;&gt;wait_for_db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;retries&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;wait_time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;attempt&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/settings-file.sh
+
+  &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$attempt&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-le&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$retries&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; drush sqlq &lt;span class=&quot;token string&quot;&gt;&quot;SELECT 1&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;&amp;amp;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+      &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Database is not ready yet. Attempt &lt;span class=&quot;token variable&quot;&gt;$attempt&lt;/span&gt;/&lt;span class=&quot;token variable&quot;&gt;$retries&lt;/span&gt;. Waiting for &lt;span class=&quot;token variable&quot;&gt;$wait_time&lt;/span&gt; seconds...&quot;&lt;/span&gt;
+      &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$wait_time&lt;/span&gt;
+      &lt;span class=&quot;token assign-left variable&quot;&gt;attempt&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$((&lt;/span&gt;attempt &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;))&lt;/span&gt;&lt;/span&gt;
+      &lt;span class=&quot;token assign-left variable&quot;&gt;wait_time&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$((&lt;/span&gt;wait_time &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;))&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; wait_for_db&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;drush sqlq &lt;span class=&quot;token string&quot;&gt;&quot;SHOW TABLES LIKE &#39;users&#39;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; Drupal has already been initialized.
+  &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/rebuild-db.sh
+  &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+
+  &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/phpunit-file.sh
+  apache2-foreground
+
+&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Database never came up.&quot;&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, let&#39;s get into some of those other files that are referenced by the start file, as well as potentially referenced in other workflows as well.&lt;/p&gt;
+&lt;h2 id=&quot;settings-file-sh&quot;&gt;Settings-file.sh&lt;/h2&gt;
+&lt;p&gt;The settings file script will fill in the Drupal settings file, using variables that are passed through from the GitLab variables (most of them) or from the GitLab build job as an argument (the timestamp that becomes the deployment ID). This is done using the envsubst command to generate a new file with the correct name in the correct location by replacing those variables in a template file. This is necessary to allow that each environment has different variables like database connection information.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Update template from variables.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; /opt/drupal/web/sites/default/settings.php &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# First 10 digits are just the date.&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;export DEPLOYMENT_ID=&lt;span class=&quot;token variable&quot;&gt;${TIMESTAMP&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;0&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;10}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; ~/.bashrc
+  &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; ~/.bashrc
+  &lt;span class=&quot;token comment&quot;&gt;# Create the new file from the template with variable replacement.&lt;/span&gt;
+  envsubst &lt;span class=&quot;token string&quot;&gt;&#39;${DEPLOYMENT_ID} ${MYSQL_DATABASE} ${MYSQL_USER} ${MYSQL_PASSWORD} ${MYSQL_HOST} ${MYSQL_PORT} ${CONFIG_SPLIT_LOCAL} ${CONFIG_SPLIT_DEV} ${CONFIG_SPLIT_STAGING} ${CONFIG_SPLIT_PROD}&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /opt/drupal/settings.php.tmpl &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /opt/drupal/web/sites/default/settings.php
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Dev tools&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$DEPLOY_ENV&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;main&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$DEPLOY_ENV&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;staging&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; /opt/drupal/.devcontainer/settings.dev.php /opt/drupal/web/sites/default/settings.dev.php
+  &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; /opt/drupal/.devcontainer/local_dev.services.yml /opt/drupal/web/sites/local_dev.services.yml
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;rebuild-db-sh&quot;&gt;Rebuild-db.sh&lt;/h2&gt;
+&lt;p&gt;I will get into the bigger picture of this more in a future post about the whole database lifecycle, but for now, here&#39;s the script. There is a hierarchy of options for what to do in terms of building the database:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If it already exists, don&#39;t do anything new. This keeps it safe when deploying to environments with databases already existing which should not be wiped out.&lt;/li&gt;
+&lt;li&gt;If it doesn&#39;t exist, but there is a backup file in the backups folder, start by importing that.&lt;/li&gt;
+&lt;li&gt;If it doesn&#39;t exist and there is no backup file, build a new site from the configuration. Normally in this setup now, it shouldn&#39;t ever need to get this far, but if it does, that&#39;s still a usable site, just with a lot less representative content.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Find the newest .sql backup file&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;newest_file&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/opt/drupal/backups&quot;&lt;/span&gt;/*.sql &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;/dev/null &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$newest_file&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;No .sql backup files found. Starting a new Drupal install.&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;# Import config&lt;/span&gt;
+  drush site-install --existing-config
+
+  &lt;span class=&quot;token comment&quot;&gt;# Run again to catch extra configuration in the config_split&lt;/span&gt;
+  drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;# Add admin user&lt;/span&gt;
+  drush user:create &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--mail&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_EMAIL&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--password&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_PASSWORD&lt;/span&gt;&quot;&lt;/span&gt;
+  drush user:role:add &lt;span class=&quot;token string&quot;&gt;&quot;administrator&quot;&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;The newest backup .sql file is: &lt;span class=&quot;token variable&quot;&gt;$newest_file&lt;/span&gt;. Installing now.&quot;&lt;/span&gt;
+  &lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/import-db.sh &lt;span class=&quot;token variable&quot;&gt;$newest_file&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Rebuild node access caches&lt;/span&gt;
+drush php-eval &lt;span class=&quot;token string&quot;&gt;&#39;node_access_rebuild();&#39;&lt;/span&gt;
+drush cr&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;import-db-sh&quot;&gt;Import-db.sh&lt;/h2&gt;
+&lt;p&gt;The rebuild-db.sh file also referenced import-db.sh, which handles the scenario when importing from a database backup file. It then also sets the Drupal user based on the variables, and imports any configuration to incorporate any changes since the backup. This gets used in the initial local dev environment build. It also gets used to update the database on dev and staging servers so they can continue to have relatively accurate content.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/settings-file.sh
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;BACKUP_FILE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/opt/drupal/backups/&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-1r&lt;/span&gt; /opt/drupal/backups &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;No backups found&quot;&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Applying SQL from &lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;...&quot;&lt;/span&gt;
+
+    drush sql-cli &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;&quot;&lt;/span&gt;
+
+    drush cr
+
+    &lt;span class=&quot;token comment&quot;&gt;# Activate and set the distinct local password on the admin user.&lt;/span&gt;
+    drush user:unblock &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt;
+    drush upwd &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_PASSWORD&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Update config twice to ensure any config_split differences&lt;/span&gt;
+    drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+    drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+
+    drush cr
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;phpunit-file-sh&quot;&gt;Phpunit-file.sh&lt;/h2&gt;
+&lt;p&gt;The phpunit file I will also get into more in a future post, but it is a lot like the settings file, simply substituting variables into the file.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+envsubst &lt;span class=&quot;token string&quot;&gt;&#39;${MYSQL_DATABASE} ${MYSQL_USER} ${MYSQL_PASSWORD} ${MYSQL_HOST} ${MYSQL_PORT}&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /opt/drupal/phpunit.xml.tmpl &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /opt/drupal/phpunit.xml&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <title>The Primary Web Dockerfile</title>
     <link href="https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/" />
@@ -1150,78 +1285,6 @@ RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&qu
 &lt;p&gt;This is the scenario where large language models (aka &amp;quot;AI&amp;quot;) are better. Most of the hype, both from the salespeople and from the critics, focus on the generating of the response. It is just as important that it can connect you to what you&#39;re looking for even if you don&#39;t get the exact keywords correct. If you&#39;ve got a complicated problem and you don&#39;t know the exact right jargon to search with for each component of the problem, using an LLM is a real improvement because it is able to connect your wording to the jargon in the dataset. It will also help connect all those pieces together, so if you&#39;re investigating some interaction of 12 different factors in your environment, you can lay out all those factors at once and it will keep that information in context for its results. It is a reversal after years of learning to search by succinct keywords to learning to prompt with as much context as is relevant, but it does return better results when you do.&lt;/p&gt;
 &lt;p&gt;No, it isn&#39;t truly searching in the sense of pointing you to existing information on the Internet. It is doing a statistical calculation of what words should come next based on the training data. But for this kind of problem, the statistical calculation is often more useful than simply returning a list of forum pages that may or may not solve one small component of the problem. Often there is no one page that has a clear answer or even a good starting point, but there is a lot of sort of related content out there which the LLM has ingested and will stitch together. And of course you can&#39;t simply assume it is correct - &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2025/principles-ai/&quot;&gt;you still need to validate it&lt;/a&gt; - but that was also true with grabbing code snippets from a forum. All that&#39;s different is that you can get to that snippet much faster, with a lot less headache and a lot more hope of actually understanding it.&lt;/p&gt;
 &lt;p&gt;It is absolutely true that there is a lot of bad marketing hype about large language models and a lot of use cases that do not live up to that hype which includes many that you probably should just do a normal search. Despite that, I have become fairly convinced that this is the category of scenario where they are legitimately an improvement.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Experiments in Coding Assistants in VS Code</title>
-    <link href="https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/" />
-    <updated>2025-10-05T14:46:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/</id>
-    <content type="html">&lt;p&gt;I have little interest in using Large Language Models for much other than coding, and that only &lt;a href=&quot;https://tech.ryanrobinson.ca/posts/2025/principles-ai/&quot;&gt;as long as you are still validating that the result is correct and learning from it&lt;/a&gt;, not using it to offload all your cognitive processing, but I did decide it was time to give that specific situation a more serious try.&lt;/p&gt;
-&lt;p&gt;I work mostly within &lt;a href=&quot;https://tech.ryanrobinson.ca/tags/visual-studio-code/&quot;&gt;VS Code&lt;/a&gt;, so whatever I&#39;m going to use I want to be fully integrated to that. This does get complicated, because there are a few overlapping factors:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Which underlying model is best for which kinds of problem?&lt;/li&gt;
-&lt;li&gt;What does each model cost, and does it make more sense to pay per-token or monthly?&lt;/li&gt;
-&lt;li&gt;What VS Code extensions combined with what models provide what kind of integration with VS Code? Can it read multiple files to keep in context, offer suggestions within files, run scripts, etc.? How user-friendly are all those things? How secure are those things?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Because there are too many overlapping variables, I&#39;m not really going to try to give definitive answers to those. I&#39;m only going to provide some notes on what I have tried and what I thought about it.&lt;/p&gt;
-&lt;h2 id=&quot;copilot&quot;&gt;Copilot&lt;/h2&gt;
-&lt;p&gt;Copilot was the first of these coding assistants, before anybody was even calling these kinds of tool &amp;quot;AI&amp;quot;, and at least in theory is the most deeply integrated to VS Code.&lt;/p&gt;
-&lt;p&gt;In terms of modes, it offers a chat mode, an edit mode, and an agent mode. Chat is fairly self-explanatory and if you&#39;ve used an LLM elsewhere, that&#39;s what it is: no touching the files, just a simulated conversation. I assumed edit mode meant that it would suggest edits to my files. The description of that mode sounded that it would. Maybe the task I gave it - writing unit tests for a custom Drupal entity - was deemed too complicated to be allowed to run in that mode, but it didn&#39;t make it clear; it just gave me a response in chat. So I switched to agent mode for the rest of the testing and that&#39;s where the real power seems to come in, able to suggest changes to files and suggest non-destructive terminal commands.&lt;/p&gt;
-&lt;p&gt;It was not very friendly in switching from Chat to Agent. If you start out thinking you just need a chat, then realize it would actually help to see the suggestion being applied to the code, you can&#39;t do that without starting the conversation again.&lt;/p&gt;
-&lt;p&gt;Copilot also can suggest code as an autocomplete function right within your main code editor as you work. I can see why some people like that better. It is maybe faster once you get used to it. I tend to feel like it&#39;s in my way, breaking my own concentration too much, and I&#39;d rather restrict it to acting when I tell it to.&lt;/p&gt;
-&lt;p&gt;It does require logging in with a GitHub account, even for free usage, which might be a nuisance if you don&#39;t want to have a GitHub account, but realistically a large portion of the kinds of developers who would use it have a GitHub account anyway.&lt;/p&gt;
-&lt;p&gt;I could not figure out adding context files to my chats. When I clicked on the button to add context, it gave me a file browser, but if I tried to browse down to the file I wanted, it just made the whole folder the context instead. I did not know how to browse down to more specific context.&lt;/p&gt;
-&lt;p&gt;It does seem to read the entire codebase without the human user specifying what to read or asking for permissions, which means it would be using up more tokens but if you&#39;re paying monthly it doesn&#39;t matter as much. More significantly, you better make sure there&#39;s nothing sensitive in that codebase that it could be reading and feeding back into a free model.&lt;/p&gt;
-&lt;p&gt;It gives access to a few models even in the free tier, including Gemini Flash 2.5, Claude Sonnet 3.5, and GPT 4o, which are the three that I tried to get to write unit tests for a custom entity in a Drupal 10 module. Perhaps this is the best thing to say about Copilot, in that it allows trying all the models without setting up accounts and API keys for all of them, especially since most of them do not have a certain amount available for free. All of those tests would have cost me (a little) money and the hassle of creating accounts otherwise.&lt;/p&gt;
-&lt;p&gt;With those general notes out of the way, how did the different free models do at a task writing Drupal unit tests?&lt;/p&gt;
-&lt;h3 id=&quot;with-gemini-flash&quot;&gt;With Gemini Flash&lt;/h3&gt;
-&lt;p&gt;I first tried to solve the problem with Gemini Flash 2.5 as the model. It did not do well.&lt;/p&gt;
-&lt;p&gt;It made a couple truly nonsensical mistakes, like removing the php declaration at the start of the file or sticking a newline character in the middle of a use statement, both of which obviously become a fatal error right away. These are the kinds of mistake that a basic linter would detect, so it was very strange to see them made here.&lt;/p&gt;
-&lt;p&gt;A couple of times it said it made a change in the file, but didn&#39;t actually do it. That was also confusing.&lt;/p&gt;
-&lt;p&gt;Ultimately, it got stuck pretty quickly, not able to figure out what else to do and not having made any significant progress on the problem.&lt;/p&gt;
-&lt;p&gt;Maybe there was something about my use case where I missed an important step, but based on those tests, it definitely was not helpful.&lt;/p&gt;
-&lt;h3 id=&quot;with-claude-sonnet-3-5&quot;&gt;With Claude Sonnet 3.5&lt;/h3&gt;
-&lt;p&gt;I then tried Claude Sonnet 3.5, still in Copilot. That seemed promising at first: fixing issues and applying style standards that I did not even explicitly ask it to do.&lt;/p&gt;
-&lt;p&gt;It then asked for terminal permission to run the tests, then kept improving on its own based on the errors it read from the test output. That was nice, not needing to run the test command myself every time but still confirming permission so I could stop it if it tried to do anything dangerous.&lt;/p&gt;
-&lt;p&gt;It then got stuck, though not nearly as fast as the Gemini model did. It was actually changing things reliably, and the errors were different (whether that was better or worse different I can&#39;t say). But it did eventually also give up, aware that it wasn&#39;t working but having tried everything it could &amp;quot;think&amp;quot; of and stuck in a loop of the same few ideas repeatedly.&lt;/p&gt;
-&lt;h3 id=&quot;with-gpt-4o&quot;&gt;With GPT 4o&lt;/h3&gt;
-&lt;p&gt;With GPT 4o and Copilot the results were similar to Claude Sonnet.&lt;/p&gt;
-&lt;p&gt;One minor difference was that it asked in the chat first if it could run the tests, and I had to type yes, then it gave the prompt asking to run the command line Claude had done and I clicked approve on that. So it made running the tests each time slightly easier than Gemini but less easy than Claude on that point. Then it did read the results and kept iterating from there.&lt;/p&gt;
-&lt;p&gt;It eventually stopped, thinking it got it working, and I ran the tests again myself. It had a couple fatal errors, so I fed those back into Copilot and it ran again for a while. Then it got stuck in a loop, much like Claude&#39;s loop except that it declared itself done without even running the tests and I had to run them myself.&lt;/p&gt;
-&lt;h2 id=&quot;gemini-code-assist&quot;&gt;Gemini Code Assist&lt;/h2&gt;
-&lt;p&gt;I briefly tried &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist&quot;&gt;the official Gemini Code Assist extension from Google&lt;/a&gt;. It&#39;s a very friendly and straightforward interface. It says it has an Agent mode in preview. I tried in once and it couldn&#39;t even find the file that I was asking it to review.&lt;/p&gt;
-&lt;p&gt;I also noticed immediately it did not have a couple of nice features which I had already learned that the extension I&#39;ll get into next offers. It&#39;s just a user-friendly chat integration that&#39;s easy to use if you already have a Google account as most people do and not much more than that.&lt;/p&gt;
-&lt;p&gt;Later update (December 12, 2025): mainly because cline has been somewhat unreliable, I&#39;ve tried Gemini Code Assist again. It has improved a little, but is also still frequently buggy, failing to connect to the model occasionally with no helpful error. The even bigger discovery, though, is that unlike the others, if you use this with a Google account that has a Google AI Pro subscription (including the free trial I got with my Pixel 10 Pro), you get much higher usage limits. I&#39;m not going to use it nearly enough to justify paying $270 CAD/year to keep it after my free trial, but it is definitely worth trying to make full use of it in the few months I have left.&lt;/p&gt;
-&lt;h2 id=&quot;cline&quot;&gt;Cline&lt;/h2&gt;
-&lt;p&gt;That gets me to the extension that I have now tried out the most and like the most so far: &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev&quot;&gt;Cline&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Cline allows connecting to a wide variety of models, using your own API keys. Unlike Copilot, there&#39;s no middle man where you could instead pay them and get a lot more access to a bunch of models. I grabbed an API key for Gemini and put it in. I had hoped that I had unlimited use of it for a year, because with my new Pixel 10 Pro I have Gemini Pro for a year, but that free trial does not include API access for coding, which is really the only thing that I wanted it for. Anyway, the extension makes it as easy as possible to add an API key for the model of your choice.&lt;/p&gt;
-&lt;p&gt;It offers two modes: Plan and Act. Plan won&#39;t write any code for you, just be a chat agent similar to having a chat in the browser, except that it can work with more valuable context of whatever in your codebase you decide to provide as context.&lt;/p&gt;
-&lt;p&gt;Act is the Agent mode, which like Copilot is where it gets really interesting. It will tell you what it is going to do in response to your request, then it will propose the changes. Those proposed changes will show up in the main code window like any other diff viewer that you are probably used to in Code. This gives you an easy way to track exactly what it is changing, one file at a time.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.avif 1323w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.webp 1323w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/MpoWEB3SOj-1323.png&quot; alt=&quot;&amp;quot;Screenshot of a Cline suggestion for editing a file in this site&#39;s eleventy project, which looks like a diff screen with the old and new version highlighted in different colours.&amp;quot;&quot; width=&quot;1323&quot; height=&quot;717&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;There is an option to auto-approve whatever it wants to change, but to me, that violates the rule that I only want to learn from this, not offload my thinking onto it. I want to make sure I am going slow enough to understand exactly what it is doing and why, so I am not going to auto-approve.&lt;/p&gt;
-&lt;p&gt;There are a couple other features of Cline that I really like:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;You can define a rules file which gives it extra standard instructions. These can be set up per project, but then the front matter in each rule can differentiate even more by file type. For example, I can tell it to always use Drupal style and best practice if I&#39;m editing a PHP file within a Drupal project, and that rules file can be committed as part of the project so everybody working on the project gets the same guiding rules.&lt;/li&gt;
-&lt;li&gt;It shows you the amount of tokens and the cost so far of this query, which is a great way to keep track of how much this is costing you and encourages you to not use it any more than you really need to.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Like Copilot, it can also run script commands, like clearing caches or executing the phpunit tests it tried to write. It was a more clear interface about those terminal suggestions, prompting you first to save the changes and then to run the test instead of showing you both buttons at once.&lt;/p&gt;
-&lt;p&gt;It was a really positive experience at first, better in every way than Copilot, other than Copilot giving access to a couple more models for free.&lt;/p&gt;
-&lt;p&gt;Then Cline started failing on me, frequently saying that &amp;quot;the model is overloaded&amp;quot; even though when I tried the same model from the other extensions they were fine. Because I had to keep querying repeatedly when it failed, it used up my daily free quota on Gemini Pro a lot faster. I hope this is a temporary short-term bug, because it wasn&#39;t a problem at first.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.avif 846w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.webp 846w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/foBuT4AV0T-846.png&quot; alt=&quot;&amp;quot;Screenshot of Cline error, code 503 and the message The model is overloaded. Please try again later.&amp;quot;&quot; width=&quot;846&quot; height=&quot;342&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;h2 id=&quot;a-note-on-pricing&quot;&gt;A Note on Pricing&lt;/h2&gt;
-&lt;p&gt;Thanks to the Cline details on what the price would be if I was past the quota for free usage has given me some rough estimates of costs when paying by token or by subscription. Here&#39;s basically what I found, using Gemini Pro as the model.&lt;/p&gt;
-&lt;p&gt;Just loading in the context of all of a moderately-complicated Drupal module cost me about $0.09. As I worked through a moderately-complicated problem that needed a few tweaks, I got up to a total of about $0.40. I gave it a few more problems of similar size that ended up with similar price. I assume that&#39;s USD, but maybe one minor complaint about Cline is that it does not specify that at all; maybe it is CAD knowing it is tied to my Canadian Google account. That&#39;s for it reading my code context, making code changes, then tweaking a little more as I followed up with a few pieces that weren&#39;t quite ideal yet.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.avif 843w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.webp 843w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/ai-assist-vs-code/B46oKjMsE6-843.png&quot; alt=&quot;Cline&#39;s token summary window, showing the query, a button to copy, a button to delete, the price and token use so far.&quot; width=&quot;843&quot; height=&quot;447&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;By comparison, it&#39;s $19 USD a month for the Copilot Business subscription. So assuming about 22 work days in a full month (no vacations or anything), that&#39;s roughly equivalent to 2 of those kinds of problems per day before the subscription starts being cheaper than by token. If you&#39;re handing off all your work to it, a subscription would pay off, but as I already said, I do not recommend that approach. If you&#39;re more like what I am somewhat interested in, using it only occasionally when you&#39;re stuck - the way I also use search engines - and maybe some general code review, then the per-token price is likely to be a better deal.&lt;/p&gt;
-&lt;p&gt;Of course, that&#39;s just using Gemini Pro&#39;s pricing, and with a small sample size of the problems. Other models would be different. How much contextual code you provide might change it dramatically. How big of the problem it is solving would certainly change it dramatically. I offer this only as a rough estimate to give a sense, but I think the general conclusion is likely true: per-token makes sense as long as you&#39;re using it to help you do work, not to do your work for you.&lt;/p&gt;
-&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions?&lt;/h2&gt;
-&lt;p&gt;As I said in the introduction, I don&#39;t have a lot of strong conclusions to make because there are too many interconnected variables and these tools are all evolving fast enough that any conclusions may be not be valid for that long anyway. What I can say at this point:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Google Gemini Code Assist is bad and I see no good reason to use it unless you have a Google AI Pro membership anyway, in which case the worse experience might be an acceptable cost for saving money.&lt;/li&gt;
-&lt;li&gt;Copilot is great for experimenting with models, and might also be a better choice if you are going to use it enough as to justify the monthly subscription.&lt;/li&gt;
-&lt;li&gt;Cline is my favourite to interact with, but those &amp;quot;overloaded models&amp;quot; disconnections got pretty frustrating pretty fast.&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
