@@ -1,6 +1,6 @@
 ---
-title: "Drupal Dev Environment Docker Compose"
-date: 2025-12-25T00:16:00.000Z
+title: "The Docker Compose Setup"
+date: 2025-12-24T00:16:00.000Z
 author: Ryan Robinson
 description: "Docker Compose for the Drupal setup, including a two-tiered approach for differentiating local."
 series: Drupal Docker
@@ -15,4 +15,4 @@ We now have a robust Dockerfile for the main web image. There are other services
 
 ## The Two-Tier Setup
 
-
+There is a docker-compose file that defines services for all environments, then another docker-compose that only runs on local.
