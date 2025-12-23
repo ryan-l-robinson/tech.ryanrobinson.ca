@@ -127,6 +127,7 @@
 <li>If the branch is dev, staging, or main. Those are going to deploy to other environments, so always need built.</li>
 <li>If a change was made to certain files that impact the building itself, like the Dockerfile or the docker-compose. If I am changing those, it probably means that I am trying to test a change in the build process so I will want to now test the building.</li>
 <li>If a change was made to included packages or to the custom code directories, because I will need that updated image to be accurate for automated regression tests to be able to run. I'll get into regression tests more in a later post.</li>
+<li>The tag is a GitLab Runner that is designed for building Docker images.</li>
 </ul>
 <pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">include</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">project</span><span class="token punctuation">:</span> <span class="token string">"ryan-l-robinson/gitlab-ci"</span>
@@ -155,7 +156,9 @@
         <span class="token punctuation">-</span> Dockerfile.drupal
         <span class="token punctuation">-</span> scripts/*
         <span class="token punctuation">-</span> web/modules/custom/<span class="token important">**/*</span>
-        <span class="token punctuation">-</span> web/themes/custom/<span class="token important">**/*</span></code></pre>
+        <span class="token punctuation">-</span> web/themes/custom/<span class="token important">**/*</span>
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> build<span class="token punctuation">-</span>docker</code></pre>
 <p>That's it!</p>
 
 			<div class="border-top-section">

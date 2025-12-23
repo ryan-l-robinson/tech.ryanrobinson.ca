@@ -310,6 +310,7 @@ npx playwright &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
 &lt;li&gt;If the branch is dev, staging, or main. Those are going to deploy to other environments, so always need built.&lt;/li&gt;
 &lt;li&gt;If a change was made to certain files that impact the building itself, like the Dockerfile or the docker-compose. If I am changing those, it probably means that I am trying to test a change in the build process so I will want to now test the building.&lt;/li&gt;
 &lt;li&gt;If a change was made to included packages or to the custom code directories, because I will need that updated image to be accurate for automated regression tests to be able to run. I&#39;ll get into regression tests more in a later post.&lt;/li&gt;
+&lt;li&gt;The tag is a GitLab Runner that is designed for building Docker images.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ryan-l-robinson/gitlab-ci&quot;&lt;/span&gt;
@@ -338,7 +339,9 @@ npx playwright &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
         &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; Dockerfile.drupal
         &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; scripts/*
         &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/modules/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/themes/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/themes/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;docker&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That&#39;s it!&lt;/p&gt;
 </content>
   </entry>
