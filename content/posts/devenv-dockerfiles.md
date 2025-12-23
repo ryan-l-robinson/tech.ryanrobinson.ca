@@ -1,6 +1,6 @@
 ---
-title: "Drupal Dev Environment Dockerfiles"
-date: 2025-12-23T00:16:00.000Z
+title: "The Primary Web Dockerfile"
+date: 2025-12-23T13:16:00.000Z
 author: Ryan Robinson
 description: "A Dockerfile for a Drupal dev environment including Apache, PHP, and XDebug, with some variation by environment."
 series: Drupal Docker

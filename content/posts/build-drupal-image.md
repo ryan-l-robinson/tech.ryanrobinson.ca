@@ -1,12 +1,13 @@
 ---
-title: Building the Dockerfile
-date: 2025-08-26T22:54:16.700Z
+title: Building the Dockerfile in CI/CD
+date: 2025-12-27T22:54:16.700Z
 author: Ryan Robinson
-description: In the series on a Drupal dev environment, this post looks at the Dockerfile building.
+description: "Build the project's Docker image in a GitLab CI/CD job."
 series: Drupal Docker
 tags:
   - Drupal
   - DevOps
+  - Linux
 draft: true
 ---
 

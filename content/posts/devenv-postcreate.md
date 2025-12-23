@@ -1,6 +1,6 @@
 ---
-title: "Drupal Dev Environment postCreateCommand"
-date: 2025-12-25T00:16:00.000Z
+title: "The postCreateCommand"
+date: 2025-12-27T00:16:00.000Z
 author: Ryan Robinson
 description: "A script to run on the local dev environment including Playwright, pa11y, and phpunit."
 series: Drupal Docker

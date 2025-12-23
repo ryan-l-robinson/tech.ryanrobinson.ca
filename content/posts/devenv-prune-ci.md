@@ -1,6 +1,6 @@
 ---
 title: Pruning Old Docker Objects in CI/CD
-date: 2026-01-09T22:54:16.700Z
+date: 2025-12-28T22:54:16.700Z
 author: Ryan Robinson
 description: "A simple job to prune old Docker objects on a runner."
 series: Drupal Docker

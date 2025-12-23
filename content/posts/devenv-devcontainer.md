@@ -1,12 +1,13 @@
 ---
-title: "Drupal Dev Environment DevContainer"
-date: 2024-04-08T15:46:00.000Z
+title: "VS Code DevContainer"
+date: 2025-12-26T15:46:00.000Z
 author: Ryan Robinson
 description: "The devcontainer file specifies how VS Code will run this environment, including extensions, settings, and scripts."
 series: Drupal Docker
 tags:
-    - Drupal
-    - DevOps
+  - Drupal
+  - DevOps
+  - Linux
 draft: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Playwright Testing
-date: 2024-10-09T22:54:16.700Z
+date: 2026-01-02T22:54:16.700Z
 author: Ryan Robinson
 description: Playwright is a helpful testing tool, both locally and in your CI processes.
 series: Drupal Docker

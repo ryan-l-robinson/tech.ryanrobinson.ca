@@ -1,6 +1,6 @@
 ---
 title: Deploying Containers
-date: 2024-10-09T22:54:16.700Z
+date: 2025-12-29T22:54:16.700Z
 author: Ryan Robinson
 description: In the series on a Drupal dev environment, this post looks at deploying services.
 series: Drupal Docker
