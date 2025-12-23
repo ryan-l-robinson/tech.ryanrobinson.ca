@@ -5,11 +5,159 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-12-22T14:26:16Z</updated>
+  <updated>2025-12-23T11:00:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>The Primary Web Dockerfile</title>
+    <link href="https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/" />
+    <updated>2025-12-23T11:00:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/</id>
+    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline for a Drupal site. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This post will dive into the Dockerfile that defines how the primary web (PHP and Apache) image will be built.&lt;/p&gt;
+&lt;h2 id=&quot;the-web-image&quot;&gt;The Web Image&lt;/h2&gt;
+&lt;p&gt;First, The image is based on &lt;a href=&quot;https://hub.docker.com/_/drupal/&quot;&gt;the official Drupal image&lt;/a&gt;, because that will provide a good amount of what is necessary without needing to repeat it.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;FROM drupal:php8.3-apache&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;variables&quot;&gt;Variables&lt;/h3&gt;
+&lt;p&gt;Next are some arguments which are going to be passed through from the GitLab CI/CD job. BASE_URL is needed for some accessibility tests. BRANCH is needed to distinguish what to build since that isn&#39;t all the same in each environment. TIMESTAMP is used as a deployment identifier, which I then have in use for the environment indicator in Drupal as a way to display when it was last rebuilt. All three will get passed through into the built image as environment variables.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;ARG BASE_URL
+ARG BRANCH
+ARG TIMESTAMP
+
+# Needed as an ENV for the start.sh script
+ENV DEPLOY_ENV=$BRANCH
+# Variables used for accessibility testing
+ENV BASE_URL=$BASE_URL
+# Variable used to differentiate deployments
+ENV DEPLOYMENT_ID=$TIMESTAMP&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A few more environment variables will help squash some warnings:&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;ENV DEBIAN_FRONTEND=noninteractive
+ENV LC_ALL=en_CA.UTF-8
+ENV LANG=en_CA.UTF-8
+ENV LANGUAGE=en_CA.UTF-8&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;general-packages&quot;&gt;General Packages&lt;/h3&gt;
+&lt;p&gt;In the next section, install the extra packages that were not already included in the base Drupal image. In this first block, the only variance by environment is that main does not get nodejs or npm, which is needed for some things like playwright accessibility testing but that is not going to be running from production.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;RUN apt-get -y update &amp;&amp; &#92;
+    apt-get -y --no-install-recommends install &#92;
+    default-mysql-client &#92;
+    locales &#92;
+    locales-all &#92;
+    gettext-base &#92;
+    git &#92;
+    openssh-client &#92;
+    unzip &#92;
+    zip
+RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ]; then &#92;
+      apt-get -y --no-install-recommends install &#92;
+      nodejs &#92;
+      npm &#92;
+    ; fi
+RUN apt-get clean &amp;&amp; &#92;
+  rm -rf /var/lib/apt/lists/*&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;php&quot;&gt;PHP&lt;/h3&gt;
+&lt;p&gt;The next section covers PHP adjustments. There is a version of PHP already installed - that&#39;s the 8.3 specified in the image name at the start - but there are a few more things we need to improve.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# PHP.ini file varies by environment
+RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
+      ln /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini &#92;
+    ; &#92;
+    else &#92;
+      ln /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini &#92;
+    ; fi
+
+# Install PHP extensions, using PECL
+RUN pecl channel-update pecl.php.net &#92;
+    &amp;&amp; pecl install apcu uploadprogress &#92;
+    &amp;&amp; docker-php-ext-enable apcu &#92;
+    &amp;&amp; docker-php-ext-enable uploadprogress
+
+# Copy settings for APCU, primarily to increase memory
+COPY php/docker-php-ext-apcu.ini /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
+
+# PHP.ini file varies by environment
+RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
+      ln /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini &#92;
+    ; &#92;
+    else &#92;
+      ln /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini &#92;
+    ; fi
+
+# Increase resources for PHP
+RUN sed -i &quot;s/max_execution_time = 30/max_execution_time = 300/g&quot; /usr/local/etc/php/php.ini &#92;
+    &amp;&amp; sed -i &quot;s/max_input_time = 60/max_input_time = 600/g&quot; /usr/local/etc/php/php.ini &#92;
+    &amp;&amp; sed -i &quot;s/memory_limit = 128M/memory_limit = 2048M/g&quot; /usr/local/etc/php/php.ini &#92;
+    &amp;&amp; sed -i &quot;s/upload_max_filesize = 2M/upload_max_filesize = 128M/g&quot; /usr/local/etc/php/php.ini &#92;
+    &amp;&amp; sed -i &quot;s/post_max_size = 8M/post_max_size = 256M/g&quot; /usr/local/etc/php/php.ini &#92;
+    &amp;&amp; sed -i &quot;s/;max_input_vars = 1000/max_input_vars = 10000/g&quot; /usr/local/etc/php/php.ini
+
+# XDebug should only be on local/dev branches
+RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
+    pecl install xdebug &#92;
+    &amp;&amp; docker-php-ext-enable xdebug &#92;
+    &amp;&amp; touch /var/log/xdebug.log &#92;
+    &amp;&amp; chown www-data:www-data /var/log/xdebug.log &#92;
+    &amp;&amp; cp /opt/drupal/php/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d &#92;
+  ; fi&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note the COPY of a file for the APCU configuration. That&#39;s a simple file, not worth its own post, and is really just necessary to get a higher memory limit than the default.&lt;/p&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token key attr-name&quot;&gt;extension&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;apcu&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;apc.enable_cli&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;apc.shm_size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;64M&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There&#39;s also a similar xdebug configuration file being copied, which is also relatively straightforward. XDebug is a great tool for debugging with PHP. &lt;a href=&quot;https://tech.ryanrobinson.ca/2022/php-xdebug-vs-code/&quot;&gt;I wrote about using it in VS Code a while ago&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token key attr-name&quot;&gt;zend_extension&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;xdebug.so&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;debug,coverage,profile&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.start_with_request&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;trigger&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.client_host&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;127.0.0.1&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.client_port&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;9003&lt;/span&gt;
+&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.log&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;/var/log/xdebug.log&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;apache&quot;&gt;Apache&lt;/h3&gt;
+&lt;p&gt;Next is the other major component: Apache. As with PHP, the basics are already installed from the inherited base image, but it doesn&#39;t have any SSL certificate so you can&#39;t browse it as HTTPS. This section, then, will add a self-signed certificate for the Apache configuration, so that we&#39;ll be able to browse the site locally with HTTPS.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Apache configuration, including SSL certificates and logs
+COPY apache /etc/apache2
+
+RUN a2enmod ssl
+
+RUN openssl req &#92;
+    -batch &#92;
+    -newkey rsa:4096 &#92;
+    -nodes &#92;
+    -sha256 &#92;
+    -keyout /etc/apache2/certs/drupal.devenv.key &#92;
+    -x509 &#92;
+    -days 3650 &#92;
+    -out /etc/apache2/certs/drupal.devenv.crt &#92;
+    -config /etc/apache2/certs/openssl-config.txt &amp;&amp; &#92;
+  chown -R root:www-data /etc/apache2 &amp;&amp; &#92;
+  chmod 660 /etc/apache2/certs/*
+
+# Set www-data file permissions
+COPY --chown=www-data:www-data . /opt/drupal&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that a self-signed certificate may not be sufficient, depending on what you are using for the database image. There are ways to give it a trusted certificate instead, shared with the database image. I am not getting into that here.&lt;/p&gt;
+&lt;h3 id=&quot;grep&quot;&gt;Grep&lt;/h3&gt;
+&lt;p&gt;This is a minor thing, but I like when I grep through code to see results with the colour highlights, making it much easier to read. That can be done by setting an environment variable and putting an alias for grep into a bashrc file.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Set up nicer grep results
+ENV GREP_COLORS=&#39;mt=1;37;41&#39;
+COPY .bashrc /user/www-data/.bashrc&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;permissions-and-scripts&quot;&gt;Permissions and Scripts&lt;/h3&gt;
+&lt;p&gt;Give the permissions on the main folder to the www-data user that Apache runs as, and allow www-data to run the scripts:&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;RUN chown -R www-data:www-data /var/www /opt
+RUN chmod -R 770 /opt/drupal/scripts&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Those scripts will get more attention in future posts.&lt;/p&gt;
+&lt;h3 id=&quot;build-the-composer-packages&quot;&gt;Build the Composer Packages&lt;/h3&gt;
+&lt;p&gt;Build the composer packages as the www-data user. There is some distinction for dev packages to not be included on main and staging.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Get and build the Drupal code, with proper permissions
+USER www-data
+RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
+      composer install &#92;
+    ; &#92;
+    else &#92;
+      composer install --no-dev &#92;
+    ; fi&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;the-start-script&quot;&gt;The Start Script&lt;/h3&gt;
+&lt;p&gt;Finally, designate the script that runs when container starts up. Again, I&#39;ll cover the details of that script in a later post:&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;CMD [&quot;/opt/drupal/scripts/start.sh&quot;]&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <title>Introduction to Drupal Caching</title>
     <link href="https://tech.ryanrobinson.ca/2025/drupal-caches/" />
@@ -1074,46 +1222,6 @@
 &lt;li&gt;Copilot is great for experimenting with models, and might also be a better choice if you are going to use it enough as to justify the monthly subscription.&lt;/li&gt;
 &lt;li&gt;Cline is my favourite to interact with, but those &amp;quot;overloaded models&amp;quot; disconnections got pretty frustrating pretty fast.&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Principles of AI Use</title>
-    <link href="https://tech.ryanrobinson.ca/2025/principles-ai/" />
-    <updated>2025-09-14T15:16:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/principles-ai/</id>
-    <content type="html">&lt;p&gt;Let&#39;s set aside a lot of the other ethical questions about &amp;quot;AI&amp;quot; - by which I mean large language models - for a minute. I never really recommend setting aside ethical questions, but I do want to write about something else right now. Are these &amp;quot;AIs&amp;quot; useful? What for? What are they counterproductive for?&lt;/p&gt;
-&lt;p&gt;As I&#39;ve thought about this, I have so far settled on two main principles for the types of tasks that I think are a suitable fit for large language models, commonly referred to as &amp;quot;AI&amp;quot;:&lt;/p&gt;
-&lt;h2 id=&quot;validatable&quot;&gt;Validatable&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Guideline number one: only use it for tasks where there is a human with adequate knowledge able to validate whether it actually accomplished the desired goal&lt;/strong&gt;. Otherwise, it might be what you wanted 90% of the time, but you have no way of knowing what the other 10% is. An analogy I saw on Mastodon was that of a boat: a boat that gets you 90% of the way can be useful, but only if you&#39;re a strong enough swimmer to finish the other 10%. Otherwise, now you&#39;re just stuck in the middle of the water with no way to finish your travel. The analogy if you aren&#39;t even able to identify which is the 10% it got wrong is a little rougher, because it would have to be something like not even realizing that you&#39;re drowning.&lt;/p&gt;
-&lt;p&gt;So here&#39;s some uses which do qualify:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Generate code in response to a well-defined prompt by a programmer who can then review the code and plug it in to their dev environment to see if it does what they wanted it to do, running it against manual and automated tests. That can be pretty useful for that stage of generating a first draft of code.&lt;/li&gt;
-&lt;li&gt;Write a first draft of a document from some bullet points you provide, and then you review the results before doing anything else with it.&lt;/li&gt;
-&lt;li&gt;Have it analyze your own writing or speaking for you. I&#39;ve heard podcasters mention the idea of feeding in a bunch of their work and asking it to help them identify any ways they could improve. Sometimes LLMs are referred to as &amp;quot;spicy autocorrect&amp;quot; and sure, that&#39;s a derogatory phrase but it does name one thing that it is pretty good at.&lt;/li&gt;
-&lt;li&gt;Conducting a faster natural language search that can better understand your question and combine several sources together for you, with links back to those sources so you can verify anything that isn&#39;t quite right. One of the common examples is planning a vacation, and it might help with a big picture first overview that helps you see how all the pieces can fit together, but you&#39;re still going to need to validate all those pieces, like whether that proposed attraction is even open right now. This was the aspect that I started seeing value in a lot faster with the earlier public models, not in the results but in the ability to understand my question even when I don&#39;t know the exact jargon keywords.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are also some things which definitely do not qualify:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Using it in place of a therapist. You might be able to quickly validate that it made you feel a little less lonely, but that&#39;s not the same thing as being made more mentally well. This has been in the news a lot and I am confident in saying that it might make you feel better short term simply because you feel safe expressing yourself (you probably shouldn&#39;t, as a lot of the models will use your input to train the model, but I know if you&#39;re in crisis you aren&#39;t thinking about that). But it has no expertise, no humanity, and no awareness of who you are or your context other than a statical calculation of what words should come next in a response to your query.&lt;/li&gt;
-&lt;li&gt;Summarizing somebody else&#39;s writing that you&#39;ve never read before. You have no way of knowing what it got right and what it got wrong without at least skimming the whole thing yourself. I recently read about a Canadian cabinet minister proudly talking about how he fed a proposed bill into a service that turned it into a podcast he could listen to. That should be terrifying. He has no idea what&#39;s actually in the bill. It&#39;s his job to make major legislative decisions and lead within his portfolio, and he can&#39;t even be bothered to read the proposed legislation? At least have a human expert staffer summarize it for you.&lt;/li&gt;
-&lt;li&gt;Having it completely write and send messages or documents for you without your careful review.&lt;/li&gt;
-&lt;li&gt;Any use in education where the purpose of the work is to learn and develop the skills. Even when an LLM gives you the &amp;quot;right answers&amp;quot; it has completed defeated the real purpose in the same way that copying off your friend does. It&#39;s like having a machine lift weights for you at the gym; sure the weights got moved but that wasn&#39;t the actual goal. The actual goal was to develop your muscles and the weights were just a tool to help you get there.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Finally on this point, I&#39;ll add a bit more nuance to the guideline: sometimes it is validatable, but the validation is going to take longer than if it you done it yourself. Some research has shown that yes, it can save a lot of time in the brainstorming and drafting stage, but then adds a lot more time requirement to the editing stage, such that it is about the same amount of time in total. So the question is not simply whether it is validatable, but whether it is validatable in less time than it would have taken to do it all yourself.&lt;/p&gt;
-&lt;h2 id=&quot;know-the-model&quot;&gt;Know the Model&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Guideline number two: Don&#39;t use a model that is designed for something different than you are trying to get out of it&lt;/strong&gt;. The big one currently: don&#39;t use a language model for things other than modelling language. It&#39;s not a fact engine. It&#39;s not a math engine. It&#39;s a language model.&lt;/p&gt;
-&lt;p&gt;If you want to model language, that makes sense.&lt;/p&gt;
-&lt;p&gt;If you want it to answer a factual question, that&#39;s the wrong tool for the job. If you want it to be your friend or therapist, that&#39;s the wrong tool for the job. If you want it to solve math problems or tell you how many r&#39;s there are in the word strawberry, that&#39;s the wrong tool for the job. There might be other models that are built for those kinds of problems, or it might be that machine learning techniques are never the right tool for that kind of job, but you should not assume a language modelling tool to be great at anything other than modelling language.&lt;/p&gt;
-&lt;p&gt;The use of the term &amp;quot;AI&amp;quot; is a big part of what is misleading here, in my opinion, as most people assume that means it can do everything at a superhuman level. It can&#39;t. Certain models are built to do certain things, and the majority of what we are talking about as general &amp;quot;AI&amp;quot; are language models. Unfortunately those who are not highly technically literate hear &amp;quot;AI&amp;quot; and are imagining superintelligent machines, either benevolent or evil, from science fiction. The corporations trying to sell you on relying on it more and more are not in any rush to correct this misconception, and some of them may even genuinely believe they&#39;re only a few months away from achieving the sci-fi version.&lt;/p&gt;
-&lt;h2 id=&quot;the-ethical-questions&quot;&gt;The Ethical Questions&lt;/h2&gt;
-&lt;p&gt;Ok, I know I said we could set those aside for this post, but I&#39;ll just quickly name a few questions you should consider:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Is it a shortcut to learning something that increases your skills? Or are you offloading cognitive processes because it saves some time in the short-term? If the latter, are you comfortable losing those skills? What will you do when the &lt;a href=&quot;https://en.wikipedia.org/wiki/Enshittification&quot;&gt;enshittification&lt;/a&gt; inevitably occurs, with raised prices and/or harmful bias introduced?&lt;/li&gt;
-&lt;li&gt;Do you know if it is training on the data you input to the query? Are you comfortable with the possibility that your query might become an answer to somebody else? Most of the business-class subscriptions will guarantee that it won&#39;t train on your queries, but the personal and free ones usually will be training on it so you really need to be careful what you put in.&lt;/li&gt;
-&lt;li&gt;Are you comfortable with the environmental consequences with the demands for more water and power? As I understand it, this isn&#39;t nearly the biggest part of our climate crisis, but it&#39;s not nothing, so you still need to decide if it is worth it.&lt;/li&gt;
-&lt;li&gt;How will it impact content creators over time? Rhetoric about it being a &amp;quot;plagiarism machine&amp;quot; is overblown, but there is still a power differential with these extremely rich companies getting even more rich based on content written by others who do not get the same benefits. How will it change journalism on the internet, if people don&#39;t feel the need to ever open the actual article and see ads or prompts for a paywall? And will we get so much content generated by language models that it drowns out the better content prepared carefully by humans?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There is a lot to think about. While it will be interesting to see how things evolve, we also need to remember that we get some small vote in how it evolves. Nothing is inevitable unless we choose societally to make it inevitable; any claim otherwise is pure marketing hype.&lt;/p&gt;
 </content>
   </entry>
 </feed>
