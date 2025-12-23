@@ -1,5 +1,6 @@
 ---
 title: "Security Essentials: Password Manager"
+description: "Passwords suck. Password managers make them suck less because they can generate better passwords, remember them for you, and auto-fill."
 date: "2021-03-07T13:58:14-05:00"
 author: "Ryan Robinson"
 tags:
@@ -11,7 +12,7 @@ I typically have two main pieces of advice for basic information security that a
 - Use multi-factor authentication everywhere it is offered
 - Use a password manager to generate good passwords, remember them, and make your life easier with auto-fill
 
-[My previous post dealt with multi-factor authentication](/posts/2021/security-essentials-multi-factor-authentication/). This post will look at password managers.
+[My previous post dealt with multi-factor authentication](/2021/security-essentials-multi-factor-authentication/). This post will look at password managers.
 
 ## Passwords are the Worst
 

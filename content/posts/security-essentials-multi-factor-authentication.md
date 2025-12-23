@@ -1,5 +1,6 @@
 ---
 title: "Security Essentials: Multi-factor Authentication"
+description: "Multi-factor authentication (or passkeys) is the single best way to keep your accounts from being compromised."
 date: "2021-03-07T17:33:08-05:00"
 author: "Ryan Robinson"
 tags:

@@ -1,5 +1,6 @@
 ---
 title: "WordPress: .com vs .org"
+description: "WordPress.com might be easier, but at the cost of some flexibility compared to hosting your own installation."
 date: "2021-03-16T11:22:00-04:00"
 author: "Ryan Robinson"
 tags:
