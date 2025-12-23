@@ -11,7 +11,9 @@ tags:
 draft: true
 ---
 
-When you're maintaining a site over an extended period of time, something extremely useful is to have automated regression testing that will catch if you break one thing in the process of fixing another thing.
+This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
+
+This post is a bit bigger than just that series, though. When you're maintaining a site over an extended period of time, something extremely useful is to have automated regression testing that will catch if you break one thing in the process of fixing another thing. I'm only adding it as part of that series because of the role of the automated testing stages.
 
 I've also heard the suggestion that it is best to write the tests before you even write the live code. That way, as you work on the code, you can have the automated tests confirming what you have solved and what you haven't. I have not gotten very close to that point yet, and there are probably some scenarios where it isn't practical because you don't know the exact outcome you want until you start seeing it in practice. It does help demonstrate the real ideal, though, with constant verification that everything is still doing what it should before it gets merged and eventually sent to production.
 
