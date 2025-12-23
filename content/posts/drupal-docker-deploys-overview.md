@@ -1,8 +1,8 @@
 ---
-title: Drupal Docker Deploys - An Overview
+title: Deployment Overview
 date: 2025-08-24T16:54:16.700Z
 author: Ryan Robinson
-description: This begins a series on the latest incarnation of my Drupal development setup, including Docker containerized deploys.
+description: "Beginning a series on my Drupal development setup, including Docker containerized deploys, this provides an overview of the environments."
 series: Drupal Docker
 tags:
   - Drupal

@@ -1,5 +1,5 @@
 ---
-title: Pa11y-ci Sitemap scanning.
+title: Pa11y-ci Sitemap Scanning
 date: 2024-10-09T22:54:16.700Z
 author: Ryan Robinson
 description: Pa11y-ci is a helpful accessibility testing tool, as part of your CI workflow.
