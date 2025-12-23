@@ -1,6 +1,6 @@
 ---
 title: "VS Code DevContainer"
-date: 2025-12-23T14:16:00.000Z
+date: 2025-12-23T14:10:00.000Z
 author: Ryan Robinson
 description: "The devcontainer file specifies how VS Code will run this environment, including extensions, settings, and scripts."
 series: Drupal Docker
