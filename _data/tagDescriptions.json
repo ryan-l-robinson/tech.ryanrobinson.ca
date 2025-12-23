@@ -1,32 +1,32 @@
 {
 	"ai":
-		"These posts discuss machine learning tools: what are they good for, what are they not, and what are some of the social consequences.",
+		"Machine learning tools: what are they good for, what are they not, and what are some of the social consequences.",
 	"accessibility":
-		"Tech should be for everybody. These posts discuss helping make that better.",
+		"Tech should be for everybody. Let's make that better.",
 	"CRM":
-		"These posts address Constituent/Client/Customer Relationship Management software. I did more of this in a previous job, so don't expect much new here but there are some legacy notes.",
+		"Constituent/Client/Customer Relationship Management software. I did more of this in a previous job, so don't expect much new here but there are some legacy notes.",
 	"CSS":
-		"These posts include Cascading Style Sheets, used for adding styles to websites.",
+		"Cascading Style Sheets, used for adding styles to websites.",
 	"DevOps":
-		"These posts address development tools, Continuous Integration and Continuous Delivery/Deployment (CI/CD), and more generally the processes that streamline development operations.",
+		"Development tools, Continuous Integration and Continuous Delivery/Deployment (CI/CD), and generally the processes that streamline development operations.",
 	"Drupal":
-		"These posts address working with the Drupal content management system.",
+		"Working with the Drupal content management system, either with UI configuration or with code.",
 	"JavaScript":
-		"These posts address interactive elements for websites.",
+		"Interactive elements for websites.",
 	"Linux":
-		"These posts address managing Linux servers.",
+		"Managing Linux servers, including bash scripts and Docker container definition.",
 	"Microsoft 365":
-		"These posts address aspects of Microsoft's productivity and cloud suite, including usage and aspects of administration.",
+		"Aspects of Microsoft's productivity and cloud suite, including usage and administration.",
 	"PHP":
-		"These posts include PHP code, the language that I work in the most often.",
+		"PHP code, the language that I work in the most often.",
 	"Security":
-		"These posts address security and privacy, both at the personal consumer level and in organizational contexts.",
+		"Security and privacy, both at the personal consumer level and in organizational contexts.",
 	"Static Sites":
-		"These posts address building websites with static site generators, such as the eleventy used for this site.",
+		"Building websites with static site generators, such as eleventy used for this site.",
 	"Tech and Society":
-		"These posts are not as much how-to as most, instead musing about the impact of technology on the world.",
+		"Not as much how-to as most tags, instead musing about the impact of technology on the world.",
 	"Visual Studio Code":
-		"These posts share notes on using VS Code, my primary development environment.",
+		"Notes on using VS Code, my primary development environment.",
 	"WordPress":
-		"These posts address developing on WordPress. I used to do this much more often, so I probably won't be adding too much more to this one."
+		"The WordPress content management system. I used to do this much more often, so I probably won't be adding too much more to this one."
 }

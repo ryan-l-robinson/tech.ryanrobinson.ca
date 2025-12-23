@@ -2,7 +2,7 @@
 title: "Drupal Docker: Start Scripts"
 date: 2026-01-29T01:46:00.000Z
 author: Ryan Robinson
-description: "The start script for a Drupal Docker setup which includes connecting to the database, setting up key files with variables, and running Apache."
+description: "The start script for a Drupal Docker setup includes connecting to the database, setting up key files with variables, and running Apache."
 series: Drupal Docker
 tags:
   - Drupal
