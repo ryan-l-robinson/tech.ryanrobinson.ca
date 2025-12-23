@@ -5,11 +5,87 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2025-12-23T15:27:16Z</updated>
+  <updated>2025-12-23T16:05:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>PHP Lint and CS Testing</title>
+    <link href="https://tech.ryanrobinson.ca/2025/devenv-phplint/" />
+    <updated>2025-12-23T16:05:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/2025/devenv-phplint/</id>
+    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This series has now covered all the core functionality of having a local development environment and deploying updates. The majority of what&#39;s left has to do with automated testing, including this one where I will start to look at PHP linting and PHP CodeSniffer, a couple of tools to help detect errors in PHP code.&lt;/p&gt;
+&lt;h2 id=&quot;php-lint&quot;&gt;PHP Lint&lt;/h2&gt;
+&lt;p&gt;PHP linting checks for any fatal errors. These kinds of errors are a lot harder to keep in the code long enough to commit it into GitLab if you were using a full dedicated developer environments with things like syntax and error highlighting, because you&#39;re probably going to notice it first. With that said, it is still a good failsafe to have, and it doesn&#39;t take that long to run.&lt;/p&gt;
+&lt;p&gt;Here&#39;s a GitLab CI/CD approach to scan any PHP changes in case of any fatal error, starting with a general extendable job which will scan all files recursively in any specified directories.&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;.php_lint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; drupal&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;php8.3&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;apache
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;DIRECTORIES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;EXTENSIONS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;php&quot;&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Recursively checks for files of specified extensions in specified directories and completes php lint on them. #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cwd=&quot;$(pwd)&quot;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+      for DIRECTORY in $DIRECTORIES
+        do
+          cd $DIRECTORY
+          for EXT in $EXTENSIONS
+            do
+              files=&quot;$(find -name *.${EXT} -type f)&quot;&lt;/span&gt;
+
+              for file in $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;files&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+                do php &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;l $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;file&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;;
+              done;
+            done;
+          cd $cwd;
+        done;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each project can then set up up a CI/CD job to implement it, like this one that runs on any custom code change as well as on dev and staging, checking each of those custom code directories:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ryan-l-robinson/gitlab-ci&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; main
+    &lt;span class=&quot;token key atrule&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test.yml
+
+&lt;span class=&quot;token comment&quot;&gt;## Stages ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;stages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; test
+
+&lt;span class=&quot;token key atrule&quot;&gt;php_lint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .php_lint
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;DIRECTORIES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./web/themes/custom ./web/modules/custom
+    &lt;span class=&quot;token key atrule&quot;&gt;EXTENSIONS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; php module theme inc
+  &lt;span class=&quot;token key atrule&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_PIPELINE_SOURCE == &quot;merge_request_event&quot;&#39;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; never
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_COMMIT_BRANCH == &quot;dev&quot; || $CI_COMMIT_BRANCH == &quot;staging&quot;&#39;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;changes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/modules/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/themes/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;php-codesniffer&quot;&gt;PHP CodeSniffer&lt;/h2&gt;
+&lt;p&gt;CodeSniffer helps enforce more strict coding standards. There are standards defined for both Drupal and DrupalPractice. Drupal covers a lot of the basic bare minimum compliance with Drupal standards: indentation, style, and file structure. DrupalPractice goes further to offer deeper best practices.&lt;/p&gt;
+&lt;p&gt;This one is a one-line script, so I haven&#39;t bothered to split it into a dedicated separate template. This is just one job, in the project&#39;s .gitlab-ci.yml:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;### CodeSniffer for coding style ###&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;php_cs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; php_built_test
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $CI_REGISTRY_IMAGE/web&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;$CI_COMMIT_REF_SLUG
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; /opt/drupal/vendor/bin/phpcs &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;standard=&quot;Drupal&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;DrupalPractice&quot; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;n &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;extensions=&quot;php&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;module&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;inc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;install&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;test&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;theme&quot; web/themes/custom web/modules/custom &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ignore=&lt;span class=&quot;token important&quot;&gt;*/vendor/*&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_PIPELINE_SOURCE == &quot;merge_request_event&quot;&#39;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; never
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_COMMIT_BRANCH == &quot;dev&quot;&#39;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_COMMIT_BRANCH == &quot;staging&quot; || $CI_COMMIT_BRANCH == &quot;main&quot;&#39;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; never
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;changes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/modules/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/themes/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The key thing to note here, unlike with PHP linting, is that this needs to run after an updated web image is built. PHP linting is looking for the kind of errors that are visible simply by reading the code, so it can run before the build and if something fails, you don&#39;t even need to waste the time on the build. PHP CodeSniffer, though, needs some vendor files which only happen when the composer packages are installed, which is normally part of the build process.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Deploying Containers</title>
     <link href="https://tech.ryanrobinson.ca/2025/devenv-deploy-update-jobs/" />
@@ -1062,61 +1138,6 @@ RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&qu
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note: since Drupal 11.3, this would be possible to do with the new hook OOP implementation structure instead of being defined like this in the .theme file with a bunch of hooks and preprocessors, but the rest of the logic would be the same.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Entity Usage Tracking</title>
-    <link href="https://tech.ryanrobinson.ca/2025/entity-usage/" />
-    <updated>2025-12-22T12:16:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/entity-usage/</id>
-    <content type="html">&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://tech.ryanrobinson.ca/2025/embed-node/&quot;&gt;In a recent post, I described some functionality to allow embedding some content within other content&lt;/a&gt;. I had designed the use of &amp;quot;reusable content&amp;quot; so that when there was repetitive content to be put into multiple pages, the editor could create just one reusable node and embed it within the other pages. If something then changed within that content, they would only need to update it once and it would affect all of the pages embedding it.&lt;/p&gt;
-&lt;p&gt;It left one problem, though: when you&#39;re editing a node of reusable content, how do you know what pages you&#39;re going to change? Even if nobody else was also embedding that reusable content somewhere and you never knew about it, do you really remember everywhere that you yourself put it a couple of years ago? Probably not.&lt;/p&gt;
-&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
-&lt;p&gt;I began looking into building my own solution to this problem that would probably have looked something like a view on each reusable content page to show any other pages referencing it. Then I quickly found &lt;a href=&quot;https://www.drupal.org/project/entity_usage&quot;&gt;entity_usage&lt;/a&gt; which explicitly supports the entity embed scenario I had, plus some more scenarios that were less essential for us but turned out to also be very useful.&lt;/p&gt;
-&lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
-&lt;p&gt;Configuration has a long form - long enough that I don&#39;t want to include a screenshot - but is relatively simple once you break it down.&lt;/p&gt;
-&lt;h4 id=&quot;what-gets-tracked&quot;&gt;What Gets Tracked&lt;/h4&gt;
-&lt;p&gt;First up are some options about the tracking itself:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Which entity types should show the &amp;quot;Usage&amp;quot; tab on it?&lt;/li&gt;
-&lt;li&gt;Which entity types should be tracked as a source of the link?&lt;/li&gt;
-&lt;li&gt;Which entity types should be tracked as the target of the link?&lt;/li&gt;
-&lt;li&gt;What types of connections should be tracked?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The last one includes an impressive amount of support for connections made a variety of ways, including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Block Field&lt;/li&gt;
-&lt;li&gt;CKEditor Image&lt;/li&gt;
-&lt;li&gt;Dynamic Entity Reference&lt;/li&gt;
-&lt;li&gt;Entity Embed (that&#39;s the one I needed)&lt;/li&gt;
-&lt;li&gt;Entity Reference&lt;/li&gt;
-&lt;li&gt;HTML links&lt;/li&gt;
-&lt;li&gt;Layout builder&lt;/li&gt;
-&lt;li&gt;Link Fields&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.drupal.org/project/linkit&quot;&gt;LinkIt&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Media WYSIWYG Embed (Core)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Although I needed this most for the entity embed scenario, I quickly found it useful to also be able to see links between objects that are in link fields, entity reference fields, or within a CKEditor field&#39;s text whether using linkit or not.&lt;/p&gt;
-&lt;h4 id=&quot;edit-and-delete-warnings&quot;&gt;Edit and Delete Warnings&lt;/h4&gt;
-&lt;p&gt;The other options are about where to put warnings when editing or deleting content, so people are reminded what other unintentional impacts their actions might have.&lt;/p&gt;
-&lt;p&gt;I wish these options would let you pick by content type (bundles), not just by entity. I also wish there was a third category for &amp;quot;unpublishing&amp;quot; a page.&lt;/p&gt;
-&lt;p&gt;In my context, the arrangement I really wanted was:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Reusable Content gets the warning for any edits and deletions.&lt;/li&gt;
-&lt;li&gt;Other types get the warning only if they try to unpublish or delete.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Reusable Content is clear; if I&#39;m making any edit I know it will directly impact the other pages. Even for a typo, that can be good to know. On every other type, though, if I&#39;m just fixing a typo, I don&#39;t need to know that there&#39;s another page that is linking to this page. Many pages don&#39;t impact that relationship at all. Very rarely do I need to know that other pages are linking to this page, other than if I am going to stop it from being publicly visible in which case I would be creating a dead link.&lt;/p&gt;
-&lt;p&gt;I can&#39;t do that with the current set of options. I can show on all editing of all nodes or no editing of any node, so I had to go with none and miss out on a couple scenarios I would prefer to have it.&lt;/p&gt;
-&lt;p&gt;Other than that, though, it&#39;s a pretty nice set of options!&lt;/p&gt;
-&lt;h3 id=&quot;the-view-of-usage&quot;&gt;The View of Usage&lt;/h3&gt;
-&lt;p&gt;Based on the settings above, there is a new tab added to content, showing everywhere else that this entity is currently being referenced by other entities.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/APRQgQXVtI-1781.avif 1781w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/APRQgQXVtI-1781.webp 1781w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/APRQgQXVtI-1781.png&quot; alt=&quot;&amp;quot;Under the Usage tab on content, a table shows the Entity, the Type of that entity, the Language of that content, the Field Name with the linking connection, the Status of that page, and whether it is used in the current or old revision.&amp;quot;&quot; width=&quot;1781&quot; height=&quot;238&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;I do wish this was a view that was more easy to edit, like removing Language if it isn&#39;t a multilingual site, but the defaults aren&#39;t bad.&lt;/p&gt;
-&lt;h3 id=&quot;the-editing-and-deletion-warnings&quot;&gt;The Editing and Deletion Warnings&lt;/h3&gt;
-&lt;p&gt;Now that it has the tracked reference data, it can help remind you of it in relevant contexts. If you try to edit or delete a page when there was another page linking to it, you now have a way to know that.&lt;/p&gt;
-&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.avif 495w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.webp 495w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://tech.ryanrobinson.ca/2025/entity-usage/jccvTdefk9-495.png&quot; alt=&quot;&amp;quot;Warning message: There are recorded usages of this entity. The recorded usages text is linked to go to the Usage page.&amp;quot;&quot; width=&quot;495&quot; height=&quot;148&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;This gives the editor some essential information. Maybe they decide to go change that other page first so that it isn&#39;t still referencing the page to be deleted, avoiding a dead link. Maybe they realize that they actually need to keep the page that you were about to delete because of the other page&#39;s reliance on it.&lt;/p&gt;
 </content>
   </entry>
 </feed>
