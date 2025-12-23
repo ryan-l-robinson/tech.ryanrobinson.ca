@@ -7,7 +7,7 @@ series: Drupal Docker Oracle
 tags:
   - Drupal
   - DevOps
-  - VS Code
+  - Visual Studio Code
   - Linux
 ---
 
