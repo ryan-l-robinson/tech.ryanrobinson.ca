@@ -1,11 +1,10 @@
-.post-list { counter-reset: start-from 4 }
+.post-list { counter-reset: start-from 6 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
 
 .post-list-item-title {
 	margin: 0;
-	padding-bottom: 0.25em;
 	line-height: 1.4em;
 }
 

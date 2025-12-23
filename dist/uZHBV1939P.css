@@ -1,11 +1,10 @@
-.post-list { counter-reset: start-from 5 }
+.post-list { counter-reset: start-from 7 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
 
 .post-list-item-title {
 	margin: 0;
-	padding-bottom: 0.25em;
 	line-height: 1.4em;
 }
 
@@ -31,6 +30,41 @@
 
 .post-list-item :last-child {
 	margin-bottom: 0;
+}
+/** Pagination **/
+
+.pager {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1em;
+	margin: 0;
+	padding: 1em;
+	list-style: none;
+}
+
+.pager li {
+	display: flex;
+	height: fit-content;
+}
+
+.pager li a {
+	border: 1px solid var(--grey);
+	padding: 0.5em;
+	text-decoration: none;
+	line-height: 1em;
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.pager li a:is(:hover, :focus) {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.pager li a[aria-current="page"] {
+	background-color: var(--grey);
+	color: var(--black);
 }
 /* Variables and general site-wide styles */
 
