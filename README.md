@@ -9,7 +9,6 @@ It is now functional but I haven't finished cleaning up all the content yet.
 Theme:
 
 - Pagination is too big for small screens. I either need less items showing always, or I need to implement JavaScript to show less only on smaller screens.
-- Search weighting: is there a way to give just a little bit more weight to newer posts? Maybe reduce weight by how many years old it is?
 - When I add an image using FrontMatter, it adds to a bad path, not relative to the post. Is that avoidable?
 - This won't be a problem for a while but the paths for years and the paths for pages of all posts could conflict, once there is 2021 pages of posts. It probably won't ever be an issue for me because I'm not writing that much, but in principle it should still have some way to handle it.
 
