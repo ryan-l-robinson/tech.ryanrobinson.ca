@@ -14,6 +14,7 @@ Theme:
 
 Existing Content:
 
+- Posts: add more series descriptions, taking any introduction out of each post.
 - Posts: Review tags on existing posts for consistency
 - Posts: add descriptions to all posts (must be in quotes to appear), review tags and series, remove categories that aren't doing anything, update image paths, update link paths.
 - Update links in dev.to to point to the new addresses.
