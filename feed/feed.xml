@@ -5,11 +5,28 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2026-01-06T14:54:16Z</updated>
+  <updated>2026-01-06T16:40:00Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Eleventy Theme Updated</title>
+    <link href="https://tech.ryanrobinson.ca/2026/11ty-theme-update/" />
+    <updated>2026-01-06T16:40:00Z</updated>
+    <id>https://tech.ryanrobinson.ca/2026/11ty-theme-update/</id>
+    <content type="html">&lt;p&gt;I also redid &lt;a href=&quot;https://ryanrobinson.ca&quot;&gt;the ryanrobinson.ca landing page&lt;/a&gt; with some similar design, but I&#39;m not going to talk about that any more here - that&#39;s plain HTML and CSS and the only hard decisions was in what content I should put there.&lt;/p&gt;
+&lt;h2 id=&quot;the-code-structure&quot;&gt;The Code Structure&lt;/h2&gt;
+&lt;p&gt;For this post, I&#39;m just going to note how the code is structured.&lt;/p&gt;
+&lt;p&gt;The code is split into two:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The theme that is shared between the two sites, housed at &lt;a href=&quot;https://github.com/ryan-l-robinson/11ty-theme&quot;&gt;the 11ty-theme project in my GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&quot;https://github.com/ryan-l-robinson/tech.ryanrobinson.ca&quot;&gt;individual site&#39;s project&lt;/a&gt;, which sets a lot of site configuration as well as contains all the post content.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The theme is not fully abstracted. There are some things in there which are uniquely intended for me, like all the social media links in the footer, but they are the same for the two sites so it didn&#39;t seem worth the effort to make the theme more abstract and then have to define all the links on each site separately. I could still do that if I learned that somebody else really wanted to use that theme, but that isn&#39;t likely so I can keep it more efficient and easier to maintain this way.&lt;/p&gt;
+&lt;p&gt;In the rest of this series, I&#39;ll look at some of the more confusing parts: pages listing posts by tag and by year, nested pagination, sidebar flexibility, tag and series descriptions, search, and maybe some more if I think of it later.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>H5P Views Drupal Module</title>
     <link href="https://tech.ryanrobinson.ca/2026/h5p-views/" />
@@ -971,154 +988,6 @@ drush cr&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
 
 envsubst &lt;span class=&quot;token string&quot;&gt;&#39;${MYSQL_DATABASE} ${MYSQL_USER} ${MYSQL_PASSWORD} ${MYSQL_HOST} ${MYSQL_PORT}&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /opt/drupal/phpunit.xml.tmpl &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /opt/drupal/phpunit.xml&lt;/code&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <title>The Primary Web Dockerfile</title>
-    <link href="https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/" />
-    <updated>2025-12-23T11:00:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/</id>
-    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline for a Drupal site. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This post will dive into the Dockerfile that defines how the primary web (PHP and Apache) image will be built.&lt;/p&gt;
-&lt;h2 id=&quot;the-web-image&quot;&gt;The Web Image&lt;/h2&gt;
-&lt;p&gt;First, The image is based on &lt;a href=&quot;https://hub.docker.com/_/drupal/&quot;&gt;the official Drupal image&lt;/a&gt;, because that will provide a good amount of what is necessary without needing to repeat it.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;FROM drupal:php8.3-apache&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;variables&quot;&gt;Variables&lt;/h3&gt;
-&lt;p&gt;Next are some arguments which are going to be passed through from the GitLab CI/CD job. BASE_URL is needed for some accessibility tests. BRANCH is needed to distinguish what to build since that isn&#39;t all the same in each environment. TIMESTAMP is used as a deployment identifier, which I then have in use for the environment indicator in Drupal as a way to display when it was last rebuilt. All three will get passed through into the built image as environment variables.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;ARG BASE_URL
-ARG BRANCH
-ARG TIMESTAMP
-
-# Needed as an ENV for the start.sh script
-ENV DEPLOY_ENV=$BRANCH
-# Variables used for accessibility testing
-ENV BASE_URL=$BASE_URL
-# Variable used to differentiate deployments
-ENV DEPLOYMENT_ID=$TIMESTAMP&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A few more environment variables will help squash some warnings:&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;ENV DEBIAN_FRONTEND=noninteractive
-ENV LC_ALL=en_CA.UTF-8
-ENV LANG=en_CA.UTF-8
-ENV LANGUAGE=en_CA.UTF-8&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;general-packages&quot;&gt;General Packages&lt;/h3&gt;
-&lt;p&gt;In the next section, install the extra packages that were not already included in the base Drupal image. In this first block, the only variance by environment is that main does not get nodejs or npm, which is needed for some things like playwright accessibility testing but that is not going to be running from production.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;RUN apt-get -y update &amp;&amp; &#92;
-    apt-get -y --no-install-recommends install &#92;
-    default-mysql-client &#92;
-    locales &#92;
-    locales-all &#92;
-    gettext-base &#92;
-    git &#92;
-    openssh-client &#92;
-    unzip &#92;
-    zip
-RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ]; then &#92;
-      apt-get -y --no-install-recommends install &#92;
-      nodejs &#92;
-      npm &#92;
-    ; fi
-RUN apt-get clean &amp;&amp; &#92;
-  rm -rf /var/lib/apt/lists/*&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;php&quot;&gt;PHP&lt;/h3&gt;
-&lt;p&gt;The next section covers PHP adjustments. There is a version of PHP already installed - that&#39;s the 8.3 specified in the image name at the start - but there are a few more things we need to improve.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# PHP.ini file varies by environment
-RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
-      ln /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini &#92;
-    ; &#92;
-    else &#92;
-      ln /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini &#92;
-    ; fi
-
-# Install PHP extensions, using PECL
-RUN pecl channel-update pecl.php.net &#92;
-    &amp;&amp; pecl install apcu uploadprogress &#92;
-    &amp;&amp; docker-php-ext-enable apcu &#92;
-    &amp;&amp; docker-php-ext-enable uploadprogress
-
-# Copy settings for APCU, primarily to increase memory
-COPY php/docker-php-ext-apcu.ini /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
-
-# PHP.ini file varies by environment
-RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
-      ln /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini &#92;
-    ; &#92;
-    else &#92;
-      ln /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini &#92;
-    ; fi
-
-# Increase resources for PHP
-RUN sed -i &quot;s/max_execution_time = 30/max_execution_time = 300/g&quot; /usr/local/etc/php/php.ini &#92;
-    &amp;&amp; sed -i &quot;s/max_input_time = 60/max_input_time = 600/g&quot; /usr/local/etc/php/php.ini &#92;
-    &amp;&amp; sed -i &quot;s/memory_limit = 128M/memory_limit = 2048M/g&quot; /usr/local/etc/php/php.ini &#92;
-    &amp;&amp; sed -i &quot;s/upload_max_filesize = 2M/upload_max_filesize = 128M/g&quot; /usr/local/etc/php/php.ini &#92;
-    &amp;&amp; sed -i &quot;s/post_max_size = 8M/post_max_size = 256M/g&quot; /usr/local/etc/php/php.ini &#92;
-    &amp;&amp; sed -i &quot;s/;max_input_vars = 1000/max_input_vars = 10000/g&quot; /usr/local/etc/php/php.ini
-
-# XDebug should only be on local/dev branches
-RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
-    pecl install xdebug &#92;
-    &amp;&amp; docker-php-ext-enable xdebug &#92;
-    &amp;&amp; touch /var/log/xdebug.log &#92;
-    &amp;&amp; chown www-data:www-data /var/log/xdebug.log &#92;
-    &amp;&amp; cp /opt/drupal/php/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d &#92;
-  ; fi&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note the COPY of a file for the APCU configuration. That&#39;s a simple file, not worth its own post, and is really just necessary to get a higher memory limit than the default.&lt;/p&gt;
-&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token key attr-name&quot;&gt;extension&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;apcu&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;apc.enable_cli&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;apc.shm_size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;64M&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There&#39;s also a similar xdebug configuration file being copied, which is also relatively straightforward. XDebug is a great tool for debugging with PHP. &lt;a href=&quot;https://tech.ryanrobinson.ca/2022/php-xdebug-vs-code/&quot;&gt;I wrote about using it in VS Code a while ago&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token key attr-name&quot;&gt;zend_extension&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;xdebug.so&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;debug,coverage,profile&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.start_with_request&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;trigger&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.client_host&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.client_port&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;9003&lt;/span&gt;
-&lt;span class=&quot;token key attr-name&quot;&gt;xdebug.log&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;/var/log/xdebug.log&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;apache&quot;&gt;Apache&lt;/h3&gt;
-&lt;p&gt;Next is the other major component: Apache. As with PHP, the basics are already installed from the inherited base image, but it doesn&#39;t have any SSL certificate so you can&#39;t browse it as HTTPS. This section, then, will add a self-signed certificate for the Apache configuration, so that we&#39;ll be able to browse the site locally with HTTPS.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Apache configuration, including SSL certificates and logs
-COPY apache /etc/apache2
-
-RUN a2enmod ssl
-
-RUN openssl req &#92;
-    -batch &#92;
-    -newkey rsa:4096 &#92;
-    -nodes &#92;
-    -sha256 &#92;
-    -keyout /etc/apache2/certs/drupal.devenv.key &#92;
-    -x509 &#92;
-    -days 3650 &#92;
-    -out /etc/apache2/certs/drupal.devenv.crt &#92;
-    -config /etc/apache2/certs/openssl-config.txt &amp;&amp; &#92;
-  chown -R root:www-data /etc/apache2 &amp;&amp; &#92;
-  chmod 660 /etc/apache2/certs/*
-
-# Set www-data file permissions
-COPY --chown=www-data:www-data . /opt/drupal&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note that a self-signed certificate may not be sufficient, depending on what you are using for the database image. There are ways to give it a trusted certificate instead, shared with the database image. I am not getting into that here.&lt;/p&gt;
-&lt;h3 id=&quot;grep&quot;&gt;Grep&lt;/h3&gt;
-&lt;p&gt;This is a minor thing, but I like when I grep through code to see results with the colour highlights, making it much easier to read. That can be done by setting an environment variable and putting an alias for grep into a bashrc file.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Set up nicer grep results
-ENV GREP_COLORS=&#39;mt=1;37;41&#39;
-COPY .bashrc /user/www-data/.bashrc&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;permissions-and-scripts&quot;&gt;Permissions and Scripts&lt;/h3&gt;
-&lt;p&gt;Give the permissions on the main folder to the www-data user that Apache runs as, and allow www-data to run the scripts:&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;RUN chown -R www-data:www-data /var/www /opt
-RUN chmod -R 770 /opt/drupal/scripts&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Those scripts will get more attention in future posts.&lt;/p&gt;
-&lt;h3 id=&quot;build-the-composer-packages&quot;&gt;Build the Composer Packages&lt;/h3&gt;
-&lt;p&gt;Build the composer packages as the www-data user. There is some distinction for dev packages to not be included on main and staging.&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# Get and build the Drupal code, with proper permissions
-USER www-data
-RUN if [ &quot;$BRANCH&quot; != &quot;main&quot; ] &amp;&amp; [ &quot;$BRANCH&quot; != &quot;staging&quot; ]; then &#92;
-      composer install &#92;
-    ; &#92;
-    else &#92;
-      composer install --no-dev &#92;
-    ; fi&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;the-start-script&quot;&gt;The Start Script&lt;/h3&gt;
-&lt;p&gt;Finally, designate the script that runs when container starts up. Again, I&#39;ll cover the details of that script in a later post:&lt;/p&gt;
-&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;CMD [&quot;/opt/drupal/scripts/start.sh&quot;]&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>
