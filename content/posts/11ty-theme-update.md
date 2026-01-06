@@ -6,8 +6,6 @@ description: "I've completed some major theme updates for this site. This post i
 series: "11ty Theme"
 tags:
   - Static Sites
-  - JavaScript
-  - Accessibility
 ---
 
 I also redid [the ryanrobinson.ca landing page](https://ryanrobinson.ca) with some similar design, but I'm not going to talk about that any more here - that's plain HTML and CSS and the only hard decisions was in what content I should put there.
