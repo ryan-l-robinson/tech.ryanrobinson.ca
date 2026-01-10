@@ -9,3 +9,5 @@ draft: true
 ---
 
 Make it generalized first, with config options, and put it in GitHub.
+
+Try Rabbit Hole (module). That might be a more clean solution to this problem than my mess of customizations.
