@@ -1,6 +1,6 @@
 ---
 title: Eleventy Tag and Series Descriptions
-date: 2026-01-11T13:16:00.000Z
+date: 2026-01-23T13:16:00.000Z
 author: Ryan Robinson
 description: "Tags aren't always obvious what they mean, so I incorporated some longer descriptions for those tags to help."
 series: "11ty Theme"

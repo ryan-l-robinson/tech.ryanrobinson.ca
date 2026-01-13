@@ -1,6 +1,6 @@
 ---
 title: Pa11y and Pa11y-CI Accessibility
-date: 2026-01-03T22:54:16.700Z
+date: 2026-01-15T22:54:16.700Z
 author: Ryan Robinson
 description: "Pa11y and Pa11y-ci are a helpful accessibility testing tool, as part of your CI workflow or running locally."
 series: Drupal Docker

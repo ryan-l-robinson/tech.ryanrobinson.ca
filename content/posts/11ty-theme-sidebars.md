@@ -1,6 +1,6 @@
 ---
 title: Eleventy Theme Sidebar
-date: 2026-01-09T13:16:00.000Z
+date: 2026-01-22T13:16:00.000Z
 author: Ryan Robinson
 description: "How I navigated adding sidebars to the sites, with some repeating on both sites and some unique per site."
 series: "11ty Theme"

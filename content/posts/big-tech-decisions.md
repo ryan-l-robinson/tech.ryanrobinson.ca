@@ -1,6 +1,6 @@
 ---
 title: "Decisions on Software Categories"
-date: 2026-01-19T13:18:09.000Z
+date: 2026-01-14T13:18:09.000Z
 author: Ryan Robinson
 description: "Some examples of deliberations in trying to rely less on US Big Tech."
 series: "Big Tech Alternatives"

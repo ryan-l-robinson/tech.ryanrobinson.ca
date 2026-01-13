@@ -1,6 +1,6 @@
 ---
 title: Eleventy with Elasticlunr Search
-date: 2026-01-12T13:16:00.000Z
+date: 2026-01-24T13:16:00.000Z
 author: Ryan Robinson
 description: "I made an accessible and relatively flexible search using elasticlunr."
 series: "11ty Theme"

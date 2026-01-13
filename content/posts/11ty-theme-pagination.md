@@ -1,6 +1,6 @@
 ---
 title: Eleventy Nested Pagination
-date: 2026-01-08T13:16:00.000Z
+date: 2026-01-21T13:16:00.000Z
 author: Ryan Robinson
 description: "Nested pagination was definitely the most annoying thing about setting up this eleventy site, but I eventually got there."
 series: "11ty Theme"

@@ -1,6 +1,6 @@
 ---
 title: "Wrestling with US Big Tech"
-date: 2026-01-12T13:18:09.000Z
+date: 2026-01-13T13:18:09.000Z
 author: Ryan Robinson
 description: "There are lots of good reasons to try to minimize your reliance on US Big Tech. Here are some of my considerations."
 series: "Big Tech Alternatives"

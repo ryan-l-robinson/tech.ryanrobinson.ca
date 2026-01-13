@@ -1,6 +1,6 @@
 ---
 title: Database Lifecycle
-date: 2026-01-09T22:54:16.700Z
+date: 2026-01-17T22:54:16.700Z
 author: Ryan Robinson
 description: "I developed a semi-automated method to keep databases roughly in sync across environments."
 series: Drupal Docker
