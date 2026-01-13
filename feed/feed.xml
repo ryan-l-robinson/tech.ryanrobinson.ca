@@ -81,6 +81,81 @@ RUN npm i -D @playwright/test @axe-core/playwright fsp-xml-parser&lt;/code&gt;&l
 &lt;li&gt;A mix of devices, giving me Firefox on a desktop computer, Safari on a newer iPhone in light mode, and Chrome on an older Android in dark mode. Between them I&#39;ve got the major browser options, light and dark mode, and a bit of range in screen size.&lt;/li&gt;
 &lt;li&gt;Where to find the files, under the tests directory. I currently have a slightly complicated few layers so that some tests only run in certain combinations of local or CI/CD and using the desktop or the mobile mock devices, and those tests can be defined centrally for all sites (a generic sitemap scan) or on a per-project basis. I might simplify this because I haven&#39;t really needed as much variation as I thought I did.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&quot;running-the-tests-in-ci-cd&quot;&gt;Running the Tests in CI/CD&lt;/h3&gt;
+&lt;p&gt;When I want a specific project to be able to run tests, the CI job in that project would look like:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Includes general CI jobs #&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ryan-l-robinson/gitlab-ci&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; main
+    &lt;span class=&quot;token key atrule&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test.yml
+
+&lt;span class=&quot;token comment&quot;&gt;### Runs all available tests using Playwright. ###&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;playwright_test_firefox&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .playwright_test
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; content_test
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//tech.ryanrobinson.ca/sitemap.xml
+    &lt;span class=&quot;token key atrule&quot;&gt;TEST_PROJECT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Desktop_Firefox
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
+  &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;pa11y_test&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;playwright_test_iphone&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .playwright_test
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; content_test
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//tech.ryanrobinson.ca/sitemap.xml
+    &lt;span class=&quot;token key atrule&quot;&gt;TEST_PROJECT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; iPhone_Light
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
+  &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;playwright_test_firefox&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;playwright_test_android&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .playwright_test
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; content_test
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//tech.ryanrobinson.ca/sitemap.xml
+    &lt;span class=&quot;token key atrule&quot;&gt;TEST_PROJECT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Pixel_Dark
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
+  &lt;span class=&quot;token key atrule&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;playwright_test_iphone&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is extending my general purpose job which uses the image I&#39;ve previously built, running all the tests to an HTML reporter which is kept for 5 months:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## Runs accessibility tests defined in Playwright scripts. ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;.playwright_test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; TBD
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;BASE_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;TEST_PROJECT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Desktop_Firefox&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;PLAYWRIGHT_HTML_OUTPUT_DIR&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /opt/playwright/results
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Copy any site-specific tests to run alongside the general test(s). #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+      if [ -d &quot;$CI_PROJECT_DIR/tests&quot; ]; then
+        cp -r $CI_PROJECT_DIR/tests/* /opt/playwright/tests/
+      fi&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Save the sitemap which is needed for the sitemap test. #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; curl &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;o /opt/playwright/sitemap.xml $SITEMAP_URL
+    &lt;span class=&quot;token comment&quot;&gt;# Move to directory and run Playwright tests. #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cd /opt/playwright
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; npx playwright test &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;project=$TEST_PROJECT &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;reporter=html
+    &lt;span class=&quot;token comment&quot;&gt;# Copy results back to the build directory so they can be used as artifacts. #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cp &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;r /opt/playwright/results $CI_PROJECT_DIR
+  &lt;span class=&quot;token comment&quot;&gt;# Show as warning but don&#39;t stop execution of later jobs if failure. #&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;allow_failure&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# Save the reports for 5 months, past our next release. #&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;artifacts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
+    &lt;span class=&quot;token key atrule&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; results/*
+    &lt;span class=&quot;token key atrule&quot;&gt;expire_in&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 5 months&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;running-tests-locally&quot;&gt;Running Tests Locally&lt;/h2&gt;
 &lt;h3 id=&quot;installation-requirements&quot;&gt;Installation Requirements&lt;/h3&gt;
 &lt;p&gt;There are two files which I&#39;ve already touched on in this series:&lt;/p&gt;

@@ -153,6 +153,81 @@ RUN npm i -D @playwright/test @axe-core/playwright fsp-xml-parser</code></pre>
 <li>A mix of devices, giving me Firefox on a desktop computer, Safari on a newer iPhone in light mode, and Chrome on an older Android in dark mode. Between them I've got the major browser options, light and dark mode, and a bit of range in screen size.</li>
 <li>Where to find the files, under the tests directory. I currently have a slightly complicated few layers so that some tests only run in certain combinations of local or CI/CD and using the desktop or the mobile mock devices, and those tests can be defined centrally for all sites (a generic sitemap scan) or on a per-project basis. I might simplify this because I haven't really needed as much variation as I thought I did.</li>
 </ul>
+<h3 id="running-the-tests-in-ci-cd">Running the Tests in CI/CD</h3>
+<p>When I want a specific project to be able to run tests, the CI job in that project would look like:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment"># Includes general CI jobs #</span>
+<span class="token key atrule">include</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">project</span><span class="token punctuation">:</span> <span class="token string">"ryan-l-robinson/gitlab-ci"</span>
+    <span class="token key atrule">ref</span><span class="token punctuation">:</span> main
+    <span class="token key atrule">file</span><span class="token punctuation">:</span> test.yml
+
+<span class="token comment">### Runs all available tests using Playwright. ###</span>
+<span class="token key atrule">playwright_test_firefox</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .playwright_test
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> content_test
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//tech.ryanrobinson.ca/sitemap.xml
+    <span class="token key atrule">TEST_PROJECT</span><span class="token punctuation">:</span> Desktop_Firefox
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">needs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>pa11y_test<span class="token punctuation">]</span>
+
+<span class="token key atrule">playwright_test_iphone</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .playwright_test
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> content_test
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//tech.ryanrobinson.ca/sitemap.xml
+    <span class="token key atrule">TEST_PROJECT</span><span class="token punctuation">:</span> iPhone_Light
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">needs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>playwright_test_firefox<span class="token punctuation">]</span>
+
+<span class="token key atrule">playwright_test_android</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .playwright_test
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> content_test
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//tech.ryanrobinson.ca/sitemap.xml
+    <span class="token key atrule">TEST_PROJECT</span><span class="token punctuation">:</span> Pixel_Dark
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">needs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>playwright_test_iphone<span class="token punctuation">]</span></code></pre>
+<p>That is extending my general purpose job which uses the image I've previously built, running all the tests to an HTML reporter which is kept for 5 months:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">## Runs accessibility tests defined in Playwright scripts. ##</span>
+<span class="token key atrule">.playwright_test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> TBD
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> <span class="token string">""</span>
+    <span class="token key atrule">BASE_URL</span><span class="token punctuation">:</span> <span class="token string">""</span>
+    <span class="token key atrule">TEST_PROJECT</span><span class="token punctuation">:</span> <span class="token string">"Desktop_Firefox"</span>
+    <span class="token key atrule">PLAYWRIGHT_HTML_OUTPUT_DIR</span><span class="token punctuation">:</span> /opt/playwright/results
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token comment"># Copy any site-specific tests to run alongside the general test(s). #</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">|</span><span class="token scalar string">
+      if [ -d "$CI_PROJECT_DIR/tests" ]; then
+        cp -r $CI_PROJECT_DIR/tests/* /opt/playwright/tests/
+      fi</span>
+    <span class="token comment"># Save the sitemap which is needed for the sitemap test. #</span>
+    <span class="token punctuation">-</span> curl <span class="token punctuation">-</span>o /opt/playwright/sitemap.xml $SITEMAP_URL
+    <span class="token comment"># Move to directory and run Playwright tests. #</span>
+    <span class="token punctuation">-</span> cd /opt/playwright
+    <span class="token punctuation">-</span> npx playwright test <span class="token punctuation">-</span><span class="token punctuation">-</span>project=$TEST_PROJECT <span class="token punctuation">-</span><span class="token punctuation">-</span>reporter=html
+    <span class="token comment"># Copy results back to the build directory so they can be used as artifacts. #</span>
+    <span class="token punctuation">-</span> cp <span class="token punctuation">-</span>r /opt/playwright/results $CI_PROJECT_DIR
+  <span class="token comment"># Show as warning but don't stop execution of later jobs if failure. #</span>
+  <span class="token key atrule">allow_failure</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># Save the reports for 5 months, past our next release. #</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> results/*
+    <span class="token key atrule">expire_in</span><span class="token punctuation">:</span> 5 months</code></pre>
 <h2 id="running-tests-locally">Running Tests Locally</h2>
 <h3 id="installation-requirements">Installation Requirements</h3>
 <p>There are two files which I've already touched on in this series:</p>
