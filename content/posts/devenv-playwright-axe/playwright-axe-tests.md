@@ -92,6 +92,90 @@ That is giving me:
 - A mix of devices, giving me Firefox on a desktop computer, Safari on a newer iPhone in light mode, and Chrome on an older Android in dark mode. Between them I've got the major browser options, light and dark mode, and a bit of range in screen size.
 - Where to find the files, under the tests directory. I currently have a slightly complicated few layers so that some tests only run in certain combinations of local or CI/CD and using the desktop or the mobile mock devices, and those tests can be defined centrally for all sites (a generic sitemap scan) or on a per-project basis. I might simplify this because I haven't really needed as much variation as I thought I did.
 
+### Running the Tests in CI/CD
+
+When I want a specific project to be able to run tests, the CI job in that project would look like:
+
+```yml
+# Includes general CI jobs #
+include:
+  - project: "ryan-l-robinson/gitlab-ci"
+    ref: main
+    file: test.yml
+
+### Runs all available tests using Playwright. ###
+playwright_test_firefox:
+  extends: .playwright_test
+  stage: content_test
+  environment: Production
+  variables:
+    SITEMAP_URL: https://tech.ryanrobinson.ca/sitemap.xml
+    TEST_PROJECT: Desktop_Firefox
+  only:
+    refs:
+      - main
+  needs: [pa11y_test]
+
+playwright_test_iphone:
+  extends: .playwright_test
+  stage: content_test
+  environment: Production
+  variables:
+    SITEMAP_URL: https://tech.ryanrobinson.ca/sitemap.xml
+    TEST_PROJECT: iPhone_Light
+  only:
+    refs:
+      - main
+  needs: [playwright_test_firefox]
+
+playwright_test_android:
+  extends: .playwright_test
+  stage: content_test
+  environment: Production
+  variables:
+    SITEMAP_URL: https://tech.ryanrobinson.ca/sitemap.xml
+    TEST_PROJECT: Pixel_Dark
+  only:
+    refs:
+      - main
+  needs: [playwright_test_iphone]
+```
+
+That is extending my general purpose job which uses the image I've previously built, running all the tests to an HTML reporter which is kept for 5 months:
+
+```yml
+## Runs accessibility tests defined in Playwright scripts. ##
+.playwright_test:
+  stage: test
+  image: TBD
+  variables:
+    SITEMAP_URL: ""
+    BASE_URL: ""
+    TEST_PROJECT: "Desktop_Firefox"
+    PLAYWRIGHT_HTML_OUTPUT_DIR: /opt/playwright/results
+  script:
+    # Copy any site-specific tests to run alongside the general test(s). #
+    - |
+      if [ -d "$CI_PROJECT_DIR/tests" ]; then
+        cp -r $CI_PROJECT_DIR/tests/* /opt/playwright/tests/
+      fi
+    # Save the sitemap which is needed for the sitemap test. #
+    - curl -o /opt/playwright/sitemap.xml $SITEMAP_URL
+    # Move to directory and run Playwright tests. #
+    - cd /opt/playwright
+    - npx playwright test --project=$TEST_PROJECT --reporter=html
+    # Copy results back to the build directory so they can be used as artifacts. #
+    - cp -r /opt/playwright/results $CI_PROJECT_DIR
+  # Show as warning but don't stop execution of later jobs if failure. #
+  allow_failure: true
+  # Save the reports for 5 months, past our next release. #
+  artifacts:
+    when: always
+    paths:
+      - results/*
+    expire_in: 5 months
+```
+
 ## Running Tests Locally
 
 ### Installation Requirements
