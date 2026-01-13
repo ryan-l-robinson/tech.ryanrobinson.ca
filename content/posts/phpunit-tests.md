@@ -1,6 +1,6 @@
 ---
 title: PHPUnit Tests
-date: 2026-01-16T22:54:16.700Z
+date: 2026-02-16T22:54:16.700Z
 author: Ryan Robinson
 description: "Drupal offers a few types of phpunit regression testing suites, and those tests can also be run in CI/CD and in local development."
 series: Drupal Docker
@@ -11,9 +11,7 @@ tags:
 draft: true
 ---
 
-This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. [The code for the developer environment can be seen on my GitLab](https://gitlab.com/ryan-l-robinson/drupal-dev-environment). Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided [an overview in the first post of the series](/2025/drupal-docker-deploys-overview/).
-
-This post is a bit bigger than just that series, though. When you're maintaining a site over an extended period of time, something extremely useful is to have automated regression testing that will catch if you break one thing in the process of fixing another thing. I'm only adding it as part of that series because of the role of the automated testing stages.
+As with the previous couple related to testing, this post is a bit bigger than just that series, though. When you're maintaining a site over an extended period of time, something extremely useful is to have automated regression testing that will catch if you break one thing in the process of fixing another thing. I'm  adding it as part of that series because of the role of the automated testing stages.
 
 I've also heard the suggestion that it is best to write the tests before you even write the live code. That way, as you work on the code, you can have the automated tests confirming what you have solved and what you haven't. I have not gotten very close to that point yet, and there are probably some scenarios where it isn't practical because you don't know the exact outcome you want until you start seeing it in practice. It does help demonstrate the real ideal, though, with constant verification that everything is still doing what it should before it gets merged and eventually sent to production.
 
@@ -22,17 +20,17 @@ I've also heard the suggestion that it is best to write the tests before you eve
 In Drupal, there are four built-in test suites, in escalating complexity where the faster ones are also the least flexible:
 
 1. Unit tests: these are bare bones PHP. If the function you're testing is very simple, this might be adequate and would be very fast.
-2. Kernel tests: this adds some more core Drupal functionality, making it much easier to invoke services or install other modules.
-3. Functional tests: this adds the ability to walk through a workflow as a mock user and confirm certain behaviours. This is great for things like testing that permissions are having the effect you expect.
-4. Functional with JavaScript tests: this is similar to the above, but with JavaScript.
+2. Kernel tests: this adds some core Drupal functionality, making it much easier to invoke services or install other modules, and still run almost as fast as plain unit tests.
+3. Functional tests: this adds the ability to walk through a workflow as a mock user and confirm certain behaviours. This is great for things like testing that permissions are having the effect you expect. They run quite a bit slower, but are necessary in a lot of scenarios.
+4. Functional with JavaScript tests: this is similar to the above, but with JavaScript, so you'll want these when you need to confirm interactivity is still functioning as expected.
 
-I have also installed Drupal Test Traits which is not included in core, but haven't gotten much real use for it yet. I think the biggest advantage of it is when you want your tests to include some realistic sample content.
+I have also installed [Drupal Test Traits](https://git.drupalcode.org/project/dtt/) which is not included in core, but haven't gotten much real use for it yet. I think the biggest advantage of it is when you want your tests to include some realistic sample content.
 
 ## Running Tests in CI/CD
 
 Running all the tests in certain conditions upon committing or merging to your repository is the best way to be sure that you don't push through a regression. To do that, you'll need an image that can run the tests, and the GitLab CI file to define in what circumstances to run that job.
 
-TODO
+TODO: This part I'm not sure I've fully gotten working yet, so I will need to return to it later.
 
 ## Running Tests Locally
 
