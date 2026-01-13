@@ -8,24 +8,24 @@
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2E2C2C">
 		<meta name="geo.region" content="CA-ON">
 		<meta name="author" content="Ryan Robinson">
-		<meta name="description" content="Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon.">
+		<meta name="description" content="I developed a semi-automated method to keep databases roughly in sync across environments.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
 		<meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-		<meta property="og:title" content="Mastodon Apps on Android">
-		<meta property="og:description" content="Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon.">
-		<meta property="og:url" content="https://tech.ryanrobinson.ca//2023/mastodon-apps-android/">
+		<meta property="og:title" content="Database Lifecycle">
+		<meta property="og:description" content="I developed a semi-automated method to keep databases roughly in sync across environments.">
+		<meta property="og:url" content="https://tech.ryanrobinson.ca//2026/drupal-db-lifecycle/">
 		<meta property="og:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 		<meta property="og:type" content="website">
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Mastodon Apps on Android">
-		<meta name="twitter:description" content="Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon.">
+		<meta name="twitter:title" content="Database Lifecycle">
+		<meta name="twitter:description" content="I developed a semi-automated method to keep databases roughly in sync across environments.">
 		<meta name="twitter:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 
-		<title>Mastodon Apps on Android | Ryan Robinson Technology</title>
+		<title>Database Lifecycle | Ryan Robinson Technology</title>
 
-		<link rel="canonical" href="https://tech.ryanrobinson.ca//2023/mastodon-apps-android/">
+		<link rel="canonical" href="https://tech.ryanrobinson.ca//2026/drupal-db-lifecycle/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="stylesheet" href="/dist/7Lj7tFA2jh.css">
@@ -59,82 +59,135 @@
 			<main id="main">
 				<nav id="search-results" class="search-results" aria-label="Search results navigation" hidden=""></nav>
 				<div class="main-content">
-					<h1 id="mastodon-apps-on-android">Mastodon Apps on Android</h1>
+					<h1 id="database-lifecycle">Database Lifecycle</h1>
 					
 <article data-pagefind-body="">
 
 	
+		<p>Series: Drupal Docker</p>
+	
 
 	
 		<p class="post-description" data-pagefind-weight="3">
-			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Analyzing some of the biggest Mastodon apps on Android: the official, Tusky, Fedilab, and Megalodon.
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> I developed a semi-automated method to keep databases roughly in sync across environments.
 		</p>
 	
 
 	<div class="post-metadata border-bottom-section">
-		<p><time datetime="2023-02-21">February 21, 2023</time></p>
+		<p><time datetime="2026-01-13">January 13, 2026</time></p>
 		
 			<p>Tags:
-			<a href="/tags/tech-and-society/" class="post-tag" title="Not as much how-to as most tags, instead musing about the impact of technology on the world.">Tech and Society</a>
+			<a href="/tags/devops/" class="post-tag" title="Development tools, Continuous Integration and Continuous Delivery/Deployment (CI/CD), and generally the processes that streamline development operations.">DevOps</a>, 
+			<a href="/tags/drupal/" class="post-tag" title="Working with the Drupal content management system, either with UI configuration or with code.">Drupal</a>, 
+			<a href="/tags/linux/" class="post-tag" title="Managing Linux servers, including bash scripts and Docker container definition.">Linux</a>
 			</p>
 		
 	</div>
 
 	
 
-	<p>I've been enjoying my time on Mastodon since the recent migration from Twitter. Of course, I'm far from the only one to make this migration, and that includes a lot of developers, so we're starting to see a lot of better apps for Mastodon and the wider fediverse popping up. That has led me to an experience that has been very rare since about 2012: testing out and researching a variety of independent apps to meet a need. For years I've mostly just used whatever the official app is for whatever service (including Twitter), with really the only recent exception being when <a href="/posts/2021/android-email-apps/">I spent some time testing out alternative email apps</a>.</p>
-<p>Before writing this post, I put the question out on my Mastodon to see what factors others have considered in picking their preferred Android app. I'll incorporate a couple of those answers here, but first, one shared <a href="https://docs.google.com/spreadsheets/d/1De5KRwqMIdwEryfoeBLARgxF7QgKkeOQBCilKuIdAXE/edit?usp=drivesdk">a very helpful spreadsheet breaking down all the options</a> (not only Android). This is great if you need a high level overview of features available.</p>
-<p>This post will try to narrow down some of what matters most to me and to others when I put the question out for feedback.</p>
-<h2 id="mastodon-official-app">Mastodon (official app)</h2>
-<p>As I'm sure with most people, I first tried the official app simply called Mastodon. This was the time of the great migration and a significant portion of posts I saw were advice about Mastodon, including a lot of posts saying not to use the official app. But it's not as bad as that makes it sound.</p>
-<p>It has Trending topics. It has home and local feeds. It's a fairly clean and friendly design.</p>
-<p>But yes, as many point out, it is missing several other features that you might want. Check the spreadsheet linked above for the full list, but here are a few that that matter to me:</p>
-<p>You can't read threads in continuity, which makes it prone to reading posts without recognizing there's context.</p>
-<p>There's no federated timeline.</p>
-<p>You can't manage lists at all.</p>
-<p>You can't see ALT text, which does matter even for those of us who are sighted because descriptions can still help us identify things, and it might help us identify that maybe we don't want to boost a post that is missing ALT text.</p>
-<p>It doesn't support unlisted posts, or scheduled posts, or the delete and redraft option, or simultaneous posting of a thread, or multiple choice selection polls.</p>
-<p>It's fair to say that none of those are core features, but there's enough of them that there's probably at least one you'd be disappointed to be missing.</p>
-<h2 id="tusky">Tusky</h2>
-<p>When I was seeing posts about not using the official Mastodon app, it was usually tied with the recommendation to use Tusky instead (sometimes Fedilab). I tried that and kept it as my main app for a couple of months.</p>
-<p>It does a few things very well:</p>
+	<p>This series has now covered all the core functionality of having a local development environment and deploying updates, and most elements of testing (phpunit regression tests is coming later, as there are some things I have not quite solved in the CI/CD part yet).</p>
+<p>In this post, I will get into a database lifecycle strategy, used to help ensure that my developer environment, dev server, and staging server are roughly reflecting realistic content, even if not exactly up-to-date. This is done with a series of the &quot;single use&quot; jobs that I mentioned in <a href="/2025/devenv-deploy-update-jobs/">the deployment post</a>.</p>
+<p>Unlike most else from this series, none of this is in my example Drupal developer environment project, since I don't have actual servers personally to test any of it against. I am generalizing from my work context.</p>
+<h2 id="dump-a-production-database">Dump a (Production) Database</h2>
+<p>The first step is to dump the production database, so that I will have it ready to copy to the other environments. In the docker-compose file of the project, it includes this service:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml">  <span class="token key atrule">db_dump</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>CI_REGISTRY_IMAGE<span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token punctuation">[</span>YOUR REPO HERE<span class="token punctuation">]</span>/web<span class="token punctuation">:</span>$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">:</span><span class="token punctuation">-</span>main<span class="token punctuation">}</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> /opt/drupal/scripts/dump<span class="token punctuation">-</span>db.sh
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">&lt;&lt;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token important">*mysql</span><span class="token punctuation">,</span> <span class="token important">*config-split</span><span class="token punctuation">,</span> <span class="token important">*deploy-env</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> private<span class="token punctuation">:</span>/opt/drupal/private
+      <span class="token punctuation">-</span> public<span class="token punctuation">:</span>/opt/drupal/web/sites/default/files
+      <span class="token punctuation">-</span> backups<span class="token punctuation">:</span>/opt/drupal/backups
+    <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">mode</span><span class="token punctuation">:</span> replicated
+      <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">0</span>
+      <span class="token key atrule">restart_policy</span><span class="token punctuation">:</span>
+        <span class="token key atrule">condition</span><span class="token punctuation">:</span> on<span class="token punctuation">-</span>failure
+        <span class="token key atrule">max_attempts</span><span class="token punctuation">:</span> <span class="token number">1</span></code></pre>
+<p>This tells it to run once, using the main project image going through the script dump-db, and then stop. There are the usual two volumes for Drupal private and public files, plus one more for the backup that is going to be generated. This is mapped elsewhere to be a network file share, which will be necessary for the other servers to also be able to grab it easily when it comes time to import it.</p>
+<p>The script that it runs is simple:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">source</span> /opt/drupal/scripts/settings-file.sh
+
+drush sql:dump --result-file<span class="token operator">=</span><span class="token string">"/opt/drupal/backups/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> <span class="token string">'+%Y-%m-%d_%H-%M-%S'</span><span class="token variable">)</span></span>_prod.sql"</span>
+<span class="token function">sleep</span> <span class="token number">30</span></code></pre>
+<p>The settings-file I have already covered elsewhere; that is used for importing the database connection that varies by environment. Otherwise, it's making use of a drush command to dump a file to backups using today's date to help sort it and differentiate it from previous backups. The 30 second sleep is to make sure this script runs long enough to report back to the single-use job CI/CD script.</p>
+<p>Finally, to run that, the project's CI/CD job might look like this:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token key atrule">prod_db_dump</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">allow_failure</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .docker_single_use
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">STACK_NAME</span><span class="token punctuation">:</span> drupal
+    <span class="token key atrule">SERVICE_NAME</span><span class="token punctuation">:</span> db_dump
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> prod
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+  <span class="token key atrule">when</span><span class="token punctuation">:</span> manual</code></pre>
+<h2 id="download-the-file-for-local">Download the File for Local</h2>
+<p>Another job will show you the newest database backup file from the shared storage, allowing you to download it as an artifact. This lets you keep it as a backup in case anything goes wrong, like just before a deployment, as well as to update the content on the local developer environment.</p>
+<p>I'm not going to repeat the docker-compose and the GitLab CI, since they're basically the same, but here's the script:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">BACKUP_DIR</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+<span class="token assign-left variable">BACKUP_FILE</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token parameter variable">-1r</span> <span class="token string">"<span class="token variable">${BACKUP_DIR}</span>"</span> <span class="token operator">|</span> <span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token number">1</span><span class="token variable">)</span></span>"</span>
+<span class="token assign-left variable">BACKUP_FILE_FULL_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>readlink <span class="token parameter variable">-f</span> $<span class="token punctuation">{</span>BACKUP_DIR<span class="token punctuation">}</span>/$<span class="token punctuation">{</span>BACKUP_FILE<span class="token punctuation">}</span><span class="token variable">)</span></span>"</span>
+<span class="token assign-left variable">ARTIFACT_DIR</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$2</span>"</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Exporting <span class="token variable">${BACKUP_FILE_FULL_PATH}</span> as an artifact..."</span>
+<span class="token function">cp</span> <span class="token parameter variable">-v</span> <span class="token string">"<span class="token variable">${BACKUP_FILE_FULL_PATH}</span>"</span> <span class="token string">"<span class="token variable">${ARTIFACT_DIR}</span>"</span>
+<span class="token function">sleep</span> <span class="token number">30</span></code></pre>
+<h2 id="import-to-dev-or-staging">Import to Dev or Staging</h2>
+<p>Finally, another job with a similar setup will allow running on dev or staging to import that database there. Again I'll share just the script:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">source</span> /opt/drupal/scripts/settings-file.sh
+
+<span class="token assign-left variable">BACKUP_FILE</span><span class="token operator">=</span><span class="token string">"/opt/drupal/backups/<span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token parameter variable">-1r</span> /opt/drupal/backups <span class="token operator">|</span> <span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token number">1</span><span class="token variable">)</span></span>"</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">${BACKUP_FILE}</span>"</span> <span class="token operator">==</span> <span class="token string">""</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"No backups found"</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Applying SQL from <span class="token variable">${BACKUP_FILE}</span>..."</span>
+
+    <span class="token variable"><span class="token variable">$(</span>drush sql:connect<span class="token variable">)</span></span> <span class="token operator">&lt;</span> <span class="token variable">${BACKUP_FILE}</span>
+
+    drush cr
+
+    <span class="token comment"># Update database if files are now ahead of backup.</span>
+    drush updb <span class="token parameter variable">-y</span>
+
+    <span class="token comment"># Update config twice to ensure any config_split differences</span>
+    drush config-import <span class="token parameter variable">-y</span>
+    drush config-import <span class="token parameter variable">-y</span>
+
+    <span class="token comment"># Activate and set the distinct local password on the admin user.</span>
+    drush user:unblock <span class="token variable">$DRUPAL_USER_NAME</span>
+    drush upwd <span class="token variable">$DRUPAL_USER_NAME</span> <span class="token variable">$DRUPAL_USER_PASSWORD</span>
+
+    drush cr
+<span class="token keyword">fi</span></code></pre>
+<p>This imports the latest backup file that was found. It then does a few more things:</p>
 <ul>
-<li>Very clean design that feels at home on Android, especially with the truly black theme and options for the main navigation to be either at the top or bottom</li>
-<li>A good array of options including being able to do most of the things that the official Mastodon app cannot.</li>
+<li>clears caches</li>
+<li>completes any due database updates, which could be necessary if the code for dev/staging is already ahead of the backup</li>
+<li>imports configuration twice (to account for config_split differences between environments), again to include if the code/config is already ahead of the backup on these other environments</li>
+<li>unblocks the Drupal super-admin that can be used on dev or staging unlike production</li>
+<li>changes the password on that user to the environment-specific one that is stored in GitLab</li>
+<li>clears caches again at the end</li>
 </ul>
-<p>My question on Mastodon also got this negative response about some of Tusky's design choices:</p>
-<blockquote>
-<p>I’ve been a mobile developer for 15 years (mostly android) and used Tusky before I got my iPhone. It wasn’t my favorite tbh. my gripes with Tusky are all around data and state handling.
-For instance the UI has very few “in progress” states, so for instance boosting a toot can momentarily show the button in the wrong state if the request is slow.
-Also the caching for viewed toots is very rudimentary, so lots of toots (in conversations esp.) are needlessly reloaded while I stare at a blank screen.</p>
-<p>Source: <a href="https://tech.lgbt/@em_ad/109855207946318853">https://tech.lgbt/@em_ad/109855207946318853</a></p>
-</blockquote>
-<h2 id="fedilab">Fedilab</h2>
-<p>I then tried Fedilab, the next I saw recommended a lot. It has a small one time cost for the app, but if you're already settled on using Mastodon, it will probably be worth it to you to try it out.</p>
-<h3 id="positives">Positives</h3>
-<p>As the spreadsheet backs up, it is the most featured app by a significant margin. I'll highlight a couple big selling points that the others don't have:</p>
-<p>It allows following other instances, which is a great way to monitor niche topic communities even if you're not in them. For example, there is an instance for Drupal developers at drupal.community. I don't really want that to be my primary home, since Drupal is a relatively small portion of what I post. But I do want to easily keep an eye on conversations happening there since they will have a high rate of being relevant to me.</p>
-<p>It allows following Twitter accounts via Nitter, although there are some drawbacks to how it is implemented. You can't edit the list of who you are following easily. There's no follow/unfollow buttons. There isn't even a way to view the list of everyone you currently follow. So you need to maintain a list somewhere else, in the right format (separated by a space, not a new line) so that you can copy and paste it in each time you want to add or delete one. It also may have a limit on how many total it can follow? I'm not sure about that, but I found that when I tried to add more, it broke, with a generic error that didn't explain anything. And finally, a lot of the time the links it shows for a quote tweet simply don't work. I often try clicking the link several times in a row to see what is being quoted.</p>
-<p>It allows creating simultaneous posts in a thread, which none of the others do. I always appreciate this feature as I don't like getting caught having written up half a thread. This is even more true on Mastodon than on Twitter because it is best practice to keep all posts in a thread after the first as unlisted. But when there are long gaps between the start and end of the thread, I might end up with nobody even seeing that you have added more to it. Being able to dump the whole thread at once optimizes that best practice.</p>
-<p>It is one of the few apps that is built for all Fediverse services, not only Mastodon. That means if I get a Pixelfed account some day, I could do it from the same app.</p>
-<p>A Mastodon user highlighted another feature that isn't a big deal to me but might be to you:</p>
-<blockquote>
-<p>I read the posts from oldest to newest. At the moment Fedilab seems to work best for this reading order, as it can continuously update the timeline so there are no breaks.
-Tusky is second best, you can set the &quot;load more&quot; button to fill the timeline above the break, not below.
-Still no app seems to allow reverse order timeline (oldest posts first), which was a deal breaker for me when selecting my Twitter app.</p>
-<p>Source: <a href="https://mastodonsweden.se/@kallekn/109856154392108362">https://mastodonsweden.se/@kallekn/109856154392108362</a></p>
-</blockquote>
-<h3 id="negatives">Negatives</h3>
-<p>Most of my negatives have to do with the user interface and I'll focus on two:</p>
-<p>I don't like the pill button design. It feels out of place on Android. It feels dated, like a few years ago when there was a lot less consistency in app design on Android, while now most comply with the recommended design language.</p>
-<p>I don't like the fragmented placement of timelines. In the bottom toolbar you can have the home, local, federated, notifications. That's great. Then in the top go any other instances you follow, lists, and Nitter, in this weird ticker style interface. Then in the sidebar under the profile photo mostly makes sense but also has Trending in there. I'd love to have these consolidated to one navigation area, in the bottom, where I can pick the four that are highest priority to stay with easy access, then the rest in an easy to access overflow menu. There is an option to combine the top and bottom, but only to put them all in that weird top ticker style, not in the bottom as I would want. And there's no option to add Trending there.</p>
-<h2 id="megalodon">Megalodon</h2>
-<p>This is the newest discovery for me. It is not heavily featured - a little more than the official Mastodon app, less than the others - but it looks fantastic, probably my favourite design of the bunch.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>For now, I'm sticking with Fedilab. I really like some of those features it does better than the rest, enough that I'm willing to sacrifice some annoyance at the design style. But I am going to keep the others around and check in on them occasionally. It's early enough in the life of most of these that they may catch up in the features while maintaining a nicer design.</p>
 
 			<div class="border-top-section">
-				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2023/cognitive-ease/" class="icon-before pager-prev">A11yTalks: Cognitive Ease</a></p><p><span class="visually-hidden">Next: </span><a href="/2023/include-default-view-custom-module/" class="icon-after pager-next">Drupal: Include Default View in Module</a></p>
+				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2026/pa11y-ci/" class="icon-before pager-prev">Pa11y and Pa11y-CI Accessibility</a></p>
 				</div>
 			</div>
 </article>
@@ -154,6 +207,39 @@ Still no app seems to allow reverse order timeline (oldest posts first), which w
 
 
 					
+
+	<aside class="sidebar-block" aria-labelledby="posts-in-series-label">
+		<h2 id="posts-in-series-label">Posts in Drupal Docker Series</h2>
+		<ol class="series-list">
+			
+    			<li><a href="/2025/drupal-docker-deploys-overview/">Deployment Overview</a></li>
+			
+    			<li><a href="/2025/devenv-dockerfiles/">The Primary Web Dockerfile</a></li>
+			
+    			<li><a href="/2025/devenv-start-script/">Start Scripts</a></li>
+			
+    			<li><a href="/2025/devenv-build-image-ci/">Building the Dockerfile in CI/CD</a></li>
+			
+    			<li><a href="/2025/devenv-docker-compose/">The Docker Compose Setup</a></li>
+			
+    			<li><a href="/2025/devenv-devcontainer/">VS Code DevContainer</a></li>
+			
+    			<li><a href="/2025/devenv-postcreate/">postCreateCommand for Dev Tools</a></li>
+			
+    			<li><a href="/2025/devenv-prune-ci/">Pruning Old Docker Objects in CI/CD</a></li>
+			
+    			<li><a href="/2025/devenv-deploy-update-jobs/">Deploying Containers</a></li>
+			
+    			<li><a href="/2025/devenv-phplint/">PHP Lint and CS Testing</a></li>
+			
+    			<li><a href="/2026/playwright-axe-tests/">Playwright Testing</a></li>
+			
+    			<li><a href="/2026/pa11y-ci/">Pa11y and Pa11y-CI Accessibility</a></li>
+			
+    			<li><a href="/2026/drupal-db-lifecycle/">Database Lifecycle</a></li>
+			
+		</ol>
+	</aside>
 
 
 					

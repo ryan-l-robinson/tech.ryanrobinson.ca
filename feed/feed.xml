@@ -5,11 +5,117 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2026-01-13T16:25:16Z</updated>
+  <updated>2026-01-13T17:11:16Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Database Lifecycle</title>
+    <link href="https://tech.ryanrobinson.ca/2026/drupal-db-lifecycle/" />
+    <updated>2026-01-13T17:11:16Z</updated>
+    <id>https://tech.ryanrobinson.ca/2026/drupal-db-lifecycle/</id>
+    <content type="html">&lt;p&gt;This series has now covered all the core functionality of having a local development environment and deploying updates, and most elements of testing (phpunit regression tests is coming later, as there are some things I have not quite solved in the CI/CD part yet).&lt;/p&gt;
+&lt;p&gt;In this post, I will get into a database lifecycle strategy, used to help ensure that my developer environment, dev server, and staging server are roughly reflecting realistic content, even if not exactly up-to-date. This is done with a series of the &amp;quot;single use&amp;quot; jobs that I mentioned in &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-deploy-update-jobs/&quot;&gt;the deployment post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Unlike most else from this series, none of this is in my example Drupal developer environment project, since I don&#39;t have actual servers personally to test any of it against. I am generalizing from my work context.&lt;/p&gt;
+&lt;h2 id=&quot;dump-a-production-database&quot;&gt;Dump a (Production) Database&lt;/h2&gt;
+&lt;p&gt;The first step is to dump the production database, so that I will have it ready to copy to the other environments. In the docker-compose file of the project, it includes this service:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;db_dump&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_REGISTRY_IMAGE&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;YOUR REPO HERE&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;/web&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_COMMIT_REF_NAME&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;main&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /opt/drupal/scripts/dump&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;db.sh
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token important&quot;&gt;*mysql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*config-split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*deploy-env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; private&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/private
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; public&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/web/sites/default/files
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; backups&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/backups
+    &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; replicated
+      &lt;span class=&quot;token key atrule&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;restart_policy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; on&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;failure
+        &lt;span class=&quot;token key atrule&quot;&gt;max_attempts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This tells it to run once, using the main project image going through the script dump-db, and then stop. There are the usual two volumes for Drupal private and public files, plus one more for the backup that is going to be generated. This is mapped elsewhere to be a network file share, which will be necessary for the other servers to also be able to grab it easily when it comes time to import it.&lt;/p&gt;
+&lt;p&gt;The script that it runs is simple:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/settings-file.sh
+
+drush sql:dump --result-file&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/opt/drupal/backups/&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;+%Y-%m-%d_%H-%M-%S&#39;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;_prod.sql&quot;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The settings-file I have already covered elsewhere; that is used for importing the database connection that varies by environment. Otherwise, it&#39;s making use of a drush command to dump a file to backups using today&#39;s date to help sort it and differentiate it from previous backups. The 30 second sleep is to make sure this script runs long enough to report back to the single-use job CI/CD script.&lt;/p&gt;
+&lt;p&gt;Finally, to run that, the project&#39;s CI/CD job might look like this:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;prod_db_dump&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; deploy
+  &lt;span class=&quot;token key atrule&quot;&gt;allow_failure&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .docker_single_use
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;STACK_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; drupal
+    &lt;span class=&quot;token key atrule&quot;&gt;SERVICE_NAME&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; db_dump
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; prod
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main
+  &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; manual&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;download-the-file-for-local&quot;&gt;Download the File for Local&lt;/h2&gt;
+&lt;p&gt;Another job will show you the newest database backup file from the shared storage, allowing you to download it as an artifact. This lets you keep it as a backup in case anything goes wrong, like just before a deployment, as well as to update the content on the local developer environment.&lt;/p&gt;
+&lt;p&gt;I&#39;m not going to repeat the docker-compose and the GitLab CI, since they&#39;re basically the same, but here&#39;s the script:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;BACKUP_DIR&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$1&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;BACKUP_FILE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-1r&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${BACKUP_DIR}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;BACKUP_FILE_FULL_PATH&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;readlink &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;BACKUP_DIR&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;/$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;BACKUP_FILE&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;ARTIFACT_DIR&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$2&lt;/span&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Exporting &lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE_FULL_PATH}&lt;/span&gt; as an artifact...&quot;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE_FULL_PATH}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${ARTIFACT_DIR}&lt;/span&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;import-to-dev-or-staging&quot;&gt;Import to Dev or Staging&lt;/h2&gt;
+&lt;p&gt;Finally, another job with a similar setup will allow running on dev or staging to import that database there. Again I&#39;ll share just the script:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; /opt/drupal/scripts/settings-file.sh
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;BACKUP_FILE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/opt/drupal/backups/&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-1r&lt;/span&gt; /opt/drupal/backups &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;No backups found&quot;&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Applying SQL from &lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;...&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;drush sql:connect&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;${BACKUP_FILE}&lt;/span&gt;
+
+    drush cr
+
+    &lt;span class=&quot;token comment&quot;&gt;# Update database if files are now ahead of backup.&lt;/span&gt;
+    drush updb &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Update config twice to ensure any config_split differences&lt;/span&gt;
+    drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+    drush config-import &lt;span class=&quot;token parameter variable&quot;&gt;-y&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Activate and set the distinct local password on the admin user.&lt;/span&gt;
+    drush user:unblock &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt;
+    drush upwd &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_NAME&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$DRUPAL_USER_PASSWORD&lt;/span&gt;
+
+    drush cr
+&lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This imports the latest backup file that was found. It then does a few more things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;clears caches&lt;/li&gt;
+&lt;li&gt;completes any due database updates, which could be necessary if the code for dev/staging is already ahead of the backup&lt;/li&gt;
+&lt;li&gt;imports configuration twice (to account for config_split differences between environments), again to include if the code/config is already ahead of the backup on these other environments&lt;/li&gt;
+&lt;li&gt;unblocks the Drupal super-admin that can be used on dev or staging unlike production&lt;/li&gt;
+&lt;li&gt;changes the password on that user to the environment-specific one that is stored in GitLab&lt;/li&gt;
+&lt;li&gt;clears caches again at the end&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Pa11y and Pa11y-CI Accessibility</title>
     <link href="https://tech.ryanrobinson.ca/2026/pa11y-ci/" />
@@ -1058,110 +1164,6 @@ npx playwright &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
 &lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;postCreateCommand&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/bin/bash -c /opt/drupal/scripts/postCreateCommand.sh&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;token property&quot;&gt;&quot;postAttachCommand&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/bin/bash -c &#92;&quot;chown -R www-data:www-data /opt/drupal&#92;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;token property&quot;&gt;&quot;shutdownAction&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;stopCompose&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <title>The Docker Compose Setup</title>
-    <link href="https://tech.ryanrobinson.ca/2025/devenv-docker-compose/" />
-    <updated>2025-12-23T13:16:00Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/devenv-docker-compose/</id>
-    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We now have &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/&quot;&gt;a robust Dockerfile for the main web image&lt;/a&gt;, &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-start-script/&quot;&gt;some scripts to run when it starts up&lt;/a&gt;, and &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-build-image-ci/&quot;&gt;that main web image is being built by CI/CD and stored in the GitLab container registry&lt;/a&gt;. Now we can start to put some of these pieces together, using docker-compose to define all the required services and how they relate to each other.&lt;/p&gt;
-&lt;h2 id=&quot;the-two-tier-setup&quot;&gt;The Two-Tier Setup&lt;/h2&gt;
-&lt;p&gt;There is a docker-compose file that defines services for all environments, saved as docker-compose.yml on the top level of the project, then another docker-compose that only runs on local, saved as docker-compose.yml in the .devcontainer folder alongside other local-specific files. This is done so that there can be some important differences between the setup for the local developer environment and the other servers it can be deployed to.&lt;/p&gt;
-&lt;h2 id=&quot;the-primary-docker-compose-yml&quot;&gt;The Primary Docker-compose.yml&lt;/h2&gt;
-&lt;h3 id=&quot;shared-variables&quot;&gt;Shared Variables&lt;/h3&gt;
-&lt;p&gt;First, you can define some shared blocks of variables so that they don&#39;t need to be repeated in multiple services. In this case, everything is simply passing through the variables that are set from &lt;a href=&quot;https://docs.gitlab.com/ci/variables/&quot;&gt;the GitLab CI/CD Variables&lt;/a&gt; for the project. Never hardcode sensitive variables like database connection information; store them securely and have them dynamically inserted instead.&lt;/p&gt;
-&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;x-mysql-var&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;&amp;amp;mysql&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;MYSQL_DATABASE&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_USER&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;MYSQL_USER&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;MYSQL_PASSWORD&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_HOST&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;MYSQL_HOST&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_PORT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;MYSQL_PORT&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token key atrule&quot;&gt;x-config-split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;&amp;amp;config-split&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;CONFIG_SPLIT_LOCAL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CONFIG_SPLIT_LOCAL&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;CONFIG_SPLIT_DEV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CONFIG_SPLIT_DEV&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;CONFIG_SPLIT_STAGING&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CONFIG_SPLIT_STAGING&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;CONFIG_SPLIT_PROD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CONFIG_SPLIT_PROD&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token key atrule&quot;&gt;x-deploy-env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;&amp;amp;deploy-env&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;DEPLOY_ENV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_COMMIT_REF_NAME&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;dev&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;the-web-service&quot;&gt;The Web Service&lt;/h3&gt;
-&lt;p&gt;The primary web service is the first defined. Some notes here include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The image is fetched from the GitLab repository. That&#39;s the one that was built with the CI/CD job in the last post.&lt;/li&gt;
-&lt;li&gt;Environment variables include those defined at the start of the file.&lt;/li&gt;
-&lt;li&gt;There are volumes for Drupal&#39;s private files and Drupal&#39;s public files. Those files need to be persistent when deploying updates to other environments that already have content on them.&lt;/li&gt;
-&lt;li&gt;The external proxy network has to do with adding traefik support, which we also see in the deploy labels. I am not going to get deeply into that any time soon, as that was largely done by the server management team and I haven&#39;t fully wrapped my head around traefik yet.&lt;/li&gt;
-&lt;li&gt;When it deploys, it will replicate a set number of times. This varies depending on the environment, with it falling back to 1. In our case we are generally deploying 3 copies to production across a Docker swarm to help with load balancing, but only 1 on local developer environment and the dev server and the staging server where the demand is much lower and there&#39;s no concern about downtime during the deployment.&lt;/li&gt;
-&lt;li&gt;It will only deploy 1 at a time, starting the updated replacement before deleting the old one, and wait 30 seconds between each one. There is some tradeoff here. If it goes too fast, the updated code image might be in place faster but not successfully running Apache quite yet, in which case you could get a gap where there is no functioning copy. It is also true that some (not all) updates will cause errors until the Drupal update script is done. There&#39;s only one database, which can&#39;t be updated until all the replicas are in place. Going too fast means almost certain short downtime for every deployment. Going too slow could mean longer than necessary downtime for those occasional deployments that need the database update to resolve serious issues.&lt;/li&gt;
-&lt;li&gt;There is a health check. Traefik won&#39;t serve a container that says it isn&#39;t healthy. In this case, I&#39;m using &lt;a href=&quot;https://www.drupal.org/project/health_check&quot;&gt;a Drupal health_check module&lt;/a&gt; that generates a page at /health, so this check will confirm if that page is available. If it&#39;s not, Drupal isn&#39;t functioning yet, so it should prioritize the other containers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_REGISTRY_IMAGE&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;registry.gitlab.com/ryan&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;l&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;robinson/drupal&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;dev&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;environment/web&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;CI_COMMIT_REF_NAME&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;dev&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; unless&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;stopped
-    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token important&quot;&gt;*mysql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*config-split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token important&quot;&gt;*deploy-env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; private&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/private
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; public&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/opt/drupal/web/sites/default/files
-    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; default
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; proxy
-    &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; replicated
-      &lt;span class=&quot;token key atrule&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;WEB_REPLICA_COUNT&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.enable=true&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.routers.web.rule=Host(`${HOST:-drupal.devenv}`)&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.routers.web.entrypoints=https&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.routers.web.service=web@docker&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.routers.web.tls=true&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.services.web.loadbalancer.passhostheader=true&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.services.web.loadbalancer.server.port=443&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;traefik.http.services.web.loadbalancer.server.scheme=https&quot;&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;update_config&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;token key atrule&quot;&gt;parallelism&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;token key atrule&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 30s
-        &lt;span class=&quot;token key atrule&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; start&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;first
-    &lt;span class=&quot;token key atrule&quot;&gt;healthcheck&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; curl &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;fail http&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//localhost/health &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; exit 1
-      &lt;span class=&quot;token key atrule&quot;&gt;retries&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 10s
-      &lt;span class=&quot;token key atrule&quot;&gt;start_period&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 15s&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;the-database-service&quot;&gt;The Database Service&lt;/h3&gt;
-&lt;p&gt;The database is the other absolutely essential component to have a functioning Drupal site. Some notes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In this demonstration, I&#39;m using the latest mariadb image. You might want a different one to match a different production database version, to ensure you&#39;re giving an adequate test.&lt;/li&gt;
-&lt;li&gt;It gets the same environment variables as the web image to define the MySQL credentials, as well as setting a random root password which isn&#39;t truly necessary.&lt;/li&gt;
-&lt;li&gt;It similarly deploys replicated with a variable and a fallback of 1. As with web, we are deploying one for local, dev, and staging. Unlike web, we are deploying 0 for production, because that uses a dedicated server instead of a containerized database.&lt;/li&gt;
-&lt;li&gt;The volume is for the database data which stays persistent through updates.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; mariadb&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;latest
-    &lt;span class=&quot;token key atrule&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; unless&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;stopped
-    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token important&quot;&gt;*mysql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_RANDOM_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;yes&quot;&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;MYSQL_ONETIME_PASSWORD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;yes&quot;&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; replicated
-      &lt;span class=&quot;token key atrule&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;DB_REPLICA_COUNT&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; db&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/lib/mysql&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;single-run-services&quot;&gt;Single Run Services&lt;/h3&gt;
-&lt;p&gt;The rest are a variety of single use jobs. These all will spin up the service when requested by the GitLab CI/CD job, run their script once, and then shut down again. I&#39;ll cover most of these at some point in the relevant stage, but at a high level, there&#39;s one really important one for the database update after a deployment, some related to testing, and some related to the database lifecycle processes of backing up production data and importing it in other environments.&lt;/p&gt;
-&lt;h2 id=&quot;the-local-dev-environment-docker-compose&quot;&gt;The Local Dev Environment Docker-Compose&lt;/h2&gt;
-&lt;p&gt;The second docker-compose file sets up some things differently for the local developer environment. Some notes on differences:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The MySQL credentials are hardcoded. It&#39;s fine here because this will only impact your local developer environment, never impacting data that anybody else has access to.&lt;/li&gt;
-&lt;li&gt;There&#39;s a port mapping to 443 (https) so that it can be browseable from the host machine.&lt;/li&gt;
-&lt;li&gt;There are more volumes of files that are persistent with the host machine. Most of these are the ones that are involved in building it, so that I can make a change inside the running environment, close it, then rebuild it again with the change still in place. Otherwise I would have to commit it to GitLab, close it, pull the change back down to the host machine version, then could rebuild.&lt;/li&gt;
-&lt;li&gt;The proxy network is marked as not external. The local dev environment doesn&#39;t have the traefik requirements, at least not yet (I have tried to use it locally, to facilitate better certificates and better domain names for browsing, but didn&#39;t get far).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;That gives us our general array of services. Next up will be some more instructions for our local developer environment, including how it knows to combine both docker-compose files.&lt;/p&gt;
 </content>
   </entry>
 </feed>
