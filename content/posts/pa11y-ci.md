@@ -1,29 +1,27 @@
 ---
 title: Pa11y and Pa11y-CI Accessibility
-date: 2026-01-14T22:54:16.700Z
+date: 2026-01-13T16:25:16.700Z
 author: Ryan Robinson
-description: "Pa11y and Pa11y-ci are a helpful accessibility testing tool, as part of your CI workflow or running locally."
+description: "Pa11y and Pa11y-ci are helpful accessibility testing tools, as part of your CI workflow or running locally."
 series: Drupal Docker
 tags:
-  - Drupal
   - DevOps
   - Accessibility
-draft: true
 ---
 
-This series has now covered all the core functionality of having a local development environment and deploying updates. The majority of what's left has to do with automated testing, including this one using Pa11y and Pa11y-CI.
+This series has now covered all the core functionality of having a local development environment and deploying updates. The majority of what's left has to do with automated testing, including this one using [Pa11y and Pa11y-CI](https://pa11y.org/).
 
 Pa11y and Pa11y-CI, as the names suggest, are very similar with the same kinds of tests it can run, but with a few differences in exactly which features are available. The biggest one of interest to me is that Pa11y-CI includes an extremely simple command out of the box to check the accessibility of all pages in a sitemap.
 
-One notable difference compared to the Playwright tests from the last post is that there are no other interactions or mock devices involved here. Where Playwright I could say things like "using an iPhone X in dark mode, click on this button and then check the accessibility of the page afterward" here it is much more simply scanning every page. That gives it an advantage in ease of use, but doesn't quite cover every scenario you may want to test.
+One notable difference compared to [the Playwright tests from the last post](/2026/playwright-axe-tests/) is that there are no other interactions or mock devices involved here. Whereas with Playwright I could say things like "using an iPhone X in dark mode, click on this button and then check the accessibility of the page after" here it is much more simply scanning every page as they are initially loaded. That gives it an advantage in ease of use, but doesn't cover every scenario you may want to test.
 
 ## CI/CD Tests
 
 ### Building A Dedicated Testing Image
 
-[A dedicated pa11y testing image is available in my GitLab](https://gitlab.com/ryan-l-robinson/pa11y-Docker-GitLab). This project can create an image dedicated to running Pa11y-CI tests. That can be used for running tests like one against the sitemap, which will work externally as long as the site you're trying to test is publicly accessible.
+[A dedicated pa11y testing image is available in my GitLab](https://gitlab.com/ryan-l-robinson/pa11y-Docker-GitLab). That can be used for running tests like one against the sitemap, which will work externally as long as the site you're trying to test is publicly accessible.
 
-The Dockerfile installs some needed packages, sets up the necessary file structure, and installs pa11y-ci including with the HTML reporter that is the most friendly to read for a large site.
+The Dockerfile installs some needed packages, sets up the necessary file structure, and installs pa11y-ci including with the HTML report that is the most friendly to read for a large site.
 
 ```Dockerfile
 FROM debian:12-slim
@@ -85,7 +83,7 @@ RUN npm install -g pa11y-ci pa11y-ci-reporter-html
 COPY / /opt/pa11y/
 ```
 
-As always in this Drupal Docker series, the gitlab-ci job then extends [my general purpose Docker build job that I've already gotten into](https://tech.ryanrobinson.ca/2025/devenv-build-image-ci/).
+As always in this Drupal Docker series, the gitlab-ci job then extends [my general purpose Docker build job that I've already gotten into](/2025/devenv-build-image-ci/).
 
 It also has a configuration file that defines how pa11y-ci should run, including that it will report to both the command line and to the HTML reporter. The most important here is the --no-sandbox option. None of the tests will run without that.
 
@@ -164,7 +162,7 @@ That is extending my general purpose job which uses the image I've previously bu
 
 ### Installation Requirements
 
-These were already covered in previous posts, specifically the postCreateCommand.
+The pa11y packages are being added in [the postCreateCommand discussed in a previous post](/2025/devenv-postcreate/).
 
 ### Running Tests
 
@@ -182,8 +180,61 @@ pa11y-ci --sitemap https://tech.ryanrobinson.ca
 
 ### HTML Reporter
 
-Pa11y can dump the results into reports in a few different formats. The easiest to read, especially if it is a large site, is to dump it into HTML files. This then allows browsing the results one at a time in a very easy to read format. Some of the other formats like a JSON file aren't bad if there are few results, but get hard to work with on larger sites.
+Pa11y can dump the results into reports in a few different formats, including HTML. This then allows browsing the results one at a time in a very easy to read format. Some of the other formats like a JSON file aren't bad if there are few results, but get hard to work with on larger sites.
 
 ### Configuration
 
-Unlike Playwright, there are no tests to write yourself here, but you may need to adjust some of the configuration files. Pa11y and Pa11y-ci have different files.
+Unlike Playwright, there are no tests to write yourself here, but you may need to adjust some of the configuration files. Pa11y and Pa11y-ci have different files. I'm not going to pretend to know why they have slightly different files, but pa11y defaults to a configuration file position of pa11y.json, and pa11y-ci defaults to .pa11yci.
+
+In my case, here's my pa11y.json:
+
+```json
+{
+  "chromeLaunchConfig": {
+    "args": [
+      "--no-sandbox",
+      "--ignore-certificate-errors",
+      "--allow-insecure-localhost"
+    ],
+    "ignoreHTTPSErrors": true
+  },
+  "defaults": {
+    "timeout": 120000,
+    "reporters": ["cli", "pa11y-ci-reporter-html"],
+    "runners": ["axe", "htmlcs"],
+    "ignore": ["frame-tested", "frame-title"],
+    "level": "warning"
+  }
+}
+```
+
+And here's my .pa11yci:
+
+```json
+{
+  "defaults": {
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--ignore-certificate-errors",
+        "--allow-insecure-localhost"
+      ],
+      "ignoreHTTPSErrors": true
+    },
+    "timeout": 120000,
+    "reporters": [
+      "cli",
+      "pa11y-ci-reporter-html"
+    ],
+    "runners": [
+      "axe",
+      "htmlcs"
+    ],
+    "ignore": [
+      "frame-tested",
+      "frame-title"
+    ],
+    "level": "warning"
+  }
+}
+```
