@@ -8,24 +8,24 @@
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2E2C2C">
 		<meta name="geo.region" content="CA-ON">
 		<meta name="author" content="Ryan Robinson">
-		<meta name="description" content="Sometimes you want to pull an Xhibit meme and put content in your content. There&#39;s a module that helps.">
+		<meta name="description" content="Pa11y and Pa11y-ci are helpful accessibility testing tools, as part of your CI workflow or running locally.">
 		<meta name="fediverse:creator" content="@Ryan@mstdn.ca">
 		<meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-		<meta property="og:title" content="Embedding Content in Other Content">
-		<meta property="og:description" content="Sometimes you want to pull an Xhibit meme and put content in your content. There&#39;s a module that helps.">
-		<meta property="og:url" content="https://tech.ryanrobinson.ca//2025/embed-node/">
+		<meta property="og:title" content="Pa11y and Pa11y-CI Accessibility">
+		<meta property="og:description" content="Pa11y and Pa11y-ci are helpful accessibility testing tools, as part of your CI workflow or running locally.">
+		<meta property="og:url" content="https://tech.ryanrobinson.ca//2026/pa11y-ci/">
 		<meta property="og:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 		<meta property="og:type" content="website">
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Embedding Content in Other Content">
-		<meta name="twitter:description" content="Sometimes you want to pull an Xhibit meme and put content in your content. There&#39;s a module that helps.">
+		<meta name="twitter:title" content="Pa11y and Pa11y-CI Accessibility">
+		<meta name="twitter:description" content="Pa11y and Pa11y-ci are helpful accessibility testing tools, as part of your CI workflow or running locally.">
 		<meta name="twitter:image" content="https://tech.ryanrobinson.ca//img/Ryan.png">
 
-		<title>Embedding Content in Other Content | Ryan Robinson Technology</title>
+		<title>Pa11y and Pa11y-CI Accessibility | Ryan Robinson Technology</title>
 
-		<link rel="canonical" href="https://tech.ryanrobinson.ca//2025/embed-node/">
+		<link rel="canonical" href="https://tech.ryanrobinson.ca//2026/pa11y-ci/">
   	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Ryan Robinson Technology">
 		<link rel="stylesheet" href="/dist/7Lj7tFA2jh.css">
@@ -59,79 +59,217 @@
 			<main id="main">
 				<nav id="search-results" class="search-results" aria-label="Search results navigation" hidden=""></nav>
 				<div class="main-content">
-					<h1 id="embedding-content-in-other-content">Embedding Content in Other Content</h1>
+					<h1 id="pa11y-and-pa11y-ci-accessibility">Pa11y and Pa11y-CI Accessibility</h1>
 					
 <article data-pagefind-body="">
 
 	
+		<p>Series: Drupal Docker</p>
+	
 
 	
 		<p class="post-description" data-pagefind-weight="3">
-			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Sometimes you want to pull an Xhibit meme and put content in your content. There&#39;s a module that helps.
+			<strong><abbr title="too long, didn't read">tl;dr</abbr>:</strong> Pa11y and Pa11y-ci are helpful accessibility testing tools, as part of your CI workflow or running locally.
 		</p>
 	
 
 	<div class="post-metadata border-bottom-section">
-		<p><time datetime="2025-12-22">December 22, 2025</time></p>
+		<p><time datetime="2026-01-13">January 13, 2026</time></p>
 		
 			<p>Tags:
-			<a href="/tags/drupal/" class="post-tag" title="Working with the Drupal content management system, either with UI configuration or with code.">Drupal</a>
+			<a href="/tags/accessibility/" class="post-tag" title="Tech should be for everybody. Let&#39;s make that better.">Accessibility</a>, 
+			<a href="/tags/devops/" class="post-tag" title="Development tools, Continuous Integration and Continuous Delivery/Deployment (CI/CD), and generally the processes that streamline development operations.">DevOps</a>
 			</p>
 		
 	</div>
 
 	
 
-	<h2 id="the-problem">The Problem</h2>
-<p>In my work, I've encountered a couple of scenarios where I wanted to embed some version of one node of content into another node of content.</p>
-<p><picture><source type="image/avif" srcset="/2025/embed-node/H5T8EljwoK-666.avif 666w"><source type="image/webp" srcset="/2025/embed-node/H5T8EljwoK-666.webp 666w"><img loading="lazy" decoding="async" src="/2025/embed-node/H5T8EljwoK-666.jpeg" alt="&quot;Xhibit meme: yo dawg, we heard you like content, so I put content in your content.&quot;" width="666" height="375"></picture></p>
-<p>This has at least a couple significant benefits over copying the same block multiple times into multiple pages:</p>
-<ul>
-<li>If something needs updated on the source node, you don't have to update every other page referencing it separately. Update it once and trust that it is ready everywhere.</li>
-<li>The same style can be enforced consistently so it always looks identical across multiple pages, instead of relying on different content authors to always use the same formatting, or even for the same content author to remember to do the same formatting every time.</li>
-</ul>
-<h2 id="the-solution">The Solution</h2>
-<p>I was prepared for this to be a custom code project. Then I did some quick research and found the <a href="https://www.drupal.org/project/entity_embed">entity_embed</a> module that is almost exactly what I wanted (I'll touch on a couple minor UI things later). This module allows putting a button in the CKEditor for any text format which will then embed that content.</p>
-<p>This module is documented and generally works as advertised, but I'll walk through the experience:</p>
+	<p>This series has now covered all the core functionality of having a local development environment and deploying updates. The majority of what's left has to do with automated testing, including this one using <a href="https://pa11y.org/">Pa11y and Pa11y-CI</a>.</p>
+<p>Pa11y and Pa11y-CI, as the names suggest, are very similar with the same kinds of tests it can run, but with a few differences in exactly which features are available. The biggest one of interest to me is that Pa11y-CI includes an extremely simple command out of the box to check the accessibility of all pages in a sitemap.</p>
+<p>One notable difference compared to <a href="/2026/playwright-axe-tests/">the Playwright tests from the last post</a> is that there are no other interactions or mock devices involved here. Whereas with Playwright I could say things like &quot;using an iPhone X in dark mode, click on this button and then check the accessibility of the page after&quot; here it is much more simply scanning every page as they are initially loaded. That gives it an advantage in ease of use, but doesn't cover every scenario you may want to test.</p>
+<h2 id="ci-cd-tests">CI/CD Tests</h2>
+<h3 id="building-a-dedicated-testing-image">Building A Dedicated Testing Image</h3>
+<p><a href="https://gitlab.com/ryan-l-robinson/pa11y-Docker-GitLab">A dedicated pa11y testing image is available in my GitLab</a>. That can be used for running tests like one against the sitemap, which will work externally as long as the site you're trying to test is publicly accessible.</p>
+<p>The Dockerfile installs some needed packages, sets up the necessary file structure, and installs pa11y-ci including with the HTML report that is the most friendly to read for a large site.</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">FROM debian:12-slim
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    nodejs \
+    npm \
+    ca-certificates \
+    fonts-liberation \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libatspi2.0-0 \
+    libc6 \
+    libcairo2 \
+    libcups2 \
+    libdbus-1-3 \
+    libdrm2 \
+    libexpat1 \
+    libgbm1 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libstdc++6 \
+    libudev1 \
+    libuuid1 \
+    libx11-6 \
+    libx11-xcb1 \
+    libxcb-dri3-0 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxi6 \
+    libxkbcommon0 \
+    libxrandr2 \
+    libxrender1 \
+    libxshmfence1 \
+    libxss1 \
+    libxtst6 \
+    wget \
+    xdg-utils \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# mkdir for the application tests
+RUN mkdir -p /opt/pa11y
+WORKDIR /opt/pa11y
+
+# Install pa11y-ci and the HTML reporter
+RUN npm install -g pa11y-ci pa11y-ci-reporter-html
+
+# Copy config file
+COPY / /opt/pa11y/</code></pre>
+<p>As always in this Drupal Docker series, the gitlab-ci job then extends <a href="/2025/devenv-build-image-ci/">my general purpose Docker build job that I've already gotten into</a>.</p>
+<p>It also has a configuration file that defines how pa11y-ci should run, including that it will report to both the command line and to the HTML reporter. The most important here is the --no-sandbox option. None of the tests will run without that.</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"defaults"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token number">120000</span><span class="token punctuation">,</span>
+        <span class="token property">"reporters"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"cli"</span><span class="token punctuation">,</span>
+            <span class="token string">"pa11y-ci-reporter-html"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"chromeLaunchConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"--no-sandbox"</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"runners"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"axe"</span><span class="token punctuation">,</span>
+            <span class="token string">"htmlcs"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"ignore"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"frame-tested"</span><span class="token punctuation">,</span>
+            <span class="token string">"frame-title"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"level"</span><span class="token operator">:</span> <span class="token string">"warning"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="running-the-tests">Running the Tests</h3>
+<p>When I want a specific project to be able to run tests, the CI job in that project would look like:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment"># Includes general CI jobs #</span>
+<span class="token key atrule">include</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">project</span><span class="token punctuation">:</span> <span class="token string">"ryan-l-robinson/gitlab-ci"</span>
+    <span class="token key atrule">ref</span><span class="token punctuation">:</span> main
+    <span class="token key atrule">file</span><span class="token punctuation">:</span> test.yml
+
+<span class="token comment">### Checks a sitemap using Pa11y. ###</span>
+<span class="token key atrule">pa11y_test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extends</span><span class="token punctuation">:</span> .pa11y_test
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> content_test
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span> Production
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//tech.ryanrobinson.ca/sitemap.xml
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main</code></pre>
+<p>That is extending my general purpose job which uses the image I've previously built, checking all the pages of a sitemap, and keeping the report for 5 months:</p>
+<pre class="language-yml" tabindex="0"><code class="language-yml"><span class="token comment">## Runs accessibility sitemap tests using pa11y ##</span>
+<span class="token key atrule">.pa11y_test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> registry.gitlab.com/ryan<span class="token punctuation">-</span>l<span class="token punctuation">-</span>robinson/pa11y<span class="token punctuation">-</span>docker<span class="token punctuation">-</span>gitlab/pa11y
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">SITEMAP_URL</span><span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token comment"># Use pa11y-ci's built-in function for scanning from a sitemap. #</span>
+    <span class="token punctuation">-</span> pa11y<span class="token punctuation">-</span>ci <span class="token punctuation">-</span><span class="token punctuation">-</span>sitemap $SITEMAP_URL <span class="token punctuation">-</span><span class="token punctuation">-</span>config /opt/pa11y/config.json
+  <span class="token comment"># Show as warning but don't stop execution of later jobs if failure. #</span>
+  <span class="token key atrule">allow_failure</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># Save the reports for 5 months, past our next release. #</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> pa11y<span class="token punctuation">-</span>ci<span class="token punctuation">-</span>report
+    <span class="token key atrule">expire_in</span><span class="token punctuation">:</span> 5 months</code></pre>
+<h2 id="running-tests-locally">Running Tests Locally</h2>
+<h3 id="installation-requirements">Installation Requirements</h3>
+<p>The pa11y packages are being added in <a href="/2025/devenv-postcreate/">the postCreateCommand discussed in a previous post</a>.</p>
+<h3 id="running-tests">Running Tests</h3>
+<p>These tests can only be run from the command line, like:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">pa11y</code></pre>
+<p>Or using pa11y-ci to check an entire sitemap:</p>
+<pre class="language-bash" tabindex="0"><code class="language-bash">pa11y-ci <span class="token parameter variable">--sitemap</span> https://tech.ryanrobinson.ca</code></pre>
+<h3 id="html-reporter">HTML Reporter</h3>
+<p>Pa11y can dump the results into reports in a few different formats, including HTML. This then allows browsing the results one at a time in a very easy to read format. Some of the other formats like a JSON file aren't bad if there are few results, but get hard to work with on larger sites.</p>
 <h3 id="configuration">Configuration</h3>
-<p>After the usual steps for a new module of installing and enabling it, go to the configuration screen, which is added to the menu under Administration -&gt; Configuration -&gt; Content authoring -&gt; Embed buttons. There are a few settings under the Settings tab, but those are minimal about where the icons for the buttons get saved.</p>
-<p>The &quot;List&quot; tab is where you add your buttons and configure them.</p>
-<p><picture><source type="image/avif" srcset="/2025/embed-node/K6k7r9pHGo-1522.avif 1522w"><source type="image/webp" srcset="/2025/embed-node/K6k7r9pHGo-1522.webp 1522w"><img loading="lazy" decoding="async" src="/2025/embed-node/K6k7r9pHGo-1522.png" alt="&quot;Overview of buttons added, in this case with one for Insert Database and one for Insert Reusable Content. Each row specifies the embed type, an icon, and has operations links.&quot;" width="1522" height="415"></picture></p>
-<p>For each button, you get some good options out of the box:</p>
-<ul>
-<li>Admin label</li>
-<li>Embed type</li>
-<li>Entity type (if the embed type was an entity)</li>
-<li>Content type (if the entity type was Content)</li>
-<li>Allowed display plugins</li>
-<li>Allowed alignments</li>
-<li>Whether to display a caption</li>
-<li>Button icon, and an option to reset it</li>
-</ul>
-<p>The most interesting one to me is the allowed display plugins. This makes it possible to enforce that you always want those databases, for example, to always appear in the exact same way when embedded on other sites. This meets one of the goals noted above, with a more strongly encouraged consistent formatting.</p>
-<h3 id="add-to-text-format">Add to Text Format</h3>
-<p>This is the typical process if you've edited a text format before. Under Configuration -&gt; Content authoring -&gt; Text formats and editors, pick the text format you want to add the button to the toolbar.</p>
-<p><picture><source type="image/avif" srcset="/2025/embed-node/nvVztQQqU5-1777.avif 1777w"><source type="image/webp" srcset="/2025/embed-node/nvVztQQqU5-1777.webp 1777w"><img loading="lazy" decoding="async" src="/2025/embed-node/nvVztQQqU5-1777.png" alt="&quot;In the toolbar configuration for a text format, several buttons are shown. A red box is drawn around the two embed content buttons to show they match the icons set in the configuration above.&quot;" width="1777" height="425"></picture></p>
-<p>Below that, make sure the &quot;Display embedded entities&quot; filter is enabled and save it.</p>
-<h3 id="content-editor-experience">Content Editor Experience</h3>
-<p>This is where there is a little bit less than ideal of a user experience.</p>
-<p>When a user presses the button you've added, the first screen of the form looks like this:</p>
-<p><picture><source type="image/avif" srcset="/2025/embed-node/fzLxLf3j0V-1181.avif 1181w"><source type="image/webp" srcset="/2025/embed-node/fzLxLf3j0V-1181.webp 1181w"><img loading="lazy" decoding="async" src="/2025/embed-node/fzLxLf3j0V-1181.png" alt="&quot;Popup form with title 'Select content item to embed' a search field labelled as 'Title' and a Next button.&quot;" width="1181" height="321"></picture></p>
-<p>My minor gripes about the user experience here:</p>
-<ul>
-<li>Nothing indicates which specific embed content button they clicked on. If they accidentally click on the Reusable Content one instead of the Database one, there's nothing here to help them notice that mistake until they start searching and get confused why what they want isn't there. The pages are identical regardless of which button they click on, if you have more than one button.</li>
-<li>You can only search by the title of the entity you want. If there are two pages with the same title, you can't tell which one you're selecting - the only other indicator it gives you is the ID number and that usually means nothing to regular editors.</li>
-</ul>
-<p>The next screen by default lets you pick alignment and caption. These options are there, even if you set up your button to not allow alignment or captions. That's definitely confusing to users.</p>
-<p><picture><source type="image/avif" srcset="/2025/embed-node/ktH78Z46gN-548.avif 548w"><source type="image/webp" srcset="/2025/embed-node/ktH78Z46gN-548.webp 548w"><img loading="lazy" decoding="async" src="/2025/embed-node/ktH78Z46gN-548.png" alt="&quot;Buttons to choose from alignment options and a text field for caption, before the button to Embed.&quot;" width="548" height="315"></picture></p>
-<p>There is <a href="https://www.drupal.org/project/entity_embed/issues/3443587">an issue logged for this and it has a patch that removes it</a>. It's not incorporated into a release for some reason. If you apply the patch, it does as advertised, removing those options, but then it leaves the second page as nothing except a link to the entity that you just chose on the first page. It gives you no new information or settings, so it is just an extra button to press.</p>
-<p>I wish they would collapse this into one screen with all the options, but only show the ones that are actually going to do anything.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Those small complaints about the user experience aside, this module does solve the problem very well.</p>
-<p>In a future post, I will expand on this because it introduced another question for us: how do we make sure the editors know which other pages they are impacting by making an edit on a page that might be embedded elsewhere?</p>
+<p>Unlike Playwright, there are no tests to write yourself here, but you may need to adjust some of the configuration files. Pa11y and Pa11y-ci have different files. I'm not going to pretend to know why they have slightly different files, but pa11y defaults to a configuration file position of pa11y.json, and pa11y-ci defaults to .pa11yci.</p>
+<p>In my case, here's my pa11y.json:</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"chromeLaunchConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"--no-sandbox"</span><span class="token punctuation">,</span>
+      <span class="token string">"--ignore-certificate-errors"</span><span class="token punctuation">,</span>
+      <span class="token string">"--allow-insecure-localhost"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"ignoreHTTPSErrors"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"defaults"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token number">120000</span><span class="token punctuation">,</span>
+    <span class="token property">"reporters"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"cli"</span><span class="token punctuation">,</span> <span class="token string">"pa11y-ci-reporter-html"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"runners"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"axe"</span><span class="token punctuation">,</span> <span class="token string">"htmlcs"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"ignore"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"frame-tested"</span><span class="token punctuation">,</span> <span class="token string">"frame-title"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"level"</span><span class="token operator">:</span> <span class="token string">"warning"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>And here's my .pa11yci:</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"defaults"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"chromeLaunchConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"--no-sandbox"</span><span class="token punctuation">,</span>
+        <span class="token string">"--ignore-certificate-errors"</span><span class="token punctuation">,</span>
+        <span class="token string">"--allow-insecure-localhost"</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"ignoreHTTPSErrors"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token number">120000</span><span class="token punctuation">,</span>
+    <span class="token property">"reporters"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"cli"</span><span class="token punctuation">,</span>
+      <span class="token string">"pa11y-ci-reporter-html"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"runners"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"axe"</span><span class="token punctuation">,</span>
+      <span class="token string">"htmlcs"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"ignore"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"frame-tested"</span><span class="token punctuation">,</span>
+      <span class="token string">"frame-title"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"level"</span><span class="token operator">:</span> <span class="token string">"warning"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 			<div class="border-top-section">
-				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2025/drupal-meta-headers-seo/" class="icon-before pager-prev">Drupal Meta Search Engine Headers</a></p><p><span class="visually-hidden">Next: </span><a href="/2025/entity-usage/" class="icon-after pager-next">Entity Usage Tracking</a></p>
+				<div class="links-nextprev"><p><span class="visually-hidden">Previous: </span><a href="/2026/playwright-axe-tests/" class="icon-before pager-prev">Playwright Testing</a></p>
 				</div>
 			</div>
 </article>
@@ -151,6 +289,37 @@
 
 
 					
+
+	<aside class="sidebar-block" aria-labelledby="posts-in-series-label">
+		<h2 id="posts-in-series-label">Posts in Drupal Docker Series</h2>
+		<ol class="series-list">
+			
+    			<li><a href="/2025/drupal-docker-deploys-overview/">Deployment Overview</a></li>
+			
+    			<li><a href="/2025/devenv-dockerfiles/">The Primary Web Dockerfile</a></li>
+			
+    			<li><a href="/2025/devenv-start-script/">Start Scripts</a></li>
+			
+    			<li><a href="/2025/devenv-build-image-ci/">Building the Dockerfile in CI/CD</a></li>
+			
+    			<li><a href="/2025/devenv-docker-compose/">The Docker Compose Setup</a></li>
+			
+    			<li><a href="/2025/devenv-devcontainer/">VS Code DevContainer</a></li>
+			
+    			<li><a href="/2025/devenv-postcreate/">postCreateCommand for Dev Tools</a></li>
+			
+    			<li><a href="/2025/devenv-prune-ci/">Pruning Old Docker Objects in CI/CD</a></li>
+			
+    			<li><a href="/2025/devenv-deploy-update-jobs/">Deploying Containers</a></li>
+			
+    			<li><a href="/2025/devenv-phplint/">PHP Lint and CS Testing</a></li>
+			
+    			<li><a href="/2026/playwright-axe-tests/">Playwright Testing</a></li>
+			
+    			<li><a href="/2026/pa11y-ci/">Pa11y and Pa11y-CI Accessibility</a></li>
+			
+		</ol>
+	</aside>
 
 
 					

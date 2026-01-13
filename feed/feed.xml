@@ -5,11 +5,200 @@
   <subtitle>Technologist writing about web development, Microsoft 365, and more.</subtitle>
   <link href="https://tech.ryanrobinson.ca/feed/feed.xml" rel="self" />
   <link href="https://tech.ryanrobinson.ca/" />
-  <updated>2026-01-13T15:40:16Z</updated>
+  <updated>2026-01-13T16:25:16Z</updated>
   <id>https://tech.ryanrobinson.ca/</id>
   <author>
     <name>Ryan Robinson</name>
   </author>
+  <entry>
+    <title>Pa11y and Pa11y-CI Accessibility</title>
+    <link href="https://tech.ryanrobinson.ca/2026/pa11y-ci/" />
+    <updated>2026-01-13T16:25:16Z</updated>
+    <id>https://tech.ryanrobinson.ca/2026/pa11y-ci/</id>
+    <content type="html">&lt;p&gt;This series has now covered all the core functionality of having a local development environment and deploying updates. The majority of what&#39;s left has to do with automated testing, including this one using &lt;a href=&quot;https://pa11y.org/&quot;&gt;Pa11y and Pa11y-CI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Pa11y and Pa11y-CI, as the names suggest, are very similar with the same kinds of tests it can run, but with a few differences in exactly which features are available. The biggest one of interest to me is that Pa11y-CI includes an extremely simple command out of the box to check the accessibility of all pages in a sitemap.&lt;/p&gt;
+&lt;p&gt;One notable difference compared to &lt;a href=&quot;https://tech.ryanrobinson.ca/2026/playwright-axe-tests/&quot;&gt;the Playwright tests from the last post&lt;/a&gt; is that there are no other interactions or mock devices involved here. Whereas with Playwright I could say things like &amp;quot;using an iPhone X in dark mode, click on this button and then check the accessibility of the page after&amp;quot; here it is much more simply scanning every page as they are initially loaded. That gives it an advantage in ease of use, but doesn&#39;t cover every scenario you may want to test.&lt;/p&gt;
+&lt;h2 id=&quot;ci-cd-tests&quot;&gt;CI/CD Tests&lt;/h2&gt;
+&lt;h3 id=&quot;building-a-dedicated-testing-image&quot;&gt;Building A Dedicated Testing Image&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitlab.com/ryan-l-robinson/pa11y-Docker-GitLab&quot;&gt;A dedicated pa11y testing image is available in my GitLab&lt;/a&gt;. That can be used for running tests like one against the sitemap, which will work externally as long as the site you&#39;re trying to test is publicly accessible.&lt;/p&gt;
+&lt;p&gt;The Dockerfile installs some needed packages, sets up the necessary file structure, and installs pa11y-ci including with the HTML report that is the most friendly to read for a large site.&lt;/p&gt;
+&lt;pre class=&quot;language-Dockerfile&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;FROM debian:12-slim
+
+RUN apt-get update &amp;&amp; &#92;
+    apt-get install -y --no-install-recommends &#92;
+    nodejs &#92;
+    npm &#92;
+    ca-certificates &#92;
+    fonts-liberation &#92;
+    libasound2 &#92;
+    libatk-bridge2.0-0 &#92;
+    libatk1.0-0 &#92;
+    libatspi2.0-0 &#92;
+    libc6 &#92;
+    libcairo2 &#92;
+    libcups2 &#92;
+    libdbus-1-3 &#92;
+    libdrm2 &#92;
+    libexpat1 &#92;
+    libgbm1 &#92;
+    libglib2.0-0 &#92;
+    libgtk-3-0 &#92;
+    libnspr4 &#92;
+    libnss3 &#92;
+    libpango-1.0-0 &#92;
+    libpangocairo-1.0-0 &#92;
+    libstdc++6 &#92;
+    libudev1 &#92;
+    libuuid1 &#92;
+    libx11-6 &#92;
+    libx11-xcb1 &#92;
+    libxcb-dri3-0 &#92;
+    libxcomposite1 &#92;
+    libxcursor1 &#92;
+    libxdamage1 &#92;
+    libxext6 &#92;
+    libxfixes3 &#92;
+    libxi6 &#92;
+    libxkbcommon0 &#92;
+    libxrandr2 &#92;
+    libxrender1 &#92;
+    libxshmfence1 &#92;
+    libxss1 &#92;
+    libxtst6 &#92;
+    wget &#92;
+    xdg-utils &#92;
+    &amp;&amp; apt-get clean &amp;&amp; &#92;
+    rm -rf /var/lib/apt/lists/*
+
+# mkdir for the application tests
+RUN mkdir -p /opt/pa11y
+WORKDIR /opt/pa11y
+
+# Install pa11y-ci and the HTML reporter
+RUN npm install -g pa11y-ci pa11y-ci-reporter-html
+
+# Copy config file
+COPY / /opt/pa11y/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As always in this Drupal Docker series, the gitlab-ci job then extends &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-build-image-ci/&quot;&gt;my general purpose Docker build job that I&#39;ve already gotten into&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It also has a configuration file that defines how pa11y-ci should run, including that it will report to both the command line and to the HTML reporter. The most important here is the --no-sandbox option. None of the tests will run without that.&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;defaults&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;timeout&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;120000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;reporters&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;cli&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;pa11y-ci-reporter-html&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;chromeLaunchConfig&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;--no-sandbox&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;runners&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;axe&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;htmlcs&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;ignore&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;frame-tested&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;frame-title&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;warning&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;running-the-tests&quot;&gt;Running the Tests&lt;/h3&gt;
+&lt;p&gt;When I want a specific project to be able to run tests, the CI job in that project would look like:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Includes general CI jobs #&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ryan-l-robinson/gitlab-ci&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; main
+    &lt;span class=&quot;token key atrule&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test.yml
+
+&lt;span class=&quot;token comment&quot;&gt;### Checks a sitemap using Pa11y. ###&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;pa11y_test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .pa11y_test
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; content_test
+  &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Production
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//tech.ryanrobinson.ca/sitemap.xml
+  &lt;span class=&quot;token key atrule&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;refs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; main&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is extending my general purpose job which uses the image I&#39;ve previously built, checking all the pages of a sitemap, and keeping the report for 5 months:&lt;/p&gt;
+&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## Runs accessibility sitemap tests using pa11y ##&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;.pa11y_test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; test
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; registry.gitlab.com/ryan&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;l&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;robinson/pa11y&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;docker&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;gitlab/pa11y
+  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;SITEMAP_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Use pa11y-ci&#39;s built-in function for scanning from a sitemap. #&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; pa11y&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ci &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;sitemap $SITEMAP_URL &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;config /opt/pa11y/config.json
+  &lt;span class=&quot;token comment&quot;&gt;# Show as warning but don&#39;t stop execution of later jobs if failure. #&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;allow_failure&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# Save the reports for 5 months, past our next release. #&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;artifacts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
+    &lt;span class=&quot;token key atrule&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; pa11y&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ci&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;report
+    &lt;span class=&quot;token key atrule&quot;&gt;expire_in&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 5 months&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;running-tests-locally&quot;&gt;Running Tests Locally&lt;/h2&gt;
+&lt;h3 id=&quot;installation-requirements&quot;&gt;Installation Requirements&lt;/h3&gt;
+&lt;p&gt;The pa11y packages are being added in &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-postcreate/&quot;&gt;the postCreateCommand discussed in a previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;running-tests&quot;&gt;Running Tests&lt;/h3&gt;
+&lt;p&gt;These tests can only be run from the command line, like:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;pa11y&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or using pa11y-ci to check an entire sitemap:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;pa11y-ci &lt;span class=&quot;token parameter variable&quot;&gt;--sitemap&lt;/span&gt; https://tech.ryanrobinson.ca&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;html-reporter&quot;&gt;HTML Reporter&lt;/h3&gt;
+&lt;p&gt;Pa11y can dump the results into reports in a few different formats, including HTML. This then allows browsing the results one at a time in a very easy to read format. Some of the other formats like a JSON file aren&#39;t bad if there are few results, but get hard to work with on larger sites.&lt;/p&gt;
+&lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
+&lt;p&gt;Unlike Playwright, there are no tests to write yourself here, but you may need to adjust some of the configuration files. Pa11y and Pa11y-ci have different files. I&#39;m not going to pretend to know why they have slightly different files, but pa11y defaults to a configuration file position of pa11y.json, and pa11y-ci defaults to .pa11yci.&lt;/p&gt;
+&lt;p&gt;In my case, here&#39;s my pa11y.json:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;chromeLaunchConfig&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;--no-sandbox&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;--ignore-certificate-errors&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;--allow-insecure-localhost&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;ignoreHTTPSErrors&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;defaults&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;timeout&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;120000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;reporters&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;cli&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;pa11y-ci-reporter-html&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;runners&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;axe&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;htmlcs&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;ignore&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;frame-tested&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;frame-title&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;warning&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And here&#39;s my .pa11yci:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;defaults&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;chromeLaunchConfig&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token property&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;--no-sandbox&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;--ignore-certificate-errors&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;--allow-insecure-localhost&quot;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token property&quot;&gt;&quot;ignoreHTTPSErrors&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;timeout&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;120000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;reporters&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;cli&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;pa11y-ci-reporter-html&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;runners&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;axe&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;htmlcs&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;ignore&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;frame-tested&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&quot;frame-title&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;warning&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <title>Playwright Testing</title>
     <link href="https://tech.ryanrobinson.ca/2026/playwright-axe-tests/" />
@@ -973,89 +1162,6 @@ npx playwright &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
 &lt;li&gt;The proxy network is marked as not external. The local dev environment doesn&#39;t have the traefik requirements, at least not yet (I have tried to use it locally, to facilitate better certificates and better domain names for browsing, but didn&#39;t get far).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That gives us our general array of services. Next up will be some more instructions for our local developer environment, including how it knows to combine both docker-compose files.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Building the Dockerfile in CI/CD</title>
-    <link href="https://tech.ryanrobinson.ca/2025/devenv-build-image-ci/" />
-    <updated>2025-12-23T12:46:16Z</updated>
-    <id>https://tech.ryanrobinson.ca/2025/devenv-build-image-ci/</id>
-    <content type="html">&lt;p&gt;This post is one of several in a series detailing my development environment and CI/CD deployment pipeline. &lt;a href=&quot;https://gitlab.com/ryan-l-robinson/drupal-dev-environment&quot;&gt;The code for the developer environment can be seen on my GitLab&lt;/a&gt;. Other posts in the series can be seen by checking the Drupal Docker series links in the sidebar. I provided &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/drupal-docker-deploys-overview/&quot;&gt;an overview in the first post of the series&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We now have &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/&quot;&gt;a robust Dockerfile for the main web image&lt;/a&gt; and &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-start-script/&quot;&gt;some scripts to run when it starts up&lt;/a&gt;. There is one more essential step before we can start getting into details of the local development environment: we need to build that image we&#39;ve defined and store it in the GitLab container registry where everyone with permission can access it.&lt;/p&gt;
-&lt;p&gt;To handle this, I have these jobs set up in two different places. One creates a general build job. Then it can be implemented per project. If you only have one project you need to build, you could collapse these into one job. If you have multiple projects needing building, though, it makes sense to split it up with a general template that all projects can use, rather than needing to repeat that in every project.&lt;/p&gt;
-&lt;h2 id=&quot;the-build-template-job&quot;&gt;The Build Template Job&lt;/h2&gt;
-&lt;p&gt;The general build template job has a script which logs in to the GitLab container registry of the same project, builds the image including with any passed-through arguments, pushes it to the container registry, and then logs out again.&lt;/p&gt;
-&lt;p&gt;Also note some default variables such as those that include any git submodules. You may not need that in all projects, but I have needed it for several.&lt;/p&gt;
-&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;## General job for building from a Dockerfile. ##&lt;/span&gt;
-&lt;span class=&quot;token key atrule&quot;&gt;.build_dockerfile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;stage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build
-  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;dind
-  &lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-   &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;dind
-  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;DOCKER_BUILDKIT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;IMAGE_TAG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; web
-    &lt;span class=&quot;token comment&quot;&gt;# Defines image tag to go into the project&#39;s container registry, with a tag of the branch name. #&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;FULL_CONTAINER_PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $CI_REGISTRY_IMAGE/$IMAGE_TAG&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;$CI_COMMIT_REF_SLUG
-    &lt;span class=&quot;token comment&quot;&gt;# Include copying git submodules. #&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;GIT_STRATEGY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; clone
-    &lt;span class=&quot;token key atrule&quot;&gt;GIT_SUBMODULE_STRATEGY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; recursive
-    &lt;span class=&quot;token key atrule&quot;&gt;GIT_SUBMODULE_UPDATE_FLAGS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;init
-    &lt;span class=&quot;token key atrule&quot;&gt;GIT_SUBMODULE_FORCE_HTTPS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;true&quot;&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;# Point to the Dockerfile that should be built. #&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;DOCKERFILE_PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./.devcontainer/web.Dockerfile
-    &lt;span class=&quot;token key atrule&quot;&gt;BUILD_ARGS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;# Login to the GitLab registry using the private unique password provided by GitLab. #&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; echo $CI_REGISTRY_PASSWORD &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; docker login &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;u $CI_REGISTRY_USER &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;stdin  $CI_REGISTRY
-    &lt;span class=&quot;token comment&quot;&gt;# Build the Docker image. #&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker build &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pull &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;t $FULL_CONTAINER_PATH &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;f $DOCKERFILE_PATH . $BUILD_ARGS
-    &lt;span class=&quot;token comment&quot;&gt;# Push the Docker image to the project&#39;s container registry. #&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker push &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;quiet $FULL_CONTAINER_PATH
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; docker logout&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note that this job is also not specifically Drupal. This can be used for any project with a Dockerfile that needs built and stored in the GitLab container registry.&lt;/p&gt;
-&lt;h2 id=&quot;individual-project-jobs&quot;&gt;Individual Project Jobs&lt;/h2&gt;
-&lt;p&gt;Here is an example of a specific project implementing that build, with some more Drupal details added.&lt;/p&gt;
-&lt;p&gt;It extends the template file, defining some key variables that need to pass through. Those include the build arguments, which align with the ARGs needed in &lt;a href=&quot;https://tech.ryanrobinson.ca/2025/devenv-dockerfiles/&quot;&gt;the Dockerfile&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Rules define under what circumstances this build should happen. This is largely a question of efficiency. You could have it build for every change, but building takes time. You might really slow down your processes if you need to wait for a build on every change. Instead, I&#39;ve tried to define the exact scenarios where I do want to build:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If the branch is a major release branch, which I can predict because they start with 202 (my release branches are typically in the format YYYY-MM, so this will work until 2030). Those release branches are usually what I am building from in the local development environment, so I will almost always want those to be ready in case I or another developer need a new local build.&lt;/li&gt;
-&lt;li&gt;If the branch is dev, staging, or main. Those are going to deploy to other environments, so always need built.&lt;/li&gt;
-&lt;li&gt;If a change was made to certain files that impact the building itself, like the Dockerfile or the docker-compose. If I am changing those, it probably means that I am trying to test a change in the build process so I will want to now test the building.&lt;/li&gt;
-&lt;li&gt;If a change was made to included packages or to the custom code directories, because I will need that updated image to be accurate for automated regression tests to be able to run. I&#39;ll get into regression tests more in a later post.&lt;/li&gt;
-&lt;li&gt;The tag is a GitLab Runner that is designed for building Docker images.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&quot;language-yml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ryan-l-robinson/gitlab-ci&quot;&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; main
-    &lt;span class=&quot;token key atrule&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; build.yml
-
-&lt;span class=&quot;token comment&quot;&gt;## Stages ##&lt;/span&gt;
-&lt;span class=&quot;token key atrule&quot;&gt;stages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; build
-
-&lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .build_dockerfile
-  &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;IMAGE_TAG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; web
-    &lt;span class=&quot;token key atrule&quot;&gt;DOCKERFILE_PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./Dockerfile.Drupal
-    &lt;span class=&quot;token key atrule&quot;&gt;BUILD_ARGS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;arg BRANCH=$CI_COMMIT_BRANCH &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;arg BASE_URL=$BASE_URL &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;arg TIMESTAMP=$CI_COMMIT_TIMESTAMP
-  &lt;span class=&quot;token key atrule&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$CI_PIPELINE_SOURCE == &quot;merge_request_event&quot;&#39;&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; never
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;$CI_COMMIT_BRANCH =~ /^202/ || $CI_COMMIT_BRANCH =~ /^(dev|staging|main)$/&quot;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;changes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; .devcontainer/*
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; .devcontainer/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; .gitlab&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ci.yml
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; composer.lock
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; Dockerfile.drupal
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; scripts/*
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/modules/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; web/themes/custom/&lt;span class=&quot;token important&quot;&gt;**/*&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; build&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;docker&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That&#39;s it!&lt;/p&gt;
 </content>
   </entry>
 </feed>
