@@ -478,7 +478,7 @@ footer p a:is(:hover, :focus) {
 /** Aligns with the social-links.njk include file **/
 .social-links {
 	display: grid;
-	grid-template-columns: repeat(5, auto);
+	grid-template-columns: repeat(4, auto);
 	justify-content: center;
 	gap: 0.5em;
 	width: 100%;
@@ -487,9 +487,15 @@ footer p a:is(:hover, :focus) {
 	list-style: none;
 }
 
+@media (min-width:480px) {
+	.social-links {
+		grid-template-columns: repeat(6, auto);
+	}
+}
+
 @media (min-width: 768px) {
 	.social-links {
-		grid-template-columns: repeat(10, auto);
+		grid-template-columns: repeat(12, auto);
 	}
 }
 
