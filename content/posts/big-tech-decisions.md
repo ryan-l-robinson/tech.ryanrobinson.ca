@@ -13,15 +13,17 @@ In the previous post, I wrote about the kinds of factors I need to consider in t
 
 Generally speaking, at this stage I have zero connection to Meta or to [X The Everything Including Child Sex Abuse Material App](https://arstechnica.com/tech-policy/2026/01/x-blames-users-for-grok-generated-csam-no-fixes-announced/), a little for Amazon and Apple (mostly their video streaming services occasionally), but a lot with Microsoft and with Google.
 
+There's a lot here, so I'll try to summarize the best I can.
+
 ## Email
 
-I currently have an email with Microsoft. The good news is that my address is a custom domain, and I have the old Windows Live Domain offering from when it was free to get email with a custom domain (like Google also had). That means I could move the address somewhere else and nobody else should even notice. That part will always be non-negotiable to me: I have to control my address, even if I don't control the servers.
+I currently have an email with Microsoft. The good news is that my address is a custom domain, and I have the old Windows Live Domain offering from when it was free to get email with a custom domain (like Google also had). That means I could move the address somewhere else and nobody else should even notice. That part will always be non-negotiable to me: I have to control my address.
 
-I have absolutely zero interest in hosting my own email. That is a massive can of worms to keep up with things like Gmail not marking you as spam, as well as ongoing costs to keep a server running with zero downtime or you start missing email. I used to have my email in a paid Microsoft 365 Business account and even that I decided was more hassle than it was worth compared to using the free one.
+I have absolutely zero interest in hosting my own email, though. That is a massive can of worms to keep up with things like Gmail not marking you as spam, as well as ongoing costs to keep a server running with zero downtime or you start missing email. I used to have my email in a paid Microsoft 365 Business account and even that I decided was more hassle than it was worth compared to using the free one.
 
 Proton then seems like the most viable other option, at $5 CAD per month for the Mail Plus plan. They're not Canadian hosted, but at least they're in the EU with much higher privacy standards and it isn't one of the tech giants. That is probably one switch I could make relatively easily on my own, with the biggest challenge being the commitment to the ongoing cost. They do have a free trial, so that's a nice way to check it out and learn if there are any major problems it would introduce for me.
 
-Proton also offers more intensive plans, with cloud storage, password manager, and VPN. The first two of those I'll also get into more below. VPN may be nice but I don't think I really need it often enough for that to be more than a nice bonus. I would consider those, but only if moving the entire family. I would at least start with just doing my email.
+Proton also offers more intensive plans, with cloud storage, password manager, and VPN. The first two of those I'll also get into more below. VPN may be nice but I don't think I really need it often enough for that to be more than a nice bonus. I would consider the unlimited, but only if moving the entire family. I would at least start with just doing my email, then decide if it was worth trying to convert everyone.
 
 ## Cloud Storage and Document Editing
 
@@ -31,19 +33,19 @@ In terms of document editing, LibreOffice would almost certainly handle everythi
 
 The main reason we pay for the Family plan, though, is the cloud storage. It was until recently $110 CAD a year for the Family plan that includes 6 TB total of storage; it's now jumped to $145. That 6TB is really 1TB per user, but [you can set up sharing so that the files are distributed across the accounts](/2021/onedrive-family-plan-loophole/). I have all our photos in OneDrive at full quality. I have a lot of photos with people in them in Google Photos as well, since that makes it easier to find photos by person for things like a digital photo frame or to add a photo to a contact on my phone's address book, but the main place for absolutely everything at full quality is OneDrive with sync to a computer that has a big enough hard drive to hold it all.
 
-sync.com is Canadian and they offer 5TB for $336 per year. The equivalent in price would be $6/user/month for the Teams standard that gives 1TB to each user, so at 2 users and 2TB total you've already got the same price as for 6TB of OneDrive. That's a big difference, even if you don't include the other things that Microsoft 365 Family offers.
+sync.com is Canadian and they offer 5TB for $336 per year. The equivalent in price would be $6/user/month for the Teams standard that gives 1TB to each user, so at 2 users and 2TB total you've already got the same price as for 6 users and 6TB of OneDrive. That's a big price difference, even if you don't consider the other things that Microsoft 365 Family offers.
 
-Proton's cloud storage offering gives 3TB for the Family of up to 6 users - that's 3 TB total shared, not 3TB per user. That means half the storage - maybe enough for many families including us, but it is significantly less - and the same user count as Microsoft 365, and comes out at $338 per year. That includes their email hosting, password manager, and VPN. If all of the family switched all of those components, that's not unreasonable, as it would save costs on more than just Microsoft 365 Family. But do I really want to switch all of that, including from the password manager where we do at least have a Canadian company right now? And even if I do, am I really going to convince the rest of the family currently relying on Microsoft 365, like the one who I can't even get to join Signal?
+Proton's cloud storage offering gives 3TB for the Family of up to 6 users - that's 3 TB total shared, not 3TB per user. That means half the storage - maybe enough for many families including us, but it is significantly less - and the same user count as Microsoft 365, and comes out at $338 per year. That includes their email hosting, password manager, and VPN, though, so it's certainly a better bargain than sync.com. If all of the family switched all of those components, that's not unreasonable, as it would save costs on more than just Microsoft 365 Family. But do I really want to switch all of that, including from the password manager where we do at least have a Canadian company right now (see the next section)? And even if I do, am I really going to convince the rest of the family currently relying on Microsoft 365, like the one who I can't even get to join Signal?
 
 ## Password Manager
 
-This is a rare one where Big Tech doesn't really have that much control. Google, Microsoft, and Apple do have some forms of password manager in their products, but they're not as robust as some of the dedicated offerings. Most of the leaders if you hear knowledgeable people talk about password managers are independent. Of course, most of those are still US based.
+This is a rare one where Big Tech doesn't really have that much control. Google, Microsoft, and Apple do have some forms of password manager in their products, but they're not as robust as the dedicated offerings. Most of the leaders if you hear knowledgeable people talk about password managers are independent. Of course, most of those are still US based.
 
-1Password is great: independent, Canadian-owned, often at or near the front of the technology, reasonably priced, very user friendly which makes it reasonable to share with family, and has a great security track record. Even if I end up switching to Proton for other things and get the package that includes their password manager, I might stick with 1Password anyway.
+1Password is great: independent, Canadian-owned, often at or near the front of the technology, affordably priced, very user friendly which makes it reasonable to share with family, and has a great security track record. Even if I end up switching to Proton for other things and get the package that includes their password manager, I might stick with 1Password anyway.
 
 ## Search
 
-[I've already written a bit about my experiences testing out Kagi](/2025/types-search/). I like it for good old-fashioned searching for a specific site, and the price is entirely reasonable, but I realize that's a relatively small portion of what I use search to do. Bing is still so much better for quick answers like checking the score of the Raptors game. AI chat is much better for working out a complicated coding problem. It's really not that often that I want to find a specific site result.
+[I've already written a bit about my experiences testing out Kagi](/2025/types-search/). I like it for good old-fashioned searching for a specific site, and the price is entirely fair, but I realized that's a relatively small portion of what I use search to do. Bing is still so much better for quick answers like checking the score of the Raptors game. AI chat is much better for working out a complicated coding problem. It's really not that often that I want to find a specific site result.
 
 This one lands in the feasible, but maybe not worth it, category.
 
@@ -57,7 +59,7 @@ I use Firefox at home and on my phone, for a bit more privacy and to support a b
 
 ## Phone Operating System
 
-For the most part, it's very hard to use any phone operating not owned by either Apple or Google. I have considered GrapheneOS on my Pixel phone. From most of what I've been able to read, there isn't a lot of lost functionality, but there is some. Ultimately it is a significant gamble with an extremely important and expensive device.
+For the most part, it's very hard to use any phone operating not owned by either Apple or Google. I have considered GrapheneOS on my Pixel phone. From most of what I've been able to read, there isn't a lot of lost functionality, but there is some. Ultimately it is a significant gamble with an extremely important and expensive device, so I don't think is going to be high on the list of options.
 
 ## Computer Operating System
 
@@ -73,13 +75,13 @@ LinkedIn is the one big corporate one I use, which is in a different category as
 
 I use ActivityPub federated options, with Mastodon and Pixelfed below in the footer. I have a Loops account but I've been waiting for an app in the Play Store before I really see if I will use it at all.
 
-I also use Bluesky, which is in somewhere in the middle of the scale of totally open protocols and greedy corporate influence. I'd like to see them fully complete their mission to be very open.
+I also use Bluesky, which is somewhere in the middle of the scale of totally open protocols and greedy corporate influence. I'd like to see them fully complete their mission to be very open, but I'm willing to invest time there even before they do.
 
 ## Private Chat
 
 I use Signal. I don't use any of the ones with more sketchy security records. I don't even use WhatsApp that seems to have a better security record than the rest of Meta. If somebody isn't on Signal, they get an RCS or at worst SMS message from me.
 
-It is US-based, but at least it is a non-profit and the nature of the end-to-end encryption is that even if an authoritarian government seizes their servers, there is nothing private that is given away. Signal is one of these techs that I am most evangelistic about because I really do think that it's significantly better and at least as easy as their bigger competitors.
+It is US-based, but at least it is a non-profit and the nature of the end-to-end encryption is that even if an authoritarian government seizes their servers, there is nothing private that is given away. Signal is one of these techs that I am most evangelistic about because I really do think that it's significantly better and at least as easy as their bigger competitors. It might be the only one of all these discussions where the more ethical option is also at least equal in user experience.
 
 ## Video Streaming
 
@@ -95,9 +97,15 @@ We have YouTube Premium because that gives ad-free YouTube along with the Music 
 
 I would consider something like Tidal to be more ethical, but I don't stream enough music to really feel like it is worth paying for.
 
+The closest I can find to a Canadian option is Stingray, which does not seem great.
+
+Most to the point, I don't use this nearly as much as my wife does, so a switch here would disproportionately inconvenience her, meaning it is not high on the list of possibilities.
+
 ## Podcasts
 
-For this one, I really just want to say: use something that supports any RSS feed. Don't use those that have their own shows locked down to only play in their apps. I personally have been using Pocketcasts for years.
+For this one, I really just want to say: use something that supports any RSS feed. Don't use those that have their own shows locked down to only play in their apps.
+
+I personally have been using Pocketcasts for years and have always been happy with it. They're owned by Automatic, owner of WordPress, and are US based but at least fairly open and not part of one of the giants.
 
 ## Movies
 
