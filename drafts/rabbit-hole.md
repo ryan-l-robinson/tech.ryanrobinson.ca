@@ -5,7 +5,6 @@ author: Ryan Robinson
 description: "You might want to hide letting the public view taxonomy terms directly, instead redirecting them elsewhere. Rabbit Hole is a good module to help."
 tags:
   - Drupal
-draft: true
 ---
 
 I love when I have a specific need for Drupal functionality and I discover there's a contributed module that already does it very well. I love that even more if I discover it *before* I have written my own version, which is not what happened here, but it's still better to discover late than never. I will not at all get into the custom code I wrote for my previous approach, which was fine but was somewhat hardcoded, not built nicely into configuration with flexibility over time.

@@ -8,7 +8,6 @@ tags:
   - Static Sites
   - JavaScript
   - Accessibility
-draft: true
 ---
 My previous version of search was using [Pagefind](https://pagefind.app/). It worked with relatively little effort, but it had some terrible accessibility and very little room to customize anything. After some more research, I landed on using [elasticlunr](http://elasticlunr.com/) instead. So far I think that can do everything I wanted it to do.
 

@@ -1,167 +1,168 @@
 {
-  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
-  "frontMatter": {
-    "framework.id": "11ty",
-    "preview.host": "http://localhost:8080",
-    "git.enabled": true,
-    "taxonomy.contentTypes": [
-      {
-        "name": "default",
-        "pageBundle": false,
-        "previewPath": null,
-        "fields": [
-          {
-            "title": "Title",
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "title": "Description",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "title": "Publishing date",
-            "name": "date",
-            "type": "datetime",
-            "default": "{{now}}",
-            "isPublishDate": true
-          },
-          {
-            "title": "Content preview",
-            "name": "preview",
-            "type": "image"
-          },
-          {
-            "title": "Is in draft",
-            "name": "draft",
-            "type": "draft"
-          },
-          {
-            "title": "Tags",
-            "name": "tags",
-            "type": "tags"
-          },
-          {
-            "title": "author",
-            "name": "author",
-            "type": "string"
-          },
-          {
-            "title": "series",
-            "name": "series",
-            "type": "string"
-          }
-        ]
-      }
-    ],
-    "content.pageFolders": [
-      {
-        "title": "Posts",
-        "path": "[[workspace]]/content/posts"
-      },
-      {
-        "title": "Sidebar Blocks",
-        "path": "[[workspace]]/content/sidebar-blocks"
-      }
-    ],
-    "content.publicFolder": "public",
-    "data.files": [
-      {
-        "id": "general",
-        "title": "Used Generally Throughout Site",
-        "file": "[[workspace]]/_data/general.json",
-        "labelField": "title",
-        "singleEntry": true,
-        "schema": {
-          "title": "General",
-          "type": "object",
-          "required": [
-            "title",
-            "url"
-          ],
-          "properties": {
-            "title": {
-              "type": "string",
-              "title": "Title"
-            },
-            "url": {
-              "type": "string",
-              "title": "URL"
-            },
-            "link_icon": {
-              "type": "string",
-              "title": "Link Icon"
-            },
-            "description": {
-              "type": "string",
-              "title": "Description"
-            },
-            "author": {
-              "type": "object",
-              "title": "Author",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "Name"
-                },
-                "url": {
-                  "type": "string",
-                  "title": "URL"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "id": "meta",
-        "title": "Used For Meta Tags",
-        "file": "[[workspace]]/_data/meta.json",
-        "labelField": "region",
-        "singleEntry": true,
-        "schema": {
-          "title": "Meta",
-          "type": "object",
-          "properties": {
-            "region": {
-              "type": "string",
-              "title": "Region"
-            },
-            "fediverse": {
-              "type": "string",
-              "title": "Fediverse"
-            }
-          }
-        }
-      }
-    ],
-    "content.snippets": {
-      "Drupal Post Template": {
-        "description": "Front matter for a post about Drupal",
-        "body": [
-          "---",
-          "title: \"{ fromTitle }\": null",
-          "date: \"{ date }\": null",
-          "author: Ryan Robinson",
-          "description: Replace this with a one-sentence description to summarize the post, which will appear in lists as well as in the tl;dr box on individual posts.",
-          "series: Optional, if applicable",
-          "tags:",
-          "  - CSS",
-          "  - Accessibility",
-          "draft: true",
-          "---"
-        ],
-        "fields": []
-      }
-    }
-  },
-  "frontMatter.framework.id": "11ty",
-  "frontMatter.preview.host": "http://localhost:8080",
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "Posts",
-      "path": "[[workspace]]/content/posts"
-    }
-  ]
+	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
+	"frontMatter": {
+		"framework.id": "11ty",
+		"preview.host": "http://localhost:8080",
+		"git.enabled": true,
+		"taxonomy.contentTypes": [
+			{
+				"name": "default",
+				"pageBundle": false,
+				"previewPath": null,
+				"fields": [
+					{
+						"title": "Title",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"title": "Description",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"title": "Publishing date",
+						"name": "date",
+						"type": "datetime",
+						"default": "{{now}}",
+						"isPublishDate": true
+					},
+					{
+						"title": "Content preview",
+						"name": "preview",
+						"type": "image"
+					},
+					{
+						"title": "Is in draft",
+						"name": "draft",
+						"type": "draft"
+					},
+					{
+						"title": "Tags",
+						"name": "tags",
+						"type": "tags"
+					},
+					{
+						"title": "author",
+						"name": "author",
+						"type": "string"
+					},
+					{
+						"title": "series",
+						"name": "series",
+						"type": "string"
+					}
+				]
+			}
+		],
+		"content.pageFolders": [
+			{
+				"title": "Drafts",
+				"path": "[[workspace]]/drafts"
+			},
+			{
+				"title": "Posts",
+				"path": "[[workspace]]/content/posts"
+			},
+			{
+				"title": "Sidebar Blocks",
+				"path": "[[workspace]]/content/sidebar-blocks"
+			}
+		],
+		"content.publicFolder": "public",
+		"data.files": [
+			{
+				"id": "general",
+				"title": "Used Generally Throughout Site",
+				"file": "[[workspace]]/_data/general.json",
+				"labelField": "title",
+				"singleEntry": true,
+				"schema": {
+					"title": "General",
+					"type": "object",
+					"required": ["title", "url"],
+					"properties": {
+						"title": {
+							"type": "string",
+							"title": "Title"
+						},
+						"url": {
+							"type": "string",
+							"title": "URL"
+						},
+						"link_icon": {
+							"type": "string",
+							"title": "Link Icon"
+						},
+						"description": {
+							"type": "string",
+							"title": "Description"
+						},
+						"author": {
+							"type": "object",
+							"title": "Author",
+							"properties": {
+								"name": {
+									"type": "string",
+									"title": "Name"
+								},
+								"url": {
+									"type": "string",
+									"title": "URL"
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				"id": "meta",
+				"title": "Used For Meta Tags",
+				"file": "[[workspace]]/_data/meta.json",
+				"labelField": "region",
+				"singleEntry": true,
+				"schema": {
+					"title": "Meta",
+					"type": "object",
+					"properties": {
+						"region": {
+							"type": "string",
+							"title": "Region"
+						},
+						"fediverse": {
+							"type": "string",
+							"title": "Fediverse"
+						}
+					}
+				}
+			}
+		],
+		"content.snippets": {
+			"Drupal Post Template": {
+				"description": "Front matter for a post about Drupal",
+				"body": [
+					"---",
+					"title: \"{ fromTitle }\": null",
+					"date: \"{ date }\": null",
+					"author: Ryan Robinson",
+					"description: Replace this with a one-sentence description to summarize the post, which will appear in lists as well as in the tl;dr box on individual posts.",
+					"series: Optional, if applicable",
+					"tags:",
+					"  - CSS",
+					"  - Accessibility",
+					"draft: true",
+					"---"
+				],
+				"fields": []
+			}
+		}
+	},
+	"frontMatter.framework.id": "11ty",
+	"frontMatter.preview.host": "http://localhost:8080",
+	"frontMatter.content.pageFolders": [
+		{
+			"title": "Posts",
+			"path": "[[workspace]]/content/posts"
+		}
+	]
 }

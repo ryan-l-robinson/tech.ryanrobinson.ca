@@ -7,7 +7,6 @@ series: "11ty Theme"
 tags:
   - Static Sites
   - JavaScript
-draft: true
 ---
 The first challenge in building these eleventy sites was handling generating other post lists based on some filtering variable, particularly by tag and by year. This allowed me to build pages that are just all the posts tagged as [Accessibility](/tags/accessibility), for example, or all the posts published in [2026](/2026).
 

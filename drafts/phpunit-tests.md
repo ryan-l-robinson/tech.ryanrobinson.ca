@@ -8,7 +8,6 @@ tags:
   - Drupal
   - DevOps
   - PHP
-draft: true
 ---
 
 As with the previous couple related to testing, this post is a bit bigger than just that series, though. When you're maintaining a site over an extended period of time, something extremely useful is to have automated regression testing that will catch if you break one thing in the process of fixing another thing. I'm  adding it as part of that series because of the role of the automated testing stages.

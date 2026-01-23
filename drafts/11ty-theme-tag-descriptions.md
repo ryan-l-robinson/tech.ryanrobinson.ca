@@ -8,7 +8,6 @@ tags:
   - Static Sites
   - JavaScript
   - Accessibility
-draft: true
 ---
 This is a more subtle touch, but I quickly found myself wanting it once some of the other pieces were in place. It isn't always obvious what a tag means. Similarly, when I write a series of posts, I might want to repeat the same introduction on all of them, in order to avoid having to type basically the same thing each time, or worse, forgetting the introduction on some posts.
 
