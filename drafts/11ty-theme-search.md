@@ -91,7 +91,7 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
   fetch('/search-index.json')
     .then(response => response.json())
     .then(indexData => {
-  	  // 4. Load the pre-built elasticlunr index
+      // 4. Load the pre-built elasticlunr index
       idx = elasticlunr.Index.load(indexData);
     }).catch(err => {
       console.error('Error fetching or parsing search index:', err);
@@ -105,9 +105,9 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
       event.preventDefault();
     }
 
-  	const query = searchInput.value;
+    const query = searchInput.value;
 
-  	// 6. Clear previous results
+    // 6. Clear previous results
     searchResults.innerHTML = '';
     searchInput.setAttribute('aria-expanded', 'false');
     searchResults.hidden = true;
@@ -120,8 +120,8 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
     const results = idx.search(query, {
       fields: {
         title: { boost: 10 },
-				tags: { boost: 5 },
-				description: { boost: 3 },
+        tags: { boost: 5 },
+        description: { boost: 3 },
         content: { boost: 1 }
       },
       expand: true // Search within phrases
@@ -143,20 +143,20 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
         const now = new Date();
         const ageInDays = (now.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24);
 
-				if (ageInDays >= 0) {
-					// How heavily older posts get penalized.
-					// For example, a decayRate of 0.001 means it would take about 337 days
-					// for a post that is 5% more relevant to be ranked lower.
-					const decayRate = 0.001;
+      if (ageInDays >= 0) {
+          // How heavily older posts get penalized.
+          // For example, a decayRate of 0.001 means it would take about 337 days
+          // for a post that is 5% more relevant to be ranked lower.
+          const decayRate = 0.001;
 
-					// How much the date factor can overcome relevance other.
-					// i.e. a 0.3 scalingFactor will only overcome at most a 30% relevance score difference from the content.
-					const scalingFactor = 0.3;
+          // How much the date factor can overcome relevance other.
+          // i.e. a 0.3 scalingFactor will only overcome at most a 30% relevance score difference from the content.
+          const scalingFactor = 0.3;
 
-					// This can end up between 0 for a really old post and 1 for a brand new post.
-					const dateBoost = Math.exp(-decayRate * ageInDays);
+          // This can end up between 0 for a really old post and 1 for a brand new post.
+          const dateBoost = Math.exp(-decayRate * ageInDays);
 
-					// The boost can now be between 1 (no boost) and 1 + scalingFactor. This is why the scalingFactor can only overcome a certain amount of relevance.
+          // The boost can now be between 1 (no boost) and 1 + scalingFactor. This is why the scalingFactor can only overcome a certain amount of relevance.
           const boost = 1 + scalingFactor * dateBoost;
           newResult.newScore = result.score * boost;
         }
@@ -166,28 +166,28 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
 
     // 9. Display the results
     searchResults.hidden = false;
-		if (boostedResults.length > 0) {
-			// Create a wrapper div for spacing.
-			const wrapper = document.createElement('div');
-			wrapper.classList.add('search-results-wrapper');
+    if (boostedResults.length > 0) {
+      // Create a wrapper div for spacing.
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('search-results-wrapper');
 
-			// For accessibility, mark the region as expanded.
-			searchInput.setAttribute('aria-expanded', 'true');
-			// Start the list of results.
+      // For accessibility, mark the region as expanded.
+      searchInput.setAttribute('aria-expanded', 'true');
+      // Start the list of results.
       const resultList = document.createElement('ul');
 
-			// Heading for clarity and better navigation.
+      // Heading for clarity and better navigation.
       const sr_heading = document.createElement('h2');
       sr_heading.textContent = `${boostedResults.length} Search Result${boostedResults.length === 1 ? '' : 's'} for "${query}"`;
       sr_heading.classList.add('search-results-heading');
       wrapper.appendChild(sr_heading);
 
-			// Results added as list items.
+      // Results added as list items.
       boostedResults.forEach(function (result) {
         const doc = result.doc;
-				if (doc) {
-					// Create a list item for each result
-					const listItem = document.createElement('li');
+        if (doc) {
+          // Create a list item for each result
+          const listItem = document.createElement('li');
           const link = document.createElement('a');
           link.href = doc.id; // The 'id' is the URL
           link.textContent = doc.title;
@@ -196,35 +196,35 @@ Finally, when the end user visits the site, the JavaScript they will activate ar
           const description = document.createElement('p');
           if (doc.description) {
             description.textContent = doc.description;
-					}
-					else {
-						description.textContent = "No description available."
-					}
+          }
+          else {
+            description.textContent = "No description available."
+          }
           listItem.appendChild(description);
 
-					resultList.appendChild(listItem);
+          resultList.appendChild(listItem);
         }
-			});
+      });
 
-			wrapper.appendChild(resultList);
+      wrapper.appendChild(resultList);
       searchResults.appendChild(wrapper);
-		}
-		else {
+    }
+    else {
       const noResultsMessage = document.createElement('p');
       noResultsMessage.textContent = 'No results found.';
       searchResults.appendChild(noResultsMessage);
     }
   };
 
-	// Don't update until 500ms of inactivity, to avoid overwhelming screen reader users.
+  // Don't update until 500ms of inactivity, to avoid overwhelming screen reader users.
   const handleInput = () => {
     clearTimeout(debounceTimer);
 
     debounceTimer = setTimeout(() => {
       if (searchInput.value.trim() !== '') {
-  	    performSearch();
-			}
-			else {
+        performSearch();
+      }
+      else {
         searchResults.innerHTML = '';
         searchResults.hidden = true;
         searchInput.setAttribute('aria-expanded', 'false');
