@@ -1,4 +1,4 @@
-.post-list { counter-reset: start-from 6 }
+.post-list { counter-reset: start-from 3 }
 /** Styles only needed for the views summarizing multiple posts */
 
 /** Lists of posts **/
@@ -219,6 +219,7 @@ li {
 
 blockquote {
 	display: flex;
+	flex-direction: column;
 	border-left: 5px solid var(--border-color);
 	padding-left: 1.5rem;
 	font-style: italic;
