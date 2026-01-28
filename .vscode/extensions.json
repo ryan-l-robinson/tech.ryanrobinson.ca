@@ -3,7 +3,7 @@
 		"DavidAnson.vscode-markdownlint",
 		"editorconfig.editorconfig",
 		"eliostruyf.vscode-front-matter",
-		"prettier.prettier-vscode",
+		"esbenp.prettier-vscode",
 		"streetsidesoftware.code-spell-checker",
 		"ronnidc.nunjucks",
 		"yzhang.markdown-all-in-one"
