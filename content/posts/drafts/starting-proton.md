@@ -7,7 +7,7 @@ series: "Big Tech Alternatives"
 tags:
   - "Tech and Society"
 ---
-
+I've begun more deeply exploring moving my primary email from Outlook to Proton, in my attempt to rely less on US Big Tech that can use the money they make from my data to do things like bribe authoritarian governments while also fully subjecting themselves to their every whim.
 ## The Losses
 
 Proton doesn't include task management at all. There are lots of good task management apps, but it does mean another app with another account, not at all integrated into my calendar. That's not ideal.
@@ -17,6 +17,8 @@ On desktop, I can use the Proton app. It also means that I can't manage my separ
 I could instead use the Proton email in Outlook using an IMAP connection. That mostly works well enough for syncing the email component. It doesn't sync the calendar or contacts at all. There would be a significant cost in functionality if I want that convenience of having both in the same app.
 
 On mobile, it doesn't connect to device contacts at all. That's a potential big loss. It is noted in a documentation page that they plan to do that.
+
+It also doesn't connect to the device calendar at all. So you can't even have one calendar from Proton and one from Outlook and then look at them from the same app, not without publishing one of them to share through the cloud to the other.
 
 ### TBD
 
