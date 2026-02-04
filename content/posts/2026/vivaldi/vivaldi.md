@@ -74,6 +74,8 @@ Speaking of developing, the Inspect Element is hidden under an extra layer of me
 
 Bookmarks are giving me the most trouble so far. Since there is no tool to import everything from Firefox, I tried to import at least my bookmarks. I went to Firefox and exported as HTML. Then I went back to Vivaldi, found an Import tool which allowed from HTML, and used that. The Vivaldi interface says it imported, but no bookmarks showed up. Then I gave up and tried to add a bookmark manually, and that didn't work either. I click on the button to add bookmark from the address bar and it doesn't do anything. I click on the + button within the bookmarks window and it doesn't do anything. Then it got even stranger: I checked it on mobile, after trying on desktop multiple times, and saw multiple copies of imported bookmarks. They somehow got imported and synced, but they don't even show up on the device that I imported them on.
 
+Update: I tried importing again a few days later. It worked instantly this time. Maybe I got a bug fix update, or maybe something else weird was going on that I can't explain.
+
 Another minor bookmarks nuisance is that it is tied to the right sidebar. I don't really want anything else from the right sidebar. Nicely, I could move the button to open bookmarks into other toolbars - that's great. When I click on it, it opens the bookmarks, as well as the rest of the right sidebar. Then when I close the bookmarks, it doesn't close the sidebar again. It's a minor nuisance, and I don't rely on bookmarks so much that it will really add up, but it's another in the "rough around the edges" category.
 
 ## Email, Calendar, and Feeds
