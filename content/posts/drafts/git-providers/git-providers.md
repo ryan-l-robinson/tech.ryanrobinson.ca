@@ -2,7 +2,7 @@
 title: Git Hosting Providers
 date: 2026-02-10T14:46:00.000Z
 author: Ryan Robinson
-description: "Comparing some pro's and con's about GitLab, GitHub, Worktree, and Codeberg"
+description: "GitLab is the most powerful. GitHub is the most ubiquitous. Codeberg is the most ethical. Worktree is Canadian."
 series: Big Tech Alternatives
 tags:
   - "Tech and Society"
@@ -30,6 +30,8 @@ It is easy to find your way around things like:
 - Pages for hosting static sites
 - Project settings, as distinct from user settings
 
+TODO: add a screenshot here.
+
 It's also the only one of these that allows you to group your projects, which is really nice once you have more than a few projects for organization as well as for managing cascading permissions if you're working as part of a team.
 
 In raw feature set and usability, I see GitLab as the clear winner.
@@ -39,6 +41,8 @@ In raw feature set and usability, I see GitLab as the clear winner.
 I have used GitHub the most for my personal projects. It's what hosts this website, at least as of now (see the conclusion below).
 
 It's more streamlined than GitLab is, not throwing as many project management tools at you, but still offering the most important things: the repository itself, issue tracking, CI/CD, and free website hosting for static sites.
+
+TODO: add a screenshot here.
 
 It can't be hosted on-premise. You can only use their servers.
 
@@ -51,6 +55,7 @@ Of course, the real biggest argument for it is the network effect: that's where 
 I started writing these two up separately, then immediately upon creating accounts realized they are both based on the exact same software. There are not a lot of differences between them obviously visible in functionality; there might be a few, but not enough to worry about.
 
 [worktree.ca](https://about.worktree.ca/) is a new entry from a Canadian for-profit company. [codeberg.org](https://codeberg.org) is a more established non-profit based in the European Union. Worktree gets some points for being Canadian. Codeberg gets some points for being non-profit and in the EU I would consider almost as good as Canadian, since at least they have some privacy laws.
+
 ### Features
 
 There are definitely some good things to note:
@@ -80,7 +85,7 @@ Part of why I say that is by the comparison with Codeberg. They have no suggeste
 
 At least for now, I'm going to try splitting with:
 
-- GitLab keeps the projects that are demonstrating CI/CD functionality which I have mostly learned from my work use of GitLab. There's not much choice there.
-- Codeberg gets everything else, including the static sites as well as all the demo repositories like shared Drupal modules.
+- GitLab will keep the projects that are demonstrating CI/CD functionality which I have mostly learned from my work use of GitLab. There's not much choice there other than copying the code elsewhere but not actually being able to run it to confirm it still works, which got silly when I tried that for a bit previously.
+- Codeberg gets everything else, including the static sites and the demo repositories like shared Drupal modules.
 - GitHub I'll keep the account to interact with other repositories, but stop having that as my primary home for anything.
 - Worktree I'll keep the account and maybe check in occasionally to see if anything has changed enough to change my mind, but otherwise I'm just lending one more user account to their metrics to try to argue that Canadians do want a homegrown option. I do want a homegrown option. I just can't justify those costs for my minimal needs.

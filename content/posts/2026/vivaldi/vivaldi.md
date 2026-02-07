@@ -84,7 +84,7 @@ I have to note that it also includes an email client. This is IMAP only, so if l
 
 Vivaldi also includes feeds. Sort of. As far as I can find, there is no view to go to that shows all my feeds in one place. There is a button for "Feeds" in the Toolbar Editor but it refuses to add it to any of the toolbar areas, so I have no idea what that is supposed to go to. What did clearly work was a notification when there is a new post on a feed. That's maybe sometimes useful for certain feeds that I really need to know about right away, but for the most part not what I'm looking for. I hope it has a desktop equivalent to what I do with Start Launcher on Android, having my own customized news page that I can browse, and I just can't figure out how to open it.
 
-Update: like the bookmarks, this also seems to be working now a few days later. There is a button in the toolbar, which opens a sidebar to browse all your feeds. Strange.
+Update: like the bookmarks, this also seems to be working now a few days later. There is a button in the toolbar, which opens a sidebar to browse all your feeds. Strange but I'll take it.
 
 ## Mobile
 
